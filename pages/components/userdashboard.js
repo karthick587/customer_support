@@ -27,7 +27,7 @@ const userDashboard=(props)=>{
             if (window.confirm("Do you want to Logout ?")) {
                 setfinishStatus(true)
                 // your logic
-                router.push("./adminLogin")
+                router.push("./userLogin")
             } else {
                 window.history.pushState(null, null, window.location.pathname);
                 setfinishStatus(false)
@@ -43,11 +43,13 @@ const userDashboard=(props)=>{
           };
     }, []);
     
-
+    const onBackButtonEvent3 = () =>{
+        router.push("./userLogin")
+      }
     return(
           <div>
             <Dashboard 
-                logout=" ./userLogin"
+               logout={onBackButtonEvent3}
                 headertext="USER DASHBOARD"
                 navcontent={
                     <Typography

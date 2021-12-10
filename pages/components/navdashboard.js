@@ -105,7 +105,7 @@ export default function Dashboard(props) {
                           <NotificationsIcon />
                       </Badge>
                   </IconButton>
-                  <a href={props.logout} className="nav-link ms-2">Logout</a>
+                  <a onClick={props.logout} className="nav-link ms-2">Logout</a>
                       {props.menuBar}
                   </Toolbar>
               </AppBar>

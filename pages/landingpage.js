@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from "react";
 import Head from 'next/head';
 import router from 'next/router';
 
 export default function Landingpage() {
+    const onBackButtonEvent = (e) => {
+        e.preventDefault();
+              router.push("/")
+      }
+      useEffect(() => {
+        window.history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', onBackButtonEvent);
+        return () => {
+            window.removeEventListener('popstate', onBackButtonEvent);  
+        };
+      },[]);
     return (
         <div>
             <Head>

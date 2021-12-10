@@ -46,12 +46,14 @@ const adminDashboard=(props)=>{
           window.removeEventListener('popstate', onBackButtonEvent);  
       };
   },[]);
-    
+  const onBackButtonEvent2 = () =>{
+    router.push("./adminLogin")
+  }
  return(
         <div >
                   <div>
                     <Dashboard 
-                      logout="./adminLogin"
+                      logout={onBackButtonEvent2}
                       navcontent={
                         <Typography
                             component="h1"

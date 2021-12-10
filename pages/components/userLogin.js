@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Axios from "axios";
 import {useRouter} from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -43,6 +43,20 @@ export default function Login2(){
             }
         });
     }
+    const onBackButtonEvent = (e) => {
+        e.preventDefault();
+      
+              router.push("/")
+         
+      }
+      
+      useEffect(() => {
+        window.history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', onBackButtonEvent);
+        return () => {
+            window.removeEventListener('popstate', onBackButtonEvent);  
+        };
+      },[]);
     return(
         <div className="login-page">
             <Head>

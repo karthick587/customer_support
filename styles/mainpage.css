@@ -161,7 +161,121 @@ body h1 {
     margin: 2.5em auto;
     background: #fff;
   }
-  
+  #section-1 .content-slider .slider .banner .banner-inner-wrapper .learn-more-button {
+    padding-bottom: 5em;
+    z-index: 15 !important;
+  }
+  #section-1 .content-slider .slider .banner .banner-inner-wrapper .learn-more-button a {
+    padding: 0.5em 2em;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 0.875em;
+    color: #fff;
+    text-transform: uppercase;
+    border: 0.1875em solid #fff;
+  }
+  #section-1 .content-slider .slider .banner .banner-inner-wrapper .learn-more-button a:hover {
+    color: #e88382;
+    border-color: #e88382;
+    transition: 0.3s;
+  }
+  #section-1 .content-slider .slider #top-banner-1 {
+    background: url('https://checkboxes-demo.webdevs.co.ua/images/mogo/banner-1.png') no-repeat center center;
+    background-size: cover;
+  }
+  #section-1 .content-slider .slider #top-banner-2 {
+    background: url('https://checkboxes-demo.webdevs.co.ua/images/mogo/banner-2.png') no-repeat center center;
+    background-size: cover;
+  }
+  #section-1 .content-slider .slider #top-banner-3 {
+    background: url('https://checkboxes-demo.webdevs.co.ua/images/mogo/banner-3.png') no-repeat center center;
+    background-size: cover;
+  }
+  #section-1 .content-slider .slider #top-banner-4 {
+    background: url('https://checkboxes-demo.webdevs.co.ua/images/mogo/banner-4.png') no-repeat center center;
+    background-size: cover;
+  }
+  #section-1 .content-slider nav {
+    position: absolute;
+    bottom: 0.5em;
+    width: 100%;
+    z-index: 10;
+    text-align: center;
+  }
+  #section-1 .content-slider nav .controls {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    font-family: Montserrat, sans-serif;
+    color: #fff;
+  }
+  #section-1 .content-slider nav .controls label {
+    position: relative;
+    display: inline-block;
+    width: 20%;
+    height: 3.1em;
+    overflow: hidden;
+    margin: 0 1em;
+    padding-top: 1em;
+    text-align: left;
+    text-transform: uppercase;
+    font-family: Montserrat, sans-serif;
+    font-size: 1em;
+    color: #f6eac5;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  #section-1 .content-slider nav .controls label .progressbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #f6eac5;
+    z-index: 100;
+  }
+  #section-1 .content-slider nav .controls label .progressbar .progressbar-fill {
+    position: inherit;
+    width: inherit;
+    height: inherit;
+    margin-left: -100%;
+    background: #e88382;
+  }
+  #section-1 .content-slider nav .controls label span {
+    font-size: 1.4em;
+    font-weight: 700;
+  }
+  #section-1 .content-slider nav .controls label:hover {
+    color: #e88382;
+  }
+  #section-1 .content-slider #banner1:checked ~ .slider #top-banner-1,
+  #section-1 .content-slider #banner2:checked ~ .slider #top-banner-2,
+  #section-1 .content-slider #banner3:checked ~ .slider #top-banner-3,
+  #section-1 .content-slider #banner4:checked ~ .slider #top-banner-4 {
+    opacity: 1;
+    z-index: 1;
+  }
+  #section-1 .content-slider #banner1:checked ~ nav label:nth-of-type(1),
+  #section-1 .content-slider #banner2:checked ~ nav label:nth-of-type(2),
+  #section-1 .content-slider #banner3:checked ~ nav label:nth-of-type(3),
+  #section-1 .content-slider #banner4:checked ~ nav label:nth-of-type(4) {
+    cursor: default;
+    color: #fff;
+    transition: all 0.5s;
+  }
+  #section-1 .content-slider #banner1:checked ~ nav label:nth-of-type(1) .progressbar,
+  #section-1 .content-slider #banner2:checked ~ nav label:nth-of-type(2) .progressbar,
+  #section-1 .content-slider #banner3:checked ~ nav label:nth-of-type(3) .progressbar,
+  #section-1 .content-slider #banner4:checked ~ nav label:nth-of-type(4) .progressbar {
+    background: #fff;
+  }
+  #section-1 .content-slider #banner1:checked ~ nav label:nth-of-type(1) .progressbar-fill,
+  #section-1 .content-slider #banner2:checked ~ nav label:nth-of-type(2) .progressbar-fill,
+  #section-1 .content-slider #banner3:checked ~ nav label:nth-of-type(3) .progressbar-fill,
+  #section-1 .content-slider #banner4:checked ~ nav label:nth-of-type(4) .progressbar-fill {
+    animation: progressBarFill 5s linear;
+  }
   /* Animations */
   @keyframes progressBarFill {
     from {

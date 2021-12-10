@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useRouter} from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,7 +17,7 @@ import * as yup from 'yup';
   });
 
 export default function Login1(){
- 
+  const [finishStatus, setfinishStatus] = useState(false);
   const router=useRouter();
   var[loginStatus,setLoginStatus]=useState('');
 
@@ -41,7 +41,20 @@ const adminLogin=({username,password})=>{
           }
     });       
 }
+const onBackButtonEvent = (e) => {
+  e.preventDefault();
 
+        router.push("/")
+   
+}
+
+useEffect(() => {
+  window.history.pushState(null, null, window.location.pathname);
+  window.addEventListener('popstate', onBackButtonEvent);
+  return () => {
+      window.removeEventListener('popstate', onBackButtonEvent);  
+  };
+},[]);
  return(
         <div className="login-page">
           <Head>
@@ -72,8 +85,8 @@ const adminLogin=({username,password})=>{
                         </div>
                         <div className="form-group">
                             <Button className="btn btn-primary btn-md" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link text-white">Login</a></Button>
-                            <Link href="/components/register"  className="btn btn-primary btn-lg">Register</Link>
-                            <a  className="navigation float-end"  onClick={() => router.push("./userLogin")} >UserLogin</a>
+                          
+                          
                         </div>
                         <h4 className="alert1">{loginStatus}</h4>
                     </form>

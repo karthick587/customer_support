@@ -36,27 +36,9 @@ export default function AdminProfile({admin,adminId}) {
 	<div className="container">
 		{admin.map((props)=>
 		<div className="row gutters">
-			<div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-				<div className="card h-100">
-					<div className="card-body">
-						<div className="account-settings">
-							<div className="user-profile">
-								<div className="user-avatar">
-									<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" />
-								</div>
-								<h5 className="user-name">{props.firstname}</h5>
-								<h6 className="user-email">{props.email}</h6>
-							</div>
-							<div className="about">
-								<h5>About</h5>
-								<p>{props.about}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-				<div className="card h-100">
+		
+		<div>
+				<div className=" card h-100">
 					<div className="card-body">
 						<div className="row gutters ">
 							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
