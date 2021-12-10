@@ -1,0 +1,27 @@
+.login-page {
+    padding: 17px 0px;
+    background-image: url(./gb3.png);
+    background-size: 57%;
+    background-repeat: no-repeat;
+    background-position: right;
+   height: 100vh;
+    background-color: #053a8c;
+  }
+
+   
+
+  .reg {
+    margin: 0px 0px !important;
+    padding: 4px 8px 0px 8px ;
+    
+}
+.regs{
+  margin: 17px 0px 69px 76px !important;
+
+}
+th{
+  font-family: 'Open Sans', sans-serif !important;
+}
+.reg{
+  height: 148vh !important;
+}
