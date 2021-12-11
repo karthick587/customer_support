@@ -17,7 +17,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 

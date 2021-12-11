@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import Head from 'next/head';
 import Axios from 'axios';
-import Link from 'next/link'
 import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
@@ -17,7 +16,7 @@ import * as yup from 'yup';
   });
 
 export default function Login1(){
-  const [finishStatus, setfinishStatus] = useState(false);
+  
   const router=useRouter();
   var[loginStatus,setLoginStatus]=useState('');
 

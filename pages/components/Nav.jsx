@@ -3,11 +3,8 @@ import Link from "next/link"
 import Sidebar from './sidebar';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
-
 export { Nav };
-
 function Nav(props) {
-
  return (
         <nav className="navbar navbar-expand navbar-dark color">
             <div className="container">
