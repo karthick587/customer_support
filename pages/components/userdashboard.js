@@ -7,7 +7,7 @@ import { withRouter } from "next/router";
 import FormDialog from "./dialogsform";
 import router from "next/router";
 
-const userDashboard=(props)=>{
+const UserDashboard=(props)=>{
     
     const[user,setUser]=useState([]);
     const [finishStatus, setfinishStatus] = useState(false);
@@ -81,4 +81,4 @@ const userDashboard=(props)=>{
           </div>  
   )
 }
-export default withRouter(userDashboard);
+export default withRouter(UserDashboard);

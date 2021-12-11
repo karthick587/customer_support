@@ -8,14 +8,17 @@ function Userissue() {
     const[username,setUserName]=useState('');
     const[domainName,setDomainName]=useState('');
     const[date,setDate]=useState('');
+    const[email,setEmail]=useState('');
     const[description,setDescription]=useState('');
-
+ const[file,setFile]=useState('');
  const addIssues=()=>{
     Axios.post("http://localhost:3001/addIssues",{
           UserName:username,
           DomainName:domainName,
           IssuesFoundIn:date,
-          Description:description
+          Description:description,
+          Email:email,
+          File:file
     }).then((response)=>{
            console.log(response);
     });
@@ -34,6 +37,10 @@ function Userissue() {
                             <label className="col-sm-3">Domain Name</label>
                             <input className="col-sm-3" name="domainName" type="text" onChange={(e)=>{setDomainName(e.target.value);}}  />
                         </div>
+                        <div className="  pt-4">
+                            <label className="col-sm-3">Email</label>
+                            <input className="col-sm-3" name="domainName" type="text" onChange={(e)=>{setEmail(e.target.value);}}  />
+                        </div>
                         <div className=" pt-4">
                             <label className="col-sm-3">Issues found in</label>
                             <input className="col-sm-3" name="issuesFoundIn" type="date" onChange={(e)=>{setDate(e.target.value);}}  />
@@ -41,6 +48,10 @@ function Userissue() {
                         <div className=" pt-4 ">
                             <label className="col-sm-3 pb-2">Description</label>
                             <textarea className="col-sm-3" name="description" rows="4" cols="50" maxLength="200" onChange={(e)=>{setDescription(e.target.value)}} />
+                        </div>
+                         <div class="mb-3">
+                           
+                              <input class="form-control" name="file" type="file"  onChange={(e)=>{setFile(e.target.value);}} />
                         </div>
                         <div className="pt-3">
                             <button className="btn btn-primary btn-md" type="submit" onClick={addIssues}><a className="nav-link text-white">Submit</a></button>

@@ -205,12 +205,13 @@ app.post("/addIssues",(req,res)=>{
     const DomainName=req.body.DomainName;
     const IssuesFoundIn=req.body.IssuesFoundIn;
     const Description=req.body.Description;
+    const Email=req.body.Email;
     const Team=req.body.Team;
     const Status=req.body.Status;
-    
+    const File=req.body.File;
     con.query(
-        "INSERT INTO issues (username,DomainName,IssuesFoundIn,Description,Team,Status) VALUES (?,?,?,?,?,?)",
-        [UserName,DomainName,IssuesFoundIn,Description,Team,Status],(err,result)=>{
+        "INSERT INTO issues (username,DomainName,IssuesFoundIn,Description,Email,Team,Status,File) VALUES (?,?,?,?,?,?,?,?)",
+        [UserName,DomainName,IssuesFoundIn,Description,Email,Team,Status,File],(err,result)=>{
             if(!err)
                 res.send(result)
             else

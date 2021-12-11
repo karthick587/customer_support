@@ -36,9 +36,9 @@ export default function UserProfile({user,userId}) {
  return (
 	<div className="container">
 		{user.map((props)=>
-		<div className="row gutters">
+		<div key={props.id} className="row gutters">
 			
-			<div className="">
+			<div>
 				<div className="card h-100">
 					<div className="card-body">
 						<div className="row gutters ">

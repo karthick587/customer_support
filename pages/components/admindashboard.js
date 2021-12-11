@@ -12,7 +12,7 @@ import router from 'next/router';
 import Adminticket from './adminticket';
 import { withRouter } from "next/router";
 
-const adminDashboard=(props)=>{
+const AdminDashboard=(props)=>{
   
   const[user,setUser]=useState([]);
   const [finishStatus, setfinishStatus] = useState(false);
@@ -100,4 +100,4 @@ const adminDashboard=(props)=>{
         </div>  
   )
 }
-export default withRouter(adminDashboard);
+export default withRouter(AdminDashboard);
