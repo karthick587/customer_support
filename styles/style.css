@@ -1,6 +1,7 @@
 .profilebutton{
     border: none;
 }
+
 .navbar.color{
   background: linear-gradient(45deg, rgb(63 167 211) 0%, rgb(10 85 158) 100%);
 }
@@ -12,7 +13,7 @@ a:hover {
    
     width: 20px !important;
     border-radius: 50% !important;
-  }
+}
 .avatarbtn div {
  
     width: 31px !important;

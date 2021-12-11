@@ -43,11 +43,8 @@ const adminLogin=({username,password})=>{
 }
 const onBackButtonEvent = (e) => {
   e.preventDefault();
-
         router.push("/")
-   
 }
-
 useEffect(() => {
   window.history.pushState(null, null, window.location.pathname);
   window.addEventListener('popstate', onBackButtonEvent);
@@ -85,8 +82,6 @@ useEffect(() => {
                         </div>
                         <div className="form-group">
                             <Button className="btn btn-primary btn-md" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link text-white">Login</a></Button>
-                          
-                          
                         </div>
                         <h4 className="alert1">{loginStatus}</h4>
                     </form>
