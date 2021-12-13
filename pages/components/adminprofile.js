@@ -34,7 +34,7 @@ export default function AdminProfile({admin,adminId}) {
  return (
 	<div className="container">
 		{admin.map((props)=>
-		<div className="row gutters">
+		<div key={props.id} className="row gutters">
 		
 		<div>
 				<div className=" card h-100">

@@ -49,9 +49,9 @@ function Userissue() {
                             <label className="col-sm-3 pb-2">Description</label>
                             <textarea className="col-sm-3" name="description" rows="4" cols="50" maxLength="200" onChange={(e)=>{setDescription(e.target.value)}} />
                         </div>
-                         <div class="mb-3">
+                         <div className="mb-3">
                            
-                              <input class="form-control" name="file" type="file"  onChange={(e)=>{setFile(e.target.value);}} />
+                              <input className="form-control6" name="file" type="file"  onChange={(e)=>{setFile(e.target.value);}} />
                         </div>
                         <div className="pt-3">
                             <button className="btn btn-primary btn-md" type="submit" onClick={addIssues}><a className="nav-link text-white">Submit</a></button>

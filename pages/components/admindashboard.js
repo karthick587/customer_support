@@ -23,7 +23,7 @@ const AdminDashboard=(props)=>{
           .then((res)=>setUser(res.data));
   },[]);
      
-     
+ 
   const onBackButtonEvent = (e) => {
       e.preventDefault();
 
@@ -38,7 +38,7 @@ const AdminDashboard=(props)=>{
           }
       }
     }
-    
+  
   useEffect(() => {
       window.history.pushState(null, null, window.location.pathname);
       window.addEventListener('popstate', onBackButtonEvent);
