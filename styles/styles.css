@@ -45,3 +45,6 @@ th{
 .reg{
   height: 148vh !important;
 }
+ .form-group.\32 .pt-4 br {
+    display: none;
+}
