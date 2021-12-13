@@ -487,6 +487,9 @@ body h1 {
     display: block;
 }
   @media only screen and (max-width: 600px) {
+      .form-group.\32 .pt-4 br {
+    display: none;
+}
     .form {
       width: 260px !important;
       left: 0;
