@@ -27,7 +27,9 @@
     letter-spacing: 0.00938em;
     display: block;
 }
-
+.form-group.\32 .pt-4 br {
+  display: none;
+}
   .reg {
     margin: 0px 0px !important;
     padding: 4px 8px 0px 8px ;
