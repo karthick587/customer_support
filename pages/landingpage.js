@@ -3,6 +3,7 @@ import Head from 'next/head';
 import router from 'next/router';
 import Image from "next/image";
 import Logo from "../public/logo.png"
+import Link from "next/link";
 export default function Landingpage() {
     const onBackButtonEvent = (e) => {
         e.preventDefault();
@@ -50,7 +51,7 @@ export default function Landingpage() {
                                 <h2>Welcome to Mind Made Customer Support</h2>
                                 <h1>How can I help<br /> You!!!</h1>
                                 <div className="line"></div>
-                                <div className="learn-more-button"><a  href="./components/userLogin">Login</a></div>
+                                <div className="learn-more-button"><Link  href="./components/userLogin">Login</Link></div>
                             </div>
                         </div>
                         <div id="top-banner-2" className="banner">
