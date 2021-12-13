@@ -1,5 +1,5 @@
 const express= require("express");
-const mysql= require("mysql");
+const mysql = require('serverless-mysql');
 const cors=require("cors");
 
 //const bcrypt=require("bcrypt");
@@ -8,7 +8,7 @@ const cors=require("cors");
 const app=express();
 app.use(express.json());
 app.use(cors());
-const mysql = require('serverless-mysql');
+
 const con=mysql.createConnection({
     host:"localhost",
     user:"root",
