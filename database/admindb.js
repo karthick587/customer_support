@@ -1,5 +1,5 @@
 const express= require("express");
-const mysql = require('serverless-mysql');
+const mysql= require("mysql");
 const cors=require("cors");
 
 //const bcrypt=require("bcrypt");
