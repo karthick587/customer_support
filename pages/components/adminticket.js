@@ -57,6 +57,7 @@ function handleUpdate(id){
                                 <TableCell align="right">Description</TableCell>
                                 <TableCell align="right">Team</TableCell>
                                 <TableCell align="right">Status</TableCell>
+                                <TableCell align="right">file</TableCell>
                             </TableRow>
                         </TableHead>
                         {issues.map((item)=>
@@ -69,6 +70,7 @@ function handleUpdate(id){
                                   <TableCell align="right">{item.Description}</TableCell>
                                   <TableCell align="right">{item.Team}</TableCell>
                                   <TableCell align="right">{item.Status}</TableCell>
+                                  <TableCell align="right"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
                                   <TableCell ><FormDialog 
                                       dialogtitle="update"
                                       dialogbody={

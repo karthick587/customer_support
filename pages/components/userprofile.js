@@ -1,7 +1,6 @@
 import FormDialog from './dialogsform';
 import Axios from 'axios';
 import React from 'react';
-import {useRouter} from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -14,9 +13,6 @@ import * as yup from 'yup';
   });
 
 export default function UserProfile({user,userId}) {
-
-	let router = useRouter();
-	
 
 	const {register,handleSubmit, formState } = useForm({
 			resolver : yupResolver(schema),
