@@ -1,652 +1,185 @@
-.profilebutton{
-    border: none;
+/* styles for login  pages */
+.form-group {
+  /* display: list-item; */
+  display: grid;
 }
-
-.navbar.color{
-  background: linear-gradient(45deg, rgb(63 167 211) 0%, rgb(10 85 158) 100%);
+.label {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 1px;
 }
-a:hover {
-  color: #dcb836 !important;
-  font-weight: 500;
+.keen-slider__slide.number-slide2 {
+  background-color: #4f66c8;
 }
-.avatar{
-   
-    width: 20px !important;
-    border-radius: 50% !important;
+.keen-slider__slide.number-slide3 {
+  background-color: #4f66c8;
 }
-.avatarbtn div {
- 
-    width: 31px !important;
-    padding: 7px 10px;
+img.slide-banner3 {
+  margin-bottom: 239px;
 }
-button.profilebutton {
-    background-color: transparent;
+img.slide-banner2 {
+  width: 483px;
+  margin-bottom: 107px;
 }
-.css-dv0mq-MuiTableCell-root {
-  text-align: left !important;
-}
-.MuiButtonBase-root.MuiListItem-root.MuiListItem-gutters.MuiListItem-padding.MuiListItem-button.css-bshv44-MuiButtonBase-root-MuiListItem-root {
-  margin: 0px -14px;
-}
-.css-dv0mq-MuiTableCell-root {
-  line-height: 2.5;
-}
-.button{
-  background-color: blue;
-}
-.avatarbtn{
-  border: none;
-  background-color: transparent;
-}
-#avatardrop li a img{
- width: 20px ;
-
-}
-.dropdown-menu[data-bs-popper] {
-    top: 100%;
-    left: -103px;
-    /* margin-top: 0.125rem; */
-}
-button.btn.btn-secondary {
-    background-color: transparent;
-    border: none;
-}
-.form-login{
-    text-align: center;
-}
-.login{
-    text-align: center;
-}
-a{
-    text-decoration: none !important;
-}
-html {
-    width: 100%;
-    height: 100%;
-  }
-.login-body{
-  background: linear-gradient(45deg, rgb(20 126 183 / 80%) 0%, rgb(5 81 160) 100%);
-    padding-bottom: 40px;
-}
-  body {
-   
-    color: rgba(0, 0, 0, 0.6);
-    font-family: "Roboto", sans-serif;
-    font-size: 14px;
-    line-height: 1.6em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-   
-  }
-  
-  .overlay, .form-panel.one:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    background: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    height: 100%;
-  }
-  .form.reg{
-    z-index: 15;
-    position: relative;
-    color: white;
-    width: 600px;
-    border-radius: 4px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    margin: 20px auto 20px;
-    background: linear-gradient(45deg, rgb(230 234 243) 0%, rgb(246 246 247) 100%);
-    overflow: hidden;
-  }
-  
-.form {
-  z-index: 15;
-  position: relative;
-  color: white;
-  width: 491px;
-  border-radius: 4px;
-  box-shadow: 0 0 30px 2px rgb(0 0 0 / 10%);
-  box-sizing: border-box;
-  margin: 58px 0px 69px 77px;
-  background:linear-gradient(45deg, rgb(224 234 255) 0%, rgb(224 234 255) 100%);
-  overflow: hidden;
-}
-  button.btn.btn-secondary:active {
-    background-color: transparent !important;
-}
-button.btn.btn-secondary.show:focus {
-  box-shadow: none !important;
-}
-  .form-toggle {
-    z-index: 10;
-    position: absolute;
-    top: 60px;
-    right: 60px;
-    background: #FFFFFF;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    transform-origin: center;
-    transform: translate(0, -25%) scale(0);
-    opacity: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .form-toggle:before, .form-toggle:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 4px;
-    background: #4285F4;
-    transform: translate(-50%, -50%);
-  }
-  .form-toggle:before {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-  .form-toggle:after {
-    transform: translate(-50%, -50%) rotate(-45deg);
-  }
-  .form-toggle.visible {
-    transform: translate(0, -25%) scale(1);
-    opacity: 1;
-  }
-  .form-group {
-    text-align: left;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0px 0 0px;
-}
-  
-  .form-group:last-child {
-    margin: 0;
-  }
-  .css-ypiqx9-MuiDialogContent-root {
-    
-    padding: 20px 8px 0px 10px;
-}
-  .form-group label {
-    display: block;
-    margin: 0 0 10px;
-    color: rgba(0, 0, 0, 0.6);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-  }
-  .two .form-group label {
-    color: #FFFFFF;
-  }
-  .form-group input {
-    outline: none;
-    display: block;
-    background: rgb(6 55 126 / 14%);
-    width: 100%;
-    border: 0;
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 6px 20px;
-    color: rgba(0, 0, 0, 0.6);
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 500;
-    line-height: inherit;
-    transition: 0.3s ease;
-}
-.form-group textarea {
-  outline: none;
+.form.login {
+  width: 380px;
+  left: 0;
+  right: 0;
   display: block;
-  background: rgb(220 227 237);
+  margin: auto;
+  padding-top: 50px;
+}
+.form-input {
+  padding: 6px 0px;
+  border-radius: 19px;
+  border: 1px solid #8080804a;
+}
+input:focus-visible {
+  border: 2px solid grey !important;
+  outline: none;
+}
+.login-header img {
+  /* float: right; */
+ 
+  right: -40px;
+  top: -2px;
+}
+.login-header {
+  display: inline-grid;
+  width: 373px;
+  /* padding: 21px 0px; */
+  /* height: 16vh; */
+  
+}
+.logo-login{
   width: 100%;
-  border: 0;
-  border-radius: 8px;
-  box-sizing: border-box;
-  padding: 6px 20px;
-  color: rgba(0, 0, 0, 0.6);
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 500;
-  line-height: inherit;
-  transition: 0.3s ease;
 }
-  .form-group input:focus {
-    color: rgba(0, 0, 0, 0.8);
-  }
-  .two .form-group input {
-    color: #FFFFFF;
-  }
-  .two .form-group input:focus {
-    color: #FFFFFF;
-  }
-  .form-group button {
-    outline: none;
-    background: #1866ac;
-    width: 100%;
-    border: 0;
-    border-radius: 4px;
-    padding: 7px 20px;
-    color: #FFFFFF;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 500;
-    line-height: inherit;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .two .form-group button {
-    background: #FFFFFF;
-    color: #4285F4;
-  }
-  .form-panel.update{
-    padding: 24px calc(5% + 18px) 32px 22px !important;
-    box-sizing: border-box;
+.form-input::placeholder {
+  color: #8080804a;
+  padding: 0px 10px;
 }
-  .form-group .form-remember {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0;
-    text-transform: none;
-  }
-  .form-group .form-remember input[type=checkbox] {
-    display: inline-block;
-    width: auto;
-    margin: 0 10px 0 0;
-  }
-  .form-group .form-recovery {
-    color: #4285F4;
-    font-size: 12px;
-    text-decoration: none;
-  }
-  .form-panel {
-    padding: 61px calc(5% + 18px) 32px 42px;
-    box-sizing: border-box;
-  }
-  .form-panel.one:before {
-    content: "";
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s ease;
-  }
-  .form-panel.one.hidden:before {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-  }
-  .form-panel.two {
-    z-index: 5;
-    position: absolute;
-    top: 0;
-    left: 95%;
-    background: #4285F4;
-    width: 100%;
-    min-height: 100%;
-    padding: 60px calc(10% + 60px) 60px 60px;
-    transition: 0.3s ease;
-    cursor: pointer;
-  }
-  .form-panel.two:before, .form-panel.two:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 60px;
-    left: 1.5%;
-    background: rgba(255, 255, 255, 0.2);
-    height: 30px;
-    width: 2px;
-    transition: 0.3s ease;
-  }
-  .ca{
-     
-      margin-top: 10px;
-  }
-  .ca{
-    color: white !important;
-  }
-  .form-panel.two:after {
-    left: 3%;
-  }
-  .form-panel.two:hover {
-    left: 93%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  .form-panel.two:hover:before, .form-panel.two:hover:after {
-    opacity: 0;
-  }
-  .form.dialog{
-    box-shadow: none !important;
-    background: none !important;
-  }
-  .form-panel.two.active {
-    left: 10%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    cursor: default;
-  }
-  .form-panel.two.active:before, .form-panel.two.active:after {
-    opacity: 0;
-  }
-  .form-header {
-    margin: 0 0 22px;
-  }
-  .form-header h1 {
-    padding: 4px 0;
-    color: #4285F4;
-    font-size: 24px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-  .two .form-header h1 {
-    position: relative;
-    z-index: 40;
-    color: #FFFFFF;
-  }
-  .pen-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 600px;
-    margin: 20px auto 100px;
-  }
-  .pen-footer a {
-    color: #FFFFFF;
-    font-size: 12px;
-    text-decoration: none;
-    text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.1);
-  }
-  .pen-footer a .material-icons {
-    width: 12px;
-    margin: 0 5px;
-    vertical-align: middle;
-    font-size: 12px;
-  }
-  
-  .cp-fab {
-    background: #FFFFFF !important;
-    color: #4285F4 !important;
-  }
-  .site {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .loader {
-    
-    opacity: 0;
-    transition: all 1.4s ease-in-out;
-  }
-  
-  .loader.active {
-    opacity: 1;
-  }
-  
-  .loader-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    background: transparent;
-    flex-direction: column;
-    padding: 0 40px;
-    opacity: 0;
-   
-    pointer-events: none;
-    transition: all 0.5s ease-in-out;
-  }
-  
-  .loader-wrapper.is-active {
-    background: rgb(20 126 183 / 80%);
-    opacity: 100% !important;
-   
-    visibility: visible;
-    pointer-events: auto;
-  }
-  
-  .loader-count {
-    display: block;
-    margin-bottom: 40px;
-    font-size: 18px;
-    color: #cdcdcd;
-    text-align: center;
-  }
-  
-  .logo {
-    padding: 10px;
-    background: orange;
-    transform: translateY(-100vh);
-  }
-  
-  .loader-center {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  textarea.comment-field-input {
-    background: rgba(0, 0, 0, 0.1);
-    border: none;
-    border-radius: 8px;
-  
-  }
-  .comment-user {
-    
-    padding: 12px 26px;
-  }
-  .username {
-    color: #0838e6;
-    font-weight: 700;
-    padding: 0px 1px;
-    width: 134px;
-  }
-  span.comment-createdtime {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 0px 10px;
-  }
-  .comment-field-button {
-    padding: 5px 107px;
-  }
-  .css-10hburv-MuiTypography-root {
-    margin: 0;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    color: black;
-    line-height: 1.5;
-    letter-spacing: 0.00938em;
-    display: block;
-  }
-  .me-3 {
-    
-    overflow: hidden;
-    margin-left: 6px !important;
-  }
-  
-  .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
-    border: none !important;
-  }
-  
-  
-  
-  .account-settings .user-profile {
-    margin: 0 0 1rem 0;
-    padding-bottom: 1rem;
-    text-align: center;
-  }
-  .account-settings .user-profile .user-avatar {
-    margin: 0 0 1rem 0;
-  }
-  .account-settings .user-profile .user-avatar img {
-    width: 90px;
-    height: 90px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    border-radius: 100px;
-  }
-  .account-settings .user-profile h5.user-name {
-    margin: 0 0 0.5rem 0;
-  }
-  .account-settings .user-profile h6.user-email {
-    margin: 0;
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: #9fa8b9;
-  }
-  .account-settings .about {
-    margin: 2rem 0 0 0;
-    text-align: center;
-  }
-  .account-settings .about h5 {
-    margin: 0 0 15px 0;
-    color: #007ae1;
-  }
-  .account-settings .about p {
-    font-size: 0.825rem;
-  }
-  .card-body {
-    flex: 1 1 auto;
-    padding: 2rem 2rem !important;
-  }
-  .form-control {
-    display: block;
-    width: 100%;
-   
-    font-size: 13px !important;
-    color: #212529;
-    background-clip: padding-box;
-    border: none !important;
-    background-color: #d9e5f1a3 !important;
-    appearance: none;
-    border-radius: 0.5rem !important;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  
-  .card {
-    background: white !important;
-    border-radius: 15px !important;
-    border: 0 !important;
-  }
-  div#v-pills-tabContent {
-    padding-top: 32px;
-  }
-  .form-group p {
-    color: black;
-  }
-  .css-6qfsqn-MuiTableCell-root{
-    text-align: left !important;
-  }
-  .addform {
-    padding: 0px 0px;
-    width: 528px;
-    right: 0;
-    left: 0;
-    display: block;
-    margin: 0 auto;
+.login-header h1 {
+  padding-top: 75px;
 }
-button.buttondialog.mt-3 {
-  background-color: transparent;
-  border: none;
-  padding: 0px 0px;
-  margin: 15px 14px;
+.login-page {
+  overflow: hidden;
+ 
 }
-.nav-pills .nav-link {
-  border-radius: 0;
+/*slider*/
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-  .alert1 {
-    margin: 4px 8px;
-    position: relative;
-    color: #e0340d;
-    padding: 0px 0px;
-    margin-bottom: 1rem;
-    transition: 0.5s;
-    font-weight: 700;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    font-size: 12px;
-  }
-  .css-apqrd9-MuiTableBody-root {
-    display: table-row-group;
-    border-bottom: 1px solid #80808042;
-  }
-  .text-color{
-    color: black !important;
-  }
-  .dialog{
-    margin: 0px 0px !important;
-  
-  }
-  a{
-    cursor:pointer !important;
-  }
-  
-  
-  
-  .comment-field {
-    display: flex;
-    padding: 9px 24px;
-  }
 
-.css-1rwt2y5-MuiButtonBase-root-MuiButton-root:hover {
-  border:none !important;
-  color: blue !important;
+[class^="number-slide"],
+[class*=" number-slide"] {
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+  height: 300px;
+  max-height: 100vh;
 }
-#icon-wrapper {
-  width: 16px;
-  height: 16px;
+
+
+
+.slide-text p{
+  font-size: 12px;
+}
+
+.navigation-wrapper {
+  position: relative;
+}
+.slide-text {
+  text-align: center;
+  position: absolute !important;
+  bottom: 11%;
+}
+.dots {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+ 
+  position: relative;
+  bottom: 62px;
+}
+.arrow{
   display: none;
 }
-.mainbody {
-  border: 10px 10px;
-  margin-top: -20px;
-}
-.css-aq1gdx-MuiDrawer-docked .MuiDrawer-paper {
-  width: 57px !important;
-}
-.css-dv0mq-MuiTableCell-root {
-  line-height: 2.45 !important;
-}
-.button{
-  background-color:#1976d2 !important;
-}
-select.ticket-select {
-  padding: 7px 12px;
-  text-align: center;
+.dot {
   border: none;
+  width: 3px;
+  height: 2px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0px 5px;
+  padding: 3px;
+  cursor: pointer;
+  
+}
+.dot:focus {
+  outline: none;
+}
+
+
+.dot.active {
+  border: none;
+  width: 16px;
+  height: 1vh;
+  background: #07235f;
+  border-radius: 33%;
+  margin: 0 3px;
+  padding: 3px;
+  cursor: pointer;
+}
+.arrow {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: #fff;
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+.slide-text{
+  color: white;
+}
+.arrow--disabled {
+  fill: rgba(255, 255, 255, 0.5);
+}
+.keen-slider:not([data-keen-slider-disabled]) {
+  
+  height: 96vh;
+}
+.btn {
+  background-color: #1c4eb9 !important;
+  color: white !important;
+  border-radius: 50px !important;
+  padding: 2px 0px !important;
+  margin: 9px 0px;
+}
+.btn a{
+  color: white;
+}
+.slide-banner {   
+ 
   width: 100%;
-  font-size: 15px;
-  background-color: #dce3ed;
-  border-radius: 5px;
-  color: #3a3a3a;
-}
-.ticket-select:focus-visible {
-  
-  border: none !important;
-  
-}
-.ticket-select option:focus-visible {
-  
-  border: none !important;
-  
-}
-.nav-pills .nav-link {
-  background: none;
-  border: 0;
-  border-radius: 0 !important;
-}
-button.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButtonBase-root.button.btn.btn-primary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-  padding: 11px 20px;
+  height: 100%;
+ 
 }

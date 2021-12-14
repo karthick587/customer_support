@@ -2,11 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import '../styles/style.css'
-import '../styles/styles.css'
 import '../styles/mainpage.css'
 import { useEffect } from "react";
 import Head from 'next/head'
-
+import 'keen-slider/keen-slider.min.css'
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import Router from 'next/router';

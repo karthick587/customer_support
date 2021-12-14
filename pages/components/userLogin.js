@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
+import Sidebody from './login&singupSidebody';
 
 const schema = yup.object().shape({
     username : yup.string().required(),
@@ -58,39 +59,52 @@ export default function Login2(){
         };
       },[]);
     return(
+        
         <div className="login-page">
             <Head>
                 <title>userlogin</title>
             </Head>
-            <div className="form login">
-                <div className="form-toggle"></div>
-                <div className="form-panel loginform one">
-                    <div className="form-header">
-                        <h1>user Login</h1>
-                    </div>
-                    <div className="form-content">
-                        <form> 
+ <div class="">
+  <div class="row">
+    <div class="col-6">
+   
+    <div className="form login">
+     
+    <div className='login-header'> 
+  
+           <h1>Login</h1>
+                </div>
+            <form> 
                             <div className="form-group">
-                                <label className="col-sm-3">Username</label>
-                                <input className="col-sm-3" name="username" type="text" {...register('username')}/>
-                                <p className="me-2 text-danger">{errors.username?.message}</p><br />
+                                <label className="label">Username*</label>
+                                <input className="form-input" name="username" type="text" placeholder="Username" {...register('username')}/>
+                                <p className="me-2 text-danger">{errors.username?.message}</p>
                             </div>
                             <div className="form-group">
-                                <label className="col-sm-3">Password</label>
-                                <input className="col-sm-3" name="password" type="password" {...register('password')}/>
-                                <p className="me-2 text-danger">{errors.password?.message}</p><br />
+                                <label className="label">Password*</label>
+                                <input className="form-input" name="password" type="password" placeholder="password" {...register('password')}/>
+                                <p className="me-2 text-danger">{errors.password?.message}</p>
                             </div>
                             <div className="form-group">
                                 <label className="form-remember"><input type="checkbox"/>Remember Me</label>
                             </div>
                             <div className="form-group">
-                                <Button className="btn btn-primary" onClick={handleSubmit(userLogin)}><a className="nav-link text-white" >Login</a></Button>
+                                <Button className="btn" onClick={handleSubmit(userLogin)}><a className="nav-link" >Login</a></Button>
                             </div>
                             <div className="alert1">{loginStatus}</div>
-                        </form>
-                    </div>
-                </div>
+            </form>
             </div>
+    </div>
+    <div class="col-6">
+     <Sidebody />
+    </div>
+  </div>
+</div>
+
+            
         </div>
+      
+      
+        
     )
 }
