@@ -52,24 +52,24 @@ export default function UserProfile({user,userId}) {
 													<div className="form-content">
 														<form> 
 															<div className="form-group">
-																<label className="col">Phone Number</label>
-																<input className="col-sm-3" name="phoneno" type="text" {...register('phoneno')} />
-																<p className="me-2 text-danger">{errors.phoneno?.message}</p><br />											
+																<label className="label">Phone Number</label>
+																<input className="form-input" name="phoneno" type="text" {...register('phoneno')} />
+																<p className="me-2 text-danger">{errors.phoneno?.message}</p>										
 															</div>
 															<div className="form-group">
-																<label className="col">Website URL</label>
-																<input className="col-sm-3" name="url"  type="text" {...register('url')} />
-																<p className="me-2 text-danger">{errors.url?.message}</p><br />
+																<label className="label">Website URL</label>
+																<input className="form-input" name="url"  type="text" {...register('url')} />
+																<p className="me-2 text-danger">{errors.url?.message}</p>
 															</div>
 															<div className="form-group">
-																<label className="col">office address</label>
-																<input className="col-sm-3" name="address"  type="text" {...register('address')} />
-																<p className="me-2 text-danger">{errors.address?.message}</p><br />
+																<label className="label">office address</label>
+																<input className="form-input" name="address"  type="text" {...register('address')} />
+																<p className="me-2 text-danger">{errors.address?.message}</p>
 															</div>
 															<div className="form-group">
-																<label className="col">About You</label>
-																<textarea className="col-sm-3" name="about"   type="text"  {...register('about')} />
-																<p className="me-2 text-danger">{errors.about?.message}</p><br />
+																<label className="label">About You</label>
+																<textarea className="form-input" name="about"   type="text"  {...register('about')} />
+																<p className="me-2 text-danger">{errors.about?.message}</p>
 															</div>
 															<button type="submit" onClick={handleSubmit(handleUpdate)} className="button float-end"> <a className="nav-link text-white">Submit</a></button>
 														</form>

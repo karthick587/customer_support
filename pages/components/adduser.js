@@ -46,34 +46,34 @@ const addUser=({firstname,lastname,username,email,password})=>{
              </div>
             <div className="addform">
                 <form>
-                    <div className="form-group 2  pt-4">
-                        <label className="col-sm-3">First Name</label>
-                        <input className="col-sm-3" name="firstname" type="text" {...register('firstname')} />
-                        <p className="me-2 text-danger">{errors.firstname?.message}</p><br />
+                    <div className="form-group">
+                        <label className="label">First Name</label>
+                        <input className="form-input" name="firstname" type="text" {...register('firstname')} />
+                        <p className="me-2 text-danger">{errors.firstname?.message}</p>
                     </div>
-                    <div className="form-group 2 pt-4">
-                        <label className="col-sm-3">Last Name</label>
-                        <input className="col-sm-3" name="lastname" type="text" {...register('lastname')} />
-                        <p className="me-2 text-danger">{errors.lastname?.message}</p><br />
+                    <div className="form-group">
+                        <label className="label">Last Name</label>
+                        <input className="form-input" name="lastname" type="text" {...register('lastname')} />
+                        <p className="me-2 text-danger">{errors.lastname?.message}</p>
                     </div>
-                    <div className="form-group 2 pt-4">
-                        <label className="col-sm-3">Username</label>
-                        <input className="col-sm-3" name="username" type="text" {...register('username')} />
-                        <p className="me-2 text-danger">{errors.username?.message}</p><br />
+                    <div className="form-group">
+                        <label className="label">Username</label>
+                        <input className="form-input" name="username" type="text" {...register('username')} />
+                        <p className="me-2 text-danger">{errors.username?.message}</p>
                     </div>
-                    <div className="form-group 2 pt-4">
-                        <label className="col-sm-3">email</label>
-                        <input className="col-sm-3" name="email" type="email" {...register('email')} />
-                        <p className="me-2 text-danger">{errors.email?.message}</p><br />
+                    <div className="form-group">
+                        <label className="col label">email</label>
+                        <input className="form-input" name="email" type="email" {...register('email')} />
+                        <p className="me-2 text-danger">{errors.email?.message}</p>
                     </div>
-                    <div className="form-group 2 pt-4">
-                        <label className="col-sm-3">Password</label>
-                        <input className="col-sm-3" name="password" type="password" {...register('password')} />
-                        <p className="me-2 text-danger">{errors.password?.message}</p><br />
+                    <div className="form-group">
+                        <label className="col label">Password</label>
+                        <input className="form-input" name="password" type="password" {...register('password')} />
+                        <p className="me-2 text-danger">{errors.password?.message}</p>
                     </div>
                     <div className="row justify-content-center">
                         <div>
-                            <button type="submit" onClick={handleSubmit(addUser)} className="button mt-3 float-end"> Add user</button>
+                            <button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add user</button>
                         </div>
                     </div>
                 </form>

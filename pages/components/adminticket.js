@@ -11,10 +11,12 @@ import Paper from '@mui/material/Paper';
 import FormDialog from './dialogsform';
 
 function Adminticket() {
- 
+    var[search,setSearch] = useState('');
   var[issues,setIssues]=useState([]);
   var[selectedTeam,setSelectedTeam] = useState('');
   var[selectedStatus,setSelectedStatus] = useState('');
+  var[selectedValue,setSelectedValue] = useState('');
+  console.log(selectedValue)
   
   useEffect(()=>{
      Axios.get("http://localhost:3001/addIssues")
@@ -45,6 +47,9 @@ function handleUpdate(id){
               <Head>
                   <title>Admin Dashboard</title>
               </Head>
+              <div>
+                  <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+              </div>
               <div className="userbody">
                   <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">    
@@ -53,54 +58,78 @@ function handleUpdate(id){
                                 <TableCell>ID</TableCell>
                                 <TableCell>Username</TableCell>
                                 <TableCell align="right">DomainName</TableCell>
+                               
                                 <TableCell align="right">IssuesFoundIn</TableCell>
                                 <TableCell align="right">Description</TableCell>
                                 <TableCell align="right">Team</TableCell>
                                 <TableCell align="right">Status</TableCell>
                                 <TableCell align="right">file</TableCell>
+                                <TableCell align="right"></TableCell>
                             </TableRow>
                         </TableHead>
-                        {issues.map((item)=>
+                        {issues.filter(val=>{
+                           if(search === ""){
+                               return val;
+                           }else if(
+                               val.username.toLowerCase().includes(search.toLowerCase()) ||
+                               val.DomainName.toLowerCase().includes(search.toLowerCase()) ||
+                               val.Description.toLowerCase().includes(search.toLowerCase()) ||   
+                              
+                               val.IssuesFoundIn.toString().includes(search.toString()) ||
+                               val.Team.toLowerCase().includes(search.toLowerCase()) || 
+                               val.Status.toLowerCase().includes(search.toLowerCase())
+                                            
+                           ){
+                               return val;
+                           }
+                       }).map((item)=>
                             <TableBody key={item.id}>
                                 <TableRow >
                                   <TableCell component="th" scope="row">{item.id}</TableCell>
                                   <TableCell align="right">{item.username}</TableCell>
                                   <TableCell align="right">{item.DomainName}</TableCell>
+                                 
                                   <TableCell align="right">{item.IssuesFoundIn}</TableCell>
                                   <TableCell align="right">{item.Description}</TableCell>
                                   <TableCell align="right">{item.Team}</TableCell>
-                                  <TableCell align="right">{item.Status}</TableCell>
+                                  <TableCell  className={item.Status}  align="right">{item.Status}</TableCell>
                                   <TableCell align="right"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
                                   <TableCell ><FormDialog 
                                       dialogtitle="update"
+                                      className="btn3"
                                       dialogbody={
                                         <div className="form dialog">
                                             <div className="form-toggle"></div>
                                             <div className="form-panel update one">
                                               <div className="form-header">
-                                                  <h1>Update Ticket{item.id}</h1>   
+                                                  <h1>Update Ticket {item.id}</h1>   
                                               </div>
-                                              <div className="form-content">
+                                              <div className="addform">
                                                   <form>
                                                       <div className="form-group"> 
-                                                            <label className="col-sm-3">username </label>
-                                                            <input className="col-sm-3" value={item.username} name="firstname"  type="text" />
+                                                            <label className="label">username </label>
+                                                            <input className="form-input" value={item.username} name="firstname"  type="text" />
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="col-sm-3">DomainName </label>
-                                                          <input className="col-sm-3" value={item.DomainName} name="firstname"  type="text"  />
+                                                          <label className="label">DomainName </label>
+                                                          <input className="form-input" value={item.DomainName} name="firstname"  type="text"  />
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="col-sm-3">IssuesFoundIn </label>
-                                                          <input className="col-sm-3" value={item.IssuesFoundIn} name="firstname"  type="text" />
+                                                          <label className="label">IssuesFoundIn </label>
+                                                          <input className="form-input" value={item.Email} name="firstname"  type="text" />
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="col">Description</label>
-                                                          <textarea className="col-sm-3" value= {item.Description} name="contact number"   type="text"   />
+                                                          <label className="label">IssuesFoundIn </label>
+                                                          <input className="form-input" value={item.IssuesFoundIn} name="firstname"  type="text" />
+                                                      </div>
+
+                                                      <div className="form-group">
+                                                          <label className="label">Description</label>
+                                                          <textarea className="form-input" value= {item.Description} name="contact number"   type="text"   />
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="col-sm-3">Team :</label>
-                                                              <select className="ticket-select" onChange={handleTeam}>
+                                                          <label className="label">Team :</label>
+                                                              <select className="form-input" onChange={handleTeam}>
                                                                   <option value="">--Select--</option>
                                                                   <option value="team1">team1</option>
                                                                   <option value="team2">team2</option>
@@ -108,18 +137,18 @@ function handleUpdate(id){
                                                               </select> 
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="col-sm-3">Status</label>
-                                                              <select className="ticket-select"  onChange={handleStatus}>
+                                                          <label className="label">Status</label>
+                                                              <select className="form-input"  onChange={handleStatus}>
                                                                   <option value="">--Select--</option>
-                                                                  <option value="new">New</option>
-                                                                  <option value="inprogress">In progress</option>
-                                                                  <option value="completed">Completed</option>
+                                                                  <option className='new' value="new">New</option>
+                                                                  <option className='inprogress' value="inprogress">In progress</option>
+                                                                  <option className='completed' value="completed">Completed</option>
                                                               </select>
                                                     </div>
                                                 </form>
                                               </div>
                                           </div>
-                                        <button className="button float-end" onClick={()=>handleUpdate(item.id)}>Update</button>
+                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>handleUpdate(item.id)}>Update</button>
                                       </div>
                                       }
                                   /></TableCell>

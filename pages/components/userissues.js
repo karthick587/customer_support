@@ -27,34 +27,35 @@ function Userissue() {
  return (
         <div className="container">
             <div>
-                <h4 className="text-success pb-3">Submit your Issues Here!!!</h4>
+               
                     <form className="form2">
-                        <div className="pt-4">
-                            <label className="col-sm-3">User Name</label>
-                            <input className="col-sm-3" name="userame" type="text" onChange={(e)=>{setUserName(e.target.value);}}  />
+                    <h4 className="issue-head">Submit your Issues Here!!!</h4>
+                        <div className="form-group">
+                            <label className="label">User Name</label>
+                            <input className="form-input" name="userame" type="text" onChange={(e)=>{setUserName(e.target.value);}}  />
                         </div>
-                        <div className="  pt-4">
-                            <label className="col-sm-3">Domain Name</label>
-                            <input className="col-sm-3" name="domainName" type="text" onChange={(e)=>{setDomainName(e.target.value);}}  />
+                        <div className="form-group">
+                            <label className="label">Domain Name</label>
+                            <input className="form-input" name="domainName" type="text" onChange={(e)=>{setDomainName(e.target.value);}}  />
                         </div>
-                        <div className="  pt-4">
-                            <label className="col-sm-3">Email</label>
-                            <input className="col-sm-3" name="domainName" type="text" onChange={(e)=>{setEmail(e.target.value);}}  />
+                        <div className="form-group">
+                            <label className="label">Email</label>
+                            <input className="form-input" name="domainName" type="text" onChange={(e)=>{setEmail(e.target.value);}}  />
                         </div>
-                        <div className=" pt-4">
-                            <label className="col-sm-3">Issues found in</label>
-                            <input className="col-sm-3" name="issuesFoundIn" type="date" onChange={(e)=>{setDate(e.target.value);}}  />
+                        <div className="form-group">
+                            <label className="label">Issues found in</label>
+                            <input className="form-input" name="issuesFoundIn" type="date" onChange={(e)=>{setDate(e.target.value);}}  />
                         </div>
-                        <div className=" pt-4 ">
-                            <label className="col-sm-3 pb-2">Description</label>
-                            <textarea className="col-sm-3" name="description" rows="4" cols="50" maxLength="200" onChange={(e)=>{setDescription(e.target.value)}} />
+                        <div className="form-group">
+                            <label className="label">Description</label>
+                            <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e)=>{setDescription(e.target.value)}} />
                         </div>
-                         <div className="mb-3">
+                         <div className="form-group">
                            
-                              <input className="form-control6" name="file" type="file"  onChange={(e)=>{setFile(e.target.value);}} />
+                              <input className="form-input mt-4" name="file" type="file"  onChange={(e)=>{setFile(e.target.value);}} />
                         </div>
-                        <div className="pt-3">
-                            <button className="btn btn-primary btn-md" type="submit" onClick={addIssues}><a className="nav-link text-white">Submit</a></button>
+                        <div className="">
+                            <button className="btn2 mt-3 mb-4" type="submit" onClick={addIssues}>Submit</button>
                         </div>
                     </form>
             </div>

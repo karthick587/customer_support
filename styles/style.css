@@ -1,4 +1,11 @@
+@import "~font-awesome/css/font-awesome.css";
 /* styles for login  pages */
+
+a{
+  text-decoration: none;
+  padding: 0px 10px;
+  cursor: pointer;
+}
 .form-group {
   /* display: list-item; */
   display: grid;
@@ -31,13 +38,28 @@ img.slide-banner2 {
   padding-top: 50px;
 }
 .form-input {
-  padding: 6px 0px;
+  padding: 6px 11px;
   border-radius: 19px;
   border: 1px solid #8080804a;
+  font-size: 14px;
 }
 input:focus-visible {
   border: 2px solid grey !important;
   outline: none;
+}
+textarea:focus-visible {
+  border: 2px solid grey !important;
+  outline: none;
+}
+.nav-link.active div span{
+  margin-left: 7px;
+}
+select:focus-visible {
+  border: 2px solid grey !important;
+  outline: none;
+}
+.form.dialog {
+  padding-bottom: 40px;
 }
 .login-header img {
   /* float: right; */
@@ -58,9 +80,11 @@ input:focus-visible {
 .form-input::placeholder {
   color: #8080804a;
   padding: 0px 10px;
+  font-size: 5px !important;
 }
 .login-header h1 {
   padding-top: 75px;
+  font-family: 'Open Sans', sans-serif !important;
 }
 .login-page {
   overflow: hidden;
@@ -91,6 +115,7 @@ body {
 
 .slide-text p{
   font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .navigation-wrapper {
@@ -182,4 +207,147 @@ body {
   width: 100%;
   height: 100%;
  
+}
+/*dashboard*/
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #1976d2 !important;
+  background-color: white !important;
+  border-left: 5px solid #1976d2 !important;
+}
+.nav-link.active{
+  border-radius: 0px !important;
+}
+hr.MuiDivider-root.MuiDivider-fullWidth.css-9mgopn-MuiDivider-root {
+  display: none !important;
+}
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  border: none !important;
+  overflow: hidden;
+}
+.css-cveggr-MuiListItemIcon-root {
+  min-width: 57px;
+  color: rgb(25 118 210);
+  display: inline-flex;
+}
+.nav-link {
+  display: block;
+  padding: .5rem 0.7rem !important;
+  color: #0d6efd;
+  text-decoration: none;
+}
+.nav-link.active div{
+  margin: 0px -3px !important;
+}
+.css-dv0mq-MuiTableCell-root {
+  text-align: left;
+  padding: 15px 0px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 450;
+  color: #4c4f52e0;
+  width: 350px;
+}
+th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeSmall.css-6qfsqn-MuiTableCell-root {
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  padding: 15px 0px !important;
+}
+.css-6qfsqn-MuiTableCell-root{
+  padding: 0px !important;
+}
+.css-fxbtpg {
+  background-color: white !important;
+}
+thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
+  font-size: 13px;
+  color: #1976d2;
+  font-family: 'Poppins', sans-serif;
+}
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  padding: 16px 20px;
+}
+form.form2 {
+  padding: 0px 55px;
+}
+.css-10hburv-MuiTypography-root {
+  
+  font-weight: 450;
+  
+}
+.css-quj9j6-MuiTable-root {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  min-width: 650px;
+ 
+}
+.float-enduser {
+  right: 16px;
+  position: absolute;
+}
+.btn2 {
+  padding: 1px 10px !important;
+  border-radius: 22px;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 450;
+  border: none;
+}
+.addform {
+  width: 400px;
+}
+.btn2:hover {
+  background-color: #1463b1;
+}
+.header-user {
+  display: flex;
+  padding: 16px 0px 0px 25px;
+  position: relative;
+}
+.header-user h1 {
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0px;
+  font-family: 'Readex Pro', sans-serif;
+  color: #1976d2;
+}
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-jr57cz-MuiToolbar-root {
+  background-image: url(/public/logo.png) !important;
+}
+.inprogress{
+  color:red;
+}
+.new{
+  color:blue;
+}
+.completed{
+  color:rgb(16, 110, 16);
+}
+.card {
+  border: none !important;
+}
+.btn3 {
+  background-color: #1976d2;
+  color: white;
+  padding: 1px 4px;
+  font-size: 10px;
+  border-radius: none !important;
+  border-radius: 3px;
+}
+.btn3:hover{
+  color: #07235f;
+
+}
+.form-header h1{
+  font-size: 25px;
+  color: #1976d2;
+  font-weight: 600;
+}
+.issue-head{
+  color: #1976d2;
+  font-size:25px;
+
 }

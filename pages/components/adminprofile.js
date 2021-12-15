@@ -43,6 +43,7 @@ export default function AdminProfile({admin,adminId}) {
 							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div className="float-end">
 									<FormDialog
+									 className="btn2"
 										dialogtitle="Update Profile"
 										dialogbody={
 											<div className="form dialog">
@@ -51,29 +52,29 @@ export default function AdminProfile({admin,adminId}) {
 													<div className="form-header">
 														<h1>Update profile</h1>
 													</div>
-													<div className="form-content">
+													<div className="addform">
 														<form> 
 															<div className="form-group">
-																<label className="col">Phone Number</label>
-																<input className="col-sm-3" name="phoneno" type="text" {...register('phoneno')} />
-																<p className="me-2 text-danger">{errors.phoneno?.message}</p><br />											
+																<label className="label">Phone Number</label>
+																<input className="form-input" name="phoneno" type="text" {...register('phoneno')} />
+																<p className="me-2 text-danger">{errors.phoneno?.message}</p>										
 															</div>
 															<div className="form-group">
-																<label className="col">Website URL</label>
-																<input className="col-sm-3" name="url"  type="text" {...register('url')} />
-																<p className="me-2 text-danger">{errors.url?.message}</p><br />
+																<label className="label">Website URL</label>
+																<input className="form-input" name="url"  type="text" {...register('url')} />
+																<p className="me-2 text-danger">{errors.url?.message}</p>
 															</div>
 															<div className="form-group">
-																<label className="col">office address</label>
-																<input className="col-sm-3" name="address"  type="text" {...register('address')} />
-																<p className="me-2 text-danger">{errors.address?.message}</p><br />
+																<label className="label">office address</label>
+																<input className="form-input" name="address"  type="text" {...register('address')} />
+																<p className="me-2 text-danger">{errors.address?.message}</p>
 															</div>
 															<div className="form-group">
-																<label className="col">About You</label>
-																<textarea className="col-sm-3" name="about"   type="text"  {...register('about')} />
-																<p className="me-2 text-danger">{errors.about?.message}</p><br />
+																<label className="label">About You</label>
+																<textarea className="form-input" name="about"   type="text"  {...register('about')} />
+																<p className="me-2 text-danger">{errors.about?.message}</p>
 															</div>
-															<button type="submit" onClick={handleSubmit(handleUpdate)} className="button float-end"> <a className="nav-link text-white">Submit</a></button>
+															<button type="submit" onClick={handleSubmit(handleUpdate)} className="btn2 float-end">Submit</button>
 														</form>
 													</div>
 												  <h4 className="alert1"></h4>
@@ -90,25 +91,25 @@ export default function AdminProfile({admin,adminId}) {
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="fullName">Full Name</label>
+									<label className="label" htmlFor="fullName">Full Name</label>
 									<h5  className="form-control" >{props.firstname}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="eMail">Email</label>
+									<label className="label" htmlFor="eMail">Email</label>
 									<h5  className="form-control">{props.email}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="phone">Phone</label>
+									<label className="label" htmlFor="phone">Phone</label>
 									<h5  className="form-control" >{props.phoneno}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="website">Website URL</label>
+									<label className="label" htmlFor="website">Website URL</label>
 									<h5  className="form-control">{props.url}</h5>
 								</div>
 							</div>

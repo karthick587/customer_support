@@ -20,15 +20,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
   const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
   })(({ theme, open }) => ({
+    
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      
     }),
     ...(open && {
         marginLeft: drawerWidth,
@@ -104,7 +106,7 @@ export default function Dashboard(props) {
                           <NotificationsIcon />
                       </Badge>
                   </IconButton>
-                  <a onClick={props.logout} className="nav-link ms-2">Logout</a>
+                  <a onClick={props.logout} className="text-white">Logout</a>
                       {props.menuBar}
                   </Toolbar>
               </AppBar>

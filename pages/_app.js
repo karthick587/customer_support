@@ -9,6 +9,7 @@ import 'keen-slider/keen-slider.min.css'
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import Router from 'next/router';
+
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
 		import("bootstrap/dist/js/bootstrap");
@@ -19,7 +20,10 @@ function MyApp({ Component, pageProps }) {
     
   return <div>
     <Head>
-   
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     </Head>
     <Component {...pageProps} />
     </div>

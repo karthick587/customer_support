@@ -10,6 +10,7 @@
   "dependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -23,6 +24,8 @@
     "cors": "^2.8.5",
     "disqus-react": "^1.1.2",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "get-google-fonts": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "keen-slider": "^6.4.1",
     "mysql": "^2.18.1",

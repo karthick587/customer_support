@@ -25,11 +25,18 @@ export default function Users(){
                 <title>Admin Dashboard</title>
             </Head>
             <div className="container mainbody">
-                <FormDialog
-                    dialogtitle="ADD USER"
-                    dialogbody={<div><Adduser /></div>}
-                />
+             
+              
                 <div className="userbody">
+                <div className='header-user'>
+               <h1>USERS</h1>
+               <FormDialog
+               className="float-enduser btn2 button"
+                    dialogtitle="+ADD USER"
+                    dialogbody={<Adduser />}
+                />
+                 
+               </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
