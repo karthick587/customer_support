@@ -41,9 +41,10 @@ export default function UserProfile({user,userId}) {
 							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div className="float-end">
 									<FormDialog
+									className="btn2"
 										dialogtitle="Update Profile"
 										dialogbody={
-											<div className="form dialog">
+											<div className="addform">
 												<div className="form-toggle"></div>
 												<div className="form-panel update one">
 													<div className="form-header">
@@ -71,7 +72,7 @@ export default function UserProfile({user,userId}) {
 																<textarea className="form-input" name="about"   type="text"  {...register('about')} />
 																<p className="me-2 text-danger">{errors.about?.message}</p>
 															</div>
-															<button type="submit" onClick={handleSubmit(handleUpdate)} className="button float-end"> <a className="nav-link text-white">Submit</a></button>
+															<button type="submit" onClick={handleSubmit(handleUpdate)} className="btn2 float-end"> <a className="nav-link text-white">Submit</a></button>
 														</form>
 													</div>
 												  <h4 className="alert1"></h4>
@@ -88,26 +89,26 @@ export default function UserProfile({user,userId}) {
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="fullName">Full Name</label>
-									<h5  className="form-control" >{props.firstname}</h5>
+									<label className="label" htmlFor="fullName">Full Name</label>
+									<h5  className="form-input" >{props.username}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="eMail">Email</label>
-									<h5  className="form-control">{props.email}</h5>
+									<label className="label" htmlFor="eMail">Email</label>
+									<h5  className="form-input">{props.email}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="phone">Phone</label>
-									<h5  className="form-control" >{props.phoneno}</h5>
+									<label className="label" htmlFor="phone">Phone</label>
+									<h5  className="form-input" >{props.phoneno}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label htmlFor="website">Website URL</label>
-									<h5  className="form-control">{props.url}</h5>
+									<label className="label" htmlFor="website">Website URL</label>
+									<h5  className="form-input">{props.url}</h5>
 								</div>
 							</div>
 						</div>
@@ -117,7 +118,7 @@ export default function UserProfile({user,userId}) {
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<h5 className="form-control" id="Street">{props.address}</h5>
+									<h5 className="form-input" id="Street">{props.address}</h5>
 								</div>
 							</div>
 						</div>

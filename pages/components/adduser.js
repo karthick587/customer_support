@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
+import { useRouter } from 'next/router'
 
 const schema = yup.object().shape({
 	firstname : yup.string().required(),
@@ -14,7 +15,7 @@ const schema = yup.object().shape({
   });
 
 function Adduser(props) {
-     
+    const Router = useRouter()
     var[show,setShow]=useState('');
 
     const {register,handleSubmit, formState } = useForm({
@@ -35,6 +36,7 @@ const addUser=({firstname,lastname,username,email,password})=>{
                 setShow(response.data.message)
             }else{
                 setShow("Registered Successfully");
+                Router.reload(window.location.pathname)
             }
     });
 }

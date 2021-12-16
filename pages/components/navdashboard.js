@@ -22,56 +22,73 @@ import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 
 const drawerWidth = 200;
 
-  const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-  })(({ theme, open }) => ({
-    
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(['width', 'margin'], {
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(9)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-      
+      duration: theme.transitions.duration.enteringScreen,
     }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
     ...(open && {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-        }),
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
     }),
-  }));
-
-  const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        '& .MuiDrawer-paper': {
-         position: 'relative',
-         whiteSpace: 'nowrap',
-         width: drawerWidth,
-         transition: theme.transitions.create('width', {
-         easing: theme.transitions.easing.sharp,
-         duration: theme.transitions.duration.enteringScreen,
-         }),
-         boxSizing: 'border-box',
-         ...(!open && {
-            overflowX: 'hidden',
-            transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-          }),
-            width: theme.spacing(7),
-            [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9),
-          },
-        }),
-      },
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
     }),
-  );
-
-  const mdTheme = createTheme();
+  }),
+);
 
 export default function Dashboard(props) {
- 
+  
   const [open, setOpen] = React.useState(true);
 
   const toggleDrawer = () => {
@@ -79,10 +96,10 @@ export default function Dashboard(props) {
   };
  
   return (
-        <ThemeProvider theme={mdTheme}>
+      
           <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-              <AppBar position="absolute" open={open}>
+              <AppBar position="fixed" open={open}>
                   <Toolbar
                       sx={{
                       pr: '24px', // keep right padding when drawer closed
@@ -172,6 +189,6 @@ export default function Dashboard(props) {
                     {props.tabbody}
                   </Box>
           </Box>  
-        </ThemeProvider>
+       
   );
 }

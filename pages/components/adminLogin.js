@@ -61,9 +61,9 @@ useEffect(() => {
       <title>userlogin</title>
    
   </Head>
-  <div class="">
-  <div class="row">
-    <div class="col-6">
+  <div >
+  <div className="row">
+    <div className="col-5">
      <div className="form login">
         <div className='login-header'>
           
@@ -92,7 +92,7 @@ useEffect(() => {
                   </form>
                </div>
     </div>
-    <div class="col-6">
+    <div className="col-7">
          <Sidebody />
     </div>
     </div>

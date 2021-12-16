@@ -6,6 +6,7 @@ import Userissue from "./userissues";
 import { withRouter } from "next/router";
 import FormDialog from "./dialogsform";
 import router from "next/router";
+import Userticket from "./userticket";
 
 const UserDashboard=(props)=>{
     
@@ -74,6 +75,7 @@ const UserDashboard=(props)=>{
                               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                               </div>
                               <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                <Userticket />
                               </div>
                           </div>
                       </div>

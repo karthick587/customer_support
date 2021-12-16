@@ -7,10 +7,13 @@ function Userissue() {
 
     const[username,setUserName]=useState('');
     const[domainName,setDomainName]=useState('');
-    const[date,setDate]=useState('');
+  
     const[email,setEmail]=useState('');
     const[description,setDescription]=useState('');
  const[file,setFile]=useState('');
+ var today = new Date();
+    const date = today.getDate()+ '-' +(today.getMonth() + 1)+ '-' +today.getFullYear() + ' ' +
+                    today.getHours() + ':' + today.getMinutes();
  const addIssues=()=>{
     Axios.post("http://localhost:3001/addIssues",{
           UserName:username,
@@ -41,10 +44,6 @@ function Userissue() {
                         <div className="form-group">
                             <label className="label">Email</label>
                             <input className="form-input" name="domainName" type="text" onChange={(e)=>{setEmail(e.target.value);}}  />
-                        </div>
-                        <div className="form-group">
-                            <label className="label">Issues found in</label>
-                            <input className="form-input" name="issuesFoundIn" type="date" onChange={(e)=>{setDate(e.target.value);}}  />
                         </div>
                         <div className="form-group">
                             <label className="label">Description</label>

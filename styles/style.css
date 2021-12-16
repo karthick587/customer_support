@@ -1,13 +1,12 @@
-@import "~font-awesome/css/font-awesome.css";
-/* styles for login  pages */
+
 
 a{
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 0px 10px;
   cursor: pointer;
 }
 .form-group {
-  /* display: list-item; */
+  padding: 5px 0px;
   display: grid;
 }
 .label {
@@ -16,6 +15,8 @@ a{
   font-weight: 600;
   padding: 10px 1px;
 }
+
+
 .keen-slider__slide.number-slide2 {
   background-color: #4f66c8;
 }
@@ -84,6 +85,7 @@ select:focus-visible {
 }
 .login-header h1 {
   padding-top: 75px;
+  font-size: 32px;
   font-family: 'Open Sans', sans-serif !important;
 }
 .login-page {
@@ -227,7 +229,7 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-9mgopn-MuiDivider-root {
 }
 .css-cveggr-MuiListItemIcon-root {
   min-width: 57px;
-  color: rgb(25 118 210);
+  color: rgb(25 118 210) !important;
   display: inline-flex;
 }
 .nav-link {
@@ -240,12 +242,12 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-9mgopn-MuiDivider-root {
   margin: 0px -3px !important;
 }
 .css-dv0mq-MuiTableCell-root {
-  text-align: left;
-  padding: 15px 0px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 450;
-  color: #4c4f52e0;
-  width: 350px;
+  text-align: left !important;
+  padding: 15px 0px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 450 !important;
+  color: #4c4f52e0 !important;
+  width: 350px !important;
 }
 th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeSmall.css-6qfsqn-MuiTableCell-root {
   text-align: left;
@@ -266,14 +268,14 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  padding: 16px 20px;
+  padding: 10px 20px;
 }
 form.form2 {
   padding: 0px 55px;
 }
 .css-10hburv-MuiTypography-root {
   
-  font-weight: 450;
+  font-weight: 450 !important;
   
 }
 .css-quj9j6-MuiTable-root {
@@ -285,16 +287,16 @@ form.form2 {
  
 }
 .float-enduser {
-  right: 16px;
-  position: absolute;
+  right: 16px !important;
+  position: absolute !important;
 }
 .btn2 {
   padding: 1px 10px !important;
-  border-radius: 22px;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 450;
-  border: none;
+  border-radius: 22px !important;
+  background-color: #1976d2 !important;
+  color: white !important;
+  font-weight: 450 !important;
+  border: none !important;
 }
 .addform {
   width: 400px;
@@ -318,13 +320,13 @@ form.form2 {
   background-image: url(/public/logo.png) !important;
 }
 .inprogress{
-  color:red;
+  color:red !important;
 }
 .new{
-  color:blue;
+  color:blue !important;
 }
 .completed{
-  color:rgb(16, 110, 16);
+  color:rgb(16, 110, 16) !important;
 }
 .card {
   border: none !important;
@@ -350,4 +352,53 @@ form.form2 {
   color: #1976d2;
   font-size:25px;
 
+}
+.adminticket-head{
+  display: flex;
+  padding: 16px 0px 0px 25px;
+}
+.adminticket-head h1{
+  font-size: 25px;
+  color: #1976d2;
+  font-weight: 600;
+}
+.adminticket-head input {
+  padding: 0px 11px;
+  border: none;
+  border-radius: 27px;
+  background-color: #58a2ea38;
+  margin: 0px 0px 7px 27px;
+}
+.adminticket-head input::placeholder {
+  color: #1976d2;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-group p {
+  position: absolute;
+  padding: 47px 24px !important;
+  font-size: 11px;
+}
+h4.alert1.text-center {
+  color: #0e500e;
+  font-size: 16px;
+  font-weight: 550;
+}
+.header-user input {
+  padding: 3px 13px;
+  border: none;
+  border-radius: 27px;
+  background-color: #58a2ea38;
+  margin: 0px 0px 0px 27px;
+}
+.header-user input::placeholder {
+  color: #1976d2;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+.css-dsuxgy-MuiTableCell-root {
+ 
+  padding: 13px 16px !important;
+  color: rgba(0, 0, 0, 0.87);
 }

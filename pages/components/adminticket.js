@@ -9,12 +9,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './dialogsform';
+import { useRouter } from 'next/router'
 
 function Adminticket() {
-    var[search,setSearch] = useState('');
-  var[issues,setIssues]=useState([]);
+
+    const Router = useRouter()
+    var[show,setShow]=useState('');
+    var[issues,setIssues]=useState([]);
   var[selectedTeam,setSelectedTeam] = useState('');
   var[selectedStatus,setSelectedStatus] = useState('');
+  var[search,setSearch] = useState('');
   var[selectedValue,setSelectedValue] = useState('');
   console.log(selectedValue)
   
@@ -38,7 +42,13 @@ function handleUpdate(id){
         team : selectedTeam,
         status : selectedStatus,
         id:id,
-    }).then((res)=>console.log(res)) 
+    }).then((response)=>{
+        setShow("update Successfully");
+            Router.reload(window.location.pathname)
+        
+});
+      
+    
   }
 
  return(
@@ -47,8 +57,9 @@ function handleUpdate(id){
               <Head>
                   <title>Admin Dashboard</title>
               </Head>
-              <div>
-                  <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+              <div className='adminticket-head'>
+                  <h1>Tickets</h1>
+              <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
               </div>
               <div className="userbody">
                   <TableContainer component={Paper}>
@@ -57,28 +68,28 @@ function handleUpdate(id){
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Username</TableCell>
-                                <TableCell align="right">DomainName</TableCell>
+                                <TableCell align="left">DomainName</TableCell>
                                
-                                <TableCell align="right">IssuesFoundIn</TableCell>
-                                <TableCell align="right">Description</TableCell>
-                                <TableCell align="right">Team</TableCell>
-                                <TableCell align="right">Status</TableCell>
-                                <TableCell align="right">file</TableCell>
-                                <TableCell align="right"></TableCell>
+                                <TableCell align="left">IssuesFoundIn</TableCell>
+                                <TableCell align="left">Description</TableCell>
+                                <TableCell align="left">Team</TableCell>
+                                <TableCell align="left">Status</TableCell>
+                                <TableCell align="left">file</TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                         </TableHead>
+                               
                         {issues.filter(val=>{
                            if(search === ""){
                                return val;
                            }else if(
+                            val.id.toString().includes(search.toString()) ||
                                val.username.toLowerCase().includes(search.toLowerCase()) ||
                                val.DomainName.toLowerCase().includes(search.toLowerCase()) ||
                                val.Description.toLowerCase().includes(search.toLowerCase()) ||   
-                              
-                               val.IssuesFoundIn.toString().includes(search.toString()) ||
                                val.Team.toLowerCase().includes(search.toLowerCase()) || 
-                               val.Status.toLowerCase().includes(search.toLowerCase())
-                                            
+                               val.Status.toLowerCase().includes(search.toLowerCase()) ||
+                               val.IssuesFoundIn.toString().includes(search.toString())              
                            ){
                                return val;
                            }
@@ -86,14 +97,14 @@ function handleUpdate(id){
                             <TableBody key={item.id}>
                                 <TableRow >
                                   <TableCell component="th" scope="row">{item.id}</TableCell>
-                                  <TableCell align="right">{item.username}</TableCell>
-                                  <TableCell align="right">{item.DomainName}</TableCell>
+                                  <TableCell align="left">{item.username}</TableCell>
+                                  <TableCell align="left">{item.DomainName}</TableCell>
                                  
-                                  <TableCell align="right">{item.IssuesFoundIn}</TableCell>
-                                  <TableCell align="right">{item.Description}</TableCell>
-                                  <TableCell align="right">{item.Team}</TableCell>
-                                  <TableCell  className={item.Status}  align="right">{item.Status}</TableCell>
-                                  <TableCell align="right"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
+                                  <TableCell align="left">{item.IssuesFoundIn}</TableCell>
+                                  <TableCell align="left">{item.Description}</TableCell>
+                                  <TableCell align="left">{item.Team}</TableCell>
+                                  <TableCell  className={item.Status}  align="left">{item.Status}</TableCell>
+                                  <TableCell align="left"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
                                   <TableCell ><FormDialog 
                                       dialogtitle="update"
                                       className="btn3"
@@ -129,12 +140,13 @@ function handleUpdate(id){
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">Team :</label>
-                                                              <select className="form-input" onChange={handleTeam}>
+                                                              <select className="form-input" name="team" onChange={handleTeam}>
                                                                   <option value="">--Select--</option>
                                                                   <option value="team1">team1</option>
                                                                   <option value="team2">team2</option>
                                                                   <option value="team3">team3</option>
                                                               </select> 
+                                                             
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">Status</label>
@@ -144,11 +156,13 @@ function handleUpdate(id){
                                                                   <option className='inprogress' value="inprogress">In progress</option>
                                                                   <option className='completed' value="completed">Completed</option>
                                                               </select>
+                                                              
                                                     </div>
                                                 </form>
                                               </div>
                                           </div>
                                         <button className="btn2 float-end mt-3 mb-3" onClick={()=>handleUpdate(item.id)}>Update</button>
+                                        <h4 className="alert1 text-center">{show}</h4>
                                       </div>
                                       }
                                   /></TableCell>

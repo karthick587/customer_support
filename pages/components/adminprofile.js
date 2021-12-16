@@ -92,25 +92,25 @@ export default function AdminProfile({admin,adminId}) {
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label className="label" htmlFor="fullName">Full Name</label>
-									<h5  className="form-control" >{props.firstname}</h5>
+									<h5  className="form-input" >{props.firstname}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label className="label" htmlFor="eMail">Email</label>
-									<h5  className="form-control">{props.email}</h5>
+									<h5  className="form-input">{props.email}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label className="label" htmlFor="phone">Phone</label>
-									<h5  className="form-control" >{props.phoneno}</h5>
+									<h5  className="form-input" >{props.phoneno}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label className="label" htmlFor="website">Website URL</label>
-									<h5  className="form-control">{props.url}</h5>
+									<h5  className="form-input">{props.url}</h5>
 								</div>
 							</div>
 						</div>
@@ -120,7 +120,7 @@ export default function AdminProfile({admin,adminId}) {
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<h5 className="form-control" id="Street">{props.address}</h5>
+									<h5 className="form-input" id="Street">{props.address}</h5>
 								</div>
 							</div>
 						</div>

@@ -183,7 +183,7 @@ app.put('/userlogin/:id',(req,res)=>{
   });  
 
 app.get('/addIssues',(req,res)=>{
-    con.query("SELECT * FROM issues",(err,rows)=>{
+    con.query("SELECT * FROM issues ORDER BY IssuesFoundIn DESC",(err,rows)=>{
         if(!err)
             res.send(rows);
         else

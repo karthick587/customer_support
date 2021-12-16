@@ -12,7 +12,9 @@ import FormDialog from './dialogsform';
 import Adduser from './adduser';
 
 export default function Users(){
-    
+    var[search,setSearch] = useState('');
+  var[selectedValue,setSelectedValue] = useState('');
+  console.log(selectedValue)
     var[users,setUsers]=useState([]);
     useEffect(()=>{
         Axios.get("http://localhost:3001/adduser")
@@ -30,6 +32,7 @@ export default function Users(){
                 <div className="userbody">
                 <div className='header-user'>
                <h1>USERS</h1>
+               <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
                <FormDialog
                className="float-enduser btn2 button"
                     dialogtitle="+ADD USER"
@@ -42,22 +45,34 @@ export default function Users(){
                             <TableHead>
                                 <TableRow>
                                     <TableCell>ID</TableCell>
-                                    <TableCell align="right">FIRST_NAME</TableCell>
-                                    <TableCell align="right">LAST_NAME</TableCell>
-                                    <TableCell align="right">USERNAME</TableCell>
-                                    <TableCell align="right">email</TableCell>
-                                    <TableCell align="right">PASSWORD</TableCell>
+                                    <TableCell align="left">FIRST_NAME</TableCell>
+                                    <TableCell align="left">LAST_NAME</TableCell>
+                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">email</TableCell>
+                                    <TableCell align="left">PASSWORD</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {users.map((item)=>
+                            {users.filter(val=>{
+                           if(search === ""){
+                               return val;
+                           }else if(
+                               val.firstname.toLowerCase().includes(search.toLowerCase()) ||
+                               val.lastname.toLowerCase().includes(search.toLowerCase()) ||
+                               val.username.toLowerCase().includes(search.toLowerCase()) ||   
+                               val.password.toLowerCase().includes(search.toLowerCase())
+                                         
+                           ){
+                               return val;
+                           }
+                       }).map((item)=>
                                 <TableBody key={item.id}>
                                     <TableRow >
                                         <TableCell component="th" scope="row">{item.id}</TableCell>
-                                        <TableCell align="right">{item.firstname}</TableCell>
-                                        <TableCell align="right">{item.lastname}</TableCell>
-                                        <TableCell align="right">{item.username}</TableCell>
-                                        <TableCell align="right">{item.email}</TableCell>
-                                        <TableCell align="right">{item.password}</TableCell>
+                                        <TableCell align="left">{item.firstname}</TableCell>
+                                        <TableCell align="left">{item.lastname}</TableCell>
+                                        <TableCell align="left">{item.username}</TableCell>
+                                        <TableCell align="left">{item.email}</TableCell>
+                                        <TableCell align="left">{item.password}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             )}

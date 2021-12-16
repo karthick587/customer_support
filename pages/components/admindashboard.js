@@ -50,7 +50,7 @@ const AdminDashboard=(props)=>{
     router.push("./adminLogin")
   }
  return(
-        <div >
+        <div>
                   <div>
                     <Dashboard 
                       logout={onBackButtonEvent2}
