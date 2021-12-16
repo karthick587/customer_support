@@ -1,8 +1,8 @@
 import React, { useEffect} from "react";
 import Head from 'next/head';
 import router from 'next/router';
-import Image from "next/image";
-import Logo from "../public/logo.png"
+
+
 
 export default function Landingpage() {
     const onBackButtonEvent = (e) => {
@@ -24,7 +24,7 @@ export default function Landingpage() {
             <header className="main-header">
                 <div className="header-wrapper">
                     <div className="main-logo"> 
-                        <Image src={Logo} alt="mindmade" />
+                       
                     </div>
                     <nav>
                         <ul className="main-menu">

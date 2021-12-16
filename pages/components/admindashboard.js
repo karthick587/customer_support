@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
-import Axios from 'axios';
+
 import Typography from '@mui/material/Typography';
-import AdminProfile from './adminprofile';
+
 import Dashboard from './navdashboard';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -14,15 +14,11 @@ import { withRouter } from "next/router";
 
 const AdminDashboard=(props)=>{
   
-  const[user,setUser]=useState([]);
+  
   const [finishStatus, setfinishStatus] = useState(false);
-  var adminId = props.router.query.name;
+  
 
-  useEffect(()=>{
-      Axios.get(`http://localhost:3001/adminlogin/${props.router.query.name}`)
-          .then((res)=>setUser(res.data));
-  },[]);
-     
+ 
  
   const onBackButtonEvent = (e) => {
       e.preventDefault();
@@ -84,7 +80,7 @@ const AdminDashboard=(props)=>{
                         
                             </div>
                             <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <AdminProfile admin={user} adminId={adminId}/>
+                         
                               </div>
                               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                   <Users />

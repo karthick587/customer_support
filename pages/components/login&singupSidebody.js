@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useKeenSlider } from "keen-slider/react"
 
-import Image from "next/image"
+
 
 
 export default () => {

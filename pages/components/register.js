@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import Head from 'next/head';
 import Axios from "axios";
 import Link from 'next/link'
-import router from 'next/router';
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';

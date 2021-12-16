@@ -1,50 +1,60 @@
 import FormDialog from './dialogsform';
 import Axios from 'axios';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+
+import {useRouter} from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
  const schema = yup.object().shape({
 	phoneno : yup.string().required('phone number is a required field'),
-	url : yup.string().required(),
-	address : yup.string().required(),
-	about : yup.string().required(),
+	email : yup.string().required(),
+	address : yup.string().required()
+	
   });
 
-export default function UserProfile({user,userId}) {
+export default function UserProfile({userId}) {
+	const[user,setUser]=useState([]);
+	useEffect(()=>{
+		fetch(`http://localhost:3001/users/${userId}`)
+		   .then(res => res.json())
+		   .then(res => setUser(res));
+   },[]);
+
+	let router = useRouter();
+	console.log(user);
 
 	const {register,handleSubmit, formState } = useForm({
 			resolver : yupResolver(schema),
 	});
 	const { errors } = formState;
 
-	function handleUpdate({phoneno,url,address,about}){
-
-		Axios.put(`http://localhost:3001/userlogin/${userId}`,{
-			phoneno : phoneno,
-			url : url,
+	function handleUpdate({phoneno,email,address}){
+		
+		Axios.put(`http://localhost:3001/users/${userId}`,{
+			id:userId,
+			phonenumber : phoneno,
+			email : email,
 			address : address,
-			about : about
+			
 		}).then((response)=>console.log(response));
 	}
 	
  return (
 	<div className="container">
 		{user.map((props)=>
-		<div key={props.id} className="row gutters">
-			
-			<div>
+		<div key={props.UserId} className="row gutters">
+			<div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 				<div className="card h-100">
 					<div className="card-body">
 						<div className="row gutters ">
 							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div className="float-end">
 									<FormDialog
-									className="btn2"
 										dialogtitle="Update Profile"
 										dialogbody={
-											<div className="addform">
+											<div className="form dialog">
 												<div className="form-toggle"></div>
 												<div className="form-panel update one">
 													<div className="form-header">
@@ -53,26 +63,21 @@ export default function UserProfile({user,userId}) {
 													<div className="form-content">
 														<form> 
 															<div className="form-group">
-																<label className="label">Phone Number</label>
-																<input className="form-input" name="phoneno" type="text" {...register('phoneno')} />
-																<p className="me-2 text-danger">{errors.phoneno?.message}</p>										
+																<label className="col">Phone Number</label>
+																<input className="col-sm-3" name="phoneno" type="text" {...register('phoneno')} />
+																<p className="me-2 text-danger">{errors.phoneno?.message}</p><br />											
 															</div>
 															<div className="form-group">
-																<label className="label">Website URL</label>
-																<input className="form-input" name="url"  type="text" {...register('url')} />
-																<p className="me-2 text-danger">{errors.url?.message}</p>
+																<label className="col">Email</label>
+																<input className="col-sm-3" name="email"  type="text" {...register('email')} />
+																<p className="me-2 text-danger">{errors.email?.message}</p><br />
 															</div>
 															<div className="form-group">
-																<label className="label">office address</label>
-																<input className="form-input" name="address"  type="text" {...register('address')} />
-																<p className="me-2 text-danger">{errors.address?.message}</p>
+																<label className="col">Address</label>
+																<input className="col-sm-3" name="address"  type="text" {...register('address')} />
+																<p className="me-2 text-danger">{errors.address?.message}</p><br/>
 															</div>
-															<div className="form-group">
-																<label className="label">About You</label>
-																<textarea className="form-input" name="about"   type="text"  {...register('about')} />
-																<p className="me-2 text-danger">{errors.about?.message}</p>
-															</div>
-															<button type="submit" onClick={handleSubmit(handleUpdate)} className="btn2 float-end"> <a className="nav-link text-white">Submit</a></button>
+															<button type="submit" onClick={handleSubmit(handleUpdate)} className="button float-end">Update</button>
 														</form>
 													</div>
 												  <h4 className="alert1"></h4>
@@ -89,39 +94,30 @@ export default function UserProfile({user,userId}) {
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label className="label" htmlFor="fullName">Full Name</label>
-									<h5  className="form-input" >{props.username}</h5>
+									<label htmlFor="fullName">Name</label>
+									<h5  className="form-control" >{props.Name}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label className="label" htmlFor="eMail">Email</label>
-									<h5  className="form-input">{props.email}</h5>
+									<label htmlFor="eMail">Email</label>
+									<h5  className="form-control">{props.Email}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label className="label" htmlFor="phone">Phone</label>
-									<h5  className="form-input" >{props.phoneno}</h5>
+									<label htmlFor="phone">Phonenumber</label>
+									<h5  className="form-control" >{props.Phonenumber}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
-									<label className="label" htmlFor="website">Website URL</label>
-									<h5  className="form-input">{props.url}</h5>
+									<label htmlFor="website">Address</label>
+									<h5  className="form-control">{props.Address}</h5>
 								</div>
 							</div>
 						</div>
-						<div className="row gutters">
-							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-								<h6 className="mt-3 mb-2 text-primary">Address</h6>
-							</div>
-							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-								<div className="form-group">
-									<h5 className="form-input" id="Street">{props.address}</h5>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>

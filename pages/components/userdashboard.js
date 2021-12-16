@@ -4,21 +4,17 @@ import Dashboard from "./navdashboard";
 import UserProfile from './userprofile';
 import Userissue from "./userissues";
 import { withRouter } from "next/router";
-import FormDialog from "./dialogsform";
+
 import router from "next/router";
 import Userticket from "./userticket";
 
 const UserDashboard=(props)=>{
     
-    const[user,setUser]=useState([]);
+   
     const [finishStatus, setfinishStatus] = useState(false);
     var userId = props.router.query.name;
 
-  useEffect(()=>{
-       fetch(`http://localhost:3001/userlogin/${props.router.query.name}`)
-          .then(res => res.json())
-          .then(res => setUser(res));
-  },[]);
+  
        
 	
   const onBackButtonEvent = (e) => {
@@ -70,7 +66,7 @@ const UserDashboard=(props)=>{
                                   <Userissue />
                               </div>
                               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                  <UserProfile user={user} userId={userId}/>
+                                  <UserProfile  userId={userId}/>
                               </div>
                               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                               </div>
