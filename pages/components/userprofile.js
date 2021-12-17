@@ -1,4 +1,4 @@
-import FormDialog from './dialogsform';
+import FormDialog from './common/dialogsform';
 import Axios from 'axios';
 import React,{useEffect,useState} from 'react';
 

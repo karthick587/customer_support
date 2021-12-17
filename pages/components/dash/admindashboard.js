@@ -2,15 +2,16 @@ import React,{useState,useEffect} from 'react';
 
 import Typography from '@mui/material/Typography';
 
-import Dashboard from './navdashboard';
+import Dashboard from '../common/navdashboard';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import PeopleIcon from '@mui/icons-material/People';
 import ListItemText from '@mui/material/ListItemText';               
-import Users from './users';
+import Users from '../users';
 import router from 'next/router';
-import Adminticket from './adminticket';
+import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
+import Dashcard from '../common/dashCard';
 
 const AdminDashboard=(props)=>{
   
@@ -27,7 +28,7 @@ const AdminDashboard=(props)=>{
         if (window.confirm("Do you want to Logout ?")) {
             setfinishStatus(true)
             // your logic
-            router.push("./adminLogin")
+            router.push("../login/adminLogin")
         } else {
             window.history.pushState(null, null, window.location.pathname);
             setfinishStatus(false)
@@ -43,7 +44,7 @@ const AdminDashboard=(props)=>{
       };
   },[]);
   const onBackButtonEvent2 = () =>{
-    router.push("./adminLogin")
+    router.push("../login/adminLogin")
   }
  return(
         <div>
@@ -77,7 +78,37 @@ const AdminDashboard=(props)=>{
                           
                           <div className="tab-content" id="v-pills-tabContent">
                             <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        
+                               <div className='main-dash'>
+                                  <div className='main-dash-sub' >
+                                     <div className='dash-head'>
+                                     <h2>Dashboaard</h2>
+                                     </div>
+                                     <div className='dash-body'>
+                                     <div className='dash-cards'>
+                                       <div className='row'>
+                                         <Dashcard 
+                                         cardHead="No of Tickets"
+                                         cardbody="50k"
+                                         cardfooter="last Ticket no"
+                                         cardIcon="Icon1"
+                                          />
+                                          <Dashcard 
+                                         cardHead="No of users"
+                                         cardbody="10k"
+                                         cardfooter="last Ticket no"
+                                         cardIcon="icon2"
+                                          />
+                                          <Dashcard 
+                                         cardHead="Tickets status"
+                                         cardbody="5k"
+                                         cardfooter="last Ticket no"
+                                         cardIcon="icon3"
+                                          />
+                                       </div>
+                                     </div>
+                                     </div>
+                                   </div>
+                               </div>
                             </div>
                             <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                          

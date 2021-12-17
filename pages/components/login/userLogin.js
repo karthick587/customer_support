@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-import Sidebody from './login&singupSidebody';
+import Sidebody from '../common/login&singupSidebody';
 
 const schema = yup.object().shape({
     username : yup.string().required(),
@@ -38,7 +38,7 @@ export default function Login2(){
             else
             {
                 router.push({
-                    pathname:'./userdashboard',
+                    pathname:'../dash/userdashboard',
                     query:{name:response.data[0].id}
                 });
             }

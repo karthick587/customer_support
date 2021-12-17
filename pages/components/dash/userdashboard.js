@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import Typography from '@mui/material/Typography';
-import Dashboard from "./navdashboard";
-import UserProfile from './userprofile';
-import Userissue from "./userissues";
+import Dashboard from "../common/navdashboard";
+import UserProfile from '../userprofile';
+import Userissue from "../submits/userissues";
 import { withRouter } from "next/router";
 
 import router from "next/router";
-import Userticket from "./userticket";
+import Userticket from "../tickets/userticket";
 
 const UserDashboard=(props)=>{
     
@@ -24,7 +24,7 @@ const UserDashboard=(props)=>{
             if (window.confirm("Do you want to Logout ?")) {
                 setfinishStatus(true)
                 // your logic
-                router.push("./userLogin")
+                router.push("../login/userLogin")
             } else {
                 window.history.pushState(null, null, window.location.pathname);
                 setfinishStatus(false)
@@ -41,7 +41,7 @@ const UserDashboard=(props)=>{
     }, []);
     
     const onBackButtonEvent3 = () =>{
-        router.push("./userLogin")
+        router.push("../login/userLogin")
       }
     return(
           <div>

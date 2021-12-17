@@ -8,8 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import FormDialog from './dialogsform';
-import Adduser from './adduser';
+import FormDialog from './common/dialogsform';
+import Adduser from './submits/adduser';
 
 export default function Users(){
     var[search,setSearch] = useState('');

@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-import Sidebody from './login&singupSidebody';
+import Sidebody from '../common/login&singupSidebody';
 
   const schema = yup.object().shape({
     username : yup.string().required(),
@@ -36,7 +36,7 @@ const adminLogin=({username,password})=>{
               setLoginStatus(response.data.message);
           }else{
               router.push({
-              pathname:'./admindashboard',
+              pathname:'../dash/admindashboard',
               query:{name:response.data[0].id}});  
           }
     });       

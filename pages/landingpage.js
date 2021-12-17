@@ -30,8 +30,8 @@ export default function Landingpage() {
                         <ul className="main-menu">
                             <li><a href="#section-2">About</a></li>
                             <li><a href="#section-5">Service</a></li>
-                            <li><a  onClick={() => router.push("./components/userLogin")}>Login</a></li>
-                            <li><a  onClick={() => router.push("./components/adminLogin")} >Admin</a></li>
+                            <li><a  onClick={() => router.push("./components/login/userLogin")}>Login</a></li>
+                            <li><a  onClick={() => router.push("./components/login/adminLogin")} >Admin</a></li>
                             <li><a href="#main-footer">Contact</a></li>
                             <li><a href="#"><span className="fa fa-shopping-cart"></span></a></li>
                             <li><a href="#"><span className="fa fa-search"></span></a></li>

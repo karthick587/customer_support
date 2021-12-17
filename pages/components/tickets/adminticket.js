@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import FormDialog from './dialogsform';
+import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
 
 function Adminticket() {
