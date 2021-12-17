@@ -65,8 +65,8 @@ export default function Login2(){
                 <title>userlogin</title>
             </Head>
  <div>
-  <div className="row">
-    <div className="col-5">
+  <div className="login-body">
+    <div className="left-body">
    
     <div className="form login">
      
@@ -95,7 +95,7 @@ export default function Login2(){
             </form>
             </div>
     </div>
-    <div className="col-7">
+    <div className="right-body">
      <Sidebody />
     </div>
   </div>
