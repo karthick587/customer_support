@@ -472,3 +472,32 @@ h4.alert1.text-center {
   margin-left: 40px !important;
   color: #1976d2;
 }
+.css-dsuxgy-MuiTableCell-root {
+ 
+  padding: 13px 16px !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6{
+  display: none !important;
+}
+.css-13xy2my {
+  box-shadow: none !important;
+}
+.css-1f8bwsm {
+  min-width: 56px;
+  color: rgb(25 118 210) !important;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+.css-1o6fzn1 {
+  padding: 10px 16px !important;
+}
+span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
+  /* font-size: 15px; */
+  font-weight: 500 !important;
+}
+/*admindash board*/
+.css-1l8j5k8{
+  border: none !important;
+}
+
