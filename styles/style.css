@@ -202,7 +202,7 @@ body {
   margin: 9px 0px;
 }
 .btn a{
-  color: white;
+  color: white !important;
 }
 .slide-banner {   
  
