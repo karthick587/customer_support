@@ -85,11 +85,10 @@ function handleUpdate(id){
                            }else if(
                             val.id.toString().includes(search.toString()) ||
                                val.username.toLowerCase().includes(search.toLowerCase()) ||
-                               val.DomainName.toLowerCase().includes(search.toLowerCase()) ||
-                               val.Description.toLowerCase().includes(search.toLowerCase()) ||   
-                               val.Team.toLowerCase().includes(search.toLowerCase()) || 
-                               val.Status.toLowerCase().includes(search.toLowerCase()) ||
-                               val.IssuesFoundIn.toString().includes(search.toString())              
+                              
+                               
+                               val.Status.toLowerCase().includes(search.toLowerCase())
+                                   
                            ){
                                return val;
                            }
