@@ -11,9 +11,9 @@ app.use(cors());
 
 const con=mysql.createConnection({
     host:"localhost",
-    user:"p2h_kaviyapriya",
-    password:'CustomerSupport@mm',
-    database:"p2h_mm_customer_support"
+    user:"root",
+    password:'',
+    database:"customerdb"
 });
 
 con.connect((err) =>{
