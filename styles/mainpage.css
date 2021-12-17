@@ -2,6 +2,10 @@
   .col-6{
     width: 100% !important;
   }
+  .row {
+    
+    display: contents !important;
+  }
   .addform {
     width: 220px !important;
 }
