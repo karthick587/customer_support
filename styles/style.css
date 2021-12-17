@@ -440,15 +440,16 @@ h4.alert1.text-center {
   text-transform: capitalize;
   letter-spacing: 0.02em;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 0;
-  color: #303e67;
+  color: #1976d2;
   text-shadow: 0 0 1px rgb(241 245 250 / 10%);
   font-family: "Roboto",sans-serif;
 }
-.ticket-no{
-  font-size: 28px;
+.ticket-no {
+  font-size: 27px;
   font-weight: 600;
+  color: #135392;
 }
 .lastlticket{
   color: #a4abc5 !important;
@@ -465,4 +466,9 @@ h4.alert1.text-center {
 }
 .card-logo {
   text-align: center;
+}
+.card-logo svg {
+  font-size: 37px;
+  margin-left: 40px !important;
+  color: #1976d2;
 }

@@ -5,6 +5,12 @@
   .addform {
     width: 220px !important;
 }
+.nav-link div {
+  margin: 0px -4px !important;
+}
+.nav-link.active div {
+  margin: 0px -7px !important;
+}
 }
 @media (min-width: 1200px){
 .container, .container-lg, .container-md, .container-sm, .container-xl {

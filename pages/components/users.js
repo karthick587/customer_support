@@ -10,17 +10,19 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
 import Adduser from './submits/adduser';
-
+import Router from 'next/router';
 export default function Users(){
     var[search,setSearch] = useState('');
   var[selectedValue,setSelectedValue] = useState('');
   console.log(selectedValue)
     var[users,setUsers]=useState([]);
-    useEffect(()=>{
+    var[show,setShow]=useState('');
+useEffect(()=>{
         Axios.get("http://localhost:3001/adduser")
         .then((res)=>setUsers(res.data));
     },[]);
-  
+
+
     return(
         <div>
             <Head>
@@ -50,6 +52,7 @@ export default function Users(){
                                     <TableCell align="left">USERNAME</TableCell>
                                     <TableCell align="left">email</TableCell>
                                     <TableCell align="left">PASSWORD</TableCell>
+                                    <TableCell align="left"></TableCell>
                                 </TableRow>
                             </TableHead>
                             {users.filter(val=>{
@@ -73,6 +76,7 @@ export default function Users(){
                                         <TableCell align="left">{item.username}</TableCell>
                                         <TableCell align="left">{item.email}</TableCell>
                                         <TableCell align="left">{item.password}</TableCell>
+                                        <TableCell align="left">  <button className="btn2" >Delete</button></TableCell>
                                     </TableRow>
                                 </TableBody>
                             )}

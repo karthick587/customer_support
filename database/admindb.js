@@ -69,6 +69,20 @@ app.put('/adminlogin/:id',(req,res)=>{
      })
   });  
 
+  app.delete('/adminlogin/:id',(req,res)=>{
+
+    const id= req.params.id;
+   
+ 
+    con.query(
+         'DELETE FROM notes WHERE ID= ?',
+         [id],(err,result)=>{
+            if(!err)
+                res.send(result)
+            else
+              res.send(err)
+     })
+  });  
 app.get('/register',(req,res)=>{
     con.query("SELECT * FROM admin",(err,rows)=>{
         if(!err)

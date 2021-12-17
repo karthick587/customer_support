@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 import Typography from '@mui/material/Typography';
-
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import Dashboard from '../common/navdashboard';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -90,13 +91,13 @@ const AdminDashboard=(props)=>{
                                          cardHead="No of Tickets"
                                          cardbody="50k"
                                          cardfooter="last Ticket no"
-                                         cardIcon="Icon1"
+                                         cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                                           />
                                           <Dashcard 
                                          cardHead="No of users"
                                          cardbody="10k"
                                          cardfooter="last Ticket no"
-                                         cardIcon="icon2"
+                                         cardIcon={<FontAwesomeIcon icon={faUsers} />}
                                           />
                                           <Dashcard 
                                          cardHead="Tickets status"
