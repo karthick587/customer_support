@@ -11,6 +11,9 @@
 .left-body {
   width: 100%;
 }
+ .keen-slider:not([data-keen-slider-disabled]) {
+    height: 60vh;
+}
 .form.login {
   width: 353px;
   left: 0;
