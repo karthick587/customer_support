@@ -65,8 +65,8 @@ export default function Login2(){
                 <title>userlogin</title>
             </Head>
  <div>
-  <div className="row">
-    <div className="col-5">
+  <div className="login-body">
+    <div className="left-body">
    
     <div className="form login">
      
@@ -77,12 +77,12 @@ export default function Login2(){
             <form> 
                             <div className="form-group">
                                 <label className="label">Username*</label>
-                                <input className="form-input" name="username" type="text" placeholder="Username" {...register('username')}/>
+                                <input className="form-input" name="username" type="text"  {...register('username')}/>
                                 <p className="me-2 text-danger">{errors.username?.message}</p>
                             </div>
                             <div className="form-group">
                                 <label className="label">Password*</label>
-                                <input className="form-input" name="password" type="password" placeholder="password" {...register('password')}/>
+                                <input className="form-input" name="password" type="password"  {...register('password')}/>
                                 <p className="me-2 text-danger">{errors.password?.message}</p>
                             </div>
                             <div className="form-group">
@@ -95,7 +95,7 @@ export default function Login2(){
             </form>
             </div>
     </div>
-    <div className="col-7">
+    <div className="right-body">
      <Sidebody />
     </div>
   </div>

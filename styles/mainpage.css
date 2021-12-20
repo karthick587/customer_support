@@ -2,6 +2,28 @@
   .col-6{
     width: 100% !important;
   }
+  .login-body {
+    display: inline;
+  }
+  .right-body {
+    width: 100% !important;
+}
+.left-body {
+  width: 100%;
+}
+ .keen-slider:not([data-keen-slider-disabled]) {
+    height: 60vh;
+}
+.form.login {
+  width: 353px;
+  left: 0;
+  right: 0;
+  display: block;
+  margin: auto;
+  padding: 39px;
+  
+}
+
   .addform {
     width: 220px !important;
 }
