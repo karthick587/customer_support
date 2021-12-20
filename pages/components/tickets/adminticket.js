@@ -84,10 +84,10 @@ function handleUpdate(id){
                                return val;
                            }else if(
                             val.id.toString().includes(search.toString()) ||
-                               val.username.toLowerCase().includes(search.toLowerCase()) ||
+                               val.username.toLowerCase().includes(search.toLowerCase())
                               
                                
-                               val.Status.toLowerCase().includes(search.toLowerCase())
+                             
                                    
                            ){
                                return val;
