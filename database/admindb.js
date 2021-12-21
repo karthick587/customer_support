@@ -15,7 +15,7 @@ const con=mysql.createConnection({
     password:'',
     database:"customerdb"
 });
-
+s
 con.connect((err) =>{
     if(!err)
         console.log('connected successfully');
