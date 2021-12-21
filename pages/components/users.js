@@ -76,10 +76,9 @@ export default function Users(props){
                            if(search === ""){
                                return val;
                            }else if(
-                               val.firstname.toLowerCase().includes(search.toLowerCase()) ||
-                               val.lastname.toLowerCase().includes(search.toLowerCase()) ||
-                               val.username.toLowerCase().includes(search.toLowerCase()) ||   
-                               val.password.toLowerCase().includes(search.toLowerCase())
+                             
+                               val.username.toLowerCase().includes(search.toLowerCase())   
+                               
                                          
                            ){
                                return val;

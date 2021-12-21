@@ -9,20 +9,17 @@ const app=express();
 app.use(express.json());
 app.use(cors());
 
-const con=mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:'',
-    database:"customerdb"
-});
 
-con.connect((err) =>{
-    if(!err)
-        console.log('connected successfully');
-    else
-        console.log('connected failed \n Error :' + JSON.stringify(err,undefined,2));
-});
+const mysql = require('serverless-mysql')({
+    config: {
+      host     : process.env.localhost,
+      database : process.env.root,
+      user     : process.env.customerdb,
+      password : process.env
+    }
+  })
 
+  await mysql.end()
 app.get('/adminlogin/:id',(req,res)=>{
     con.query("SELECT * FROM admin where id=?",[req.params.id],(err,rows)=>{
         if(!err)
@@ -32,6 +29,7 @@ app.get('/adminlogin/:id',(req,res)=>{
     })
 
 })
+
 
 app.post("/adminlogin",(req,res)=>{
     const username=req.body.username;
