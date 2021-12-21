@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 const con=mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:'',
-    database:"customerdb"
+    host:"sql305.epizy.com",
+    user:"epiz_30606693",
+    password:'K0Z7LZmjqddGje0',
+    database:"epiz_30606693_customerdb"
 });
 
 con.connect((err) =>{
