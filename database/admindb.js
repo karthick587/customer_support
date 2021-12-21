@@ -1,12 +1,21 @@
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://karthickraja:<Ben12345#>@cluster0.h7hwq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
+const express= require("express");
+const mysql= require("mysql");
+const cors=require("cors");
+
+//const bcrypt=require("bcrypt");
+//const saltRounds=10
+
+const app=express();
+app.use(express.json());
+app.use(cors());
+
+const con=mysql.createConnection({
+    host:"localhost",
+    user:"root",
+    password:'',
+    database:"customerdb"
 });
-s
+
 con.connect((err) =>{
     if(!err)
         console.log('connected successfully');
@@ -267,6 +276,12 @@ app.put('/addIssues',(req,res)=>{
 app.listen(3001 , () =>{
     console.log('running server');
 });
+
+
+
+
+
+
 
 
 
