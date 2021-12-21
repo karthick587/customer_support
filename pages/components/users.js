@@ -97,7 +97,7 @@ export default function Users(props){
                                         <TableCell align="left">{item.password}</TableCell>
                                         <TableCell align="left"><button
 type="button"
-className="btn-xs btn-info float-right"
+className="btn2"
 onClick={() => props.deleteUsers(item.id)}>
 
 Delete
