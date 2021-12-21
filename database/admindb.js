@@ -85,6 +85,7 @@ app.put('/adminlogin/:id',(req,res)=>{
   });  
 app.get('/register',(req,res)=>{
     con.query("SELECT * FROM admin",(err,rows)=>{
+       
         if(!err)
             res.send(rows);
         else
@@ -124,6 +125,7 @@ app.post("/register",(req,res)=>{
 
 app.get('/adduser',(req,res)=>{
     con.query("SELECT * FROM users",(err,rows)=>{
+       
         if(!err)
             res.send(rows);
         else
@@ -131,6 +133,18 @@ app.get('/adduser',(req,res)=>{
     })
 });
 
+app.delete("/delete/:id", (req, res) => {
+    let { ID } = req.params.id;
+    let sql = `DELETE FROM users WHERE ID = ${req.params.id}`;
+    console.log("id: ", req.params.id);
+  
+    // delete a row with id = req.params.id
+    connection.query(sql, (error, results, fields) => {
+      if (error) return console.error(error.message);
+      res.status(200).send(results);
+      console.log("Deleted Row(s):", results.affectedRows);
+    });
+  });
 app.post("/adduser",(req,res)=>{
 
     const firstname=req.body.firstname;

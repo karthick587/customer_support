@@ -185,7 +185,11 @@ body {
 .dot:focus {
   outline: none;
 }
-
+.product-img img {
+  width: 245px !important;
+  height: 39vh;
+  padding: 22px;
+}
 
 .dot.active {
   border: none;

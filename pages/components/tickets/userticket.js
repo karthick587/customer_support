@@ -24,7 +24,7 @@ var[issues,setIssues]=useState([]);
      Axios.get("http://localhost:3001/addIssues")
         .then((res)=>setIssues(res.data));
      },[]);
-     
+     search="muthu"
  return(
       <div> 
           <div className="container mainbody">
@@ -33,12 +33,13 @@ var[issues,setIssues]=useState([]);
               </Head>
               <div className='adminticket-head'>
                   <h1>Tickets</h1>
-                  <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+                
               </div>
               <div className="userbody">
                   <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">    
                         <TableHead>
+                          
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Username</TableCell>
@@ -76,6 +77,7 @@ var[issues,setIssues]=useState([]);
                                   <TableCell  className={item.Status}  align="left">{item.Status}</TableCell>
                                   <TableCell align="left"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
                                 </TableRow> 
+                               
                             </TableBody>
                         )}
                     </Table>
