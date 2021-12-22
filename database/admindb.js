@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 const con=mysql.createConnection({
-    host:"localhost",
-    user:"u699116212_Karthik",
-    password:'Koestam@23',
-    database:"u699116212_Karthik"
+    host:"p2h.in",
+    user:"p2h_kaviyapriya",
+    password:'CustomerSupport@mm',
+    database:"p2h_mm_customer_support"
 });
 
 con.connect((err) =>{
