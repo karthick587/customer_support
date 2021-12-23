@@ -8,9 +8,17 @@
 .adminticket-head input {
   padding: 0px 11px;
   border: none;
-width:70px;
+width:100px;
   border-radius: 27px;
   background-color: #58a2ea38;
+  margin: 0px 0px 7px 27px;
+}
+.adminticket-head input {
+  padding: 0px 11px;
+  border: none;
+  border-radius: 27px;
+  background-color: #58a2ea38;
+  width:100px;
   margin: 0px 0px 7px 27px;
 }
   .right-body {
