@@ -13,8 +13,8 @@ width:100px;
   background-color: #58a2ea38;
   margin: 0px 0px 7px 27px;
 }
-.adminticket-head input {
-  padding: 0px 11px;
+.user-filter-input{
+  padding: 0px 7px;
   border: none;
   border-radius: 27px;
   background-color: #58a2ea38;
