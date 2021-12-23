@@ -5,6 +5,14 @@
   .login-body {
     display: inline;
   }
+.adminticket-head input {
+  padding: 0px 11px;
+  border: none;
+width:70px;
+  border-radius: 27px;
+  background-color: #58a2ea38;
+  margin: 0px 0px 7px 27px;
+}
   .right-body {
     width: 100% !important;
 }
