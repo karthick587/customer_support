@@ -26,7 +26,7 @@ export default function Login2(){
     const { errors } = formState;
 
     const userLogin=({username,password})=>{
-        Axios.post("http://localhost:3001/userlogin",{
+        Axios.post("http://mindmadetech.in/users",{
                  username:username,
                  password:password,
         })
