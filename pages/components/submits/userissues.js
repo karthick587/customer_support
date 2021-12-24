@@ -15,7 +15,7 @@ function Userissue() {
     const date = today.getDate()+ '-' +(today.getMonth() + 1)+ '-' +today.getFullYear() + ' ' +
                     today.getHours() + ':' + today.getMinutes();
  const addIssues=()=>{
-    Axios.post("http://localhost:3001/addIssues",{
+    Axios.post("http://mindmadetech.in/addIssues",{
           UserName:username,
           DomainName:domainName,
           IssuesFoundIn:date,

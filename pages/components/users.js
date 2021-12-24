@@ -18,10 +18,28 @@ export default function Users(props){
   console.log(selectedValue)
     var[users,setUsers]=useState([]);
     useEffect(()=>{
-        Axios.get("http://mindmadetech.in/users")
+        Axios.get("http://mindmadetech.in/adduser")
         .then((res)=>setUsers(res.data));
     },[]);
-  
+    useEffect(()=>{
+   const deleteUsers = (id) => {
+        // <-- declare id parameter
+        Axios
+          .delete(`http://localhost:3001/delete/${id}`) // <-- remove ;
+          .then(() => {
+            // Issue GET request after item deleted to get updated list
+            // that excludes note of id
+            this.getAllUsers()
+          })
+          .then(res => {
+            const AllUsers = res.data;
+            this.setState({ AllUsers });
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      };
+    });
     return(
         <div>
             <Head>
@@ -33,7 +51,7 @@ export default function Users(props){
                 <div className="userbody">
                 <div className='header-user'>
                <h1>USERS </h1>
-               <input className="user-filter-input" placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+               <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
                <FormDialog
                className="float-enduser btn2 button"
                     dialogtitle="+ADD USER"
@@ -70,14 +88,20 @@ export default function Users(props){
                                     
                                     <TableRow >
                                    
-                                        <TableCell component="th" scope="row">{item.id}</TableCell>
-                                        <TableCell align="left">{item.firstname}</TableCell>
-                                        <TableCell align="left">{item.lastname}</TableCell>
-                                        <TableCell align="left">{item.username}</TableCell>
-                                        <TableCell align="left">{item.email}</TableCell>
-                                        <TableCell align="left">{item.password}</TableCell>
-                                        <TableCell align="left">
-                                          </TableCell>
+                                        <TableCell component="th" scope="row">{item.usersId}</TableCell>
+                                        <TableCell align="left">{item.Name}</TableCell>
+                                        <TableCell align="left">{item.Username}</TableCell>
+                                        <TableCell align="left">{item.Password}</TableCell>
+                                        <TableCell align="left">{item.Email}</TableCell>
+                                        <TableCell align="left">{item.Phonenumber}</TableCell>
+                                        <TableCell align="left">{item.Address}</TableCell>
+                                        <TableCell align="left"><button
+type="button"
+className="btn2"
+onClick={() => props.deleteUsers(item.id)}>
+
+Delete
+</button></TableCell>
                                     </TableRow>
                                
                                 </TableBody>

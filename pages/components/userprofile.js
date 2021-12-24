@@ -17,7 +17,7 @@ import * as yup from 'yup';
 export default function UserProfile({userId}) {
 	const[user,setUser]=useState([]);
 	useEffect(()=>{
-		fetch(`http://localhost:3001/users/${userId}`)
+		fetch(`http://mindmadetech.in/users/${userId}`)
 		   .then(res => res.json())
 		   .then(res => setUser(res));
    },[]);

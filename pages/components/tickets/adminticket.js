@@ -38,7 +38,7 @@ function Adminticket() {
 function handleUpdate(id){
    console.log(id)
 
-    Axios.put(`http://localhost:3001/addIssues`,{
+    Axios.put(`http://mindmadetech.in/addIssues`,{
         team : selectedTeam,
         status : selectedStatus,
         id:id,

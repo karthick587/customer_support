@@ -21,7 +21,7 @@ var[issues,setIssues]=useState([]);
   var[selectedValue,setSelectedValue] = useState('');
   console.log(selectedValue)
   useEffect(()=>{
-     Axios.get("http://localhost:3001/addIssues")
+     Axios.get("http://mindmadetech.in/addIssues")
         .then((res)=>setIssues(res.data));
      },[]);
      search="muthu"

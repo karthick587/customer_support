@@ -25,7 +25,7 @@ function Adduser(props) {
        
 const addUser=({firstname,lastname,username,email,password})=>{
            
-    Axios.post("http://localhost:3001/adduser",{
+    Axios.post("http://mindmadetech.in/adduser",{
         firstname:firstname,
         lastname:lastname,
         username:username,

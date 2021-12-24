@@ -25,7 +25,7 @@ export default function Register() {
   const { errors } = formState;
     
 const registerFunction=({firstname,lastname,username,email,password})=>{
-      Axios.post("http://localhost:3001/register",{
+      Axios.post("http://mindmadetech.in/register",{
           firstname:firstname,
           lastname:lastname,
           username:username,
