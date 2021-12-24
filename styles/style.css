@@ -23,6 +23,7 @@ a{
 }
 .right-body {
   width: 60%;
+  height: 100vh;
 }
 .left-body {
   width: 60%;
@@ -227,8 +228,7 @@ body {
   fill: rgba(255, 255, 255, 0.5);
 }
 .keen-slider:not([data-keen-slider-disabled]) {
-  
-  height: 96vh;
+  height: 100vh !important;
 }
 .btn {
   background-color: #1c4eb9 !important;
