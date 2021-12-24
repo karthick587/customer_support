@@ -51,7 +51,7 @@ export default function Users(props){
                 <div className="userbody">
                 <div className='header-user'>
                <h1>USERS </h1>
-               <input placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+               <input className="user-filter-input" placeholder='search' type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
                <FormDialog
                className="float-enduser btn2 button"
                     dialogtitle="+ADD USER"
