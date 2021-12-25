@@ -39,7 +39,7 @@ a{
 }
 form.form3 {
   width: 600px;
-  
+  margin: auto;
 }
 .btn-login{
   text-align: center;
