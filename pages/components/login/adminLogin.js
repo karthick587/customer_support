@@ -28,7 +28,7 @@ export default function Login1(){
 
 const adminLogin=({username,password})=>{
     
-    Axios.post("http://mindmadetech.in/admin",{
+    Axios.post("https://mindmadetech.in/admin",{
         username:username,
         password:password,
     }).then((response)=>{
