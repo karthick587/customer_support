@@ -76,6 +76,8 @@ img.slide-banner1 {
   border-radius: 19px;
   border: 1px solid #8080804a;
   font-size: 14px;
+  background: transparent;
+  z-index: 99;
 }
 input:focus-visible {
   border: 2px solid grey !important;
