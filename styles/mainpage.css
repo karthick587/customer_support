@@ -12,6 +12,9 @@
 .keen-slider__slide.number-slide2 {
   background-color: transparent;
 }
+.keen-slider__slide.number-slide1 {
+  background-color: transparent !important;
+}
 img.slide-banner3 {
   margin-bottom: 206px;
   width: 77%;
