@@ -41,7 +41,16 @@ form.form3 {
   width: 600px;
   
 }
-
+.btn-login{
+  text-align: center;
+  margin-top: 50%;
+}
+.btn-login button{
+  background-color:white !important;
+  color: blue !important;
+  border-radius: 0px !important;
+  border: none;
+}
 img.slide-banner3 {
   margin-bottom: 187px;
   width: 54%;

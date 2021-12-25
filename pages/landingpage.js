@@ -34,21 +34,12 @@ export default function Landingpage() {
                 <title>Customer Support</title>
             </Head>
             <header className="main-header">
-                <div className="header-wrapper">
-                    <div className="main-logo"> 
+                
                        
-                    </div>
-                    <nav>
-                        <ul className="main-menu">
-                            <li><a href="#section-2">About</a></li>
-                            <li><a href="#section-5">Service</a></li>
-                            <li><a  onClick={() => router.push("./components/login/userLogin")}>Login</a></li>
-                            <li><a  onClick={() => router.push("./components/login/adminLogin")} >Admin</a></li>
-                            <li>
                             <DropdownButton
-                                    
+                                    className="btn-login"
                                     title="Login"
-                                    id="dropdown-menu-align-right"
+                                    id=""
                                     onSelect={handleSelect}
                                     
                                 >
@@ -56,12 +47,9 @@ export default function Landingpage() {
                                     <Dropdown.Item eventKey="users" className="text-dark">users</Dropdown.Item>
                                     <Dropdown.Item eventKey="teamlogin" className="text-dark">Team Login</Dropdown.Item>
                                 </DropdownButton>
-                            </li>
-                            <li><a href="#"><span className="fa fa-shopping-cart"></span></a></li>
-                            <li><a href="#"><span className="fa fa-search"></span></a></li>
-                        </ul>
-                    </nav>
-                </div>
+                           
+                           
+                  
             </header>
            
         </div>

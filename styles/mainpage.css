@@ -20,6 +20,25 @@
     width: 60%;
     height: 60vh;
 }
+.header-user input {
+  padding: 3px 10px;
+  border: none;
+  border-radius: 27px;
+  background-color: #58a2ea38;
+  margin: 0px 13px 0px 13px;
+}
+.float-enduser {
+  width: 87px;
+  height: 4vh;
+   right: 3px !important;
+  position: relative !important;
+  font-size: 11px;
+}
+.header-user {
+  display: flex;
+  padding: 19px 0px 0px 0px;
+  position: relative;
+}
 form.form3 {
   width: 270px;
   
