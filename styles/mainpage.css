@@ -1,3 +1,14 @@
+@media only screen and (max-width: 440px) {
+  
+}
+
+@media only screen and (max-width: 340px) {
+  form.form3 {
+    width: 210px !important;
+    
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .col-6{
     width: 100% !important;
@@ -8,6 +19,10 @@
   .right-body {
     width: 60%;
     height: 60vh;
+}
+form.form3 {
+  width: 270px;
+  
 }
 .keen-slider__slide.number-slide2 {
   background-color: transparent;

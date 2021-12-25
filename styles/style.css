@@ -37,7 +37,10 @@ a{
 .keen-slider__slide.number-slide3 {
   background-color: #1c4eb9;
 }
-
+form.form3 {
+  width: 600px;
+  
+}
 
 img.slide-banner3 {
   margin-bottom: 187px;
