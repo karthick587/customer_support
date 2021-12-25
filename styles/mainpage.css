@@ -30,9 +30,12 @@
 .float-enduser {
   width: 87px;
   height: 4vh;
-   right: 3px !important;
   position: relative !important;
-  font-size: 11px;
+  margin: auto !important;
+  display: block !important;
+  right: 0 !important;
+  left: 0 !important;
+  
 }
 .header-user {
   display: flex;
