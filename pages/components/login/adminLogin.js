@@ -28,7 +28,7 @@ export default function Login1(){
 
 const adminLogin=({username,password})=>{
     
-    Axios.post("http://mindmadetech.in/admin",{
+    Axios.post("https://mindmadetech.in/admin",{
         username:username,
         password:password,
     }).then((response)=>{
@@ -66,7 +66,6 @@ useEffect(() => {
     <div className="left-body">
      <div className="form login">
         <div className='login-header'>
-          
            <h1>Login</h1>
                 </div>
                    <form> 
@@ -90,9 +89,9 @@ useEffect(() => {
                         </div>
                         <h4 className="alert1">{loginStatus}</h4>
                   </form>
-               </div>
-    </div>
-    <div className="right-body">
+                 </div>
+              </div>
+           <div className="right-body">
          <Sidebody />
     </div>
     </div>

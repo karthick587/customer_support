@@ -18,14 +18,14 @@ export default function Users(props){
   console.log(selectedValue)
     var[users,setUsers]=useState([]);
     useEffect(()=>{
-        Axios.get("http://mindmadetech.in/adduser")
+        Axios.get("https://mindmadetech.in/adduser")
         .then((res)=>setUsers(res.data));
     },[]);
     useEffect(()=>{
    const deleteUsers = (id) => {
         // <-- declare id parameter
         Axios
-          .delete(`http://localhost:3001/delete/${id}`) // <-- remove ;
+          .delete(`https://mindmadetech.in/delete/${id}`) // <-- remove ;
           .then(() => {
             // Issue GET request after item deleted to get updated list
             // that excludes note of id
