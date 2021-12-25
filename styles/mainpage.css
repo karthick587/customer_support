@@ -5,6 +5,30 @@
   .login-body {
     display: inline;
   }
+  .right-body {
+    width: 60%;
+    height: 60vh;
+}
+.keen-slider__slide.number-slide2 {
+  background-color: transparent;
+}
+img.slide-banner3 {
+  margin-bottom: 206px;
+  width: 77%;
+}
+img.slide-banner2 {
+  width: 309px;
+  margin-bottom: 150px;
+}
+.slide-banner {
+  width: 67%;
+  height: 47%;
+  margin-bottom: 135px;
+  background-color: transparent;
+}
+.keen-slider__slide.number-slide3 {
+  background-color: transparent;
+}
 .adminticket-head input {
   padding: 0px 11px;
   border: none;
@@ -12,6 +36,12 @@ width:100px;
   border-radius: 27px;
   background-color: #58a2ea38;
   margin: 0px 0px 7px 27px;
+}
+.keen-slider:not([data-keen-slider-disabled]) {
+  height: 60vh !important;
+}
+.slide-text {
+  color: #1c4eb9;
 }
 .header-user input {
   width: 82px;
@@ -39,8 +69,7 @@ width:100px;
   right: 0;
   display: block;
   margin: auto;
-  padding: 39px;
-  
+  padding: 0px 36px;
 }
 
   .addform {

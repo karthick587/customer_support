@@ -32,10 +32,10 @@ a{
   display: flex;
 }
 .keen-slider__slide.number-slide2 {
-  background-color: #4f66c8;
+  background-color: #1c4eb9;
 }
 .keen-slider__slide.number-slide3 {
-  background-color: #4f66c8;
+  background-color: #1c4eb9;
 }
 
 img.slide-banner2 {
@@ -228,7 +228,7 @@ body {
   fill: rgba(255, 255, 255, 0.5);
 }
 .keen-slider:not([data-keen-slider-disabled]) {
-  height: 100vh !important;
+  height: 100vh ;
 }
 .btn {
   background-color: #1c4eb9 !important;
@@ -240,11 +240,10 @@ body {
 .btn a{
   color: white !important;
 }
-.slide-banner {   
- 
+.slide-banner {
   width: 100%;
   height: 100%;
- 
+  background-color: #1c4eb9;
 }
 /*dashboard*/
 
@@ -457,7 +456,8 @@ h4.alert1.text-center {
 }
 .main-dash {
   background-color: #1976d20f;
-  font-family: "Roboto",sans-serif;
+  font-family: Roboto,sans-serif;
+  height: 100vh;
 }
 .card-left {
   font-family: "Roboto",sans-serif;
