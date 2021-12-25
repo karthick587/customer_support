@@ -21,10 +21,10 @@ var[issues,setIssues]=useState([]);
   var[selectedValue,setSelectedValue] = useState('');
   console.log(selectedValue)
   useEffect(()=>{
-     Axios.get("http://mindmadetech.in/addIssues")
+     Axios.get("https://mindmadetech.in/addIssues")
         .then((res)=>setIssues(res.data));
      },[]);
-     search="muthu"
+     search="client1"
  return(
       <div> 
           <div className="container mainbody">
@@ -41,15 +41,16 @@ var[issues,setIssues]=useState([]);
                         <TableHead>
                           
                             <TableRow>
-                                <TableCell>ID</TableCell>
+                            <TableCell>ID</TableCell>
                                 <TableCell>Username</TableCell>
+                                <TableCell align="left">Email</TableCell>
+                                <TableCell align="left">Phonenumber</TableCell>
                                 <TableCell align="left">DomainName</TableCell>
-                               
-                                <TableCell align="left">IssuesFoundIn</TableCell>
+                                <TableCell align="left">Date</TableCell>
                                 <TableCell align="left">Description</TableCell>
                                 <TableCell align="left">Team</TableCell>
                                 <TableCell align="left">Status</TableCell>
-                                <TableCell align="left">file</TableCell>
+                                <TableCell align="left">screenshots</TableCell>
                                 <TableCell align="left"></TableCell>
                             </TableRow>
                         </TableHead>
@@ -59,23 +60,24 @@ var[issues,setIssues]=useState([]);
                                return val;
                            }else if(
                             
-                               val.username.toLowerCase().includes(search.toLowerCase())
+                               val.Username.toLowerCase().includes(search.toLowerCase())
                                           
                            ){
                                return val;
                            }
                        }).map((item)=>
-                            <TableBody key={item.id}>
+                            <TableBody key={item.ticketsId}>
                                 <TableRow >
-                                  <TableCell component="th" scope="row">{item.id}</TableCell>
-                                  <TableCell align="left">{item.username}</TableCell>
+                                  <TableCell component="th" scope="row">{item.ticketsId}</TableCell>
+                                  <TableCell align="left">{item.Username}</TableCell>
+                                  <TableCell align="left">{item.Email}</TableCell>
+                                  <TableCell align="left">{item.Phonenumber}</TableCell>
                                   <TableCell align="left">{item.DomainName}</TableCell>
-                                 
-                                  <TableCell align="left">{item.IssuesFoundIn}</TableCell>
+                                  <TableCell align="left">{item.Date}</TableCell>
                                   <TableCell align="left">{item.Description}</TableCell>
                                   <TableCell align="left">{item.Team}</TableCell>
                                   <TableCell  className={item.Status}  align="left">{item.Status}</TableCell>
-                                  <TableCell align="left"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
+                                  <TableCell align="left"><img  src= {item.screenshots} alt="pic" height="80vh" width="50%"   /></TableCell>
                                 </TableRow> 
                                
                             </TableBody>

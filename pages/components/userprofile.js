@@ -17,7 +17,7 @@ import * as yup from 'yup';
 export default function UserProfile({userId}) {
 	const[user,setUser]=useState([]);
 	useEffect(()=>{
-		fetch(`http://mindmadetech.in/users/${userId}`)
+		fetch(`https://mindmadetech.in/getcustomerlist/${userId}`)
 		   .then(res => res.json())
 		   .then(res => setUser(res));
    },[]);
@@ -32,13 +32,13 @@ export default function UserProfile({userId}) {
 
 	function handleUpdate({phoneno,email,address}){
 		
-		Axios.put(`http://localhost:3001/users/${userId}`,{
+		Axios.put(`https://mindmadetech.in/users/${userId}`,{
 			id:userId,
 			phonenumber : phoneno,
 			email : email,
 			address : address,
 			
-		}).then((response)=>console.log(response));
+		}).then((response)=>setUser(response));
 	}
 	
  return (

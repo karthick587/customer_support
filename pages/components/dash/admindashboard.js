@@ -9,18 +9,23 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import PeopleIcon from '@mui/icons-material/People';
 import ListItemText from '@mui/material/ListItemText';               
 import Users from '../users';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
-
+import Axios from 'axios';
 const AdminDashboard=(props)=>{
   
-  
+  const router=useRouter();
+  console.log(router.query.name);
+  const[user,setUser]=useState([]);
   const [finishStatus, setfinishStatus] = useState(false);
-  
+  var adminId = props.router.query.name;
 
- 
+  useEffect(()=>{
+    Axios.get(`https://mindmadetech.in/admin/${router.query.name}`)
+        .then((res)=>setUser(res.data));
+},[]);
  
   const onBackButtonEvent = (e) => {
       e.preventDefault();
@@ -29,7 +34,7 @@ const AdminDashboard=(props)=>{
         if (window.confirm("Do you want to Logout ?")) {
             setfinishStatus(true)
             // your logic
-            router.push("../login/adminLogin")
+            router.push("/")
         } else {
             window.history.pushState(null, null, window.location.pathname);
             setfinishStatus(false)
@@ -45,7 +50,7 @@ const AdminDashboard=(props)=>{
       };
   },[]);
   const onBackButtonEvent2 = () =>{
-    router.push("../login/adminLogin")
+    router.push("/")
   }
  return(
         <div>
@@ -111,9 +116,7 @@ const AdminDashboard=(props)=>{
                                    </div>
                                </div>
                             </div>
-                            <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                         
-                              </div>
+                           
                               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                   <Users />
                               </div>

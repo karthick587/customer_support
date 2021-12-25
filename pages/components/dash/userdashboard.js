@@ -4,7 +4,10 @@ import Dashboard from "../common/navdashboard";
 import UserProfile from '../userprofile';
 import Userissue from "../submits/userissues";
 import { withRouter } from "next/router";
-
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ListItemText from '@mui/material/ListItemText';    
 import router from "next/router";
 import Userticket from "../tickets/userticket";
 
@@ -14,7 +17,7 @@ const UserDashboard=(props)=>{
     const [finishStatus, setfinishStatus] = useState(false);
     var userId = props.router.query.name;
 
-  
+  console .log(userId)
        
 	
   const onBackButtonEvent = (e) => {
@@ -24,7 +27,7 @@ const UserDashboard=(props)=>{
             if (window.confirm("Do you want to Logout ?")) {
                 setfinishStatus(true)
                 // your logic
-                router.push("../login/userLogin")
+                router.push("/")
             } else {
                 window.history.pushState(null, null, window.location.pathname);
                 setfinishStatus(false)
@@ -41,12 +44,21 @@ const UserDashboard=(props)=>{
     }, []);
     
     const onBackButtonEvent3 = () =>{
-        router.push("../login/userLogin")
+        router.push("/")
       }
     return(
           <div>
             <Dashboard 
                logout={onBackButtonEvent3}
+               sidenavcontent={
+                <button className="nav-link"  id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
+                                  <ListItemIcon>
+                                      <AccountCircleIcon />
+                                  </ListItemIcon>
+                                  <ListItemText primary="Profile" />
+                                  </ListItem>
+                              </button>
+            }
                 headertext="USER DASHBOARD"
                 navcontent={
                     <Typography

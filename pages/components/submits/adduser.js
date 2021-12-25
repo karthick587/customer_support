@@ -7,10 +7,8 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router'
 
 const schema = yup.object().shape({
-	firstname : yup.string().required(),
-	lastname : yup.string().required(),
+    name : yup.string().required(),
 	username : yup.string().required(),
-	email : yup.string().required(),
     password : yup.string().required(),
   });
 
@@ -23,13 +21,11 @@ function Adduser(props) {
     });
     const { errors } = formState;
        
-const addUser=({firstname,lastname,username,email,password})=>{
+const addUser=({name,username,password})=>{
            
-    Axios.post("http://mindmadetech.in/adduser",{
-        firstname:firstname,
-        lastname:lastname,
+    Axios.post("https://mindmadetech.in/adduser",{
+        name:name,
         username:username,
-        email:email,
         password:password,
     }).then((response)=>{
             if(response.data.message){
@@ -49,25 +45,16 @@ const addUser=({firstname,lastname,username,email,password})=>{
             <div className="addform">
                 <form>
                     <div className="form-group">
-                        <label className="label">First Name</label>
-                        <input className="form-input" name="firstname" type="text" {...register('firstname')} />
-                        <p className="me-2 text-danger">{errors.firstname?.message}</p>
-                    </div>
-                    <div className="form-group">
-                        <label className="label">Last Name</label>
-                        <input className="form-input" name="lastname" type="text" {...register('lastname')} />
-                        <p className="me-2 text-danger">{errors.lastname?.message}</p>
+                        <label className="label">Name</label>
+                        <input className="form-input" name="name" type="text" {...register('name')} />
+                        <p className="me-2 text-danger">{errors.name?.message}</p>
                     </div>
                     <div className="form-group">
                         <label className="label">Username</label>
                         <input className="form-input" name="username" type="text" {...register('username')} />
                         <p className="me-2 text-danger">{errors.username?.message}</p>
                     </div>
-                    <div className="form-group">
-                        <label className="col label">email</label>
-                        <input className="form-input" name="email" type="email" {...register('email')} />
-                        <p className="me-2 text-danger">{errors.email?.message}</p>
-                    </div>
+                 
                     <div className="form-group">
                         <label className="col label">Password</label>
                         <input className="form-input" name="password" type="password" {...register('password')} />

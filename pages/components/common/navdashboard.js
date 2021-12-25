@@ -16,7 +16,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -152,13 +151,7 @@ export default function Dashboard(props) {
                                       <ListItemText primary="Dashboard" />
                                       </ListItem>
                                   </button>
-                                  <button className="nav-link"  id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
-                                      <ListItemIcon>
-                                          <AccountCircleIcon />
-                                      </ListItemIcon>
-                                      <ListItemText primary="Profile" />
-                                      </ListItem>
-                                  </button>
+                                  
                                   {props.sidenavcontent}
                                   <button className="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
                                       <ListItemIcon>

@@ -23,7 +23,7 @@ function Adminticket() {
   console.log(selectedValue)
   
   useEffect(()=>{
-     Axios.get("http://localhost:3001/addIssues")
+     Axios.get("https://mindmadetech.in/addIssues")
         .then((res)=>setIssues(res.data));
      },[]);
     
@@ -68,9 +68,10 @@ function handleUpdate(id){
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Username</TableCell>
+                                <TableCell align="left">Email</TableCell>
+                                <TableCell align="left">Phonenumber</TableCell>
                                 <TableCell align="left">DomainName</TableCell>
-                               
-                                <TableCell align="left">IssuesFoundIn</TableCell>
+                                <TableCell align="left">Date</TableCell>
                                 <TableCell align="left">Description</TableCell>
                                 <TableCell align="left">Team</TableCell>
                                 <TableCell align="left">Status</TableCell>
@@ -93,17 +94,18 @@ function handleUpdate(id){
                                return val;
                            }
                        }).map((item)=>
-                            <TableBody key={item.id}>
+                            <TableBody key={item.ticketsId}>
                                 <TableRow >
-                                  <TableCell component="th" scope="row">{item.id}</TableCell>
-                                  <TableCell align="left">{item.username}</TableCell>
+                                  <TableCell component="th" scope="row">{item.ticketsId}</TableCell>
+                                  <TableCell align="left">{item.Username}</TableCell>
+                                  <TableCell align="left">{item.Email}</TableCell>
+                                  <TableCell align="left">{item.Phonenumber}</TableCell>
                                   <TableCell align="left">{item.DomainName}</TableCell>
-                                 
-                                  <TableCell align="left">{item.IssuesFoundIn}</TableCell>
-                                  <TableCell align="left">{item.Description}</TableCell>
+                                  <TableCell align="left">{item.Date}</TableCell>
+                                  <TableCell  className={item.Description}  align="left">{item.Status}</TableCell>
                                   <TableCell align="left">{item.Team}</TableCell>
-                                  <TableCell  className={item.Status}  align="left">{item.Status}</TableCell>
-                                  <TableCell align="left"><img  src= {item.file} alt="pic" height="80vh" width="50%"   /></TableCell>
+                                  <TableCell align="left">{item.Status}</TableCell>
+                                  <TableCell align="left"><img  src= {item.screenshots} alt="screenshots" height="80vh" width="50%"   /></TableCell>
                                   <TableCell ><FormDialog 
                                       dialogtitle="update"
                                       className="btn3"
@@ -112,30 +114,25 @@ function handleUpdate(id){
                                             <div className="form-toggle"></div>
                                             <div className="form-panel update one">
                                               <div className="form-header">
-                                                  <h1>Update Ticket {item.id}</h1>   
+                                                  <h1>Update Ticket {item.ticketsId}</h1>   
                                               </div>
                                               <div className="addform">
                                                   <form>
                                                       <div className="form-group"> 
-                                                            <label className="label">username </label>
-                                                            <input className="form-input" value={item.username} name="firstname"  type="text" />
+                                                            <label className="label">Username </label>
+                                                            <input className="form-input" value={item.Username} name="Username"  type="text" />
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">DomainName </label>
                                                           <input className="form-input" value={item.DomainName} name="firstname"  type="text"  />
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="label">IssuesFoundIn </label>
-                                                          <input className="form-input" value={item.Email} name="firstname"  type="text" />
+                                                          <label className="label">Date </label>
+                                                          <input className="form-input" value={item.Date} name="Date"  type="text" />
                                                       </div>
                                                       <div className="form-group">
-                                                          <label className="label">IssuesFoundIn </label>
-                                                          <input className="form-input" value={item.IssuesFoundIn} name="firstname"  type="text" />
-                                                      </div>
-
-                                                      <div className="form-group">
-                                                          <label className="label">Description</label>
-                                                          <textarea className="form-input" value= {item.Description} name="contact number"   type="text"   />
+                                                          <label className="label">Description </label>
+                                                          <input className="form-input" value={item.Description} name="contact number"  type="text" />
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">Team :</label>
@@ -160,7 +157,7 @@ function handleUpdate(id){
                                                 </form>
                                               </div>
                                           </div>
-                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>handleUpdate(item.id)}>Update</button>
+                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>handleUpdate(item.ticketsId)}>Update</button>
                                         <h4 className="alert1 text-center">{show}</h4>
                                       </div>
                                       }

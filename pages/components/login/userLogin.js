@@ -17,33 +17,49 @@ const schema = yup.object().shape({
 
 export default function Login2(){
 
-    const router=useRouter();
-    var[loginStatus,setLoginStatus]=useState('');
-    
-    const {register,handleSubmit, formState } = useForm({
-        resolver : yupResolver(schema),
-    });
-    const { errors } = formState;
-
-    const userLogin=({username,password})=>{
-        Axios.post("https://mindmadetech.in/users",{
-                 username:username,
-                 password:password,
-        })
-        .then((response)=>{
-            if(response.data.message)
-            {
-                setLoginStatus(response.data.message);
-            }
-            else
-            {
-                router.push({
-                    pathname:'../dash/userdashboard',
-                    query:{name:response.data[0].id}
-                });
-            }
-        });
-    }
+    const router = useRouter();
+    console.log(router.query.value)
+   
+    const value = router.query.value;
+     
+     var[loginStatus,setLoginStatus]=useState('');
+   
+     const {register,handleSubmit, formState } = useForm({
+       resolver : yupResolver(schema),
+     });
+     const { errors } = formState;
+   
+   const adminLogin=({username,password})=>{    
+       Axios.post(`https://mindmadetech.in/${value}`,{
+           username:username,
+           password:password,
+       }).then((response)=>{
+           if(response.data.message)
+           {
+               setLoginStatus(response.data.message);
+           }
+           else
+           {
+             if(value==="admin"){
+                 router.push({
+                     pathname:`../dash/admindashboard`,
+                     query:{name:response.data[0].adminId}
+                   });  
+             }
+             else if(value==="users")
+             {
+                 router.push({
+                   pathname:`../dash/userdashboard`,
+                   query:{name:response.data[0].usersId}
+                 });  
+             }
+   
+           }
+   
+         })
+   }
+   
+   
     const onBackButtonEvent = (e) => {
         e.preventDefault();
       
@@ -89,7 +105,7 @@ export default function Login2(){
                                 <label className="form-remember"><input type="checkbox"/>Remember Me</label>
                             </div>
                             <div className="form-group">
-                                <Button className="btn" onClick={handleSubmit(userLogin)}><a className="nav-link" >Login</a></Button>
+                                <Button className="btn" onClick={handleSubmit(adminLogin)}><a className="nav-link" >Login</a></Button>
                             </div>
                             <div className="alert1">{loginStatus}</div>
             </form>

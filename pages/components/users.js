@@ -64,12 +64,13 @@ export default function Users(props){
                             <TableHead>
                                 <TableRow>
                                   
-                                    <TableCell>ID</TableCell>
-                                    <TableCell align="left">FIRST_NAME</TableCell>
-                                    <TableCell align="left">LAST_NAME</TableCell>
+                                    <TableCell>USERID</TableCell>
+                                    <TableCell align="left">NAME</TableCell>
                                     <TableCell align="left">USERNAME</TableCell>
-                                    <TableCell align="left">email</TableCell>
                                     <TableCell align="left">PASSWORD</TableCell>
+                                    <TableCell align="left">EMAIL</TableCell>
+                                    <TableCell align="left">PHONE NUMBER</TableCell>
+                                    <TableCell align="left">ADDRESS</TableCell>
                                 </TableRow>
                             </TableHead>
                             {users.filter(val=>{
@@ -84,7 +85,7 @@ export default function Users(props){
                                return val;
                            }
                        }).map((item)=>
-                                <TableBody key={item.id}>
+                                <TableBody key={item.usersId}>
                                     
                                     <TableRow >
                                    
