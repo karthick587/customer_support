@@ -13,6 +13,9 @@ width:100px;
   background-color: #58a2ea38;
   margin: 0px 0px 7px 27px;
 }
+.header-user input {
+  width: 82px;
+}
 .user-filter-input{
   padding: 0px 7px;
   border: none;
