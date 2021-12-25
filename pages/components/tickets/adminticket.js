@@ -39,8 +39,8 @@ function handleUpdate(id){
    console.log(id)
 
     Axios.put(`https://mindmadetech.in/addIssues`,{
-        team : selectedTeam,
-        status : selectedStatus,
+        Team : selectedTeam,
+        Status : selectedStatus,
         id:id,
     }).then((response)=>{
         setShow("update Successfully");
