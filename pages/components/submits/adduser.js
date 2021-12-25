@@ -7,9 +7,9 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router'
 
 const schema = yup.object().shape({
-    name : yup.string().required(),
-	username : yup.string().required(),
-    password : yup.string().required(),
+    Name : yup.string().required(),
+	Username : yup.string().required(),
+    Password : yup.string().required(),
   });
 
 function Adduser(props) {
@@ -21,12 +21,13 @@ function Adduser(props) {
     });
     const { errors } = formState;
        
-const addUser=({name,username,password})=>{
+const addUser=({Name,Username,Password})=>{
            
     Axios.post("https://mindmadetech.in/adduser",{
-        name:name,
-        username:username,
-        password:password,
+        Name:Name,
+        Username:Username,
+        Password:Password,
+      
     }).then((response)=>{
             if(response.data.message){
                 setShow(response.data.message)
@@ -46,19 +47,19 @@ const addUser=({name,username,password})=>{
                 <form>
                     <div className="form-group">
                         <label className="label">Name</label>
-                        <input className="form-input" name="name" type="text" {...register('name')} />
-                        <p className="me-2 text-danger">{errors.name?.message}</p>
+                        <input className="form-input" name="Name" type="text" {...register('Name')} />
+                        <p className="me-2 text-danger">{errors.Name?.message}</p>
                     </div>
                     <div className="form-group">
                         <label className="label">Username</label>
-                        <input className="form-input" name="username" type="text" {...register('username')} />
-                        <p className="me-2 text-danger">{errors.username?.message}</p>
+                        <input className="form-input" name="Username" type="text" {...register('Username')} />
+                        <p className="me-2 text-danger">{errors.Username?.message}</p>
                     </div>
                  
                     <div className="form-group">
                         <label className="col label">Password</label>
-                        <input className="form-input" name="password" type="password" {...register('password')} />
-                        <p className="me-2 text-danger">{errors.password?.message}</p>
+                        <input className="form-input" name="Password" type="password" {...register('Password')} />
+                        <p className="me-2 text-danger">{errors.Password?.message}</p>
                     </div>
                     <div className="row justify-content-center">
                         <div>

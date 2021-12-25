@@ -35,16 +35,20 @@ function Adminticket() {
       setSelectedStatus(e.target.value)
  }
 
-function handleUpdate(id){
-   console.log(id)
+function handleUpdate(ticketsId){
+   console.log(ticketsId)
 
-    Axios.put(`https://mindmadetech.in/addIssues`,{
+    Axios.put(`https://mindmadetech.in/addIssues/${ticketsId}`,{
         Team : selectedTeam,
         Status : selectedStatus,
-        id:id,
+       
     }).then((response)=>{
+        if(response.data.message){
+            setShow(response.data.message)
+        }else{
         setShow("update Successfully");
             Router.reload(window.location.pathname)
+        }
         
 });
       
@@ -84,8 +88,8 @@ function handleUpdate(id){
                            if(search === ""){
                                return val;
                            }else if(
-                            val.id.toString().includes(search.toString()) ||
-                               val.username.toLowerCase().includes(search.toLowerCase())
+                            val.ticketsId.toString().includes(search.toString()) ||
+                               val.Username.toLowerCase().includes(search.toLowerCase())
                               
                                
                              
@@ -93,19 +97,19 @@ function handleUpdate(id){
                            ){
                                return val;
                            }
-                       }).map((item)=>
-                            <TableBody key={item.ticketsId}>
+                       }).map((issues)=>
+                            <TableBody key={issues.ticketsId}>
                                 <TableRow >
-                                  <TableCell component="th" scope="row">{item.ticketsId}</TableCell>
-                                  <TableCell align="left">{item.Username}</TableCell>
-                                  <TableCell align="left">{item.Email}</TableCell>
-                                  <TableCell align="left">{item.Phonenumber}</TableCell>
-                                  <TableCell align="left">{item.DomainName}</TableCell>
-                                  <TableCell align="left">{item.Date}</TableCell>
-                                  <TableCell  className={item.Description}  align="left">{item.Status}</TableCell>
-                                  <TableCell align="left">{item.Team}</TableCell>
-                                  <TableCell align="left">{item.Status}</TableCell>
-                                  <TableCell align="left"><img  src= {item.screenshots} alt="screenshots" height="80vh" width="50%"   /></TableCell>
+                                  <TableCell component="th" scope="row">{issues.ticketsId}</TableCell>
+                                  <TableCell align="left">{issues.Username}</TableCell>
+                                  <TableCell align="left">{issues.Email}</TableCell>
+                                  <TableCell align="left">{issues.Phonenumber}</TableCell>
+                                  <TableCell align="left">{issues.DomainName}</TableCell>
+                                  <TableCell align="left">{issues.Date}</TableCell>
+                                  <TableCell align="left">{issues.Description}</TableCell>
+                                  <TableCell align="left">{issues.Team}</TableCell>
+                                  <TableCell className={issues.Status} align="left">{issues.Status}</TableCell>
+                                  <TableCell align="left"><img  src= {issues.screenshots} alt="screenshots" height="80vh" width="50%"   /></TableCell>
                                   <TableCell ><FormDialog 
                                       dialogtitle="update"
                                       className="btn3"
@@ -114,25 +118,25 @@ function handleUpdate(id){
                                             <div className="form-toggle"></div>
                                             <div className="form-panel update one">
                                               <div className="form-header">
-                                                  <h1>Update Ticket {item.ticketsId}</h1>   
+                                                  <h1>Update Ticket {issues.ticketsId}</h1>   
                                               </div>
                                               <div className="addform">
                                                   <form>
                                                       <div className="form-group"> 
                                                             <label className="label">Username </label>
-                                                            <input className="form-input" value={item.Username} name="Username"  type="text" />
+                                                            <input className="form-input" value={issues.Username} name="Username"  type="text" />
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">DomainName </label>
-                                                          <input className="form-input" value={item.DomainName} name="firstname"  type="text"  />
+                                                          <input className="form-input" value={issues.DomainName} name="firstname"  type="text"  />
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">Date </label>
-                                                          <input className="form-input" value={item.Date} name="Date"  type="text" />
+                                                          <input className="form-input" value={issues.Date} name="Date"  type="text" />
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">Description </label>
-                                                          <input className="form-input" value={item.Description} name="contact number"  type="text" />
+                                                          <input className="form-input" value={issues.Description} name="contact number"  type="text" />
                                                       </div>
                                                       <div className="form-group">
                                                           <label className="label">Team :</label>
@@ -157,7 +161,7 @@ function handleUpdate(id){
                                                 </form>
                                               </div>
                                           </div>
-                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>handleUpdate(item.ticketsId)}>Update</button>
+                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>handleUpdate(issues.ticketsId)}>Update</button>
                                         <h4 className="alert1 text-center">{show}</h4>
                                       </div>
                                       }

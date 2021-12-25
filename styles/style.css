@@ -53,7 +53,15 @@ img.slide-banner3 {
   min-width: 934px;
   background-color: #1c4eb9;
 }
-
+.new{
+  color: red !important;
+}
+.inprogress{
+  color: #0108e6e3 !important;
+}
+.completed{
+  color: green !important;
+}
 img.slide-banner2 {
   width: 51%;
   margin-bottom: 107px;
@@ -357,15 +365,7 @@ form.form2 {
 .MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-jr57cz-MuiToolbar-root {
   background-image: url(/public/logo.png) !important;
 }
-.inprogress{
-  color:red !important;
-}
-.new{
-  color:blue !important;
-}
-.completed{
-  color:rgb(16, 110, 16) !important;
-}
+
 .card {
   border: none !important;
 }
@@ -438,7 +438,7 @@ h4.alert1.text-center {
 .css-dsuxgy-MuiTableCell-root {
  
   padding: 13px 16px !important;
-  color: rgba(0, 0, 0, 0.87) !important;
+  
 }
 
 
@@ -513,7 +513,7 @@ h4.alert1.text-center {
 .css-dsuxgy-MuiTableCell-root {
  
   padding: 13px 16px !important;
-  color: rgba(0, 0, 0, 0.87) !important;
+  color: rgba(0, 0, 0, 0.87);
 }
 hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6{
   display: none !important;
