@@ -31,6 +31,9 @@ a{
 .tickets-headrow{
 
 }
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  text-transform: none !important;
+}
 .tickets-bodyrow td {
   width: 222px;
   text-align: left;
@@ -367,11 +370,17 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   font-size: 13px !important;
   color: #1976d2 !important;
   font-family: 'Poppins', sans-serif !important;
+  font-weight: 700;
 }
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   padding: 10px 20px;
+}
+.header-user div button {
+  /* padding-right: 76px !important; */
+  margin-right: 17px;
+  padding: 4px !important;
 }
 form.form2 {
   padding: 0px 55px !important;
@@ -494,9 +503,10 @@ h4.alert1.text-center {
   font-family: 'Poppins', sans-serif;
 }
 .css-dsuxgy-MuiTableCell-root {
- 
-  padding: 13px 16px !important;
-  
+  font-size: 13px;
+  /* padding: 13px 16px !important; */
+  padding-top: 40px;
+  font-weight: 550;
 }
 
 
@@ -570,7 +580,7 @@ h4.alert1.text-center {
 }
 .css-dsuxgy-MuiTableCell-root {
  
-  padding: 13px 16px !important;
+ 
   color: rgba(0, 0, 0, 0.87);
 }
 hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6{
