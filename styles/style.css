@@ -15,12 +15,40 @@ a{
   font-weight: 600;
   padding: 10px 1px;
 }
+.tickets-table-row{
+  display: flex;
+}
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  padding: 0px !important;
+}
+.tickets-bodyrow2 td {
+  width: 500px;
+  text-align: left;
+  font-size: 15px;
+  color: #1976d2;
+  font-weight: 700;
+}
+.tickets-headrow{
+
+}
+.tickets-bodyrow td {
+  width: 222px;
+  text-align: left;
+  font-weight: 550;
+  font-size: 13px;
+  /* color: #636262; */
+  color: rgba(0, 0, 0, 0.87);
+}
+.tickets-table-row div{
+padding-top: 35px !important;
+border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
 .form.login {
   width: 423px;
- 
   padding: 0px;
   margin: 100px;
 }
+
 .right-body {
   width: 60%;
   height: 100vh;
@@ -45,6 +73,9 @@ form.form3 {
   text-align: center;
   margin-top: 10%;
 }
+.ticket-update2{
+  z-index: 99;
+}
 .btn-login button{
   background-color:white !important;
   color: blue !important;
@@ -54,6 +85,15 @@ form.form3 {
 img.slide-banner3 {
   margin-bottom: 187px;
   width: 54%;
+}
+.profile-Update div button{
+  float: right !important;
+}
+td.MuiTableCell-root{
+  width: 250px;
+}
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  border: none !important;
 }
 .keen-slider__slide.number-slide3{
   min-width: 934px;

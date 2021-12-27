@@ -119,6 +119,9 @@ const AdminDashboard=(props)=>{
                               <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                   <Adminticket />
                               </div>
+                              <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
+                                product details
+                              </div>
                           </div>
                         </div>
                       }

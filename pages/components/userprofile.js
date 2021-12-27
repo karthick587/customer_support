@@ -54,9 +54,8 @@ export default function UserProfile({userId}) {
 				<div className="card h-100">
 					<div className="card-body">
 						<div className="row gutters ">
-							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-								<div className="float-end">
-									<FormDialog
+						<div className="profile-Update">
+						<FormDialog
 									    className="btn2"
 										dialogtitle="Update Profile"
 										dialogbody={
@@ -91,7 +90,10 @@ export default function UserProfile({userId}) {
 											</div>
 										}
 									/>
-								</div>
+									</div>
+						
+							<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								
 							</div>
 						</div>
 						<div className="row gutters">
