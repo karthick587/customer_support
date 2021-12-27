@@ -36,18 +36,23 @@ a{
   width: 222px;
   text-align: left;
   font-weight: 550;
+  padding: 40px 0px 0px 0px;
   font-size: 13px;
   /* color: #636262; */
   color: rgba(0, 0, 0, 0.87);
 }
 .tickets-table-row div{
-padding-top: 35px !important;
 border-bottom: 1px solid rgba(224, 224, 224, 1);
 }
 .form.login {
   width: 423px;
   padding: 0px;
   margin: 100px;
+}
+.tickets-table-row div .ticket-update2 {
+  margin-top: 27px;
+  bottom: 0px;
+  /* padding-top: 50px !important; */
 }
 
 .right-body {

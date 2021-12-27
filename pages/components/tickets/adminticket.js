@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
-
 
 function Adminticket() {
     const [open, setOpen] = React.useState(false);
@@ -29,7 +23,6 @@ function Adminticket() {
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
-
     function handleStatus(e) {
         setSelectedStatus(e.target.value)
     }
@@ -62,19 +55,15 @@ function Adminticket() {
                     <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
                 <div className="userbody">
-                    
                     <TableContainer component={Paper}>
-                  
-                    <tr className='tickets-bodyrow2'>
-                                                 <td >TicketId</td>
-                                                <td>Username</td>   
-                                                <td >Date</td>
-                                               
-                                                <td>Team</td>
-                                                <td>Status</td>
-                                              
-                                                <td></td>
-                                            </tr>
+                        <tr className='tickets-bodyrow2'>
+                            <td >TicketId</td>
+                            <td>Username</td>
+                            <td >Date</td>
+                            <td>Team</td>
+                            <td>Status</td>
+                            <td></td>
+                        </tr>
                         {tickets.filter(val => {
                             if (search === "") {
                                 return val;
@@ -86,16 +75,13 @@ function Adminticket() {
                             }
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row'>
-                                
+
                                 <FormDialog
                                     dialogtitle={
                                         <table >
-                                           
-                                            <tr  className='tickets-bodyrow' >
-
+                                            <tr className='tickets-bodyrow' >
                                                 <td>{tickets.ticketsId}</td>
-                                                <td >{tickets.Username}</td>                                             
-                                            
+                                                <td >{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
                                                 <td >{tickets.Team}</td>
                                                 <td className={tickets.Status}>{tickets.Status}</td>
@@ -105,31 +91,30 @@ function Adminticket() {
                                     dialogbody={
                                         <div className='ticket-details'>
                                             <div className='ticket-details-title'>Ticket NO {tickets.ticketsId}</div>
-                                         
                                             <div className='ticket-details-name'>
-                                            <label className="label">Username</label>
+                                                <label className="label">Username</label>
                                                 {tickets.Username}
-                                                </div>
+                                            </div>
                                             <div className='ticket-details-no'>
-                                            <label className="label">Phonenumber</label>
-                                            {tickets.Phonenumber}</div>
+                                                <label className="label">Phonenumber</label>
+                                                {tickets.Phonenumber}</div>
                                             <div className='ticket-details-domain'>
-                                            <label className="label">DomainName</label>
+                                                <label className="label">DomainName</label>
                                                 {tickets.DomainName}</div>
                                             <div className='ticket-details-Date'>
-                                            <label className="label">Date</label>
+                                                <label className="label">Date</label>
                                                 {tickets.Date}</div>
                                             <div className='ticket-details-Des'>
-                                            <label className="label">Description</label>
-                                            {tickets.Description}</div>
+                                                <label className="label">Description</label>
+                                                {tickets.Description}</div>
                                             <div className='ticket-details-Status'><label className="label">Status</label>
-                                            {tickets.Status}</div>
+                                                {tickets.Status}</div>
                                             <div className='ticket-details-Team' ><label className="label">Team</label>
-                                            {tickets.Team}</div>
+                                                {tickets.Team}</div>
                                             <div className='ticket-details-title'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
                                         </div>
                                     }
-                                     />
+                                />
                                 <FormDialog
                                     dialogtitle="update"
                                     className="btn3 ticket-update2"
@@ -166,7 +151,7 @@ function Adminticket() {
                                             <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Update</button>
                                             <h4 className="alert1 text-center">{show}</h4>
                                         </div>
-                                    }
+                                     }
                                 />
                             </div>
                         )}

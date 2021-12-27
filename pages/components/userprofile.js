@@ -13,7 +13,6 @@ import * as yup from 'yup';
 	address : yup.string().required()
 	
   });
-
 export default function UserProfile({userId}) {
 	const[user,setUser]=useState([]);
 	useEffect(()=>{
@@ -21,7 +20,6 @@ export default function UserProfile({userId}) {
 		   .then(res => res.json())
 		   .then(res => setUser(res));
    },[]);
-
 	let router = useRouter();
 	console.log(user);
 
