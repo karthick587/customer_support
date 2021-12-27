@@ -360,6 +360,9 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-size
 .css-fxbtpg {
   background-color: white !important;
 }
+button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonBase-root.css-79xub {
+  border: none !important;
+}
 thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   font-size: 13px !important;
   color: #1976d2 !important;

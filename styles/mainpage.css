@@ -17,9 +17,29 @@
     width: 270px;
     margin: 13px;
 }
+.tickets-bodyrow2 td {
+  width: 22.5% !important;
+  text-align: left;
+  font-size: 15px;
+  color: #1976d2;
+  font-weight: 700;
+}
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  padding: 0px 0px;
+}
   .login-body {
     display: inline;
   }
+  .tickets-table-row {
+    display: flex;
+    width: 624px;
+    /* font-size: 5px; */
+}
+.userbody {
+  width: 500px;
+}
   form.form4 {
     width: 240px;
 }
