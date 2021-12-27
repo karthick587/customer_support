@@ -85,13 +85,13 @@ function Adminticket() {
                                 return val;
                             }
                         }).map((tickets) =>
-                            <div className='tickets-table-row'>
+                            <div key={tickets.ticketsId} className='tickets-table-row'>
                                 
                                 <FormDialog
                                     dialogtitle={
                                         <table >
                                            
-                                            <tr key={tickets.ticketsId}  className='tickets-bodyrow' >
+                                            <tr  className='tickets-bodyrow' >
 
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>                                             
