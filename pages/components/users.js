@@ -78,8 +78,8 @@ export default function Users(props){
                                return val;
                            }else if(
                              
-                               val.username.toLowerCase().includes(search.toLowerCase())   
-                               
+                               val.Username.toLowerCase().includes(search.toLowerCase())   ||
+                               val.Name.toString().includes(search.toString())   
                                          
                            ){
                                return val;

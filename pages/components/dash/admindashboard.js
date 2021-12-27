@@ -22,10 +22,6 @@ const AdminDashboard=(props)=>{
   const [finishStatus, setfinishStatus] = useState(false);
   var adminId = props.router.query.name;
 
-  useEffect(()=>{
-    Axios.get(`https://mindmadetech.in/admin/${router.query.name}`)
-        .then((res)=>setUser(res.data));
-},[]);
  
   const onBackButtonEvent = (e) => {
       e.preventDefault();

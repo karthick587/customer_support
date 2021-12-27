@@ -11,20 +11,25 @@ import Paper from '@mui/material/Paper';
 
 
 
-function Userticket() {
+function Userticket(props) {
 
-    
+    const {Username}=props;
 
-var[issues,setIssues]=useState([]);
+var[tickets,setTickets]=useState([]);
   var[search,setSearch] = useState('');
  
   var[selectedValue,setSelectedValue] = useState('');
   console.log(selectedValue)
   useEffect(()=>{
-     Axios.get("https://mindmadetech.in/addIssues")
-        .then((res)=>setIssues(res.data));
+     Axios.get("https://mindmadetech.in/ticketslist")
+        .then((res)=>setTickets(res.data));
      },[]);
-     search="client1"
+    
+     useEffect(()=>{
+        setSearch(Username);
+
+      })
+  
  return(
       <div> 
           <div className="container mainbody">
@@ -55,29 +60,29 @@ var[issues,setIssues]=useState([]);
                             </TableRow>
                         </TableHead>
                                
-                        {issues.filter(val=>{
+                        {tickets.filter(val=> {
                            if(search === ""){
                                return val;
                            }else if(
                             
-                               val.Username.toLowerCase().includes(search.toLowerCase())
+                            val.Username.toLowerCase().includes(search.toLowerCase()) 
                                           
                            ){
                                return val;
                            }
-                       }).map((item)=>
-                            <TableBody key={item.ticketsId}>
+                       }).map((tickets)=>
+                            <TableBody key={tickets.ticketsId}>
                                 <TableRow >
-                                  <TableCell component="th" scope="row">{item.ticketsId}</TableCell>
-                                  <TableCell align="left">{item.Username}</TableCell>
-                                  <TableCell align="left">{item.Email}</TableCell>
-                                  <TableCell align="left">{item.Phonenumber}</TableCell>
-                                  <TableCell align="left">{item.DomainName}</TableCell>
-                                  <TableCell align="left">{item.Date}</TableCell>
-                                  <TableCell align="left">{item.Description}</TableCell>
-                                  <TableCell align="left">{item.Team}</TableCell>
-                                  <TableCell  className={item.Status}  align="left">{item.Status}</TableCell>
-                                  <TableCell align="left"><img  src= {item.screenshots} alt="pic" height="80vh" width="50%"   /></TableCell>
+                                  <TableCell component="th" scope="row">{tickets.ticketsId}</TableCell>
+                                  <TableCell align="left">{tickets.Username}</TableCell>
+                                  <TableCell align="left">{tickets.Email}</TableCell>
+                                  <TableCell align="left">{tickets.Phonenumber}</TableCell>
+                                  <TableCell align="left">{tickets.DomainName}</TableCell>
+                                  <TableCell align="left">{tickets.Date}</TableCell>
+                                  <TableCell align="left">{tickets.Description}</TableCell>
+                                  <TableCell align="left">{tickets.Team}</TableCell>
+                                  <TableCell  className={tickets.Status}  align="left">{tickets.Status}</TableCell>
+                                  <TableCell align="left"><img  src= {tickets.screenshots} alt="pic" height="80vh" width="50%"   /></TableCell>
                                 </TableRow> 
                             </TableBody>
                           )}

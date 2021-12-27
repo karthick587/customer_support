@@ -17,7 +17,7 @@ import * as yup from 'yup';
 export default function UserProfile({userId}) {
 	const[user,setUser]=useState([]);
 	useEffect(()=>{
-		fetch(`https://mindmadetech.in/getcustomerlist/${userId}`)
+		fetch(`https://mindmadetech.in/customerlist/${userId}`)
 		   .then(res => res.json())
 		   .then(res => setUser(res));
    },[]);
@@ -32,7 +32,7 @@ export default function UserProfile({userId}) {
 
 	function handleUpdate({phoneno,email,address}){
 		
-		Axios.put(`https://mindmadetech.in/users/${userId}`,{
+		Axios.put(`https://mindmadetech.in/customerupdate/${userId}`,{
 			id:userId,
 			phonenumber : phoneno,
 			email : email,
@@ -60,24 +60,24 @@ export default function UserProfile({userId}) {
 													<div className="form-header">
 														<h1>Update profile</h1>
 													</div>
-													<div className="form-content">
-														<form> 
+													<div >
+														<form className="form4"> 
 															<div className="form-group">
-																<label className="col">Phone Number</label>
-																<input className="col-sm-3" name="phoneno" type="text" {...register('phoneno')} />
-																<p className="me-2 text-danger">{errors.phoneno?.message}</p><br />											
+																<label className="label">Phone Number</label>
+																<input className="form-input" name="phoneno" type="text" {...register('phoneno')} />
+																<p className="me-2 text-danger">{errors.phoneno?.message}</p>									
 															</div>
 															<div className="form-group">
-																<label className="col">Email</label>
-																<input className="col-sm-3" name="email"  type="text" {...register('email')} />
-																<p className="me-2 text-danger">{errors.email?.message}</p><br />
+																<label className="label">Email</label>
+																<input className="form-input" name="email"  type="text" {...register('email')} />
+																<p className="me-2 text-danger">{errors.email?.message}</p>
 															</div>
 															<div className="form-group">
-																<label className="col">Address</label>
-																<input className="col-sm-3" name="address"  type="text" {...register('address')} />
-																<p className="me-2 text-danger">{errors.address?.message}</p><br/>
+																<label className="label">Address</label>
+																<input className="form-input" name="address"  type="text" {...register('address')} />
+																<p className="me-2 text-danger">{errors.address?.message}</p>
 															</div>
-															<button type="submit" onClick={handleSubmit(handleUpdate)} className="button float-end">Update</button>
+															<button type="submit" onClick={handleSubmit(handleUpdate)} className="btn2 float-end">Update</button>
 														</form>
 													</div>
 												  <h4 className="alert1"></h4>
@@ -95,25 +95,25 @@ export default function UserProfile({userId}) {
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label htmlFor="fullName">Name</label>
-									<h5  className="form-control" >{props.Name}</h5>
+									<h5  className="form-input" >{props.Name}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label htmlFor="eMail">Email</label>
-									<h5  className="form-control">{props.Email}</h5>
+									<h5  className="form-input">{props.Email}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label htmlFor="phone">Phonenumber</label>
-									<h5  className="form-control" >{props.Phonenumber}</h5>
+									<h5  className="form-input" >{props.Phonenumber}</h5>
 								</div>
 							</div>
 							<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div className="form-group">
 									<label htmlFor="website">Address</label>
-									<h5  className="form-control">{props.Address}</h5>
+									<h5  className="form-input">{props.Address}</h5>
 								</div>
 							</div>
 						</div>

@@ -16,6 +16,9 @@
   .login-body {
     display: inline;
   }
+  form.form4 {
+    width: 240px;
+}
   .right-body {
     width: 60%;
     height: 60vh;

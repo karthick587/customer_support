@@ -16,7 +16,7 @@ const UserDashboard=(props)=>{
    
     const [finishStatus, setfinishStatus] = useState(false);
     var userId = props.router.query.name;
-
+     var Username= props.router.query.customername;
   console .log(userId)
        
 	
@@ -83,7 +83,7 @@ const UserDashboard=(props)=>{
                               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                               </div>
                               <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                <Userticket />
+                                <Userticket  Username={Username} />
                               </div>
                           </div>
                       </div>

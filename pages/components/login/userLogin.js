@@ -47,10 +47,15 @@ export default function Login2(){
                    });  
              }
              else if(value==="customervalidate")
+
+          
              {
                  router.push({
                    pathname:`../dash/userdashboard`,
-                   query:{name:response.data[0].usersId}
+                   query:{name:response.data[0].usersId,
+                customername:response.data[0].Username
+                }
+
                  });  
              }
    

@@ -65,6 +65,9 @@ img.slide-banner3 {
   min-width: 934px;
   background-color: #1c4eb9;
 }
+form.form4 {
+  width: 400px;
+}
 .new{
   color: red !important;
 }
