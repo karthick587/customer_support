@@ -28,9 +28,7 @@ a{
   color: #1976d2;
   font-weight: 700;
 }
-.tickets-headrow{
 
-}
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
@@ -497,10 +495,7 @@ h4.alert1.text-center {
   background-color: #58a2ea38;
   margin: 0px 0px 0px 27px;
 }
-.css-dsuxgy-MuiTableCell-root {
-  padding: 35px 0px 0px 0px !important;
-  font-weight: 550 !important;
-}
+
 .header-user input::placeholder {
   color: #1976d2;
   font-size: 15px;
@@ -508,7 +503,6 @@ h4.alert1.text-center {
 }
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
-  
   padding-top: 40px !important;
   font-weight: 550;
 }
@@ -606,9 +600,7 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6{
   flex-shrink: 0;
   display: inline-flex;
 }
-.css-1o6fzn1 {
-  padding: 10px 16px !important;
-}
+
 span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
   /* font-size: 15px; */
   font-weight: 500 !important;
