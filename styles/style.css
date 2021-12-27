@@ -504,8 +504,8 @@ h4.alert1.text-center {
 }
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
-  /* padding: 13px 16px !important; */
-  padding-top: 40px;
+  
+  padding-top: 40px !important;
   font-weight: 550;
 }
 
