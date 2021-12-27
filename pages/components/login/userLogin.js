@@ -31,7 +31,7 @@ export default function Login2(){
    
    const adminLogin=({username,password})=>{    
        Axios.post(`https://mindmadetech.in/${value}`,{
-           username:username,
+        username:username,
            password:password,
        }).then((response)=>{
            if(response.data.message)
@@ -40,13 +40,13 @@ export default function Login2(){
            }
            else
            {
-             if(value==="admin"){
+             if(value==="adminvalidate"){
                  router.push({
                      pathname:`../dash/admindashboard`,
                      query:{name:response.data[0].adminId}
                    });  
              }
-             else if(value==="users")
+             else if(value==="customervalidate")
              {
                  router.push({
                    pathname:`../dash/userdashboard`,
