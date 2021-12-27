@@ -23,7 +23,7 @@ function Adduser(props) {
        
 const addUser=({Name,Username,Password})=>{
            
-    Axios.post("https://mindmadetech.in/adduser",{
+    Axios.post("https://mindmadetech.in/customernew",{
         Name:Name,
         Username:Username,
         Password:Password,

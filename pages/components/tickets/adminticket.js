@@ -23,7 +23,7 @@ function Adminticket() {
   console.log(selectedValue)
   
   useEffect(()=>{
-     Axios.get("https://mindmadetech.in/addIssues")
+     Axios.get("https://mindmadetech.in/ticketslist")
         .then((res)=>setIssues(res.data));
      },[]);
     

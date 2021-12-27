@@ -18,7 +18,7 @@ export default function Users(props){
   console.log(selectedValue)
     var[users,setUsers]=useState([]);
     useEffect(()=>{
-        Axios.get("https://mindmadetech.in/adduser")
+        Axios.get("https://mindmadetech.in/customerlist")
         .then((res)=>setUsers(res.data));
     },[]);
     useEffect(()=>{
