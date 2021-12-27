@@ -497,6 +497,10 @@ h4.alert1.text-center {
   background-color: #58a2ea38;
   margin: 0px 0px 0px 27px;
 }
+.css-dsuxgy-MuiTableCell-root {
+  padding: 35px 0px 0px 0px !important;
+  font-weight: 550 !important;
+}
 .header-user input::placeholder {
   color: #1976d2;
   font-size: 15px;
@@ -510,7 +514,7 @@ h4.alert1.text-center {
 }
 .css-13njpue {
   font-weight: 600 !important;
-  padding: 0px !important;
+  padding: 10px !important;
 }
 .css-1o6fzn1 {
   font-weight: 550 !important;
