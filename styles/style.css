@@ -508,7 +508,14 @@ h4.alert1.text-center {
   padding-top: 40px !important;
   font-weight: 550;
 }
-
+.css-13njpue {
+  font-weight: 600 !important;
+  padding: 0px !important;
+}
+.css-1o6fzn1 {
+  font-weight: 550 !important;
+  padding: 35px 0px 0px 0px !important;
+}
 
 /*admindash board*/
 
