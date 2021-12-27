@@ -91,7 +91,7 @@ function Adminticket() {
                                     dialogtitle={
                                         <table >
                                            
-                                            <tr key={tickets.ticketsId}  className='tickets-bodyrow' >
+                                            <tr key={ticketsId}  className='tickets-bodyrow' >
 
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>                                             
