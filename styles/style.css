@@ -609,7 +609,9 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 .css-1l8j5k8{
   border: none !important;
 }
-
+.css-1howxi1-MuiTableCell-root {
+  padding: 6px 35px 0px 0px !important;
+}
 .css-13njpue {
     
     color: rgb(25 118 210) !important;
