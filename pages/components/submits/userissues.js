@@ -3,8 +3,8 @@ import Axios from "axios";
 
 export default Userissue;
 
-function Userissue() {
-
+function Userissue(props) {
+    const {customername}=props
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [phonenumber, setPhonenumber] = useState('');
@@ -14,6 +14,8 @@ function Userissue() {
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     const addIssues = () => {
+       
+        setUserName(customername);
         Axios.post("https://mindmadetech.in/ticketsnew", {
             UserName: username,
             Email: email,
@@ -35,7 +37,7 @@ function Userissue() {
                     <h4 className="issue-head">Submit your Issues Here!!!</h4>
                     <div className="form-group">
                         <label className="label">User Name</label>
-                        <input className="form-input" name="username" type="text" onChange={(e) => { setUserName(e.target.value); }} />
+                        <h5  className="form-input">{props.customername}</h5>
                     </div>
                     <div className="form-group">
                         <label className="label">Email</label>

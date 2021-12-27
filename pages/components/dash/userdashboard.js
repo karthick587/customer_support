@@ -75,7 +75,7 @@ const UserDashboard=(props)=>{
                       <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
                           <div className="tab-content" id="v-pills-tabContent">
                               <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                  <Userissue />
+                                  <Userissue customername={Username}/>
                               </div>
                               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                   <UserProfile  userId={userId}/>
