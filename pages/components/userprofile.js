@@ -38,7 +38,12 @@ export default function UserProfile({userId}) {
 			email : email,
 			address : address,
 			
-		}).then((response)=>setUser(response));
+		}).then((response) => {
+          
+			setShow("update Successfully");
+			Router.reload(window.location.pathname)
+	   
+	});
 	}
 	
  return (
