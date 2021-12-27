@@ -13,6 +13,10 @@
   .col-6{
     width: 100% !important;
   }
+  form.form3 {
+    width: 270px;
+    margin: 13px;
+}
   .login-body {
     display: inline;
   }
@@ -45,10 +49,7 @@
   padding: 19px 0px 0px 0px;
   position: relative;
 }
-form.form3 {
-  width: 270px;
-  margin: auto;
-}
+
 .keen-slider__slide.number-slide2 {
   background-color: transparent;
 }
