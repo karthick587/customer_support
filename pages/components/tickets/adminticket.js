@@ -90,28 +90,33 @@ function Adminticket() {
                                     }
                                     dialogbody={
                                         <div className='ticket-details'>
-                                            <div className='ticket-details-title'>Ticket NO {tickets.ticketsId}</div>
-                                            <div className='ticket-details-name'>
+                                            <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
+                                            <div className='ticket details-name'>
                                                 <label className="label">Username</label>
-                                                {tickets.Username}
+                                                <div className='ticket-input-details' >{tickets.Username}</div>
                                             </div>
-                                            <div className='ticket-details-no'>
+                                            <div className='ticket details-no'>
                                                 <label className="label">Phonenumber</label>
-                                                {tickets.Phonenumber}</div>
-                                            <div className='ticket-details-domain'>
+                                                <div className='ticket-input-details' >{tickets.Phonenumber}</div>
+                                            </div>
+                                            <div className='ticket details-domain'>
                                                 <label className="label">DomainName</label>
-                                                {tickets.DomainName}</div>
-                                            <div className='ticket-details-Date'>
+                                                <div className='ticket-input-details' >{tickets.DomainName}</div>
+                                            </div>
+                                            <div className='ticket details-Date'>
                                                 <label className="label">Date</label>
-                                                {tickets.Date}</div>
-                                            <div className='ticket-details-Des'>
+                                                <div className='ticket-input-details' > {tickets.Date}</div>
+                                            </div>
+                                            <div className='ticket details-Des'>
                                                 <label className="label">Description</label>
-                                                {tickets.Description}</div>
-                                            <div className='ticket-details-Status'><label className="label">Status</label>
-                                                {tickets.Status}</div>
-                                            <div className='ticket-details-Team' ><label className="label">Team</label>
-                                                {tickets.Team}</div>
-                                            <div className='ticket-details-title'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
+                                                <div className='ticket-input-details' > {tickets.Description}</div>
+                                            </div>
+                                            <div className='ticket details-Status'><label className="label">Status</label>
+                                                <div className='ticket-input-details' > {tickets.Status}</div>
+                                            </div>
+                                            <div className='ticket details-Team' ><label className="label">Team</label>
+                                                <div className='ticket-input-details' > {tickets.Team}</div></div>
+                                            <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
                                         </div>
                                     }
                                 />
@@ -151,7 +156,7 @@ function Adminticket() {
                                             <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Update</button>
                                             <h4 className="alert1 text-center">{show}</h4>
                                         </div>
-                                     }
+                                    }
                                 />
                             </div>
                         )}

@@ -54,7 +54,20 @@ border-bottom: 1px solid rgba(224, 224, 224, 1);
   bottom: 0px;
   /* padding-top: 50px !important; */
 }
-
+.tickets{
+  display: inline-grid;
+}
+.ticket {
+  width: 309px;
+}
+.ticket label{
+  color: #1976d2;
+}
+.ticket.details-title {
+  color: #217bd4;
+  font-weight: 700;
+  font-size: 21px;
+}
 .right-body {
   width: 60%;
   height: 100vh;
