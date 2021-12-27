@@ -79,9 +79,8 @@ var[issues,setIssues]=useState([]);
                                   <TableCell  className={item.Status}  align="left">{item.Status}</TableCell>
                                   <TableCell align="left"><img  src= {item.screenshots} alt="pic" height="80vh" width="50%"   /></TableCell>
                                 </TableRow> 
-                               
                             </TableBody>
-                        )}
+                          )}
                     </Table>
                   </TableContainer>
             </div>

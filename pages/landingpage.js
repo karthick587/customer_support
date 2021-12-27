@@ -52,8 +52,8 @@ export default function Landingpage() {
                                     onSelect={handleSelect}
                                     
                                 >
-                                    <Dropdown.Item eventKey="admin" className="text-dark">admin</Dropdown.Item>
-                                    <Dropdown.Item eventKey="users" className="text-dark">users</Dropdown.Item>
+                                    <Dropdown.Item eventKey="adminvalidate" className="text-dark">admin</Dropdown.Item>
+                                    <Dropdown.Item eventKey="customervalidate" className="text-dark">users</Dropdown.Item>
                                     <Dropdown.Item eventKey="teamlogin" className="text-dark">Team Login</Dropdown.Item>
                                 </DropdownButton>
                             </li>
