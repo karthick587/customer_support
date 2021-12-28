@@ -33,18 +33,13 @@ a {
   font-weight: 700;
 }
 
-.tickets-bodyrow3 td {
-  width: 23.8%;
-  font-size: 15px;
-  color: #1976d2;
-  font-weight: 700;
-}
+
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
 @media only screen and (max-width: 600px) {
-  .tickets-bodyrow td {
+  .tickets-bodyrow td{
     width: 85px !important;
     text-align: left;
     font-weight: 550;
@@ -53,7 +48,7 @@ a {
     color: rgba(0, 0, 0, 0.87);
   }
 }
-.tickets-bodyrow td {
+.tickets-bodyrow td{
   width: 187px;
   text-align: left;
   font-weight: 550;
@@ -159,9 +154,6 @@ img.slide-banner3 {
   float: right !important;
 }
 
-td.MuiTableCell-root {
- 
-}
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   border: none !important;
