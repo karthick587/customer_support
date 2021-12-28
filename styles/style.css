@@ -23,9 +23,11 @@ a {
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   padding: 0px !important;
 }
-.tickets-bodyrow2{
+
+.tickets-bodyrow2 {
   display: flex;
 }
+
 .tickets-bodyrow2 div {
   width: 184px;
   font-size: 15px;
@@ -39,12 +41,15 @@ a {
   color: #1976d2;
   font-weight: 700;
 }
+
 .tickets-bodyrow3 {
   display: flex;
 }
+
 .css-79xub {
   text-transform: none !important;
 }
+
 .tickets-bodyrow3 td {
   width: 228px;
   text-align: left;
@@ -53,25 +58,29 @@ a {
   font-size: 13px;
   color: rgba(0, 0, 0, 0.87);
 }
+
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
+
 @media only screen and (max-width: 600px) {
   .tickets-bodyrow3 div {
     width: 100px;
     font-size: 15px;
     color: #1976d2;
     font-weight: 700;
-}
-.tickets-bodyrow3 td {
-  width: 100px;
-  text-align: left;
-  font-weight: 550;
-  padding: 34px 0px 0px 0px;
-  font-size: 13px;
-  color: rgba(0, 0, 0, 0.87);
-}
-  .tickets-bodyrow td{
+  }
+
+  .tickets-bodyrow3 td {
+    width: 100px;
+    text-align: left;
+    font-weight: 550;
+    padding: 34px 0px 0px 0px;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .tickets-bodyrow td {
     width: 85px !important;
     text-align: left;
     font-weight: 550;
@@ -79,11 +88,13 @@ a {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
   }
+
   .ticket {
     width: 300px !important;
+  }
 }
-}
-.tickets-bodyrow td{
+
+.tickets-bodyrow td {
   width: 187px;
   text-align: left;
   font-weight: 550;
@@ -116,17 +127,21 @@ a {
 .tickets {
   display: inline-grid;
 }
+
 .userbody {
-  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   width: 1100px;
   margin: auto;
 }
+
 .ticket {
   width: 417px;
 }
+
 .css-79xub {
   padding: 0px !important;
 }
+
 .ticket label {
   color: #1976d2;
   font-weight: 600;
@@ -521,11 +536,60 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   padding: 10px 0px;
+  overflow-x: hidden !important;
 }
 
 .header-user div button {
   margin-right: 17px;
   padding: 4px !important;
+}
+
+select.team-dialog-box {
+  overflow: hidden;
+  border: none;
+  height: 13vh;
+  background-color: transparent;
+}
+
+select.team-dialog-box:focus-visible {
+  border: none !important;
+}
+
+.team-dialog-box option {
+  font-weight: 700;
+  font-size: 19px;
+  color: #1976d2;
+  margin: 8px 0px 23px 6px;
+  text-transform: uppercase;
+}
+
+.team-dialog-box option:hover {}
+
+.dilog-icon div:hover {
+  background-color: white;
+
+}
+
+.css-ypiqx9-MuiDialogContent-root {}
+
+.dilog-icon div {
+  /* padding: 2px 0px 0px 0px; */
+  margin: 4px 0px 4px 0px;
+}
+
+.dilog-icon svg {
+  font-size: 29px;
+  margin: 5px 0px 5px 0px;
+  color: #1976d2;
+}
+
+.main-dialog {
+  display: flex;
+}
+
+.dilog-icon {
+  display: grid;
+
 }
 
 form.form2 {
@@ -679,9 +743,10 @@ h4.alert1.text-center {
 }
 
 .css-1o6fzn1 {
-  font-weight: 550!important;
+  font-weight: 550 !important;
   padding: 35px 0px 0px 15px !important;
 }
+
 /*admindash board*/
 
 
@@ -797,24 +862,26 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 .css-1howxi1-MuiTableCell-root {
   padding: 6px 10px 0px 0px !important;
 }
+
 .css-13njpue {
 
   color: rgb(25 118 210) !important;
 }
+
 /* width */
 
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #1976d2cf; 
+  background: #1976d2cf;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(25 118 210); 
+  background: rgb(25 118 210);
 }

@@ -9,18 +9,21 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
-
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import PersonIcon from '@mui/icons-material/Person';
+import Avatar from '@mui/material/Avatar';
 const schema = yup.object().shape({
     username: yup.string().required(),
     password: yup.string().required().min(6)
 });
 
 export default function Login2() {
-
+    const [open, setOpen] = React.useState(false);
     const router = useRouter();
     console.log(router.query.value)
+    var [validate, setValidate] = useState('');
 
-    const value = router.query.value;
 
     var [loginStatus, setLoginStatus] = useState('');
 
@@ -30,7 +33,7 @@ export default function Login2() {
     const { errors } = formState;
 
     const adminLogin = ({ username, password }) => {
-        Axios.post(`https://mindmadetech.in/${value}`, {
+        Axios.post(`https://mindmadetech.in/${validate}`, {
             username: username,
             password: password,
         }).then((response) => {
@@ -38,13 +41,15 @@ export default function Login2() {
                 setLoginStatus(response.data.message);
             }
             else {
-                if (value === "adminvalidate") {
+                if (validate === "adminvalidate") {
                     router.push({
                         pathname: `../dash/admindashboard`,
                         query: { name: response.data[0].adminId }
                     });
+
                 }
-                else if (value === "customervalidate") {
+                else if (validate === "customervalidate") {
+
                     router.push({
                         pathname: `../dash/userdashboard`,
                         query: {
@@ -53,6 +58,7 @@ export default function Login2() {
                         }
 
                     });
+
                 }
 
             }
@@ -75,9 +81,47 @@ export default function Login2() {
             window.removeEventListener('popstate', onBackButtonEvent);
         };
     }, []);
+
+
+    useEffect(() => {
+
+        setOpen(true);
+
+    }, []);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
 
         <div className="login-page">
+            <div>
+                <Dialog open={open} >
+                    <DialogContent>
+                        <div className='main-dialog'>
+                            <div className='dilog-icon'>
+                                <Avatar>
+                                    <PersonIcon />
+                                </Avatar>
+                                <Avatar>
+                                    <PersonIcon />
+                                </Avatar>
+                            </div>
+                            <div className=''>
+                                <select className='team-dialog-box' value={validate} onChange={(e) => setValidate(e.target.value)} multiple>
+                                    <option className='team-dialog-opstion' value="adminvalidate" onClick={handleClose}>   admin</option>
+                                    <option className='team-dialog-opstion' value="customervalidate" onClick={handleClose}>  customer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </DialogContent>
+                </Dialog>
+            </div>
             <Head>
                 <title>userlogin</title>
             </Head>

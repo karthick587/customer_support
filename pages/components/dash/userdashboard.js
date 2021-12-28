@@ -27,7 +27,7 @@ const UserDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/")
+        router.push("/components/login/clientLogin")
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -44,7 +44,7 @@ const UserDashboard = (props) => {
   }, []);
 
   const onBackButtonEvent3 = () => {
-    router.push("/")
+    router.push("/components/login/clientLogin")
   }
   return (
     <div>

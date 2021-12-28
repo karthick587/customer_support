@@ -28,7 +28,7 @@ export default function Login1() {
 
   const adminLogin = ({ username, password }) => {
 
-    Axios.post("https://mindmadetech.in/admin", {
+    Axios.post("https://mindmadetech.in/customervalidate", {
       username: username,
       password: password,
     }).then((response) => {
@@ -36,8 +36,13 @@ export default function Login1() {
         setLoginStatus(response.data.message);
       } else {
         router.push({
-          pathname: '../dash/admindashboard',
-          query: { name: response.data[0].id }
+          pathname: `../dash/userdashboard`,
+          query: {
+            name: response.data[0].usersId,
+            customername: response.data[0].Username
+          }
+
+
         });
       }
     });

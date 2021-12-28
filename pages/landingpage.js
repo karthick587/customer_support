@@ -36,23 +36,13 @@ export default function Landingpage() {
             </Head>
             <header className="main-header">
 
-
-                <DropdownButton
-                    className="btn-login"
-                    title="Login"
-                    id=""
-                    onSelect={handleSelect}
-
-                >
-                    <Dropdown.Item eventKey="adminvalidate" className="text-dark">admin</Dropdown.Item>
-                    <Dropdown.Item eventKey="customervalidate" className="text-dark">users</Dropdown.Item>
-                    <Dropdown.Item eventKey="teamlogin" className="text-dark">Team Login</Dropdown.Item>
-                </DropdownButton>
-
+            <button   className="btn-login" onClick={() => router.push('./components/login/clientLogin')}>clientlogin</button>
+            <button   className="btn-login" onClick={() => router.push('./components/login/teamLogin')}>teamlogin</button>
+              
 
 
             </header>
-
+              
         </div>
     )
 }

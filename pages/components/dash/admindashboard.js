@@ -30,7 +30,7 @@ const AdminDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/")
+        router.push("/components/login/teamLogin")
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -46,9 +46,9 @@ const AdminDashboard = (props) => {
     };
   }, []);
   const onBackButtonEvent2 = () => {
-    router.push("/")
+    router.push("/components/login/teamLogin")
   }
- 
+
 
 
   return (
