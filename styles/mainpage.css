@@ -17,14 +17,7 @@
     width: 270px;
     margin: 13px;
 }
-.tickets-bodyrow td {
-  width: 81px !important;
-  text-align: left;
-  font-weight: 550;
-  
-  font-size: 13px;
-  color: rgba(0,0,0,.87);
-}
+
 
 
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {

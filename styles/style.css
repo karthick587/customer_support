@@ -43,7 +43,16 @@ a {
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
-
+@media only screen and (max-width: 600px) {
+  .tickets-bodyrow td {
+    width: 85px !important;
+    text-align: left;
+    font-weight: 550;
+    padding: 34px 0px 0px 0px;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
 .tickets-bodyrow td {
   width: 187px !important;
   text-align: left;
