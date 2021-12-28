@@ -35,24 +35,25 @@ function Userticket(props) {
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
-                <div className='adminticket-head'>
-                    <h1>Tickets</h1>
-                </div>
+
                 <div className="userbody">
-                <TableContainer component={Paper}>
+                    <div className='adminticket-head'>
+                        <h1>Tickets</h1>
+                    </div>
+                    <TableContainer component={Paper}>
                         <div className='tickets-bodyrow3'>
                             <div >TicketId</div>
                             <div>Username</div>
                             <div >Date</div>
                             <div>Team</div>
                             <div>Status</div>
-                          
+
                         </div>
                         {tickets.filter(val => {
                             if (search === "") {
                                 return val;
                             } else if (
-                                 val.Username.toLowerCase().includes(search.toLowerCase()) 
+                                val.Username.toLowerCase().includes(search.toLowerCase())
                             ) {
                                 return val;
                             }
@@ -102,7 +103,7 @@ function Userticket(props) {
                                             <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
                                         </div>
                                     }
-                                />                            
+                                />
                             </div>
                         )}
                     </TableContainer>
