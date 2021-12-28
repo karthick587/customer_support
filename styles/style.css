@@ -151,7 +151,7 @@ img.slide-banner3 {
 }
 
 td.MuiTableCell-root {
-  width: 250px;
+ 
 }
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
@@ -484,7 +484,7 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  padding: 10px 20px;
+  padding: 10px 0px;
 }
 
 .header-user div button {
