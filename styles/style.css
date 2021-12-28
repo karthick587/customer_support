@@ -42,6 +42,9 @@ a {
 .tickets-bodyrow3 {
   display: flex;
 }
+.css-79xub {
+  text-transform: none !important;
+}
 .tickets-bodyrow3 td {
   width: 228px;
   text-align: left;
