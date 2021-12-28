@@ -50,26 +50,29 @@ function Adminticket() {
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
+              
+                <div className="userbody">
                 <div className='adminticket-head'>
                     <h1>Tickets</h1>
                     <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
-                <div className="userbody">
                     <TableContainer component={Paper}>
-                        <tr className='tickets-bodyrow2'>
-                            <td >TicketId</td>
-                            <td>Username</td>
-                            <td >Date</td>
-                            <td>Team</td>
-                            <td>Status</td>
-                            <td></td>
-                        </tr>
+                        <div className='tickets-bodyrow2'>
+                            <div >TicketId</div>
+                            <div>Username</div>
+                            <div >Date</div>
+                            <div>Team</div>
+                            <div>Status</div>
+                            <div></div>
+                        </div>
                         {tickets.filter(val => {
                             if (search === "") {
                                 return val;
                             } else if (
                                 val.ticketsId.toString().includes(search.toString()) ||
-                                val.Username.toLowerCase().includes(search.toLowerCase())
+                                val.Username.toLowerCase().includes(search.toLowerCase()) ||
+                                val.Status.toLowerCase().includes(search.toLowerCase()) ||
+                                val.Team.toString().includes(search.toString())
                             ) {
                                 return val;
                             }
@@ -112,7 +115,7 @@ function Adminticket() {
                                                 <div className='ticket-input-details' > {tickets.Description}</div>
                                             </div>
                                             <div className='ticket details-Status'><label className="label">Status</label>
-                                                <div className='ticket-input-details' > {tickets.Status}</div>
+                                                <div className={tickets.Status} > {tickets.Status}</div>
                                             </div>
                                             <div className='ticket details-Team' ><label className="label">Team</label>
                                                 <div className='ticket-input-details' > {tickets.Team}</div></div>

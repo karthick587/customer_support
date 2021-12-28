@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-
+import FormDialog from '../common/dialogsform';
 
 function Userticket(props) {
 
@@ -40,51 +40,73 @@ function Userticket(props) {
                 </div>
                 <div className="userbody">
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                            <TableHead>
+                        <tr className='tickets-bodyrow3'>
+                            <td >TicketId</td>
+                            <td>Username</td>
+                            <td >Date</td>
+                            <td>Team</td>
+                            <td>Status</td>
 
-                                <TableRow>
-                                    <TableCell>ID</TableCell>
-                                    <TableCell>Username</TableCell>
-                                    <TableCell align="left">Email</TableCell>
-                                    <TableCell align="left">Phonenumber</TableCell>
-                                    <TableCell align="left">DomainName</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Description</TableCell>
-                                    <TableCell align="left">Team</TableCell>
-                                    <TableCell align="left">Status</TableCell>
-                                    <TableCell align="left">screenshots</TableCell>
-                                    <TableCell align="left"></TableCell>
-                                </TableRow>
-                            </TableHead>
+                        </tr>
+                        {tickets.filter(val => {
+                            if (search === "") {
+                                return val;
+                            } else if (
+                                val.Username.toLowerCase().includes(search.toLowerCase())
 
-                            {tickets.filter(val => {
-                                if (search === "") {
-                                    return val;
-                                } else if (
+                            ) {
+                                return val;
+                            }
+                        }).map((tickets) =>
+                            <div key={tickets.ticketsId} className='tickets-table-row'>
 
-                                    val.Username.toLowerCase().includes(search.toLowerCase())
+                                <FormDialog
+                                    dialogtitle={
+                                        <table >
+                                            <tr className='tickets-bodyrow' >
+                                                <td>{tickets.ticketsId}</td>
+                                                <td >{tickets.Username}</td>
+                                                <td>{tickets.Date}</td>
+                                                <td >{tickets.Team}</td>
+                                                <td className={tickets.Status}>{tickets.Status}</td>
+                                            </tr>
+                                        </table>
+                                    }
+                                    dialogbody={
+                                        <div className='ticket-details'>
+                                            <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
+                                            <div className='ticket details-name'>
+                                                <label className="label">Username</label>
+                                                <div className='ticket-input-details' >{tickets.Username}</div>
+                                            </div>
+                                            <div className='ticket details-no'>
+                                                <label className="label">Phonenumber</label>
+                                                <div className='ticket-input-details' >{tickets.Phonenumber}</div>
+                                            </div>
+                                            <div className='ticket details-domain'>
+                                                <label className="label">DomainName</label>
+                                                <div className='ticket-input-details' >{tickets.DomainName}</div>
+                                            </div>
+                                            <div className='ticket details-Date'>
+                                                <label className="label">Date</label>
+                                                <div className='ticket-input-details' > {tickets.Date}</div>
+                                            </div>
+                                            <div className='ticket details-Des'>
+                                                <label className="label">Description</label>
+                                                <div className='ticket-input-details' > {tickets.Description}</div>
+                                            </div>
+                                            <div className='ticket details-Status'><label className="label">Status</label>
+                                                <div className={tickets.Status} > {tickets.Status}</div>
+                                            </div>
+                                            <div className='ticket details-Team' ><label className="label">Team</label>
+                                                <div className='ticket-input-details' > {tickets.Team}</div></div>
+                                            <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
+                                        </div>
+                                    }
+                                />
 
-                                ) {
-                                    return val;
-                                }
-                            }).map((tickets) =>
-                                <TableBody key={tickets.ticketsId}>
-                                    <TableRow >
-                                        <TableCell component="th" scope="row">{tickets.ticketsId}</TableCell>
-                                        <TableCell align="left">{tickets.Username}</TableCell>
-                                        <TableCell align="left">{tickets.Email}</TableCell>
-                                        <TableCell align="left">{tickets.Phonenumber}</TableCell>
-                                        <TableCell align="left">{tickets.DomainName}</TableCell>
-                                        <TableCell align="left">{tickets.Date}</TableCell>
-                                        <TableCell align="left">{tickets.Description}</TableCell>
-                                        <TableCell align="left">{tickets.Team}</TableCell>
-                                        <TableCell className={tickets.Status} align="left">{tickets.Status}</TableCell>
-                                        <TableCell align="left"><img src={tickets.screenshots} alt="pic" height="80vh" width="50%" /></TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            )}
-                        </Table>
+                            </div>
+                        )}
                     </TableContainer>
                 </div>
 

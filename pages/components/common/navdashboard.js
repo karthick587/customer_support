@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -87,101 +87,101 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function Dashboard(props) {
-  
+
   const [open, setOpen] = React.useState(true);
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
- 
+
   return (
-      
-          <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-              <AppBar position="fixed" open={open}>
-                  <Toolbar
-                      sx={{
-                      pr: '24px', // keep right padding when drawer closed
-                      }}
-                  >
-                  <IconButton
-                      edge="start"
-                      color="inherit"
-                      aria-label="open drawer"
-                      onClick={toggleDrawer}
-                      sx={{
-                        marginRight: '36px',
-                        ...(open && { display: 'none' }),
-                      }}
-                  >
-                      <MenuIcon />
-                  </IconButton>
-                      {props.navcontent}
-                  <IconButton color="inherit">
-                      <Badge badgeContent={4} color="secondary">
-                          <NotificationsIcon />
-                      </Badge>
-                  </IconButton>
-                  <a onClick={props.logout} className="text-white">Logout</a>
-                      {props.menuBar}
-                  </Toolbar>
-              </AppBar>
-                <div className="d-flex align-items-start">
-                  <Drawer variant="permanent" open={open}>
-                      <Toolbar
-                          sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'flex-end',
-                              px: [1],
-                          }}
-                      >
-                      <IconButton onClick={toggleDrawer}>
-                          <ChevronLeftIcon />
-                      </IconButton>
-                      </Toolbar>
-                      <Divider />
-                      <List>
-                          <div>
-                              <div className="nav flex-column nav-pills silebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                  <button className="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
-                                      <ListItemIcon>
-                                          <DashboardIcon />
-                                      </ListItemIcon>
-                                      <ListItemText primary="Dashboard" />
-                                      </ListItem>
-                                  </button>
-                                  
-                                  {props.sidenavcontent}
-                                  <button className="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
-                                      <ListItemIcon>
-                                          <FontAwesomeIcon icon={faTicketAlt} /> 
-                                      </ListItemIcon>
-                                      <ListItemText primary="Ticket" />
-                                      </ListItem>
-                                  </button>
-                              </div>
-                          </div>
-                      </List>
-                      <Divider />
-                  </Drawer>
-                </div>
-                <Box
-                    component="main"
-                    sx={{
-                      backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? theme.palette.grey[100]
-                          : theme.palette.grey[900],
-                      flexGrow: 1,
-                      height: '100vh',
-                      overflow: 'auto',
-                    }}
-                  >
-                    <Toolbar />
-                    {props.tabbody}
-                  </Box>
-          </Box>  
-       
+
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar position="fixed" open={open}>
+        <Toolbar
+          sx={{
+            pr: '24px', // keep right padding when drawer closed
+          }}
+        >
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer}
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+          {props.navcontent}
+          <IconButton color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <a onClick={props.logout} className="text-white">Logout</a>
+          {props.menuBar}
+        </Toolbar>
+      </AppBar>
+      <div className="d-flex align-items-start">
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              px: [1],
+            }}
+          >
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List>
+            <div>
+              <div className="nav flex-column nav-pills silebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button className="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItem>
+                </button>
+
+                {props.sidenavcontent}
+                <button className="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
+                  <ListItemIcon>
+                    <FontAwesomeIcon icon={faTicketAlt} />
+                  </ListItemIcon>
+                  <ListItemText primary="Ticket" />
+                </ListItem>
+                </button>
+              </div>
+            </div>
+          </List>
+          <Divider />
+        </Drawer>
+      </div>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: '100vh',
+          overflow: 'auto',
+        }}
+      >
+        <Toolbar />
+        {props.tabbody}
+      </Box>
+    </Box>
+
   );
 }

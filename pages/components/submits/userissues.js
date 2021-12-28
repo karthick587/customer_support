@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
 export default Userissue;
 
 function Userissue(props) {
-    const {customername}=props
+    const { customername } = props
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [phonenumber, setPhonenumber] = useState('');
@@ -13,9 +13,8 @@ function Userissue(props) {
     const [screenshots, setScreenshots] = useState('');
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+    
     const addIssues = () => {
-       
-        setUserName(customername);
         Axios.post("https://mindmadetech.in/ticketsnew", {
             UserName: username,
             Email: email,
@@ -28,7 +27,9 @@ function Userissue(props) {
             console.log(response);
         });
     }
-
+    useEffect(() => {
+        setUserName(customername);
+    }, []);
     return (
         <div className="container">
             <div>
@@ -37,7 +38,7 @@ function Userissue(props) {
                     <h4 className="issue-head">Submit your Issues Here!!!</h4>
                     <div className="form-group">
                         <label className="label">User Name</label>
-                        <h5  className="form-input">{props.customername}</h5>
+                        <h5 className="form-input">{props.customername}</h5>
                     </div>
                     <div className="form-group">
                         <label className="label">Email</label>
