@@ -45,7 +45,7 @@ a {
 }
 
 .tickets-bodyrow td {
-  width: 187px;
+  width: 187px !important;
   text-align: left;
   font-weight: 550;
   padding: 34px 0px 0px 0px;
@@ -643,10 +643,9 @@ h4.alert1.text-center {
 }
 
 .css-1o6fzn1 {
-  font-weight: 550 !important;
-  padding: 35px 0px 0px 12px !important;
+  font-weight: 550!important;
+  padding: 35px 0px 0px 15px !important;
 }
-
 /*admindash board*/
 
 
