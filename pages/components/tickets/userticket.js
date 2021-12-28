@@ -39,31 +39,30 @@ function Userticket(props) {
                     <h1>Tickets</h1>
                 </div>
                 <div className="userbody">
-                    <TableContainer component={Paper}>
-                        <tr className='tickets-bodyrow3'>
-                            <td >TicketId</td>
-                            <td>Username</td>
-                            <td >Date</td>
-                            <td>Team</td>
-                            <td>Status</td>
-
-                        </tr>
+                <TableContainer component={Paper}>
+                        <div className='tickets-bodyrow3'>
+                            <div >TicketId</div>
+                            <div>Username</div>
+                            <div >Date</div>
+                            <div>Team</div>
+                            <div>Status</div>
+                          
+                        </div>
                         {tickets.filter(val => {
                             if (search === "") {
                                 return val;
                             } else if (
-                                val.Username.toLowerCase().includes(search.toLowerCase())
-
+                                 val.Username.toLowerCase().includes(search.toLowerCase()) 
                             ) {
                                 return val;
                             }
                         }).map((tickets) =>
-                            <div key={tickets.ticketsId} className='tickets-table-row'>
+                            <div key={tickets.ticketsId} className='tickets-table-row3'>
 
                                 <FormDialog
                                     dialogtitle={
                                         <table >
-                                            <tr className='tickets-bodyrow' >
+                                            <tr className='tickets-bodyrow3' >
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
@@ -103,8 +102,7 @@ function Userticket(props) {
                                             <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
                                         </div>
                                     }
-                                />
-
+                                />                            
                             </div>
                         )}
                     </TableContainer>

@@ -33,12 +33,41 @@ a {
   font-weight: 700;
 }
 
-
-
+.tickets-bodyrow3 div {
+  width: 225px;
+  font-size: 15px;
+  color: #1976d2;
+  font-weight: 700;
+}
+.tickets-bodyrow3 {
+  display: flex;
+}
+.tickets-bodyrow3 td {
+  width: 228px;
+  text-align: left;
+  font-weight: 550;
+  padding: 34px 0px 0px 0px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.87);
+}
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
 @media only screen and (max-width: 600px) {
+  .tickets-bodyrow3 div {
+    width: 100px;
+    font-size: 15px;
+    color: #1976d2;
+    font-weight: 700;
+}
+.tickets-bodyrow3 td {
+  width: 100px;
+  text-align: left;
+  font-weight: 550;
+  padding: 34px 0px 0px 0px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.87);
+}
   .tickets-bodyrow td{
     width: 85px !important;
     text-align: left;
@@ -47,6 +76,9 @@ a {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
   }
+  .ticket {
+    width: 300px !important;
+}
 }
 .tickets-bodyrow td{
   width: 187px;
