@@ -85,7 +85,9 @@ a {
 .ticket {
   width: 417px;
 }
-
+.css-79xub {
+  padding: 0px !important;
+}
 .ticket label {
   color: #1976d2;
   font-weight: 600;
@@ -532,7 +534,7 @@ form.form2 {
 
 .header-user {
   display: flex;
-  padding: 16px 0px 0px 25px;
+  padding: 16px 0px 0px 0px;
   position: relative;
 }
 
@@ -580,7 +582,7 @@ form.form2 {
 
 .adminticket-head {
   display: flex;
-  padding: 16px 0px 0px 25px;
+  padding: 16px 0px 0px 0px;
 }
 
 .adminticket-head h1 {
