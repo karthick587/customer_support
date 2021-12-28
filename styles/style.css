@@ -45,7 +45,7 @@ a {
 }
 @media only screen and (max-width: 600px) {
   .tickets-bodyrow td {
-    width: 85px !important;
+    width: 85px;
     text-align: left;
     font-weight: 550;
     padding: 34px 0px 0px 0px;
@@ -54,7 +54,7 @@ a {
   }
 }
 .tickets-bodyrow td {
-  width: 187px !important;
+  width: 187px;
   text-align: left;
   font-weight: 550;
   padding: 34px 0px 0px 0px;
