@@ -2,10 +2,10 @@ import React from 'react';
 
 
 function Notification() {
- return (
-      <div>
-          
-      </div>
-    );
+  return (
+    <div>
+
+    </div>
+  );
 }
-export default Notification ;
+export default Notification;

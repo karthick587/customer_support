@@ -4,10 +4,10 @@ import Landingpage from './landingpage';
 export default function Home() {
   return (
     <div>
-        <Head>
-            <title>Customer Support</title>
-        </Head>
-        <Landingpage />  
+      <Head>
+        <title>Customer Support</title>
+      </Head>
+      <Landingpage />
     </div>
   )
 }

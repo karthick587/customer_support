@@ -12,21 +12,21 @@ import Router from 'next/router';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-		import("bootstrap/dist/js/bootstrap");
-	  }, []);
-   
-    Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());
-    NProgress.configure({ showSpinner: false});
-    
+    import("bootstrap/dist/js/bootstrap");
+  }, []);
+
+  Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());
+  NProgress.configure({ showSpinner: false });
+
   return <div>
     <Head>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com"  />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
 
     </Head>
     <Component {...pageProps} />
-    </div>
+  </div>
 }
 
 export default MyApp
