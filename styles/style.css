@@ -117,8 +117,8 @@ a {
   display: inline-grid;
 }
 .userbody {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  width: 1150px;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  width: 1100px;
   margin: auto;
 }
 .ticket {
