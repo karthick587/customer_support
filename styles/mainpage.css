@@ -101,7 +101,12 @@
   .keen-slider__slide.number-slide3 {
     background-color: transparent;
   }
-
+  .main-dialog{
+    display: none;
+  }
+  .mobile-dialog{
+    display: block;
+  }
   .adminticket-head input {
     padding: 0px 11px;
     border: none;

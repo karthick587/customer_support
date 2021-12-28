@@ -563,14 +563,16 @@ select.team-dialog-box:focus-visible {
   text-transform: uppercase;
 }
 
-.team-dialog-box option:hover {}
+
 
 .dilog-icon div:hover {
   background-color: white;
 
 }
 
-.css-ypiqx9-MuiDialogContent-root {}
+.mobile-dialog{
+  display: none;
+}
 
 .dilog-icon div {
   /* padding: 2px 0px 0px 0px; */

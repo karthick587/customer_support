@@ -102,6 +102,12 @@ export default function Login2() {
             <div>
                 <Dialog open={open} >
                     <DialogContent>
+                        <div className='mobile-dialog'>
+                        <select className='team-dialog-box' value={validate} onChange={(e) => setValidate(e.target.value)} multiple>
+                                    <option className='team-dialog-opstion' value="adminvalidate" onClick={handleClose}>   admin</option>
+                                    <option className='team-dialog-opstion' value="customervalidate" onClick={handleClose}>  customer</option>
+                                </select>
+                        </div>
                         <div className='main-dialog'>
                             <div className='dilog-icon'>
                                 <Avatar>
