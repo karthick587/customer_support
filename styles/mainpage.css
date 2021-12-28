@@ -18,7 +18,7 @@
     margin: 13px;
 }
 .tickets-bodyrow td {
-  width: 81px;
+  width: 81px !important;
   text-align: left;
   font-weight: 550;
   /* padding: 34px 3px 0px 4px; */
@@ -26,13 +26,7 @@
   color: rgba(0,0,0,.87);
 }
 
-.tickets-bodyrow2 td {
-  width: 22.5% !important;
-  text-align: left;
-  font-size: 15px;
-  color: #1976d2;
-  font-weight: 700;
-}
+
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
