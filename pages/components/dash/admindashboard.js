@@ -37,7 +37,6 @@ const AdminDashboard = (props) => {
       }
     }
   }
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -48,9 +47,6 @@ const AdminDashboard = (props) => {
   const onBackButtonEvent2 = () => {
     router.push("/components/login/teamLogin")
   }
-
-
-
   return (
     <div>
       <div>

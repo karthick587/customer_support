@@ -28,6 +28,7 @@ export default function Login1() {
 
   const adminLogin = ({ username, password }) => {
       var TableValidate = username.slice(0,3)
+
         if(TableValidate === "ad_"){
            const validate = "admin";
             console.log(validate)
@@ -40,6 +41,8 @@ export default function Login1() {
             const validate = "customer";
             const SlicedName = username;
         }else return null;
+        console.log(validate)
+        console.log(SlicedName)
     Axios.post(`https://mindmadetech.in/${validate}validate`, {
       username: SlicedName,
       password: password,
@@ -72,7 +75,6 @@ export default function Login1() {
     <div className="login-page">
       <Head>
         <title>userlogin</title>
-
       </Head>
       <div >
         <div className="login-body">
@@ -109,8 +111,6 @@ export default function Login1() {
           </div>
         </div>
       </div>
-
-
     </div>
 
   )
