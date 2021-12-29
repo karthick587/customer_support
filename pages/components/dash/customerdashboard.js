@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import router from "next/router";
 import Userticket from "../tickets/userticket";
 
-const UserDashboard = (props) => {
+const CustomerDashboard = (props) => {
 
 
   const [finishStatus, setfinishStatus] = useState(false);
