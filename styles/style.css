@@ -332,11 +332,22 @@ select:focus-visible {
 .top-btn {
   display: flex;
   /* display: contents; */
-  padding: 0px 0px 0px 25px;
+  padding: 0px 0px 0px 0px;
   /* position: relative; */
 }
-.top-btn div {
-  padding: 0px 43px 0px 0px;
+.team-list {
+  margin-left: 10px;
+  display: flex;
+}
+
+.team-list div input {
+  padding: 0px 0px;
+  margin: 4px 0px;
+}
+.team-list div {
+  /* margin: 1px 0px; */
+  padding: 3px 11px;
+  font-size: 11px;
 }
 /*slider*/
 body {
@@ -682,7 +693,23 @@ form.form2 {
   color: #07235f;
 
 }
-
+.team-dropdown button {
+  background-color: transparent;
+  border: none;
+  color: #1976d2;
+  text-transform: uppercase;
+  font-family: system-ui;
+  font-weight: 700;
+  font-size: 13px;
+}
+.team-dropdown {
+  display: flex;
+  /* padding-right: 30px; */
+}
+.team-list {
+  margin-left: 10px;
+  display: flex;
+}
 .form-header h1 {
   font-size: 25px;
   color: #1976d2;
