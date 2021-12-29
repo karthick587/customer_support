@@ -51,12 +51,12 @@ a {
 }
 
 .tickets-bodyrow3 td {
-  width: 228px;
+  width: 221px;
   text-align: left;
   font-weight: 550;
-  padding: 34px 0px 0px 0px;
+  padding: 34px 0 0;
   font-size: 13px;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0,0,0,.87);
 }
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
@@ -322,9 +322,22 @@ select:focus-visible {
 
 .login-page {
   overflow: hidden;
-
 }
-
+.top-btn div label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: system-ui;
+}
+.top-btn {
+  display: flex;
+  /* display: contents; */
+  padding: 0px 0px 0px 25px;
+  /* position: relative; */
+}
+.top-btn div {
+  padding: 0px 43px 0px 0px;
+}
 /*slider*/
 body {
   margin: 0;
@@ -461,7 +474,6 @@ body {
 }
 
 /*dashboard*/
-
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #1976d2 !important;
   background-color: white !important;
@@ -557,20 +569,18 @@ select.team-dialog-box:focus-visible {
 
 .team-dialog-box option {
   font-weight: 700;
-  font-size: 19px;
+  font-size: 17px;
   color: #1976d2;
-  margin: 8px 0px 23px 6px;
+  margin: 10px 0 26px 6px;
   text-transform: uppercase;
 }
-
-
 
 .dilog-icon div:hover {
   background-color: white;
 
 }
 
-.mobile-dialog{
+.mobile-dialog {
   display: none;
 }
 
@@ -618,14 +628,15 @@ form.form2 {
 }
 
 .btn2 {
-  border-radius: 22px !important;
+  border-radius: 24px !important;
   background-color: #1976d2 !important;
   color: white !important;
   font-weight: 450 !important;
-  padding: 0px 7px !important;
+  font-size: 13px !important;
+  padding: 3px 10px !important;
   border: none !important;
+  font-family: system-ui;
 }
-
 .addform {
   width: 400px !important;
 }
@@ -633,7 +644,9 @@ form.form2 {
 .btn2:hover {
   background-color: #1463b1;
 }
-
+.bottom-area{
+  padding-top: 15px;
+}
 .header-user {
   display: flex;
   padding: 16px 0px 0px 0px;

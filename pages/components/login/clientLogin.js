@@ -47,9 +47,6 @@ export default function Login1() {
       }
     });
   }
-
-
-
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     router.push("/")

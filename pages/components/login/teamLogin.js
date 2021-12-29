@@ -46,7 +46,6 @@ export default function Login2() {
                         pathname: `../dash/admindashboard`,
                         query: { name: response.data[0].adminId }
                     });
-
                 }
                 else if (validate === "customervalidate") {
 
@@ -60,13 +59,9 @@ export default function Login2() {
                     });
 
                 }
-
             }
-
         })
     }
-
-
     const onBackButtonEvent = (e) => {
         e.preventDefault();
 
@@ -103,10 +98,10 @@ export default function Login2() {
                 <Dialog open={open} >
                     <DialogContent>
                         <div className='mobile-dialog'>
-                        <select className='team-dialog-box' value={validate} onChange={(e) => setValidate(e.target.value)} multiple>
-                                    <option className='team-dialog-opstion' value="adminvalidate" onClick={handleClose}>   admin</option>
-                                    <option className='team-dialog-opstion' value="customervalidate" onClick={handleClose}>  customer</option>
-                                </select>
+                        
+                                    <a onChange={(e) => setValidate(e.target.value)} className='team-dialog-opstion' value="adminvalidate" onClick={handleClose}>   admin</a>
+                                    <a onChange={(e) => setValidate(e.target.value)} className='team-dialog-opstion' value="customervalidate" onClick={handleClose}>  customer</a>
+                              
                         </div>
                         <div className='main-dialog'>
                             <div className='dilog-icon'>
