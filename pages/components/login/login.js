@@ -31,21 +31,23 @@ export default function Login1() {
 
         if(TableValidate === "ad_"){
            const validate = "admin";
-            console.log(validate)
+            console.log(validate)          
             const SlicedName = username.slice(3,20);   
         }else if(TableValidate === "tm_"){
             const validate = "team";
-            console.log(validate)
+            console.log(validate)          
             const SlicedName = username.slice(3,20); 
         }else if((TableValidate !== "ad_")&&(TableValidate !== "tm_")){
             const validate = "customer";
             const SlicedName = username;
         }else return null;
+
+        
         console.log(validate)
         console.log(SlicedName)
     Axios.post(`https://mindmadetech.in/${validate}validate`, {
-      username: SlicedName,
-      password: password,
+    Username: SlicedName,
+    Password: password,
     }).then((response) => {
       if (response.data.message) {
         setLoginStatus(response.data.message);
