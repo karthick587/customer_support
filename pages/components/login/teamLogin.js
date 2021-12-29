@@ -44,7 +44,7 @@ export default function Login2() {
                 }
                 else if (validate === "customervalidate") {
                     router.push({
-                        pathname: `../dash/userdashboard`,
+                        pathname: `../dash/customerdashboard`,
                         query: {
                             name: response.data[0].usersId,
                             customername: response.data[0].Username
