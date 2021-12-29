@@ -38,7 +38,7 @@ export default function Landingpage() {
 
             <button   className="btn-login" onClick={() => router.push('./components/login/clientLogin')}>clientlogin</button>
             <button   className="btn-login" onClick={() => router.push('./components/login/teamLogin')}>teamlogin</button>
-              
+            <button   className="btn-login" onClick={() => router.push('./components/login/login')}>login</button>
 
 
             </header>

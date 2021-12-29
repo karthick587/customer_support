@@ -36,7 +36,7 @@ export default function Login1() {
         setLoginStatus(response.data.message);
       } else {
         router.push({
-          pathname: `../dash/userdashboard`,
+          pathname: `../dash/customerdashboard`,
           query: {
             name: response.data[0].usersId,
             customername: response.data[0].Username

@@ -44,9 +44,9 @@ function Adduser(props) {
         <div>
             <div className="container mainbody">
                 <div className="top-btn">
-                    <div class="">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="customernew" onChange={(e) => setAddmember(e.target.value)} />
-                        <label class="form-check-label" for="flexRadioDefault1">
+                    <div className="">
+                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="customernew" onChange={(e) => setAddmember(e.target.value)} />
+                        <label className="form-check-label" >
                             client
                         </label>
                     </div>
@@ -56,27 +56,27 @@ function Adduser(props) {
                         </button>
                         {isOpen && (
                             <div className='team-list'>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label className="form-check-label" >
                                         Design
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label className="form-check-label" >
                                         server
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label className="form-check-label" >
                                         development
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label className="form-check-label" >
                                         SEO
                                     </label>
                                 </div>
