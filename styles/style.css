@@ -118,9 +118,7 @@ a {
 }
 
 .tickets-table-row div .ticket-update2 {
-  /* margin-top: 27px; */
   bottom: 0px;
-  /* padding-top: 50px !important; */
   margin: 34px 56px 0px 35px;
 }
 
@@ -290,8 +288,6 @@ select:focus-visible {
 }
 
 .login-header img {
-  /* float: right; */
-
   right: -40px;
   top: -2px;
 }
@@ -299,8 +295,6 @@ select:focus-visible {
 .login-header {
   display: inline-grid;
   width: 373px;
-  /* padding: 21px 0px; */
-  /* height: 16vh; */
 
 }
 
@@ -331,9 +325,7 @@ select:focus-visible {
 }
 .top-btn {
   display: flex;
-  /* display: contents; */
   padding: 0px 0px 0px 0px;
-  /* position: relative; */
 }
 .team-list {
   margin-left: 10px;
@@ -345,7 +337,6 @@ select:focus-visible {
   margin: 4px 0px;
 }
 .team-list div {
-  /* margin: 1px 0px; */
   padding: 3px 11px;
   font-size: 11px;
 }
@@ -479,9 +470,7 @@ body {
 
 .slide-banner {
   width: 65%;
-  /* height: 100%; */
   margin-bottom: 142px;
-  /* background-color: #1c4eb9; */
 }
 
 /*dashboard*/
@@ -596,7 +585,6 @@ select.team-dialog-box:focus-visible {
 }
 
 .dilog-icon div {
-  /* padding: 2px 0px 0px 0px; */
   margin: 4px 0px 4px 0px;
 }
 
@@ -704,7 +692,6 @@ form.form2 {
 }
 .team-dropdown {
   display: flex;
-  /* padding-right: 30px; */
 }
 .team-list {
   margin-left: 10px;
@@ -892,11 +879,10 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6 {
 }
 
 span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
-  /* font-size: 15px; */
   font-weight: 500 !important;
 }
 
-/*admindash board*/
+
 .css-1l8j5k8 {
   border: none !important;
 }
@@ -908,22 +894,4 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 .css-13njpue {
 
   color: rgb(25 118 210) !important;
-}
-
-/* width */
-
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #1976d2cf;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(25 118 210);
 }

@@ -50,12 +50,12 @@ function Adminticket() {
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
-              
+
                 <div className="userbody">
-                <div className='adminticket-head'>
-                    <h1>Tickets</h1>
-                    <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                </div>
+                    <div className='adminticket-head'>
+                        <h1>Tickets</h1>
+                        <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                    </div>
                     <TableContainer component={Paper}>
                         <div className='tickets-bodyrow2'>
                             <div >TicketId</div>
@@ -84,9 +84,9 @@ function Adminticket() {
                                         <table >
                                             <tr className='tickets-bodyrow' >
                                                 <td>{tickets.ticketsId}</td>
-                                                <td >{tickets.Username}</td>
+                                                <td>{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
-                                                <td >{tickets.Team}</td>
+                                                <td>{tickets.Team}</td>
                                                 <td className={tickets.Status}>{tickets.Status}</td>
                                             </tr>
                                         </table>

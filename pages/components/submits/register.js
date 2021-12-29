@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
 import Link from 'next/link'
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-
 const schema = yup.object().shape({
     firstname: yup.string().required(),
     lastname: yup.string().required(),
@@ -14,16 +12,13 @@ const schema = yup.object().shape({
     email: yup.string().required(),
     password: yup.string().required(),
 });
-
 export default function Register() {
-
     var [show, setShow] = useState('');
 
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-
     const registerFunction = ({ firstname, lastname, username, email, password }) => {
         Axios.post("https://mindmadetech.in/register", {
             firstname: firstname,
@@ -39,7 +34,6 @@ export default function Register() {
             }
         });
     }
-
     return (
         <div className="login-page reg">
             <Head>
@@ -85,7 +79,6 @@ export default function Register() {
                             </div>
                             <div className="form-group">
                                 <button type="submit" onClick={handleSubmit(registerFunction)} className="btn btn-primary btn-md"> <a className="nav-link text-white">Register</a></button>
-
                                 <Link className="navigation" href="./adminLogin" >AdminLogin</Link>
                             </div>
                         </form>

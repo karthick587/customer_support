@@ -12,8 +12,7 @@ function Userissue(props) {
     const [description, setDescription] = useState('');
     const [screenshots, setScreenshots] = useState('');
     var today = new Date();
-    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-    
+    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();  
     const addIssues = () => {
         Axios.post("https://mindmadetech.in/ticketsnew", {
             UserName: username,
@@ -33,7 +32,6 @@ function Userissue(props) {
     return (
         <div className="container">
             <div>
-
                 <form className="form3">
                     <h4 className="issue-head">Submit your Issues Here!!!</h4>
                     <div className="form-group">
@@ -52,13 +50,11 @@ function Userissue(props) {
                         <label className="label">Domain Name</label>
                         <input className="form-input" name="domainName" type="text" onChange={(e) => { setDomainName(e.target.value); }} />
                     </div>
-
                     <div className="form-group">
                         <label className="label">Description</label>
                         <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                     <div className="form-group">
-
                         <input className="form-input mt-4" name="screenshots" type="file" onChange={(e) => { setScreenshots(e.target.value); }} />
                     </div>
                     <div className="">

@@ -1,11 +1,6 @@
 import React from 'react';
-
-
 export default function Dashcard(props) {
-
-
     return (
-
         <div className='col card-1' >
             <div className='card-left'>
                 <h3>{props.cardHead}</h3>
@@ -22,7 +17,5 @@ export default function Dashcard(props) {
                 </div>
             </div>
         </div>
-
-
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown ,faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -36,14 +36,10 @@ function Adduser(props) {
             }
         });
     }
-    
-    const toggling = () =>{  
+    const toggling = () => {
         setIsOpen(!isOpen)
         setShow2(!show2);
-    }
-   
-     ;
-
+    };
     return (
         <div>
             <div className="container mainbody">
@@ -54,41 +50,39 @@ function Adduser(props) {
                             client
                         </label>
                     </div>
-                    <div className='team-dropdown'> 
-        <button onClick={toggling}>
-            team{show2 ? <FontAwesomeIcon icon={faCaretRight} /> : <FontAwesomeIcon icon={faCaretDown} /> }
-        </button>
-        {isOpen && (
-         
-            <div className='team-list'>
-              <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
-                        <label class="form-check-label" for="flexRadioDefault1">
-                        Design
-                        </label>
+                    <div className='team-dropdown'>
+                        <button onClick={toggling}>
+                            team{show2 ? <FontAwesomeIcon icon={faCaretRight} /> : <FontAwesomeIcon icon={faCaretDown} />}
+                        </button>
+                        {isOpen && (
+                            <div className='team-list'>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Design
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        server
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        development
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        SEO
+                                    </label>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
-                        <label class="form-check-label" for="flexRadioDefault1">
-                        server
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
-                        <label class="form-check-label" for="flexRadioDefault1">
-                        development
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
-                        <label class="form-check-label" for="flexRadioDefault1">
-                        SEO
-                        </label>
-                    </div>
-            </div>
-          
-        )}
-      </div>
                 </div>
                 <div className="addform">
                     <form>
@@ -102,7 +96,6 @@ function Adduser(props) {
                             <input className="form-input" name="Username" type="text" {...register('Username')} />
                             <p className="me-2 text-danger">{errors.Username?.message}</p>
                         </div>
-
                         <div className="form-group">
                             <label className="col label">Password</label>
                             <input className="form-input" name="Password" type="password" {...register('Password')} />

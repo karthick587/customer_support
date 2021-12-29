@@ -17,21 +17,16 @@ const schema = yup.object().shape({
     username: yup.string().required(),
     password: yup.string().required().min(6)
 });
-
 export default function Login2() {
     const [open, setOpen] = React.useState(false);
     const router = useRouter();
     console.log(router.query.value)
     var [validate, setValidate] = useState('');
-
-
     var [loginStatus, setLoginStatus] = useState('');
-
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-
     const adminLogin = ({ username, password }) => {
         Axios.post(`https://mindmadetech.in/${validate}`, {
             username: username,
@@ -48,27 +43,21 @@ export default function Login2() {
                     });
                 }
                 else if (validate === "customervalidate") {
-
                     router.push({
                         pathname: `../dash/userdashboard`,
                         query: {
                             name: response.data[0].usersId,
                             customername: response.data[0].Username
                         }
-
                     });
-
                 }
             }
         })
     }
     const onBackButtonEvent = (e) => {
         e.preventDefault();
-
         router.push("/")
-
     }
-
     useEffect(() => {
         window.history.pushState(null, null, window.location.pathname);
         window.addEventListener('popstate', onBackButtonEvent);
@@ -76,32 +65,23 @@ export default function Login2() {
             window.removeEventListener('popstate', onBackButtonEvent);
         };
     }, []);
-
-
     useEffect(() => {
-
         setOpen(true);
-
     }, []);
-
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
     };
     return (
-
         <div className="login-page">
             <div>
                 <Dialog open={open} >
                     <DialogContent>
                         <div className='mobile-dialog'>
-                        
-                                    <a onChange={(e) => setValidate(e.target.value)} className='team-dialog-opstion' value="adminvalidate" onClick={handleClose}>   admin</a>
-                                    <a onChange={(e) => setValidate(e.target.value)} className='team-dialog-opstion' value="customervalidate" onClick={handleClose}>  customer</a>
-                              
+                            <a onChange={(e) => setValidate(e.target.value)} className='team-dialog-opstion' value="adminvalidate" onClick={handleClose}>   admin</a>
+                            <a onChange={(e) => setValidate(e.target.value)} className='team-dialog-opstion' value="customervalidate" onClick={handleClose}>  customer</a>
                         </div>
                         <div className='main-dialog'>
                             <div className='dilog-icon'>
@@ -119,7 +99,6 @@ export default function Login2() {
                                 </select>
                             </div>
                         </div>
-
                     </DialogContent>
                 </Dialog>
             </div>
@@ -129,11 +108,8 @@ export default function Login2() {
             <div>
                 <div className="login-body">
                     <div className="left-body">
-
                         <div className="form login">
-
                             <div className='login-header'>
-
                                 <h1>Login</h1>
                             </div>
                             <form>
@@ -162,8 +138,6 @@ export default function Login2() {
                     </div>
                 </div>
             </div>
-
-
         </div>
 
 
