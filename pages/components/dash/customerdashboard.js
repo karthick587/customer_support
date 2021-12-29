@@ -91,4 +91,4 @@ const CustomerDashboard = (props) => {
     </div>
   )
 }
-export default withRouter(UserDashboard);
+export default withRouter(CustomerDashboard);
