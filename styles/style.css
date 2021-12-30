@@ -623,9 +623,13 @@ form.form2 {
 
 .float-enduser {
   right: 16px !important;
-  position: absolute !important;
+ 
 }
-
+.right-user-btns {
+  display: flex;
+  right: 0;
+  position: absolute;
+}
 .btn2 {
   border-radius: 24px !important;
   background-color: #1976d2 !important;
