@@ -19,7 +19,9 @@ const schema = yup.object().shape({
 export default function Login1() {
 
   const router = useRouter();
-  
+  const[loginStatus,setLoginStatus] = useState('');
+  //const [name,setName] = useState('');
+  //const[validate,setValidate] = useState('');
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
@@ -27,37 +29,43 @@ export default function Login1() {
   const { errors } = formState;
 
   const adminLogin = ({ username, password }) => {
+
       var TableValidate = username.slice(0,3)
-
-        if(TableValidate === "ad_"){
-           const validate = "admin";
-            console.log(validate)          
-            const SlicedName = username.slice(3,20);   
-        }else if(TableValidate === "tm_"){
-            const validate = "team";
-            console.log(validate)          
-            const SlicedName = username.slice(3,20); 
-        }else{
-            const validate = "customer";
-            const SlicedName = username;
-        }
-
+      var validate,SlicedName;
+     
+      switch(TableValidate){
+        case 'ad_':
+          validate = "admin";
+          console.log(validate);
+          SlicedName = username.slice(3,20); 
+          console.log(SlicedName);
+          break;
+        case 'tm_':
+          validate = "team";
+          console.log(validate);
+          SlicedName = username.slice(3,20); 
+          console.log(SlicedName);
+          break;
+        default :
+          validate = "customer";
+          console.log(validate);
+          SlicedName = username;
+          console.log(SlicedName);
+      }
         
-        console.log(validate)
-        console.log(SlicedName)
     Axios.post(`https://mindmadetech.in/${validate}validate`, {
-    Username: SlicedName,
-    Password: password,
+      username: SlicedName,
+      password: password,
     }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message);
-      } else {
-        router.push({
-          pathname: `../dash/${validate}dashboard`,
-          query: {
-            name: response.data[0].usersId,
-            customername: response.data[0].Username
-          }
+        if (response.data.message) {
+          setLoginStatus(response.data.message);
+        } else {
+          router.push({
+            pathname: `../dash/${validate}dashboard`,
+            query: {
+              name: response.data[0].usersId,
+              customername: response.data[0].Username
+            }
         });
       }
     });
@@ -104,7 +112,7 @@ export default function Login1() {
                 <div className="form-group log">
                   <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                 </div>
-              {/*  <h4 className="alert1">{loginStatus}</h4>*/}
+                <h4 className="alert1">{loginStatus}</h4>
               </form>
             </div>
           </div>
