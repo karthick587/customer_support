@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -15,15 +15,14 @@ function Addteam(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
     const Router = useRouter()
-    var [show2, setShow2] = useState('');
+    //var [show2, setShow2] = useState('');
     const [show, setShow] = React.useState(false);
-    const [isOpen, setIsOpen] = useState(false);
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
     const addUser = ({ Name, Username, Password }) => {
-        Axios.post(`https://mindmadetech.in/${addmember}`, {
+        Axios.post(`https://mindmadetech.in/api/team/new`, {
             Name: Name,
             Username: Username,
             Password: Password,
@@ -36,46 +35,31 @@ function Addteam(props) {
             }
         });
     }
-    const toggling = () => {
-        setIsOpen(!isOpen)
-        setShow2(!show2);
-    };
+    
     return (
         <div>
             <div className="container mainbody">
                 <div className="top-btn">
                     <div className='team-dropdown'>
-                        <button onClick={toggling}>
-                            team{show2 ? <FontAwesomeIcon icon={faCaretRight} /> : <FontAwesomeIcon icon={faCaretDown} />}
-                        </button>
-                        {isOpen && (
                             <div className='team-list'>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >
-                                        Design
-                                    </label>
+                                    <label className="form-check-label" >Design</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >
-                                        server
-                                    </label>
+                                    <label className="form-check-label" >server</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >
-                                        development
-                                    </label>
+                                    <label className="form-check-label" >development</label>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >
-                                        SEO
-                                    </label>
+                                    <label className="form-check-label" >SEO</label>
                                 </div>
                             </div>
-                        )}
+                       
                     </div>
                 </div>
                 <div className="addform">

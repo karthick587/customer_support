@@ -23,7 +23,7 @@ function Addcustomer(props) {
     });
     const { errors } = formState;
     const addUser = ({ Name, Username, Password }) => {
-        Axios.post(`https://mindmadetech.in/${addmember}`, {
+        Axios.post(`https://mindmadetech.in/api/customer/new`, {
             Name: Name,
             Username: Username,
             Password: Password,

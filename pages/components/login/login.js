@@ -51,7 +51,7 @@ export default function Login1() {
           console.log(SlicedName);
       }
         
-    Axios.post(`https://mindmadetech.in/${validate}validate`, {
+    Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
       username: SlicedName,
       password: password,
     }).then((response) => {

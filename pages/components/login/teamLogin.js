@@ -28,7 +28,7 @@ export default function Login2() {
     });
     const { errors } = formState;
     const adminLogin = ({ username, password }) => {
-        Axios.post(`https://mindmadetech.in/${validate}`, {
+        Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
             username: username,
             password: password,
         }).then((response) => {

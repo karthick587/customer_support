@@ -17,7 +17,7 @@ function Adminticket() {
     var [selectedValue, setSelectedValue] = useState('');
     console.log(selectedValue)
     useEffect(() => {
-        Axios.get("https://mindmadetech.in/ticketslist")
+        Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, []);
     function handleTeam(e) {
@@ -29,7 +29,7 @@ function Adminticket() {
     function handleUpdate(ticketsId) {
         console.log(ticketsId)
 
-        Axios.put(`https://mindmadetech.in/ticketsupdate/${ticketsId}`, {
+        Axios.put(`https://mindmadetech.in/api/tickets/new/${ticketsId}`, {
             Team: selectedTeam,
             Status: selectedStatus,
             ticketsId: ticketsId,

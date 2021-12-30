@@ -14,7 +14,7 @@ function Userissue(props) {
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();  
     const addIssues = () => {
-        Axios.post("https://mindmadetech.in/ticketsnew", {
+        Axios.post("https://mindmadetech.in/api/tickets/new", {
             UserName: username,
             Email: email,
             Phonenumber: phonenumber,

@@ -21,7 +21,7 @@ function Userticket(props) {
     var [selectedValue, setSelectedValue] = useState('');
     console.log(selectedValue)
     useEffect(() => {
-        Axios.get("https://mindmadetech.in/ticketslist")
+        Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, []);
 

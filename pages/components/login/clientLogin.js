@@ -28,7 +28,7 @@ export default function Login1() {
 
   const adminLogin = ({ username, password }) => {
 
-    Axios.post("https://mindmadetech.in/customervalidate", {
+    Axios.post("https://mindmadetech.in/api/customer/validate", {
       username: username,
       password: password,
     }).then((response) => {

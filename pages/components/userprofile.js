@@ -17,7 +17,7 @@ export default function UserProfile({ userId }) {
 	var [show, setShow] = useState('');
 	const [user, setUser] = useState([]);
 	useEffect(() => {
-		fetch(`https://mindmadetech.in/customerlist/${userId}`)
+		fetch(`https://mindmadetech.in/api/customer/list/${userId}`)
 			.then(res => res.json())
 			.then(res => setUser(res));
 	}, []);
@@ -31,7 +31,7 @@ export default function UserProfile({ userId }) {
 
 	function handleUpdate({ phoneno, email, address }) {
 
-		Axios.put(`https://mindmadetech.in/customerupdate/${userId}`, {
+		Axios.put(`https://mindmadetech.in/api/customer/update/${userId}`, {
 			id: userId,
 			phonenumber: phoneno,
 			email: email,
