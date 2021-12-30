@@ -37,10 +37,10 @@ export default function Login1() {
             const validate = "team";
             console.log(validate)          
             const SlicedName = username.slice(3,20); 
-        }else if((TableValidate !== "ad_")&&(TableValidate !== "tm_")){
+        }else{
             const validate = "customer";
             const SlicedName = username;
-        }else return null;
+        }
 
         
         console.log(validate)
