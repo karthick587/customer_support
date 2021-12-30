@@ -36,10 +36,7 @@ function Addcustomer(props) {
             }
         });
     }
-    const toggling = () => {
-        setIsOpen(!isOpen)
-        setShow2(!show2);
-    };
+    
     return (
         <div>
             <div className="container mainbody">

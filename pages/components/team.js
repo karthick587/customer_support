@@ -9,36 +9,38 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
-import Addcustomer from './submits/addcustomer';
+import Addteam from './submits/addteam';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/router'
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
 
     console.log(selectedValue)
-    var [users, setUsers] = useState([]);
+    var [team, setTeam] = useState([]);
+    const [open, setOpen] = useState(false);
     useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data));
+        Axios.get("https://mindmadetech.in/api/team/list")
+            .then((res) => setTeam(res.data));
     }, []);
-    useEffect(() => {
-        const deleteUsers = (id) => {
+
+    const deleteUsers = (id,name) => {
+       
             // <-- declare id parameter
             Axios
-                .delete(`https://mindmadetech.in/delete/${id}`) // <-- remove ;
+                .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;
                 .then(() => {
                     // Issue GET request after item deleted to get updated list
                     // that excludes note of id
-                    this.getAllUsers()
+                    alert(`${name} was deleted`);
+                    Router.reload(window.location.pathname)
                 })
-                .then(res => {
-                    const AllUsers = res.data;
-                    this.setState({ AllUsers });
-                })
-                .catch(err => {
-                    console.error(err);
-                });
         };
-    });
+
+      
+        const handleClose = () => {
+            setOpen(false);
+          };
     return (
         <div>
             <Head>
@@ -49,13 +51,13 @@ export default function Users(props) {
 
                 <div className="userbody">
                     <div className='header-user'>
-                        <h1>USERS </h1>
+                        <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                    <div className='right-user-btns'>
                         <FormDialog
                             className="float-enduser btn2 button"
-                            dialogtitle="+ADD customer"
-                            dialogbody={<Addcustomer />}
+                            dialogtitle="+ADD Team"
+                            dialogbody={<Addteam />}
                         />
                      </div>
                     </div>
@@ -64,52 +66,48 @@ export default function Users(props) {
                             <TableHead>
                                 <TableRow>
 
-                                    <TableCell>USERID</TableCell>
-                                    <TableCell align="left">NAME</TableCell>
+                                    <TableCell>TEAMID</TableCell>
                                     <TableCell align="left">USERNAME</TableCell>
                                     <TableCell align="left">PASSWORD</TableCell>
-                                    <TableCell align="left">EMAIL</TableCell>
-                                    <TableCell align="left">PHONE NUMBER</TableCell>
-                                    <TableCell align="left">ADDRESS</TableCell>
+                                    <TableCell align="left">TEAM</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {users.filter(val => {
+                            {team.filter(val => {
                                 if (search === "") {
                                     return val;
                                 } else if (
 
-                                    val.Username.toLowerCase().includes(search.toLowerCase()) ||
-                                    val.Name.toString().includes(search.toString())
+                                    val.Username.toLowerCase().includes(search.toLowerCase()) 
 
                                 ) {
                                     return val;
                                 }
                             }).map((item) =>
-                                <TableBody key={item.usersId}>
+                                <TableBody key={item.teamId}>
 
                                     <TableRow >
 
-                                        <TableCell component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell align="left">{item.Name}</TableCell>
+                                        <TableCell component="th" scope="row">{item.teamId}</TableCell>
                                         <TableCell align="left">{item.Username}</TableCell>
                                         <TableCell align="left">{item.Password}</TableCell>
-                                        <TableCell align="left">{item.Email}</TableCell>
-                                        <TableCell align="left">{item.Phonenumber}</TableCell>
-                                        <TableCell align="left">{item.Address}</TableCell>
-                                        <TableCell align="left"><button
-                                            type="button"
-                                            className="btn2"
-                                            onClick={() => props.deleteUsers(item.id)}>
-
-                                            Delete
-                                        </button></TableCell>
+                                        <TableCell align="left">{item.Team}</TableCell>
+                                        <TableCell align="left"><FormDialog 
+                                            dialogtitle="Delete"
+                                            dialogbody={
+                                                <div>
+                                                <Button  onClick = {()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
+                                                <Button  onClose={handleClose}>NO</Button>
+                                                </div>
+                                            }
+                                            /></TableCell>
                                     </TableRow>
-
+                                    
                                 </TableBody>
                             )}
                         </Table>
                     </TableContainer>
                 </div>
+                
             </div>
         </div>
     )

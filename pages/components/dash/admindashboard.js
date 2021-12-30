@@ -9,11 +9,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import PeopleIcon from '@mui/icons-material/People';
 import ListItemText from '@mui/material/ListItemText';
 import Users from '../users';
+import Team from '../team';
 import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
-import Axios from 'axios';
+
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -30,7 +31,7 @@ const AdminDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/components/login/teamLogin")
+        router.push("/components/login/login")
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -45,7 +46,7 @@ const AdminDashboard = (props) => {
     };
   }, []);
   const onBackButtonEvent2 = () => {
-    router.push("/components/login/teamLogin")
+    router.push("/components/login/login")
   }
   return (
     <div>
@@ -65,6 +66,7 @@ const AdminDashboard = (props) => {
           }
 
           sidenavcontent={
+            <>
             <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" href="./users" ><ListItem button>
               <ListItemIcon>
                 <PeopleIcon />
@@ -72,6 +74,14 @@ const AdminDashboard = (props) => {
               <ListItemText primary="Users" />
             </ListItem>
             </button>
+            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Team" />
+            </ListItem>
+            </button>
+            </>
           }
 
           tabbody={
@@ -117,6 +127,9 @@ const AdminDashboard = (props) => {
                 </div>
                 <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Adminticket />
+                </div>
+                <div className="tab-pane fade" id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <Team />
                 </div>
                 <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
                   product details
