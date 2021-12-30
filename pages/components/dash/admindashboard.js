@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
-
+import GroupsIcon from '@mui/icons-material/Groups';
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -77,7 +77,7 @@ const AdminDashboard = (props) => {
             </button>
             <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
               <ListItemIcon>
-                <PeopleIcon />
+                <GroupsIcon />
               </ListItemIcon>
               <ListItemText primary="Team" />
             </ListItem>

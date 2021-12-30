@@ -62,7 +62,13 @@ a {
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
-
+.close-btn {
+  width: 30px !important;
+  right: 0px !important;
+  position: absolute;
+  position: absolute !important;
+  margin: 10px 1px !important;
+}
 @media only screen and (max-width: 600px) {
   .tickets-bodyrow3 div {
     width: 100px;

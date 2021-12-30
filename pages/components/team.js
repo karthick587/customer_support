@@ -15,6 +15,7 @@ import Addteam from './submits/addteam';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/router'
 export default function Users(props) {
     var [search, setSearch] = useState('');
@@ -102,7 +103,7 @@ export default function Users(props) {
                                         <TableCell align="left">
                                             <div>
                                                 <Button className="" variant="outlined" onClick={handleClickOpen}>
-                                                    Delete
+                                                   <DeleteIcon/> Delete
                                                 </Button>
                                                
                                             </div>
