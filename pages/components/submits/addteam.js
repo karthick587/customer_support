@@ -7,25 +7,28 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router'
 const schema = yup.object().shape({
-    Name: yup.string().required(),
     Username: yup.string().required(),
     Password: yup.string().required(),
+   //Team : yup.string().required()
 });
 function Addteam(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
     const Router = useRouter()
+    
     //var [show2, setShow2] = useState('');
     const [show, setShow] = React.useState(false);
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const addUser = ({ Name, Username, Password }) => {
+    //console.log(addteam);
+    const addTeam = ({ Username, Password }) => {
+    
         Axios.post(`https://mindmadetech.in/api/team/new`, {
-            Name: Name,
             Username: Username,
             Password: Password,
+            Team : addteam
         }).then((response) => {
             if (response.data.message) {
                 setShow(response.data.message)
@@ -40,10 +43,10 @@ function Addteam(props) {
         <div>
             <div className="container mainbody">
                 <div className="top-btn">
-                    <div className='team-dropdown'>
+                   <div className='team-dropdown'>
                             <div className='team-list'>
                                 <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
+                                    <input className="form-check-input" type="radio" defaultChecked name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
                                     <label className="form-check-label" >Design</label>
                                 </div>
                                 <div className="form-check">
@@ -65,11 +68,6 @@ function Addteam(props) {
                 <div className="addform">
                     <form>
                         <div className="form-group">
-                            <label className="label">Name</label>
-                            <input className="form-input" name="Name" type="text" {...register('Name')} />
-                            <p className="me-2 text-danger">{errors.Name?.message}</p>
-                        </div>
-                        <div className="form-group">
                             <label className="label">Username</label>
                             <input className="form-input" name="Username" type="text" {...register('Username')} />
                             <p className="me-2 text-danger">{errors.Username?.message}</p>
@@ -81,7 +79,7 @@ function Addteam(props) {
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
-                                <button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add {addmember}</button>
+                                <button type="submit" onClick={handleSubmit(addTeam)} className="btn2 float-end"> Add </button>
                             </div>
                         </div>
                     </form>

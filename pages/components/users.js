@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
-import Addteam from './submits/addteam';
 import Addcustomer from './submits/addcustomer';
 import Pagination from './common/Pagination';
 export default function Users(props) {
@@ -88,12 +87,6 @@ export default function Users(props) {
                             className="float-enduser btn2 button"
                             dialogtitle="+ADD customer"
                             dialogbody={<Addcustomer />}
-                        />
-
-                        <FormDialog
-                            className="float-enduser btn2 button"
-                            dialogtitle="+ADD Team"
-                            dialogbody={<Addteam />}
                         />
                      </div>
                     </div>

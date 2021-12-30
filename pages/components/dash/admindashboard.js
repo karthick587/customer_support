@@ -9,11 +9,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import PeopleIcon from '@mui/icons-material/People';
 import ListItemText from '@mui/material/ListItemText';
 import Users from '../users';
+import Team from '../team';
 import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
-import Axios from 'axios';
+
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -120,6 +121,9 @@ const AdminDashboard = (props) => {
                 </div>
                 <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Adminticket />
+                </div>
+                <div className="tab-pane fade" id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <Team />
                 </div>
                 <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
                   product details

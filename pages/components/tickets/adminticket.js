@@ -124,7 +124,7 @@ function Adminticket() {
                                     }
                                 />
                                 <FormDialog
-                                    dialogtitle="update"
+                                    dialogtitle="Assign"
                                     className="btn3 ticket-update2"
                                     dialogbody={
                                         <div className="form dialog">
@@ -135,15 +135,6 @@ function Adminticket() {
                                                 </div>
                                                 <div className="addform">
                                                     <form>
-                                                        <div className="form-group">
-                                                            <label className="label">Team :</label>
-                                                            <select className="form-input" name="Team" onChange={handleTeam}>
-                                                                <option value="">--Select--</option>
-                                                                <option value="team1">team1</option>
-                                                                <option value="team2">team2</option>
-                                                                <option value="team3">team3</option>
-                                                            </select>
-                                                        </div>
                                                         <div className="form-group">
                                                             <label className="label">Status</label>
                                                             <select className="form-input" name="Status" onChange={handleStatus}>
@@ -156,7 +147,7 @@ function Adminticket() {
                                                     </form>
                                                 </div>
                                             </div>
-                                            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Update</button>
+                                            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
                                             <h4 className="alert1 text-center">{show}</h4>
                                         </div>
                                     }
