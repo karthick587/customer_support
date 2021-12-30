@@ -36,8 +36,6 @@ export default function Landingpage() {
             </Head>
             <header className="main-header">
 
-            <button   className="btn-login" onClick={() => router.push('./components/login/clientLogin')}>clientlogin</button>
-            <button   className="btn-login" onClick={() => router.push('./components/login/teamLogin')}>teamlogin</button>
             <button   className="btn-login" onClick={() => router.push('./components/login/login')}>login</button>
 
 

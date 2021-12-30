@@ -20,8 +20,6 @@ export default function Login1() {
 
   const router = useRouter();
   const[loginStatus,setLoginStatus] = useState('');
-  //const [name,setName] = useState('');
-  //const[validate,setValidate] = useState('');
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
