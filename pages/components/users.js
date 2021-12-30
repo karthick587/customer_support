@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
 import Addteam from './submits/addteam';
 import Addcustomer from './submits/addcustomer';
+import Pagination from './common/Pagination';
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -19,7 +20,7 @@ export default function Users(props) {
     var [users, setUsers] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data));
+            .then((res) => setProductsList(res.data));
     }, []);
     useEffect(() => {
         const deleteUsers = (id) => {
@@ -40,6 +41,36 @@ export default function Users(props) {
                 });
         };
     });
+    
+
+
+    const[ProductsList,setProductsList]=useState([]);
+    const[currentPage,setCurrentPage]=useState(1);
+    let productsPerPage=8;
+    const[value,setValue]=useState('');
+    const paginate=(pageNumber)=>{
+        setCurrentPage(pageNumber);
+ 
+    }
+ 
+    function setSelect(e){
+        setValue(e.target.value);
+     
+    }
+      //Get current products
+      const indexOfLastProduct=currentPage*productsPerPage;
+      const indexOfFirstProduct=indexOfLastProduct-productsPerPage;
+      const currentProducts=ProductsList.slice(indexOfFirstProduct,indexOfLastProduct);
+
+
+      const [isOpen, setIsOpen] = useState(true);
+      useEffect(() => {
+
+        if(productsPerPage<8){
+     setIsOpen(false);
+        }else return setIsOpen(true);
+      });
+      console.log(currentProducts)
     return (
         <div>
             <Head>
@@ -80,7 +111,7 @@ export default function Users(props) {
                                     <TableCell align="left">ADDRESS</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {users.filter(val => {
+                            {currentProducts.filter(val => {
                                 if (search === "") {
                                     return val;
                                 } else if (
@@ -115,6 +146,9 @@ export default function Users(props) {
                                 </TableBody>
                             )}
                         </Table>
+                        {isOpen && (
+                        <Pagination perPage={productsPerPage} total={ProductsList.length} paginate={paginate}/>
+                        )}
                     </TableContainer>
                 </div>
             </div>

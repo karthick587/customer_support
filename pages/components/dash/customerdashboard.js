@@ -27,7 +27,7 @@ const CustomerDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/components/login/clientLogin")
+        router.push("/components/login/login")
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -44,7 +44,7 @@ const CustomerDashboard = (props) => {
   }, []);
 
   const onBackButtonEvent3 = () => {
-    router.push("/components/login/clientLogin")
+    router.push("/components/login/login")
   }
   return (
     <div>
@@ -74,7 +74,7 @@ const CustomerDashboard = (props) => {
         tabbody={
           <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
             <div className="tab-content" id="v-pills-tabContent">
-              <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <Userissue customername={Username} />
               </div>
               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -82,7 +82,7 @@ const CustomerDashboard = (props) => {
               </div>
               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
               </div>
-              <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+              <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                 <Userticket Username={Username} />
               </div>
             </div>

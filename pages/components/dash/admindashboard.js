@@ -30,7 +30,7 @@ const AdminDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/components/login/teamLogin")
+        router.push("/components/login/login")
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -45,7 +45,7 @@ const AdminDashboard = (props) => {
     };
   }, []);
   const onBackButtonEvent2 = () => {
-    router.push("/components/login/teamLogin")
+    router.push("/components/login/login")
   }
   return (
     <div>
@@ -65,20 +65,23 @@ const AdminDashboard = (props) => {
           }
 
           sidenavcontent={
-            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" href="./users" ><ListItem button>
+            <>
+            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
             </ListItem>
             </button>
-          }
+            </>
 
+          }
+         
           tabbody={
             <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
 
               <div className="tab-content" id="v-pills-tabContent">
-                <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <div className='main-dash'>
                     <div className='main-dash-sub' >
                       <div className='dash-head'>
@@ -112,10 +115,10 @@ const AdminDashboard = (props) => {
                   </div>
                 </div>
 
-                <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div className="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                   <Users />
                 </div>
-                <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Adminticket />
                 </div>
                 <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">

@@ -35,7 +35,7 @@ function Addteam(props) {
             }
         });
     }
-    
+    console.log(addteam)
     return (
         <div>
             <div className="container mainbody">
