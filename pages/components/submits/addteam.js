@@ -11,7 +11,7 @@ const schema = yup.object().shape({
     Username: yup.string().required(),
     Password: yup.string().required(),
 });
-function Adduser(props) {
+function Addteam(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
     const Router = useRouter()
@@ -44,12 +44,6 @@ function Adduser(props) {
         <div>
             <div className="container mainbody">
                 <div className="top-btn">
-                    <div className="">
-                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="customernew" onChange={(e) => setAddmember(e.target.value)} />
-                        <label className="form-check-label" >
-                            client
-                        </label>
-                    </div>
                     <div className='team-dropdown'>
                         <button onClick={toggling}>
                             team{show2 ? <FontAwesomeIcon icon={faCaretRight} /> : <FontAwesomeIcon icon={faCaretDown} />}
@@ -113,4 +107,4 @@ function Adduser(props) {
         </div>
     );
 }
-export default Adduser;
+export default Addteam;

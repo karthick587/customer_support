@@ -9,8 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
-import Adduser from './submits/adduser';
-
+import Addteam from './submits/addteam';
+import Addcustomer from './submits/addcustomer';
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -52,12 +52,19 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>USERS </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                   <div className='right-user-btns'>
                         <FormDialog
                             className="float-enduser btn2 button"
-                            dialogtitle="+ADD USER"
-                            dialogbody={<Adduser />}
+                            dialogtitle="+ADD customer"
+                            dialogbody={<Addcustomer />}
                         />
 
+                        <FormDialog
+                            className="float-enduser btn2 button"
+                            dialogtitle="+ADD Team"
+                            dialogbody={<Addteam />}
+                        />
+                     </div>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
