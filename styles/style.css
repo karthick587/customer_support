@@ -106,6 +106,12 @@ a {
 .css-dsuxgy-MuiTableCell-root {
   padding: 0px !important;
 }
+.actionbtn{
+  right: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+}
 .pagination {
   bottom: 0px;
   left: 0;
@@ -147,7 +153,7 @@ a {
 
 .ticket label {
   color: #1976d2;
-  font-weight: 600;
+  font-weight: 750;
 }
 
 .ticket.details-title {
@@ -172,6 +178,9 @@ a {
 .keen-slider__slide.number-slide2 {
   background-color: #1c4eb9;
 }
+
+
+
 
 .keen-slider__slide.number-slide3 {
   background-color: #1c4eb9;

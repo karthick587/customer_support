@@ -24,7 +24,7 @@ function Addteam(props) {
     const { errors } = formState;
     //console.log(addteam);
     const addTeam = ({ Username, Password }) => {
-    
+    console.log(addteam)
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
             Password: Password,
@@ -46,7 +46,7 @@ function Addteam(props) {
                    <div className='team-dropdown'>
                             <div className='team-list'>
                                 <div className="form-check">
-                                    <input className="form-check-input" type="radio" defaultChecked name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
+                                    <input className="form-check-input" type="radio"  name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
                                     <label className="form-check-label" >Design</label>
                                 </div>
                                 <div className="form-check">

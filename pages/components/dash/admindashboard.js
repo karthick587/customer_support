@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
+import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 import Typography from '@mui/material/Typography';
@@ -72,6 +73,13 @@ const AdminDashboard = (props) => {
                 <PeopleIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
+            </ListItem>
+            </button>
+            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Team" />
             </ListItem>
             </button>
             </>

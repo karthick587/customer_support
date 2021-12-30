@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -11,65 +11,74 @@ import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
 import Addcustomer from './submits/addcustomer';
 import Pagination from './common/Pagination';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/router'
+import * as React from 'react';
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
-
+    const [ProductsList, setProductsList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [open, setOpen] = React.useState(false);
+    const [value, setValue] = useState('');
+    const [isOpen, setIsOpen] = useState(true);
+    const Router = useRouter()
     console.log(selectedValue)
-    var [users, setUsers] = useState([]);
+    
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setProductsList(res.data));
     }, []);
-    useEffect(() => {
-        const deleteUsers = (id) => {
-            // <-- declare id parameter
-            Axios
-                .delete(`https://mindmadetech.in/delete/${id}`) // <-- remove ;
-                .then(() => {
-                    // Issue GET request after item deleted to get updated list
-                    // that excludes note of id
-                    this.getAllUsers()
-                })
-                .then(res => {
-                    const AllUsers = res.data;
-                    this.setState({ AllUsers });
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        };
-    });
-    
 
 
-    const[ProductsList,setProductsList]=useState([]);
-    const[currentPage,setCurrentPage]=useState(1);
-    let productsPerPage=8;
-    const[value,setValue]=useState('');
-    const paginate=(pageNumber)=>{
+    const deleteUsers = (id, name) => {
+
+        // <-- declare id parameter
+        Axios
+            .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
+            .then(() => {
+                // Issue GET request after item deleted to get updated list
+                // that excludes note of id
+
+                Router.reload(window.location.pathname)
+            })
+    };
+
+
+    let productsPerPage = 8;
+
+    const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
- 
+
     }
- 
-    function setSelect(e){
+
+    function setSelect(e) {
         setValue(e.target.value);
-     
+
     }
-      //Get current products
-      const indexOfLastProduct=currentPage*productsPerPage;
-      const indexOfFirstProduct=indexOfLastProduct-productsPerPage;
-      const currentProducts=ProductsList.slice(indexOfFirstProduct,indexOfLastProduct);
+    //Get current products
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = ProductsList.slice(indexOfFirstProduct, indexOfLastProduct);
 
 
-      const [isOpen, setIsOpen] = useState(true);
-      useEffect(() => {
 
-        if(productsPerPage<8){
-     setIsOpen(false);
-        }else return setIsOpen(true);
-      });
-      console.log(currentProducts)
+    useEffect(() => {
+
+        if (productsPerPage < 8) {
+            setIsOpen(false);
+        } else return setIsOpen(true);
+    });
+    console.log(currentProducts)
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <div>
             <Head>
@@ -82,13 +91,13 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>USERS </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                   <div className='right-user-btns'>
-                        <FormDialog
-                            className="float-enduser btn2 button"
-                            dialogtitle="+ADD customer"
-                            dialogbody={<Addcustomer />}
-                        />
-                     </div>
+                        <div className='right-user-btns'>
+                            <FormDialog
+                                className="float-enduser btn2 button"
+                                dialogtitle="+ADD customer"
+                                dialogbody={<Addcustomer />}
+                            />
+                        </div>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -127,20 +136,29 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Email}</TableCell>
                                         <TableCell align="left">{item.Phonenumber}</TableCell>
                                         <TableCell align="left">{item.Address}</TableCell>
-                                        <TableCell align="left"><button
-                                            type="button"
-                                            className="btn2"
-                                            onClick={() => props.deleteUsers(item.id)}>
+                                        <TableCell align="left" >
+                                            <div>
+                                                <Button className="" variant="outlined" onClick={handleClickOpen}>
+                                                    Delete
+                                                </Button>
+                                                <Dialog open={open} onClose={handleClose}>
+                                                    <DialogContent>
+                                                        do you want to delete
+                                                        <div className="actionbtn">
+                                                            <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
+                                                            <Button onClick={handleClose}>NO</Button>
+                                                        </div>
+                                                    </DialogContent>
 
-                                            Delete
-                                        </button></TableCell>
+                                                </Dialog>
+                                            </div></TableCell>
                                     </TableRow>
 
                                 </TableBody>
                             )}
                         </Table>
                         {isOpen && (
-                        <Pagination perPage={productsPerPage} total={ProductsList.length} paginate={paginate}/>
+                            <Pagination perPage={productsPerPage} total={ProductsList.length} paginate={paginate} />
                         )}
                     </TableContainer>
                 </div>
