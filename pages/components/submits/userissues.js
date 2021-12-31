@@ -36,7 +36,7 @@ function Userissue(props) {
     return (
         <div className="container">
             <div>
-                <form className="form3" action="/" enctype="multipart/form-data" method="post">
+                <form className="form3" action="/" method="post">
                     <h4 className="issue-head">Submit your Issues Here!!!</h4>
                     <div className="form-group">
                         <label className="label">User Name</label>
