@@ -54,7 +54,7 @@ function Adminticket() {
                     </div>
                     <TableContainer component={Paper}>
                         <div className='tickets-bodyrow2'>
-                            <div >TicketId</div>
+                            <div>TicketId</div>
                             <div>Username</div>
                             <div >Date</div>
                             <div>Team</div>
@@ -132,9 +132,9 @@ function Adminticket() {
                                                 <div className="addform">
                                                     <form>
                                                         <div className="form-group">
-                                                            <label className="label">Status</label>
+                                                            <label className="label">Team</label>
                                                             <select className="form-input" name="Status" onChange={handleTeam}>
-                                                                <option value="">--Select--</option>
+                                                                <option value="">--Select Team--</option>
                                                                 <option className='new' value="design">Design Team</option>
                                                                 <option className='inprogress' value="development">Development Team</option>
                                                                 <option className='completed' value="server">Server Team</option>

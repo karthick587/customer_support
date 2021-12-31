@@ -104,9 +104,10 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Address}</TableCell>
                                         <TableCell align="left"><FormDialog 
                                             dialogtitle="Delete"
-                                            dialogbody="Are you sure you want to delete the team?"
+                                           
+                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
                                             dialogactions={
-                                                <div>
+                                                <div className=''>
                                                     <Button onClick={()=>deleteUsers(item.usersId,item.Username)}>YES</Button>
                                                     <Button  onClick={handleClose}>NO</Button>
                                                 </div>

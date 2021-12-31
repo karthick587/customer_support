@@ -185,8 +185,13 @@ a {
   background-color: #1c4eb9;
 }
 
-
-
+.head-dialog {
+  width: 400px;
+  padding: 19px 0px 0px 23px;
+}
+.close-btn-div{
+  width: 40px;
+}
 
 .keen-slider__slide.number-slide3 {
   background-color: #1c4eb9;

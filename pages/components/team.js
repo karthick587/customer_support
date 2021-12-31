@@ -24,14 +24,11 @@ export default function Users(props) {
     console.log(selectedValue)
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
-
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
     }, []);
-
     const deleteUsers = (id,name) => {
-       
             // <-- declare id parameter
             Axios
                 .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;
@@ -41,8 +38,6 @@ export default function Users(props) {
                     Router.reload(window.location.pathname);
                 })
         };
-
-      
          const handleClose = () => {
             Router.reload(window.location.pathname)
          };
@@ -52,8 +47,6 @@ export default function Users(props) {
                 <title>Admin Dashboard</title>
             </Head>
             <div className="container mainbody">
-
-
                 <div className="userbody">
                     <div className='header-user'>
                         <h1>TEAM </h1>
@@ -70,7 +63,6 @@ export default function Users(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-
                                     <TableCell>TEAMID</TableCell>
                                     <TableCell align="left">USERNAME</TableCell>
                                     <TableCell align="left">PASSWORD</TableCell>
@@ -81,9 +73,7 @@ export default function Users(props) {
                                 if (search === "") {
                                     return val;
                                 } else if (
-
                                     val.Username.toLowerCase().includes(search.toLowerCase())
-
                                 ) {
                                     return val;
                                 }
@@ -98,7 +88,7 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Team}</TableCell>
                                         <TableCell align="left"><FormDialog 
                                             dialogtitle="Delete"
-                                            dialogbody="Are you sure you want to delete the team?"
+                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
                                             dialogactions={
                                                 <div>
                                                     <Button onClick={()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
@@ -107,15 +97,7 @@ export default function Users(props) {
                                             }
                                             /></TableCell>
                                     </TableRow>
-                                    <Dialog open={open} onClose={handleClose}>
-                                                    <DialogContent>
-                                                        do you want to delete
-                                                    </DialogContent>
-                                                    <DialogActions className="actionbtn">
-                                                        <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
-                                                        <Button onClick={handleClose}>NO</Button>
-                                                    </DialogActions>
-                                                </Dialog>
+                                  
                                 </TableBody>
                             )}
                         </Table>
