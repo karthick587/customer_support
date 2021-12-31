@@ -11,7 +11,7 @@ export default function Test() {
     }
     return (
         <div>
-            <form enctype="multipart/form-data" method="post">
+            <form  method="post">
                 <input type="file" name="images" accept='image/*' onChange={(e) => { setImages(e.target.value); }} />
                 <button type="submit" onClick={addimage}>button</button>
             </form>
