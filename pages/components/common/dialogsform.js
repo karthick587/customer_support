@@ -17,7 +17,8 @@ export default function FormDialog(props) {
       <Button className={props.className} variant="outlined" onClick={handleClickOpen}>
         {props.dialogtitle}
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open}>
+        <Button className='close-btn' onClick={handleClose}><CloseIcon /></Button>
         <DialogContent>
           {props.dialogbody}
         </DialogContent>

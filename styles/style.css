@@ -62,7 +62,13 @@ a {
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
-
+.close-btn {
+  width: 30px !important;
+  right: 0px !important;
+  position: absolute;
+  position: absolute !important;
+  margin: 10px 1px !important;
+}
 @media only screen and (max-width: 600px) {
   .tickets-bodyrow3 div {
     width: 100px;
@@ -95,7 +101,7 @@ a {
 }
 
 .tickets-bodyrow td {
-  width: 187px;
+  width: 185px;
   text-align: left;
   font-weight: 550;
   padding: 34px 0px 0px 0px;
@@ -106,7 +112,18 @@ a {
 .css-dsuxgy-MuiTableCell-root {
   padding: 0px !important;
 }
-
+.actionbtn{
+  right: 0;
+  left: 0;
+  margin: auto;
+  display: block;
+}
+.pagination {
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
 .tickets-table-row div {
   border-bottom: 1px solid rgba(224, 224, 224, 1);
 }
@@ -142,7 +159,7 @@ a {
 
 .ticket label {
   color: #1976d2;
-  font-weight: 600;
+  font-weight: 750;
 }
 
 .ticket.details-title {
@@ -167,6 +184,9 @@ a {
 .keen-slider__slide.number-slide2 {
   background-color: #1c4eb9;
 }
+
+
+
 
 .keen-slider__slide.number-slide3 {
   background-color: #1c4eb9;
@@ -702,11 +722,15 @@ form.form2 {
   display: flex;
 }
 .form-header h1 {
-  font-size: 25px;
+  font-size: 16px;
   color: #1976d2;
-  font-weight: 600;
+  font-weight: 800;
+  text-transform: uppercase;
 }
-
+.ticket div {
+  font-size: 13px;
+  font-weight: 500;
+}
 .issue-head {
   color: #1976d2;
   font-size: 25px;
@@ -766,7 +790,7 @@ h4.alert1.text-center {
 
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
-  padding-top: 40px !important;
+  padding-top: 25px !important;
   font-weight: 550;
 }
 

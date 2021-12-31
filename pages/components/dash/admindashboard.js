@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
+import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 import Typography from '@mui/material/Typography';
@@ -14,7 +15,7 @@ import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
-
+import GroupsIcon from '@mui/icons-material/Groups';
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -67,7 +68,7 @@ const AdminDashboard = (props) => {
 
           sidenavcontent={
             <>
-            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" href="./users" ><ListItem button>
+            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
@@ -76,19 +77,20 @@ const AdminDashboard = (props) => {
             </button>
             <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
               <ListItemIcon>
-                <PeopleIcon />
+                <GroupsIcon />
               </ListItemIcon>
               <ListItemText primary="Team" />
             </ListItem>
             </button>
             </>
-          }
 
+          }
+         
           tabbody={
             <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
 
               <div className="tab-content" id="v-pills-tabContent">
-                <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <div className='main-dash'>
                     <div className='main-dash-sub' >
                       <div className='dash-head'>
@@ -122,10 +124,10 @@ const AdminDashboard = (props) => {
                   </div>
                 </div>
 
-                <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div className="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                   <Users />
                 </div>
-                <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Adminticket />
                 </div>
                 <div className="tab-pane fade" id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">

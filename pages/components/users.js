@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -22,7 +22,7 @@ export default function Users(props) {
     const [open, setOpen] = useState(false);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data));
+            .then((res) => setProductsList(res.data));
     }, []);
 
     const deleteUsers = (id,name) => {
@@ -54,13 +54,13 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>USERS </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                   <div className='right-user-btns'>
-                        <FormDialog
-                            className="float-enduser btn2 button"
-                            dialogtitle="+ADD customer"
-                            dialogbody={<Addcustomer />}
-                        />
-                     </div>
+                        <div className='right-user-btns'>
+                            <FormDialog
+                                className="float-enduser btn2 button"
+                                dialogtitle="+ADD customer"
+                                dialogbody={<Addcustomer />}
+                            />
+                        </div>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -76,7 +76,7 @@ export default function Users(props) {
                                     <TableCell align="left">ADDRESS</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {users.filter(val => {
+                            {currentProducts.filter(val => {
                                 if (search === "") {
                                     return val;
                                 } else if (
@@ -114,6 +114,9 @@ export default function Users(props) {
                                 </TableBody>
                             )}
                         </Table>
+                        {isOpen && (
+                            <Pagination perPage={productsPerPage} total={ProductsList.length} paginate={paginate} />
+                        )}
                     </TableContainer>
                 </div>
             </div>

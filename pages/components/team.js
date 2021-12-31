@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
+import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,9 +9,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Dialog from '@mui/material/Dialog';
 import FormDialog from './common/dialogsform';
 import Addteam from './submits/addteam';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
 import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/router'
 export default function Users(props) {
     var [search, setSearch] = useState('');
@@ -18,7 +23,7 @@ export default function Users(props) {
     const Router = useRouter();
     console.log(selectedValue)
     var [team, setTeam] = useState([]);
-    const [open, setOpen] = useState(false);
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
@@ -52,13 +57,13 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                   <div className='right-user-btns'>
-                        <FormDialog
-                            className="float-enduser btn2 button"
-                            dialogtitle="+ADD Team"
-                            dialogbody={<Addteam />}
-                        />
-                     </div>
+                        <div className='right-user-btns'>
+                            <FormDialog
+                                className="float-enduser btn2 button"
+                                dialogtitle="+ADD Team"
+                                dialogbody={<Addteam />}
+                            />
+                        </div>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -76,7 +81,7 @@ export default function Users(props) {
                                     return val;
                                 } else if (
 
-                                    val.Username.toLowerCase().includes(search.toLowerCase()) 
+                                    val.Username.toLowerCase().includes(search.toLowerCase())
 
                                 ) {
                                     return val;
@@ -101,13 +106,21 @@ export default function Users(props) {
                                             }
                                             /></TableCell>
                                     </TableRow>
-                                    
+                                    <Dialog open={open} onClose={handleClose}>
+                                                    <DialogContent>
+                                                        do you want to delete
+                                                    </DialogContent>
+                                                    <DialogActions className="actionbtn">
+                                                        <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
+                                                        <Button onClick={handleClose}>NO</Button>
+                                                    </DialogActions>
+                                                </Dialog>
                                 </TableBody>
                             )}
                         </Table>
                     </TableContainer>
                 </div>
-                
+
             </div>
         </div>
     )
