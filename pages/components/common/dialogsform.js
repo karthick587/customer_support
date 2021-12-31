@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import {DialogActions} from '@mui/material';
 
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -20,6 +21,9 @@ export default function FormDialog(props) {
         <DialogContent>
           {props.dialogbody}
         </DialogContent>
+        <DialogActions>
+          {props.dialogactions}
+        </DialogActions>
       </Dialog>
     </div>
   );

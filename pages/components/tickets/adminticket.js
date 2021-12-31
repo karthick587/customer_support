@@ -12,7 +12,6 @@ function Adminticket() {
     var [show, setShow] = useState('');
     var [tickets, setTickets,] = useState([]);
     var [selectedTeam, setSelectedTeam] = useState('');
-    var [selectedStatus, setSelectedStatus] = useState('');
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     console.log(selectedValue)
@@ -23,15 +22,12 @@ function Adminticket() {
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
-    function handleStatus(e) {
-        setSelectedStatus(e.target.value)
-    }
+    
     function handleUpdate(ticketsId) {
         console.log(ticketsId)
 
-        Axios.put(`https://mindmadetech.in/api/tickets/new/${ticketsId}`, {
+        Axios.put(`https://mindmadetech.in/api/tickets/update/${ticketsId}`, {
             Team: selectedTeam,
-            Status: selectedStatus,
             ticketsId: ticketsId,
         }).then((response) => {
 
@@ -137,11 +133,12 @@ function Adminticket() {
                                                     <form>
                                                         <div className="form-group">
                                                             <label className="label">Status</label>
-                                                            <select className="form-input" name="Status" onChange={handleStatus}>
+                                                            <select className="form-input" name="Status" onChange={handleTeam}>
                                                                 <option value="">--Select--</option>
-                                                                <option className='new' value="new">New</option>
-                                                                <option className='inprogress' value="inprogress">In progress</option>
-                                                                <option className='completed' value="completed">Completed</option>
+                                                                <option className='new' value="design">Design Team</option>
+                                                                <option className='inprogress' value="development">Development Team</option>
+                                                                <option className='completed' value="server">Server Team</option>
+                                                                <option className='completed' value="seo">SEO Team</option>
                                                             </select>
                                                         </div>
                                                     </form>

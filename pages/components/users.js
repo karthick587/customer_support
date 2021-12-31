@@ -9,36 +9,39 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
+import { Button } from '@mui/material';
 import Addcustomer from './submits/addcustomer';
+import { useRouter } from 'next/router';
+
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
-
+    const Router = useRouter();
     console.log(selectedValue)
     var [users, setUsers] = useState([]);
+    const [open, setOpen] = useState(false);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data));
     }, []);
-    useEffect(() => {
-        const deleteUsers = (id) => {
-            // <-- declare id parameter
-            Axios
-                .delete(`https://mindmadetech.in/delete/${id}`) // <-- remove ;
-                .then(() => {
-                    // Issue GET request after item deleted to get updated list
-                    // that excludes note of id
-                    this.getAllUsers()
-                })
-                .then(res => {
-                    const AllUsers = res.data;
-                    this.setState({ AllUsers });
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        };
-    });
+
+    const deleteUsers = (id,name) => {
+       
+        // <-- declare id parameter
+        Axios
+            .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
+            .then(() => {
+                // Issue GET request after item deleted to get updated list
+                // that excludes note of id
+                Router.reload(window.location.pathname);
+            })
+    };
+
+  
+     const handleClose = () => {
+        Router.reload(window.location.pathname)
+     };
+
     return (
         <div>
             <Head>
@@ -96,13 +99,16 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Email}</TableCell>
                                         <TableCell align="left">{item.Phonenumber}</TableCell>
                                         <TableCell align="left">{item.Address}</TableCell>
-                                        <TableCell align="left"><button
-                                            type="button"
-                                            className="btn2"
-                                            onClick={() => props.deleteUsers(item.id)}>
-
-                                            Delete
-                                        </button></TableCell>
+                                        <TableCell align="left"><FormDialog 
+                                            dialogtitle="Delete"
+                                            dialogbody="Are you sure you want to delete the team?"
+                                            dialogactions={
+                                                <div>
+                                                    <Button onClick={()=>deleteUsers(item.usersId,item.Username)}>YES</Button>
+                                                    <Button  onClick={handleClose}>NO</Button>
+                                                </div>
+                                            }
+                                            /></TableCell>
                                     </TableRow>
 
                                 </TableBody>

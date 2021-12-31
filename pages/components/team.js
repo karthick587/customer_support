@@ -15,7 +15,7 @@ import { useRouter } from 'next/router'
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
-
+    const Router = useRouter();
     console.log(selectedValue)
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
@@ -32,15 +32,14 @@ export default function Users(props) {
                 .then(() => {
                     // Issue GET request after item deleted to get updated list
                     // that excludes note of id
-                    alert(`${name} was deleted`);
-                    Router.reload(window.location.pathname)
+                    Router.reload(window.location.pathname);
                 })
         };
 
       
-        const handleClose = () => {
-            setOpen(false);
-          };
+         const handleClose = () => {
+            Router.reload(window.location.pathname)
+         };
     return (
         <div>
             <Head>
@@ -93,10 +92,11 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Team}</TableCell>
                                         <TableCell align="left"><FormDialog 
                                             dialogtitle="Delete"
-                                            dialogbody={
+                                            dialogbody="Are you sure you want to delete the team?"
+                                            dialogactions={
                                                 <div>
-                                                <Button  onClick = {()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
-                                                <Button  onClose={handleClose}>NO</Button>
+                                                    <Button onClick={()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
+                                                    <Button  onClick={handleClose}>NO</Button>
                                                 </div>
                                             }
                                             /></TableCell>

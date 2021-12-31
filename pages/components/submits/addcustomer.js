@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 function Addcustomer(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
-    const Router = useRouter()
+    const Router = useRouter();
     var [show2, setShow2] = useState('');
     const [show, setShow] = React.useState(false);
     const [isOpen, setIsOpen] = useState(false);
