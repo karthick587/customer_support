@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import {DialogActions} from '@mui/material';
-
+import CloseIcon from '@mui/icons-material/Close';
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {

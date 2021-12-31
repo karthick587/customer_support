@@ -23,6 +23,7 @@ export default function Users(props) {
     const Router = useRouter();
     console.log(selectedValue)
     var [team, setTeam] = useState([]);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")

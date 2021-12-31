@@ -9,7 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
+import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
+
 import Addcustomer from './submits/addcustomer';
 import { useRouter } from 'next/router';
 
@@ -20,9 +22,10 @@ export default function Users(props) {
     console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setProductsList(res.data));
+            .then((res) => setUsers(res.data));
     }, []);
 
     const deleteUsers = (id,name) => {
@@ -76,7 +79,7 @@ export default function Users(props) {
                                     <TableCell align="left">ADDRESS</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {currentProducts.filter(val => {
+                            {users.filter(val => {
                                 if (search === "") {
                                     return val;
                                 } else if (
@@ -114,9 +117,7 @@ export default function Users(props) {
                                 </TableBody>
                             )}
                         </Table>
-                        {isOpen && (
-                            <Pagination perPage={productsPerPage} total={ProductsList.length} paginate={paginate} />
-                        )}
+                        
                     </TableContainer>
                 </div>
             </div>
