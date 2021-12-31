@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -36,7 +34,7 @@ function Addcustomer(props) {
             }
         });
     }
-    
+
     return (
         <div>
             <div className="container mainbody">

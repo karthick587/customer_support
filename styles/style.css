@@ -196,7 +196,10 @@ a {
 .keen-slider__slide.number-slide3 {
   background-color: #1c4eb9;
 }
-
+.statusUpdateTime {
+  font-size: 11px;
+  margin: -3px 1px -3px 0px !important;
+}
 form.form3 {
   width: 600px;
   margin: 27px 4px 0px 67px;

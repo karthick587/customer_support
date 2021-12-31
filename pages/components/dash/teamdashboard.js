@@ -1,28 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Typography from '@mui/material/Typography';
 import Dashboard from "../common/navdashboard";
-import UserProfile from '../userprofile';
-import Userissue from "../submits/userissues";
 import { withRouter } from "next/router";
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemText from '@mui/material/ListItemText';
 import router from "next/router";
-import Userticket from "../tickets/userticket";
 
 const TeamDashboard = (props) => {
-
-
   const [finishStatus, setfinishStatus] = useState(false);
   var userId = props.router.query.name;
   var Username = props.router.query.customername;
   console.log(userId)
-
-
   const onBackButtonEvent = (e) => {
     e.preventDefault();
-
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
@@ -34,7 +26,6 @@ const TeamDashboard = (props) => {
       }
     }
   }
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -42,7 +33,6 @@ const TeamDashboard = (props) => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
-
   const onBackButtonEvent3 = () => {
     router.push("/components/login/login")
   }
@@ -81,7 +71,7 @@ const TeamDashboard = (props) => {
                profile
               </div>
               <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-              tickets
+           
               </div>
             </div>
           </div>

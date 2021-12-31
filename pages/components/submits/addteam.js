@@ -9,13 +9,13 @@ import { useRouter } from 'next/router'
 const schema = yup.object().shape({
     Username: yup.string().required(),
     Password: yup.string().required(),
-   //Team : yup.string().required()
+    //Team : yup.string().required()
 });
 function Addteam(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
     const Router = useRouter()
-    
+
     //var [show2, setShow2] = useState('');
     const [show, setShow] = React.useState(false);
     const { register, handleSubmit, formState } = useForm({
@@ -24,11 +24,11 @@ function Addteam(props) {
     const { errors } = formState;
     //console.log(addteam);
     const addTeam = ({ Username, Password }) => {
-    console.log(addteam)
+        console.log(addteam)
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
             Password: Password,
-            Team : addteam
+            Team: addteam
         }).then((response) => {
             if (response.data.message) {
                 setShow(response.data.message)
@@ -43,26 +43,25 @@ function Addteam(props) {
         <div>
             <div className="container mainbody">
                 <div className="top-btn">
-                   <div className='team-dropdown'>
-                            <div className='team-list'>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio"  name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >Design</label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >server</label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >development</label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
-                                    <label className="form-check-label" >SEO</label>
-                                </div>
+                    <div className='team-dropdown'>
+                        <div className='team-list'>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Design" onChange={(e) => setAddteam(e.target.value)} />
+                                <label className="form-check-label" >Design</label>
                             </div>
-                       
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="server" onChange={(e) => setAddteam(e.target.value)} />
+                                <label className="form-check-label" >server</label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="development" onChange={(e) => setAddteam(e.target.value)} />
+                                <label className="form-check-label" >development</label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="SEO" onChange={(e) => setAddteam(e.target.value)} />
+                                <label className="form-check-label" >SEO</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="addform">

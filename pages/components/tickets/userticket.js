@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 import FormDialog from '../common/dialogsform';
-
 function Userticket(props) {
 
     const { Username } = props;
@@ -68,7 +61,7 @@ function Userticket(props) {
                                                 <td >{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
                                                 <td >{tickets.Team}</td>
-                                                <td className={tickets.Status}>{tickets.Status}</td>
+                                                <td ><h5 className='statusUpdateTime'>Updated at{tickets.statusUpdateTime}</h5><div className={tickets.Status}>{tickets.Status}</div></td>
                                             </tr>
                                         </table>
                                     }

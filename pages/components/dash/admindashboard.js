@@ -1,4 +1,4 @@
-import{ useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -68,24 +68,24 @@ const AdminDashboard = (props) => {
 
           sidenavcontent={
             <>
-            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
-              <ListItemIcon>
-                <PeopleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Users" />
-            </ListItem>
-            </button>
-            <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
-              <ListItemIcon>
-                <GroupsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Team" />
-            </ListItem>
-            </button>
+              <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Users" />
+              </ListItem>
+              </button>
+              <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
+                <ListItemIcon>
+                  <GroupsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Team" />
+              </ListItem>
+              </button>
             </>
 
           }
-         
+
           tabbody={
             <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
 

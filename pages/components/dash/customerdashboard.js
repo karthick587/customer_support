@@ -10,19 +10,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemText from '@mui/material/ListItemText';
 import router from "next/router";
 import Userticket from "../tickets/userticket";
-
 const CustomerDashboard = (props) => {
-
-
   const [finishStatus, setfinishStatus] = useState(false);
   var userId = props.router.query.name;
   var Username = props.router.query.customername;
   console.log(userId)
-
-
   const onBackButtonEvent = (e) => {
     e.preventDefault();
-
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
@@ -34,7 +28,6 @@ const CustomerDashboard = (props) => {
       }
     }
   }
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -42,7 +35,6 @@ const CustomerDashboard = (props) => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
-
   const onBackButtonEvent3 = () => {
     router.push("/components/login/login")
   }

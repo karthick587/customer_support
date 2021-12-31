@@ -13,6 +13,10 @@ function Userissue(props) {
     const [screenshots, setScreenshots] = useState('');
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+   
+
+   
+
     const addIssues = () => {
         Axios.post("https://mindmadetech.in/api/tickets/new", {
             UserName: username,
@@ -55,11 +59,11 @@ function Userissue(props) {
                         <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                     <div className="form-group">
-                     
+
                         <label htmlFor="contained-button-file">
                             <input accept="image/*" id="contained-button-file" multiple type="file" onChange={(e) => { setScreenshots(e.target.value); }} />
                             <input type="file" name="image" accept='image/*' />
-                            <input type="submit" value="Upload" /> 
+                            <input type="submit" value="Upload" />
                         </label>
                     </div>
                     <div className="">

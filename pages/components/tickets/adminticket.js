@@ -13,6 +13,8 @@ function Adminticket() {
     var [tickets, setTickets,] = useState([]);
     var [selectedTeam, setSelectedTeam] = useState('');
     var [search, setSearch] = useState('');
+    var [statusUpdateTime, setStatusUpdateTime] = useState('');
+    var [selectedstatus, setSelectedstatus] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     console.log(selectedValue)
     useEffect(() => {
@@ -22,13 +24,16 @@ function Adminticket() {
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
-    
+    function handlestatus(e) {
+        setSelectedstatus(e.target.value)
+    }
     function handleUpdate(ticketsId) {
         console.log(ticketsId)
 
-        Axios.put(`https://mindmadetech.in/api/tickets/update/${ticketsId}`, {
+        Axios.put(`https://mindmadetech.in/api/tickets/updateteam/${ticketsId}`, {
             Team: selectedTeam,
             ticketsId: ticketsId,
+
         }).then((response) => {
 
             setShow("update Successfully");
@@ -36,10 +41,48 @@ function Adminticket() {
 
         });
     }
+    function handleUpdatestatus(ticketsId) {
+        console.log(ticketsId)
+        console.log(statusUpdateTime)
+
+        Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+            Status: selectedstatus,
+            ticketsId: ticketsId,
+            statusUpdateTime: fullTime
+        }).then((response) => {
+            setShow("update Successfully");
+            Router.reload(window.location.pathname)
+        });
+    }
     const admintickets = () => {
         console.log("hello")
     }
-
+    var date, TimeType, hour, minutes, seconds, fullTime;
+    date = new Date();
+    hour = date.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = date.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
+    // Adding all the variables in fullTime variable.
+    fullTime = hour.toString() + ':' + minutes.toString() + ':' + seconds.toString() + ' ' + TimeType.toString();
+    console.log(fullTime)
     return (
         <div>
             <div className="container mainbody">
@@ -83,7 +126,7 @@ function Adminticket() {
                                                 <td>{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
                                                 <td>{tickets.Team}</td>
-                                                <td className={tickets.Status}>{tickets.Status}</td>
+                                                <td ><h5 className='statusUpdateTime'>Updated at{tickets.statusUpdateTime}</h5><div className={tickets.Status}>{tickets.Status}</div></td>
                                             </tr>
                                         </table>
                                     }
@@ -111,6 +154,7 @@ function Adminticket() {
                                                 <div className='ticket-input-details' > {tickets.Description}</div>
                                             </div>
                                             <div className='ticket details-Status'><label className="label">Status</label>
+                                                <div className={tickets.Status} >Updated at {tickets.statusUpdateTime}</div>
                                                 <div className={tickets.Status} > {tickets.Status}</div>
                                             </div>
                                             <div className='ticket details-Team' ><label className="label">Team</label>
@@ -133,7 +177,7 @@ function Adminticket() {
                                                     <form>
                                                         <div className="form-group">
                                                             <label className="label">Team</label>
-                                                            <select className="form-input" name="Status" onChange={handleTeam}>
+                                                            <select className="form-input" onChange={handleTeam}>
                                                                 <option value="">--Select Team--</option>
                                                                 <option className='new' value="design">Design Team</option>
                                                                 <option className='inprogress' value="development">Development Team</option>
@@ -145,6 +189,36 @@ function Adminticket() {
                                                 </div>
                                             </div>
                                             <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+                                            <h4 className="alert1 text-center">{show}</h4>
+                                        </div>
+                                    }
+                                />
+                                <FormDialog
+                                    dialogtitle="update"
+                                    className="btn3 ticket-update2"
+                                    dialogbody={
+                                        <div className="form dialog">
+                                            <div className="form-toggle"></div>
+                                            <div className="form-panel update one">
+                                                <div className="form-header">
+                                                    <h1>Update Ticket {tickets.ticketsId}</h1>
+                                                </div>
+                                                <div className="addform">
+                                                    <form>
+                                                        <div className="form-group">
+                                                            <label className="label">status</label>
+                                                            <select className="form-input" onChange={handlestatus}>
+                                                                <option value="">--Select Team--</option>
+                                                                <option className='new' value="new">new</option>
+                                                                <option className='inprogress' value="inprogress">inprogress</option>
+                                                                <option className='completed' value="completed">completed</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>Assign</button>
                                             <h4 className="alert1 text-center">{show}</h4>
                                         </div>
                                     }
