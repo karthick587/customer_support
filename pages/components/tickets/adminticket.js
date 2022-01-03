@@ -98,10 +98,11 @@ function Adminticket() {
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                         <select className="form-input" onChange={(e) => setCatselect(e.target.value)}>
                             <option value="">--Select categary--</option>
-                            <option className='new' value="ticketsId">TicketId</option>
-                            <option className='inprogress' value="Username">Username</option>
-                            <option className='completed' value="Team">Team</option>
-                            <option className='completed' value="Status">Status</option>
+                           
+                            <option className='' value="ticketsId">TicketId</option>
+                            <option className='' value="Username">Username</option>
+                            <option className='' value="Team">Team</option>
+                            <option className='' value="Status">Status</option>
                         </select>
                     </div>
                     <TableContainer component={Paper}>
@@ -117,35 +118,15 @@ function Adminticket() {
                             if (search === "") {
                                 return val;
                             } else if (catSelect === "ticketsId") {
-
                              return   val.ticketsId.toString().includes(search.toString()) 
-
-
-
-
                             } else if (catSelect === "Username") {
-
                              return   val.Username.toLowerCase().includes(search.toLowerCase()) 
-
-                                 
-
-
                             } else if (catSelect === "Status") {
-
                               return  val.Status.toLowerCase().includes(search.toLowerCase()) 
-
-
-
                             } else if (catSelect === "Team") {
-                                    
                               return  val.Team.toLowerCase().includes(search.toLowerCase())  
-
-
-                                
-
                             }else return val
-                           console.log(val)
-
+                           
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row'>
 
