@@ -16,6 +16,8 @@ function Adminticket() {
     var [statusUpdateTime, setStatusUpdateTime] = useState('');
     var [selectedstatus, setSelectedstatus] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
+    var [catSelect, setCatselect] = useState();
+    var[test,setTest]=useState();
     console.log(selectedValue)
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
@@ -54,9 +56,7 @@ function Adminticket() {
             Router.reload(window.location.pathname)
         });
     }
-    const admintickets = () => {
-        console.log("hello")
-    }
+
     var date, TimeType, hour, minutes, seconds, fullTime;
     date = new Date();
     hour = date.getHours();
@@ -83,6 +83,8 @@ function Adminticket() {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ':' + seconds.toString() + ' ' + TimeType.toString();
     console.log(fullTime)
+   
+
     return (
         <div>
             <div className="container mainbody">
@@ -94,6 +96,13 @@ function Adminticket() {
                     <div className='adminticket-head'>
                         <h1>Tickets</h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <select className="form-input" onChange={(e) => setCatselect(e.target.value)}>
+                            <option value="">--Select categary--</option>
+                            <option className='new' value="ticketsId">TicketId</option>
+                            <option className='inprogress' value="Username">Username</option>
+                            <option className='completed' value="Team">Team</option>
+                            <option className='completed' value="Status">Status</option>
+                        </select>
                     </div>
                     <TableContainer component={Paper}>
                         <div className='tickets-bodyrow2'>
@@ -107,14 +116,36 @@ function Adminticket() {
                         {tickets.filter(val => {
                             if (search === "") {
                                 return val;
-                            } else if (
-                                val.ticketsId.toString().includes(search.toString()) ||
-                                val.Username.toLowerCase().includes(search.toLowerCase()) ||
-                                val.Status.toLowerCase().includes(search.toLowerCase()) ||
-                                val.Team.toString().includes(search.toString())
-                            ) {
-                                return val;
-                            }
+                            } else if (catSelect === "ticketsId") {
+
+                             return   val.ticketsId.toString().includes(search.toString()) 
+
+
+
+
+                            } else if (catSelect === "Username") {
+
+                             return   val.Username.toLowerCase().includes(search.toLowerCase()) 
+
+                                 
+
+
+                            } else if (catSelect === "Status") {
+
+                              return  val.Status.toLowerCase().includes(search.toLowerCase()) 
+
+
+
+                            } else if (catSelect === "Team") {
+                                    
+                              return  val.Team.toLowerCase().includes(search.toLowerCase())  
+
+
+                                
+
+                            }else return val
+                           console.log(val)
+
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row'>
 
