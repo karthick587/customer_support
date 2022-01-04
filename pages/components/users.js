@@ -76,7 +76,6 @@ export default function Users(props) {
                                     <TableCell align="left">PASSWORD</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">PHONE NUMBER</TableCell>
-                                    <TableCell align="left">ADDRESS</TableCell>
                                 </TableRow>
                             </TableHead>
                             {users.filter(val => {
@@ -101,13 +100,11 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Password}</TableCell>
                                         <TableCell align="left">{item.Email}</TableCell>
                                         <TableCell align="left">{item.Phonenumber}</TableCell>
-                                        <TableCell align="left">{item.Address}</TableCell>
                                         <TableCell align="left"><FormDialog 
                                             dialogtitle="Delete"
-                                           
-                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                            dialogbody="Are you sure you want to delete the team?"
                                             dialogactions={
-                                                <div className=''>
+                                                <div>
                                                     <Button onClick={()=>deleteUsers(item.usersId,item.Username)}>YES</Button>
                                                     <Button  onClick={handleClose}>NO</Button>
                                                 </div>

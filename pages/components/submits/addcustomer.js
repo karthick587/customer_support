@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -8,6 +10,8 @@ const schema = yup.object().shape({
     Name: yup.string().required(),
     Username: yup.string().required(),
     Password: yup.string().required(),
+    Email: yup.string().required(),
+    Phonenumber: yup.string().required(),
 });
 function Addcustomer(props) {
     var [addmember, setAddmember] = useState('');
@@ -20,11 +24,13 @@ function Addcustomer(props) {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const addUser = ({ Name, Username, Password }) => {
+    const addUser = ({ Name, Username, Password,Email,Phonenumber }) => {
         Axios.post(`https://mindmadetech.in/api/customer/new`, {
             Name: Name,
             Username: Username,
             Password: Password,
+            Email:Email,
+            Phonenumber:Phonenumber,
         }).then((response) => {
             if (response.data.message) {
                 setShow(response.data.message)
@@ -34,7 +40,7 @@ function Addcustomer(props) {
             }
         });
     }
-
+    
     return (
         <div>
             <div className="container mainbody">
@@ -54,6 +60,16 @@ function Addcustomer(props) {
                             <label className="col label">Password</label>
                             <input className="form-input" name="Password" type="password" {...register('Password')} />
                             <p className="me-2 text-danger">{errors.Password?.message}</p>
+                        </div>
+                        <div className="form-group">
+                            <label className="col label">EMail ID</label>
+                            <input className="form-input" name="Email" type="text" {...register('Email')} />
+                            <p className="me-2 text-danger">{errors.Email?.message}</p>
+                        </div>
+                        <div className="form-group">
+                            <label className="col label">Phone Number</label>
+                            <input className="form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
+                            <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
