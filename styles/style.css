@@ -793,12 +793,41 @@ form.form2 {
 .font1{
   font-size: 13px !important;
 }
+.deteleandedit{
+  display: flex;
+ 
+}
 .form-group p {
   position: absolute;
   padding: 47px 24px !important;
   font-size: 11px;
 }
+.deteleandedit div button svg{
+  font-size: 20px;
+}
+.deteleandedit button svg{
+  font-size: 20px;
+}
+.css-ypiqx9-MuiDialogContent-root {
 
+  overflow-y: auto;
+  padding: 18px 54px 5px 15px;
+}
+.css-hlj6pa-MuiDialogActions-root {
+  
+  padding: 8px 29px 3px 4px;
+ 
+}
+.deteleandedit button {
+  /* padding: 0px 1px; */
+  margin: 4px -1px;
+  min-width: 37px !important;
+}
+.deteleandedit div button {
+  /* padding: 0px 1px; */
+  margin: 13px -1px;
+  min-width: 37px !important;
+}
 h4.alert1.text-center {
   color: #0e500e;
   font-size: 16px;

@@ -11,10 +11,10 @@ import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
 import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
-
+import EditIcon from '@mui/icons-material/Edit';
 import Addcustomer from './submits/addcustomer';
 import { useRouter } from 'next/router';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -22,6 +22,7 @@ export default function Users(props) {
     console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
+   
 
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
@@ -40,11 +41,10 @@ export default function Users(props) {
             })
     };
 
-  
-     const handleClose = () => {
-        Router.reload(window.location.pathname)
-     };
-
+    const handleClose = () => {
+        setOpen(false);
+      };
+     
     return (
         <div>
             <Head>
@@ -76,6 +76,7 @@ export default function Users(props) {
                                     <TableCell align="left">PASSWORD</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">PHONE NUMBER</TableCell>
+                                  
                                 </TableRow>
                             </TableHead>
                             {users.filter(val => {
@@ -100,16 +101,27 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Password}</TableCell>
                                         <TableCell align="left">{item.Email}</TableCell>
                                         <TableCell align="left">{item.Phonenumber}</TableCell>
-                                        <TableCell align="left"><FormDialog 
-                                            dialogtitle="Delete"
+                                        <div className='deteleandedit'>
+                                           <FormDialog 
+                                            dialogtitle={<EditIcon />}
+                                            dialogbody={
+<h1>hello</h1>
+                                            }
+                                          
+                                           
+                                            />
+                                           <FormDialog 
+                                            dialogtitle={<DeleteIcon />}
                                             dialogbody="Are you sure you want to delete the team?"
                                             dialogactions={
                                                 <div>
                                                     <Button onClick={()=>deleteUsers(item.usersId,item.Username)}>YES</Button>
-                                                    <Button  onClick={handleClose}>NO</Button>
+                                                    <Button   >NO</Button>
                                                 </div>
                                             }
-                                            /></TableCell>
+                                            />
+                                        </div>
+                                       
                                     </TableRow>
 
                                 </TableBody>
