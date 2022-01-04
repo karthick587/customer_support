@@ -20,14 +20,9 @@ const AdminDashboard = (props) => {
 
   const router = useRouter();
   console.log(router.query.name);
-  const [user, setUser] = useState([]);
   const [finishStatus, setfinishStatus] = useState(false);
-  var adminId = props.router.query.name;
-
-
   const onBackButtonEvent = (e) => {
     e.preventDefault();
-
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
@@ -65,7 +60,6 @@ const AdminDashboard = (props) => {
               ADMIN Dashboard
             </Typography>
           }
-
           sidenavcontent={
             <>
               <button className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
@@ -83,12 +77,9 @@ const AdminDashboard = (props) => {
               </ListItem>
               </button>
             </>
-
           }
-
           tabbody={
             <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
-
               <div className="tab-content" id="v-pills-tabContent">
                 <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <div className='main-dash'>
@@ -123,7 +114,6 @@ const AdminDashboard = (props) => {
                     </div>
                   </div>
                 </div>
-
                 <div className="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                   <Users />
                 </div>

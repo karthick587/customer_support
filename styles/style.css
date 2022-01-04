@@ -34,24 +34,36 @@ a {
   color: #1976d2;
   font-weight: 700;
 }
-
+.tickets-bodyrow3{
+  display: flex;
+}
 .tickets-bodyrow3 div {
-  width: 225px;
+  width: 200px;
   font-size: 15px;
   color: #1976d2;
   font-weight: 700;
 }
 
-.tickets-bodyrow3 {
+.tickets-table-row3 {
   display: flex;
 }
 
 .css-79xub {
   text-transform: none !important;
 }
-
+.filter-select {
+  word-wrap: normal;
+  background-color: #daebfa;
+  padding: 6px 10px;
+  border-radius: 13px;
+  border: navajowhite;
+  margin-left: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #1976d2;
+}
 .tickets-bodyrow3 td {
-  width: 221px;
+  width: 201px;
   text-align: left;
   font-weight: 550;
   padding: 34px 0 0;
@@ -127,6 +139,9 @@ a {
 .tickets-table-row div {
   border-bottom: 1px solid rgba(224, 224, 224, 1);
 }
+.tickets-table-row3 div {
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
 
 .form.login {
   width: 423px;
@@ -198,7 +213,7 @@ a {
 }
 .statusUpdateTime {
   font-size: 11px;
-  margin: -3px 1px -3px 0px !important;
+  margin: -9px 1px -3px 0px !important;
 }
 form.form3 {
   width: 600px;
@@ -254,16 +269,22 @@ form.form4 {
 
 .new {
   color: red !important;
+  font-size: 13px;
 }
 
 .inprogress {
   color: #0108e6e3 !important;
+  font-size: 13px;
 }
 
 .completed {
   color: green !important;
+  font-size: 13px;
 }
-
+.btn3.ticket-update2 {
+  /* padding: 0px 0px 1px 4px; */
+  margin: 43px 0px 1px 0px;
+}
 img.slide-banner2 {
   width: 51%;
   margin-bottom: 107px;
@@ -293,12 +314,12 @@ img.slide-banner1 {
 }
 
 input:focus-visible {
-  border: 2px solid grey !important;
+  border: 1.5px solid #1976d2 !important;
   outline: none;
 }
 
 textarea:focus-visible {
-  border: 2px solid grey !important;
+  border: 1.5px solid #1976d2 !important;
   outline: none;
 }
 
@@ -307,7 +328,7 @@ textarea:focus-visible {
 }
 
 select:focus-visible {
-  border: 2px solid grey !important;
+  border: 1.5px solid #1976d2 !important;
   outline: none;
 }
 
@@ -757,11 +778,11 @@ form.form2 {
 }
 
 .adminticket-head input {
-  padding: 0px 11px;
+  padding: 2px 11px;
   border: none;
   border-radius: 27px;
   background-color: #58a2ea38;
-  margin: 0px 0px 7px 27px;
+  margin: 0px 0px 7px 4px;
 }
 
 .adminticket-head input::placeholder {
@@ -769,7 +790,9 @@ form.form2 {
   font-size: 15px;
   font-family: 'Poppins', sans-serif;
 }
-
+.font1{
+  font-size: 13px !important;
+}
 .form-group p {
   position: absolute;
   padding: 47px 24px !important;

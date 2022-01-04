@@ -62,8 +62,8 @@ function Userissue(props) {
 
                         <label htmlFor="contained-button-file">
                             <input accept="image/*" id="contained-button-file" multiple type="file" onChange={(e) => { setScreenshots(e.target.value); }} />
-                            <input type="file" name="image" accept='image/*' />
-                            <input type="submit" value="Upload" />
+                        
+                        
                         </label>
                     </div>
                     <div className="">

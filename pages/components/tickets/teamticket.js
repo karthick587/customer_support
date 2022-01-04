@@ -4,10 +4,14 @@ import Axios from "axios";
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
-function Userticket(props) {
+import { useRouter } from 'next/router'
+function Teamticket(props) {
+    const Router = useRouter()
     const { Username } = props;
+    var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
     var [search, setSearch] = useState('');
+    var [statusUpdateTime, setStatusUpdateTime] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     console.log(selectedValue)
     useEffect(() => {
@@ -15,15 +19,61 @@ function Userticket(props) {
             .then((res) => setTickets(res.data));
     }, []);
     useEffect(() => {
-        setSearch(Username);
-
+        setSearch("seo");
     })
+    var [selectedstatus, setSelectedstatus] = useState('');
+    function handlestatus(e) {
+        setSelectedstatus(e.target.value)
+    }
+    function handleUpdatestatus(ticketsId) {
+        console.log(ticketsId)
+        console.log(statusUpdateTime)
+
+        Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+            Status: selectedstatus,
+            ticketsId: ticketsId,
+            statusUpdateTime: fulldate + ' ' + fullTime
+        }).then((response) => {
+            setShow("update Successfully");
+            Router.reload(window.location.pathname)
+        });
+    }
+    var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
+    date = new Date();
+    hour = date.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = date.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
+    dateupadate = date.getDate();
+    monthupadate = (date.getMonth() + 1);
+    yearupadate = date.getFullYear();
+    // Adding all the variables in fullTime variable.
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
+    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
     return (
         <div>
             <div className="container mainbody">
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
+
                 <div className="userbody">
                     <div className='adminticket-head'>
                         <h1>Tickets</h1>
@@ -35,17 +85,19 @@ function Userticket(props) {
                             <div >Date</div>
                             <div>Team</div>
                             <div>Status</div>
+
                         </div>
                         {tickets.filter(val => {
                             if (search === "") {
                                 return val;
                             } else if (
-                                val.Username.toLowerCase().includes(search.toLowerCase())
+                                val.Team.toLowerCase().includes(search.toLowerCase())
                             ) {
                                 return val;
                             }
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row3'>
+
                                 <FormDialog
                                     dialogtitle={
                                         <table >
@@ -55,8 +107,8 @@ function Userticket(props) {
                                                 <td>{tickets.Date}</td>
                                                 <td >{tickets.Team}</td>
                                                 <td >
-                                                <h5 className={tickets.Status}>{tickets.Status}</h5>
-                                                    <h5 className='statusUpdateTime'>Updated at{tickets.statusUpdateTime}</h5>
+                                                    <h5 className={tickets.Status}>{tickets.Status}</h5>
+                                                    <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
                                                 </td>
                                             </tr>
                                         </table>
@@ -85,9 +137,8 @@ function Userticket(props) {
                                                 <div className='ticket-input-details' > {tickets.Description}</div>
                                             </div>
                                             <div className='ticket details-Status'><label className="label">Status</label>
-                                              
-                                            <h5 className={tickets.Status}>{tickets.Status}</h5>
-                                                <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
+                                                <div  >Updated at {tickets.statusUpdateTime}</div>
+                                                <div className={tickets.Status} > {tickets.Status}</div>
                                             </div>
                                             <div className='ticket details-Team' ><label className="label">Team</label>
                                                 <div className='ticket-input-details' > {tickets.Team}</div></div>
@@ -95,12 +146,43 @@ function Userticket(props) {
                                         </div>
                                     }
                                 />
+                                <FormDialog
+                                    dialogtitle="update"
+                                    className="btn3 ticket-update2"
+                                    dialogbody={
+                                        <div className="form dialog">
+                                            <div className="form-toggle"></div>
+                                            <div className="form-panel update one">
+                                                <div className="form-header">
+                                                    <h1>Update Ticket {tickets.ticketsId}</h1>
+                                                </div>
+                                                <div className="addform">
+                                                    <form>
+                                                        <div className="form-group">
+                                                            <label className="label">status</label>
+                                                            <select className="form-input" onChange={handlestatus}>
+                                                                <option value="">--Select Team--</option>
+                                                                <option className='new' value="new">new</option>
+                                                                <option className='inprogress' value="inprogress">inprogress</option>
+                                                                <option className='completed' value="completed">completed</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>Assign</button>
+                                            <h4 className="alert1 text-center">{show}</h4>
+                                        </div>
+                                    }
+                                />
                             </div>
                         )}
                     </TableContainer>
                 </div>
+
             </div>
         </div>
     );
 }
-export default Userticket;
+export default Teamticket;

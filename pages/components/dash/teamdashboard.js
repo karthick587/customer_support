@@ -7,12 +7,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemText from '@mui/material/ListItemText';
 import router from "next/router";
-
+import Teamticket from "../tickets/teamticket";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
+import Dashcard from "../common/dashCard";
 const TeamDashboard = (props) => {
   const [finishStatus, setfinishStatus] = useState(false);
-  var userId = props.router.query.name;
-  var Username = props.router.query.customername;
-  console.log(userId)
+ 
+
+  
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -65,13 +68,43 @@ const TeamDashboard = (props) => {
           <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
             <div className="tab-content" id="v-pills-tabContent">
               <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-               dash
+              <div className='main-dash'>
+                    <div className='main-dash-sub' >
+                      <div className='dash-head'>
+                        <h2>Dashboaard</h2>
+                      </div>
+                      <div className='dash-body'>
+                        <div className='dash-cards'>
+                          <div className='row'>
+                            <Dashcard
+                              cardHead="No of Tickets assigned"
+                              cardbody="50k"
+                              cardfooter="last Ticket no"
+                              cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
+                            />
+                            <Dashcard
+                              cardHead="No of tickets inprogress"
+                              cardbody="10k"
+                              cardfooter="last Ticket no"
+                              cardIcon={<FontAwesomeIcon icon={faUsers} />}
+                            />
+                            <Dashcard
+                              cardHead="No of tickets in completed"
+                              cardbody="5k"
+                              cardfooter="last Ticket no"
+                              cardIcon="icon3"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                profile
               </div>
               <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-           
+           <Teamticket />
               </div>
             </div>
           </div>
