@@ -15,7 +15,14 @@ const CustomerDashboard = (props) => {
   const [user, setUser] =  useState();
   const [finishStatus, setfinishStatus] = useState(false);
  
-  
+  const[login,setLogin]=useState()
+  useEffect(()=>{
+    setLogin(window.localStorage.getItem('loggedin'))
+    console.log(login)
+   if(login==="false"){
+    router.push("/components/login/login")
+   } 
+  })
   
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -24,6 +31,7 @@ const CustomerDashboard = (props) => {
         setfinishStatus(true)
         // your logic
         router.push("/components/login/login")
+        localStorage.setItem('loggedin', false);
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -40,6 +48,7 @@ const CustomerDashboard = (props) => {
   }, []);
   const onBackButtonEvent3 = () => {
     router.push("/components/login/login")
+    localStorage.setItem('loggedin', false);
   }
 
   useEffect(()=>{

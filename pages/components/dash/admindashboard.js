@@ -20,19 +20,19 @@ import GroupsIcon from '@mui/icons-material/Groups';
 
 
 const AdminDashboard = (props) => {
-  const[login,setLogin]=useState()
+  
   const router = useRouter();
   console.log(router.query.name);
   const [finishStatus, setfinishStatus] = useState(false);
- 
+  const[login,setLogin]=useState()
   useEffect(()=>{
+    setLogin(window.localStorage.getItem('loggedin'))
     console.log(login)
    if(login==="false"){
     router.push("/components/login/login")
-   } else if(login===" "){
-    router.push("/components/login/login")
-   }
+   } 
   })
+  
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -59,9 +59,7 @@ const AdminDashboard = (props) => {
     router.push("/components/login/login")
   }
 
-  useEffect(()=>{
-    setLogin(window.localStorage.getItem('loggedin'))
-  })
+
   
 
   
