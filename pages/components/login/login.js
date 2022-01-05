@@ -56,6 +56,7 @@ export default function Login1() {
       if (response.data.message) {
         setLoginStatus(response.data.message);
       } else {
+        localStorage.setItem('loggedin', true);
         router.push({
           pathname: `../dash/${validate}dashboard`,
           query: {

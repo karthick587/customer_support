@@ -16,17 +16,30 @@ import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
-const AdminDashboard = (props) => {
 
+
+
+const AdminDashboard = (props) => {
+  const[login,setLogin]=useState()
   const router = useRouter();
   console.log(router.query.name);
   const [finishStatus, setfinishStatus] = useState(false);
+ 
+  useEffect(()=>{
+    console.log(login)
+   if(login==="false"){
+    router.push("/components/login/login")
+   } else if(login===" "){
+    router.push("/components/login/login")
+   }
+  })
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
+        localStorage.setItem('loggedin', false);
         router.push("/components/login/login")
       } else {
         window.history.pushState(null, null, window.location.pathname);
@@ -42,8 +55,16 @@ const AdminDashboard = (props) => {
     };
   }, []);
   const onBackButtonEvent2 = () => {
+    localStorage.setItem('loggedin', false)
     router.push("/components/login/login")
   }
+
+  useEffect(()=>{
+    setLogin(window.localStorage.getItem('loggedin'))
+  })
+  
+
+  
   return (
     <div>
       <div>
