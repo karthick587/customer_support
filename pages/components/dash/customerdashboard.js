@@ -5,11 +5,18 @@ import Userissue from "../submits/userissues";
 import { withRouter } from "next/router";
 import router from "next/router";
 import Userticket from "../tickets/userticket";
+
+
+
+
+
 const CustomerDashboard = (props) => {
+  
+  const [user, setUser] =  useState();
   const [finishStatus, setfinishStatus] = useState(false);
-  var userId = props.router.query.name;
-  var Username = props.router.query.customername;
-  console.log(userId)
+ 
+  
+  
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -24,6 +31,7 @@ const CustomerDashboard = (props) => {
     }
   }
   useEffect(() => {
+  
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
     return () => {
@@ -33,6 +41,11 @@ const CustomerDashboard = (props) => {
   const onBackButtonEvent3 = () => {
     router.push("/components/login/login")
   }
+
+  useEffect(()=>{
+    setUser(window.localStorage.getItem('user'))
+  })
+  
   return (
     <div>
       <Dashboard
@@ -54,10 +67,10 @@ const CustomerDashboard = (props) => {
           <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
             <div className="tab-content" id="v-pills-tabContent">
               <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                <Userissue customername={Username} />
+                <Userissue customername={user} />
               </div>
               <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <Userticket Username={Username} />
+                <Userticket Username={user} />
               </div>
             </div>
           </div>
@@ -66,3 +79,5 @@ const CustomerDashboard = (props) => {
   )
 }
 export default withRouter(CustomerDashboard);
+
+

@@ -17,10 +17,10 @@ const schema = yup.object().shape({
 });
 
 export default function Login1() {
-
+  const [user, setUser] = useState('');
   const router = useRouter();
   const [loginStatus, setLoginStatus] = useState('');
-
+  const [userlogin,setUserlogin] = useState('');
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
@@ -28,6 +28,7 @@ export default function Login1() {
 
   const adminLogin = ({ username, password }) => {
     var TableValidate = username.slice(0, 3)
+    setUserlogin(username)
     var validate, SlicedName;
     switch (TableValidate) {
       case 'ad_':
@@ -59,7 +60,7 @@ export default function Login1() {
           pathname: `../dash/${validate}dashboard`,
           query: {
             name: response.data[0].usersId,
-            customername: response.data[0].Username
+            customername: response.data[0].user
           }
         });
       }
@@ -76,6 +77,10 @@ export default function Login1() {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
+    useEffect(() => {
+      localStorage.setItem('user', userlogin);
+      console.log(user)
+    });
   return (
     <div className="login-page">
       <Head>
