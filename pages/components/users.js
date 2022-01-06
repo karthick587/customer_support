@@ -9,11 +9,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
-import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
+
 import { Button } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+
 import Addcustomer from './submits/addcustomer';
-import Updatecustomer from './Update/updatecustomer';
+import Updatecustomer from './update/updatecustomer';
 import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
 export default function Users(props) {
