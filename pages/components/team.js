@@ -9,14 +9,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Dialog from '@mui/material/Dialog';
 import FormDialog from './common/dialogsform';
 import Addteam from './submits/addteam';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/router'
+import Updateteam from './update/updateteam';
+
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -86,8 +85,13 @@ export default function Users(props) {
                                         <TableCell align="left">{item.Username}</TableCell>
                                         <TableCell align="left">{item.Password}</TableCell>
                                         <TableCell align="left">{item.Team}</TableCell>
-                                        <TableCell align="left"><FormDialog 
-                                            dialogtitle="Delete"
+                                        
+                                            
+                                        <div className='deteleandedit'>
+                                            <Updateteam teamId={item.teamId} />
+                                            <FormDialog 
+                                            className="team-delete"
+                                            dialogtitle={<DeleteIcon />}
                                             headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
                                             dialogactions={
                                                 <div>
@@ -95,7 +99,8 @@ export default function Users(props) {
                                                     <Button  onClick={handleClose}>NO</Button>
                                                 </div>
                                             }
-                                            /></TableCell>
+                                            />
+                                            </div>
                                     </TableRow>
                                   
                                 </TableBody>

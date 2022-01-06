@@ -92,6 +92,7 @@ export default function Login1() {
         <div className="login-body">
           <div className="left-body">
             <div className="form login">
+              <div className='sublogin'>
               <div className='login-header'>
                 <h1>Login</h1>
               </div>
@@ -116,6 +117,7 @@ export default function Login1() {
                 </div>
                 <h4 className="alert1">{loginStatus}</h4>
               </form>
+              </div>
             </div>
           </div>
           <div className="right-body">

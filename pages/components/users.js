@@ -13,6 +13,7 @@ import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Addcustomer from './submits/addcustomer';
+import Updatecustomer from './Update/updatecustomer';
 import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
 export default function Users(props) {
@@ -22,15 +23,15 @@ export default function Users(props) {
     console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
-   
+
 
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data));
     }, []);
 
-    const deleteUsers = (id,name) => {
-       
+    const deleteUsers = (id, name) => {
+
         // <-- declare id parameter
         Axios
             .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
@@ -41,10 +42,6 @@ export default function Users(props) {
             })
     };
 
-    const handleClose = () => {
-        setOpen(false);
-      };
-     
     return (
         <div>
             <Head>
@@ -76,58 +73,50 @@ export default function Users(props) {
                                     <TableCell align="left">PASSWORD</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">PHONE NUMBER</TableCell>
-                                  
+
                                 </TableRow>
                             </TableHead>
                             {users.filter(val => {
                                 if (search === "") {
                                     return val;
                                 } else if (
-
                                     val.Username.toLowerCase().includes(search.toLowerCase()) ||
                                     val.Name.toString().includes(search.toString())
-
                                 ) {
                                     return val;
                                 }
                             }).map((item) =>
                                 <TableBody key={item.usersId}>
-
                                     <TableRow >
-
                                         <TableCell component="th" scope="row">{item.usersId}</TableCell>
                                         <TableCell align="left">{item.Name}</TableCell>
                                         <TableCell align="left">{item.Username}</TableCell>
                                         <TableCell align="left">{item.Password}</TableCell>
                                         <TableCell align="left">{item.Email}</TableCell>
                                         <TableCell align="left">{item.Phonenumber}</TableCell>
+                                        
                                         <div className='deteleandedit'>
-                                           <FormDialog 
-                                            dialogtitle={<EditIcon />}
-                                            dialogbody={
-<h1>hello</h1>
-                                            }
-                                          
-                                           
+                                         
+                                        <Updatecustomer usersId={item.usersId} />
+                                       
+                                            <FormDialog
+                                                  className="user-delete"
+                                                  dialogtitle={<DeleteIcon />}
+                                                  headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                dialogactions={
+                                                    <div>
+                                                        <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
+                                                        <Button   >NO</Button>
+                                                    </div>
+                                                }
                                             />
-                                           <FormDialog 
-                                            dialogtitle={<DeleteIcon />}
-                                            dialogbody="Are you sure you want to delete the team?"
-                                            dialogactions={
-                                                <div>
-                                                    <Button onClick={()=>deleteUsers(item.usersId,item.Username)}>YES</Button>
-                                                    <Button   >NO</Button>
-                                                </div>
-                                            }
-                                            />
-                                        </div>
+                                            </div>
                                        
                                     </TableRow>
-
                                 </TableBody>
                             )}
                         </Table>
-                        
+
                     </TableContainer>
                 </div>
             </div>
