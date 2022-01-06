@@ -7,23 +7,19 @@ import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
 function Teamticket() {
     const Router = useRouter()
-  
+
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
-  
+
     var [statusUpdateTime, setStatusUpdateTime] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
-     
-    
+
     console.log(selectedValue)
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, []);
 
-    
-
-   
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
@@ -71,41 +67,27 @@ function Teamticket() {
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
 
-
-
-
-
-
-
-
-    var[teamname,setTeamname]=useState(" ");
+    var [teamname, setTeamname] = useState(" ");
     var [team, setTeam] = useState([]);
     var [search1, setSearch1] = useState('');
-   
-   
-    useEffect(()=>{
+    useEffect(() => {
         setSearch1(window.localStorage.getItem('tm_name'))
-        
     })
-  
-  console.log(teamname)
-  console.log(search1)
+    console.log(teamname)
+    console.log(search1)
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
     }, []);
-    useEffect(()=>{
-        {team.filter(val => {   
-            return val.Username.toLowerCase().includes(search1)
-        }).map((item) =>setTeamname(item.Team),
-       
-        )}
+    useEffect(() => {
+        {
+            team.filter(val => {
+                return val.Username.toLowerCase().includes(search1)
+            }).map((item) => setTeamname(item.Team),
+
+            )
+        }
     })
-  
-
-
-
-
     return (
         <div>
             <div className="container mainbody">
@@ -127,9 +109,9 @@ function Teamticket() {
 
                         </div>
                         {tickets.filter(val => {
-                            
-                              return  val.Team.toLowerCase().includes(teamname.toLowerCase())
-                           
+
+                            return val.Team.toLowerCase().includes(teamname.toLowerCase())
+
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row3'>
 

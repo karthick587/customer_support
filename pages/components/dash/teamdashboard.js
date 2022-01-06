@@ -55,7 +55,8 @@ const TeamDashboard = (props) => {
   return  ( 
 
     
-     <>{login==="false"? <div className="access ">access denied</div>:<div>
+     <>{login==="false"? <div className="access ">access denied</div>:
+     <div>
      <Dashboard
        logout={onBackButtonEvent3}
        sidenavcontent={

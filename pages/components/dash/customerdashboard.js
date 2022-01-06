@@ -88,9 +88,9 @@ const CustomerDashboard = (props) => {
           </div>
         } />
     </div>
-    }</>
+}</>
   )
 }
-export default CustomerDashboard;
+export default withRouter(CustomerDashboard);
 
 
