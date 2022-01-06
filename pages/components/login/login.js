@@ -42,6 +42,7 @@ export default function Login1() {
         console.log(validate);
         SlicedName = username.slice(3, 20);
         console.log(SlicedName);
+        localStorage.setItem('tm_name', SlicedName);
         break;
       default:
         validate = "customer";

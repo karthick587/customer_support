@@ -47,7 +47,11 @@ a {
 .tickets-table-row3 {
   display: flex;
 }
-
+.alert1 {
+  color: red;
+  font-size: 15px;
+  text-align: center;
+}
 .css-79xub {
   text-transform: none !important;
 }

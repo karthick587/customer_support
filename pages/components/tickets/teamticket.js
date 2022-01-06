@@ -5,22 +5,25 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
-function Teamticket(props) {
+function Teamticket() {
     const Router = useRouter()
-    const { Username } = props;
+  
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
-    var [search, setSearch] = useState('');
+  
     var [statusUpdateTime, setStatusUpdateTime] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
+     
+    
     console.log(selectedValue)
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, []);
-    useEffect(() => {
-        setSearch("seo");
-    })
+
+    
+
+   
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
@@ -67,6 +70,42 @@ function Teamticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
+
+
+
+
+
+
+
+
+    var[teamname,setTeamname]=useState(" ");
+    var [team, setTeam] = useState([]);
+    var [search1, setSearch1] = useState('');
+   
+   
+    useEffect(()=>{
+        setSearch1(window.localStorage.getItem('tm_name'))
+        
+    })
+  
+  console.log(teamname)
+  console.log(search1)
+    useEffect(() => {
+        Axios.get("https://mindmadetech.in/api/team/list")
+            .then((res) => setTeam(res.data));
+    }, []);
+    useEffect(()=>{
+        {team.filter(val => {   
+            return val.Username.toLowerCase().includes(search1)
+        }).map((item) =>setTeamname(item.Team),
+       
+        )}
+    })
+  
+
+
+
+
     return (
         <div>
             <div className="container mainbody">
@@ -88,13 +127,9 @@ function Teamticket(props) {
 
                         </div>
                         {tickets.filter(val => {
-                            if (search === "") {
-                                return val;
-                            } else if (
-                                val.Team.toLowerCase().includes(search.toLowerCase())
-                            ) {
-                                return val;
-                            }
+                            
+                              return  val.Team.toLowerCase().includes(teamname.toLowerCase())
+                           
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row3'>
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Typography from '@mui/material/Typography';
 import Dashboard from "../common/navdashboard";
 import { withRouter } from "next/router";
+import Axios from "axios";
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -49,6 +50,7 @@ const TeamDashboard = (props) => {
   const onBackButtonEvent3 = () => {
     router.push("/components/login/login")
     localStorage.setItem('loggedin', false);
+    localStorage.removeItem('tm_name');
   }
   return  ( 
 
@@ -117,7 +119,7 @@ const TeamDashboard = (props) => {
               profile
              </div>
              <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-          <Teamticket />
+          <Teamticket  />
              </div>
            </div>
          </div>
