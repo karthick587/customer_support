@@ -50,77 +50,81 @@ const TeamDashboard = (props) => {
     router.push("/components/login/login")
     localStorage.setItem('loggedin', false);
   }
-  return (
-    <div>
-      <Dashboard
-        logout={onBackButtonEvent3}
-        sidenavcontent={
-          <button className="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
-            <ListItemIcon>
-              <AccountCircleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-          </ListItem>
-          </button>
-        }
-        headertext="USER DASHBOARD"
-        navcontent={
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-          >
-            TEAM Dashboard
-          </Typography>
-        }
-        tabbody={
-          <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <div className="tab-content" id="v-pills-tabContent">
-              <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-              <div className='main-dash'>
-                    <div className='main-dash-sub' >
-                      <div className='dash-head'>
-                        <h2>Dashboaard</h2>
-                      </div>
-                      <div className='dash-body'>
-                        <div className='dash-cards'>
-                          <div className='row'>
-                            <Dashcard
-                              cardHead="No of Tickets assigned"
-                              cardbody="50k"
-                              cardfooter="last Ticket no"
-                              cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
-                            />
-                            <Dashcard
-                              cardHead="No of tickets inprogress"
-                              cardbody="10k"
-                              cardfooter="last Ticket no"
-                              cardIcon={<FontAwesomeIcon icon={faUsers} />}
-                            />
-                            <Dashcard
-                              cardHead="No of tickets in completed"
-                              cardbody="5k"
-                              cardfooter="last Ticket no"
-                              cardIcon="icon3"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-               profile
-              </div>
-              <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-           <Teamticket />
-              </div>
-            </div>
-          </div>
-        } />
-    </div>
+  return  ( 
+
+    
+     <>{login==="false"? <div className="access ">access denied</div>:<div>
+     <Dashboard
+       logout={onBackButtonEvent3}
+       sidenavcontent={
+         <button className="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
+           <ListItemIcon>
+             <AccountCircleIcon />
+           </ListItemIcon>
+           <ListItemText primary="Profile" />
+         </ListItem>
+         </button>
+       }
+       headertext="USER DASHBOARD"
+       navcontent={
+         <Typography
+           component="h1"
+           variant="h6"
+           color="inherit"
+           noWrap
+           sx={{ flexGrow: 1 }}
+         >
+           TEAM Dashboard
+         </Typography>
+       }
+       tabbody={
+         <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
+           <div className="tab-content" id="v-pills-tabContent">
+             <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
+             <div className='main-dash'>
+                   <div className='main-dash-sub' >
+                     <div className='dash-head'>
+                       <h2>Dashboaard</h2>
+                     </div>
+                     <div className='dash-body'>
+                       <div className='dash-cards'>
+                         <div className='row'>
+                           <Dashcard
+                             cardHead="No of Tickets assigned"
+                             cardbody="50k"
+                             cardfooter="last Ticket no"
+                             cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
+                           />
+                           <Dashcard
+                             cardHead="No of tickets inprogress"
+                             cardbody="10k"
+                             cardfooter="last Ticket no"
+                             cardIcon={<FontAwesomeIcon icon={faUsers} />}
+                           />
+                           <Dashcard
+                             cardHead="No of tickets in completed"
+                             cardbody="5k"
+                             cardfooter="last Ticket no"
+                             cardIcon="icon3"
+                           />
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+             </div>
+             <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+              profile
+             </div>
+             <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <Teamticket />
+             </div>
+           </div>
+         </div>
+       } />
+   </div>}</>
+    
+
   )
 }
 export default withRouter(TeamDashboard);

@@ -190,6 +190,7 @@ a {
 
 .left-body {
   width: 60%;
+  position: relative;
 }
 
 .login-body {
@@ -299,9 +300,13 @@ img.slide-banner1 {
   width: 380px;
   left: 0;
   right: 0;
-  display: block;
+  
   margin: auto;
-  padding-top: 50px;
+ 
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 .form-input {
@@ -358,7 +363,6 @@ select:focus-visible {
 }
 
 .login-header h1 {
-  padding-top: 75px;
   font-size: 32px;
   font-family: 'Open Sans', sans-serif !important;
 }
@@ -807,6 +811,12 @@ form.form2 {
 }
 .deteleandedit button svg{
   font-size: 20px;
+}
+.access{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 .css-ypiqx9-MuiDialogContent-root {
 

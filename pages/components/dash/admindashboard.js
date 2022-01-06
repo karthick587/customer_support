@@ -67,7 +67,7 @@ const AdminDashboard = (props) => {
 
   
   return (
-    <div>
+    <>{login==="false"? <div className="access ">access denied</div>:
       <div>
         <Dashboard
           logout={onBackButtonEvent2}
@@ -153,7 +153,7 @@ const AdminDashboard = (props) => {
           }
         />
       </div>
-    </div>
+    }</>
   )
 }
-export default withRouter(AdminDashboard);
+export default AdminDashboard

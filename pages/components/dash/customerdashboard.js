@@ -19,9 +19,11 @@ const CustomerDashboard = (props) => {
   useEffect(()=>{
     setLogin(window.localStorage.getItem('loggedin'))
     console.log(login)
-   if(login==="false"){
-    router.push("/components/login/login")
-   } 
+    if(login==="false"){
+      router.push("/components/login/login")
+     } else if(login === null){
+      router.push("/components/login/login")
+     }
   })
   
   const onBackButtonEvent = (e) => {
@@ -56,6 +58,7 @@ const CustomerDashboard = (props) => {
   })
   
   return (
+    <>{login==="false"? <div className="access ">access denied</div>:
     <div>
       <Dashboard
         logout={onBackButtonEvent3}
@@ -85,8 +88,9 @@ const CustomerDashboard = (props) => {
           </div>
         } />
     </div>
+    }</>
   )
 }
-export default withRouter(CustomerDashboard);
+export default CustomerDashboard;
 
 
