@@ -23,38 +23,7 @@ function Adminticket() {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
 
-        // return function handleFilteredStatus(e){
-        //     // setFilteredStatus(filteredStatus = e.target.value)
-        //     //     console.log(filteredStatus);
-        //        var filteredData; 
-        //        if(filteredTitle === "Username"){
-        //            if(filteredStatus === "inprogress"){
-        //                     var filteredData = tickets.filter(val=>val.Status.toLowerCase().includes("inprogress"))
-        //                     setTickets(filteredData);
-
-        //            }else {
-        //                     var filteredData = tickets.filter(val=>val.Status.toLowerCase().includes("completed"))
-        //                     setTickets(filteredData);
-
-        //            }
-        //         //    switch(filteredStatus){
-        //         //         case 'all':
-        //         //            return setTickets(tickets)
-        //         //            break;
-        //         //         case 'inprogress':
-        //         //             filteredData = tickets.filter(val=>val.Status.toLowerCase().includes("inprogress"))
-        //         //             setTickets(filteredData);
-        //         //             break;
-        //         //         case 'completed':
-        //         //             filteredData = tickets.filter(val=>val.Status.toLowerCase().includes("completed"))
-        //         //             setTickets(filteredData);
-        //         //             break;
-        //         //    }
-        //        }else{
-        //            setFilteredStatus(filteredStatus = "all")
-        //            setTickets(tickets);
-        //        }
-        //     }
+       
     }, []);
 
 
@@ -90,8 +59,6 @@ function Adminticket() {
             setIsOpenstatusfilter(false);
         }
     });
-
-
     return (
         <div>
             <div className="mainbody">

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -18,6 +19,8 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
+
+
 
 const drawerWidth = 190;
 
@@ -94,6 +97,10 @@ export default function Dashboard(props) {
     setOpen(!open);
   };
 
+
+ 
+
+
   return (
 
     <Box sx={{ display: 'flex' }}>
@@ -144,7 +151,7 @@ export default function Dashboard(props) {
           <List>
             <div>
               <div className="nav flex-column nav-pills silebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <button className="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dash" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
+                <button className={props.dashActive}  onClick={props.DashTabActive}  id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dash" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
@@ -153,7 +160,7 @@ export default function Dashboard(props) {
                 </button>
 
                 {props.sidenavcontent}
-                <button className="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tickets" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
+                <button  className={props.ticketActive} id="v-pills-settings-tab"  onClick={props.TicketTabActive} data-bs-toggle="pill" data-bs-target="#v-pills-tickets" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
                   <ListItemIcon>
                     <FontAwesomeIcon icon={faTicketAlt} />
                   </ListItemIcon>

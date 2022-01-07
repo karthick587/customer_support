@@ -15,14 +15,15 @@ import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/router'
 import Updateteam from './update/updateteam';
-
-export default function Users(props) {
+import { CSVLink } from 'react-csv';
+export default function Team(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
     console.log(selectedValue)
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
+    var[exportTeam,setExportTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
@@ -40,6 +41,31 @@ export default function Users(props) {
          const handleClose = () => {
             Router.reload(window.location.pathname)
          };
+
+         const TeamList = [
+            [ 
+             "Team Id",
+             "User Name",
+             "Password",
+             "Team"
+             ],
+             ...team.map(details=>[
+                 details.teamId,
+                 details.Username,
+                 details.Password,
+                 details.Team
+             ])
+         ]
+         TeamList.reduce((prev,curr)=>[prev,curr]);
+         console.log(TeamList)
+     
+         const handleExport = async() =>{
+             const data =await TeamList;
+             console.log(data);
+             setExportTeam(data)
+                
+         }
+
     return (
         <div>
             <Head>
@@ -51,6 +77,14 @@ export default function Users(props) {
                         <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                         <div className='right-user-btns'>
+                        <CSVLink 
+                                data={exportTeam}
+                                filename='Team_List.csv'
+                                className="float-enduser btn2 button"
+                                target="_blank"
+                                asyncOnClick={true}
+                                onClick={handleExport}
+                            >Export</CSVLink>
                             <FormDialog
                                 className="float-enduser btn2 button"
                                 dialogtitle="+ADD Team"

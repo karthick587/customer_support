@@ -51,16 +51,41 @@ const TeamDashboard = (props) => {
     router.push("/components/login/login")
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('tm_name');
+    localStorage.removeItem('activeTab');
   }
+
+   //default tab
+  
+  // dashtab
+  const DashTabActive=()=>{
+    localStorage.setItem('activeTab', "Dashboard")
+  }
+// tickettab
+  const TicketTabActive=()=>{
+   localStorage.setItem('activeTab', 'ticket')
+  }
+  // usertab
+  const profileTabActive=()=>{
+    localStorage.setItem('activeTab', 'profile')
+  }
+  
+  var[activeTab,setActivetab]=useState(" ")
+useEffect(()=>{
+  setActivetab(window.localStorage.getItem('activeTab'))
+},[])
   return  ( 
 
     
      <>{login==="false"? <div className="access ">access denied</div>:
      <div>
      <Dashboard
+     dashActive={activeTab==="Dashboard" ? "nav-link active":"nav-link"}
+     ticketActive={activeTab==="ticket" ? "nav-link active":"nav-link"}
+     TicketTabActive={TicketTabActive}
+     DashTabActive={DashTabActive}
        logout={onBackButtonEvent3}
        sidenavcontent={
-         <button className="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
+         <button className={activeTab==="profile" ? "nav-link active":"nav-link"} onClick={profileTabActive} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
            <ListItemIcon>
              <AccountCircleIcon />
            </ListItemIcon>
@@ -83,7 +108,7 @@ const TeamDashboard = (props) => {
        tabbody={
          <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
            <div className="tab-content" id="v-pills-tabContent">
-             <div className="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
+             <div className={activeTab==="Dashboard" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
              <div className='main-dash'>
                    <div className='main-dash-sub' >
                      <div className='dash-head'>
@@ -116,10 +141,10 @@ const TeamDashboard = (props) => {
                    </div>
                  </div>
              </div>
-             <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+             <div className={activeTab==="profile" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
               profile
              </div>
-             <div className="tab-pane fade" id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+             <div className={activeTab==="ticket" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
           <Teamticket  />
              </div>
            </div>

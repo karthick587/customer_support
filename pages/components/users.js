@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
-
+import { CSVLink } from 'react-csv';
 import { Button } from '@mui/material';
 
 import Addcustomer from './submits/addcustomer';
@@ -23,8 +23,8 @@ export default function Users(props) {
     console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
-
-
+    var[exportUsers,setExportUsers] = useState([]);
+    
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data));
@@ -42,6 +42,34 @@ export default function Users(props) {
             })
     };
 
+
+    const UsersList = [
+        [ 
+         "Users Id",
+         "Name",
+         "User Name",
+         "Password",
+         "Email Id",
+         "Phonenumber"
+         ],
+         ...users.map(details=>[
+             details.usersId,
+             details.Name,
+             details.Username,
+             details.Password,
+             details.Email,
+             details.Phonenumber
+         ])
+     ]
+     UsersList.reduce((prev,curr)=>[prev,curr]);
+     console.log(UsersList)
+ 
+     const handleExport = async() =>{
+         const data =await UsersList;
+         console.log(data);
+         setExportUsers(data)
+            
+     }
     return (
         <div>
             <Head>
@@ -54,7 +82,16 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>USERS </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                       
                         <div className='right-user-btns'>
+                        <CSVLink 
+                                data={exportUsers}
+                                filename='Customer_List.csv'
+                                className="float-enduser btn2 button"
+                                target="_blank"
+                                asyncOnClick={true}
+                                onClick={handleExport}
+                            >Export</CSVLink>
                             <FormDialog
                                 className="float-enduser btn2 button"
                                 dialogtitle="+ADD customer"

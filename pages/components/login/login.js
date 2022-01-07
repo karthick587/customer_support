@@ -54,17 +54,14 @@ export default function Login1() {
       username: SlicedName,
       password: password,
     }).then((response) => {
-      if (response.data.message) {
+      if (response.data.statusCode===400) {
         setLoginStatus(response.data.message);
       } else {
         localStorage.setItem('loggedin', true);
-       
+        localStorage.setItem('activeTab', "Dashboard")
         router.push({
           pathname: `../dash/${validate}dashboard`,
-          query: {
-            name: response.data[0].usersId,
-            customername: response.data[0].user
-          }
+         
         });
       }
     });
