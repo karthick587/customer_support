@@ -33,6 +33,17 @@ function Userissue(props) {
     useEffect(() => {
         setUserName(customername);
     }, []);
+    const[login,setLogin]=useState()
+  useEffect(()=>{
+    setLogin(window.localStorage.getItem('loggedin'))
+    console.log(login)
+   if(login==="false"){
+    router.push("/components/login/login")
+   } else if(login === null){
+    router.push("/components/login/login")
+   }
+
+  })
     return (
         <div className="container">
             <div>

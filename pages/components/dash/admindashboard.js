@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faTicketAlt, faUsers,faUser } from '@fortawesome/free-solid-svg-icons'
 import Typography from '@mui/material/Typography';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Dashboard from '../common/navdashboard';
@@ -16,23 +16,23 @@ import Adminticket from '../tickets/adminticket';
 import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
-
+import Axios from 'axios';
 
 
 const AdminDashboard = (props) => {
-  
+
   const router = useRouter();
   console.log(router.query.name);
   const [finishStatus, setfinishStatus] = useState(false);
-  const[login,setLogin]=useState()
-  useEffect(()=>{
+  const [login, setLogin] = useState()
+  useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
     console.log(login)
-   if(login==="false"){
-    router.push("/components/login/login")
-   } else if(login === null){
-    router.push("/components/login/login")
-   }
+    if (login === "false") {
+      router.push("/components/login/login")
+    } else if (login === null) {
+      router.push("/components/login/login")
+    }
 
   })
   const onBackButtonEvent = (e) => {
@@ -61,37 +61,60 @@ const AdminDashboard = (props) => {
     localStorage.removeItem('activeTab');
     router.push("/components/login/login")
   }
- 
-// dashtab
-  const DashTabActive=()=>{
+
+  // dashtab
+  const DashTabActive = () => {
     localStorage.setItem('activeTab', "Dashboard")
   }
-// tickettab
-  const TicketTabActive=()=>{
-   localStorage.setItem('activeTab', 'ticket')
+  // tickettab
+  const TicketTabActive = () => {
+    localStorage.setItem('activeTab', 'ticket')
   }
   // usertab
-  const UserTabActive=()=>{
+  const UserTabActive = () => {
     localStorage.setItem('activeTab', 'user')
   }
   // teamtab
-  const TeamTabActive=()=>{
-   localStorage.setItem('activeTab', 'team')
+  const TeamTabActive = () => {
+    localStorage.setItem('activeTab', 'team')
   }
-  var[activeTab,setActivetab]=useState(" ")
-useEffect(()=>{
-  setActivetab(window.localStorage.getItem('activeTab'))
-},[])
- 
+  var [activeTab, setActivetab] = useState(" ")
+  useEffect(() => {
+    setActivetab(window.localStorage.getItem('activeTab'))
+  }, [])
+  // usercount
+  var [users, setUsers] = useState([]);
+  useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/customer/list")
+      .then((res) => setUsers(res.data))
+  }, []);
+  let usercount = 0;
+  usercount = users.length
+  // ticketscount
+  var [tickets, setTickets,] = useState([]);
+  useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/tickets/list")
+      .then((res) => setTickets(res.data));
+  }, []);
+  let ticketscount = 0;
+  ticketscount = tickets.length
+  //team members count
+  var [team, setTeam] = useState([]);
+  useEffect(() => {
+      Axios.get("https://mindmadetech.in/api/team/list")
+          .then((res) => setTeam(res.data));
+  }, []);
+  let teamcount = 0;
+  teamcount = team.length
   return (
-    <>{login==="false"? <div className="access ">access denied</div>:
+    <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
         <Dashboard
 
-dashActive={activeTab==="Dashboard" ? "nav-link active":"nav-link"}
-ticketActive={activeTab==="ticket" ? "nav-link active":"nav-link"}
-TicketTabActive={TicketTabActive}
-DashTabActive={DashTabActive}
+          dashActive={activeTab === "Dashboard" ? "nav-link active" : "nav-link"}
+          ticketActive={activeTab === "ticket" ? "nav-link active" : "nav-link"}
+          TicketTabActive={TicketTabActive}
+          DashTabActive={DashTabActive}
           logout={onBackButtonEvent2}
           navcontent={
             <Typography
@@ -106,14 +129,14 @@ DashTabActive={DashTabActive}
           }
           sidenavcontent={
             <>
-              <button className={activeTab==="user" ? "nav-link active":"nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
+              <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="./users" ><ListItem button>
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Users" />
               </ListItem>
               </button>
-              <button className={activeTab==="team" ? "nav-link active":"nav-link"} onClick={TeamTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
+              <button className={activeTab === "team" ? "nav-link active" : "nav-link"} onClick={TeamTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="./users" ><ListItem button>
                 <ListItemIcon>
                   <GroupsIcon />
                 </ListItemIcon>
@@ -125,7 +148,7 @@ DashTabActive={DashTabActive}
           tabbody={
             <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
               <div className="tab-content" id="v-pills-tabContent">
-                <div className={activeTab==="Dashboard" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <div className='main-dash'>
                     <div className='main-dash-sub' >
                       <div className='dash-head'>
@@ -136,21 +159,21 @@ DashTabActive={DashTabActive}
                           <div className='row'>
                             <Dashcard
                               cardHead="No of Tickets"
-                              cardbody="50k"
+                              cardbody={ticketscount}
                               cardfooter="last Ticket no"
                               cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                             />
                             <Dashcard
                               cardHead="No of users"
-                              cardbody="10k"
+                              cardbody={usercount}
                               cardfooter="last Ticket no"
-                              cardIcon={<FontAwesomeIcon icon={faUsers} />}
+                              cardIcon={<FontAwesomeIcon icon={faUser} />}
                             />
                             <Dashcard
-                              cardHead="Tickets status"
-                              cardbody="5k"
+                              cardHead="No of Team members"
+                              cardbody={teamcount}
                               cardfooter="last Ticket no"
-                              cardIcon="icon3"
+                              cardIcon={<FontAwesomeIcon icon={faUsers} />}
                             />
                           </div>
                         </div>
@@ -158,15 +181,15 @@ DashTabActive={DashTabActive}
                     </div>
                   </div>
                 </div>
-                <div className={activeTab==="user" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div className={activeTab === "user" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                   <Users />
                 </div>
-                <div className={activeTab==="ticket" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Adminticket />
                 </div>
-                <div className={activeTab==="team" ? "tab-pane fade show active":"tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Team />
-                  
+
                 </div>
                 <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
                   product details

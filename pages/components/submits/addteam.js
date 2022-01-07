@@ -39,6 +39,17 @@ function Addteam(props) {
         });
     }
     console.log(addteam)
+    const[login,setLogin]=useState()
+  useEffect(()=>{
+    setLogin(window.localStorage.getItem('loggedin'))
+    console.log(login)
+   if(login==="false"){
+    router.push("/components/login/login")
+   } else if(login === null){
+    router.push("/components/login/login")
+   }
+
+  })
     return (
         <div>
             <div className="container mainbody">

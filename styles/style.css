@@ -66,6 +66,9 @@ a {
   font-size: 13px;
   color: #1976d2;
 }
+.dash-status{
+  font-size: 10px;
+}
 .tickets-bodyrow3 td {
   width: 201px;
   text-align: left;
@@ -922,6 +925,7 @@ h4.alert1.text-center {
 .card-left {
   font-family: "Roboto", sans-serif;
   width: 50%;
+  text-align: left;
 }
 
 .card-right {

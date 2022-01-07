@@ -1,20 +1,30 @@
 import { useState } from "react"
 export default function Test() {
-    const [images, setImages] = useState('');
-    const addimage = () => {
-        console.log(images)
-        Axios.post(`https://localhost/api/team/new`, {
-            images: images
-        }).then((response) => {
-            console.log(response);
-        });
-    }
+   var[open,setOpen]=useState()
+   function show(){
+    setOpen(!open)
+   }
     return (
         <div>
-            <form  method="post">
-                <input type="file" name="images" accept='image/*' onChange={(e) => { setImages(e.target.value); }} />
-                <button type="submit" onClick={addimage}>button</button>
-            </form>
+            
+                <button type="submit" onClick={show} >button</button>
+                 { open ? <>hello</> : <div>
+hello karthick
+</div>} 
+<div>
+                                  <div className='dash-status'>
+                                    <div>New</div>
+                                    <div></div>
+                                  </div>
+                                  <div className='dash-status'>
+                                    <div>InProgress</div>
+                                    <div></div>
+                                  </div>
+                                  <div className='dash-status'>
+                                    <div>completed</div>
+                                    <div></div>
+                                  </div>
+                                </div>
         </div>
     )
 }

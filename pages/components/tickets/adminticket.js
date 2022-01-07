@@ -10,7 +10,6 @@ function Adminticket() {
     const [open, setOpen] = React.useState(false);
     const Router = useRouter()
     var [show, setShow] = useState('');
-    var [tickets, setTickets,] = useState([]);
     var [selectedTeam, setSelectedTeam] = useState('');
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -19,11 +18,10 @@ function Adminticket() {
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     //console.log(selectedValue)
+    var [tickets, setTickets,] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
-
-       
+            .then((res) => setTickets(res.data)); 
     }, []);
 
 
@@ -59,6 +57,18 @@ function Adminticket() {
             setIsOpenstatusfilter(false);
         }
     });
+
+    const[login,setLogin]=useState()
+    useEffect(()=>{
+      setLogin(window.localStorage.getItem('loggedin'))
+      console.log(login)
+     if(login==="false"){
+      router.push("/components/login/login")
+     } else if(login === null){
+      router.push("/components/login/login")
+     }
+  
+    })
     return (
         <div>
             <div className="mainbody">

@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import FormDialog from './common/dialogsform';
 import { CSVLink } from 'react-csv';
 import { Button } from '@mui/material';
-
+import router from "next/router";
 import Addcustomer from './submits/addcustomer';
 import Updatecustomer from './update/updatecustomer';
 import { useRouter } from 'next/router';
@@ -24,11 +24,10 @@ export default function Users(props) {
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
     var[exportUsers,setExportUsers] = useState([]);
-    
+   
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data));
-    }, []);
+            .then((res) => setUsers(res.data))}, []);
 
     const deleteUsers = (id, name) => {
 
@@ -70,6 +69,21 @@ export default function Users(props) {
          setExportUsers(data)
             
      }
+     const[login,setLogin]=useState()
+  useEffect(()=>{
+    setLogin(window.localStorage.getItem('loggedin'))
+    console.log(login)
+   if(login==="false"){
+    router.push("/components/login/login")
+   } else if(login === null){
+    router.push("/components/login/login")
+   }
+
+  })
+ 
+
+  
+  console.log()
     return (
         <div>
             <Head>
@@ -80,7 +94,7 @@ export default function Users(props) {
 
                 <div className="userbody">
                     <div className='header-user'>
-                        <h1>USERS </h1>
+                        <h1>USERS</h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                        
                         <div className='right-user-btns'>
@@ -121,6 +135,7 @@ export default function Users(props) {
                                     val.Name.toString().includes(search.toString())
                                 ) {
                                     return val;
+                                    
                                 }
                             }).map((item) =>
                                 <TableBody key={item.usersId}>
@@ -156,6 +171,7 @@ export default function Users(props) {
 
                     </TableContainer>
                 </div>
+                
             </div>
         </div>
     )
