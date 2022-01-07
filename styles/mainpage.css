@@ -15,6 +15,16 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.dot.active {
+  border: none;
+  width: 18px;
+  height: 0vh;
+  background: #07235f;
+  border-radius: 45%;
+  margin: 0 3px;
+  padding: 3px;
+  cursor: pointer;
+}
 .right-user-btns {
   display: flex;
   padding: 0px;
