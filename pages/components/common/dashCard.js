@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import React from 'react';
 export default function Dashcard(props) {
     return (
-        <Button className='col card-1' onClick={props.onClick} >
+        <div className='col card-1' onClick={props.onClick} >
             <div className='card-left'>
                 <h3>{props.cardHead}</h3>
                 <div className='ticket-no'>
@@ -17,6 +17,6 @@ export default function Dashcard(props) {
                     {props.cardIcon}
                 </div>
             </div>
-        </Button>
+        </div>
     )
 }

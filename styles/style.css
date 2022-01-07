@@ -925,7 +925,7 @@ h4.alert1.text-center {
 .card-left {
   font-family: "Roboto", sans-serif;
   width: 50%;
-  text-align: left;
+ 
 }
 
 .card-right {
@@ -936,6 +936,9 @@ h4.alert1.text-center {
 
 .card-logo {
   text-align: center;
+}
+.card-1:hover{
+  background-color: rgba(25, 118, 210, 0.04);
 }
 
 .card-logo svg {
