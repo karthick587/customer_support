@@ -660,11 +660,6 @@ form.form2 {
   min-width: 650px;
 
 }
-
-.float-enduser {
-  right: 16px !important;
- 
-}
 .right-user-btns {
   display: flex;
   right: 0;

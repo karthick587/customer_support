@@ -25,13 +25,7 @@
   padding: 3px;
   cursor: pointer;
 }
-.right-user-btns {
-  display: flex;
-  padding: 0px;
-  right: 0;
-  margin: -12px 0px;
-  position: absolute;
-}
+
 .top-btn div label {
   font-size: 10px;
   font-weight: 600;
@@ -59,14 +53,14 @@
   margin: 34px 11px 0px 24px;
 }
 .user-delete {
-  margin: 19px 1px 5px -13px !important;
+  margin: 11px 1px 5px -13px !important;
 }
 
-  form.form3 {
+form.form3 {
     width: 270px;
     margin: 13px;
   }
-  .form.login {
+.form.login {
     
     align-items: center;
     margin-top: 25px;
@@ -75,7 +69,14 @@
     display: flex;
     z-index: 7;
 }
-  
+.css-dsuxgy-MuiTableCell-root {
+  line-height: 3.43 !important;
+}
+.deteleandedit {
+  display: flex;
+  margin: 14px 10px;
+ 
+}  
 .sublogin {
   width: 321px;
   padding-top: 55px;
@@ -129,15 +130,7 @@
     margin: 0px 13px 0px 13px;
   }
 
-  .float-enduser {
-    width: 77px;
-    height: 4vh;
-    position: relative !important;
-    display: block !important;
-    right: 0 !important;
-    margin: 9px -15px;
-    left: 0 !important;
-}
+  
 
   .header-user {
     display: flex;
