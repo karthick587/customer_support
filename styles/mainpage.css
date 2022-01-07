@@ -15,8 +15,33 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.right-user-btns {
+  display: flex;
+  padding: 0px;
+  right: 0;
+  margin: -12px 0px;
+  position: absolute;
+}
+.top-btn div label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: system-ui;
+}
+.team-list div {
+  padding: 0px 0px;
+  margin-top: 8px;
+  margin-left: 18px;
+  font-size: 11px;
+}
+.team-list {
+  margin-left: -13px;
+  width: 250px !important;
+  margin-top: -4px;
+  display: flex;
+}
 .head-dialog {
-  width: 400px;
+  width: 345px;
   padding: 13px 106px 0px 18px;
 }
 .tickets-table-row div .ticket-update2 {
@@ -32,8 +57,9 @@
     margin: 13px;
   }
   .form.login {
-    margin: 0px 0px;
+    
     align-items: center;
+    margin-top: 25px;
     justify-content: center;
     height: auto;
     display: flex;
@@ -82,7 +108,7 @@
 
   .right-body {
     width: 60%;
-    height: 56vh;
+    height: 53vh;
 }
 
   .header-user input {
@@ -153,7 +179,7 @@
   }
 
   .keen-slider:not([data-keen-slider-disabled]) {
-    height: 56vh !important;
+    height: 53vh !important;
 }
 
   .slide-text {
