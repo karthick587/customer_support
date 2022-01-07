@@ -109,7 +109,7 @@ export default function Users(props) {
                                     <TableCell align="left">USERNAME</TableCell>
                                     <TableCell align="left">PASSWORD</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
-                                    <TableCell align="left">PHONE NUMBER</TableCell>
+                                    <TableCell align="left">PHONE</TableCell>
 
                                 </TableRow>
                             </TableHead>
