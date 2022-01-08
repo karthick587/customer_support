@@ -1,4 +1,68 @@
-@media only screen and (max-width: 440px) {}
+@media only screen and (max-width: 330px) {
+  .right-body {
+    margin-top: 20px;
+}
+
+}
+@media only screen and (max-width: 360px) {
+  .form.login {
+   
+    width: 0px;
+}
+.login-header h1 {
+  font-size: 24px;
+  font-family: 'Open Sans', sans-serif !important;
+}
+.login-header {
+  display: inline-grid;
+  width: 259px;
+}
+.sublogin {
+ 
+  font-size: 12px;
+ 
+}
+.form-group {
+  padding: 1px 0px;
+  display: grid;
+}
+.carocel {
+  margin-top: -10px;
+}
+.dots {
+  bottom: 50px;
+}
+.form-group.log button a {
+  /* height: 5vh; */
+  padding: 0px 0px !important;
+}
+.slide-text h3 {
+  font-size: 20px;
+  font-family: system-ui;
+}
+.form-group {
+  padding: 4px 0px;
+  display: grid;
+}
+.label {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 1px;
+}
+.form-input {
+  padding: 3px 11px;
+  border-radius: 19px;
+  border: 1px solid #8080804a;
+  font-size: 12px;
+  background: transparent;
+  z-index: 99;
+}
+.sublogin {
+ 
+  padding-top: 25px;
+}
+}
 
 @media only screen and (max-width: 340px) {
   form.form3 {
@@ -14,6 +78,14 @@
   .css-1howxi1-MuiTableCell-root {
     padding: 4px 14px 3px 0px !important;
     width: 99px;
+}
+.tickets-bodyrow4 td {
+  width: 101px;
+  text-align: left;
+  font-weight: 550;
+  padding: 34px 0 0;
+  font-size: 13px;
+  color: rgba(0,0,0,.87);
 }
 .dot.active {
   border: none;
@@ -60,8 +132,10 @@ form.form3 {
     width: 270px;
     margin: 13px;
   }
+ 
 .form.login {
-    
+  width: 267px;
+  
     align-items: center;
     margin-top: 25px;
     justify-content: center;
@@ -78,8 +152,8 @@ form.form3 {
  
 }  
 .sublogin {
-  width: 321px;
-  padding-top: 55px;
+  width: 292px;
+  padding-top: 39px;
 }
 .carocel {
   margin-top: -21px;
@@ -147,14 +221,18 @@ form.form3 {
   }
 
   img.slide-banner3 {
-    margin-bottom: 206px;
-    width: 77%;
-  }
+    margin-bottom: 199px;
+    width: 61%;
+}
 
-  img.slide-banner2 {
-    width: 309px;
-    margin-bottom: 150px;
-  }
+img.slide-banner2 {
+  width: 228px;
+  margin-bottom: 137px;
+}
+.slide-text p {
+  font-size: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
 
   .slide-banner {
     width: 67%;
