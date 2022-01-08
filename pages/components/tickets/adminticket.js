@@ -71,7 +71,7 @@ function Adminticket() {
     })
     return (
         <div>
-            <div className="mainbody">
+           
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
@@ -89,7 +89,7 @@ function Adminticket() {
                                 <option value="Status">Status</option>
                             </select>
                             {isOpenfilter && (
-                                <input className='search-filter' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <input className='filter-select' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                             )}
                             {isOpenstatusfilter && (
                                 <select className='filter-select' onChange={(e) => setFilteredStatus(e.target.value)}>
@@ -109,7 +109,7 @@ function Adminticket() {
                             <div >Date</div>
                             <div>Team</div>
                             <div>Status</div>
-                            <div></div>
+                            <div className='empty-col'></div>
                         </div>
                         {search === " " ?
                             <>
@@ -324,7 +324,6 @@ function Adminticket() {
                         }
                     </TableContainer>
                 </div>
-            </div>
         </div>
     );
 }

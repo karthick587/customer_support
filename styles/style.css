@@ -29,7 +29,7 @@ a {
 }
 
 .tickets-bodyrow2 div {
-  width: 184px;
+  width: 225px;
   font-size: 15px;
   color: #1976d2;
   font-weight: 700;
@@ -38,12 +38,21 @@ a {
   display: flex;
 }
 .tickets-bodyrow3 div {
-  width: 200px;
+  width: 236px;
   font-size: 15px;
   color: #1976d2;
   font-weight: 700;
 }
-
+.tickets-bodyrow4{
+  display: flex;
+}
+.tickets-bodyrow4 div {
+  width: 256px;
+  font-size: 15px;
+ 
+  color: #1976d2;
+  font-weight: 700;
+}
 .tickets-table-row3 {
   display: flex;
 }
@@ -70,13 +79,23 @@ a {
   font-size: 10px;
 }
 .tickets-bodyrow3 td {
-  width: 201px;
+  width: 237px;
   text-align: left;
   font-weight: 550;
   padding: 34px 0 0;
   font-size: 13px;
   color: rgba(0,0,0,.87);
 }
+.tickets-bodyrow4 td {
+  width: 252px;
+  text-align: left;
+  font-weight: 550;
+  padding: 34px 0 0;
+  font-size: 13px;
+  color: rgba(0,0,0,.87);
+}
+
+
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
@@ -120,7 +139,7 @@ a {
 }
 
 .tickets-bodyrow td {
-  width: 185px;
+  width: 220px;
   text-align: left;
   font-weight: 550;
   padding: 34px 0px 0px 0px;
@@ -167,7 +186,7 @@ a {
 
 .userbody {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  width: 1150px;
+  width: 1285px;
   margin: auto;
 }
 
@@ -535,7 +554,7 @@ body {
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #1976d2 !important;
   background-color: white !important;
-  border-left: 5px solid #1976d2 !important;
+  border-left: 6px solid #1976d2 !important;
 }
 .nav-link.active {
   border-radius: 0px !important;
@@ -551,6 +570,9 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-9mgopn-MuiDivider-root {
   min-width: 57px;
   color: rgb(25 118 210) !important;
   display: inline-flex;
+}
+.empty-col {
+  width: 166px !important;
 }
 .nav-link {
   display: block;
@@ -584,7 +606,7 @@ button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-siz
   border: none !important;
 }
 thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
-  font-size: 13px !important;
+  font-size: 14px !important;
   color: #1976d2 !important;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 700;
@@ -593,6 +615,9 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   padding: 10px 15px;
+}
+.filter-head {
+  margin: 2px 0px 0px 12px;
 }
 .header-user div button {
   margin-right: 17px;
@@ -767,11 +792,10 @@ form.form2 {
 }
 
 .adminticket-head input {
-  padding: 2px 11px;
   border: none;
+  padding: 4.5px 8px;
   border-radius: 27px;
   background-color: #58a2ea38;
-  margin: 0px 0px 7px 4px;
 }
 
 .adminticket-head input::placeholder {
@@ -790,7 +814,7 @@ form.form2 {
 }
 .deteleandedit{
   display: flex;
- 
+  margin-top: 10px;
 }
 .form-group p {
   position: absolute;
@@ -808,6 +832,15 @@ form.form2 {
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+.css-h4y409-MuiList-root {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-left: 5px;
+  padding-bottom: 8px;
 }
 .css-ypiqx9-MuiDialogContent-root {
   overflow-y: auto;
@@ -848,7 +881,7 @@ h4.alert1.text-center {
 
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
-  padding-top: 25px !important;
+  padding-top: 34px !important;
   font-weight: 550;
 }
 
@@ -979,7 +1012,7 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 
 .css-1howxi1-MuiTableCell-root {
   padding: 4px 4px 3px 0px !important;
-  width: 251px;
+  width: 297px;
 }
 
 .css-13njpue {

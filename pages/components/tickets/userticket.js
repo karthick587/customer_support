@@ -31,7 +31,7 @@ function Userticket(props) {
   })
     return (
         <div>
-            <div className="container mainbody">
+           
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
@@ -40,7 +40,7 @@ function Userticket(props) {
                         <h1>Tickets</h1>
                     </div>
                     <TableContainer component={Paper}>
-                        <div className='tickets-bodyrow3'>
+                        <div className='tickets-bodyrow4'>
                             <div >TicketId</div>
                             <div>Username</div>
                             <div >Date</div>
@@ -56,11 +56,11 @@ function Userticket(props) {
                                 return val;
                             }
                         }).map((tickets) =>
-                            <div key={tickets.ticketsId} className='tickets-table-row3'>
+                            <div key={tickets.ticketsId} className='tickets-table-row4'>
                                 <FormDialog
                                     dialogtitle={
                                         <table >
-                                            <tr className='tickets-bodyrow3' >
+                                            <tr className='tickets-bodyrow4' >
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
@@ -110,7 +110,7 @@ function Userticket(props) {
                         )}
                     </TableContainer>
                 </div>
-            </div>
+            
         </div>
     );
 }

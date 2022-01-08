@@ -173,12 +173,12 @@ form.form3 {
     display: block;
   }
   .adminticket-head input {
-    padding: 0px 11px;
+   
     border: none;
     width: 140px;
     border-radius: 27px;
     background-color: #58a2ea38;
-    margin: 0px 0px 7px 27px;
+   
   }
 
   .keen-slider:not([data-keen-slider-disabled]) {

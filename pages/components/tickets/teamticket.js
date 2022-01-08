@@ -102,7 +102,7 @@ function Teamticket() {
   })
     return (
         <div>
-            <div className="container mainbody">
+          
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
@@ -210,7 +210,7 @@ function Teamticket() {
                     </TableContainer>
                 </div>
 
-            </div>
+           
         </div>
     );
 }
