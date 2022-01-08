@@ -88,7 +88,9 @@ function Teamticket() {
 
             )
         }
+
     })
+   
     const[login,setLogin]=useState()
   useEffect(()=>{
     setLogin(window.localStorage.getItem('loggedin'))
