@@ -859,6 +859,9 @@ form.form2 {
 .usertable td{
   width: 200px;
 }
+.teamtablecel {
+  width: 300px !important;
+}
 thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   
 }
