@@ -116,7 +116,7 @@ export default function Users(props) {
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
-                                <TableRow>
+                                <TableRow className='usertable'>
 
                                     <TableCell>USERID</TableCell>
                                     <TableCell align="left">NAME</TableCell>

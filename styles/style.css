@@ -846,9 +846,7 @@ form.form2 {
  
   overflow-y: hidden !important;
 }
-.css-1o6fzn1 {
-  width: 300px;
-}
+
 .css-ypiqx9-MuiDialogContent-root {
   overflow-y: auto;
   padding: 18px 18px 5px 15px;
@@ -858,8 +856,11 @@ form.form2 {
   padding: 8px 29px 3px 4px;
  
 }
+.usertable td{
+  width: 200px;
+}
 thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
-  width: 294px !important;
+  
 }
 .deteleandedit button {
   /* padding: 0px 1px; */
