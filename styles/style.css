@@ -858,6 +858,9 @@ form.form2 {
   padding: 8px 29px 3px 4px;
  
 }
+thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
+  width: 294px !important;
+}
 .deteleandedit button {
   /* padding: 0px 1px; */
   margin: 11px -15px;
