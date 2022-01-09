@@ -856,11 +856,13 @@ form.form2 {
   padding: 8px 29px 3px 4px;
  
 }
-.usertable td{
-  width: 200px;
-}
+
 .teamtablecel {
   width: 300px !important;
+}
+.css-1o6fzn1 {
+  
+  width: 197px;
 }
 thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   
