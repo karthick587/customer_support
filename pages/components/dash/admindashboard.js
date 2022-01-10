@@ -17,7 +17,6 @@ import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Axios from 'axios';
-import Dashpiechart from '../common/dashpiechart';
 const AdminDashboard = (props) => {
 
   const router = useRouter();
