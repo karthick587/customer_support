@@ -13,7 +13,6 @@ import Users from '../users';
 import Team from '../team';
 import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
-import { withRouter } from "next/router";
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Axios from 'axios';
