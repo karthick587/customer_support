@@ -109,7 +109,7 @@ function Teamticket() {
                     <title>Admin Dashboard</title>
                 </Head>
 
-                <div className="userbody">
+                <div className="teambody">
                     <div className='adminticket-head'>
                         <h1>Tickets</h1>
                     </div>

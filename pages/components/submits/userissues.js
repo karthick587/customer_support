@@ -56,6 +56,8 @@ console.log(UserName)
         data.append("Phonenumber", Phonenumber);
         data.append("DomainName", DomainName);
         data.append("date", date);
+        data.append("Team", "not assigned");
+        data.append("Status","new" );
         data.append("Description", Description);
         data.append("file", Screenshots);
         data.append("statusUpdatedTime",date + ' ' + fullTime)
@@ -66,10 +68,9 @@ console.log(UserName)
         }
     })
     }
-
     useEffect(() => {
         setUserName(customername);
-    }, []);
+    });
 
     return (
         <div className="container">

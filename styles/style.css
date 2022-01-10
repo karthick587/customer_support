@@ -183,7 +183,11 @@ a {
 .tickets {
   display: inline-grid;
 }
-
+.teambody {
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  width: 1290px;
+  margin: auto;
+}
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   width: 1253px;
