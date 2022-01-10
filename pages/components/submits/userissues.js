@@ -47,7 +47,7 @@ function Userissue(props) {
         console.log(e.target.files[0]);
         setScreenshots(e.target.files[0]);
     }
-
+console.log(UserName)
     const addIssues = () => {
 
         const data = new FormData();

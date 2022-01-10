@@ -49,6 +49,7 @@ export default function Login1() {
         console.log(validate);
         SlicedName = username;
         console.log(SlicedName);
+        localStorage.setItem('clientname', SlicedName);
     }
     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
       username: SlicedName,

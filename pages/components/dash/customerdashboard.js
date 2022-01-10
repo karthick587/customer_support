@@ -14,8 +14,8 @@ const CustomerDashboard = (props) => {
 
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
-
   const [login, setLogin] = useState()
+  
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
     console.log(login)
@@ -25,7 +25,10 @@ const CustomerDashboard = (props) => {
       router.push("/components/login/login")
     }
   })
-
+  useEffect(()=>{
+    setUser(window.localStorage.getItem('clientname'))
+  })
+  console.log(user)
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -52,6 +55,7 @@ const CustomerDashboard = (props) => {
     router.push("/components/login/login")
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('activeTab');
+
   }
 
   useEffect(() => {

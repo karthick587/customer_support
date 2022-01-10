@@ -29,6 +29,7 @@ function Userticket(props) {
    }
 
   })
+  console.log(search)
     return (
         <div>
            
@@ -48,13 +49,9 @@ function Userticket(props) {
                             <div>Status</div>
                         </div>
                         {tickets.filter(val => {
-                            if (search === "") {
-                                return val;
-                            } else if (
-                                val.Username.toLowerCase().includes(search.toLowerCase())
-                            ) {
-                                return val;
-                            }
+                           
+                              return  val.Username.toLowerCase().includes(search)
+                           
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row4'>
                                 <FormDialog
@@ -64,9 +61,9 @@ function Userticket(props) {
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
-                                                <td >{tickets.Team}</td>
+                                                <td >{tickets.Team === null ? "new" : tickets.Team}</td>
                                                 <td >
-                                                <h5 className={tickets.Status}>{tickets.Status}</h5>
+                                                <h5 className={tickets.Status}>{tickets.Status === null ? "new" : tickets.Status}</h5>
                                                     <h5 className='statusUpdateTime'>Updated at{tickets.statusUpdateTime}</h5>
                                                 </td>
                                             </tr>
