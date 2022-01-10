@@ -5,45 +5,72 @@ export default Userissue;
 
 function Userissue(props) {
     const { customername } = props
-    const [username, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phonenumber, setPhonenumber] = useState('');
-    const [domainName, setDomainName] = useState('');
-    const [description, setDescription] = useState('');
-    const [screenshots, setScreenshots] = useState('');
+    const [UserName, setUserName] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Phonenumber, setPhonenumber] = useState('');
+    const [DomainName, setDomainName] = useState('');
+    const [Description, setDescription] = useState('');
+    const [Screenshots, setScreenshots] = useState();
+    
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-   
 
+    //const time = today.getHours() + ':' + today.getMinutes();
+    var fullDate, TimeType, hour, minutes, seconds, fullTime;
+    fullDate = new Date();
+    hour = fullDate.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = fullDate.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = fullDate.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
    
+    // Adding all the variables in fullTime variable.
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
+    console.log(fullTime)
+    function handleScreenshot(e){
+        console.log(e.target.files[0]);
+        setScreenshots(e.target.files[0]);
+    }
 
     const addIssues = () => {
-        Axios.post("https://mindmadetech.in/api/tickets/new", {
-            UserName: username,
-            Email: email,
-            Phonenumber: phonenumber,
-            DomainName: domainName,
-            Date: date,
-            Description: description,
-            Screenshots: screenshots
-        }).then((response) => {
-            console.log(response);
-        });
+
+        const data = new FormData();
+        data.append("UserName", UserName);
+        data.append("Email", Email);
+        data.append("Phonenumber", Phonenumber);
+        data.append("DomainName", DomainName);
+        data.append("date", date);
+        data.append("Description", Description);
+        data.append("file", Screenshots);
+        data.append("statusUpdatedTime",date + ' ' + fullTime)
+
+        Axios.post("https://mindmadetech.in/api/tickets/new",data,{
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    })
     }
+
     useEffect(() => {
         setUserName(customername);
     }, []);
-    const[login,setLogin]=useState()
-  useEffect(()=>{
-    setLogin(window.localStorage.getItem('loggedin'))
-    console.log(login)
-   if(login==="false"){
-    router.push("/components/login/login")
-   } else if(login === null){
-    router.push("/components/login/login")
-   }
 
-  })
     return (
         <div className="container">
             <div>
@@ -70,18 +97,22 @@ function Userissue(props) {
                         <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                     <div className="form-group">
-
-                        <label htmlFor="contained-button-file">
-                            <input accept="image/*" id="contained-button-file" multiple type="file" onChange={(e) => { setScreenshots(e.target.value); }} />
                         
-                        
-                        </label>
+                        <form>
+                             <label htmlFor="contained-button-file">
+                                <input type="file" id="file" accept="image/*" onChange={handleScreenshot} />
+                            </label>
+                        </form>
                     </div>
                     <div className="">
-                        <button className="btn2 mt-3 mb-4" type="submit" onClick={addIssues}>Submit</button>
+                        <button className="btn2 mt-3 mb-4" type="button" onClick={addIssues}>Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     );
 }
+
+
+
+
