@@ -17,8 +17,17 @@ function Updatecustomer({ usersId }) {
     const[uploadLogo,setUploadLogo] = useState();
     const[selected,setSelected] = useState(false);
     var [show, setShow] = useState('');
-    const Adminname = localStorage.getItem('user');
-    const Modifiedby = Adminname.slice(3, 20);
+    const[Adminname,setAdminname]=useState([])
+    useEffect(()=>{
+        setAdminname(window.localStorage.getItem('user'));
+    },[])
+    const [Modifiedby,setModifiedby]=useState()
+    useEffect(()=>{
+        setModifiedby(Adminname.slice(3, 20));
+    })
+   
+
+  
      console.log(Modifiedby);
 console.log(Adminname)
     console.log(usersId)
