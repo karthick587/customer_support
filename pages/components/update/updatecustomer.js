@@ -194,7 +194,7 @@ console.log(Adminname)
                         <div className="container mainbody" key={data.usersId}>
                             <div className="addform">
                                 <form>
-                                <div className="form-group">
+                                <div className="form-group upload">
                                     <label htmlFor="contained-button-file">
                                         <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e)=>handleScreenshot(data.Logo,e)} />
                                         <Avatar
