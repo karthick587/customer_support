@@ -90,6 +90,7 @@ a {
   width: 246px;
   text-align: left;
   font-weight: 550;
+  text-transform: capitalize;
   padding: 34px 0 0;
   font-size: 13px;
   color: rgba(0,0,0,.87);
@@ -258,7 +259,12 @@ form.form3 {
 .ticket-update2 {
   z-index: 99;
 }
-
+.upload-input-button{
+  display: none;
+}
+.upload{
+  text-align: center;
+}
 .btn-login button {
   background-color: white !important;
   color: blue !important;

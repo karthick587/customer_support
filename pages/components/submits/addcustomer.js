@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router'
+import { Input } from '@mui/material';
+import { Button } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 const schema = yup.object().shape({
     Name: yup.string().required(),
     Username: yup.string().required(),
@@ -24,13 +27,13 @@ function Addcustomer(props) {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const addUser = ({ Name, Username, Password,Email,Phonenumber }) => {
+    const addUser = ({ Name, Username, Password, Email, Phonenumber }) => {
         Axios.post(`https://mindmadetech.in/api/customer/new`, {
             Name: Name,
             Username: Username,
             Password: Password,
-            Email:Email,
-            Phonenumber:Phonenumber,
+            Email: Email,
+            Phonenumber: Phonenumber,
         }).then((response) => {
             if (response.data.message) {
                 setShow(response.data.message)
@@ -40,22 +43,33 @@ function Addcustomer(props) {
             }
         });
     }
-    const[login,setLogin]=useState()
-  useEffect(()=>{
-    setLogin(window.localStorage.getItem('loggedin'))
-    console.log(login)
-   if(login==="false"){
-    router.push("/components/login/login")
-   } else if(login === null){
-    router.push("/components/login/login")
-   }
+    const [login, setLogin] = useState()
+    useEffect(() => {
+        setLogin(window.localStorage.getItem('loggedin'))
+        console.log(login)
+        if (login === "false") {
+            router.push("/components/login/login")
+        } else if (login === null) {
+            router.push("/components/login/login")
+        }
 
-  })
+    })
     return (
         <div>
             <div className="container mainbody">
                 <div className="addform">
                     <form>
+                        <div className="form-group upload">
+                            <label htmlFor="contained-button-file">
+                                <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" />
+                                <Avatar
+                                    alt="Remy Sharp"
+                                    src="/static/images/avatar/1.jpg"
+                                    sx={{ width: 56, height: 56 }}
+                                />
+                            </label>
+                        </div>
+
                         <div className="form-group">
                             <label className="label">Name</label>
                             <input className="form-input" name="Name" type="text" {...register('Name')} />

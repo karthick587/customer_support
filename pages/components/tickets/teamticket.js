@@ -196,7 +196,6 @@ function Teamticket() {
                                                                 <option className='new' value="new">new</option>
                                                                 <option className='inprogress' value="inprogress">inprogress</option>
                                                                 <option className='completed' value="completed">completed</option>
-
                                                             </select>
                                                         </div>
                                                     </form>

@@ -5,16 +5,13 @@ export default Userissue;
 
 function Userissue(props) {
     const { customername } = props
-    const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
     const [Phonenumber, setPhonenumber] = useState('');
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
-    
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-
     //const time = today.getHours() + ':' + today.getMinutes();
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
     fullDate = new Date();
@@ -47,11 +44,11 @@ function Userissue(props) {
         console.log(e.target.files[0]);
         setScreenshots(e.target.files[0]);
     }
-console.log(UserName)
+console.log(customername)
     const addIssues = () => {
 
         const data = new FormData();
-        data.append("UserName", UserName);
+        data.append("UserName", customername);
         data.append("Email", Email);
         data.append("Phonenumber", Phonenumber);
         data.append("DomainName", DomainName);
@@ -68,9 +65,7 @@ console.log(UserName)
         }
     })
     }
-    useEffect(() => {
-        setUserName(customername);
-    });
+   
 
     return (
         <div className="container">
