@@ -79,6 +79,11 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.teambody {
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  width: 600px;
+  margin: auto;
+}
 .tickets-bodyrow4 td {
   width: 101px;
   text-align: left;
@@ -295,8 +300,8 @@ img.slide-banner2 {
   
 
   .addform {
-    width: 220px !important;
-  }
+    width: 240px !important;
+}
 
   .nav-link div {
     margin: 0px -4px !important;

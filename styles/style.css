@@ -266,8 +266,9 @@ form.form3 {
   color: red !important;
   font-size: 13px;
 }
-.upload{
+.upload {
   text-align: center;
+  display: block;
 }
 .btn-login button {
   background-color: white !important;
@@ -861,8 +862,11 @@ form.form2 {
 }
 
 .css-ypiqx9-MuiDialogContent-root {
-  overflow-y: auto;
+ 
   padding: 18px 18px 5px 15px;
+}
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  overflow-y:revert !important;
 }
 .css-hlj6pa-MuiDialogActions-root {
   
