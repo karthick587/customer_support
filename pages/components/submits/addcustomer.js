@@ -31,8 +31,15 @@ function Addcustomer(props) {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const Adminname = window.localStorage.getItem('user');
-    const Createdby = Adminname.slice(3, 20);
+    const[Adminname,setAdminname]=useState([])
+    useEffect(()=>{
+        setAdminname(window.localStorage.getItem('user'));
+    },[])
+    const [Createdby,setCreatedby]=useState()
+    useEffect(()=>{
+        setCreatedby(Adminname.slice(3, 20));
+    })
+    
      console.log(Createdby)
     
     const addUser = ({ Companyname,Clientname,Email,Phonenumber,Username,Password }) => {
