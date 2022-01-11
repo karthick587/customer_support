@@ -74,7 +74,6 @@ export default function Team(props) {
           } else if(login === null){
            router.push("/components/login/login")
           }
-       
          })
     return (
         <div>
