@@ -61,9 +61,9 @@ function Userticket(props) {
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
-                                                <td >{tickets.Team === null ? "new" : tickets.Team}</td>
+                                                <td >{tickets.Team}</td>
                                                 <td >
-                                                <h5 className={tickets.Status}>{tickets.Status === null ? "new" : tickets.Status}</h5>
+                                                <h5 className={tickets.Status}>{tickets.Status}</h5>
                                                     <h5 className='statusUpdateTime'>Updated at{tickets.statusUpdateTime}</h5>
                                                 </td>
                                             </tr>

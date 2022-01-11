@@ -5,9 +5,10 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
+import * as emailjs from "emailjs-com";
 function Teamticket() {
     const Router = useRouter()
-
+    
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
 
@@ -24,7 +25,40 @@ function Teamticket() {
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
+
+    function updateemail(ticketsId,Username){
+        setName(Username);
+        setTicketid(ticketsId)
+    }
+
+    const [name,setName]=useState()
+  const [ticketid,setTicketid]=useState()
+
+  const SERVICE_ID="service_56f9av6"
+  const TEMPLATE_ID="template_7g9sx6r";
+  const USER_ID="user_uy8zZ1SqoqelDq1TAvxL4"
     function handleUpdatestatus(ticketsId) {
+       
+
+   
+            console.log(email)
+            var data = {
+              to_email:email,
+              message:"status of Your Tickets no "+ticketid+"is in "+selectedstatus,
+              to_name:name
+            };
+    
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+                function (response) {
+                  console.log(response.status, response.text);
+                },
+                function (err) {
+                  console.log(err);
+                }
+              );
+          
+            
+      
         console.log(ticketsId)
         console.log(statusUpdateTime)
 
@@ -36,7 +70,10 @@ function Teamticket() {
             setShow("update Successfully");
             Router.reload(window.location.pathname)
         });
+        //emailjs
+     
     }
+  
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();
@@ -102,6 +139,32 @@ function Teamticket() {
    }
 
   })
+
+  //to get client email id 
+  const [email,setEmail]=useState()
+  var [users, setUsers] = useState([]);
+  useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/customer/list")
+        .then((res) => setUsers(res.data))  
+    }, []);
+useEffect(()=>{
+    {users.filter(val => {
+          
+        return  val.Username.toLowerCase().includes(name) 
+         
+   
+  }).map((itemed) =>setEmail(itemed.Email)
+  
+  )}
+})
+console.log(email)
+  //emailjs
+ 
+  
+  
+  
+  
+ 
     return (
         <div>
           
@@ -125,13 +188,13 @@ function Teamticket() {
                         {tickets.filter(val => {
 
                             return val.Team.toLowerCase().includes(teamname.toLowerCase())
-
+                             
                         }).map((tickets) =>
                             <div key={tickets.ticketsId} className='tickets-table-row3'>
 
                                 <FormDialog
                                     dialogtitle={
-                                        <table >
+                                        <table  >
                                             <tr className='tickets-bodyrow3' >
                                                 <td>{tickets.ticketsId}</td>
                                                 <td >{tickets.Username}</td>
@@ -178,10 +241,10 @@ function Teamticket() {
                                     }
                                 />
                                 <FormDialog
-                                    dialogtitle="update"
+                                    dialogtitle={<div onClick={() => updateemail(tickets.ticketsId,tickets.Username)}>update</div>}
                                     className="btn3 ticket-update2"
                                     dialogbody={
-                                        <div className="form dialog">
+                                        <div className="form dialog" >
                                             <div className="form-toggle"></div>
                                             <div className="form-panel update one">
                                                 <div className="form-header">

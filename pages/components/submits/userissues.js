@@ -5,13 +5,17 @@ export default Userissue;
 
 function Userissue(props) {
     const { customername } = props
+    //const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
     const [Phonenumber, setPhonenumber] = useState('');
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
+    var Team = 'Assign';
+    var Status = 'New';
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+
     //const time = today.getHours() + ':' + today.getMinutes();
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
     fullDate = new Date();
@@ -40,6 +44,7 @@ function Userissue(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     console.log(fullTime)
+   
     function handleScreenshot(e){
         console.log(e.target.files[0]);
         setScreenshots(e.target.files[0]);
@@ -53,9 +58,9 @@ console.log(customername)
         data.append("Phonenumber", Phonenumber);
         data.append("DomainName", DomainName);
         data.append("date", date);
-        data.append("Team", "not assigned");
-        data.append("Status","new" );
         data.append("Description", Description);
+        data.append("Team",Team);
+        data.append("Status",Status);
         data.append("file", Screenshots);
         data.append("statusUpdatedTime",date + ' ' + fullTime)
 
@@ -65,7 +70,10 @@ console.log(customername)
         }
     })
     }
-   
+
+    // useEffect(() => {
+    //     setUserName(customername);
+    // }, []);
 
     return (
         <div className="container">
@@ -108,7 +116,3 @@ console.log(customername)
         </div>
     );
 }
-
-
-
-

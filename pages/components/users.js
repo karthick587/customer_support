@@ -16,6 +16,7 @@ import Addcustomer from './submits/addcustomer';
 import Updatecustomer from './update/updatecustomer';
 import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -24,6 +25,8 @@ export default function Users(props) {
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
     var[exportUsers,setExportUsers] = useState([]);
+
+    
    
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
@@ -119,11 +122,11 @@ export default function Users(props) {
                                 <TableRow className='usertable'>
 
                                     <TableCell>USERID</TableCell>
-                                    <TableCell align="left">NAME</TableCell>
-                                    <TableCell align="left">USERNAME</TableCell>
-                                    <TableCell align="left">PASSWORD</TableCell>
+                                    <TableCell align="left">LOGO</TableCell>
+                                    <TableCell align="left">COMPANY NAME</TableCell>
+                                    <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
-                                    <TableCell align="left">PHONE</TableCell>
+                                    <TableCell align="left">PHONE NUMBER</TableCell>
 
                                 </TableRow>
                             </TableHead>
@@ -131,8 +134,8 @@ export default function Users(props) {
                                 if (search === "") {
                                     return val;
                                 } else if (
-                                    val.Username.toLowerCase().includes(search.toLowerCase()) ||
-                                    val.Name.toString().includes(search.toString())
+                                    val.Clientname.toLowerCase().includes(search.toLowerCase()) ||
+                                    val.Companyname.toString().includes(search.toString())
                                 ) {
                                     return val;
                                     
@@ -141,9 +144,9 @@ export default function Users(props) {
                                 <TableBody key={item.usersId}>
                                     <TableRow >
                                         <TableCell component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell align="left">{item.Name}</TableCell>
-                                        <TableCell align="left">{item.Username}</TableCell>
-                                        <TableCell align="left">{item.Password}</TableCell>
+                                        <TableCell align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/></TableCell>
+                                        <TableCell align="left">{item.Companyname}</TableCell>
+                                        <TableCell align="left">{item.Clientname}</TableCell>
                                         <TableCell align="left">{item.Email}</TableCell>
                                         <TableCell align="left">{item.Phonenumber}</TableCell>
                                         

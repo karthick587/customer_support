@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Avatar from '@mui/material/Avatar';
 import FormDialog from '../common/dialogsform';
 import EditIcon from '@mui/icons-material/Edit';
 function Updatecustomer({ usersId }) {
     let router = useRouter();
     var [getCustomer, setGetCustomer] = useState([]);
-    var [editName, setEditName] = useState('');
+    var [editCompanyname, setEditCompanyname] = useState('');
+    var [editClientname, setEditClientname] = useState('');
     var [editUsername, setEditUsername] = useState('');
     var [editPassword, setEditPassword] = useState('');
     var [editEmail, setEditEmail] = useState('');
     var [editPhonenumber, setEditPhonenumber] = useState('');
+    const[editLogo,setEditLogo] = useState();
+    const[uploadLogo,setUploadLogo] = useState();
     var [show, setShow] = useState('');
+    const Adminname = window.localStorage.getItem('user');
+    const Modifiedby = Adminname.slice(3, 20);
+     console.log(Modifiedby);
+
     console.log(usersId)
 
     useEffect(() => {
@@ -19,79 +27,148 @@ function Updatecustomer({ usersId }) {
             .then(res => setGetCustomer(res.data))
     }, [])
 
-    function handleUpdate(Name, Username, Password, Email, Phonenumber) {
+    function handleUpdate(Logo,Companyname,Clientname, Username, Password, Email, Phonenumber) {
 
-        var UpdatedName, UpdatedUsername, UpdatedPassword, UpdatedEmail, UpdatedPhonenumber;
-        switch (editName) {
+        var Logo,Companyname,Clientname,Username,Password,Email,Phonenumber;
+        switch (editLogo) {
             case "":
-                UpdatedName = Name;
+                Logo = Logo;
                 console.log("empty");
                 break;
             default:
-                UpdatedName = editName;
-                console.log("editName");
+                Logo = editLogo;
+                console.log("editLogo");
                 break;
         }
-        console.log(UpdatedName);
+        console.log(Logo);
+
+        switch (editCompanyname) {
+            case "":
+                Companyname = Companyname;
+                console.log("empty");
+                break;
+            default:
+                Companyname = editCompanyname;
+                console.log("editCompanyname");
+                break;
+        }
+        console.log(Companyname);
+
+        switch (editClientname) {
+            case "":
+                Clientname = Clientname;
+                console.log("empty");
+                break;
+            default:
+                Clientname = editClientname;
+                console.log("editCompanyname");
+                break;
+        }
+        console.log(Clientname);
 
         switch (editUsername) {
             case "":
-                UpdatedUsername = Username;
+                Username = Username;
                 console.log("empty");
                 break;
             default:
-                UpdatedUsername = editUsername;
+                Username = editUsername;
                 console.log("editUsername")
         }
-        console.log(UpdatedUsername);
+        console.log(Username);
 
         switch (editPassword) {
             case "":
-                UpdatedPassword = Password;
+                Password = Password;
                 console.log("empty");
                 break;
             default:
-                UpdatedPassword = editPassword;
+                Password = editPassword;
                 console.log("editPassword")
         }
-        console.log(UpdatedPassword);
+        console.log(Password);
 
         switch (editEmail) {
             case "":
-                UpdatedEmail = Email;
+                Email = Email;
                 console.log("empty");
                 break;
             default:
-                UpdatedEmail = editEmail;
+                Email = editEmail;
                 console.log("editEmail")
         }
-        console.log(UpdatedEmail);
+        console.log(Email)
+;
 
         switch (editPhonenumber) {
             case "":
-                UpdatedPhonenumber = Phonenumber;
+                Phonenumber = Phonenumber;
                 console.log("empty");
                 break;
             default:
-                UpdatedPhonenumber = editPhonenumber;
+                Phonenumber = editPhonenumber;
                 console.log("editPhonenumber")
         }
-        console.log(UpdatedPhonenumber);
+        console.log(Phonenumber);
 
-        console.log(UpdatedName, UpdatedUsername, UpdatedPassword, UpdatedEmail, UpdatedPhonenumber);
+        var today = new Date();
+        const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+    
+        var fullDate, TimeType, hour, minutes, seconds, fullTime;
+        fullDate = new Date();
+        hour = fullDate.getHours();
+        if (hour <= 11) {
+            TimeType = 'AM';
+        }
+        else {
+            TimeType = 'PM';
+        }
+        if (hour > 12) {
+            hour = hour - 12;
+        }
+        if (hour == 0) {
+            hour = 12;
+        }
+        minutes = fullDate.getMinutes();
+        if (minutes < 10) {
+            minutes = '0' + minutes.toString();
+        }
+        seconds = fullDate.getSeconds();
+        if (seconds < 10) {
+            seconds = '0' + seconds.toString();
+        }
+       
+        // Adding all the variables in fullTime variable.
+        fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
+       // console.log(fullTime)
+        //console.log(date)
 
-        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, {
-            id: usersId,
-            UpdatedName: UpdatedName,
-            UpdatedUsername: UpdatedUsername,
-            UpdatedPassword: UpdatedPassword,
-            UpdatedEmail: UpdatedEmail,
-            UpdatedPhonenumber: UpdatedPhonenumber
+        const data = new FormData();
+        data.append("Companyname", Companyname);
+        data.append("Clientname", Clientname);
+        data.append("Email", Email);
+        data.append("Phonenumber", Phonenumber);
+        data.append("Username", Username);
+        data.append("Password", Password);
+        data.append("Logo", Logo);
+        data.append("Modifiedon",date + ' ' + fullTime);
+        data.append("Modifiedby",Modifiedby)
+
+        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`,data,{
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
         }).then((res) => {
-            setShow("Updated Successfully")
-            router.reload(window.location.pathname)
-        })
+                setShow("Updated Successfully")
+                router.reload(window.location.pathname)
+            })
+    }
 
+    function handleScreenshot(Logo,e){
+        console.log(e.target.files[0]);
+       
+        setEditLogo(e.target.files[0]);
+        setUploadLogo(URL.createObjectURL(e.target.files[0]))
     }
 
 
@@ -105,10 +182,25 @@ function Updatecustomer({ usersId }) {
                         <div className="container mainbody" key={data.usersId}>
                             <div className="addform">
                                 <form>
+                                <div className="form-group">
+                                    <label htmlFor="contained-button-file">
+                                        <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e)=>handleScreenshot(data.Logo,e)} />
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src = {uploadLogo}
+                                            sx={{ width: 65, height: 65 }}
+                                        />
+                                    </label>
+                                </div>
 
                                     <div className="form-group">
-                                        <label className="label">Name</label>
-                                        <input className="form-input" name="Name" type="text" placeholder={data.Name} value={editName} onChange={(e) => setEditName(e.target.value)} />
+                                        <label className="label"> Comapany Name</label>
+                                        <input className="form-input" name="Name" type="text" placeholder={data.Companyname} value={editCompanyname} onChange={(e) => setEditCompanyname(e.target.value)} />
+
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="label"> Client Name</label>
+                                        <input className="form-input" name="Name" type="text" placeholder={data.Clientname} value={editClientname} onChange={(e) => setEditClientname(e.target.value)} />
 
                                     </div>
                                     <div className="form-group">
@@ -133,7 +225,7 @@ function Updatecustomer({ usersId }) {
                                     </div>
                                     <div className="row justify-content-center">
                                         <div className='bottom-area'>
-                                            <button type="button" onClick={() => handleUpdate(data.Name, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
+                                            <button type="button" onClick={() => handleUpdate(data.Logo,data.Companyname,data.Clientname, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
                                         </div>
                                     </div>
                                     <h3>{show}</h3>
