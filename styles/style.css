@@ -262,6 +262,10 @@ form.form3 {
 .upload-input-button{
   display: none;
 }
+.New {
+  color: red !important;
+  font-size: 13px;
+}
 .upload{
   text-align: center;
 }
@@ -873,9 +877,7 @@ form.form2 {
   
   width: 197px !important;
 }
-thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
-  
-}
+
 .deteleandedit button {
   margin: 11px 0px 0px 0px;
 }

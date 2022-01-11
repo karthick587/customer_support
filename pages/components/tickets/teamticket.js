@@ -38,27 +38,23 @@ function Teamticket() {
   const TEMPLATE_ID="template_7g9sx6r";
   const USER_ID="user_uy8zZ1SqoqelDq1TAvxL4"
     function handleUpdatestatus(ticketsId) {
-       
-
-   
             console.log(email)
             var data = {
               to_email:email,
-              message:"status of Your Tickets no "+ticketid+"is in "+selectedstatus,
+              message:"status of Your Tickets no "+ticketid+"is "+selectedstatus,
               to_name:name
             };
-    
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-                function (response) {
-                  console.log(response.status, response.text);
-                },
-                function (err) {
-                  console.log(err);
-                }
-              );
-          
-            
-      
+            if(selectedstatus==="completed"){
+                emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+                    function (response) {
+                      console.log(response.status, response.text);
+                    },
+                    function (err) {
+                      console.log(err);
+                    }
+                  );         
+            }
+             
         console.log(ticketsId)
         console.log(statusUpdateTime)
 
@@ -183,7 +179,6 @@ console.log(email)
                             <div >Date</div>
                             <div>Team</div>
                             <div>Status</div>
-
                         </div>
                         {tickets.filter(val => {
 

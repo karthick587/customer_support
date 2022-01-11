@@ -15,6 +15,7 @@ function Updatecustomer({ usersId }) {
     var [editPhonenumber, setEditPhonenumber] = useState('');
     const[editLogo,setEditLogo] = useState();
     const[uploadLogo,setUploadLogo] = useState();
+    const[selected,setSelected] = useState(false);
     var [show, setShow] = useState('');
     const Adminname = window.localStorage.getItem('user');
     const Modifiedby = Adminname.slice(3, 20);
@@ -98,6 +99,7 @@ function Updatecustomer({ usersId }) {
                 console.log("editEmail")
         }
         console.log(Email)
+
 ;
 
         switch (editPhonenumber) {
@@ -168,6 +170,7 @@ function Updatecustomer({ usersId }) {
         console.log(e.target.files[0]);
        
         setEditLogo(e.target.files[0]);
+        setSelected(true);
         setUploadLogo(URL.createObjectURL(e.target.files[0]))
     }
 
@@ -187,7 +190,7 @@ function Updatecustomer({ usersId }) {
                                         <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e)=>handleScreenshot(data.Logo,e)} />
                                         <Avatar
                                             alt="Remy Sharp"
-                                            src = {uploadLogo}
+                                            src = {selected === false ? data.Logo : uploadLogo}
                                             sx={{ width: 65, height: 65 }}
                                         />
                                     </label>
