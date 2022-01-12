@@ -7,6 +7,7 @@ a {
 .form-group {
   padding: 5px 0px;
   display: grid;
+  position: relative;
 }
 
 .label {
@@ -827,13 +828,13 @@ form.form2 {
 .font1{
   font-size: 13px !important;
 }
-.deteleandedit{
+.deteleandedit {
   display: flex;
-  margin-top: 10px;
+  margin-top: 22px;
 }
 .form-group p {
   position: absolute;
-  padding: 47px 24px !important;
+  padding: 52px 24px !important;
   font-size: 11px;
 }
 .deteleandedit div button svg{
