@@ -20,7 +20,7 @@ export default function Team(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
-    console.log(selectedValue)
+    //console.log(selectedValue)
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
     var[exportTeam,setExportTeam] = useState([]);
@@ -29,18 +29,24 @@ export default function Team(props) {
             .then((res) => setTeam(res.data));
     }, []);
     const deleteUsers = (id,name) => {
+
+        Axios.put(`https://mindmadetech.in/api/team/delete/${id}`,{
+            Isdeleted : 'y'
+        }).then(() => {
+                Router.reload(window.location.pathname);
+        })
             // <-- declare id parameter
-            Axios
-                .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;
-                .then(() => {
-                    // Issue GET request after item deleted to get updated list
-                    // that excludes note of id
-                    Router.reload(window.location.pathname);
-                })
-        };
-         const handleClose = () => {
-            Router.reload(window.location.pathname)
-         };
+        //     Axios
+        //         .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;
+        //         .then(() => {
+        //             // Issue GET request after item deleted to get updated list
+        //             // that excludes note of id
+        //             Router.reload(window.location.pathname);
+        //         })
+        // };
+        //  const handleClose = () => {
+        //     Router.reload(window.location.pathname)
+          };
 
          const TeamList = [
             [ 
@@ -57,11 +63,11 @@ export default function Team(props) {
              ])
          ]
          TeamList.reduce((prev,curr)=>[prev,curr]);
-         console.log(TeamList)
+        // console.log(TeamList)
      
          const handleExport = async() =>{
              const data =await TeamList;
-             console.log(data);
+             //console.log(data);
              setExportTeam(data)
                 
          }
@@ -74,6 +80,7 @@ export default function Team(props) {
           } else if(login === null){
            router.push("/components/login/login")
           }
+       
          })
     return (
         <div>
@@ -111,14 +118,12 @@ export default function Team(props) {
                                     <TableCell className="teamtablecel" align="left">TEAM</TableCell>
                                 </TableRow>
                             </TableHead>
+                            { search === "" ?
+                            <>
                             {team.filter(val => {
-                                if (search === "") {
+                                if (val.Isdeleted === 'n') {
                                     return val;
-                                } else if (
-                                    val.Username.toLowerCase().includes(search.toLowerCase())
-                                ) {
-                                    return val;
-                                }
+                                } 
                             }).map((item) =>
                                 <TableBody key={item.teamId}>
 
@@ -139,7 +144,7 @@ export default function Team(props) {
                                             dialogactions={
                                                 <div>
                                                     <Button onClick={()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
-                                                    <Button  onClick={handleClose}>NO</Button>
+                                                    <Button  >NO</Button>
                                                 </div>
                                             }
                                             />
@@ -148,6 +153,45 @@ export default function Team(props) {
                                   
                                 </TableBody>
                             )}
+                            </>  :
+                            <>
+                            {team.filter(val => {
+                                if (val.Isdeleted === 'n') {
+                                    if(val.Username.toLowerCase().includes(search.toLowerCase())){
+                                        return val;
+                                    }
+                                } 
+                            }).map((item) =>
+                                <TableBody key={item.teamId}>
+
+                                    <TableRow >
+
+                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
+                                        
+                                            
+                                        <div className='deteleandedit'>
+                                            <Updateteam teamId={item.teamId} />
+                                            <FormDialog 
+                                            className="team-delete"
+                                            dialogtitle={<DeleteIcon />}
+                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                            dialogactions={
+                                                <div>
+                                                    <Button onClick={()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
+                                                    <Button  >NO</Button>
+                                                </div>
+                                            }
+                                            />
+                                            </div>
+                                    </TableRow>
+                                  
+                                </TableBody>
+                            )}
+                            </>
+                        }
                         </Table>
                     </TableContainer>
                 </div>
