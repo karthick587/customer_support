@@ -124,11 +124,7 @@ export default function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           {props.navcontent}
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+         
           <a onClick={props.logout} className="text-white">Logout</a>
           {props.menuBar}
         </Toolbar>

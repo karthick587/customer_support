@@ -11,11 +11,14 @@ import PeopleIcon from '@mui/icons-material/People';
 import ListItemText from '@mui/material/ListItemText';
 import Users from '../users';
 import Team from '../team';
+import Badge from '@mui/material/Badge';
 import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Axios from 'axios';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import IconButton from '@mui/material/IconButton';
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -114,15 +117,23 @@ const AdminDashboard = (props) => {
           DashTabActive={DashTabActive}
           logout={onBackButtonEvent2}
           navcontent={
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              ADMIN Dashboard
-            </Typography>
+            <> <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            ADMIN Dashboard
+          </Typography>
+          <IconButton color="inherit">
+            <Badge badgeContent={props.Notificationscount} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          </>
+           
+            
           }
           sidenavcontent={
             <>

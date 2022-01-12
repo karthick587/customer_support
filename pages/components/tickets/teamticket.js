@@ -5,10 +5,10 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
-import * as emailjs from "emailjs-com";
+
 function Teamticket() {
     const Router = useRouter()
-    
+
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
 
@@ -26,35 +26,11 @@ function Teamticket() {
         setSelectedstatus(e.target.value)
     }
 
-    function updateemail(ticketsId,Username){
-        setName(Username);
-        setTicketid(ticketsId)
-    }
 
-    const [name,setName]=useState()
-  const [ticketid,setTicketid]=useState()
 
-  const SERVICE_ID="service_56f9av6"
-  const TEMPLATE_ID="template_7g9sx6r";
-  const USER_ID="user_uy8zZ1SqoqelDq1TAvxL4"
+
     function handleUpdatestatus(ticketsId) {
-            console.log(email)
-            var data = {
-              to_email:email,
-              message:"status of Your Tickets no "+ticketid+"is "+selectedstatus,
-              to_name:name
-            };
-            if(selectedstatus==="completed"){
-                emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-                    function (response) {
-                      console.log(response.status, response.text);
-                    },
-                    function (err) {
-                      console.log(err);
-                    }
-                  );         
-            }
-             
+
         console.log(ticketsId)
         console.log(statusUpdateTime)
 
@@ -66,10 +42,10 @@ function Teamticket() {
             setShow("update Successfully");
             Router.reload(window.location.pathname)
         });
-        //emailjs
-     
+
+
     }
-  
+
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();
@@ -101,7 +77,7 @@ function Teamticket() {
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
 
     var [teamname, setTeamname] = useState(" ");
-    
+
     var [search1, setSearch1] = useState('');
     useEffect(() => {
         setSearch1(window.localStorage.getItem('tm_name'))
@@ -123,153 +99,134 @@ function Teamticket() {
         }
 
     })
-   
-    const[login,setLogin]=useState()
-  useEffect(()=>{
-    setLogin(window.localStorage.getItem('loggedin'))
-    console.log(login)
-   if(login==="false"){
-    router.push("/components/login/login")
-   } else if(login === null){
-    router.push("/components/login/login")
-   }
 
-  })
+    const [login, setLogin] = useState()
+    useEffect(() => {
+        setLogin(window.localStorage.getItem('loggedin'))
+        console.log(login)
+        if (login === "false") {
+            router.push("/components/login/login")
+        } else if (login === null) {
+            router.push("/components/login/login")
+        }
 
-  //to get client email id 
-  const [email,setEmail]=useState()
-  var [users, setUsers] = useState([]);
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/customer/list")
-        .then((res) => setUsers(res.data))  
-    }, []);
-useEffect(()=>{
-    {users.filter(val => {
-          
-        return  val.Username.toLowerCase().includes(name) 
-         
-   
-  }).map((itemed) =>setEmail(itemed.Email)
-  
-  )}
-})
-console.log(email)
-  //emailjs
- 
-  
-  
-  
-  
- 
+    })
+
+
+
+
+
+
+
     return (
         <div>
-          
-                <Head>
-                    <title>Admin Dashboard</title>
-                </Head>
 
-                <div className="teambody">
-                    <div className='adminticket-head'>
-                        <h1>Tickets</h1>
-                    </div>
-                    <TableContainer component={Paper}>
-                        <div className='tickets-bodyrow3'>
-                            <div >TicketId</div>
-                            <div>Username</div>
-                            <div >Date</div>
-                            <div>Team</div>
-                            <div>Status</div>
-                        </div>
-                        {tickets.filter(val => {
+            <Head>
+                <title>Admin Dashboard</title>
+            </Head>
 
-                            return val.Team.toLowerCase().includes(teamname.toLowerCase())
-                             
-                        }).map((tickets) =>
-                            <div key={tickets.ticketsId} className='tickets-table-row3'>
-
-                                <FormDialog
-                                    dialogtitle={
-                                        <table  >
-                                            <tr className='tickets-bodyrow3' >
-                                                <td>{tickets.ticketsId}</td>
-                                                <td >{tickets.Username}</td>
-                                                <td>{tickets.Date}</td>
-                                                <td >{tickets.Team}</td>
-                                                <td >
-                                                    <h5 className={tickets.Status}>{tickets.Status}</h5>
-                                                    <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    }
-                                    dialogbody={
-                                        <div className='ticket-details'>
-                                            <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
-                                            <div className='ticket details-name'>
-                                                <label className="label">Username</label>
-                                                <div className='ticket-input-details' >{tickets.Username}</div>
-                                            </div>
-                                            <div className='ticket details-no'>
-                                                <label className="label">Phonenumber</label>
-                                                <div className='ticket-input-details' >{tickets.Phonenumber}</div>
-                                            </div>
-                                            <div className='ticket details-domain'>
-                                                <label className="label">DomainName</label>
-                                                <div className='ticket-input-details' >{tickets.DomainName}</div>
-                                            </div>
-                                            <div className='ticket details-Date'>
-                                                <label className="label">Date</label>
-                                                <div className='ticket-input-details' > {tickets.Date}</div>
-                                            </div>
-                                            <div className='ticket details-Des'>
-                                                <label className="label">Description</label>
-                                                <div className='ticket-input-details' > {tickets.Description}</div>
-                                            </div>
-                                            <div className='ticket details-Status'><label className="label">Status</label>
-                                                <div  >Updated at {tickets.statusUpdateTime}</div>
-                                                <div className={tickets.Status} > {tickets.Status}</div>
-                                            </div>
-                                            <div className='ticket details-Team' ><label className="label">Team</label>
-                                                <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                            <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
-                                        </div>
-                                    }
-                                />
-                                <FormDialog
-                                    dialogtitle={<div onClick={() => updateemail(tickets.ticketsId,tickets.Username)}>update</div>}
-                                    className="btn3 ticket-update2"
-                                    dialogbody={
-                                        <div className="form dialog" >
-                                            <div className="form-toggle"></div>
-                                            <div className="form-panel update one">
-                                                <div className="form-header">
-                                                    <h1>Update Ticket {tickets.ticketsId}</h1>
-                                                </div>
-                                                <div className="addform">
-                                                    <form>
-                                                        <div className="form-group">
-                                                            <label className="label">status</label>
-                                                            <select className="form-input" onChange={handlestatus}>
-                                                                <option value="">--Select Team--</option>
-                                                                <option className='new' value="new">new</option>
-                                                                <option className='inprogress' value="inprogress">inprogress</option>
-                                                                <option className='completed' value="completed">completed</option>
-                                                            </select>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>Assign</button>
-                                            <h4 className="alert1 text-center">{show}</h4>
-                                        </div>
-                                    }
-                                />
-                            </div>
-                        )}
-                    </TableContainer>
+            <div className="teambody">
+                <div className='adminticket-head'>
+                    <h1>Tickets</h1>
                 </div>
+                <TableContainer component={Paper}>
+                    <div className='tickets-bodyrow3'>
+                        <div >TicketId</div>
+                        <div>Username</div>
+                        <div >Date</div>
+                        <div>Team</div>
+                        <div>Status</div>
+                    </div>
+                    {tickets.filter(val => {
 
-           
+                        return val.Team.toLowerCase().includes(teamname.toLowerCase())
+
+                    }).map((tickets) =>
+                        <div key={tickets.ticketsId} className='tickets-table-row3'>
+
+                            <FormDialog
+                                dialogtitle={
+                                    <table  >
+                                        <tr className='tickets-bodyrow3' >
+                                            <td>{tickets.ticketsId}</td>
+                                            <td >{tickets.Username}</td>
+                                            <td>{tickets.Date}</td>
+                                            <td >{tickets.Team}</td>
+                                            <td >
+                                                <h5 className={tickets.Status}>{tickets.Status}</h5>
+                                                <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                                dialogbody={
+                                    <div className='ticket-details'>
+                                        <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
+                                        <div className='ticket details-name'>
+                                            <label className="label">Username</label>
+                                            <div className='ticket-input-details' >{tickets.Username}</div>
+                                        </div>
+                                        <div className='ticket details-no'>
+                                            <label className="label">Phonenumber</label>
+                                            <div className='ticket-input-details' >{tickets.Phonenumber}</div>
+                                        </div>
+                                        <div className='ticket details-domain'>
+                                            <label className="label">DomainName</label>
+                                            <div className='ticket-input-details' >{tickets.DomainName}</div>
+                                        </div>
+                                        <div className='ticket details-Date'>
+                                            <label className="label">Date</label>
+                                            <div className='ticket-input-details' > {tickets.Date}</div>
+                                        </div>
+                                        <div className='ticket details-Des'>
+                                            <label className="label">Description</label>
+                                            <div className='ticket-input-details' > {tickets.Description}</div>
+                                        </div>
+                                        <div className='ticket details-Status'><label className="label">Status</label>
+                                            <div  >Updated at {tickets.statusUpdateTime}</div>
+                                            <div className={tickets.Status} > {tickets.Status}</div>
+                                        </div>
+                                        <div className='ticket details-Team' ><label className="label">Team</label>
+                                            <div className='ticket-input-details' > {tickets.Team}</div></div>
+                                        <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
+                                    </div>
+                                }
+                            />
+                            <FormDialog
+                                dialogtitle={<div>update</div>}
+                                className="btn3 ticket-update2"
+                                dialogbody={
+                                    <div className="form dialog" >
+                                        <div className="form-toggle"></div>
+                                        <div className="form-panel update one">
+                                            <div className="form-header">
+                                                <h1>Update Ticket {tickets.ticketsId}</h1>
+                                            </div>
+                                            <div className="addform">
+                                                <form>
+                                                    <div className="form-group">
+                                                        <label className="label">status</label>
+                                                        <select className="form-input" onChange={handlestatus}>
+                                                            <option value="">--Select Team--</option>
+                                                            <option className='new' value="new">new</option>
+                                                            <option className='inprogress' value="inprogress">inprogress</option>
+                                                            <option className='completed' value="completed">completed</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>Assign</button>
+                                        <h4 className="alert1 text-center">{show}</h4>
+                                    </div>
+                                }
+                            />
+                        </div>
+                    )}
+                </TableContainer>
+            </div>
+
+
         </div>
     );
 }

@@ -10,12 +10,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
-
 const schema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required().min(6)
 });
-
 export default function Login1() {
   const [user, setUser] = useState('');
   const router = useRouter();
@@ -25,7 +23,6 @@ export default function Login1() {
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
-
   const adminLogin = ({ username, password }) => {
     var TableValidate = username.slice(0, 3)
     setUserlogin(username)
@@ -51,9 +48,11 @@ export default function Login1() {
         console.log(SlicedName);
         localStorage.setItem('clientname', SlicedName);
     }
+if(validate==="admin"){
     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
       username: SlicedName,
       password: password,
+     
     }).then((response) => {
       if (response.data.statusCode===400) {
         setLoginStatus(response.data.message);
@@ -62,10 +61,27 @@ export default function Login1() {
         localStorage.setItem('activeTab', "Dashboard")
         router.push({
           pathname: `../dash/${validate}dashboard`,
-         
         });
       }
     });
+  }else{
+    Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
+      username: SlicedName,
+      password: password,
+      Isdeleted:"n"
+    }).then((response) => {
+      if (response.data.statusCode===400) {
+        setLoginStatus(response.data.message);
+      } else {
+        localStorage.setItem('loggedin', true);
+        localStorage.setItem('activeTab', "Dashboard")
+        router.push({
+          pathname: `../dash/${validate}dashboard`,
+        });
+      }
+    });
+
+  }
   }
   const onBackButtonEvent = (e) => {
     e.preventDefault();

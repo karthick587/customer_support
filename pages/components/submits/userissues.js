@@ -45,6 +45,14 @@ function Userissue(props) {
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     console.log(fullTime)
    
+   
+   
+        // useEffect(() => {
+        //     setUserName(customername);
+        // }, []);
+       
+    
+
     function handleScreenshot(e){
         console.log(e.target.files[0]);
         setScreenshots(e.target.files[0]);
@@ -63,18 +71,12 @@ console.log(customername)
         data.append("Status",Status);
         data.append("file", Screenshots);
         data.append("statusUpdatedTime",date + ' ' + fullTime)
-
         Axios.post("https://mindmadetech.in/api/tickets/new",data,{
         headers: {
             'Content-Type': 'multipart/form-data',
         }
     })
     }
-
-    // useEffect(() => {
-    //     setUserName(customername);
-    // }, []);
-
     return (
         <div className="container">
             <div>
@@ -100,14 +102,14 @@ console.log(customername)
                         <label className="label">Description</label>
                         <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
-                    <div className="form-group">
-                        
+                    <div className="form-group">                       
                         <form>
                              <label htmlFor="contained-button-file">
-                                <input type="file" id="file" accept="image/*" onChange={handleScreenshot} />
+                                <input type="file" id="file" accept="image/*" onChange={handleScreenshot} multiple="true" />
                             </label>
+                          
                         </form>
-                    </div>
+                    </div>                  
                     <div className="">
                         <button className="btn2 mt-3 mb-4" type="button" onClick={addIssues}>Submit</button>
                     </div>

@@ -30,7 +30,7 @@ a {
 }
 
 .tickets-bodyrow2 div {
-  width: 225px;
+  width: 267px;
   font-size: 15px;
   color: #1976d2;
   font-weight: 700;
@@ -53,6 +53,9 @@ a {
  
   color: #1976d2;
   font-weight: 700;
+}
+.emaildialog {
+  width: 300px;
 }
 .tickets-table-row3 {
   display: flex;
@@ -108,6 +111,7 @@ a {
   position: absolute;
   position: absolute !important;
   margin: 10px 1px !important;
+  z-index: 99 !important;
 }
 @media only screen and (max-width: 600px) {
   .tickets-bodyrow3 div {
@@ -607,6 +611,9 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-9mgopn-MuiDivider-root {
   color: #4c4f52e0 !important;
   width: 350px !important;
 }
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  max-width:fit-content !important;
+}
 th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeSmall.css-6qfsqn-MuiTableCell-root {
   text-align: left;
   font-family: 'Poppins', sans-serif !important;
@@ -617,6 +624,10 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-size
 }
 .css-fxbtpg {
   background-color: white !important;
+}
+.Imageviewer-userimg{
+  width: 600px;
+  height: 70vh;
 }
 button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonBase-root.css-79xub {
   border: none !important;
@@ -830,7 +841,7 @@ form.form2 {
 }
 .deteleandedit {
   display: flex;
-  margin-top: 22px;
+  margin-top: 15px;
 }
 .form-group p {
   position: absolute;
@@ -1048,4 +1059,15 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 .css-13njpue {
 
   color: rgb(25 118 210) !important;
+}
+.send-email-dailog button {
+  margin: 30px 0px 0px 0px !important;
+  background-color: transparent !important;
+}
+.send-email-dailog button a svg {
+ 
+  color: #1976d2 !important;
+}
+.Assign-team-dailog button {
+  margin: 36px 0px 0px 0px !important;
 }

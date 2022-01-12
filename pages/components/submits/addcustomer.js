@@ -13,10 +13,11 @@ import { useRouter } from 'next/router'
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname:yup.string().required(),
-    Email: yup.string().required(),
-    Phonenumber: yup.string().required(),
+    Email: yup.string().required().email(),
+    Phonenumber: yup.string().required().max(10),
     Username: yup.string().required(),
     Password: yup.string().required(), 
+    fileref : yup.mixed().required("Need to include logo")
 });
 function Addcustomer(props) {
     var [addmember, setAddmember] = useState('');
@@ -26,7 +27,8 @@ function Addcustomer(props) {
     const [show, setShow] = React.useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [Logo, setLogo] = useState();
-    const[uploadLogo,setUploadLogo] = useState()
+    const[uploadLogo,setUploadLogo] = useState();
+    const fileref = React.useRef();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
@@ -115,32 +117,25 @@ function Addcustomer(props) {
   function handleScreenshot(e){
     console.log(e.target.files[0]);
     setLogo(e.target.files[0]);
-    setUploadLogo(URL.createObjectURL(e.target.files[0]))
+    setUploadLogo(URL.createObjectURL(e.target.files[0]));
+    fileref.current.click();
 }
 
-// useEffect(()=>{
-//     if(!Logo){
-//         setUploadLogo("/static/images/avatar/1.jpg")
-//     }
-//     const objectUrl = URL.createObjectURL(Logo)
-//     setUploadLogo(objectUrl);
-
-//     return () => URL.revokeObjectURL(objectUrl)
-// },[Logo])
-
-    return (
+return (
         <div>
             <div className="container mainbody">
                 <div className="addform">
                     <form>
                         <div className="form-group upload">
                                 <label htmlFor="contained-button-file">
-                                    <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={handleScreenshot} />
+                                    <input accept="image/*" id="contained-button-file" ref={fileref} className="upload-input-button" multiple type="file" onChange={handleScreenshot} />
+                                    <p className="text-danger mt-3 ml-2">{errors.fileref?.message}</p>
                                     <Avatar
                                         alt="Remy Sharp"
                                         src={uploadLogo}
                                         sx={{ width: 65, height: 65 }}
                                     />
+                                    
                                 </label>
                             </div>
                         <div className="form-group">

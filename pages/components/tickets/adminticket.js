@@ -5,6 +5,9 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
+import MailIcon from '@mui/icons-material/Mail';
+import * as emailjs from "emailjs-com";
+import Imageviewer from '../common/imageviewer'
 
 function Adminticket() {
     const [open, setOpen] = React.useState(false);
@@ -69,6 +72,77 @@ function Adminticket() {
      }
   
     })
+
+    function handleImagePreview(Screenshots){
+        console.log(Screenshots)
+    }
+
+    // emailjs
+
+
+  function updateemail(ticketsId, Username) {
+    setName(Username);
+    setTicketid(ticketsId)
+
+}
+const [name, setName] = useState()
+const [ticketid, setTicketid] = useState()
+const [showmailstatus, setShowmailstatus] = useState("")
+const SERVICE_ID = "service_56f9av6"
+const TEMPLATE_ID = "template_7g9sx6r";
+const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
+
+function SendEmail() {
+
+    console.log(email)
+    var data = {
+        to_email: email,
+        message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
+        to_name: name
+    };
+    if (selectedstatus === "completed") {
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+            function (response) {
+                console.log(response.status, response.text);
+                setShowmailstatus("EMail sended Successfully")
+            },
+            function (err) {
+                console.log(err);
+                setShowmailstatus("Sending Email Failed")
+            }
+        );
+    }
+    setTimeout(() => {
+        setShowmailstatus()
+    }, [4000])
+
+}
+
+
+//to get client email id 
+const [email, setEmail] = useState()
+var [users, setUsers] = useState([]);
+useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/customer/list")
+        .then((res) => setUsers(res.data))
+}, []);
+useEffect(() => {
+    {
+        users.filter(val => {
+            return val.Username.toLowerCase().includes(name)
+
+
+        }).map((itemed) => setEmail(itemed.Email)
+        )
+    }
+})
+console.log(email)
+var [selectedstatus, setSelectedstatus] = useState('');
+function handlestatus(e) {
+    setSelectedstatus(e.target.value)
+}
+
+//emailjs
     return (
         <div>
            
@@ -162,40 +236,68 @@ function Adminticket() {
                                                     </div>
                                                     <div className='ticket details-Team' ><label className="label">Team</label>
                                                         <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                                    <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
+
+                                                      <Imageviewer
+                                                       imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={60} height={40}  />}
+                                                       imgdialogbody={<img src={tickets.Screenshots} alt="screenshots"   />}
+                                                       />
+
+                                                   
                                                 </div>
                                             }
                                         />
                                         <FormDialog
-                                            dialogtitle="Assign"
-                                            className="btn3 ticket-update2"
-                                            dialogbody={
-                                                <div className="form dialog">
-                                                    <div className="form-toggle"></div>
-                                                    <div className="form-panel update one">
-                                                        <div className="form-header">
-                                                            <h1>Update Ticket {tickets.ticketsId}</h1>
-                                                        </div>
-                                                        <div className="addform">
-                                                            <form>
-                                                                <div className="form-group">
-                                                                    <label className="label">Team</label>
-                                                                    <select className="form-input" name="Status" onChange={handleTeam}>
-                                                                        <option value="">--Select--</option>
-                                                                        <option className='new' value="design">Design Team</option>
-                                                                        <option className='inprogress' value="development">Development Team</option>
-                                                                        <option className='completed' value="server">Server Team</option>
-                                                                        <option className='completed' value="seo">SEO Team</option>
-                                                                    </select>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
-                                                    <h4 className="alert1 text-center">{show}</h4>
-                                                </div>
-                                            }
-                                        />
+        dialog_className="Assign-team-dailog"
+        dialogtitle="Assign"
+        className="btn3 ticket-update2"
+        dialogbody={
+          <div className="form dialog">
+            <div className="form-toggle"></div>
+            <div className="form-panel update one">
+              <div className="form-header">
+                <h1>Update Ticket {tickets.ticketsId}</h1>
+              </div>
+              <div className="addform">
+                <form>
+                  <div className="form-group">
+                    <label className="label">Team</label>
+                    <select className="form-input" name="Status" onChange={handleTeam}>
+                      <option value="">--Select--</option>
+                      <option className='new' value="design">Design Team</option>
+                      <option className='inprogress' value="development">Development Team</option>
+                      <option className='completed' value="server">Server Team</option>
+                      <option className='completed' value="seo">SEO Team</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+            <h4 className="alert1 text-center">{show}</h4>
+          </div>
+        }
+      />
+      <FormDialog
+        dialog_className="send-email-dailog"
+        dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
+        className="btn3 ticket-update2"
+        dialogbody={
+          <div className="form dialog emaildialog">
+
+            <div className="form-group">
+              <label className="label">status</label>
+              <select className="form-input" onChange={handlestatus}>
+                <option value="">--Select stutus--</option>
+
+                <option className='completed' value="completed">completed</option>
+              </select>
+            </div>
+            <button className="btn2 float-end mt-3 mb-3" onClick={SendEmail}>Send Email</button>
+            <h4 className="alert1 text-center">{showmailstatus}</h4>
+
+          </div>
+        }
+      />
                                     </div>
                                 )}
                             </> :
@@ -284,40 +386,68 @@ function Adminticket() {
                                                     </div>
                                                     <div className='ticket details-Team' ><label className="label">Team</label>
                                                         <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                                    <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
-                                                </div>
-                                            }
-                                        />
-                                        <FormDialog
-                                            dialogtitle="Assign"
-                                            className="btn3 ticket-update2"
-                                            dialogbody={
-                                                <div className="form dialog">
-                                                    <div className="form-toggle"></div>
-                                                    <div className="form-panel update one">
-                                                        <div className="form-header">
-                                                            <h1>Update Ticket {tickets.ticketsId}</h1>
-                                                        </div>
-                                                        <div className="addform">
-                                                            <form>
-                                                                <div className="form-group">
-                                                                    <label className="label">Team</label>
-                                                                    <select className="form-input" name="Status" onChange={handleTeam}>
-                                                                        <option value="">--Select--</option>
-                                                                        <option className='new' value="design">Design Team</option>
-                                                                        <option className='inprogress' value="development">Development Team</option>
-                                                                        <option className='completed' value="server">Server Team</option>
-                                                                        <option className='completed' value="seo">SEO Team</option>
-                                                                    </select>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                    <div className='ticket details-Team'>
+                                                        <label className="label">Screenshot</label>
+                                                        <Imageviewer
+                                                       imgdialogbutton={  <img src={tickets.Screenshots} alt="screenshots" width={100} height={50}  />}
+                                                       imgdialogbody={<img src={tickets.Screenshots} alt="screenshots"  width={1000} height={570} />}
+                                                       />
                                                     </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
-                                                    <h4 className="alert1 text-center">{show}</h4>
                                                 </div>
                                             }
                                         />
+                                         <FormDialog
+        dialog_className="Assign-team-dailog"
+        dialogtitle="Assign"
+        className="btn3 ticket-update2"
+        dialogbody={
+          <div className="form dialog">
+            <div className="form-toggle"></div>
+            <div className="form-panel update one">
+              <div className="form-header">
+                <h1>Update Ticket {tickets.ticketsId}</h1>
+              </div>
+              <div className="addform">
+                <form>
+                  <div className="form-group">
+                    <label className="label">Team</label>
+                    <select className="form-input" name="Status" onChange={handleTeam}>
+                      <option value="">--Select--</option>
+                      <option className='new' value="design">Design Team</option>
+                      <option className='inprogress' value="development">Development Team</option>
+                      <option className='completed' value="server">Server Team</option>
+                      <option className='completed' value="seo">SEO Team</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+            <h4 className="alert1 text-center">{show}</h4>
+          </div>
+        }
+      />
+      <FormDialog
+        dialog_className="send-email-dailog"
+        dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
+        className="btn3 ticket-update2"
+        dialogbody={
+          <div className="form dialog emaildialog">
+
+            <div className="form-group">
+              <label className="label">status</label>
+              <select className="form-input" onChange={handlestatus}>
+                <option value="">--Select stutus--</option>
+
+                <option className='completed' value="completed">completed</option>
+              </select>
+            </div>
+            <button className="btn2 float-end mt-3 mb-3" onClick={SendEmail}>Send Email</button>
+            <h4 className="alert1 text-center">{showmailstatus}</h4>
+
+          </div>
+        }
+      />
                                     </div>
                                 )}
                             </>

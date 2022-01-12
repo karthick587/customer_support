@@ -16,6 +16,7 @@ import Addcustomer from './submits/addcustomer';
 import Updatecustomer from './update/updatecustomer';
 import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Imageviewer from './common/imageviewer';
 
 export default function Users(props) {
     var [search, setSearch] = useState('');
@@ -143,7 +144,13 @@ export default function Users(props) {
                                 <TableBody key={item.usersId}>
                                     <TableRow >
                                         <TableCell component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/></TableCell>
+                                        <TableCell align="left">
+                                            <Imageviewer 
+                                            imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/>}
+                                            imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
+                                            />
+                                            
+                                           </TableCell>
                                         <TableCell align="left">{item.Companyname}</TableCell>
                                         <TableCell align="left">{item.Clientname}</TableCell>
                                         <TableCell align="left">{item.Email}</TableCell>

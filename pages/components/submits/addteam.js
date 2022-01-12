@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 const schema = yup.object().shape({
     Username: yup.string().required(),
     Password: yup.string().required(),
-    //Team : yup.string().required()
+   
 });
 function Addteam(props) {
     var [addmember, setAddmember] = useState('');

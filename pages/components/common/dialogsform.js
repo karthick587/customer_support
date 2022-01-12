@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import {DialogActions} from '@mui/material';
+import { DialogActions } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -12,16 +12,20 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const[viewscreenshot,setViewscreenshot]=React.useState("close")
+function Screenshotview(){
+    setViewscreenshot("open")
+}
   return (
-    <div>
+    <div className={props.dialog_className}>
       <Button className={props.className} variant="outlined" onClick={handleClickOpen}>
         {props.dialogtitle}
       </Button>
       <Dialog open={open}>
         <div className='row'>
-<div className='col close-btn-div'><Button className='close-btn' onClick={handleClose}><CloseIcon /></Button></div>
-       </div>
-       <div className='col'>{props.headtitle}</div>
+          <div className='col close-btn-div'><Button className='close-btn' onClick={handleClose}><CloseIcon /></Button></div>
+        </div>
+        <div className='col'>{props.headtitle}</div>
         <DialogContent>
           {props.dialogbody}
         </DialogContent>
