@@ -12,10 +12,8 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const[viewscreenshot,setViewscreenshot]=React.useState("close")
-function Screenshotview(){
-    setViewscreenshot("open")
-}
+  
+
   return (
     <div className={props.dialog_className}>
       <Button className={props.className} variant="outlined" onClick={handleClickOpen}>

@@ -96,9 +96,12 @@ export default function Dashboard(props) {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const [shownotification, setshowNotification] = useState(false)
 
+  function notificationset() {
+    setshowNotification(!shownotification)
+  }
 
- 
 
 
   return (
@@ -124,9 +127,18 @@ export default function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           {props.navcontent}
-         
+          <IconButton color="inherit" onClick={notificationset}>
+          <Badge badgeContent={props.Notificationscount} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
           <a onClick={props.logout} className="text-white">Logout</a>
           {props.menuBar}
+          {shownotification && (
+            <div className='notification-body'>
+             {props.notificationbody}
+            </div>
+          )}
         </Toolbar>
       </AppBar>
       <div className="d-flex align-items-start">
@@ -147,7 +159,7 @@ export default function Dashboard(props) {
           <List>
             <div>
               <div className="nav flex-column nav-pills silebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <button className={props.dashActive}  onClick={props.DashTabActive}  id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dash" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
+                <button className={props.dashActive} onClick={props.DashTabActive} id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dash" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
@@ -156,7 +168,7 @@ export default function Dashboard(props) {
                 </button>
 
                 {props.sidenavcontent}
-                <button  className={props.ticketActive} id="v-pills-settings-tab"  onClick={props.TicketTabActive} data-bs-toggle="pill" data-bs-target="#v-pills-tickets" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
+                <button className={props.ticketActive} id="v-pills-settings-tab" onClick={props.TicketTabActive} data-bs-toggle="pill" data-bs-target="#v-pills-tickets" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
                   <ListItemIcon>
                     <FontAwesomeIcon icon={faTicketAlt} />
                   </ListItemIcon>

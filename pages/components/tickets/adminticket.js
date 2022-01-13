@@ -26,14 +26,10 @@ function Adminticket() {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data)); 
     }, []);
-
-
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
-
     function handleUpdate(ticketsId) {
-
         Axios.put(`https://mindmadetech.in/api/tickets/updateteam/${ticketsId}`, {
             Team: selectedTeam,
             ticketsId: ticketsId,
@@ -60,7 +56,6 @@ function Adminticket() {
             setIsOpenstatusfilter(false);
         }
     });
-
     const[login,setLogin]=useState()
     useEffect(()=>{
       setLogin(window.localStorage.getItem('loggedin'))
@@ -70,7 +65,6 @@ function Adminticket() {
      } else if(login === null){
         Router.push("/components/login/login")
      }
-  
     })
 
     function handleImagePreview(Screenshots){
@@ -143,9 +137,21 @@ function handlestatus(e) {
 }
 
 //emailjs
+
+// notificationupdate
+function Notificationupdate(ticketsId){
+    Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+        Notification: "seen",
+        ticketsId: ticketsId,
+    }).then((_response) => {
+       console.log("viewed ticket No "+ticketsId)
+       props.parentCallback(notificationcount)
+    });
+  }
+  
+
     return (
-        <div>
-           
+        <div>         
                 <Head>
                     <title>Admin Dashboard</title>
                 </Head>
@@ -194,7 +200,8 @@ function handlestatus(e) {
                                             dialogtitle={
                                                 <table >
                                                     <tbody>
-                                                        <tr className='tickets-bodyrow' >
+                                                                                                
+                                                        <tr className='tickets-bodyrow' onClick={() => Notificationupdate(tickets.ticketsId)} >
                                                             <td>{tickets.ticketsId}</td>
                                                             <td>{tickets.Username}</td>
                                                             <td>{tickets.Date}</td>
@@ -204,6 +211,7 @@ function handlestatus(e) {
                                                                 <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
                                                             </td>
                                                         </tr>
+                                                                                
                                                     </tbody>
                                                 </table>
                                             }
@@ -337,11 +345,12 @@ function handlestatus(e) {
                                     }
                                 }).map((tickets) =>
                                     <div key={tickets.ticketsId} className='tickets-table-row'>
-                                        <FormDialog
+                                        <FormDialog 
                                             dialogtitle={
-                                                <table >
+                                                <table  >
                                                     <tbody>
-                                                        <tr className='tickets-bodyrow' >
+                                                      
+                                                        <tr className='tickets-bodyrow' onClick={() => Notificationupdate(tickets.ticketsId)} >
                                                             <td>{tickets.ticketsId}</td>
                                                             <td>{tickets.Username}</td>
                                                             <td>{tickets.Date}</td>
@@ -353,6 +362,7 @@ function handlestatus(e) {
                                                                 <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
                                                             </td>
                                                         </tr>
+                                                       
                                                     </tbody>
                                                 </table>
                                             }

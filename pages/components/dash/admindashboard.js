@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicketAlt, faUsers,faUser } from '@fortawesome/free-solid-svg-icons'
+import { faTicketAlt, faUsers, faUser } from '@fortawesome/free-solid-svg-icons'
 import Typography from '@mui/material/Typography';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Dashboard from '../common/navdashboard';
@@ -19,6 +19,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import Axios from 'axios';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
+import AdminNotification from '../notification/adminNotifiction';
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -78,9 +79,11 @@ const AdminDashboard = (props) => {
   const TeamTabActive = () => {
     localStorage.setItem('activeTab', 'team')
   }
-  var [activeTab, setActivetab] = useState(" ")
+  const[notificationcount,setnotificationcount]=useState()
+  const [activeTab, setActivetab] = useState(" ")
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
+   
   }, [])
   // usercount
   var [users, setUsers] = useState([]);
@@ -101,39 +104,47 @@ const AdminDashboard = (props) => {
   //team members count
   var [team, setTeam] = useState([]);
   useEffect(() => {
-      Axios.get("https://mindmadetech.in/api/team/list")
-          .then((res) => setTeam(res.data));
+    Axios.get("https://mindmadetech.in/api/team/list")
+      .then((res) => setTeam(res.data));
   }, []);
   let teamcount = 0;
   teamcount = team.length
+
+  const[adminnotificationcount,adminsetnotificationcount]=useState()
+ const handleCallback = (childData) =>{
+  adminsetnotificationcount(childData)
+}
+
+
+
+
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
         <Dashboard
-
           dashActive={activeTab === "Dashboard" ? "nav-link active" : "nav-link"}
           ticketActive={activeTab === "ticket" ? "nav-link active" : "nav-link"}
           TicketTabActive={TicketTabActive}
           DashTabActive={DashTabActive}
           logout={onBackButtonEvent2}
           navcontent={
-            <> <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-          >
-            ADMIN Dashboard
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={props.Notificationscount} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          </>
-           
-            
+            <>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                ADMIN Dashboard
+              </Typography>
+            </>
+          }
+          Notificationscount={adminnotificationcount}
+          notificationbody={
+            <><AdminNotification 
+            parentCallback = {handleCallback}
+            /></>
           }
           sidenavcontent={
             <>
@@ -186,7 +197,6 @@ const AdminDashboard = (props) => {
                           </div>
                         </div>
                         <div className='piechart'>
-                         
                         </div>
                       </div>
                     </div>
@@ -196,7 +206,7 @@ const AdminDashboard = (props) => {
                   <Users />
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Adminticket />
+                  <Adminticket  parentCallback = {handleCallback} />
                 </div>
                 <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Team />

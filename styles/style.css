@@ -1074,3 +1074,16 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 .css-uhb5lp {
   max-width: revert !important;
 }
+.notification-body {
+  position: absolute;
+  top: 63px;
+  overflow: auto;
+  height: 30vh;
+  width: 306px;
+  right: 101px;
+  background-color: #e5f1fd;
+}
+.adminnotification td {
+  padding: 1px 7px;
+  font-size: 12px;
+}
