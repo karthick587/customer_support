@@ -1071,3 +1071,6 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 .Assign-team-dailog button {
   margin: 36px 0px 0px 0px !important;
 }
+.css-uhb5lp {
+  max-width: revert !important;
+}
