@@ -79,6 +79,14 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.Imageviewer-userimg {
+  width: 338px;
+  height: 34vh;
+}
+.screeshot-img-viewer {
+  width: 360px;
+  height: 31vh;
+}
 .teambody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   width: 600px;

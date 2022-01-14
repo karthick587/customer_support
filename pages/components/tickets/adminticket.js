@@ -9,7 +9,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import * as emailjs from "emailjs-com";
 import Imageviewer from '../common/imageviewer'
 
-function Adminticket() {
+function Adminticket(props) {
     const [open, setOpen] = React.useState(false);
     const Router = useRouter()
     var [show, setShow] = useState('');
@@ -145,7 +145,7 @@ function Notificationupdate(ticketsId){
         ticketsId: ticketsId,
     }).then((_response) => {
        console.log("viewed ticket No "+ticketsId)
-       props.parentCallback(notificationcount)
+      
     });
   }
   
@@ -247,7 +247,7 @@ function Notificationupdate(ticketsId){
 
                                                       <Imageviewer
                                                        imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={60} height={40}  />}
-                                                       imgdialogbody={<img src={tickets.Screenshots} alt="screenshots"   />}
+                                                       imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots"   />}
                                                        />
 
                                                    
@@ -400,7 +400,7 @@ function Notificationupdate(ticketsId){
                                                         <label className="label">Screenshot</label>
                                                         <Imageviewer
                                                        imgdialogbutton={  <img src={tickets.Screenshots} alt="screenshots" width={100} height={50}  />}
-                                                       imgdialogbody={<img src={tickets.Screenshots} alt="screenshots"  width={1000} height={570} />}
+                                                       imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots"  width={1000} height={570} />}
                                                        />
                                                     </div>
                                                 </div>

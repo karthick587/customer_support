@@ -14,8 +14,6 @@ function AdminNotification(props) {
             ticketsId: ticketsId,
         }).then((_response) => {
            console.log("viewed ticket No "+ticketsId)
-         
-          
         });
       }
     
