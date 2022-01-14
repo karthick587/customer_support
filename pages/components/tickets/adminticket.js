@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
 import MailIcon from '@mui/icons-material/Mail';
-
+import * as emailjs from "emailjs-com";
 import Imageviewer from '../common/imageviewer'
 
 function Adminticket() {
@@ -73,6 +73,68 @@ function Adminticket() {
 
     // emailjs
 
+
+  function updateemail(ticketsId, Username) {
+    setName(Username);
+    setTicketid(ticketsId)
+
+}
+const [name, setName] = useState()
+const [ticketid, setTicketid] = useState()
+const [showmailstatus, setShowmailstatus] = useState("")
+const SERVICE_ID = "service_56f9av6"
+const TEMPLATE_ID = "template_7g9sx6r";
+const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
+
+function SendEmail() {
+
+    console.log(email)
+    var data = {
+        to_email: email,
+        message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
+        to_name: name
+    };
+    if (selectedstatus === "completed") {
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+            function (response) {
+                console.log(response.status, response.text);
+                setShowmailstatus("EMail sended Successfully")
+            },
+            function (err) {
+                console.log(err);
+                setShowmailstatus("Sending Email Failed")
+            }
+        );
+    }
+    setTimeout(() => {
+        setShowmailstatus()
+    }, [4000])
+
+}
+
+
+//to get client email id 
+const [email, setEmail] = useState()
+var [users, setUsers] = useState([]);
+useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/customer/list")
+        .then((res) => setUsers(res.data))
+}, []);
+useEffect(() => {
+    {
+        users.filter(val => {
+            return val.Username.toLowerCase().includes(name)
+
+
+        }).map((itemed) => setEmail(itemed.Email)
+        )
+    }
+})
+console.log(email)
+var [selectedstatus, setSelectedstatus] = useState('');
+function handlestatus(e) {
+    setSelectedstatus(e.target.value)
+}
 
 //emailjs
 
@@ -225,7 +287,7 @@ function Notificationupdate(ticketsId){
       />
       <FormDialog
         dialog_className="send-email-dailog"
-        dialogtitle={<a ><MailIcon /></a>}
+        dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
         className="btn3 ticket-update2"
         dialogbody={
           <div className="form dialog emaildialog">
