@@ -41,16 +41,23 @@ const renderCustomizedLabel = ({
 export default function Piechart() {
 
   var [tickets, setTickets,] = useState([]);
-useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/tickets/list")
-        .then((res) => setTickets(res.data));
-}, []);
-const [newcount,setNewcount]=useState()
-useEffect(()=>{
-  setNewcount(tickets.filter(val => {return val.Status.toLowerCase().includes("new") }).map((ticket) =>setNewcount(ticket.Status.length)).length)
- 
-})
-console.log(newcount)
+  useEffect(() => {
+      Axios.get("https://mindmadetech.in/api/tickets/list")
+          .then((res) => setTickets(res.data));
+  }, []);
+  const [newcount,setNewcount]=useState()
+  const [completedcount,setCompletedcount]=useState()
+  const [inprogresscount,setInprogresscount]=useState()
+  useEffect(()=>{
+    setNewcount(tickets.filter(val => {return val.Status.toLowerCase().includes("new") }).map((ticket) =>setNewcount(ticket.Status.length)).length)
+    setCompletedcount(tickets.filter(val => {return val.Status.toLowerCase().includes("completed") }).map((ticket) =>setCompletedcount(ticket.Status.length)).length)
+    setInprogresscount(tickets.filter(val => {return val.Status.toLowerCase().includes("inprogress") }).map((ticket) =>setInprogresscount(ticket.Status.length)).length)
+  })
+  console.log(newcount)
+  console.log(completedcount)
+  console.log(inprogresscount)
+  
+
   return (
     <PieChart width={400} height={400}>
       <Pie
