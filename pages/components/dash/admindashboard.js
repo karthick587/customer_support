@@ -20,6 +20,7 @@ import Axios from 'axios';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import AdminNotification from '../notification/adminNotifiction';
+import Piechart from '../piechart';
 const AdminDashboard = (props) => {
 
   const router = useRouter();
@@ -197,6 +198,7 @@ const AdminDashboard = (props) => {
                           </div>
                         </div>
                         <div className='piechart'>
+                          <Piechart />
                         </div>
                       </div>
                     </div>

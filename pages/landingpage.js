@@ -3,8 +3,6 @@ import Head from 'next/head';
 
 import { useRouter } from 'next/router';
 import { Dropdown, DropdownButton } from 'react-bootstrap'
-
-
 export default function Landingpage() {
     const router = useRouter();
 
@@ -15,9 +13,6 @@ export default function Landingpage() {
             query: { value: value }
         });
     }
-
-
-
     const onBackButtonEvent = (e) => {
         e.preventDefault();
         router.push("/")
@@ -35,12 +30,8 @@ export default function Landingpage() {
                 <title>Customer Support</title>
             </Head>
             <header className="main-header">
-
             <button   className="btn-login" onClick={() => router.push('./components/login/login')}>login</button>
-
-
-            </header>
-              
+            </header>             
         </div>
     )
 }
