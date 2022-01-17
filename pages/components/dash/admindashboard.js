@@ -27,7 +27,7 @@ const AdminDashboard = (props) => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
   useEffect(() => {
-    setLogin(window.localStorage.getItem('loggedin'))
+    setLogin("true")
     console.log(login)
     if (login === "false") {
       router.push("/components/login/login")
