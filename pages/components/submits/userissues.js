@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Button from '@mui/material/Button';
+import { useRouter } from 'next/router'
 import{ useDispatch,useSelector} from 'react-redux';
 export default Userissue;
 function Userissue(props) {
+    const Router = useRouter();
     const { customername } = props
     //const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
@@ -11,6 +13,7 @@ function Userissue(props) {
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
+    const [show, setShow] =useState();
     var Team = 'not Assigned';
     var Status = 'New';
     var today = new Date();
@@ -63,7 +66,10 @@ function Userissue(props) {
         headers: {
             'Content-Type': 'multipart/form-data',
         }
-    })
+    }).then((res) => {
+                setShow("Updated Successfully")
+                Router.reload(window.location.pathname)
+            })
     }
     return (
         <div className="container">
@@ -101,6 +107,7 @@ function Userissue(props) {
                         <button className="btn2 mt-3 mb-4" type="button" onClick={addIssues}>Submit</button>
                     </div>
                 </form>
+<h4 className="alert1 text-center">{show}</h4>
             </div>
         </div>
     );
