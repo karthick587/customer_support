@@ -26,16 +26,7 @@ const AdminDashboard = (props) => {
   console.log(router.query.name);
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-  useEffect(() => {
-    setLogin("true")
-    console.log(login)
-    if (login === "false") {
-      router.push("/components/login/login")
-    } else if (login === null) {
-      router.push("/components/login/login")
-    }
 
-  })
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
