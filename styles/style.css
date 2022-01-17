@@ -5,11 +5,10 @@ a {
 }
 
 .form-group {
-  padding: 5px 0px;
+  padding: 0px 0px;
   display: grid;
   position: relative;
 }
-
 .label {
   color: black;
   font-size: 12px;
@@ -131,13 +130,13 @@ a {
   }
 
   .tickets-bodyrow td {
-    width: 85px !important;
+    width: 90px !important;
     text-align: left;
     font-weight: 550;
     padding: 34px 0px 0px 0px;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
-  }
+}
 
   .ticket {
     width: 300px !important;
@@ -352,10 +351,11 @@ img.slide-banner1 {
 }
 
 .form-input {
-  padding: 6px 11px;
+  padding: 2px 13px;
   border-radius: 19px;
   border: 1px solid #8080804a;
   font-size: 14px;
+ 
   background: transparent;
   z-index: 99;
 }
@@ -874,7 +874,6 @@ form.form2 {
 }
 
 .css-ypiqx9-MuiDialogContent-root {
- 
   padding: 18px 18px 5px 15px;
 }
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
@@ -922,7 +921,7 @@ h4.alert1.text-center {
 
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
-  padding-top: 34px !important;
+  padding-top: 25px !important;
   font-weight: 550;
 }
 
@@ -1078,8 +1077,8 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
   position: absolute;
   top: 63px;
   overflow: auto;
-  height: 30vh;
-  width: 306px;
+  height: auto;
+  width: auto;
   right: 0px;
   background-color: #e5f1fd;
 }

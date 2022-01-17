@@ -7,7 +7,6 @@ function AdminNotification(props) {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data)); 
     }, []);
-
     function Notificationupdate(ticketsId){
         Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
             Notification: "seen",
@@ -16,28 +15,18 @@ function AdminNotification(props) {
            console.log("viewed ticket No "+ticketsId)
         });
       }
-    
       const[notificationcount,setnotificationcount]=useState()
-      
-    
       useEffect(()=>{
         setnotificationcount(tickets.filter(val => {return val.Notification.toLowerCase().includes("unseen") }).map((ticket) =>setnotificationcount(ticket.Notification.length)).length)
         props.parentCallback(notificationcount)
       })
-      
-      
-     
-      
       console.log(notificationcount)
     return (
         <div>
    {tickets.filter(val => {
-
 return val.Notification.toLowerCase().includes("unseen")
-
 }).map((tickets) =>
 <div key={tickets.ticketsId} className='tickets-table-row3'>
-
     <FormDialog
         dialogtitle={
             <table  >
@@ -82,7 +71,6 @@ return val.Notification.toLowerCase().includes("unseen")
             </div>
         }
     />
-  
 </div>
 )}
         </div>  

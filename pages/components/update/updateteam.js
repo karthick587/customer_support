@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import EditIcon from '@mui/icons-material/Edit';
 import FormDialog from '../common/dialogsform';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 function Updateteam({ teamId }) {
     let router = useRouter();
     var [getTeam, setGetTeam] = useState([]);
@@ -10,96 +12,79 @@ function Updateteam({ teamId }) {
     var [editPassword, setEditPassword] = useState('');
     var [editTeam, setEditTeam] = useState('');
     var [show, setShow] = useState('');
-   
+
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/team/list/${teamId}`)
             .then(res => setGetTeam(res.data))
     }, [])
-    function handleUpdate(Username, Password, Team) {
-        var UpdatedUsername, UpdatedPassword, UpdatedTeam;
-        switch (editUsername) {
-            case "":
-                UpdatedUsername = Username;
-                console.log("empty");
-                break;
-            default:
-                UpdatedUsername = editUsername;
-                console.log("editUsername")
-        }
-        console.log(UpdatedUsername);
-        switch (editPassword) {
-            case "":
-                UpdatedPassword = Password;
-                console.log("empty");
-                break;
-            default:
-                UpdatedPassword = editPassword;
-                console.log("editPassword")
-        }
-        console.log(UpdatedPassword);
-        switch (editTeam) {
-            case "":
-                UpdatedTeam = Team;
-                console.log("empty");
-                break;
-            default:
-                UpdatedTeam = editTeam;
-                console.log("editTeam")
-        }
-        console.log(UpdatedTeam);
-        console.log(UpdatedUsername, UpdatedPassword, UpdatedTeam);
+    const getvalue = ({ Username, Password, Team }) => {
         axios.put(`https://mindmadetech.in/api/team/update/${teamId}`, {
-            UpdatedUsername: UpdatedUsername,
-            UpdatedPassword: UpdatedPassword,
-            UpdatedTeam: UpdatedTeam,
+            Username: Username,
+            Password: Password,
+            Team: Team,
         }).then((res) => {
             setShow("Updated Successfully")
             router.reload(window.location.pathname)
         })
     }
-    return (
+   return (
         <FormDialog
             className=""
             dialogtitle={<EditIcon />}
             dialogbody={
-                <div>
-                    {getTeam.map((data) =>
-                        <div className="container mainbody" key={data.teamId}>
-                            <div className="addform">
-                                <form>
-                                    <div className="form-group">
-                                        <label className="label">Username</label>
-                                        <input className="form-input" name="Username" type="text" placeholder={data.Username} value={editUsername} onChange={(e) => setEditUsername(e.target.value)} />
+                <>
+                    <div>
+                        {getTeam.map((data) =>
+                            <div className="container mainbody" key={data.teamId}>
+                                <Formik
+                                className="addform"
+                                    initialValues={{Username:data.Username ,Password:data.Password,Team:data.Team}}
+                                    onSubmit={value => getvalue(value)}
+                                >
 
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="col label">Password</label>
-                                        <input className="form-input" name="Password" type="text" placeholder={data.Password} value={editPassword} onChange={(e) => setEditPassword(e.target.value)} />
+                                    <Form >
 
-                                    </div>
-                                    <div>
+                                    <div className="form-group">
+                                            <label className="label">Username</label>
+                                            <Field className="form-input" name="Username" />
+
+                                        </div>
                                         <div className="form-group">
-                                            <label className="col label">Team</label>
-                                            <select className='form-input' defaultChecked={data.Team} value={editTeam} onChange={(e) => setEditTeam(e.target.value)}>
-                                                <option>Design</option>
-                                                <option>Development</option>
-                                                <option>Server</option>
-                                                <option>SEO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="row justify-content-center">
-                                        <div className='bottom-area'>
-                                            <button type="button" onClick={() => handleUpdate(data.Username, data.Password, data.Team)} className="btn2 float-end"> Update </button>
-                                        </div>
-                                    </div>
-                                    <h3>{show}</h3>
-                                </form>
+                                            <label className="col label">Password</label>
+                                            <Field className="form-input" name="Password" />
 
+                                        </div>
+
+                                        <div>
+                                            <div className="form-group">
+                                                <label className="col label">Team</label>
+                                                <Field className="form-input" as="select" name="Team">
+                                                <option >select</option>
+                                            <option value="design">Design</option>
+                                            <option value="development">Development</option>
+                                            <option value="server">server</option>
+                                            <option value="seo">SEO</option>
+                                        </Field>
+                                            </div>
+                                        </div>
+
+                                        <div className="row justify-content-center">
+                                            <div className='bottom-area'>
+                                            <button type="submit" className="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                        <h3>{show}</h3>
+
+                                      
+                                    </Form>
+
+
+                                </Formik>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+
+                </>
             }
         />
     );

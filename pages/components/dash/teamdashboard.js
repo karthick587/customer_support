@@ -14,8 +14,6 @@ import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 import Dashcard from "../common/dashCard";
 const TeamDashboard = (props) => {
   const [finishStatus, setfinishStatus] = useState(false);
- 
-
   const[login,setLogin]=useState()
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
@@ -25,7 +23,6 @@ const TeamDashboard = (props) => {
     } else if (login === null) {
       router.push("/")
     }
-
   })
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -54,9 +51,6 @@ const TeamDashboard = (props) => {
     localStorage.removeItem('tm_name');
     localStorage.removeItem('activeTab');
   }
-
-   //default tab
-  
   // dashtab
   const DashTabActive=()=>{
     localStorage.setItem('activeTab', "Dashboard")

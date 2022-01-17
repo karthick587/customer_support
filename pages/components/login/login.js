@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -52,7 +51,6 @@ if(validate==="admin"){
     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
       username: SlicedName,
       password: password,
-     
     }).then((response) => {
       if (response.data.statusCode===400) {
         setLoginStatus(response.data.message);
@@ -80,7 +78,6 @@ if(validate==="admin"){
         });
       }
     });
-
   }
   }
   const onBackButtonEvent = (e) => {

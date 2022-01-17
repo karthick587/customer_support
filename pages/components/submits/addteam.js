@@ -9,14 +9,11 @@ import { useRouter } from 'next/router'
 const schema = yup.object().shape({
     Username: yup.string().required(),
     Password: yup.string().required(),
-   
 });
-
 function Addteam(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
     const Router = useRouter()
-
     //var [show2, setShow2] = useState('');
     const [show, setShow] = React.useState(false);
     const { register, handleSubmit, formState } = useForm({
@@ -45,11 +42,10 @@ function Addteam(props) {
         setLogin(window.localStorage.getItem('loggedin'))
         console.log(login)
         if (login === "false") {
-          router.push("/")
+            Router.push("/")
         } else if (login === null) {
-          router.push("/")
+            Router.push("/")
         }
-    
       })
     return (
         <div>

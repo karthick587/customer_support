@@ -8,9 +8,9 @@ import { Formik, Form, Field } from 'formik';
 function Updatecustomer({ usersId }) {
     let router = useRouter();
     var [getCustomer, setGetCustomer] = useState([]);
-    const[editLogo,setEditLogo] = useState();
-    const[uploadLogo,setUploadLogo] = useState();
-    const[selected,setSelected] = useState(false);
+    const [editLogo, setEditLogo] = useState();
+    const [uploadLogo, setUploadLogo] = useState();
+    const [selected, setSelected] = useState(false);
     var [show, setShow] = useState('');
     const [Adminname, setAdminname] = useState([])
     useEffect(() => {
@@ -24,61 +24,37 @@ function Updatecustomer({ usersId }) {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
     }, [])
-    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber},Logo,usersId) {
-
-console.log(Logo)
+    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber }, Logo, usersId) {
+        console.log(Logo)
         var logo
         switch (editLogo) {
-        
             case undefined:
                 logo = Logo;
                 console.log("empty");
-                
                 break;
-
             default:
                 logo = editLogo;
                 console.log("editLogo");
                 break;
         }
-     
-        console.log(logo)
-        console.log(Companyname)
-        console.log(Clientname)
-        console.log(Username)
-        console.log(Password)
-        console.log(Email)
-        console.log(Phonenumber)
-        console.log(date+" "+fullTime)
-      
-        console.log(Modifiedby)
-     
-       
         const data = new FormData();
-      
-        // data.append("Companyname", Companyname);
-        // data.append("Clientname", Clientname);
-        // data.append("Email", Email);
-        // data.append("Phonenumber", Phonenumber);
-        // data.append("Username", Username);
-        // data.append("Password", Password);
-        // data.append("Logo", logo);
-        // data.append("Modifiedon", date + ' ' + fullTime);
-        // data.append("Modifiedby", Modifiedby)
-
-        // axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data',
-        //     }
-        // }).then((res) => {
-        //     setShow("Updated Successfully")
-        //     router.reload(window.location.pathname)
-
-        // })  
+        data.append("Companyname", Companyname);
+        data.append("Clientname", Clientname);
+        data.append("Email", Email);
+        data.append("Phonenumber", Phonenumber);
+        data.append("Username", Username);
+        data.append("Password", Password);
+        data.append("file", logo);
+        data.append("Modifiedon", date + ' ' + fullTime);
+        data.append("Modifiedby", Modifiedby);
+        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
     }
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
     fullDate = new Date();
     hour = fullDate.getHours();
@@ -102,19 +78,14 @@ console.log(Logo)
     if (seconds < 10) {
         seconds = '0' + seconds.toString();
     }
-   
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
- 
-
-    function handleScreenshot(e){
+    function handleScreenshot(e) {
         console.log(e.target.files[0]);
-       
         setEditLogo(e.target.files[0]);
         setSelected(true);
         setUploadLogo(URL.createObjectURL(e.target.files[0]))
     }
-
     return (
         <FormDialog
             className="float-enduser button"
@@ -123,16 +94,15 @@ console.log(Logo)
                 <div>
                     {getCustomer.map((data) =>
                         <div className="container mainbody" key={data.usersId}>
-                              <Formik
+                            <Formik
                                 className="addform"
-                                    initialValues={{Logo:data.Logo,Companyname:data.Companyname,Clientname:data.Clientname ,Username:data.Username,Password:data.Password,Email:data.Email,Phonenumber:data.Phonenumber}}
-                                    onSubmit={value => handleUpdate(value,data.Logo,data.usersId)}
-                                >
-
-                                    <Form >
+                                initialValues={{ Logo: data.Logo, Companyname: data.Companyname, Clientname: data.Clientname, Username: data.Username, Password: data.Password, Email: data.Email, Phonenumber: data.Phonenumber }}
+                                onSubmit={value => handleUpdate(value, data.Logo, data.usersId)}
+                            >
+                                <Form >
                                     <div className="form-group upload">
                                         <label htmlFor="contained-button-file">
-                                        <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
+                                            <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
                                             <Avatar
                                                 alt="Remy Sharp"
                                                 src={selected === false ? data.Logo : uploadLogo}
@@ -141,43 +111,41 @@ console.log(Logo)
                                         </label>
                                     </div>
                                     <div className="form-group">
-                                            <label className="label">Companyname</label>
-                                            <Field className="form-input" name="Companyname" />
-                                        </div>
+                                        <label className="label">Companyname</label>
+                                        <Field className="form-input" name="Companyname" />
+                                    </div>
                                     <div className="form-group">
-                                            <label className="label">Clientname</label>
-                                            <Field className="form-input" name="Clientname" />
-                                        </div>
-                                        
-                                        <div className="form-group">
-                                            <label className="col label">Username</label>
-                                            <Field className="form-input" name="Username" />
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="col label">Password</label>
-                                            <Field className="form-input" name="Password" />
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="col label">Email</label>
-                                            <Field className="form-input" name="Email" />
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="col label">Phonenumber</label>
-                                            <Field className="form-input" name="Phonenumber" />
-                                        </div>                          
-                                        <div className="row justify-content-center">
-                                            <div className='bottom-area'>
+                                        <label className="label">Clientname</label>
+                                        <Field className="form-input" name="Clientname" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col label">Username</label>
+                                        <Field className="form-input" name="Username" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col label">Password</label>
+                                        <Field className="form-input" name="Password" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col label">Email</label>
+                                        <Field className="form-input" name="Email" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col label">Phonenumber</label>
+                                        <Field className="form-input" name="Phonenumber" />
+                                    </div>
+                                    <div className="row justify-content-center">
+                                        <div className='bottom-area'>
                                             <button type="submit" className="btn2 float-end">Submit</button>
-                                            </div>
                                         </div>
-                                        <h3>{show}</h3>                                    
-                                    </Form>
-                                </Formik>               
+                                    </div>
+                                    <h3>{show}</h3>
+                                </Form>
+                            </Formik>
                         </div>
                     )}
-                </div>}
+            </div>}
         />
-
     );
 }
 export default Updatecustomer;

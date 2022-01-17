@@ -1,11 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 import Axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
-import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
 import Avatar from '@mui/material/Avatar';
-import FormDialog from '../common/dialogsform';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -41,14 +36,10 @@ function Addcustomer(props) {
     useEffect(()=>{
         setCreatedby(Adminname.slice(3, 20));
     })
-    
-     console.log(Createdby)
-    
+     console.log(Createdby) 
     const addUser = ({ Companyname,Clientname,Email,Phonenumber,Username,Password }) => {
-
         var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
     fullDate = new Date();
     hour = fullDate.getHours();
@@ -72,12 +63,10 @@ function Addcustomer(props) {
     if (seconds < 10) {
         seconds = '0' + seconds.toString();
     }
-   
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     console.log(fullTime)
     console.log(date)
-       
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
@@ -88,7 +77,6 @@ function Addcustomer(props) {
         data.append("file", Logo);
         data.append("Createdon",date + ' ' + fullTime);
         data.append("Createdby",Createdby)
-
         Axios.post(`https://mindmadetech.in/api/customer/new`,data,{
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -101,27 +89,23 @@ function Addcustomer(props) {
                     Router.reload(window.location.pathname)
                 }
             })
-      
     }
     const[login,setLogin]=useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
         console.log(login)
         if (login === "false") {
-          router.push("/")
+            Router.push("/")
         } else if (login === null) {
-          router.push("/")
+            Router.push("/")
         }
-    
       })
-
   function handleScreenshot(e){
     console.log(e.target.files[0]);
     setLogo(e.target.files[0]);
     setUploadLogo(URL.createObjectURL(e.target.files[0]));
     fileref.current.click();
 }
-
 return (
         <div>
             <div className="container mainbody">
@@ -135,8 +119,7 @@ return (
                                         alt="Remy Sharp"
                                         src={uploadLogo}
                                         sx={{ width: 65, height: 65 }}
-                                    />
-                                    
+                                    />                      
                                 </label>
                             </div>
                         <div className="form-group">

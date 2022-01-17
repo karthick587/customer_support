@@ -5,13 +5,7 @@ import Userissue from "../submits/userissues";
 import { withRouter } from "next/router";
 import router from "next/router";
 import Userticket from "../tickets/userticket";
-
-
-
-
-
 const CustomerDashboard = (props) => {
-
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
@@ -35,7 +29,7 @@ const CustomerDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/components/login/login")
+        router.push("/")
         localStorage.setItem('loggedin', false);
       } else {
         window.history.pushState(null, null, window.location.pathname);
@@ -52,7 +46,7 @@ const CustomerDashboard = (props) => {
     };
   }, []);
   const onBackButtonEvent3 = () => {
-    router.push("/components/login/login")
+    router.push("/")
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('activeTab');
 

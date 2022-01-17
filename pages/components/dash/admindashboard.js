@@ -11,14 +11,11 @@ import PeopleIcon from '@mui/icons-material/People';
 import ListItemText from '@mui/material/ListItemText';
 import Users from '../users';
 import Team from '../team';
-import Badge from '@mui/material/Badge';
 import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Axios from 'axios';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import IconButton from '@mui/material/IconButton';
 import AdminNotification from '../notification/adminNotifiction';
 const AdminDashboard = (props) => {
 

@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
 import MailIcon from '@mui/icons-material/Mail';
-
+import emailjs from 'emailjs-com';
 import Imageviewer from '../common/imageviewer'
 
 function Adminticket(props) {
@@ -37,7 +37,6 @@ function Adminticket(props) {
 
             setShow("update Successfully");
             Router.reload(window.location.pathname)
-
         });
     }
     useEffect(() => {
@@ -61,24 +60,18 @@ function Adminticket(props) {
         setLogin(window.localStorage.getItem('loggedin'))
         console.log(login)
         if (login === "false") {
-          router.push("/")
+            Router.push("/")
         } else if (login === null) {
-          router.push("/")
+            Router.push("/")
         }
-    
       })
-
     function handleImagePreview(Screenshots) {
         console.log(Screenshots)
     }
-
     // emailjs
-
-
     function updateemail(ticketsId, Username) {
         setName(Username);
         setTicketid(ticketsId)
-
     }
     const [name, setName] = useState(" ")
     const [ticketid, setTicketid] = useState()
@@ -86,7 +79,6 @@ function Adminticket(props) {
     const SERVICE_ID = "service_56f9av6"
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
-
     function SendEmail() {
 
         console.log(email)
@@ -95,18 +87,18 @@ function Adminticket(props) {
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
             to_name: name
         };
-        // if (selectedstatus === "completed") {
-        //     emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-        //         function (response) {
-        //             console.log(response.status, response.text);
-        //             setShowmailstatus("EMail sended Successfully")
-        //         },
-        //         function (err) {
-        //             console.log(err);
-        //             setShowmailstatus("Sending Email Failed")
-        //         }
-        //     );
-        // }
+        if (selectedstatus === "completed") {
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+                function (response) {
+                    console.log(response.status, response.text);
+                    setShowmailstatus("EMail sended Successfully")
+                },
+                function (err) {
+                    console.log(err);
+                    setShowmailstatus("Sending Email Failed")
+                }
+            );
+        }
         setTimeout(() => {
             setShowmailstatus()
         }, [4000])
@@ -289,7 +281,7 @@ function Adminticket(props) {
                                         dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
                                         className="btn3 ticket-update2"
                                         dialogbody={
-                                            <div className="form dialog emaildialog">
+                                            <div className="">
 
                                                 <div className="form-group">
                                                     <label className="label">status</label>

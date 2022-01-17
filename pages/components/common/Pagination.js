@@ -4,8 +4,7 @@ export default function Pagination({ perPage, total, paginate }) {
     for (let i = 1; i <= (Math.ceil(total / perPage)); i++) {
         PageNumbers.push(i);
     }
-    return (
-        
+    return (    
             <nav>
                 <ul className="pagination justify-content-center pl-5">
                     {PageNumbers.map(number =>

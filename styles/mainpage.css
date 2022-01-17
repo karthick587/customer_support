@@ -79,6 +79,32 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.css-ypiqx9-MuiDialogContent-root {
+  padding: 18px 18px 5px 15px;
+  width: 300px;
+}
+.css-dsuxgy-MuiTableCell-root {
+  font-size: 13px;
+  padding-top: 4px !important;
+  font-weight: 550;
+}
+.highlighted-row td {
+  width: 90px;
+  text-align: left;
+  font-weight: 750;
+  padding: 34px 0px 0px 0px;
+  font-size: 13px;
+  color: black;
+}
+.form-input {
+  padding: 3px 11px;
+  border-radius: 19px;
+  border: 1px solid #8080804a;
+  font-size: 12px;
+ 
+  background: transparent;
+  z-index: 99;
+}
 .Imageviewer-userimg {
   width: 338px;
   height: 34vh;
@@ -148,13 +174,12 @@ form.form3 {
  
 .form.login {
   width: 267px;
-  
-    align-items: center;
-    margin-top: 25px;
-    justify-content: center;
-    height: auto;
-    display: flex;
-    z-index: 7;
+  align-items: center;
+  margin-top: 25px;
+  justify-content: center;
+  height: auto;
+  display: flex;
+  z-index: 7;
 }
 .css-dsuxgy-MuiTableCell-root {
   line-height: 3.43 !important;

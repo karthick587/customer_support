@@ -3,7 +3,6 @@ import Axios from "axios";
 import Button from '@mui/material/Button';
 import{ useDispatch,useSelector} from 'react-redux';
 export default Userissue;
-
 function Userissue(props) {
     const { customername } = props
     //const [UserName, setUserName] = useState('');
@@ -12,11 +11,10 @@ function Userissue(props) {
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
-    var Team = 'Assign';
+    var Team = 'not Assigned';
     var Status = 'New';
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-
     //const time = today.getHours() + ':' + today.getMinutes();
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
     fullDate = new Date();
@@ -41,26 +39,14 @@ function Userissue(props) {
     if (seconds < 10) {
         seconds = '0' + seconds.toString();
     }
-   
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     console.log(fullTime)
-   
-   
-   
-        // useEffect(() => {
-        //     setUserName(customername);
-        // }, []);
-       
-    
-
     function handleScreenshot(e){
         console.log(e.target.files[0]);
         setScreenshots(e.target.files[0]);
     }
-console.log(customername)
     const addIssues = () => {
-
         const data = new FormData();
         data.append("UserName", customername);
         data.append("Email", Email);
@@ -71,6 +57,7 @@ console.log(customername)
         data.append("Team",Team);
         data.append("Status",Status);
         data.append("file", Screenshots);
+        data.append("Notification", "unseen");
         data.append("statusUpdatedTime",date + ' ' + fullTime)
         Axios.post("https://mindmadetech.in/api/tickets/new",data,{
         headers: {
@@ -78,7 +65,6 @@ console.log(customername)
         }
     })
     }
-    
     return (
         <div className="container">
             <div>
@@ -108,8 +94,7 @@ console.log(customername)
                         <form>
                              <label htmlFor="contained-button-file">
                                 <input type="file" id="file" accept="image/*" onChange={handleScreenshot} multiple="true" />
-                            </label>
-                          
+                            </label>                        
                         </form>
                     </div>                  
                     <div className="">

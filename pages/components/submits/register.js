@@ -14,7 +14,6 @@ const schema = yup.object().shape({
 });
 export default function Register() {
     var [show, setShow] = useState('');
-
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
