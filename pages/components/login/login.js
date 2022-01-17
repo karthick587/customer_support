@@ -1,19 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootstrap/dist/css/bootstrap.css";
-import Head from 'next/head';
+import React from 'react';
 
-import Button from '@mui/material/Button';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import * as yup from 'yup';
-import Sidebody from '../common/login&singupSidebody';
-const schema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().required().min(6)
-});
+
 export default function Login1() {
 //   const [user, setUser] = useState('');
 //   const router = useRouter();
@@ -100,9 +88,7 @@ export default function Login1() {
 //     });
   return (
     <div className="login-page">
-      <Head>
-        <title>userlogin</title>
-      </Head>
+     
       <div >
         <div className="login-body">
           testing
