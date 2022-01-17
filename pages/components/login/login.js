@@ -10,9 +10,7 @@ function handleSubmit(){
 }
   return (
     <div className="login-page">
-      <Head>
-        <title>userlogin</title>
-      </Head>
+    
       <div >
         <div className="login-body">
           <div className="left-body">
