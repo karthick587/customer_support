@@ -44,6 +44,7 @@ function Addcustomer(props) {
          setLogo(e.target.files[0])
          setUploadLogo(URL.createObjectURL(e.target.files[0]))
      }
+     
     const addUser = ({ Companyname,Clientname,Email,Phonenumber,Username,Password }) => {
  
         
@@ -102,6 +103,9 @@ function Addcustomer(props) {
                     setShow("Registered Successfully");
                     Router.reload(window.location.pathname)
                 }
+            }).then((res) => {
+                setShow("Updated Successfully")
+                router.reload(window.location.pathname)
             })
         }
     }

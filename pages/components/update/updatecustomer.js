@@ -51,6 +51,9 @@ function Updatecustomer({ usersId }) {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
+        }).then((res) => {
+            setShow("Updated Successfully")
+            router.reload(window.location.pathname)
         })
     }
     var today = new Date();
