@@ -104,15 +104,16 @@ function Addcustomer(props) {
       
     }
     const[login,setLogin]=useState()
-  useEffect(()=>{
-    setLogin(window.localStorage.getItem('loggedin'))
-    //console.log(login)
-   if(login==="false"){
-    Router.push("/components/login/login")
-   } else if(login === null){
-    Router.push("/components/login/login")
-   }
-  })
+    useEffect(() => {
+        setLogin(window.localStorage.getItem('loggedin'))
+        console.log(login)
+        if (login === "false") {
+          router.push("/")
+        } else if (login === null) {
+          router.push("/")
+        }
+    
+      })
 
   function handleScreenshot(e){
     console.log(e.target.files[0]);

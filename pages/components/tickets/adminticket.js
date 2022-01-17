@@ -61,11 +61,12 @@ function Adminticket(props) {
         setLogin(window.localStorage.getItem('loggedin'))
         console.log(login)
         if (login === "false") {
-            Router.push("/components/login/login")
+          router.push("/")
         } else if (login === null) {
-            Router.push("/components/login/login")
+          router.push("/")
         }
-    })
+    
+      })
 
     function handleImagePreview(Screenshots) {
         console.log(Screenshots)

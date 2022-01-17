@@ -23,12 +23,12 @@ function Userticket(props) {
         setLogin(window.localStorage.getItem('loggedin'))
         console.log(login)
         if (login === "false") {
-            router.push("/components/login/login")
+          router.push("/")
         } else if (login === null) {
-            router.push("/components/login/login")
+          router.push("/")
         }
-
-    })
+    
+      })
     console.log(search)
     return (
         <div>
