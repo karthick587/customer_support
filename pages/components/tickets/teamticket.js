@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
-import * as emailjs from "emailjs-com";
+
 function Teamticket() {
     const Router = useRouter()
     
