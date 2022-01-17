@@ -5,7 +5,7 @@ a {
 }
 
 .form-group {
-  padding: 0px 0px;
+  padding: 5px 0px;
   display: grid;
   position: relative;
 }
@@ -351,11 +351,10 @@ img.slide-banner1 {
 }
 
 .form-input {
-  padding: 2px 13px;
+  padding: 7px 13px;
   border-radius: 19px;
   border: 1px solid #8080804a;
   font-size: 14px;
- 
   background: transparent;
   z-index: 99;
 }

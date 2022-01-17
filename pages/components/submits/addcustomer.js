@@ -12,18 +12,17 @@ const schema = yup.object().shape({
     Phonenumber: yup.string().required().max(10),
     Username: yup.string().required(),
     Password: yup.string().required(), 
-    fileref : yup.mixed().required("Need to include logo")
+    
 });
 function Addcustomer(props) {
     var [addmember, setAddmember] = useState('');
     var [addteam, setAddteam] = useState('');
     const Router = useRouter();
-    var [show2, setShow2] = useState('');
+    var [showlogo, setShowlogo] = useState('');
     const [show, setShow] = React.useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [Logo, setLogo] = useState();
     const[uploadLogo,setUploadLogo] = useState();
-    const fileref = React.useRef();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
@@ -37,7 +36,21 @@ function Addcustomer(props) {
         setCreatedby(Adminname.slice(3, 20));
     })
      console.log(Createdby) 
+     var [showlogo, setShowlogo] = useState('');
+     const [logovalidate,setLogovalidate]=useState()
+     function handleScreenshot(e) {
+         console.log(e.target.files[0]);
+         setLogovalidate(e.target.files[0]);
+         setLogo(e.target.files[0])
+         setUploadLogo(URL.createObjectURL(e.target.files[0]))
+     }
     const addUser = ({ Companyname,Clientname,Email,Phonenumber,Username,Password }) => {
+ 
+        
+        if(logovalidate===undefined){
+            setShowlogo("images is required")
+            console.log("logo is empty")
+        }else {
         var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
@@ -67,6 +80,7 @@ function Addcustomer(props) {
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     console.log(fullTime)
     console.log(date)
+    console.log(Logo)
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
@@ -89,6 +103,7 @@ function Addcustomer(props) {
                     Router.reload(window.location.pathname)
                 }
             })
+        }
     }
     const[login,setLogin]=useState()
     useEffect(() => {
@@ -100,12 +115,7 @@ function Addcustomer(props) {
             Router.push("/")
         }
       })
-  function handleScreenshot(e){
-    console.log(e.target.files[0]);
-    setLogo(e.target.files[0]);
-    setUploadLogo(URL.createObjectURL(e.target.files[0]));
-    fileref.current.click();
-}
+     
 return (
         <div>
             <div className="container mainbody">
@@ -113,8 +123,8 @@ return (
                     <form>
                         <div className="form-group upload">
                                 <label htmlFor="contained-button-file">
-                                    <input accept="image/*" id="contained-button-file" ref={fileref} className="upload-input-button" multiple type="file" onChange={handleScreenshot} />
-                                    <p className="text-danger mt-3 ml-2">{errors.fileref?.message}</p>
+                                    <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
+                                    <p className="text-danger mt-3 ml-2">{showlogo}</p>
                                     <Avatar
                                         alt="Remy Sharp"
                                         src={uploadLogo}
