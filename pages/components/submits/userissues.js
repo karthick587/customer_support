@@ -68,7 +68,7 @@ function Userissue(props) {
         }
     }).then((res) => {
                 setShow("Updated Successfully")
-                router.reload(window.location.pathname)
+                Router.reload(window.location.pathname)
             })
     }
     return (
@@ -107,6 +107,7 @@ function Userissue(props) {
                         <button className="btn2 mt-3 mb-4" type="button" onClick={addIssues}>Submit</button>
                     </div>
                 </form>
+<h4 className="alert1 text-center">{show}</h4>
             </div>
         </div>
     );
