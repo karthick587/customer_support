@@ -131,7 +131,7 @@ function Adminticket(props) {
 
     // notificationupdate
     function Notificationupdate(ticketsId) {
-        Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+        Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
