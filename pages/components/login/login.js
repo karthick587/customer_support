@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import Head from 'next/head';
-import Axios from 'axios';
+
 import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
@@ -15,89 +15,89 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6)
 });
 export default function Login1() {
-  const [user, setUser] = useState('');
-  const router = useRouter();
-  const [loginStatus, setLoginStatus] = useState('');
-  const [userlogin,setUserlogin] = useState('');
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(schema),
-  });
-  const { errors } = formState;
-//   const adminLogin = ({ username, password }) => {
-//     var TableValidate = username.slice(0, 3)
-//     setUserlogin(username)
-//     var validate, SlicedName;
-//     switch (TableValidate) {
-//       case 'ad_':
-//         validate = "admin";
-//         console.log(validate);
-//         SlicedName = username.slice(3, 20);
-//         console.log(SlicedName);
-//         break;
-//       case 'tm_':
-//         validate = "team";
-//         console.log(validate);
-//         SlicedName = username.slice(3, 20);
-//         console.log(SlicedName);
-//         localStorage.setItem('tm_name', SlicedName);
-//         break;
-//       default:
-//         validate = "customer";
-//         console.log(validate);
-//         SlicedName = username;
-//         console.log(SlicedName);
-//         localStorage.setItem('clientname', SlicedName);
-//     }
-// if(validate==="admin"){
-//     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-//       username: SlicedName,
-//       password: password,
+//   const [user, setUser] = useState('');
+//   const router = useRouter();
+//   const [loginStatus, setLoginStatus] = useState('');
+//   const [userlogin,setUserlogin] = useState('');
+//   const { register, handleSubmit, formState } = useForm({
+//     resolver: yupResolver(schema),
+//   });
+//   const { errors } = formState;
+// //   const adminLogin = ({ username, password }) => {
+// //     var TableValidate = username.slice(0, 3)
+// //     setUserlogin(username)
+// //     var validate, SlicedName;
+// //     switch (TableValidate) {
+// //       case 'ad_':
+// //         validate = "admin";
+// //         console.log(validate);
+// //         SlicedName = username.slice(3, 20);
+// //         console.log(SlicedName);
+// //         break;
+// //       case 'tm_':
+// //         validate = "team";
+// //         console.log(validate);
+// //         SlicedName = username.slice(3, 20);
+// //         console.log(SlicedName);
+// //         localStorage.setItem('tm_name', SlicedName);
+// //         break;
+// //       default:
+// //         validate = "customer";
+// //         console.log(validate);
+// //         SlicedName = username;
+// //         console.log(SlicedName);
+// //         localStorage.setItem('clientname', SlicedName);
+// //     }
+// // if(validate==="admin"){
+// //     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
+// //       username: SlicedName,
+// //       password: password,
      
-//     }).then((response) => {
-//       if (response.data.statusCode===400) {
-//         setLoginStatus(response.data.message);
-//       } else {
-//         localStorage.setItem('loggedin', true);
-//         localStorage.setItem('activeTab', "Dashboard")
-//         router.push({
-//           pathname: `../dash/${validate}dashboard`,
-//         });
-//       }
-//     });
-//   }else{
-//     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-//       username: SlicedName,
-//       password: password,
-//       Isdeleted:"n"
-//     }).then((response) => {
-//       if (response.data.statusCode===400) {
-//         setLoginStatus(response.data.message);
-//       } else {
-//         localStorage.setItem('loggedin', true);
-//         localStorage.setItem('activeTab', "Dashboard")
-//         router.push({
-//           pathname: `../dash/${validate}dashboard`,
-//         });
-//       }
-//     });
+// //     }).then((response) => {
+// //       if (response.data.statusCode===400) {
+// //         setLoginStatus(response.data.message);
+// //       } else {
+// //         localStorage.setItem('loggedin', true);
+// //         localStorage.setItem('activeTab', "Dashboard")
+// //         router.push({
+// //           pathname: `../dash/${validate}dashboard`,
+// //         });
+// //       }
+// //     });
+// //   }else{
+// //     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
+// //       username: SlicedName,
+// //       password: password,
+// //       Isdeleted:"n"
+// //     }).then((response) => {
+// //       if (response.data.statusCode===400) {
+// //         setLoginStatus(response.data.message);
+// //       } else {
+// //         localStorage.setItem('loggedin', true);
+// //         localStorage.setItem('activeTab', "Dashboard")
+// //         router.push({
+// //           pathname: `../dash/${validate}dashboard`,
+// //         });
+// //       }
+// //     });
 
+// //   }
+// //   }
+//   const onBackButtonEvent = (e) => {
+//     e.preventDefault();
+//     router.push("/")
 //   }
-//   }
-  const onBackButtonEvent = (e) => {
-    e.preventDefault();
-    router.push("/")
-  }
-  useEffect(() => {
-    window.history.pushState(null, null, window.location.pathname);
-    window.addEventListener('popstate', onBackButtonEvent);
-    return () => {
-      window.removeEventListener('popstate', onBackButtonEvent);
-    };
-  }, []);
-    useEffect(() => {
-      localStorage.setItem('user', userlogin);
-      console.log(user)
-    });
+//   useEffect(() => {
+//     window.history.pushState(null, null, window.location.pathname);
+//     window.addEventListener('popstate', onBackButtonEvent);
+//     return () => {
+//       window.removeEventListener('popstate', onBackButtonEvent);
+//     };
+//   }, []);
+//     useEffect(() => {
+//       localStorage.setItem('user', userlogin);
+//       console.log(user)
+//     });
   return (
     <div className="login-page">
       <Head>
@@ -105,7 +105,8 @@ export default function Login1() {
       </Head>
       <div >
         <div className="login-body">
-          <div className="left-body">
+          testing
+          {/* <div className="left-body">
             <div className="form login">
               <div className='sublogin'>
               <div className='login-header'>
@@ -137,7 +138,7 @@ export default function Login1() {
           </div>
           <div className="right-body">
             <Sidebody />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
