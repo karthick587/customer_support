@@ -60,7 +60,7 @@ if(validate==="admin"){
        
        
         router.push({
-          pathname: `../dash/${validate}dashboard`,
+          pathname: `../components/dash/${validate}dashboard`,
         });
       }
     });
@@ -76,7 +76,7 @@ if(validate==="admin"){
         localStorage.setItem('loggedin', true);
         localStorage.setItem('activeTab', "Dashboard")
         router.push({
-          pathname: `../dash/${validate}dashboard`,
+          pathname: `../components/dash/${validate}dashboard`,
         });
       }
     });
