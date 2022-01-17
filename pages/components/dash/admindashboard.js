@@ -127,7 +127,7 @@ const AdminDashboard = (props) => {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                ADMIN Dashboard
+                ADMIN Dashboards
               </Typography>
             </>
           }
