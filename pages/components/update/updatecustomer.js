@@ -20,10 +20,10 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         setModifiedby(Adminname.slice(3, 20));
     })
-    // useEffect(() => {
-    //     axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
-    //         .then(res => setGetCustomer(res.data))
-    // }, [])
+    useEffect(() => {
+        axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
+            .then(res => setGetCustomer(res.data))
+    }, [])
     function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber},Logo,usersId) {
 
 console.log(Logo)

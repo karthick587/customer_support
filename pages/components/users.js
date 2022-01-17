@@ -29,27 +29,27 @@ export default function Users(props) {
 
     
    
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/customer/list")
-    //         .then((res) => setUsers(res.data))
-    // }, []);
+    useEffect(() => {
+        Axios.get("https://mindmadetech.in/api/customer/list")
+            .then((res) => setUsers(res.data))
+    }, []);
 
-    // const deleteUsers = (id, name) => {
+    const deleteUsers = (id, name) => {
 
-    //     Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`,{
-    //         Isdeleted : 'y'
-    //     }).then(() => {
-    //                 Router.reload(window.location.pathname);
-    //             })
-    //     // <-- declare id parameter
-    //     // Axios
-    //     //     .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
-    //     //     .then(() => {
-    //     //         // Issue GET request after item deleted to get updated list
-    //     //         // that excludes note of id
-    //     //         Router.reload(window.location.pathname);
-    //     //     })
-    // };
+        Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`,{
+            Isdeleted : 'y'
+        }).then(() => {
+                    Router.reload(window.location.pathname);
+                })
+        // <-- declare id parameter
+        // Axios
+        //     .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
+        //     .then(() => {
+        //         // Issue GET request after item deleted to get updated list
+        //         // that excludes note of id
+        //         Router.reload(window.location.pathname);
+        //     })
+    };
 
 
     const UsersList = [

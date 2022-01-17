@@ -89,18 +89,18 @@ function Addcustomer(props) {
         data.append("Createdon",date + ' ' + fullTime);
         data.append("Createdby",Createdby)
 
-        // Axios.post(`https://mindmadetech.in/api/customer/new`,data,{
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data',
-        //     }
-        // }).then((response) => {
-        //         if (response.data.statusCode===400) {
-        //             setShow(response.data.message)
-        //         } else {
-        //             setShow("Registered Successfully");
-        //             Router.reload(window.location.pathname)
-        //         }
-        //     })
+        Axios.post(`https://mindmadetech.in/api/customer/new`,data,{
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }).then((response) => {
+                if (response.data.statusCode===400) {
+                    setShow(response.data.message)
+                } else {
+                    setShow("Registered Successfully");
+                    Router.reload(window.location.pathname)
+                }
+            })
       
     }
     const[login,setLogin]=useState()

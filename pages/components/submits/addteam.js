@@ -24,21 +24,21 @@ function Addteam(props) {
     });
     const { errors } = formState;
     //console.log(addteam);
-    // const addTeam = ({ Username, Password }) => {
-    //     console.log(addteam)
-    //     Axios.post(`https://mindmadetech.in/api/team/new`, {
-    //         Username: Username,
-    //         Password: Password,
-    //         Team: addteam
-    //     }).then((response) => {
-    //         if (response.data.message) {
-    //             setShow(response.data.message)
-    //         } else {
-    //             setShow("Registered Successfully");
-    //             Router.reload(window.location.pathname)
-    //         }
-    //     });
-    // }
+    const addTeam = ({ Username, Password }) => {
+        console.log(addteam)
+        Axios.post(`https://mindmadetech.in/api/team/new`, {
+            Username: Username,
+            Password: Password,
+            Team: addteam
+        }).then((response) => {
+            if (response.data.message) {
+                setShow(response.data.message)
+            } else {
+                setShow("Registered Successfully");
+                Router.reload(window.location.pathname)
+            }
+        });
+    }
     console.log(addteam)
     const[login,setLogin]=useState()
   useEffect(()=>{

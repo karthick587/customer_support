@@ -22,24 +22,24 @@ function Adminticket(props) {
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     //console.log(selectedValue)
     var [tickets, setTickets,] = useState([]);
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/tickets/list")
-    //         .then((res) => setTickets(res.data));
-    // }, []);
+    useEffect(() => {
+        Axios.get("https://mindmadetech.in/api/tickets/list")
+            .then((res) => setTickets(res.data));
+    }, []);
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
-    // function handleUpdate(ticketsId) {
-    //     Axios.put(`https://mindmadetech.in/api/tickets/updateteam/${ticketsId}`, {
-    //         Team: selectedTeam,
-    //         ticketsId: ticketsId,
-    //     }).then((_response) => {
+    function handleUpdate(ticketsId) {
+        Axios.put(`https://mindmadetech.in/api/tickets/updateteam/${ticketsId}`, {
+            Team: selectedTeam,
+            ticketsId: ticketsId,
+        }).then((_response) => {
 
-    //         setShow("update Successfully");
-    //         Router.reload(window.location.pathname)
+            setShow("update Successfully");
+            Router.reload(window.location.pathname)
 
-    //     });
-    // }
+        });
+    }
     useEffect(() => {
         if (filteredTitle === "all") {
             setIsOpenfilter(false);
@@ -74,11 +74,11 @@ function Adminticket(props) {
     // emailjs
 
 
-    // function updateemail(ticketsId, Username) {
-    //     setName(Username);
-    //     setTicketid(ticketsId)
+    function updateemail(ticketsId, Username) {
+        setName(Username);
+        setTicketid(ticketsId)
 
-    // }
+    }
     const [name, setName] = useState(" ")
     const [ticketid, setTicketid] = useState()
     const [showmailstatus, setShowmailstatus] = useState("")
@@ -86,48 +86,48 @@ function Adminticket(props) {
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
 
-    // function SendEmail() {
+    function SendEmail() {
 
-    //     console.log(email)
-    //     var data = {
-    //         to_email: email,
-    //         message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
-    //         to_name: name
-    //     };
-    //     if (selectedstatus === "completed") {
-    //         emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-    //             function (response) {
-    //                 console.log(response.status, response.text);
-    //                 setShowmailstatus("EMail sended Successfully")
-    //             },
-    //             function (err) {
-    //                 console.log(err);
-    //                 setShowmailstatus("Sending Email Failed")
-    //             }
-    //         );
-    //     }
-    //     setTimeout(() => {
-    //         setShowmailstatus()
-    //     }, [4000])
+        console.log(email)
+        var data = {
+            to_email: email,
+            message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
+            to_name: name
+        };
+        if (selectedstatus === "completed") {
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+                function (response) {
+                    console.log(response.status, response.text);
+                    setShowmailstatus("EMail sended Successfully")
+                },
+                function (err) {
+                    console.log(err);
+                    setShowmailstatus("Sending Email Failed")
+                }
+            );
+        }
+        setTimeout(() => {
+            setShowmailstatus()
+        }, [4000])
 
-    // }
+    }
 
 
     //to get client email id 
     const [email, setEmail] = useState()
     var [users, setUsers] = useState([]);
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/customer/list")
-    //         .then((res) => setUsers(res.data))
-    // }, []);
-    // useEffect(() => {
-    //     {
-    //         users.filter(val => {
-    //             return val.Username.toLowerCase().includes(name)
-    //         }).map((itemed) => setEmail(itemed.Email)
-    //         )
-    //     }
-    // })
+    useEffect(() => {
+        Axios.get("https://mindmadetech.in/api/customer/list")
+            .then((res) => setUsers(res.data))
+    }, []);
+    useEffect(() => {
+        {
+            users.filter(val => {
+                return val.Username.toLowerCase().includes(name)
+            }).map((itemed) => setEmail(itemed.Email)
+            )
+        }
+    })
     console.log(email)
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
@@ -137,15 +137,15 @@ function Adminticket(props) {
     //emailjs
 
     // notificationupdate
-    // function Notificationupdate(ticketsId) {
-    //     Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
-    //         Notification: "seen",
-    //         ticketsId: ticketsId,
-    //     }).then((_response) => {
-    //         console.log("viewed ticket No " + ticketsId)
+    function Notificationupdate(ticketsId) {
+        Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+            Notification: "seen",
+            ticketsId: ticketsId,
+        }).then((_response) => {
+            console.log("viewed ticket No " + ticketsId)
 
-    //     });
-    // }
+        });
+    }
 
 
     return (
