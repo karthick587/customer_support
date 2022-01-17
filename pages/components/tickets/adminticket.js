@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
 import MailIcon from '@mui/icons-material/Mail';
-import * as emailjs from "emailjs-com";
+
 import Imageviewer from '../common/imageviewer'
 
 function Adminticket(props) {
@@ -94,18 +94,18 @@ function Adminticket(props) {
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
             to_name: name
         };
-        if (selectedstatus === "completed") {
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-                function (response) {
-                    console.log(response.status, response.text);
-                    setShowmailstatus("EMail sended Successfully")
-                },
-                function (err) {
-                    console.log(err);
-                    setShowmailstatus("Sending Email Failed")
-                }
-            );
-        }
+        // if (selectedstatus === "completed") {
+        //     emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+        //         function (response) {
+        //             console.log(response.status, response.text);
+        //             setShowmailstatus("EMail sended Successfully")
+        //         },
+        //         function (err) {
+        //             console.log(err);
+        //             setShowmailstatus("Sending Email Failed")
+        //         }
+        //     );
+        // }
         setTimeout(() => {
             setShowmailstatus()
         }, [4000])
