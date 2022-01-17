@@ -30,9 +30,9 @@ const AdminDashboard = (props) => {
     setLogin(window.localStorage.getItem('loggedin'))
     console.log(login)
     if (login === "false") {
-      router.push("/components/login/login")
+      router.push("/")
     } else if (login === null) {
-      router.push("/components/login/login")
+      router.push("/")
     }
 
   })
@@ -43,7 +43,7 @@ const AdminDashboard = (props) => {
         setfinishStatus(true)
         // your logic
         localStorage.setItem('loggedin', false);
-        router.push("/components/login/login")
+        router.push("/")
       } else {
         window.history.pushState(null, null, window.location.pathname);
         setfinishStatus(false)
@@ -60,7 +60,7 @@ const AdminDashboard = (props) => {
   const onBackButtonEvent2 = () => {
     localStorage.setItem('loggedin', false)
     localStorage.removeItem('activeTab');
-    router.push("/components/login/login")
+    router.push("/")
   }
 
   // dashtab
