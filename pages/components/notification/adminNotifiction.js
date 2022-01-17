@@ -3,19 +3,19 @@ import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 function AdminNotification(props) {
     var [tickets, setTickets,] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data)); 
-    }, []);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/tickets/list")
+    //         .then((res) => setTickets(res.data)); 
+    // }, []);
 
-    function Notificationupdate(ticketsId){
-        Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
-            Notification: "seen",
-            ticketsId: ticketsId,
-        }).then((_response) => {
-           console.log("viewed ticket No "+ticketsId)
-        });
-      }
+    // function Notificationupdate(ticketsId){
+    //     Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+    //         Notification: "seen",
+    //         ticketsId: ticketsId,
+    //     }).then((_response) => {
+    //        console.log("viewed ticket No "+ticketsId)
+    //     });
+    //   }
     
       const[notificationcount,setnotificationcount]=useState()
       

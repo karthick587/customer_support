@@ -72,11 +72,11 @@ console.log(customername)
         data.append("Status",Status);
         data.append("file", Screenshots);
         data.append("statusUpdatedTime",date + ' ' + fullTime)
-        Axios.post("https://mindmadetech.in/api/tickets/new",data,{
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        }
-    })
+    //     Axios.post("https://mindmadetech.in/api/tickets/new",data,{
+    //     headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //     }
+    // })
     }
     return (
         <div className="container">

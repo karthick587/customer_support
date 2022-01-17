@@ -23,66 +23,66 @@ export default function Login1() {
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
-  const adminLogin = ({ username, password }) => {
-    var TableValidate = username.slice(0, 3)
-    setUserlogin(username)
-    var validate, SlicedName;
-    switch (TableValidate) {
-      case 'ad_':
-        validate = "admin";
-        console.log(validate);
-        SlicedName = username.slice(3, 20);
-        console.log(SlicedName);
-        break;
-      case 'tm_':
-        validate = "team";
-        console.log(validate);
-        SlicedName = username.slice(3, 20);
-        console.log(SlicedName);
-        localStorage.setItem('tm_name', SlicedName);
-        break;
-      default:
-        validate = "customer";
-        console.log(validate);
-        SlicedName = username;
-        console.log(SlicedName);
-        localStorage.setItem('clientname', SlicedName);
-    }
-if(validate==="admin"){
-    Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-      username: SlicedName,
-      password: password,
+//   const adminLogin = ({ username, password }) => {
+//     var TableValidate = username.slice(0, 3)
+//     setUserlogin(username)
+//     var validate, SlicedName;
+//     switch (TableValidate) {
+//       case 'ad_':
+//         validate = "admin";
+//         console.log(validate);
+//         SlicedName = username.slice(3, 20);
+//         console.log(SlicedName);
+//         break;
+//       case 'tm_':
+//         validate = "team";
+//         console.log(validate);
+//         SlicedName = username.slice(3, 20);
+//         console.log(SlicedName);
+//         localStorage.setItem('tm_name', SlicedName);
+//         break;
+//       default:
+//         validate = "customer";
+//         console.log(validate);
+//         SlicedName = username;
+//         console.log(SlicedName);
+//         localStorage.setItem('clientname', SlicedName);
+//     }
+// if(validate==="admin"){
+//     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
+//       username: SlicedName,
+//       password: password,
      
-    }).then((response) => {
-      if (response.data.statusCode===400) {
-        setLoginStatus(response.data.message);
-      } else {
-        localStorage.setItem('loggedin', true);
-        localStorage.setItem('activeTab', "Dashboard")
-        router.push({
-          pathname: `../dash/${validate}dashboard`,
-        });
-      }
-    });
-  }else{
-    Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-      username: SlicedName,
-      password: password,
-      Isdeleted:"n"
-    }).then((response) => {
-      if (response.data.statusCode===400) {
-        setLoginStatus(response.data.message);
-      } else {
-        localStorage.setItem('loggedin', true);
-        localStorage.setItem('activeTab', "Dashboard")
-        router.push({
-          pathname: `../dash/${validate}dashboard`,
-        });
-      }
-    });
+//     }).then((response) => {
+//       if (response.data.statusCode===400) {
+//         setLoginStatus(response.data.message);
+//       } else {
+//         localStorage.setItem('loggedin', true);
+//         localStorage.setItem('activeTab', "Dashboard")
+//         router.push({
+//           pathname: `../dash/${validate}dashboard`,
+//         });
+//       }
+//     });
+//   }else{
+//     Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
+//       username: SlicedName,
+//       password: password,
+//       Isdeleted:"n"
+//     }).then((response) => {
+//       if (response.data.statusCode===400) {
+//         setLoginStatus(response.data.message);
+//       } else {
+//         localStorage.setItem('loggedin', true);
+//         localStorage.setItem('activeTab', "Dashboard")
+//         router.push({
+//           pathname: `../dash/${validate}dashboard`,
+//         });
+//       }
+//     });
 
-  }
-  }
+//   }
+//   }
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     router.push("/")

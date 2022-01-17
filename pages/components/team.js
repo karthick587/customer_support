@@ -24,17 +24,17 @@ export default function Team(props) {
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
     var[exportTeam,setExportTeam] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data));
-    }, []);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/team/list")
+    //         .then((res) => setTeam(res.data));
+    // }, []);
     const deleteUsers = (id,name) => {
 
-        Axios.put(`https://mindmadetech.in/api/team/delete/${id}`,{
-            Isdeleted : 'y'
-        }).then(() => {
-                Router.reload(window.location.pathname);
-        })
+        // Axios.put(`https://mindmadetech.in/api/team/delete/${id}`,{
+        //     Isdeleted : 'y'
+        // }).then(() => {
+        //         Router.reload(window.location.pathname);
+        // })
             // <-- declare id parameter
         //     Axios
         //         .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;

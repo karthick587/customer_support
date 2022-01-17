@@ -88,26 +88,26 @@ const AdminDashboard = (props) => {
   }, [])
   // usercount
   var [users, setUsers] = useState([]);
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/customer/list")
-      .then((res) => setUsers(res.data))
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("https://mindmadetech.in/api/customer/list")
+  //     .then((res) => setUsers(res.data))
+  // }, []);
   let usercount = 0;
   usercount = users.length
   // ticketscount
   var [tickets, setTickets,] = useState([]);
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/tickets/list")
-      .then((res) => setTickets(res.data));
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("https://mindmadetech.in/api/tickets/list")
+  //     .then((res) => setTickets(res.data));
+  // }, []);
   let ticketscount = 0;
   ticketscount = tickets.length
   //team members count
   var [team, setTeam] = useState([]);
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/team/list")
-      .then((res) => setTeam(res.data));
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("https://mindmadetech.in/api/team/list")
+  //     .then((res) => setTeam(res.data));
+  // }, []);
   let teamcount = 0;
   teamcount = team.length
 

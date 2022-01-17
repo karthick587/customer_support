@@ -10,10 +10,10 @@ function Userticket(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     console.log(selectedValue)
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
-    }, []);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/tickets/list")
+    //         .then((res) => setTickets(res.data));
+    // }, []);
     useEffect(() => {
         setSearch(Username);
 

@@ -13,23 +13,23 @@ function Updateteam({ teamId }) {
     var [editTeam, setEditTeam] = useState('');
     var [show, setShow] = useState('');
 
-    useEffect(() => {
-        axios.get(`https://mindmadetech.in/api/team/list/${teamId}`)
-            .then(res => setGetTeam(res.data))
-    }, [])
+    // useEffect(() => {
+    //     axios.get(`https://mindmadetech.in/api/team/list/${teamId}`)
+    //         .then(res => setGetTeam(res.data))
+    // }, [])
    
 
 
-    const getvalue = ({ Username, Password, Team }) => {
-        axios.put(`https://mindmadetech.in/api/team/update/${teamId}`, {
-            Username: Username,
-            Password: Password,
-            Team: Team,
-        }).then((res) => {
-            setShow("Updated Successfully")
-            router.reload(window.location.pathname)
-        })
-    }
+    // const getvalue = ({ Username, Password, Team }) => {
+    //     axios.put(`https://mindmadetech.in/api/team/update/${teamId}`, {
+    //         Username: Username,
+    //         Password: Password,
+    //         Team: Team,
+    //     }).then((res) => {
+    //         setShow("Updated Successfully")
+    //         router.reload(window.location.pathname)
+    //     })
+    // }
 
     
     return (

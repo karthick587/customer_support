@@ -19,21 +19,21 @@ export default function Register() {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const registerFunction = ({ firstname, lastname, username, email, password }) => {
-        Axios.post("https://mindmadetech.in/register", {
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
-            password: password,
-        }).then((response) => {
-            if (response.data.message) {
-                setShow(response.data.message)
-            } else {
-                setShow("Registered Successfully");
-            }
-        });
-    }
+    // const registerFunction = ({ firstname, lastname, username, email, password }) => {
+    //     Axios.post("https://mindmadetech.in/register", {
+    //         firstname: firstname,
+    //         lastname: lastname,
+    //         username: username,
+    //         email: email,
+    //         password: password,
+    //     }).then((response) => {
+    //         if (response.data.message) {
+    //             setShow(response.data.message)
+    //         } else {
+    //             setShow("Registered Successfully");
+    //         }
+    //     });
+    // }
     return (
         <div className="login-page reg">
             <Head>

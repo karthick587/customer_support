@@ -16,10 +16,10 @@ function Teamticket() {
     var [selectedValue, setSelectedValue] = useState('');
 
     console.log(selectedValue)
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
-    }, []);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/tickets/list")
+    //         .then((res) => setTickets(res.data));
+    // }, []);
 
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
@@ -35,23 +35,23 @@ function Teamticket() {
   const [ticketid,setTicketid]=useState()
 
  
-    function handleUpdatestatus(ticketsId) {
+    // function handleUpdatestatus(ticketsId) {
             
              
-        console.log(ticketsId)
-        console.log(statusUpdateTime)
+    //     console.log(ticketsId)
+    //     console.log(statusUpdateTime)
 
-        Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
-            Status: selectedstatus,
-            ticketsId: ticketsId,
-            statusUpdateTime: fulldate + ' ' + fullTime
-        }).then((response) => {
-            setShow("update Successfully");
-            Router.reload(window.location.pathname)
-        });
-        //emailjs
+    //     Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
+    //         Status: selectedstatus,
+    //         ticketsId: ticketsId,
+    //         statusUpdateTime: fulldate + ' ' + fullTime
+    //     }).then((response) => {
+    //         setShow("update Successfully");
+    //         Router.reload(window.location.pathname)
+    //     });
+    //     //emailjs
      
-    }
+    // }
   
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -92,10 +92,10 @@ function Teamticket() {
     console.log(teamname)
     console.log(search1)
     var [team, setTeam] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data));
-    }, []);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/team/list")
+    //         .then((res) => setTeam(res.data));
+    // }, []);
     useEffect(() => {
         {
             team.filter(val => {
@@ -122,10 +122,10 @@ function Teamticket() {
   //to get client email id 
   const [email,setEmail]=useState()
   var [users, setUsers] = useState([]);
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/customer/list")
-        .then((res) => setUsers(res.data))  
-    }, []);
+//   useEffect(() => {
+//     Axios.get("https://mindmadetech.in/api/customer/list")
+//         .then((res) => setUsers(res.data))  
+//     }, []);
 useEffect(()=>{
     {users.filter(val => {
           

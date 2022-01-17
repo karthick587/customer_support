@@ -1087,3 +1087,19 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
   padding: 1px 7px;
   font-size: 12px;
 }
+.tickets-bodyrow td {
+  width: 220px;
+  text-align: left;
+  font-weight: 500;
+  padding: 34px 0px 0px 0px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.highlighted-row td {
+  width: 220px;
+  text-align: left;
+  font-weight: 750;
+  padding: 34px 0px 0px 0px;
+  font-size: 14px;
+  color: black;
+}

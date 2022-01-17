@@ -4,18 +4,13 @@ import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import FormDialog from '../common/dialogsform';
 import EditIcon from '@mui/icons-material/Edit';
+import { Formik, Form, Field } from 'formik';
 function Updatecustomer({ usersId }) {
     let router = useRouter();
     var [getCustomer, setGetCustomer] = useState([]);
-    var [editCompanyname, setEditCompanyname] = useState('');
-    var [editClientname, setEditClientname] = useState('');
-    var [editUsername, setEditUsername] = useState('');
-    var [editPassword, setEditPassword] = useState('');
-    var [editEmail, setEditEmail] = useState('');
-    var [editPhonenumber, setEditPhonenumber] = useState('');
-    const [editLogo, setEditLogo] = useState();
-    const [uploadLogo, setUploadLogo] = useState();
-    const [selected, setSelected] = useState(false);
+    const[editLogo,setEditLogo] = useState();
+    const[uploadLogo,setUploadLogo] = useState();
+    const[selected,setSelected] = useState(false);
     var [show, setShow] = useState('');
     const [Adminname, setAdminname] = useState([])
     useEffect(() => {
@@ -25,162 +20,100 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         setModifiedby(Adminname.slice(3, 20));
     })
+    // useEffect(() => {
+    //     axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
+    //         .then(res => setGetCustomer(res.data))
+    // }, [])
+    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber},Logo,usersId) {
 
-
-
-   
-
-    useEffect(() => {
-        axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
-            .then(res => setGetCustomer(res.data))
-    }, [])
-
-    function handleUpdate(Logo, Companyname, Clientname, Username, Password, Email, Phonenumber) {
-
-        var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber;
+console.log(Logo)
+        var logo
         switch (editLogo) {
-            case "":
-                Logo = Logo;
+        
+            case undefined:
+                logo = Logo;
                 console.log("empty");
+                
                 break;
+
             default:
-                Logo = editLogo;
+                logo = editLogo;
                 console.log("editLogo");
                 break;
         }
-        console.log(Logo);
-
-        switch (editCompanyname) {
-            case "":
-                Companyname = Companyname;
-                console.log("empty");
-                break;
-            default:
-                Companyname = editCompanyname;
-                console.log("editCompanyname");
-                break;
-        }
-        console.log(Companyname);
-
-        switch (editClientname) {
-            case "":
-                Clientname = Clientname;
-                console.log("empty");
-                break;
-            default:
-                Clientname = editClientname;
-                console.log("editCompanyname");
-                break;
-        }
-        console.log(Clientname);
-
-        switch (editUsername) {
-            case "":
-                Username = Username;
-                console.log("empty");
-                break;
-            default:
-                Username = editUsername;
-                console.log("editUsername")
-        }
-        console.log(Username);
-
-        switch (editPassword) {
-            case "":
-                Password = Password;
-                console.log("empty");
-                break;
-            default:
-                Password = editPassword;
-                console.log("editPassword")
-        }
-        console.log(Password);
-
-        switch (editEmail) {
-            case "":
-                Email = Email;
-                console.log("empty");
-                break;
-            default:
-                Email = editEmail;
-                console.log("editEmail")
-        }
+     
+        console.log(logo)
+        console.log(Companyname)
+        console.log(Clientname)
+        console.log(Username)
+        console.log(Password)
         console.log(Email)
-
-            ;
-
-        switch (editPhonenumber) {
-            case "":
-                Phonenumber = Phonenumber;
-                console.log("empty");
-                break;
-            default:
-                Phonenumber = editPhonenumber;
-                console.log("editPhonenumber")
-        }
-        console.log(Phonenumber);
-
-        var today = new Date();
-        const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-
-        var fullDate, TimeType, hour, minutes, seconds, fullTime;
-        fullDate = new Date();
-        hour = fullDate.getHours();
-        if (hour <= 11) {
-            TimeType = 'AM';
-        }
-        else {
-            TimeType = 'PM';
-        }
-        if (hour > 12) {
-            hour = hour - 12;
-        }
-        if (hour == 0) {
-            hour = 12;
-        }
-        minutes = fullDate.getMinutes();
-        if (minutes < 10) {
-            minutes = '0' + minutes.toString();
-        }
-        seconds = fullDate.getSeconds();
-        if (seconds < 10) {
-            seconds = '0' + seconds.toString();
-        }
-
-        // Adding all the variables in fullTime variable.
-        fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-        // console.log(fullTime)
-        //console.log(date)
-
+        console.log(Phonenumber)
+        console.log(date+" "+fullTime)
+      
+        console.log(Modifiedby)
+     
+       
         const data = new FormData();
-        data.append("Companyname", Companyname);
-        data.append("Clientname", Clientname);
-        data.append("Email", Email);
-        data.append("Phonenumber", Phonenumber);
-        data.append("Username", Username);
-        data.append("Password", Password);
-        data.append("Logo", Logo);
-        data.append("Modifiedon", date + ' ' + fullTime);
-        data.append("Modifiedby", Modifiedby)
+      
+        // data.append("Companyname", Companyname);
+        // data.append("Clientname", Clientname);
+        // data.append("Email", Email);
+        // data.append("Phonenumber", Phonenumber);
+        // data.append("Username", Username);
+        // data.append("Password", Password);
+        // data.append("Logo", logo);
+        // data.append("Modifiedon", date + ' ' + fullTime);
+        // data.append("Modifiedby", Modifiedby)
 
-        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        }).then((res) => {
-            setShow("Updated Successfully")
-            router.reload(window.location.pathname)
-        })
+        // axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data',
+        //     }
+        // }).then((res) => {
+        //     setShow("Updated Successfully")
+        //     router.reload(window.location.pathname)
+
+        // })  
     }
+    var today = new Date();
+    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
 
-    function handleScreenshot(Logo, e) {
+    var fullDate, TimeType, hour, minutes, seconds, fullTime;
+    fullDate = new Date();
+    hour = fullDate.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = fullDate.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = fullDate.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
+   
+    // Adding all the variables in fullTime variable.
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
+ 
+
+    function handleScreenshot(e){
         console.log(e.target.files[0]);
-
+       
         setEditLogo(e.target.files[0]);
         setSelected(true);
         setUploadLogo(URL.createObjectURL(e.target.files[0]))
     }
-
 
     return (
         <FormDialog
@@ -190,11 +123,16 @@ function Updatecustomer({ usersId }) {
                 <div>
                     {getCustomer.map((data) =>
                         <div className="container mainbody" key={data.usersId}>
-                            <div className="addform">
-                                <form>
+                              <Formik
+                                className="addform"
+                                    initialValues={{Logo:data.Logo,Companyname:data.Companyname,Clientname:data.Clientname ,Username:data.Username,Password:data.Password,Email:data.Email,Phonenumber:data.Phonenumber}}
+                                    onSubmit={value => handleUpdate(value,data.Logo,data.usersId)}
+                                >
+
+                                    <Form >
                                     <div className="form-group upload">
                                         <label htmlFor="contained-button-file">
-                                            <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(data.Logo, e)} />
+                                        <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
                                             <Avatar
                                                 alt="Remy Sharp"
                                                 src={selected === false ? data.Logo : uploadLogo}
@@ -202,46 +140,39 @@ function Updatecustomer({ usersId }) {
                                             />
                                         </label>
                                     </div>
-
                                     <div className="form-group">
-                                        <label className="label"> Comapany Name</label>
-                                        <input className="form-input" name="Name" type="text" placeholder={data.Companyname} value={editCompanyname} onChange={(e) => setEditCompanyname(e.target.value)} />
-
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="label"> Client Name</label>
-                                        <input className="form-input" name="Name" type="text" placeholder={data.Clientname} value={editClientname} onChange={(e) => setEditClientname(e.target.value)} />
-
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="label">Username</label>
-                                        <input className="form-input" name="Username" type="text" placeholder={data.Username} value={editUsername} onChange={(e) => setEditUsername(e.target.value)} />
-
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="col label">Password</label>
-                                        <input className="form-input" name="Password" type="text" placeholder={data.Password} value={editPassword} onChange={(e) => setEditPassword(e.target.value)} />
-
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="col label">EMail ID</label>
-                                        <input className="form-input" name="Email" type="text" placeholder={data.Email} value={editEmail} onChange={(e) => setEditEmail(e.target.value)} />
-
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="col label">Phone Number</label>
-                                        <input className="form-input" name="Phonenumber" type="text" placeholder={data.Phonenumber} value={editPhonenumber} onChange={(e) => setEditPhonenumber(e.target.value)} />
-
-                                    </div>
-                                    <div className="row justify-content-center">
-                                        <div className='bottom-area'>
-                                            <button type="button" onClick={() => handleUpdate(data.Logo, data.Companyname, data.Clientname, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
+                                            <label className="label">Companyname</label>
+                                            <Field className="form-input" name="Companyname" />
                                         </div>
-                                    </div>
-                                    <h3>{show}</h3>
-                                </form>
-
-                            </div>
+                                    <div className="form-group">
+                                            <label className="label">Clientname</label>
+                                            <Field className="form-input" name="Clientname" />
+                                        </div>
+                                        
+                                        <div className="form-group">
+                                            <label className="col label">Username</label>
+                                            <Field className="form-input" name="Username" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="col label">Password</label>
+                                            <Field className="form-input" name="Password" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="col label">Email</label>
+                                            <Field className="form-input" name="Email" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="col label">Phonenumber</label>
+                                            <Field className="form-input" name="Phonenumber" />
+                                        </div>                          
+                                        <div className="row justify-content-center">
+                                            <div className='bottom-area'>
+                                            <button type="submit" className="btn2 float-end">Submit</button>
+                                            </div>
+                                        </div>
+                                        <h3>{show}</h3>                                    
+                                    </Form>
+                                </Formik>               
                         </div>
                     )}
                 </div>}
