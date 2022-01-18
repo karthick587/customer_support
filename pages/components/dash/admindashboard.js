@@ -73,7 +73,7 @@ const AdminDashboard = (props) => {
   const TeamTabActive = () => {
     localStorage.setItem('activeTab', 'team')
   }
-  const[notificationcount,setnotificationcount]=useState()
+  
   const [activeTab, setActivetab] = useState(" ")
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
