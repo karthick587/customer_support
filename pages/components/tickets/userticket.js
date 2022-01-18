@@ -30,7 +30,7 @@ function Userticket(props) {
         }
 
     })
-
+   
     return (
         <div>
 

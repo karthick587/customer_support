@@ -88,9 +88,9 @@ const AdminDashboard = (props) => {
 
   useEffect(()=>{
     setusercount(users.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((userd) =>setusercount(userd.Status)).length)
-   
+    localStorage.setItem('updateclose', "open");
   })
-  
+ 
   // ticketscount
   var [tickets, setTickets,] = useState([]);
   useEffect(() => {

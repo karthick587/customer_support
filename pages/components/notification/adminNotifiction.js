@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
-import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 function AdminNotification(props) {
-    let router = useRouter();
     var [tickets, setTickets,] = useState([]);
-    useEffect(() => {
+    useEffect(()=>{
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, [tickets]);
-    function Notificationupdate(ticketsId, Notification) {
-        Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
+    function Notificationupdate(ticketsId,Notification){
+        Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`,{
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {

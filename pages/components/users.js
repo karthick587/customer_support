@@ -88,9 +88,8 @@ export default function Users(props) {
         } else if (login === null) {
           router.push("/")
         }
-    
+        
       })
- 
     return (
         <div>
             <Head>

@@ -141,11 +141,6 @@ function Teamticket() {
     console.log(email)
     //emailjs
 
-
-
-
-
-
     return (
         <div>
 

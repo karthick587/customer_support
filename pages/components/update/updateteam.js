@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 function Updateteam({ teamId }) {
     let router = useRouter();
     var [getTeam, setGetTeam] = useState([]);
-   
     var [editTeam, setEditTeam] = useState('');
     var [show, setShow] = useState('');
 
@@ -23,9 +22,10 @@ function Updateteam({ teamId }) {
             Team: Team,
         }).then((res) => {
             setShow("Updated Successfully")
-           
+            localStorage.setItem('updateclose', "close");
         })
     }
+   
     setTimeout(() => {
         setShow()
     }, [4000])

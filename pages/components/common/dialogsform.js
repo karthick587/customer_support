@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,7 +12,11 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  
+  useEffect(()=>{
+    if(window.localStorage.getItem('updateclose')==="close"){
+      setOpen(false);
+    }
+  })
 
   return (
     <div className={props.dialog_className}>

@@ -28,15 +28,17 @@ function Addteam(props) {
             Password: Password,
             Team: addteam
         }).then((response) => {
+            
             if (response.data.message) {
                 setShow(response.data.message)
+                localStorage.setItem('updateclose', "close");
             } else {
                 setShow("Registered Successfully");
-              
+                localStorage.setItem('updateclose', "close");
             }
         });
     }
-  
+
     const[login,setLogin]=useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))

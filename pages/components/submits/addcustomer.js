@@ -95,11 +95,12 @@ function Addcustomer(props) {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                   
+                    localStorage.setItem('updateclose', "close");
                 }
             })
         }
     }
+   
     const[login,setLogin]=useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))

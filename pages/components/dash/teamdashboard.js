@@ -23,7 +23,11 @@ const TeamDashboard = (props) => {
     } else if (login === null) {
       router.push("/")
     }
+    localStorage.setItem('updateclose', "open");
   })
+ 
+   
+
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
