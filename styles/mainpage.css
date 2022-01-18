@@ -82,6 +82,12 @@
 .emaildialog {
   width: 255px;
 }
+.notification-body {
+  position: absolute;
+  top: 55px;
+  right: 0px;
+  /* background-color: black; */
+}
 .css-ypiqx9-MuiDialogContent-root {
   padding: 18px 18px 5px 15px;
   width: 300px;
