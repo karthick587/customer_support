@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
+import AdminDashboard from '../dash/admindashboard';
+import { useRouter } from 'next/router';
 function AdminNotification(props) {
+    let router = useRouter();
     var [tickets, setTickets,] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, []);
-    function Notificationupdate(ticketsId,Notification) {
-
-
+    function Notificationupdate(ticketsId, Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
             console.log("viewed ticket No " + ticketsId)
         });
-        if(Notification==="unseen"){
-        setnotificationcount(notificationcount-1)
+        if (Notification === "unseen") {
+            setnotificationcount(notificationcount - 1)
         }
     }
     const [notificationcount, setnotificationcount] = useState()
-
     props.parentCallback(notificationcount)
-
-    useEffect(()=>{
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) =>setnotificationcount(ticket.Notification.length)).length)
-    },[tickets])
+    useEffect(() => {
+        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
+    }, [tickets])
     console.log(notificationcount)
     return (
         <div>
@@ -36,8 +35,8 @@ function AdminNotification(props) {
                 <div key={tickets.ticketsId} className='tickets-table-row3'>
                     <FormDialog
                         dialogtitle={
-                            <table  >
-                                <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId,tickets.Notification)}>
+                            <table>
+                                <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
                                     <td>Ticket No {tickets.ticketsId}</td>
                                     <td>{tickets.Username}</td>
                                     <td>{tickets.Date}</td>

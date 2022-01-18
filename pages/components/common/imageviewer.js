@@ -23,7 +23,7 @@ export default function Imageviewer(props) {
                     <div className='col close-btn-div'><Button className='close-btn' onClick={handleClose}><CloseIcon /></Button></div>
                 </div>
 
-                <div>
+                <div className="viewer-img-body">
                     {props.imgdialogbody}
                 </div>
             </Dialog>

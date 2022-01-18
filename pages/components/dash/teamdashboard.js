@@ -30,7 +30,7 @@ const TeamDashboard = (props) => {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
         // your logic
-        router.push("/components/login/login")
+        router.push("/")
         localStorage.setItem('loggedin', false);
       } else {
         window.history.pushState(null, null, window.location.pathname);
@@ -46,7 +46,7 @@ const TeamDashboard = (props) => {
     };
   }, []);
   const onBackButtonEvent3 = () => {
-    router.push("/components/login/login")
+    router.push("/")
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('tm_name');
     localStorage.removeItem('activeTab');

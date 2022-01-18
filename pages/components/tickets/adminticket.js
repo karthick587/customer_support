@@ -64,7 +64,7 @@ function Adminticket(props) {
         } else if (login === null) {
             Router.push("/")
         }
-      })
+    })
     function handleImagePreview(Screenshots) {
         console.log(Screenshots)
     }
@@ -124,7 +124,7 @@ function Adminticket(props) {
     }
     //emailjs
     // notificationupdate
-    function Notificationupdate(ticketsId,Notification) {
+    function Notificationupdate(ticketsId, Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
@@ -132,17 +132,17 @@ function Adminticket(props) {
             console.log("viewed ticket No " + ticketsId)
 
         });
-        if(Notification==="unseen"){
-            setnotificationcount(notificationcount-1)
-            }
+        if (Notification === "unseen") {
+            setnotificationcount(notificationcount - 1)
+        }
     }
     const [notificationcount, setnotificationcount] = useState()
 
     props.parentCallback(notificationcount)
 
-    useEffect(()=>{
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) =>setnotificationcount(ticket.Notification.length)).length)
-    },[tickets])
+    useEffect(() => {
+        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
+    }, [tickets])
     console.log(notificationcount)
     return (
         <div>
@@ -194,7 +194,7 @@ function Adminticket(props) {
                                             <table >
                                                 <tbody>
 
-                                                    <tr className={tickets.Notification==="unseen" ? "highlighted-row":"tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Notification)} >
+                                                    <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)} >
                                                         <td>{tickets.ticketsId}</td>
                                                         <td>{tickets.Username}</td>
                                                         <td>{tickets.Date}</td>
@@ -236,14 +236,12 @@ function Adminticket(props) {
                                                     <h5 className={tickets.Status} > {tickets.Status}</h5>
                                                 </div>
                                                 <div className='ticket details-Team' ><label className="label">Team</label>
-                                                    <div className='ticket-input-details' > {tickets.Team}</div></div>
-
-                                                <Imageviewer
+                                                    <div className='ticket-input-details' > {tickets.Team}</div>
+                                                </div>
+                                             <Imageviewer
                                                     imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={60} height={40} />}
                                                     imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
                                                 />
-
-
                                             </div>
                                         }
                                     />
@@ -343,7 +341,7 @@ function Adminticket(props) {
                                             <table  >
                                                 <tbody>
 
-                                                    <tr className={tickets.Notification==="unseen" ? "highlighted-row":"tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Notification)} >
+                                                    <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)} >
                                                         <td>{tickets.ticketsId}</td>
                                                         <td>{tickets.Username}</td>
                                                         <td>{tickets.Date}</td>
@@ -393,7 +391,7 @@ function Adminticket(props) {
                                                     <label className="label">Screenshot</label>
                                                     <Imageviewer
                                                         imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={100} height={50} />}
-                                                        imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" width={1000} height={570} />}
+                                                        imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
                                                     />
                                                 </div>
                                             </div>

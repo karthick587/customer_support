@@ -81,29 +81,37 @@ const AdminDashboard = (props) => {
   }, [])
   // usercount
   var [users, setUsers] = useState([]);
+  const [usercount, setusercount] = useState();
   useEffect(() => {
     Axios.get("https://mindmadetech.in/api/customer/list")
       .then((res) => setUsers(res.data))
   }, []);
-  let usercount = 0;
-  usercount = users.length
+
+  useEffect(()=>{
+    setusercount(users.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((userd) =>setusercount(userd.Status)).length)
+   
+  })
+  console.log(usercount)
   // ticketscount
   var [tickets, setTickets,] = useState([]);
   useEffect(() => {
     Axios.get("https://mindmadetech.in/api/tickets/list")
       .then((res) => setTickets(res.data));
-  }, []);
+  },[tickets]);
   let ticketscount = 0;
   ticketscount = tickets.length
   //team members count
   var [team, setTeam] = useState([]);
+  const [teamcount, setteamcount] = useState();
   useEffect(() => {
     Axios.get("https://mindmadetech.in/api/team/list")
       .then((res) => setTeam(res.data));
-  }, []);
-  let teamcount = 0;
-  teamcount = team.length
-
+  },[]);
+  useEffect(()=>{
+    setteamcount(team.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((teams) =>setteamcount(teams.Status)).length)
+  })
+ 
+console.log(teamcount)
   const[adminnotificationcount,adminsetnotificationcount]=useState()
  const handleCallback = (childData) =>{
   adminsetnotificationcount(childData)

@@ -79,6 +79,9 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.emaildialog {
+  width: 255px;
+}
 .css-ypiqx9-MuiDialogContent-root {
   padding: 18px 18px 5px 15px;
   width: 300px;
@@ -97,11 +100,10 @@
   color: black;
 }
 .form-input {
-  padding: 3px 11px;
+  padding: 8px 11px;
   border-radius: 19px;
   border: 1px solid #8080804a;
   font-size: 12px;
- 
   background: transparent;
   z-index: 99;
 }
@@ -109,10 +111,7 @@
   width: 338px;
   height: 34vh;
 }
-.screeshot-img-viewer {
-  width: 360px;
-  height: 31vh;
-}
+
 .teambody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   width: 600px;
@@ -156,8 +155,8 @@
   display: flex;
 }
 .head-dialog {
-  width: 374px;
-  padding: 13px 106px 0px 18px;
+  width: 320px;
+  padding: 14px 62px 0px 18px;
 }
 .tickets-table-row div .ticket-update2 {
   bottom: 0px;

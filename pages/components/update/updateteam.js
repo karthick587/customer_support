@@ -35,7 +35,7 @@ function Updateteam({ teamId }) {
                 <>
                     <div>
                         {getTeam.map((data) =>
-                            <div className="container mainbody" key={data.teamId}>
+                            <div className="container dialog-body" key={data.teamId}>
                                 <Formik
                                 className="addform"
                                     initialValues={{Username:data.Username ,Password:data.Password,Team:data.Team}}

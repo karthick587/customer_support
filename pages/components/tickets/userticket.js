@@ -4,6 +4,7 @@ import Axios from "axios";
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
+import Imageviewer from '../common/imageviewer'
 function Userticket(props) {
     const { Username } = props;
     var [tickets, setTickets] = useState([]);
@@ -23,12 +24,12 @@ function Userticket(props) {
         setLogin(window.localStorage.getItem('loggedin'))
         console.log(login)
         if (login === "false") {
-          router.push("/")
+            router.push("/")
         } else if (login === null) {
-          router.push("/")
+            router.push("/")
         }
-    
-      })
+
+    })
     console.log(search)
     return (
         <div>
@@ -98,8 +99,12 @@ function Userticket(props) {
                                             <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
                                         </div>
                                         <div className='ticket details-Team' ><label className="label">Team</label>
-                                            <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                        <div className='ticket details-screenshots'><img src={tickets.Screenshots} alt="screenshots" height="80vh" width="50%" /></div>
+                                            <div className='ticket-input-details' > {tickets.Team}</div>
+                                        </div>
+                                        <Imageviewer
+                                            imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={60} height={40} />}
+                                            imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
+                                        />
                                     </div>
                                 }
                             />

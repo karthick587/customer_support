@@ -96,7 +96,7 @@ function Updatecustomer({ usersId }) {
             dialogbody={
                 <div>
                     {getCustomer.map((data) =>
-                        <div className="container mainbody" key={data.usersId}>
+                        <div className="container dialog-body" key={data.usersId}>
                             <Formik
                                 className="addform"
                                 initialValues={{ Logo: data.Logo, Companyname: data.Companyname, Clientname: data.Clientname, Username: data.Username, Password: data.Password, Email: data.Email, Phonenumber: data.Phonenumber }}

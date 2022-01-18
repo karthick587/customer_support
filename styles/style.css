@@ -59,6 +59,9 @@ a {
 .tickets-table-row3 {
   display: flex;
 }
+.container.dialog-body {
+  width: 400px;
+}
 .alert1 {
   color: red;
   font-size: 15px;
@@ -1041,8 +1044,14 @@ hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6 {
 span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
   font-weight: 500 !important;
 }
-
-
+.viewer-img-body{
+  overflow: auto;
+}
+img.screeshot-img-viewer {
+  max-height: 100vh;
+  /* width: auto; */
+  max-width: 100%;
+}
 .css-1l8j5k8 {
   border: none !important;
 }
