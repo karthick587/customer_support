@@ -1082,17 +1082,15 @@ img.screeshot-img-viewer {
 .notification-body {
   position: absolute;
   top: 63px;
-  overflow: auto;
-  /* height: 31vh; */
-  max-height: 30vh;
-  width: 379px;
-  right: 0px;
-  background-color: #e5f1fd;
+ 
+  right: 99px;
+ 
 }
 .adminnotification td {
   padding: 1px 7px;
   font-size: 12px;
-  width: 101px;
+  width: 95px;
+  text-align: left !important;
 }
 .tickets-bodyrow td {
   width: 220px;
@@ -1109,4 +1107,38 @@ img.screeshot-img-viewer {
   padding: 34px 0px 0px 0px;
   font-size: 14px;
   color: black;
+}
+.notification-head div {
+  color: #1976d2;
+  font-weight: 500;
+  font-size: 18px;
+  right: 0;
+}
+.notification-head {
+  width: 303px;
+  background-color: #daebfa;
+  margin-left: 0px;
+  padding: 4px 7px 4px 0px;
+}
+.notification-left {
+  font-family: system-ui;
+}
+.notification-right {
+  text-align: right;
+  font-family: system-ui;
+}
+.notification-table{
+  overflow: auto;
+  max-height: 30vh;
+  background-color: white;
+}
+.not-right-con {
+  pad: 0px 0px;
+  padding: 2px 7px 2px 0px !important;
+  width: 46px;
+  color: white !important;
+  margin: 4px 0px 0px 0px;
+  float: right;
+  font-size: 10px !important;
+  background-color: #1976d2;
 }

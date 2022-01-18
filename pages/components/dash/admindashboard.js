@@ -77,7 +77,6 @@ const AdminDashboard = (props) => {
   const [activeTab, setActivetab] = useState(" ")
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
-   
   }, [])
   // usercount
   var [users, setUsers] = useState([]);
@@ -142,9 +141,7 @@ useEffect(() => {
           }
           Notificationscount={notificationcount}
           notificationbody={
-            <><AdminNotification 
-           
-            /></>
+            <><AdminNotification Notification={notificationcount}/></>
           }
           sidenavcontent={
             <>

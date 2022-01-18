@@ -20,7 +20,19 @@ function AdminNotification(props) {
     }
 
     return (
-        <div>
+        <>
+          <div className='notification-head row'> 
+                <div className='col notification-left'>
+                   Notification
+                </div>
+                <div className='col notification-right'>
+                    <div className='not-right-con'>
+                   {props.Notification} New
+                   </div>
+                </div>
+            </div>
+        <div className='notification-table'>
+          
             {tickets.filter(val => {
                 return val.Notification.toLowerCase().includes("unseen")
             }).map((tickets) =>
@@ -32,7 +44,7 @@ function AdminNotification(props) {
                                     <td>Ticket No {tickets.ticketsId}</td>
                                     <td>{tickets.Username}</td>
                                     <td>{tickets.Date}</td>
-                                    <td>{tickets.Notification} </td>
+                                  
                                 </tr>
                             </table>
                         }
@@ -72,6 +84,7 @@ function AdminNotification(props) {
                 </div>
             )}
         </div>
+        </>
     );
 }
 export default AdminNotification;
