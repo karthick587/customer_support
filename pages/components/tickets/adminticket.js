@@ -41,7 +41,7 @@ function Adminticket(props) {
         }).then((_response) => {
 
             setShow("update Successfully");
-           
+           localStorage.setItem('updateclose', "close");
         });
     }
     useEffect(() => {
@@ -93,12 +93,13 @@ function Adminticket(props) {
         if (selectedstatus === "completed") {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
                 function (response) {
-                   
+                   localStorage.setItem('updateclose', "close");
                     setShowmailstatus("EMail sended Successfully")
                 },
                 function (err) {
                   
                     setShowmailstatus("Sending Email Failed")
+                  localStorage.setItem('updateclose', "close");
                 }
             );
         }
