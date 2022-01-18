@@ -40,7 +40,7 @@ function AdminNotification(props) {
                         dialogtitle={
                             <table>
                                 <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
-                                    <div className='mt-1 ms-3'> <FontAwesomeIcon icon={faTicketAlt} /></div>
+                                    <div className='mt-1 ms-2'> <FontAwesomeIcon icon={faTicketAlt} /></div>
                                     <td>Ticket No {tickets.ticketsId}</td>
                                     <td>{tickets.Username}</td>
                                     <td>{tickets.Date}</td>
