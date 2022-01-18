@@ -1085,13 +1085,14 @@ img.screeshot-img-viewer {
   overflow: auto;
   /* height: 31vh; */
   max-height: 30vh;
-  width: auto;
+  width: 379px;
   right: 0px;
   background-color: #e5f1fd;
 }
 .adminnotification td {
   padding: 1px 7px;
   font-size: 12px;
+  width: 101px;
 }
 .tickets-bodyrow td {
   width: 220px;
