@@ -19,11 +19,9 @@ function AdminNotification(props) {
         });
        
     }
-    const [notificationcount, setnotificationcount] = useState()
-    props.parentCallback(notificationcount)
-    useEffect(() => {
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-    }, [tickets])
+   
+   
+  
    
     return (
         <div>

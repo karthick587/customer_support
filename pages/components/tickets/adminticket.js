@@ -10,22 +10,27 @@ import emailjs from 'emailjs-com';
 import Imageviewer from '../common/imageviewer'
 
 function Adminticket(props) {
-    const [open, setOpen] = React.useState(false);
+  
+   
     const Router = useRouter()
     var [show, setShow] = useState('');
     var [selectedTeam, setSelectedTeam] = useState('');
     var [search, setSearch] = useState('');
-    var [selectedValue, setSelectedValue] = useState('');
+    const [notificationcount, setnotificationcount] = useState()
     var [filteredTitle, setFilteredTitle] = useState('all');
     var [filteredStatus, setFilteredStatus] = useState('all');
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     //console.log(selectedValue)
+  
+  
     var [tickets, setTickets,] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     },[tickets]);
+   
+
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
@@ -46,6 +51,7 @@ function Adminticket(props) {
         } else {
             setIsOpenfilter(true);
         }
+      
     });
     useEffect(() => {
         if (filteredTitle === "Username") {
@@ -122,6 +128,7 @@ function Adminticket(props) {
     }
     //emailjs
     // notificationupdate
+  
     function Notificationupdate(ticketsId, Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
@@ -130,15 +137,12 @@ function Adminticket(props) {
             
 
         });
-        
+     
     }
-    const [notificationcount, setnotificationcount] = useState()
 
-    props.parentCallback(notificationcount)
+   
 
-    useEffect(() => {
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-    }, [tickets])
+   
   
     return (
         <div>

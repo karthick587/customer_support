@@ -116,6 +116,10 @@ const AdminDashboard = (props) => {
  const handleCallback = (childData) =>{
   adminsetnotificationcount(childData)
 }
+useEffect(() => {
+  setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
+  
+}, [tickets])
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -141,7 +145,7 @@ const AdminDashboard = (props) => {
           Notificationscount={adminnotificationcount}
           notificationbody={
             <><AdminNotification 
-            parentCallback = {handleCallback}
+           
             /></>
           }
           sidenavcontent={
@@ -204,7 +208,7 @@ const AdminDashboard = (props) => {
                   <Users />
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Adminticket  parentCallback = {handleCallback} />
+                  <Adminticket  parentCallback={handleCallback} />
                 </div>
                 <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Team />
