@@ -51,7 +51,7 @@ function Adminticket(props) {
         } else {
             setIsOpenfilter(true);
         }
-      
+      setShow()
     });
     useEffect(() => {
         if (filteredTitle === "Username") {
