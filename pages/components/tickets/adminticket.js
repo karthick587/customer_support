@@ -126,9 +126,7 @@ function Adminticket(props) {
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
-
     //emailjs
-
     // notificationupdate
     function Notificationupdate(ticketsId) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
@@ -139,8 +137,6 @@ function Adminticket(props) {
 
         });
     }
-
-
     return (
         <div>
             <Head>
@@ -186,7 +182,6 @@ function Adminticket(props) {
                         <>
                             {tickets.map((tickets) =>
                                 <div key={tickets.ticketsId} className='tickets-table-row'>
-
                                     <FormDialog
                                         dialogtitle={
                                             <table >

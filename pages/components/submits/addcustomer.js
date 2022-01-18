@@ -12,7 +12,6 @@ const schema = yup.object().shape({
     Phonenumber: yup.string().required().max(10),
     Username: yup.string().required(),
     Password: yup.string().required(), 
-    
 });
 function Addcustomer(props) {
     var [addmember, setAddmember] = useState('');
@@ -44,10 +43,7 @@ function Addcustomer(props) {
          setLogo(e.target.files[0])
          setUploadLogo(URL.createObjectURL(e.target.files[0]))
      }
-     
     const addUser = ({ Companyname,Clientname,Email,Phonenumber,Username,Password }) => {
- 
-        
         if(logovalidate===undefined){
             setShowlogo("images is required")
             console.log("logo is empty")
@@ -103,9 +99,6 @@ function Addcustomer(props) {
                     setShow("Registered Successfully");
                     Router.reload(window.location.pathname)
                 }
-            }).then((res) => {
-                setShow("Updated Successfully")
-                router.reload(window.location.pathname)
             })
         }
     }
@@ -119,7 +112,6 @@ function Addcustomer(props) {
             Router.push("/")
         }
       })
-     
 return (
         <div>
             <div className="container mainbody">
