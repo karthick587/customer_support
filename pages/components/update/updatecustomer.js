@@ -34,15 +34,7 @@ function Updatecustomer({ usersId }) {
                 logo = editLogo;  
                 break;
         }
-        console.log(Companyname)
-        console.log(Clientname)
-        console.log(Email)
-        console.log(Phonenumber)
-        console.log(Username)
-        console.log(Password)
-        console.log(logo)
-        console.log(date + ' ' + fullTime)
-        console.log(Modifiedby)
+      
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
