@@ -79,6 +79,9 @@
     padding: 4px 14px 3px 0px !important;
     width: 99px;
 }
+.container.dialog-body {
+  width: 269px;
+}
 .emaildialog {
   width: 255px;
 }

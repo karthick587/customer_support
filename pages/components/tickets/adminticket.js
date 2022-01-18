@@ -121,7 +121,6 @@ function Adminticket(props) {
             )
         }
     })
-    
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
@@ -134,22 +133,13 @@ function Adminticket(props) {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
-            
-
-        });
-     
-    }
-
-   
-
-   
-  
+    });
+ }  
     return (
         <div>
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-
             <div className="userbody">
                 <div className='adminticket-head'>
                     <div><h1>Tickets</h1></div>
