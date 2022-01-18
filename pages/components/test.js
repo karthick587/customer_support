@@ -8,9 +8,7 @@ function FormikYup() {
     
    
     const getvalue=({firstname,lastname,email})=>{
-console.log(firstname)
-console.log(lastname)
-console.log(email)
+
     }
 
 const [initialValues]=useState(

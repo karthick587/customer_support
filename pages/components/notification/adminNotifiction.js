@@ -9,7 +9,7 @@ function AdminNotification(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
-    }, []);
+    }, [tickets]);
     function Notificationupdate(ticketsId, Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
@@ -17,16 +17,14 @@ function AdminNotification(props) {
         }).then((_response) => {
             console.log("viewed ticket No " + ticketsId)
         });
-        if (Notification === "unseen") {
-            setnotificationcount(notificationcount - 1)
-        }
+       
     }
     const [notificationcount, setnotificationcount] = useState()
     props.parentCallback(notificationcount)
     useEffect(() => {
         setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
     }, [tickets])
-    console.log(notificationcount)
+   
     return (
         <div>
             {tickets.filter(val => {

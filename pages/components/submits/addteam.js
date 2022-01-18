@@ -22,7 +22,7 @@ function Addteam(props) {
     const { errors } = formState;
     //console.log(addteam);
     const addTeam = ({ Username, Password }) => {
-        console.log(addteam)
+      
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
             Password: Password,
@@ -32,15 +32,15 @@ function Addteam(props) {
                 setShow(response.data.message)
             } else {
                 setShow("Registered Successfully");
-                Router.reload(window.location.pathname)
+              
             }
         });
     }
-    console.log(addteam)
+  
     const[login,setLogin]=useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        console.log(login)
+        
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {

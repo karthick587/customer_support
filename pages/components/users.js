@@ -32,7 +32,7 @@ export default function Users(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
-    }, []);
+    }, [users]);
 
     const deleteUsers = (id, name) => {
 
@@ -82,7 +82,7 @@ export default function Users(props) {
      const[login,setLogin]=useState()
      useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        console.log(login)
+    
         if (login === "false") {
           router.push("/")
         } else if (login === null) {

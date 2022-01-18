@@ -27,7 +27,7 @@ export default function Team(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
-    }, []);
+    }, [team]);
     const deleteUsers = (id,name) => {
 
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`,{
@@ -74,11 +74,11 @@ export default function Team(props) {
          const[login,setLogin]=useState()
          useEffect(() => {
             setLogin(window.localStorage.getItem('loggedin'))
-            console.log(login)
+          
             if (login === "false") {
-              router.push("/")
+                Router.push("/")
             } else if (login === null) {
-              router.push("/")
+                Router.push("/")
             }
         
           })

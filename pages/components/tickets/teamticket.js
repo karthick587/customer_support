@@ -15,11 +15,11 @@ function Teamticket() {
     var [statusUpdateTime, setStatusUpdateTime] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
 
-    console.log(selectedValue)
+    
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
-    }, []);
+    }, [tickets]);
 
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
@@ -38,8 +38,7 @@ function Teamticket() {
     function handleUpdatestatus(ticketsId) {
 
 
-        console.log(ticketsId)
-        console.log(statusUpdateTime)
+      
 
         Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
             Status: selectedstatus,
@@ -47,7 +46,7 @@ function Teamticket() {
             statusUpdateTime: fulldate + ' ' + fullTime
         }).then((response) => {
             setShow("update Successfully");
-            Router.reload(window.location.pathname)
+           
         });
         //emailjs
 
@@ -89,13 +88,12 @@ function Teamticket() {
     useEffect(() => {
         setSearch1(window.localStorage.getItem('tm_name'))
     })
-    console.log(teamname)
-    console.log(search1)
+   
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
-    }, []);
+    }, [team]);
     useEffect(() => {
         {
             team.filter(val => {
@@ -110,11 +108,11 @@ function Teamticket() {
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        console.log(login)
+        
         if (login === "false") {
-            router.push("/")
+            Router.push("/")
         } else if (login === null) {
-            router.push("/")
+            Router.push("/")
         }
 
     })
@@ -125,7 +123,7 @@ function Teamticket() {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
-    }, []);
+    }, [users]);
     useEffect(() => {
         {
             users.filter(val => {

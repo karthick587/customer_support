@@ -12,7 +12,7 @@ const CustomerDashboard = (props) => {
   
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-    console.log(login)
+    
     if (login === "false") {
       router.push("/")
     } else if (login === null) {
@@ -22,7 +22,7 @@ const CustomerDashboard = (props) => {
   useEffect(()=>{
     setUser(window.localStorage.getItem('clientname'))
   })
-  console.log(user)
+  
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {

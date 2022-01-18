@@ -23,20 +23,26 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
-    }, [])
-    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber }, Logo, usersId) {
-        console.log(Logo)
+    }, [getCustomer])
+    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber },Logo,usersId) {
         var logo
         switch (editLogo) {
             case undefined:
                 logo = Logo;
-                console.log("empty");
                 break;
             default:
-                logo = editLogo;
-                console.log("editLogo");
+                logo = editLogo;  
                 break;
         }
+        console.log(Companyname)
+        console.log(Clientname)
+        console.log(Email)
+        console.log(Phonenumber)
+        console.log(Username)
+        console.log(Password)
+        console.log(logo)
+        console.log(date + ' ' + fullTime)
+        console.log(Modifiedby)
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
@@ -47,13 +53,13 @@ function Updatecustomer({ usersId }) {
         data.append("file", logo);
         data.append("Modifiedon", date + ' ' + fullTime);
         data.append("Modifiedby", Modifiedby);
-        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
+        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`,data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
         }).then((res) => {
             setShow("Updated Successfully")
-            router.reload(window.location.pathname)
+           
         })
     }
     var today = new Date();
@@ -84,7 +90,7 @@ function Updatecustomer({ usersId }) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     function handleScreenshot(e) {
-        console.log(e.target.files[0]);
+       
         setEditLogo(e.target.files[0]);
         setSelected(true);
         setUploadLogo(URL.createObjectURL(e.target.files[0]))

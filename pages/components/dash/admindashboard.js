@@ -19,12 +19,12 @@ import Axios from 'axios';
 import AdminNotification from '../notification/adminNotifiction';
 const AdminDashboard = (props) => {
   const router = useRouter();
-  console.log(router.query.name);
+ 
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-    console.log(login)
+   
     if (login === "false") {
       router.push("/")
     } else if (login === null) {
@@ -85,13 +85,13 @@ const AdminDashboard = (props) => {
   useEffect(() => {
     Axios.get("https://mindmadetech.in/api/customer/list")
       .then((res) => setUsers(res.data))
-  }, []);
+  },[users]);
 
   useEffect(()=>{
     setusercount(users.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((userd) =>setusercount(userd.Status)).length)
    
   })
-  console.log(usercount)
+  
   // ticketscount
   var [tickets, setTickets,] = useState([]);
   useEffect(() => {
@@ -106,12 +106,12 @@ const AdminDashboard = (props) => {
   useEffect(() => {
     Axios.get("https://mindmadetech.in/api/team/list")
       .then((res) => setTeam(res.data));
-  },[]);
+  },[team]);
   useEffect(()=>{
     setteamcount(team.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((teams) =>setteamcount(teams.Status)).length)
   })
  
-console.log(teamcount)
+
   const[adminnotificationcount,adminsetnotificationcount]=useState()
  const handleCallback = (childData) =>{
   adminsetnotificationcount(childData)

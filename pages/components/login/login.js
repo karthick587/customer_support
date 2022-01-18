@@ -29,22 +29,22 @@ export default function Login1() {
     switch (TableValidate) {
       case 'ad_':
         validate = "admin";
-        console.log(validate);
+      
         SlicedName = username.slice(3, 20);
-        console.log(SlicedName);
+       
         break;
       case 'tm_':
         validate = "team";
-        console.log(validate);
+       
         SlicedName = username.slice(3, 20);
-        console.log(SlicedName);
+       
         localStorage.setItem('tm_name', SlicedName);
         break;
       default:
         validate = "customer";
-        console.log(validate);
+      
         SlicedName = username;
-        console.log(SlicedName);
+       
         localStorage.setItem('clientname', SlicedName);
     }
 if(validate==="admin"){
@@ -93,7 +93,7 @@ if(validate==="admin"){
   }, []);
     useEffect(() => {
       localStorage.setItem('user', userlogin);
-      console.log(user)
+     
     });
   return (
     <div className="login-page">

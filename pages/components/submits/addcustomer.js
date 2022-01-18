@@ -34,11 +34,11 @@ function Addcustomer(props) {
     useEffect(()=>{
         setCreatedby(Adminname.slice(3, 20));
     })
-     console.log(Createdby) 
+     
      var [showlogo, setShowlogo] = useState('');
      const [logovalidate,setLogovalidate]=useState()
      function handleScreenshot(e) {
-         console.log(e.target.files[0]);
+        
          setLogovalidate(e.target.files[0]);
          setLogo(e.target.files[0])
          setUploadLogo(URL.createObjectURL(e.target.files[0]))
@@ -46,7 +46,7 @@ function Addcustomer(props) {
     const addUser = ({ Companyname,Clientname,Email,Phonenumber,Username,Password }) => {
         if(logovalidate===undefined){
             setShowlogo("images is required")
-            console.log("logo is empty")
+           
         }else {
         var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
@@ -75,9 +75,7 @@ function Addcustomer(props) {
     }
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-    console.log(fullTime)
-    console.log(date)
-    console.log(Logo)
+    
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
@@ -97,7 +95,7 @@ function Addcustomer(props) {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                    Router.reload(window.location.pathname)
+                   
                 }
             })
         }
@@ -105,7 +103,7 @@ function Addcustomer(props) {
     const[login,setLogin]=useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        console.log(login)
+        
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {

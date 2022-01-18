@@ -44,9 +44,9 @@ function Userissue(props) {
     }
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-    console.log(fullTime)
+    
     function handleScreenshot(e){
-        console.log(e.target.files[0]);
+       
         setScreenshots(e.target.files[0]);
     }
     const addIssues = () => {
@@ -68,7 +68,7 @@ function Userissue(props) {
         }
     }).then((res) => {
                 setShow("Updated Successfully")
-                Router.reload(window.location.pathname)
+                
             })
     }
     return (

@@ -17,7 +17,7 @@ const TeamDashboard = (props) => {
   const[login,setLogin]=useState()
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-    console.log(login)
+   
     if (login === "false") {
       router.push("/")
     } else if (login === null) {

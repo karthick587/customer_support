@@ -25,7 +25,7 @@ function Adminticket(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
-    }, []);
+    },[tickets]);
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
@@ -36,7 +36,7 @@ function Adminticket(props) {
         }).then((_response) => {
 
             setShow("update Successfully");
-            Router.reload(window.location.pathname)
+           
         });
     }
     useEffect(() => {
@@ -58,16 +58,14 @@ function Adminticket(props) {
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        console.log(login)
+      
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {
             Router.push("/")
         }
     })
-    function handleImagePreview(Screenshots) {
-        console.log(Screenshots)
-    }
+    
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
@@ -80,7 +78,7 @@ function Adminticket(props) {
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
     function SendEmail() {
-        console.log(email)
+       
         var data = {
             to_email: email,
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
@@ -89,11 +87,11 @@ function Adminticket(props) {
         if (selectedstatus === "completed") {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
                 function (response) {
-                    console.log(response.status, response.text);
+                   
                     setShowmailstatus("EMail sended Successfully")
                 },
                 function (err) {
-                    console.log(err);
+                  
                     setShowmailstatus("Sending Email Failed")
                 }
             );
@@ -108,7 +106,7 @@ function Adminticket(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
-    }, []);
+    },[users]);
     useEffect(() => {
         {
             users.filter(val => {
@@ -117,7 +115,7 @@ function Adminticket(props) {
             )
         }
     })
-    console.log(email)
+    
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
@@ -129,12 +127,10 @@ function Adminticket(props) {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
-            console.log("viewed ticket No " + ticketsId)
+            
 
         });
-        if (Notification === "unseen") {
-            setnotificationcount(notificationcount - 1)
-        }
+        
     }
     const [notificationcount, setnotificationcount] = useState()
 
@@ -143,7 +139,7 @@ function Adminticket(props) {
     useEffect(() => {
         setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
     }, [tickets])
-    console.log(notificationcount)
+  
     return (
         <div>
             <Head>

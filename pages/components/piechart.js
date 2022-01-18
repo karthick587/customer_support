@@ -53,9 +53,7 @@ export default function Piechart() {
     setCompletedcount(tickets.filter(val => {return val.Status.toLowerCase().includes("completed") }).map((ticket) =>setCompletedcount(ticket.Status.length)).length)
     setInprogresscount(tickets.filter(val => {return val.Status.toLowerCase().includes("inprogress") }).map((ticket) =>setInprogresscount(ticket.Status.length)).length)
   })
-  console.log(newcount)
-  console.log(completedcount)
-  console.log(inprogresscount)
+ 
   
 
   return (
