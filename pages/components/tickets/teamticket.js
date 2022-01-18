@@ -46,7 +46,7 @@ function Teamticket() {
             statusUpdateTime: fulldate + ' ' + fullTime
         }).then((response) => {
             setShow("update Successfully");
-           
+           localStorage.setItem('updateclose', "close");
         });
         //emailjs
 
