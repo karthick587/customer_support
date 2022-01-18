@@ -1020,9 +1020,7 @@ h4.alert1.text-center {
 }
 
 .css-dsuxgy-MuiTableCell-root {
-
-
-  color: rgba(0, 0, 0, 0.87);
+ color: rgba(0, 0, 0, 0.87);
 }
 
 hr.MuiDivider-root.MuiDivider-fullWidth.css-39bbo6 {
@@ -1076,7 +1074,8 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
   position: absolute;
   top: 63px;
   overflow: auto;
-  height: auto;
+  /* height: 31vh; */
+  max-height: 30vh;
   width: auto;
   right: 0px;
   background-color: #e5f1fd;

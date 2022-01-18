@@ -41,20 +41,15 @@ function Updateteam({ teamId }) {
                                     initialValues={{Username:data.Username ,Password:data.Password,Team:data.Team}}
                                     onSubmit={value => getvalue(value)}
                                 >
-
                                     <Form >
-
                                     <div className="form-group">
                                             <label className="label">Username</label>
                                             <Field className="form-input" name="Username" />
-
                                         </div>
                                         <div className="form-group">
                                             <label className="col label">Password</label>
                                             <Field className="form-input" name="Password" />
-
                                         </div>
-
                                         <div>
                                             <div className="form-group">
                                                 <label className="col label">Team</label>
@@ -67,23 +62,17 @@ function Updateteam({ teamId }) {
                                         </Field>
                                             </div>
                                         </div>
-
                                         <div className="row justify-content-center">
                                             <div className='bottom-area'>
-                                            <button type="submit" className="btn btn-success">Submit</button>
+                                            <button type="submit" className="btn2 float-end">Submit</button>
                                             </div>
                                         </div>
-                                        <h3>{show}</h3>
-
-                                      
+                                        <h3>{show}</h3>                                   
                                     </Form>
-
-
                                 </Formik>
                             </div>
                         )}
                     </div>
-
                 </>
             }
         />

@@ -18,7 +18,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import Axios from 'axios';
 import AdminNotification from '../notification/adminNotifiction';
 const AdminDashboard = (props) => {
-
   const router = useRouter();
   console.log(router.query.name);
   const [finishStatus, setfinishStatus] = useState(false);
@@ -31,7 +30,6 @@ const AdminDashboard = (props) => {
     } else if (login === null) {
       router.push("/")
     }
-
   })
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -59,7 +57,6 @@ const AdminDashboard = (props) => {
     localStorage.removeItem('activeTab');
     router.push("/")
   }
-
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', "Dashboard")
@@ -111,10 +108,6 @@ const AdminDashboard = (props) => {
  const handleCallback = (childData) =>{
   adminsetnotificationcount(childData)
 }
-
-
-
-
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>

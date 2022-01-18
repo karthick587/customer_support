@@ -80,7 +80,6 @@ function Adminticket(props) {
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
     function SendEmail() {
-
         console.log(email)
         var data = {
             to_email: email,
@@ -102,10 +101,7 @@ function Adminticket(props) {
         setTimeout(() => {
             setShowmailstatus()
         }, [4000])
-
     }
-
-
     //to get client email id 
     const [email, setEmail] = useState()
     var [users, setUsers] = useState([]);
@@ -128,7 +124,7 @@ function Adminticket(props) {
     }
     //emailjs
     // notificationupdate
-    function Notificationupdate(ticketsId) {
+    function Notificationupdate(ticketsId,Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
@@ -136,7 +132,18 @@ function Adminticket(props) {
             console.log("viewed ticket No " + ticketsId)
 
         });
+        if(Notification==="unseen"){
+            setnotificationcount(notificationcount-1)
+            }
     }
+    const [notificationcount, setnotificationcount] = useState()
+
+    props.parentCallback(notificationcount)
+
+    useEffect(()=>{
+        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) =>setnotificationcount(ticket.Notification.length)).length)
+    },[tickets])
+    console.log(notificationcount)
     return (
         <div>
             <Head>
@@ -187,7 +194,7 @@ function Adminticket(props) {
                                             <table >
                                                 <tbody>
 
-                                                    <tr className={tickets.Notification==="unseen" ? "highlighted-row":"tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId)} >
+                                                    <tr className={tickets.Notification==="unseen" ? "highlighted-row":"tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Notification)} >
                                                         <td>{tickets.ticketsId}</td>
                                                         <td>{tickets.Username}</td>
                                                         <td>{tickets.Date}</td>
@@ -336,7 +343,7 @@ function Adminticket(props) {
                                             <table  >
                                                 <tbody>
 
-                                                    <tr className={tickets.Notification==="unseen" ? "highlighted-row":"tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId)} >
+                                                    <tr className={tickets.Notification==="unseen" ? "highlighted-row":"tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Notification)} >
                                                         <td>{tickets.ticketsId}</td>
                                                         <td>{tickets.Username}</td>
                                                         <td>{tickets.Date}</td>
