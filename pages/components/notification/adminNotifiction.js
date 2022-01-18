@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
-import AdminDashboard from '../dash/admindashboard';
 import { useRouter } from 'next/router';
 function AdminNotification(props) {
     let router = useRouter();
