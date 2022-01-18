@@ -1089,6 +1089,7 @@ img.screeshot-img-viewer {
   padding: 7px 7px;
   font-size: 12px;
   width: 95px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
   text-align: left !important;
 }
 .tickets-bodyrow td {
@@ -1108,14 +1109,14 @@ img.screeshot-img-viewer {
   color: black;
 }
 .notification-head div {
-  color: #1976d2;
+  color: white;
   font-weight: 500;
   font-size: 18px;
   right: 0;
 }
 .notification-head {
-  width: 300px;
-  background-color: #daebfa;
+  width: 317px;
+  background-color: #3387da;
   margin-left: 0px !important;
   padding: 4px 7px 4px 0px;
 }
@@ -1129,7 +1130,7 @@ img.screeshot-img-viewer {
 .notification-table {
   overflow: auto;
   max-height: 30vh;
-  background-color: #e1e4e7;
+  background-color: #e6eff8;
 }
 .not-right-con {
   pad: 0px 0px;
@@ -1139,5 +1140,5 @@ img.screeshot-img-viewer {
   margin: 4px 0px 0px 0px;
   float: right;
   font-size: 10px !important;
-  background-color: #1976d2;
+  background-color: #05529f;
 }

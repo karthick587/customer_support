@@ -54,6 +54,9 @@ function Updatecustomer({ usersId }) {
            
         })
     }
+    setTimeout(() => {
+        setShow()
+    }, [3500])
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     var fullDate, TimeType, hour, minutes, seconds, fullTime;

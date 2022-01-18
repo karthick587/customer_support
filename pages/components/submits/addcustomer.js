@@ -110,6 +110,10 @@ function Addcustomer(props) {
             Router.push("/")
         }
       })
+      setTimeout(() => {
+        setShow()
+    }, [3500])
+
 return (
         <div>
             <div className="container mainbody">

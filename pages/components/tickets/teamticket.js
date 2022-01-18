@@ -51,7 +51,9 @@ function Teamticket() {
         //emailjs
 
     }
-
+    setTimeout(() => {
+        setShow()
+    }, [3500])
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();

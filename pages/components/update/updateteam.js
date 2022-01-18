@@ -8,8 +8,7 @@ import * as Yup from 'yup';
 function Updateteam({ teamId }) {
     let router = useRouter();
     var [getTeam, setGetTeam] = useState([]);
-    var [editUsername, setEditUsername] = useState('');
-    var [editPassword, setEditPassword] = useState('');
+   
     var [editTeam, setEditTeam] = useState('');
     var [show, setShow] = useState('');
 
@@ -24,9 +23,12 @@ function Updateteam({ teamId }) {
             Team: Team,
         }).then((res) => {
             setShow("Updated Successfully")
-            router.reload(window.location.pathname)
+           
         })
     }
+    setTimeout(() => {
+        setShow()
+    }, [4000])
    return (
         <FormDialog
             className=""

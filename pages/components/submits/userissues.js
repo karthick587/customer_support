@@ -71,6 +71,9 @@ function Userissue(props) {
                 
             })
     }
+    setTimeout(() => {
+        setShow()
+    }, [3500])
     return (
         <div className="container">
             <div>

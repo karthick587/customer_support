@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 function AdminNotification(props) {
     let router = useRouter();
     var [tickets, setTickets,] = useState([]);
@@ -17,7 +19,6 @@ function AdminNotification(props) {
             console.log("viewed ticket No " + ticketsId)
         });       
     }
-
     return (
         <>
           <div className='notification-head row'> 
@@ -40,6 +41,7 @@ function AdminNotification(props) {
                         dialogtitle={
                             <table>
                                 <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
+                                    <div className='mt-1'> <FontAwesomeIcon icon={faTicketAlt} /></div>
                                     <td>Ticket No {tickets.ticketsId}</td>
                                     <td>{tickets.Username}</td>
                                     <td>{tickets.Date}</td>
