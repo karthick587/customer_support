@@ -1115,10 +1115,10 @@ img.screeshot-img-viewer {
   right: 0;
 }
 .notification-head {
-  width: 324px;
+  width: 309px;
   background-color: #3387da;
-  margin-left: 0px !important;
-  padding: 4px 7px 4px 0px;
+  margin-left: 0!important;
+  padding: 4px 7px 4px 0;
 }
 .notification-left {
   font-family: system-ui;
