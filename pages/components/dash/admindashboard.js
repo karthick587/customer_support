@@ -188,7 +188,7 @@ const AdminDashboard = (props) => {
                               {tickets.filter(val => {
                                   return val.Notification.toLowerCase().includes("unseen")
                                 }).map((ticket) =>
-                                  <div className="flex">
+                                  <div className="flex" key={tickets.ticketsId}>
                                     <div className='width-10'>{ticket.ticketsId}</div>
                                     <div className='width-20'>{ticket.Username}</div>
                                     <div className='width-20'>{ticket.Date}</div>
