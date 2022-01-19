@@ -72,6 +72,14 @@ const TeamDashboard = (props) => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
+  const [inprogresscount, setinprogresscount] = useState()
+  const [assignedcount, setassignedcount] = useState()
+const assignedcallback=(childData)=>{
+  setassignedcount(childData)
+}
+const inprogresscallback=(childData)=>{
+  setinprogresscount(childData)
+}
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -116,13 +124,13 @@ const TeamDashboard = (props) => {
                           <div className='row'>
                             <Dashcard
                               cardHead="No of Tickets assigned"
-                              cardbody="50k"
+                              cardbody={assignedcount}
                               cardfooter="last Ticket no"
                               cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                             />
                             <Dashcard
                               cardHead="No of tickets inprogress"
-                              cardbody="10k"
+                              cardbody={inprogresscount}
                               cardfooter="last Ticket no"
                               cardIcon={<FontAwesomeIcon icon={faUsers} />}
                             />
@@ -142,7 +150,7 @@ const TeamDashboard = (props) => {
                   profile
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Teamticket />
+                  <Teamticket assignedcount={assignedcallback} inprogresscount={inprogresscallback}  />
                 </div>
               </div>
             </div>

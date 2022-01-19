@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
 import Imageviewer from '../common/imageviewer'
-function Teamticket() {
+function Teamticket(props) {
     const Router = useRouter()
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
@@ -18,16 +18,23 @@ function Teamticket() {
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
-    const[disabled,setdisabled]=useState()
+    const[disabled,setdisabled]=useState("enable")
    
-       
+    const [assignedcount, setassignedcount] = useState()
+    const [inprogresscount, setinprogresscount] = useState()
+    useEffect(() => {
+        setassignedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname) }).map((ticket) => setassignedcount(ticket.Team.length)).length)
+        setinprogresscount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("inprogress")}).map((ticket) => setinprogresscount(ticket.Team.length)).length)
+        props.assignedcount(assignedcount);
+        props.inprogresscount(inprogresscount);
+    }, [tickets])   
 
     const updateemail=(Status)=>{
        
      if(Status==="completed"){
         setdisabled("disabled")
      }else{
-        setdisabled("undisabled")
+        setdisabled("enable")
      }      
     }
    
@@ -190,7 +197,7 @@ function Teamticket() {
                             <FormDialog
                                 dialogtitle={<div  onClick={() => updateemail(tickets.Status)}>update</div>}
                                 className="btn3 ticket-update2"
-                                dialogbody={ <>   {disabled==="disabled" ? <div className='ticket-update-alert'>ticket has been completed</div>:
+                                dialogbody={ <div>{disabled==="disabled" ? <div className='ticket-update-alert'>ticket has been completed</div>:
                                     <div className="form dialog" >
                                         <div className="form-toggle"></div>
                                         <div className="form-panel update one">
@@ -217,7 +224,7 @@ function Teamticket() {
                                         <h4 className="alert1 text-center">{show}</h4>
                                     </div>
                                        }  
-                                       </> 
+                                       </div> 
                                 }
                             />
                         </div>
