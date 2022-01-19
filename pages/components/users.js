@@ -25,10 +25,10 @@ export default function Users(props) {
     //console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
-    var[exportUsers,setExportUsers] = useState([]);
+    var [exportUsers, setExportUsers] = useState([]);
 
-    
-   
+
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
@@ -36,11 +36,11 @@ export default function Users(props) {
 
     const deleteUsers = (id, name) => {
 
-        Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`,{
-            Isdeleted : 'y'
+        Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
+            Isdeleted: 'y'
         }).then(() => {
-                    Router.reload(window.location.pathname);
-                })
+            Router.reload(window.location.pathname);
+        })
         // <-- declare id parameter
         // Axios
         //     .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
@@ -53,43 +53,43 @@ export default function Users(props) {
 
 
     const UsersList = [
-        [ 
-         "Users Id",
-         "Name",
-         "User Name",
-         "Password",
-         "Email Id",
-         "Phonenumber"
-         ],
-         ...users.map(details=>[
-             details.usersId,
-             details.Name,
-             details.Username,
-             details.Password,
-             details.Email,
-             details.Phonenumber
-         ])
-     ]
-     UsersList.reduce((prev,curr)=>[prev,curr]);
-     //console.log(UsersList)
- 
-     const handleExport = async() =>{
-         const data =await UsersList;
-         //console.log(data);
-         setExportUsers(data)
-            
-     }
-     const[login,setLogin]=useState()
-     useEffect(() => {
+        [
+            "Users Id",
+            "Name",
+            "User Name",
+            "Password",
+            "Email Id",
+            "Phonenumber"
+        ],
+        ...users.map(details => [
+            details.usersId,
+            details.Name,
+            details.Username,
+            details.Password,
+            details.Email,
+            details.Phonenumber
+        ])
+    ]
+    UsersList.reduce((prev, curr) => [prev, curr]);
+    //console.log(UsersList)
+
+    const handleExport = async () => {
+        const data = await UsersList;
+        //console.log(data);
+        setExportUsers(data)
+
+    }
+    const [login, setLogin] = useState()
+    useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-    
+
         if (login === "false") {
-          router.push("/")
+            router.push("/")
         } else if (login === null) {
-          router.push("/")
+            router.push("/")
         }
         localStorage.setItem('updateclose', "open");
-      })
+    })
     return (
         <div>
             <Head>
@@ -102,9 +102,9 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>USERS</h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                       
+
                         <div className='right-user-btns'>
-                        <CSVLink 
+                            <CSVLink
                                 data={exportUsers}
                                 filename='Customer_List.csv'
                                 className="float-enduser btn2 button"
@@ -133,96 +133,96 @@ export default function Users(props) {
 
                                 </TableRow>
                             </TableHead>
-                            {search === ""?
-                            <>
-                            {users.filter(item => {
-                                if(item.Isdeleted === 'n'){
-                                    return item;
-                                }
-                            }).map((item) =>
-                                <TableBody key={item.usersId}>
-                                    <TableRow >
-                                        <TableCell component="th" className="client-logo-col"  scope="row">{item.usersId}</TableCell>
-                                        <TableCell className="client-logo-col" align="left" >
-                                            <Imageviewer 
-                                            imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/>}
-                                            imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
-                                            />
-                                            
-                                           </TableCell>
-                                        <TableCell align="left">{item.Companyname}</TableCell>
-                                        <TableCell align="left">{item.Clientname}</TableCell>
-                                        <TableCell align="left">{item.Email}</TableCell>
-                                        <TableCell align="left">{item.Phonenumber}</TableCell>
-                                        
-                                        <div className='deteleandedit'>
-                                         
-                                        <Updatecustomer usersId={item.usersId} />
-                                       
-                                            <FormDialog
-                                                  className="user-delete"
-                                                  dialogtitle={<DeleteIcon />}
-                                                  headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                                dialogactions={
-                                                    <div>
-                                                        <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                        <Button   >NO</Button>
-                                                    </div>
-                                                }
-                                            />
-                                            </div>
-                                       
-                                    </TableRow>
-                                </TableBody>
-                            )}
-                            </> :
-                            <>
-                            {users.filter(item => {
-                                if(item.Isdeleted === 'n'){
-                                    if(item.Clientname.toLowerCase().includes(search.toLowerCase()) ||
-                                        item.Companyname.toLowerCase().includes(search.toLowerCase())
-                                ){
-                                    return item;
-                                }
-                                }
-                                
-                            }).map((item) =>
-                                <TableBody key={item.usersId}>
-                                    <TableRow >
-                                        <TableCell className="client-logo-col" component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell className="client-logo-col" align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/></TableCell>
-                                        <TableCell align="left">{item.Companyname}</TableCell>
-                                        <TableCell align="left">{item.Clientname}</TableCell>
-                                        <TableCell align="left">{item.Email}</TableCell>
-                                        <TableCell align="left">{item.Phonenumber}</TableCell>
-                                        
-                                        <div className='deteleandedit'>
-                                         
-                                        <Updatecustomer usersId={item.usersId} />
-                                       
-                                            <FormDialog
-                                                  className="user-delete"
-                                                  dialogtitle={<DeleteIcon />}
-                                                  headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                                dialogactions={
-                                                    <div>
-                                                        <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                        <Button   >NO</Button>
-                                                    </div>
-                                                }
-                                            />
-                                            </div>
-                                       
-                                    </TableRow>
-                                </TableBody>
-                            )}
-                            </>
-                        }
+                            {search === "" ?
+                                <>
+                                    {users.filter(item => {
+                                        if (item.Isdeleted === 'n') {
+                                            return item;
+                                        }
+                                    }).map((item) =>
+                                        <TableBody key={item.usersId}>
+                                            <TableRow >
+                                                <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
+                                                <TableCell className="client-logo-ver" align="left" >
+                                                    <Imageviewer
+                                                        imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
+                                                        imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
+                                                    />
+
+                                                </TableCell>
+                                                <TableCell align="left">{item.Companyname}</TableCell>
+                                                <TableCell align="left">{item.Clientname}</TableCell>
+                                                <TableCell align="left">{item.Email}</TableCell>
+                                                <TableCell align="left">{item.Phonenumber}</TableCell>
+
+                                                <div className='deteleandedit'>
+
+                                                    <Updatecustomer usersId={item.usersId} />
+
+                                                    <FormDialog
+                                                        className="user-delete"
+                                                        dialogtitle={<DeleteIcon />}
+                                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                        dialogactions={
+                                                            <div>
+                                                                <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
+                                                                <Button   >NO</Button>
+                                                            </div>
+                                                        }
+                                                    />
+                                                </div>
+
+                                            </TableRow>
+                                        </TableBody>
+                                    )}
+                                </> :
+                                <>
+                                    {users.filter(item => {
+                                        if (item.Isdeleted === 'n') {
+                                            if (item.Clientname.toLowerCase().includes(search.toLowerCase()) ||
+                                                item.Companyname.toLowerCase().includes(search.toLowerCase())
+                                            ) {
+                                                return item;
+                                            }
+                                        }
+
+                                    }).map((item) =>
+                                        <TableBody key={item.usersId}>
+                                            <TableRow >
+                                                <TableCell className="client-logo-ver" component="th" scope="row">{item.usersId}</TableCell>
+                                                <TableCell className="client-logo-ver" align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} /></TableCell>
+                                                <TableCell align="left">{item.Companyname}</TableCell>
+                                                <TableCell align="left">{item.Clientname}</TableCell>
+                                                <TableCell align="left">{item.Email}</TableCell>
+                                                <TableCell align="left">{item.Phonenumber}</TableCell>
+
+                                                <div className='deteleandedit'>
+
+                                                    <Updatecustomer usersId={item.usersId} />
+
+                                                    <FormDialog
+                                                        className="user-delete"
+                                                        dialogtitle={<DeleteIcon />}
+                                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                        dialogactions={
+                                                            <div>
+                                                                <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
+                                                                <Button   >NO</Button>
+                                                            </div>
+                                                        }
+                                                    />
+                                                </div>
+
+                                            </TableRow>
+                                        </TableBody>
+                                    )}
+                                </>
+                            }
                         </Table>
 
                     </TableContainer>
                 </div>
-                
+
             </div>
         </div>
     )
