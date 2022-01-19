@@ -123,8 +123,8 @@ export default function Users(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow className='usertable'>
-                                    <TableCell  >USERID</TableCell>
-                                    <TableCell  align="left">LOGO</TableCell>
+                                    <TableCell className="client-logo-col" >USERID</TableCell>
+                                    <TableCell className="client-logo-col" align="left">LOGO</TableCell>
                                     <TableCell align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
