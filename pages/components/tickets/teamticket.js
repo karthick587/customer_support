@@ -104,7 +104,7 @@ function Teamticket() {
 
             )
         }
-
+        localStorage.setItem('updateclose', "open");
     })
 
     const [login, setLogin] = useState()

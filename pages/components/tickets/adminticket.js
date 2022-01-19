@@ -121,6 +121,7 @@ function Adminticket(props) {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
+        localStorage.setItem('updateclose', "open");
     })
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {

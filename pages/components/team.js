@@ -80,7 +80,7 @@ export default function Team(props) {
             } else if (login === null) {
                 Router.push("/")
             }
-        
+            localStorage.setItem('updateclose', "open");
           })
         
     return (
