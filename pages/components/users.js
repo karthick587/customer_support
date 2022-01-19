@@ -132,11 +132,17 @@ export default function Users(props) {
 
                                 </TableRow>
                             </TableHead>
-                            {search === "" ?
-                                <>
                                     {users.filter(item => {
-                                        if (item.Isdeleted === 'n') {
-                                            return item;
+                                        if (item.Isdeleted==='n') {
+                                            if(search === ""){
+                                                return item;
+                                            } else{
+                                                if (item.Clientname.toLowerCase().includes(search.toLowerCase()) ||
+                                                item.Companyname.toLowerCase().includes(search.toLowerCase())
+                                            ) {
+                                                return item;
+                                            }
+                                            }
                                         }
                                     }).map((item) =>
                                         <TableBody key={item.usersId}>
@@ -172,45 +178,7 @@ export default function Users(props) {
 
                                             </TableRow>
                                         </TableBody>
-                                    )}
-                                </> :
-                                <>
-                                    {users.filter(item => {
-                                        if (item.Isdeleted === 'n') {
-                                            if (item.Clientname.toLowerCase().includes(search.toLowerCase()) ||
-                                                item.Companyname.toLowerCase().includes(search.toLowerCase())
-                                            ) {
-                                                return item;
-                                            }
-                                        }
-                                    }).map((item) =>
-                                        <TableBody key={item.usersId}>
-                                            <TableRow >
-                                                <TableCell  component="th" scope="row">{item.usersId}</TableCell>
-                                                <TableCell  align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} /></TableCell>
-                                                <TableCell align="left">{item.Companyname}</TableCell>
-                                                <TableCell align="left">{item.Clientname}</TableCell>
-                                                <TableCell align="left">{item.Email}</TableCell>
-                                                <TableCell align="left">{item.Phonenumber}</TableCell>
-                                                <div className='deteleandedit'>
-                                                    <Updatecustomer usersId={item.usersId} />
-                                                    <FormDialog
-                                                        className="user-delete"
-                                                        dialogtitle={<DeleteIcon />}
-                                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                                        dialogactions={
-                                                            <div>
-                                                                <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                                <Button   >NO</Button>
-                                                            </div>
-                                                        }
-                                                    />
-                                                </div>
-                                            </TableRow>
-                                        </TableBody>
-                                    )}
-                                </>
-                            }
+                                    )}                                                                     
                         </Table>
                     </TableContainer>
                 </div>
