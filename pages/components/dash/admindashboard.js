@@ -183,7 +183,7 @@ const AdminDashboard = (props) => {
                       <div className="dash-body-middle">
                         <div className="dash-cards-2">
                           <div className="row">
-                            <div className="col-5">
+                            <div className="col">
                               <div className="dash-cards-2-left">
                               {tickets.filter(val => {
                                   return val.Notification.toLowerCase().includes("unseen")
@@ -197,7 +197,7 @@ const AdminDashboard = (props) => {
                                 )}
                               </div>
                             </div>
-                            <div className="col-7">
+                            <div className="col">
                               <div className="dash-cards-2-right ">
                                 right
                               </div>
