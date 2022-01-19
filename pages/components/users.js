@@ -142,8 +142,8 @@ export default function Users(props) {
                             }).map((item) =>
                                 <TableBody key={item.usersId}>
                                     <TableRow >
-                                        <TableCell component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell align="left" >
+                                        <TableCell component="th" className="client-logo-col"  scope="row">{item.usersId}</TableCell>
+                                        <TableCell className="client-logo-col" align="left" >
                                             <Imageviewer 
                                             imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/>}
                                             imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
@@ -189,8 +189,8 @@ export default function Users(props) {
                             }).map((item) =>
                                 <TableBody key={item.usersId}>
                                     <TableRow >
-                                        <TableCell component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/></TableCell>
+                                        <TableCell className="client-logo-col" component="th" scope="row">{item.usersId}</TableCell>
+                                        <TableCell className="client-logo-col" align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/></TableCell>
                                         <TableCell align="left">{item.Companyname}</TableCell>
                                         <TableCell align="left">{item.Clientname}</TableCell>
                                         <TableCell align="left">{item.Email}</TableCell>
