@@ -123,8 +123,8 @@ export default function Users(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow className='usertable'>
-                                    <TableCell className="client-logo-col" >USERID</TableCell>
-                                    <TableCell className="client-logo-col" align="left">LOGO</TableCell>
+                                    <TableCell  >USERID</TableCell>
+                                    <TableCell  align="left">LOGO</TableCell>
                                     <TableCell align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
@@ -186,8 +186,8 @@ export default function Users(props) {
                                     }).map((item) =>
                                         <TableBody key={item.usersId}>
                                             <TableRow >
-                                                <TableCell className="client-logo-ver" component="th" scope="row">{item.usersId}</TableCell>
-                                                <TableCell className="client-logo-ver" align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} /></TableCell>
+                                                <TableCell  component="th" scope="row">{item.usersId}</TableCell>
+                                                <TableCell  align="left"><img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} /></TableCell>
                                                 <TableCell align="left">{item.Companyname}</TableCell>
                                                 <TableCell align="left">{item.Clientname}</TableCell>
                                                 <TableCell align="left">{item.Email}</TableCell>
