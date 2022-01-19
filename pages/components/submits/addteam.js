@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
@@ -22,13 +22,13 @@ function Addteam(props) {
     const { errors } = formState;
     //console.log(addteam);
     const addTeam = ({ Username, Password }) => {
-      
+
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
             Password: Password,
             Team: addteam
         }).then((response) => {
-            
+
             if (response.data.message) {
                 setShow(response.data.message)
                 localStorage.setItem('updateclose', "close");
@@ -39,17 +39,17 @@ function Addteam(props) {
         });
     }
 
-    const[login,setLogin]=useState()
+    const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        
+
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {
             Router.push("/")
         }
-      })
-      setTimeout(() => {
+    })
+    setTimeout(() => {
         setShow()
     }, [3500])
     return (

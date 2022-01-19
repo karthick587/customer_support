@@ -5,83 +5,83 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 function AdminNotification(props) {
     var [tickets, setTickets,] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, [tickets]);
-    function Notificationupdate(ticketsId,Notification){
-        Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`,{
+    function Notificationupdate(ticketsId, Notification) {
+        Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
             console.log("viewed ticket No " + ticketsId)
-        });       
+        });
     }
     return (
         <>
-          <div className='notification-head row'> 
+            <div className='notification-head row'>
                 <div className='col notification-left'>
-                   Notification
+                    Notification
                 </div>
                 <div className='col notification-right'>
                     <div className='not-right-con'>
-                   {props.Notification} New
-                   </div>
+                        {props.Notification} New
+                    </div>
                 </div>
             </div>
-        <div className='notification-table'>         
-            {tickets.filter(val => {
-                return val.Notification.toLowerCase().includes("unseen")
-            }).map((tickets) =>
-                <div key={tickets.ticketsId} className='tickets-table-row3'>
-                    <FormDialog
-                        dialogtitle={
-                            <table>
-                                <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
-                                    <div className='mt-1 ms-2'> <FontAwesomeIcon icon={faTicketAlt} /></div>
-                                    <td>Ticket No {tickets.ticketsId}</td>
-                                    <td>{tickets.Username}</td>
-                                    <td>{tickets.Date}</td>
-                                  
-                                </tr>
-                            </table>
-                        }
-                        dialogbody={
-                            <div className='ticket-details'>
-                                <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
-                                <div className='ticket details-name'>
-                                    <label className="label">Username</label>
-                                    <div className='ticket-input-details' >{tickets.Username}</div>
+            <div className='notification-table'>
+                {tickets.filter(val => {
+                    return val.Notification.toLowerCase().includes("unseen")
+                }).map((tickets) =>
+                    <div key={tickets.ticketsId} className='tickets-table-row3'>
+                        <FormDialog
+                            dialogtitle={
+                                <table>
+                                    <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
+                                        <div className='mt-1 ms-2'> <FontAwesomeIcon icon={faTicketAlt} /></div>
+                                        <td>Ticket No {tickets.ticketsId}</td>
+                                        <td>{tickets.Username}</td>
+                                        <td>{tickets.Date}</td>
+
+                                    </tr>
+                                </table>
+                            }
+                            dialogbody={
+                                <div className='ticket-details'>
+                                    <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
+                                    <div className='ticket details-name'>
+                                        <label className="label">Username</label>
+                                        <div className='ticket-input-details' >{tickets.Username}</div>
+                                    </div>
+                                    <div className='ticket details-no'>
+                                        <label className="label">Phonenumber</label>
+                                        <div className='ticket-input-details' >{tickets.Phonenumber}</div>
+                                    </div>
+                                    <div className='ticket details-domain'>
+                                        <label className="label">DomainName</label>
+                                        <div className='ticket-input-details' >{tickets.DomainName}</div>
+                                    </div>
+                                    <div className='ticket details-Date'>
+                                        <label className="label">Date</label>
+                                        <div className='ticket-input-details' > {tickets.Date}</div>
+                                    </div>
+                                    <div className='ticket details-Des'>
+                                        <label className="label">Description</label>
+                                        <div className='ticket-input-details' > {tickets.Description}</div>
+                                    </div>
+                                    <div className='ticket details-Status'><label className="label">Status</label>
+                                        <div  >Updated at {tickets.statusUpdateTime}</div>
+                                        <div className={tickets.Status} > {tickets.Status}</div>
+                                    </div>
+                                    <div className='ticket details-Team' ><label className="label">Team</label>
+                                        <div className='ticket-input-details' > {tickets.Team}</div></div>
+                                    <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
                                 </div>
-                                <div className='ticket details-no'>
-                                    <label className="label">Phonenumber</label>
-                                    <div className='ticket-input-details' >{tickets.Phonenumber}</div>
-                                </div>
-                                <div className='ticket details-domain'>
-                                    <label className="label">DomainName</label>
-                                    <div className='ticket-input-details' >{tickets.DomainName}</div>
-                                </div>
-                                <div className='ticket details-Date'>
-                                    <label className="label">Date</label>
-                                    <div className='ticket-input-details' > {tickets.Date}</div>
-                                </div>
-                                <div className='ticket details-Des'>
-                                    <label className="label">Description</label>
-                                    <div className='ticket-input-details' > {tickets.Description}</div>
-                                </div>
-                                <div className='ticket details-Status'><label className="label">Status</label>
-                                    <div  >Updated at {tickets.statusUpdateTime}</div>
-                                    <div className={tickets.Status} > {tickets.Status}</div>
-                                </div>
-                                <div className='ticket details-Team' ><label className="label">Team</label>
-                                    <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
-                            </div>
-                        }
-                    />
-                </div>
-            )}
-        </div>
+                            }
+                        />
+                    </div>
+                )}
+            </div>
         </>
     );
 }

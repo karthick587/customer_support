@@ -9,22 +9,22 @@ const CustomerDashboard = (props) => {
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-  
+
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-    
+
     if (login === "false") {
       router.push("/")
     } else if (login === null) {
       router.push("/")
     }
   })
-  useEffect(()=>{
+  useEffect(() => {
     setUser(window.localStorage.getItem('clientname'))
     localStorage.setItem('updateclose', "open");
   })
- 
-    
+
+
 
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -59,7 +59,7 @@ const CustomerDashboard = (props) => {
     setUser(window.localStorage.getItem('user'))
   })
 
-//default tab
+  //default tab
 
   // dashtab
   const DashTabActive = () => {
@@ -75,7 +75,6 @@ const CustomerDashboard = (props) => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
-
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>

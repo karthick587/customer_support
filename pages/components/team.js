@@ -23,18 +23,18 @@ export default function Team(props) {
     //console.log(selectedValue)
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
-    var[exportTeam,setExportTeam] = useState([]);
+    var [exportTeam, setExportTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data));
     }, [team]);
-    const deleteUsers = (id,name) => {
-        Axios.put(`https://mindmadetech.in/api/team/delete/${id}`,{
-            Isdeleted : 'y'
+    const deleteUsers = (id, name) => {
+        Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
+            Isdeleted: 'y'
         }).then(() => {
             localStorage.setItem('updateclose', "close");
         })
-            // <-- declare id parameter
+        // <-- declare id parameter
         //     Axios
         //         .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;
         //         .then(() => {
@@ -45,40 +45,46 @@ export default function Team(props) {
         // };
         //  const handleClose = () => {
         //     Router.reload(window.location.pathname)
-          };
-         const TeamList = [
-            [ 
-             "Team Id",
-             "User Name",
-             "Password",
-             "Team"
-             ],
-             ...team.map(details=>[
-                 details.teamId,
-                 details.Username,
-                 details.Password,
-                 details.Team
-             ])
-         ]
-         TeamList.reduce((prev,curr)=>[prev,curr]);
-        // console.log(TeamList)    
-         const handleExport = async() =>{
-             const data =await TeamList;
-             //console.log(data);
-             setExportTeam(data)
-                
-         }
-         const[login,setLogin]=useState()
-         useEffect(() => {
-            setLogin(window.localStorage.getItem('loggedin'))
-          
-            if (login === "false") {
-                Router.push("/")
-            } else if (login === null) {
-                Router.push("/")
-            }
-            localStorage.setItem('updateclose', "open");
-          })
+    };
+    const TeamList = [
+        [
+            "Team Id",
+            "User Name",
+            "Password",
+            "Team"
+        ],
+        ...team.map(details => [
+            details.teamId,
+            details.Username,
+            details.Password,
+            details.Team
+        ])
+    ]
+    TeamList.reduce((prev, curr) => [prev, curr]);
+    // console.log(TeamList)    
+    const handleExport = async () => {
+        const data = await TeamList;
+        //console.log(data);
+        setExportTeam(data)
+
+    }
+    const [login, setLogin] = useState()
+    useEffect(() => {
+        setLogin(window.localStorage.getItem('loggedin'))
+
+        if (login === "false") {
+            Router.push("/")
+        } else if (login === null) {
+            Router.push("/")
+        }
+        localStorage.setItem('updateclose', "open");
+    })
+    const [teamcount, setteamcount] = useState();
+
+    useEffect(() => {
+        setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length)
+        props.teamcountcallback(teamcount);
+    })
     return (
         <div>
             <Head>
@@ -90,7 +96,7 @@ export default function Team(props) {
                         <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                         <div className='right-user-btns'>
-                        <CSVLink 
+                            <CSVLink
                                 data={exportTeam}
                                 filename='Team_List.csv'
                                 className="float-enduser btn2 button"
@@ -115,72 +121,72 @@ export default function Team(props) {
                                     <TableCell className="teamtablecel" align="left">TEAM</TableCell>
                                 </TableRow>
                             </TableHead>
-                            { search === "" ?
-                            <>
-                            {team.filter(val => {
-                                if (val.Isdeleted === 'n') {
-                                    return val;
-                                } 
-                            }).map((item) =>
-                                <TableBody key={item.teamId}>
-                                    <TableRow >
-                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
-                                        
-                                            
-                                        <div className='deteleandedit'>
-                                            <Updateteam teamId={item.teamId} />
-                                            <FormDialog 
-                                            className="team-delete"
-                                            dialogtitle={<DeleteIcon />}
-                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                            dialogactions={
-                                                <div>
-                                                    <Button onClick={()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
-                                                    <Button  >NO</Button>
+                            {search === "" ?
+                                <>
+                                    {team.filter(val => {
+                                        if (val.Isdeleted === 'n') {
+                                            return val;
+                                        }
+                                    }).map((item) =>
+                                        <TableBody key={item.teamId}>
+                                            <TableRow >
+                                                <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
+                                                <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                                <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                                <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
+
+
+                                                <div className='deteleandedit'>
+                                                    <Updateteam teamId={item.teamId} />
+                                                    <FormDialog
+                                                        className="team-delete"
+                                                        dialogtitle={<DeleteIcon />}
+                                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                        dialogactions={
+                                                            <div>
+                                                                <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
+                                                                <Button  >NO</Button>
+                                                            </div>
+                                                        }
+                                                    />
                                                 </div>
+                                            </TableRow>
+                                        </TableBody>
+                                    )}
+                                </> :
+                                <>
+                                    {team.filter(val => {
+                                        if (val.Isdeleted === 'n') {
+                                            if (val.Username.toLowerCase().includes(search.toLowerCase())) {
+                                                return val;
                                             }
-                                            />
-                                            </div>
-                                    </TableRow>                                
-                                </TableBody>
-                            )}
-                            </>  :
-                            <>
-                            {team.filter(val => {
-                                if (val.Isdeleted === 'n') {
-                                    if(val.Username.toLowerCase().includes(search.toLowerCase())){
-                                        return val;
-                                    }
-                                } 
-                            }).map((item) =>
-                                <TableBody key={item.teamId}>
-                                    <TableRow >
-                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>                                                                            
-                                        <div className='deteleandedit'>
-                                            <Updateteam teamId={item.teamId} />
-                                            <FormDialog 
-                                            className="team-delete"
-                                            dialogtitle={<DeleteIcon />}
-                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                            dialogactions={
-                                                <div>
-                                                    <Button onClick={()=>deleteUsers(item.teamId,item.Username)}>YES</Button>
-                                                    <Button  >NO</Button>
+                                        }
+                                    }).map((item) =>
+                                        <TableBody key={item.teamId}>
+                                            <TableRow >
+                                                <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
+                                                <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                                <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                                <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
+                                                <div className='deteleandedit'>
+                                                    <Updateteam teamId={item.teamId} />
+                                                    <FormDialog
+                                                        className="team-delete"
+                                                        dialogtitle={<DeleteIcon />}
+                                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                        dialogactions={
+                                                            <div>
+                                                                <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
+                                                                <Button  >NO</Button>
+                                                            </div>
+                                                        }
+                                                    />
                                                 </div>
-                                            }
-                                            />
-                                            </div>
-                                    </TableRow>                                
-                                </TableBody>
-                            )}
-                            </>
-                        }
+                                            </TableRow>
+                                        </TableBody>
+                                    )}
+                                </>
+                            }
                         </Table>
                     </TableContainer>
                 </div>

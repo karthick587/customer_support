@@ -10,7 +10,6 @@ function Userticket(props) {
     var [tickets, setTickets] = useState([]);
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
-
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
@@ -22,7 +21,7 @@ function Userticket(props) {
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-     
+
         if (login === "false") {
             router.push("/")
         } else if (login === null) {
@@ -30,7 +29,7 @@ function Userticket(props) {
         }
 
     })
-   
+
     return (
         <div>
 

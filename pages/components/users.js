@@ -33,7 +33,11 @@ export default function Users(props) {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
     }, [users]);
-
+    const [usercount, setusercount] = useState();
+    useEffect(() => {
+        setusercount(users.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((userd) => setusercount(userd.Status)).length)
+        props.usercountcallback(usercount);
+    })
     const deleteUsers = (id, name) => {
 
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {

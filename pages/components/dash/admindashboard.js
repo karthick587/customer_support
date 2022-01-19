@@ -19,24 +19,23 @@ import Axios from 'axios';
 import AdminNotification from '../notification/adminNotifiction';
 const AdminDashboard = (props) => {
   const router = useRouter();
- 
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
+   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-   
     if (login === "false") {
       router.push("/")
     } else if (login === null) {
       router.push("/")
     }
   })
+  // alert to conform logout white click back
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
         setfinishStatus(true)
-        // your logic
         localStorage.setItem('loggedin', false);
         router.push("/")
       } else {
@@ -52,6 +51,7 @@ const AdminDashboard = (props) => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
+  // logout function
   const onBackButtonEvent2 = () => {
     localStorage.setItem('loggedin', false)
     localStorage.removeItem('activeTab');
@@ -73,50 +73,31 @@ const AdminDashboard = (props) => {
   const TeamTabActive = () => {
     localStorage.setItem('activeTab', 'team')
   }
-  
+  // getactivetab
   const [activeTab, setActivetab] = useState(" ")
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
-  // usercount
-  var [users, setUsers] = useState([]);
-  const [usercount, setusercount] = useState();
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/customer/list")
-      .then((res) => setUsers(res.data))
-  },[users]);
-
-  useEffect(()=>{
-    setusercount(users.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((userd) =>setusercount(userd.Status)).length)
-    localStorage.setItem('updateclose', "open");
-  })
- 
   // ticketscount
-  var [tickets, setTickets,] = useState([]);
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/tickets/list")
-      .then((res) => setTickets(res.data));
-  },[tickets]);
-  let ticketscount = 0;
-  ticketscount = tickets.length
+  var [ticketscount, setticketscount,] = useState();
+  const handleCallback = (childData) => {
+    setticketscount(childData)
+  }
+  // notificationcount
+  const [notificationcount, setnotificationcount] = useState()
+  const handleCallback2 = (childData) => {
+    setnotificationcount(childData)
+  }
+  // usercount
+  const [usercount, setusercount] = useState();
+  const handleCallback3 = (childData) => {
+    setusercount(childData)
+  }
   //team members count
-  var [team, setTeam] = useState([]);
   const [teamcount, setteamcount] = useState();
-  useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/team/list")
-      .then((res) => setTeam(res.data));
-  },[team]);
-  useEffect(()=>{
-    setteamcount(team.filter(val => {return val.Isdeleted.toLowerCase().includes("n") }).map((teams) =>setteamcount(teams.Status)).length)
-  })
- 
-
-  const[notificationcount,setnotificationcount]=useState()
- 
-useEffect(() => {
-  setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-  
-}, [tickets])
+  const handleCallback4 = (childData) => {
+    setteamcount(childData)
+  }
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -141,7 +122,7 @@ useEffect(() => {
           }
           Notificationscount={notificationcount}
           notificationbody={
-            <><AdminNotification Notification={notificationcount}/></>
+            <><AdminNotification Notification={notificationcount} /></>
           }
           sidenavcontent={
             <>
@@ -200,13 +181,16 @@ useEffect(() => {
                   </div>
                 </div>
                 <div className={activeTab === "user" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                  <Users />
+                  <Users usercountcallback={handleCallback3} />
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Adminticket />
+                  <Adminticket
+                    parentCallback={handleCallback}
+                    notificationcount={handleCallback2}
+                  />
                 </div>
                 <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Team />
+                  <Team teamcountcallback={handleCallback4} />
 
                 </div>
                 <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">

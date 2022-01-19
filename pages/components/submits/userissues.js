@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router'
-import{ useDispatch,useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 export default Userissue;
 function Userissue(props) {
     const Router = useRouter();
@@ -13,7 +13,7 @@ function Userissue(props) {
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
-    const [show, setShow] =useState();
+    const [show, setShow] = useState();
     var Team = 'not Assigned';
     var Status = 'New';
     var today = new Date();
@@ -44,9 +44,9 @@ function Userissue(props) {
     }
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-    
-    function handleScreenshot(e){
-       
+
+    function handleScreenshot(e) {
+
         setScreenshots(e.target.files[0]);
     }
     const addIssues = () => {
@@ -57,19 +57,19 @@ function Userissue(props) {
         data.append("DomainName", DomainName);
         data.append("date", date);
         data.append("Description", Description);
-        data.append("Team",Team);
-        data.append("Status",Status);
+        data.append("Team", Team);
+        data.append("Status", Status);
         data.append("file", Screenshots);
         data.append("Notification", "unseen");
-        data.append("statusUpdatedTime",date + ' ' + fullTime)
-        Axios.post("https://mindmadetech.in/api/tickets/new",data,{
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        }
-    }).then((res) => {
-                setShow("Updated Successfully")
-                
-            })
+        data.append("statusUpdatedTime", date + ' ' + fullTime)
+        Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }).then((res) => {
+            setShow("Updated Successfully")
+
+        })
     }
     setTimeout(() => {
         setShow()
@@ -99,18 +99,18 @@ function Userissue(props) {
                         <label className="label">Description</label>
                         <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
-                    <div className="form-group">                       
+                    <div className="form-group">
                         <form>
-                             <label htmlFor="contained-button-file">
+                            <label htmlFor="contained-button-file">
                                 <input type="file" id="file" accept="image/*" onChange={handleScreenshot} multiple="true" />
-                            </label>                        
+                            </label>
                         </form>
-                    </div>                  
+                    </div>
                     <div className="">
                         <button className="btn2 mt-3 mb-4" type="button" onClick={addIssues}>Submit</button>
                     </div>
                 </form>
-<h4 className="alert1 text-center">{show}</h4>
+                <h4 className="alert1 text-center">{show}</h4>
             </div>
         </div>
     );

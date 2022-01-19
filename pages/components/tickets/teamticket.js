@@ -15,7 +15,7 @@ function Teamticket() {
     var [statusUpdateTime, setStatusUpdateTime] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
 
-    
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
@@ -38,7 +38,7 @@ function Teamticket() {
     function handleUpdatestatus(ticketsId) {
 
 
-      
+
 
         Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
             Status: selectedstatus,
@@ -46,7 +46,7 @@ function Teamticket() {
             statusUpdateTime: fulldate + ' ' + fullTime
         }).then((response) => {
             setShow("update Successfully");
-           localStorage.setItem('updateclose', "close");
+            localStorage.setItem('updateclose', "close");
         });
         //emailjs
 
@@ -90,7 +90,7 @@ function Teamticket() {
     useEffect(() => {
         setSearch1(window.localStorage.getItem('tm_name'))
     })
-   
+
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
@@ -110,7 +110,7 @@ function Teamticket() {
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-        
+
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {

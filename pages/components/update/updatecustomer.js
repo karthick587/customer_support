@@ -24,17 +24,17 @@ function Updatecustomer({ usersId }) {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
     }, [getCustomer])
-    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber },Logo,usersId) {
+    function handleUpdate({ Companyname, Clientname, Username, Password, Email, Phonenumber }, Logo, usersId) {
         var logo
         switch (editLogo) {
             case undefined:
                 logo = Logo;
                 break;
             default:
-                logo = editLogo;  
+                logo = editLogo;
                 break;
         }
-      
+
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
@@ -45,7 +45,7 @@ function Updatecustomer({ usersId }) {
         data.append("file", logo);
         data.append("Modifiedon", date + ' ' + fullTime);
         data.append("Modifiedby", Modifiedby);
-        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`,data, {
+        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
@@ -54,7 +54,7 @@ function Updatecustomer({ usersId }) {
             localStorage.setItem('updateclose', "close");
         })
     }
-   
+
     setTimeout(() => {
         setShow()
     }, [3500])
@@ -86,7 +86,7 @@ function Updatecustomer({ usersId }) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     function handleScreenshot(e) {
-       
+
         setEditLogo(e.target.files[0]);
         setSelected(true);
         setUploadLogo(URL.createObjectURL(e.target.files[0]))
@@ -149,7 +149,7 @@ function Updatecustomer({ usersId }) {
                             </Formik>
                         </div>
                     )}
-            </div>}
+                </div>}
         />
     );
 }

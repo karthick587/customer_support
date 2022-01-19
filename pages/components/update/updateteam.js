@@ -25,11 +25,11 @@ function Updateteam({ teamId }) {
             localStorage.setItem('updateclose', "close");
         })
     }
-   
+
     setTimeout(() => {
         setShow()
     }, [4000])
-   return (
+    return (
         <FormDialog
             className=""
             dialogtitle={<EditIcon />}
@@ -39,12 +39,12 @@ function Updateteam({ teamId }) {
                         {getTeam.map((data) =>
                             <div className="container dialog-body" key={data.teamId}>
                                 <Formik
-                                className="addform"
-                                    initialValues={{Username:data.Username ,Password:data.Password,Team:data.Team}}
+                                    className="addform"
+                                    initialValues={{ Username: data.Username, Password: data.Password, Team: data.Team }}
                                     onSubmit={value => getvalue(value)}
                                 >
                                     <Form >
-                                    <div className="form-group">
+                                        <div className="form-group">
                                             <label className="label">Username</label>
                                             <Field className="form-input" name="Username" />
                                         </div>
@@ -56,20 +56,20 @@ function Updateteam({ teamId }) {
                                             <div className="form-group">
                                                 <label className="col label">Team</label>
                                                 <Field className="form-input" as="select" name="Team">
-                                                <option >select</option>
-                                            <option value="design">Design</option>
-                                            <option value="development">Development</option>
-                                            <option value="server">server</option>
-                                            <option value="seo">SEO</option>
-                                        </Field>
+                                                    <option >select</option>
+                                                    <option value="design">Design</option>
+                                                    <option value="development">Development</option>
+                                                    <option value="server">server</option>
+                                                    <option value="seo">SEO</option>
+                                                </Field>
                                             </div>
                                         </div>
                                         <div className="row justify-content-center">
                                             <div className='bottom-area'>
-                                            <button type="submit" className="btn2 float-end">Submit</button>
+                                                <button type="submit" className="btn2 float-end">Submit</button>
                                             </div>
                                         </div>
-                                        <h3>{show}</h3>                                   
+                                        <h3>{show}</h3>
                                     </Form>
                                 </Formik>
                             </div>
