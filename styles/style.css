@@ -923,10 +923,11 @@ h4.alert1.text-center {
 }
 
 .css-13njpue {
-  font-size: 14px !important;
-  color: #1976d2 !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 700 !important;
+  font-size: 14px!important;
+  color: #1976d2!important;
+  font-family: Poppins,sans-serif!important;
+  font-weight: 700!important;
+  padding: 9px 0px 0px 15px !important;
 }
 
 .css-1o6fzn1 {
@@ -1138,6 +1139,6 @@ img.screeshot-img-viewer {
   font-size: 10px !important;
   background-color: #05529f;
 }
-.client-logo-col{
-  width: 150px !important;
+.client-logo-col {
+  width: 100px!important;
 }
