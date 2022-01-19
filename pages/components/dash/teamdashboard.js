@@ -168,14 +168,13 @@ const TeamDashboard = (props) => {
                                 {tickets.filter(val => {
                                   return val.Status.toLowerCase().includes("new")
                                 }).map((tickets) =>
-                                  <div className="flex">
-                                    <div className="flex">
+                                  <div className="flex" key={tickets.ticketsId}>
                                       <div className='width-10'>{tickets.ticketsId}</div>
                                       <div className='width-20'>{tickets.Username}</div>
                                       <div className='width-20'>{tickets.Date}</div>
                                       <div className='width-20'>{tickets.Status}</div>
                                     </div>
-                                  </div>
+                                  
                                 )}
                               </div>
                             </div>
