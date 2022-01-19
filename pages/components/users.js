@@ -123,7 +123,6 @@ export default function Users(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow className='usertable'>
-
                                     <TableCell className="client-logo-col" >USERID</TableCell>
                                     <TableCell className="client-logo-col" align="left">LOGO</TableCell>
                                     <TableCell align="left">COMPANY NAME</TableCell>
@@ -148,7 +147,6 @@ export default function Users(props) {
                                                         imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
                                                         imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
                                                     />
-
                                                 </TableCell>
                                                 <TableCell align="left">{item.Companyname}</TableCell>
                                                 <TableCell align="left">{item.Clientname}</TableCell>
@@ -185,7 +183,6 @@ export default function Users(props) {
                                                 return item;
                                             }
                                         }
-
                                     }).map((item) =>
                                         <TableBody key={item.usersId}>
                                             <TableRow >
@@ -195,11 +192,8 @@ export default function Users(props) {
                                                 <TableCell align="left">{item.Clientname}</TableCell>
                                                 <TableCell align="left">{item.Email}</TableCell>
                                                 <TableCell align="left">{item.Phonenumber}</TableCell>
-
                                                 <div className='deteleandedit'>
-
                                                     <Updatecustomer usersId={item.usersId} />
-
                                                     <FormDialog
                                                         className="user-delete"
                                                         dialogtitle={<DeleteIcon />}
@@ -212,17 +206,14 @@ export default function Users(props) {
                                                         }
                                                     />
                                                 </div>
-
                                             </TableRow>
                                         </TableBody>
                                     )}
                                 </>
                             }
                         </Table>
-
                     </TableContainer>
                 </div>
-
             </div>
         </div>
     )
