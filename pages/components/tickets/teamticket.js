@@ -18,27 +18,32 @@ function Teamticket(props) {
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
-    const[disabled,setdisabled]=useState("enable")
-   
+    // ticket count, ticket status count for team dashboard
     const [assignedcount, setassignedcount] = useState()
     const [inprogresscount, setinprogresscount] = useState()
+    const [completedcount, setcompletedcount] = useState()
+    const [teamNotificationcount, setteamNotificationcount] = useState()
     useEffect(() => {
         setassignedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname) }).map((ticket) => setassignedcount(ticket.Team.length)).length)
-        setinprogresscount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("inprogress")}).map((ticket) => setinprogresscount(ticket.Team.length)).length)
+        setinprogresscount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Team.length)).length)
+        setcompletedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Team.length)).length)
+        setteamNotificationcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Team.length)).length)
         props.assignedcount(assignedcount);
         props.inprogresscount(inprogresscount);
-    }, [tickets])   
-
-    const updateemail=(Status)=>{
-       
-     if(Status==="completed"){
-        setdisabled("disabled")
-     }else{
-        setdisabled("enable")
-     }      
+        props.completedcount(completedcount);
+        props.teamNotificationcount(teamNotificationcount);
+        props.tickets(tickets);
+    }, [tickets])
+    //tickets status update functions 
+    const [disabled, setdisabled] = useState("enable")
+    const updateemail = (Status) => {
+        if (Status === "completed") {
+            setdisabled("disabled")
+        } else {
+            setdisabled("enable")
+        }
     }
-   
-      function handleUpdatestatus(ticketsId,timeline){
+    function handleUpdatestatus(ticketsId, timeline) {
         Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
             Status: selectedstatus,
             ticketsId: ticketsId,
@@ -47,21 +52,23 @@ function Teamticket(props) {
             setShow("update Successfully");
             localStorage.setItem('updateclose', "close");
         });
-        if(selectedstatus==="started"){
+        if (selectedstatus === "started") {
             Axios.put(`https://mindmadetech.in/api/tickets/updatetimeline/${ticketsId}`, {
                 timeline: fulldate + ' ' + fullTime,
                 ticketsId: ticketsId,
             })
-        } else if(selectedstatus==="completed"){
+        } else if (selectedstatus === "completed") {
             Axios.put(`https://mindmadetech.in/api/tickets/updatetimeline/${ticketsId}`, {
-                timeline: timeline+ ' to ' +fulldate + ' ' + fullTime,
+                timeline: timeline + ' to ' + fulldate + ' ' + fullTime,
                 ticketsId: ticketsId,
             })
-      }
+        }
     }
     setTimeout(() => {
         setShow()
     }, [3500])
+
+    //current time and date 
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();
@@ -91,6 +98,7 @@ function Teamticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
+    //team tickets filter function
     var [teamname, setTeamname] = useState(" ");
     var [search1, setSearch1] = useState('');
     useEffect(() => {
@@ -109,8 +117,8 @@ function Teamticket(props) {
             )
         }
         localStorage.setItem('updateclose', "open");
-      
     })
+    //auth access for team ticket page
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
@@ -120,7 +128,6 @@ function Teamticket(props) {
             Router.push("/")
         }
     })
-    //emailjs
     return (
         <div>
             <Head>
@@ -195,9 +202,9 @@ function Teamticket(props) {
                                 }
                             />
                             <FormDialog
-                                dialogtitle={<div  onClick={() => updateemail(tickets.Status)}>update</div>}
+                                dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
                                 className="btn3 ticket-update2"
-                                dialogbody={ <div>{disabled==="disabled" ? <div className='ticket-update-alert'>ticket has been completed</div>:
+                                dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>ticket has been completed</div> :
                                     <div className="form dialog" >
                                         <div className="form-toggle"></div>
                                         <div className="form-panel update one">
@@ -208,23 +215,23 @@ function Teamticket(props) {
                                                 <form>
                                                     <div className="form-group">
                                                         <label className="label">status</label>
-                                                    
+
                                                         <select className="form-input" onChange={handlestatus}>
                                                             <option value="">--Select Team--</option>
                                                             <option className='started' value="started">started</option>
                                                             <option className='inprogress' value="inprogress">inprogress</option>
                                                             <option className='completed' value="completed">completed</option>
                                                         </select>
-                                                                                                        
+
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.timeline)}>update</button>
+                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId, tickets.timeline)}>update</button>
                                         <h4 className="alert1 text-center">{show}</h4>
                                     </div>
-                                       }  
-                                       </div> 
+                                }
+                                </div>
                                 }
                             />
                         </div>

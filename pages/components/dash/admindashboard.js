@@ -20,7 +20,7 @@ const AdminDashboard = (props) => {
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-   // cannot access page without login
+  // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
     if (login === "false") {
@@ -96,6 +96,11 @@ const AdminDashboard = (props) => {
   const [teamcount, setteamcount] = useState();
   const handleCallback4 = (childData) => {
     setteamcount(childData)
+  }
+  //tickets list for mapping
+  var [tickets, setTickets,] = useState([]);
+  const ticketcallback = (childDate) => {
+    setTickets(childDate)
   }
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
@@ -173,7 +178,32 @@ const AdminDashboard = (props) => {
                             />
                           </div>
                         </div>
-                        <div className='piechart'>
+
+                      </div>
+                      <div className="dash-body-middle">
+                        <div className="dash-cards-2">
+                          <div className="row">
+                            <div className="col-5">
+                              <div className="dash-cards-2-left">
+                              {tickets.filter(val => {
+                                  return val.Notification.toLowerCase().includes("unseen")
+                                }).map((ticket) =>
+                                  <div className="flex">
+                                    <div className='width-10'>{ticket.ticketsId}</div>
+                                    <div className='width-20'>{ticket.Username}</div>
+                                    <div className='width-20'>{ticket.Date}</div>
+                                    <div className='width-20'>{ticket.Status}</div>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div className="col-7">
+                              <div className="dash-cards-2-right ">
+                                right
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -186,6 +216,7 @@ const AdminDashboard = (props) => {
                   <Adminticket
                     parentCallback={handleCallback}
                     notificationcount={handleCallback2}
+                    admintickets={ticketcallback}
                   />
                 </div>
                 <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">

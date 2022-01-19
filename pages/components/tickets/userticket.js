@@ -21,15 +21,12 @@ function Userticket(props) {
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-
         if (login === "false") {
             router.push("/")
         } else if (login === null) {
             router.push("/")
         }
-
     })
-
     return (
         <div>
 

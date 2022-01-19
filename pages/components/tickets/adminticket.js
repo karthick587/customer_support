@@ -10,32 +10,25 @@ import emailjs from 'emailjs-com';
 import Imageviewer from '../common/imageviewer'
 
 function Adminticket(props) {
-
-
     const Router = useRouter()
     var [show, setShow] = useState('');
     var [selectedTeam, setSelectedTeam] = useState('');
     var [search, setSearch] = useState('');
-
     var [filteredTitle, setFilteredTitle] = useState('all');
     var [filteredStatus, setFilteredStatus] = useState('all');
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
-    //console.log(selectedValue)
-
-
     var [tickets, setTickets,] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
-
     }, [tickets]);
     let ticketscount = 0;
     ticketscount = tickets.length
     const [notificationcount, setnotificationcount] = useState()
     useEffect(() => {
         setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-
+        props.admintickets(tickets);
     }, [tickets])
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
@@ -45,7 +38,6 @@ function Adminticket(props) {
             Team: selectedTeam,
             ticketsId: ticketsId,
         }).then((_response) => {
-
             setShow("update Successfully");
             localStorage.setItem('updateclose', "close");
         });
@@ -78,8 +70,8 @@ function Adminticket(props) {
         }
         props.parentCallback(ticketscount);
         props.notificationcount(notificationcount);
+       
     })
-
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
@@ -92,7 +84,6 @@ function Adminticket(props) {
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
     function SendEmail() {
-
         var data = {
             to_email: email,
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
