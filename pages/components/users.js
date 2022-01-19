@@ -124,8 +124,8 @@ export default function Users(props) {
                             <TableHead>
                                 <TableRow className='usertable'>
 
-                                    <TableCell>USERID</TableCell>
-                                    <TableCell align="left">LOGO</TableCell>
+                                    <TableCell className="client-logo-col" >USERID</TableCell>
+                                    <TableCell className="client-logo-col" align="left">LOGO</TableCell>
                                     <TableCell align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
@@ -143,7 +143,7 @@ export default function Users(props) {
                                 <TableBody key={item.usersId}>
                                     <TableRow >
                                         <TableCell component="th" scope="row">{item.usersId}</TableCell>
-                                        <TableCell align="left">
+                                        <TableCell align="left" >
                                             <Imageviewer 
                                             imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40}/>}
                                             imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
