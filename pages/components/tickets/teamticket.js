@@ -8,38 +8,30 @@ import { useRouter } from 'next/router'
 import Imageviewer from '../common/imageviewer'
 function Teamticket() {
     const Router = useRouter()
-
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
-
-    var [statusUpdateTime, setStatusUpdateTime] = useState('');
-    var [selectedValue, setSelectedValue] = useState('');
-
-
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, [tickets]);
-
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
+    const[disabled,setdisabled]=useState()
+   
+       
 
-    function updateemail(ticketsId, Username) {
-        setName(Username);
-        setTicketid(ticketsId)
+    const updateemail=(Status)=>{
+       
+     if(Status==="completed"){
+        setdisabled("disabled")
+     }else{
+        setdisabled("undisabled")
+     }      
     }
-
-    const [name, setName] = useState()
-    const [ticketid, setTicketid] = useState()
-
-
-    function handleUpdatestatus(ticketsId) {
-
-
-
-
+   
+      function handleUpdatestatus(ticketsId,timeline){
         Axios.put(`https://mindmadetech.in/api/tickets/updatestatus/${ticketsId}`, {
             Status: selectedstatus,
             ticketsId: ticketsId,
@@ -48,8 +40,17 @@ function Teamticket() {
             setShow("update Successfully");
             localStorage.setItem('updateclose', "close");
         });
-        //emailjs
-
+        if(selectedstatus==="started"){
+            Axios.put(`https://mindmadetech.in/api/tickets/updatetimeline/${ticketsId}`, {
+                timeline: fulldate + ' ' + fullTime,
+                ticketsId: ticketsId,
+            })
+        } else if(selectedstatus==="completed"){
+            Axios.put(`https://mindmadetech.in/api/tickets/updatetimeline/${ticketsId}`, {
+                timeline: timeline+ ' to ' +fulldate + ' ' + fullTime,
+                ticketsId: ticketsId,
+            })
+      }
     }
     setTimeout(() => {
         setShow()
@@ -83,14 +84,11 @@ function Teamticket() {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
-
     var [teamname, setTeamname] = useState(" ");
-
     var [search1, setSearch1] = useState('');
     useEffect(() => {
         setSearch1(window.localStorage.getItem('tm_name'))
     })
-
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
@@ -101,53 +99,26 @@ function Teamticket() {
             team.filter(val => {
                 return val.Username.toLowerCase().includes(search1)
             }).map((item) => setTeamname(item.Team),
-
             )
         }
         localStorage.setItem('updateclose', "open");
+      
     })
-
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {
             Router.push("/")
         }
-
     })
-
-    //to get client email id 
-    const [email, setEmail] = useState()
-    var [users, setUsers] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data))
-    }, [users]);
-    useEffect(() => {
-        {
-            users.filter(val => {
-
-                return val.Username.toLowerCase().includes(name)
-
-
-            }).map((itemed) => setEmail(itemed.Email)
-
-            )
-        }
-    })
-    console.log(email)
     //emailjs
-
     return (
         <div>
-
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-
             <div className="teambody">
                 <div className='adminticket-head'>
                     <h1>Tickets</h1>
@@ -161,12 +132,9 @@ function Teamticket() {
                         <div>Status</div>
                     </div>
                     {tickets.filter(val => {
-
                         return val.Team.toLowerCase().includes(teamname.toLowerCase())
-
                     }).map((tickets) =>
                         <div key={tickets.ticketsId} className='tickets-table-row3'>
-
                             <FormDialog
                                 dialogtitle={
                                     <table  >
@@ -220,9 +188,9 @@ function Teamticket() {
                                 }
                             />
                             <FormDialog
-                                dialogtitle={<div onClick={() => updateemail(tickets.ticketsId, tickets.Username)}>update</div>}
+                                dialogtitle={<div  onClick={() => updateemail(tickets.Status)}>update</div>}
                                 className="btn3 ticket-update2"
-                                dialogbody={
+                                dialogbody={ <>   {disabled==="disabled" ? <div className='ticket-update-alert'>ticket has been completed</div>:
                                     <div className="form dialog" >
                                         <div className="form-toggle"></div>
                                         <div className="form-panel update one">
@@ -233,27 +201,29 @@ function Teamticket() {
                                                 <form>
                                                     <div className="form-group">
                                                         <label className="label">status</label>
+                                                    
                                                         <select className="form-input" onChange={handlestatus}>
                                                             <option value="">--Select Team--</option>
-                                                            <option className='new' value="new">new</option>
+                                                            <option className='started' value="started">started</option>
                                                             <option className='inprogress' value="inprogress">inprogress</option>
                                                             <option className='completed' value="completed">completed</option>
                                                         </select>
+                                                                                                        
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>Assign</button>
+                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.timeline)}>update</button>
                                         <h4 className="alert1 text-center">{show}</h4>
                                     </div>
+                                       }  
+                                       </> 
                                 }
                             />
                         </div>
                     )}
                 </TableContainer>
             </div>
-
-
         </div>
     );
 }

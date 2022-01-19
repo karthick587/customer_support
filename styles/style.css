@@ -324,7 +324,10 @@ form.form4 {
   color: #0108e6e3 !important;
   font-size: 13px;
 }
-
+.started{
+  color: rgb(47, 167, 223) !important;
+  font-size: 13px;
+}
 .completed {
   color: green !important;
   font-size: 13px;
@@ -1159,4 +1162,7 @@ img.screeshot-img-viewer {
 /* Handle on hover */
 .notification-table::-webkit-scrollbar-thumb:hover {
   background: #07519b; 
+}
+.ticket-update-alert{
+  padding: 30px;
 }
