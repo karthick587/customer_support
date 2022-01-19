@@ -39,7 +39,7 @@ export default function Users(props) {
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {
-            Router.reload(window.location.pathname);
+            localStorage.setItem('updateclose', "close");
         })
         // <-- declare id parameter
         // Axios
@@ -50,8 +50,6 @@ export default function Users(props) {
         //         Router.reload(window.location.pathname);
         //     })
     };
-
-
     const UsersList = [
         [
             "Users Id",
@@ -72,17 +70,13 @@ export default function Users(props) {
     ]
     UsersList.reduce((prev, curr) => [prev, curr]);
     //console.log(UsersList)
-
     const handleExport = async () => {
         const data = await UsersList;
-        //console.log(data);
         setExportUsers(data)
-
     }
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
-
         if (login === "false") {
             router.push("/")
         } else if (login === null) {
@@ -96,13 +90,10 @@ export default function Users(props) {
                 <title>Admin Dashboard</title>
             </Head>
             <div className="container mainbody">
-
-
                 <div className="userbody">
                     <div className='header-user'>
                         <h1>USERS</h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-
                         <div className='right-user-btns'>
                             <CSVLink
                                 data={exportUsers}
@@ -129,56 +120,51 @@ export default function Users(props) {
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">PHONE NUMBER</TableCell>
-
                                 </TableRow>
                             </TableHead>
-                                    {users.filter(item => {
-                                        if (item.Isdeleted==='n') {
-                                            if(search === ""){
-                                                return item;
-                                            } else{
-                                                if (item.Clientname.toLowerCase().includes(search.toLowerCase()) ||
-                                                item.Companyname.toLowerCase().includes(search.toLowerCase())
-                                            ) {
-                                                return item;
-                                            }
-                                            }
+                            {users.filter(item => {
+                                if (item.Isdeleted === 'n') {
+                                    if (search === "") {
+                                        return item;
+                                    } else {
+                                        if (item.Clientname.toLowerCase().includes(search.toLowerCase()) ||
+                                            item.Companyname.toLowerCase().includes(search.toLowerCase())
+                                        ) {
+                                            return item;
                                         }
-                                    }).map((item) =>
-                                        <TableBody key={item.usersId}>
-                                            <TableRow >
-                                                <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
-                                                <TableCell className="client-logo-ver" align="left" >
-                                                    <Imageviewer
-                                                        imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
-                                                        imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
-                                                    />
-                                                </TableCell>
-                                                <TableCell align="left">{item.Companyname}</TableCell>
-                                                <TableCell align="left">{item.Clientname}</TableCell>
-                                                <TableCell align="left">{item.Email}</TableCell>
-                                                <TableCell align="left">{item.Phonenumber}</TableCell>
-
-                                                <div className='deteleandedit'>
-
-                                                    <Updatecustomer usersId={item.usersId} />
-
-                                                    <FormDialog
-                                                        className="user-delete"
-                                                        dialogtitle={<DeleteIcon />}
-                                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                                        dialogactions={
-                                                            <div>
-                                                                <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                                <Button   >NO</Button>
-                                                            </div>
-                                                        }
-                                                    />
-                                                </div>
-
-                                            </TableRow>
-                                        </TableBody>
-                                    )}                                                                     
+                                    }
+                                }
+                            }).map((item) =>
+                                <TableBody key={item.usersId}>
+                                    <TableRow >
+                                        <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
+                                        <TableCell className="client-logo-ver" align="left" >
+                                            <Imageviewer
+                                                imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
+                                                imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
+                                            />
+                                        </TableCell>
+                                        <TableCell align="left">{item.Companyname}</TableCell>
+                                        <TableCell align="left">{item.Clientname}</TableCell>
+                                        <TableCell align="left">{item.Email}</TableCell>
+                                        <TableCell align="left">{item.Phonenumber}</TableCell>
+                                        <div className='deteleandedit'>
+                                            <Updatecustomer usersId={item.usersId} />
+                                            <FormDialog
+                                                className="user-delete"
+                                                dialogtitle={<DeleteIcon />}
+                                                headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                dialogactions={
+                                                    <div>
+                                                        <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
+                                                        <Button   >NO</Button>
+                                                    </div>
+                                                }
+                                            />
+                                        </div>
+                                    </TableRow>
+                                </TableBody>
+                            )}
                         </Table>
                     </TableContainer>
                 </div>

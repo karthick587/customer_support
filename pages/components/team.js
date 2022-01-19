@@ -29,11 +29,10 @@ export default function Team(props) {
             .then((res) => setTeam(res.data));
     }, [team]);
     const deleteUsers = (id,name) => {
-
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`,{
             Isdeleted : 'y'
         }).then(() => {
-                Router.reload(window.location.pathname);
+            localStorage.setItem('updateclose', "close");
         })
             // <-- declare id parameter
         //     Axios
@@ -47,7 +46,6 @@ export default function Team(props) {
         //  const handleClose = () => {
         //     Router.reload(window.location.pathname)
           };
-
          const TeamList = [
             [ 
              "Team Id",
@@ -63,8 +61,7 @@ export default function Team(props) {
              ])
          ]
          TeamList.reduce((prev,curr)=>[prev,curr]);
-        // console.log(TeamList)
-     
+        // console.log(TeamList)    
          const handleExport = async() =>{
              const data =await TeamList;
              //console.log(data);
@@ -82,7 +79,6 @@ export default function Team(props) {
             }
             localStorage.setItem('updateclose', "open");
           })
-        
     return (
         <div>
             <Head>
@@ -127,9 +123,7 @@ export default function Team(props) {
                                 } 
                             }).map((item) =>
                                 <TableBody key={item.teamId}>
-
                                     <TableRow >
-
                                         <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
                                         <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
                                         <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
@@ -150,8 +144,7 @@ export default function Team(props) {
                                             }
                                             />
                                             </div>
-                                    </TableRow>
-                                  
+                                    </TableRow>                                
                                 </TableBody>
                             )}
                             </>  :
@@ -164,15 +157,11 @@ export default function Team(props) {
                                 } 
                             }).map((item) =>
                                 <TableBody key={item.teamId}>
-
                                     <TableRow >
-
                                         <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
                                         <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
                                         <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
-                                        
-                                            
+                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>                                                                            
                                         <div className='deteleandedit'>
                                             <Updateteam teamId={item.teamId} />
                                             <FormDialog 
@@ -187,8 +176,7 @@ export default function Team(props) {
                                             }
                                             />
                                             </div>
-                                    </TableRow>
-                                  
+                                    </TableRow>                                
                                 </TableBody>
                             )}
                             </>
@@ -196,7 +184,6 @@ export default function Team(props) {
                         </Table>
                     </TableContainer>
                 </div>
-
             </div>
         </div>
     )
