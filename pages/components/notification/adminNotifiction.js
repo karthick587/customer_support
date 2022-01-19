@@ -9,6 +9,7 @@ function AdminNotification(props) {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, [tickets]);
+  
     function Notificationupdate(ticketsId, Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
@@ -42,7 +43,6 @@ function AdminNotification(props) {
                                         <td>Ticket No {tickets.ticketsId}</td>
                                         <td>{tickets.Username}</td>
                                         <td>{tickets.Date}</td>
-
                                     </tr>
                                 </table>
                             }

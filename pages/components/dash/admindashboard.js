@@ -15,7 +15,6 @@ import { useRouter } from 'next/router';
 import Adminticket from '../tickets/adminticket';
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
-import Axios from 'axios';
 import AdminNotification from '../notification/adminNotifiction';
 const AdminDashboard = (props) => {
   const router = useRouter();
