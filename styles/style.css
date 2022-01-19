@@ -1111,7 +1111,7 @@ img.screeshot-img-viewer {
   right: 0;
 }
 .notification-head {
-  width: 309px;
+  width: 311px;
   background-color: #3387da;
   margin-left: 0!important;
   padding: 4px 7px 4px 0;
@@ -1140,4 +1140,23 @@ img.screeshot-img-viewer {
 }
 .client-logo-col {
   width: 100px!important;
+}
+.notification-table::-webkit-scrollbar {
+  width: 4px;
+  height: 2vh;
+}
+
+/* Track */
+.notification-table::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.notification-table::-webkit-scrollbar-thumb {
+  background: #3387da; 
+}
+
+/* Handle on hover */
+.notification-table::-webkit-scrollbar-thumb:hover {
+  background: #07519b; 
 }
