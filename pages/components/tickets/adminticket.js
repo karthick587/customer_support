@@ -128,8 +128,28 @@ function Adminticket(props) {
     }
     //emailjs
     // notificationupdate
-
-    function Notificationupdate(ticketsId, Notification) {
+const[dticketsId,setdticketsId]=useState("")
+const[username,setusername]=useState("")
+const[phonenumber,setphonenumber]=useState("")
+const[domainName,setdomainName]=useState("")
+const[date,setdate]=useState("")
+const[description,setdescription]=useState("")
+const[dstatus,setdstatus]=useState("")
+const[statusUpdatetime,setstatusUpdateTime]=useState("")
+const[team,setteam]=useState("")
+const[screenshots,setscreenshots]=useState("")
+    const Notificationupdate=(ticketsId,Username,Phonenumber,DomainName,Date,Description,Status,statusUpdateTime,Team,Screenshots)=> {
+        setdticketsId(ticketsId)
+        setusername(Username)
+        setphonenumber(Phonenumber)
+        setdomainName(DomainName)
+        setdate(Date)
+        setdescription(Description)
+        setdstatus(Status)
+        setstatusUpdateTime(statusUpdateTime)
+        setteam(Team)
+        setscreenshots(Screenshots)
+        setShowdetails(true)
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
@@ -145,11 +165,16 @@ function Adminticket(props) {
     const pagedatalimit = (e) => {
         setdatalimit(e.target.value)
     }
+    const [showdetails,setShowdetails]=useState(false)
+  function  closeDetails(){
+    setShowdetails(false)
+  }
     return (
         <div>
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
+            {showdetails===false ?
             <div className="userbody">
                 <div className='adminticket-head'>
                     <div><h1>Tickets</h1></div>
@@ -235,12 +260,11 @@ function Adminticket(props) {
 
                     }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                         <div key={tickets.ticketsId} className='tickets-table-row'>
-                            <FormDialog
-                                dialogtitle={
+                           
                                     <table  >
                                         <tbody>
 
-                                            <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)} >
+                                            <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Username,tickets.Phonenumber,tickets.DomainName,tickets.Date,tickets.Description,tickets.Status,tickets.statusUpdateTime,tickets.Team,tickets.Screenshots)} >
                                                 <td>{tickets.ticketsId}</td>
                                                 <td>{tickets.Username}</td>
                                                 <td>{tickets.Date}</td>
@@ -255,51 +279,7 @@ function Adminticket(props) {
 
                                         </tbody>
                                     </table>
-                                }
-                                dialogbody={
-                                    <div className='ticket-details'>
-                                        <div className='ticket details-title'>Ticket NO {tickets.ticketsId}</div>
-                                        <div className='ticket details-name'>
-                                            <label className="label">Username</label>
-                                            <div className='ticket-input-details' >{tickets.Username}</div>
-                                        </div>
-                                        <div className='ticket details-no'>
-                                            <label className="label">Phonenumber</label>
-                                            <div className='ticket-input-details' >{tickets.Phonenumber}</div>
-                                        </div>
-                                        <div className='ticket details-domain'>
-                                            <label className="label">DomainName</label>
-                                            <div className='ticket-input-details' >{tickets.DomainName}</div>
-                                        </div>
-                                        <div className='ticket details-Date'>
-                                            <label className="label">Date</label>
-                                            <div className='ticket-input-details' > {tickets.Date}</div>
-                                        </div>
-                                        <div className='ticket details-Des'>
-                                            <label className="label">Description</label>
-                                            <div className='ticket-input-details' > {tickets.Description}</div>
-                                        </div>
-                                        <div className='ticket details-Status'><label className="label">Status</label>
-
-                                            <h5 className={tickets.Status} > {tickets.Status}</h5>
-                                            <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
-                                        </div>
-                                        {tickets.timeline === "completed" ? <></> : <div className='ticket details-Status'><label className="label">timeline</label>
-                                            <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
-                                        </div>}
-
-                                        <div className='ticket details-Team' ><label className="label">Team</label>
-                                            <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                        <div className='ticket details-Team'>
-                                            <label className="label">Screenshot</label>
-                                            <Imageviewer
-                                                imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={100} height={50} />}
-                                                imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
-                                            />
-                                        </div>
-                                    </div>
-                                }
-                            />
+                             
                             <FormDialog
                                 dialog_className="Assign-team-dailog"
                                 dialogtitle="Assign"
@@ -366,6 +346,50 @@ function Adminticket(props) {
                     />
                 </TableContainer>
             </div>
+            :
+<div className='ticket-details'>
+<button onClick={closeDetails}>close</button>
+                                        <div className='ticket details-title'>Ticket NO {dticketsId}</div>
+                                        <div className='ticket details-name'>
+                                            <label className="label">Username</label>
+                                            <div className='ticket-input-details' >{username}</div>
+                                        </div>
+                                        <div className='ticket details-no'>
+                                            <label className="label">Phonenumber</label>
+                                            <div className='ticket-input-details' >{phonenumber}</div>
+                                        </div>
+                                        <div className='ticket details-domain'>
+                                            <label className="label">DomainName</label>
+                                            <div className='ticket-input-details' >{domainName}</div>
+                                        </div>
+                                        <div className='ticket details-Date'>
+                                            <label className="label">Date</label>
+                                            <div className='ticket-input-details' > {date}</div>
+                                        </div>
+                                        <div className='ticket details-Des'>
+                                            <label className="label">Description</label>
+                                            <div className='ticket-input-details' > {description}</div>
+                                        </div>
+                                        <div className='ticket details-Status'><label className="label">Status</label>
+
+                                            <h5  > {dstatus}</h5>
+                                            <h5 className='statusUpdateTime'>Updated at {statusUpdatetime}</h5>
+                                        </div>
+                                        {tickets.timeline === "completed" ? <></> : <div className='ticket details-Status'><label className="label">timeline</label>
+                                            <h5 className='statusUpdateTime'>Updated at {team}</h5>
+                                        </div>}
+
+                                        <div className='ticket details-Team' ><label className="label">Team</label>
+                                            <div className='ticket-input-details' > {tickets.Team}</div></div>
+                                        <div className='ticket details-Team'>
+                                            <label className="label">Screenshot</label>
+                                            <Imageviewer
+                                                imgdialogbutton={<img src={screenshots} alt="screenshots" width={100} height={50} />}
+                                                imgdialogbody={<img className='screeshot-img-viewer' src={screenshots} alt="screenshots" />}
+                                            />
+                                        </div>
+                                    </div>
+}
         </div>
     );
 }

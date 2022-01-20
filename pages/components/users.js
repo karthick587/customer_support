@@ -104,7 +104,7 @@ export default function Users(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-           
+            <div className='container'>
                 <div className="userbody2">
                     <div className='header-user'>
                         <h1>USERS</h1>
@@ -204,6 +204,7 @@ export default function Users(props) {
                         activeClassName={"active"}
                     />
                     </TableContainer>
+                </div>
                 </div>
             </div>
        

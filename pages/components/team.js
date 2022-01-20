@@ -102,7 +102,7 @@ export default function Team(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-        
+        <div className='container'>
                 <div className="userbody2">
                     <div className='header-user'>
                         <h1>TEAM </h1>
@@ -221,6 +221,7 @@ export default function Team(props) {
                         activeClassName={"active"}
                     />
                     </TableContainer>
+                </div>
                 </div>
             </div>
       

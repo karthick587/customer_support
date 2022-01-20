@@ -1104,18 +1104,11 @@ img.screeshot-img-viewer {
 .tickets-bodyrow td {
   width: 220px;
   text-align: left;
-  font-weight: 500;
   padding: 34px 0px 0px 0px;
+  border-bottom: 1px solid #e2e2e2;
   font-size: 13px;
+  font-weight: 550;
   color: rgba(0, 0, 0, 0.87);
-}
-.highlighted-row td {
-  width: 220px;
-  text-align: left;
-  font-weight: 750;
-  padding: 34px 0px 0px 0px;
-  font-size: 14px;
-  color: black;
 }
 .notification-head div {
   color: white;
