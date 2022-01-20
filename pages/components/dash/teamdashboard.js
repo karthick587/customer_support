@@ -25,7 +25,7 @@ const TeamDashboard = (props) => {
     } else if (login === null) {
       router.push("/")
     }
-    localStorage.setItem('updateclose', "open");
+  
   })
   //alert to conform logout
   const onBackButtonEvent = (e) => {

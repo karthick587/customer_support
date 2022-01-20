@@ -21,7 +21,7 @@ const CustomerDashboard = (props) => {
   })
   useEffect(() => {
     setUser(window.localStorage.getItem('clientname'))
-    localStorage.setItem('updateclose', "open");
+    
   })
 
 

@@ -16,7 +16,7 @@ function Userticket(props) {
     }, [tickets]);
     useEffect(() => {
         setSearch(Username);
-        localStorage.setItem('updateclose', "open");
+       
     })
     const [login, setLogin] = useState()
     useEffect(() => {
