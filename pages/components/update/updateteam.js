@@ -22,7 +22,7 @@ function Updateteam({ teamId }) {
             Team: Team,
         }).then((res) => {
             setShow("Updated Successfully")
-            localStorage.setItem('updateclose', "close");
+           
         })
     }
 

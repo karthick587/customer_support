@@ -75,7 +75,7 @@ function Updatecustomer({ usersId }) {
             }
         }).then((res) => {
                 setShow("Updated Successfully")
-                localStorage.setItem('updateclose', "close");
+               
             })
            
         }
