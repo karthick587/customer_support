@@ -75,6 +75,20 @@
   .col-6 {
     width: 100% !important;
   }
+.float-end.caption {
+  display: none;
+}
+.pagedatalimit-select {
+  margin-right: 43px;
+}
+.userpage-pagedatalimit{
+  right: 32%;
+}
+.userbody {
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  width: 610px;
+  margin: auto;
+}
   .css-1howxi1-MuiTableCell-root {
     padding: 4px 14px 3px 0px !important;
     width: 99px;
@@ -220,18 +234,10 @@ form.form3 {
     /* font-size: 5px; */
 }
   .userbody {
-    width: 500px;
+    width: 500px !important;
   }
-  .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
-    overflow: scroll;
-  }
-  .css-quj9j6-MuiTable-root {
-    display: table;
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    min-width: 498px;
-}
+  
+ 
 
   form.form4 {
     width: 240px;
