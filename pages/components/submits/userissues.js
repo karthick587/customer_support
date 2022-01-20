@@ -101,8 +101,15 @@ function Userissue(props) {
                     </div>
                     <div className="form-group">
                         <form>
-                            <label htmlFor="contained-button-file">
-                                <input type="file" id="file" accept="image/*" onChange={handleScreenshot} multiple="true" />
+                        <label htmlFor="contained-button-file">
+                                <input type="file" 
+                                        id="file"  
+                                        accept="image/*,application/pdf,
+                                                application/msword,
+                                                application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                                application/zip" 
+                                        onChange={handleScreenshot} multiple="true" 
+                                />
                             </label>
                         </form>
                     </div>
