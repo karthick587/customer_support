@@ -95,7 +95,7 @@ function Addcustomer(props) {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                    localStorage.setItem('updateclose', "close");
+                  
                 }
             })
         }
