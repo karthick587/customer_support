@@ -103,7 +103,7 @@ export default function Team(props) {
                 <title>Admin Dashboard</title>
             </Head>
         
-                <div className="userbody">
+                <div className="userbody2">
                     <div className='header-user'>
                         <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
