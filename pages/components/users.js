@@ -105,7 +105,7 @@ export default function Users(props) {
                 <title>Admin Dashboard</title>
             </Head>
            
-                <div className="userbody">
+                <div className="userbody2">
                     <div className='header-user'>
                         <h1>USERS</h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -143,7 +143,7 @@ export default function Users(props) {
                                 <TableRow className='usertable'>
                                     <TableCell className="client-logo-col" >USERID</TableCell>
                                     <TableCell className="client-logo-col" align="left">LOGO</TableCell>
-                                    <TableCell align="left">COMPANY NAME</TableCell>
+                                    <TableCell className="client-logo-cn" align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">PHONE NUMBER</TableCell>
