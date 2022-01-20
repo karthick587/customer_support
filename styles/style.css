@@ -168,7 +168,6 @@ a {
   bottom: 0px;
   left: 0;
   right: 0;
-  position: absolute;
 }
 .tickets-table-row div {
   border-bottom: 1px solid rgba(224, 224, 224, 1);
@@ -1196,4 +1195,33 @@ img.screeshot-img-viewer {
 }
 .width-50{
   width: 500px;
+}
+.page-btn{
+  padding: 20px;
+  cursor: pointer;
+}
+.pagedatalimit {
+  width: 100%;
+  
+}
+.pagedatalimit-select{
+  float: right;
+  word-wrap: normal;
+    background-color: #daebfa;
+    padding: 6px 10px;
+   
+    border: navajowhite;
+    margin-left: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #1976d2;
+}
+.caption{
+  font-size: 15px;
+    color: #1976d2;
+    font-weight: 700;
+}
+.userpage-pagedatalimit {
+  right: 17%;
+  position: absolute;
 }

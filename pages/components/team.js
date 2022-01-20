@@ -16,6 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/router'
 import Updateteam from './update/updateteam';
 import { CSVLink } from 'react-csv';
+import ReactPaginate from 'react-paginate';
 export default function Team(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -85,6 +86,16 @@ export default function Team(props) {
         setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length)
         props.teamcountcallback(teamcount);
     })
+    //pagination
+
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+    function handlePageChange(pageNumber) {
+        setCurrentpage(pageNumber + 1);
+    }
+    const pagedatalimit = (e) => {
+        setdatalimit(e.target.value)
+    }
     return (
         <div>
             <Head>
@@ -95,6 +106,16 @@ export default function Team(props) {
                     <div className='header-user'>
                         <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <div className='userpage-pagedatalimit'>
+                            <select className='pagedatalimit-select' onChange={pagedatalimit}>
+
+                                <option value={10}>10</option>
+                                <option value={25}>25</option>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                            </select>
+                            <div className='float-end caption'>Number of Team per page</div>
+                        </div>
                         <div className='right-user-btns'>
                             <CSVLink
                                 data={exportTeam}
@@ -127,7 +148,7 @@ export default function Team(props) {
                                         if (val.Isdeleted === 'n') {
                                             return val;
                                         }
-                                    }).map((item) =>
+                                    }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                                         <TableBody key={item.teamId}>
                                             <TableRow >
                                                 <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
@@ -161,7 +182,7 @@ export default function Team(props) {
                                                 return val;
                                             }
                                         }
-                                    }).map((item) =>
+                                    }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                                         <TableBody key={item.teamId}>
                                             <TableRow >
                                                 <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
@@ -188,6 +209,16 @@ export default function Team(props) {
                                 </>
                             }
                         </Table>
+                        < ReactPaginate
+                        previousLabel={""}
+                        nextLabel={""}
+                        pageCount={team.length / datalimit}
+                        onPageChange={(e) => handlePageChange(e.selected)}
+                        containerClassName={"pagination justify-content-center mt-3"}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        activeClassName={"active"}
+                    />
                     </TableContainer>
                 </div>
             </div>

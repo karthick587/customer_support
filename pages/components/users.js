@@ -17,7 +17,7 @@ import Updatecustomer from './update/updatecustomer';
 import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Imageviewer from './common/imageviewer';
-
+import ReactPaginate from 'react-paginate';
 export default function Users(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
@@ -88,6 +88,17 @@ export default function Users(props) {
         }
         localStorage.setItem('updateclose', "open");
     })
+    //pagination
+
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+    function handlePageChange(pageNumber) {
+        setCurrentpage(pageNumber + 1);
+    }
+    const pagedatalimit = (e) => {
+        setdatalimit(e.target.value)
+    }
+
     return (
         <div>
             <Head>
@@ -98,6 +109,16 @@ export default function Users(props) {
                     <div className='header-user'>
                         <h1>USERS</h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <div className='userpage-pagedatalimit'>
+                            <select className='pagedatalimit-select' onChange={pagedatalimit}>
+
+                                <option value={10}>10</option>
+                                <option value={25}>25</option>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                            </select>
+                            <div className='float-end caption'>Number of users per page</div>
+                        </div>
                         <div className='right-user-btns'>
                             <CSVLink
                                 data={exportUsers}
@@ -113,7 +134,9 @@ export default function Users(props) {
                                 dialogbody={<Addcustomer />}
                             />
                         </div>
+                       
                     </div>
+               
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
@@ -138,7 +161,7 @@ export default function Users(props) {
                                         }
                                     }
                                 }
-                            }).map((item) =>
+                            }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                                 <TableBody key={item.usersId}>
                                     <TableRow >
                                         <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
@@ -170,6 +193,16 @@ export default function Users(props) {
                                 </TableBody>
                             )}
                         </Table>
+                        < ReactPaginate
+                        previousLabel={""}
+                        nextLabel={""}
+                        pageCount={users.length / datalimit}
+                        onPageChange={(e) => handlePageChange(e.selected)}
+                        containerClassName={"pagination justify-content-center mt-3"}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        activeClassName={"active"}
+                    />
                     </TableContainer>
                 </div>
             </div>

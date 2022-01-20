@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import MailIcon from '@mui/icons-material/Mail';
 import emailjs from 'emailjs-com';
 import Imageviewer from '../common/imageviewer'
-
+import ReactPaginate from 'react-paginate';
 function Adminticket(props) {
     const Router = useRouter()
     var [show, setShow] = useState('');
@@ -22,13 +22,14 @@ function Adminticket(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
+            
     }, [tickets]);
     let ticketscount = 0;
     ticketscount = tickets.length
     const [notificationcount, setnotificationcount] = useState()
     useEffect(() => {
         setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-        props.admintickets(tickets);
+        
     }, [tickets])
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
@@ -70,7 +71,7 @@ function Adminticket(props) {
         }
         props.parentCallback(ticketscount);
         props.notificationcount(notificationcount);
-       
+
     })
     // emailjs
     function updateemail(ticketsId, Username) {
@@ -136,6 +137,17 @@ function Adminticket(props) {
         }).then((_response) => {
         });
     }
+    //pagination
+
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+    function handlePageChange(pageNumber) {
+        setCurrentpage(pageNumber + 1);
+    }
+    const pagedatalimit = (e) => {
+        setdatalimit(e.target.value)
+    }
+
     return (
         <div>
             <Head>
@@ -144,7 +156,7 @@ function Adminticket(props) {
             <div className="userbody">
                 <div className='adminticket-head'>
                     <div><h1>Tickets</h1></div>
-                    <div className='filter-head '>
+                    <div className='filter-head'>
                         <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                             <option value="all">All</option>
                             <option value="ticketsId">TicketsId</option>
@@ -165,6 +177,16 @@ function Adminticket(props) {
                                 <option value="completed">Completed</option>
                             </select>
                         )}
+                    </div>
+                    <div className='pagedatalimit'>
+                        <select className='pagedatalimit-select' onChange={pagedatalimit}>
+
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                        </select>
+                        <div className='float-end caption'>Number of Tickets per page</div>
                     </div>
                 </div>
                 <TableContainer component={Paper}>
@@ -214,7 +236,7 @@ function Adminticket(props) {
                             }
                         }
 
-                    }).map((tickets) =>
+                    }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                         <div key={tickets.ticketsId} className='tickets-table-row'>
                             <FormDialog
                                 dialogtitle={
@@ -265,6 +287,10 @@ function Adminticket(props) {
                                             <h5 className={tickets.Status} > {tickets.Status}</h5>
                                             <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
                                         </div>
+                                        {tickets.timeline === "completed" ? <></> : <div className='ticket details-Status'><label className="label">timeline</label>
+                                            <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
+                                        </div>}
+
                                         <div className='ticket details-Team' ><label className="label">Team</label>
                                             <div className='ticket-input-details' > {tickets.Team}</div></div>
                                         <div className='ticket details-Team'>
@@ -331,6 +357,16 @@ function Adminticket(props) {
                             />
                         </div>
                     )}
+                    < ReactPaginate
+                        previousLabel={""}
+                        nextLabel={""}
+                        pageCount={tickets.length / datalimit}
+                        onPageChange={(e) => handlePageChange(e.selected)}
+                        containerClassName={"pagination justify-content-center mt-3"}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        activeClassName={"active"}
+                    />
                 </TableContainer>
             </div>
         </div>

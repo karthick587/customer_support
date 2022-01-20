@@ -20,7 +20,7 @@ const AdminDashboard = (props) => {
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-  // cannot access page without login
+   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
     if (login === "false") {
@@ -56,24 +56,29 @@ const AdminDashboard = (props) => {
     localStorage.removeItem('activeTab');
     router.push("/")
   }
-  // dashtab
+ 
+    // dashtab
   const DashTabActive = () => {
-    localStorage.setItem('activeTab', "Dashboard")
+    localStorage.setItem('activeTab', 'Dashboard')
+    setActivetab('Dashboard')
   }
   // tickettab
   const TicketTabActive = () => {
     localStorage.setItem('activeTab', 'ticket')
+    setActivetab('ticket')
   }
   // usertab
   const UserTabActive = () => {
     localStorage.setItem('activeTab', 'user')
+    setActivetab('user')
   }
   // teamtab
   const TeamTabActive = () => {
     localStorage.setItem('activeTab', 'team')
+    setActivetab('team')
   }
   // getactivetab
-  const [activeTab, setActivetab] = useState(" ")
+  const [activeTab, setActivetab] = useState()
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
@@ -96,11 +101,6 @@ const AdminDashboard = (props) => {
   const [teamcount, setteamcount] = useState();
   const handleCallback4 = (childData) => {
     setteamcount(childData)
-  }
-  //tickets list for mapping
-  var [tickets, setTickets,] = useState([]);
-  const ticketcallback = (childDate) => {
-    setTickets(childDate)
   }
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
@@ -178,32 +178,7 @@ const AdminDashboard = (props) => {
                             />
                           </div>
                         </div>
-
-                      </div>
-                      <div className="dash-body-middle">
-                        <div className="dash-cards-2">
-                          <div className="row">
-                            <div className="col">
-                              <div className="dash-cards-2-left">
-                              {tickets.filter(val => {
-                                  return val.Notification.toLowerCase().includes("unseen")
-                                }).map((ticket) =>
-                                  <div className="flex" key={tickets.ticketsId}>
-                                    <div className='width-10'>{ticket.ticketsId}</div>
-                                    <div className='width-20'>{ticket.Username}</div>
-                                    <div className='width-20'>{ticket.Date}</div>
-                                    <div className='width-20'>{ticket.Status}</div>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="dash-cards-2-right ">
-                                right
-                              </div>
-                            </div>
-                          </div>
-
+                        <div className='piechart'>
                         </div>
                       </div>
                     </div>
@@ -216,7 +191,6 @@ const AdminDashboard = (props) => {
                   <Adminticket
                     parentCallback={handleCallback}
                     notificationcount={handleCallback2}
-                    admintickets={ticketcallback}
                   />
                 </div>
                 <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
