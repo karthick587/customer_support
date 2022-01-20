@@ -15,11 +15,10 @@ const schema = yup.object().shape({
 });
 function Addcustomer(props) {
     var [addmember, setAddmember] = useState('');
-    var [addteam, setAddteam] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
     const [show, setShow] = React.useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+   
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     const { register, handleSubmit, formState } = useForm({
@@ -95,7 +94,7 @@ function Addcustomer(props) {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                  
+                    localStorage.setItem('updateclose', "close"); 
                 }
             })
         }

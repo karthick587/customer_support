@@ -85,6 +85,7 @@ export default function Team(props) {
     useEffect(() => {
         setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length)
         props.teamcountcallback(teamcount);
+        localStorage.setItem('updateclose', "open");
     })
     //pagination
 
@@ -101,7 +102,7 @@ export default function Team(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-            <div className="container mainbody">
+        
                 <div className="userbody">
                     <div className='header-user'>
                         <h1>TEAM </h1>
@@ -222,6 +223,6 @@ export default function Team(props) {
                     </TableContainer>
                 </div>
             </div>
-        </div>
+      
     )
 }

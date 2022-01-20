@@ -50,7 +50,7 @@ function Teamticket(props) {
             statusUpdateTime: fulldate + ' ' + fullTime
         }).then((response) => {
             setShow("update Successfully");
-           
+            localStorage.setItem('updateclose', "close"); 
         });
         if (selectedstatus === "started") {
             Axios.put(`https://mindmadetech.in/api/tickets/updatetimeline/${ticketsId}`, {

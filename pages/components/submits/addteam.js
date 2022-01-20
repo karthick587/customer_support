@@ -31,10 +31,10 @@ function Addteam(props) {
 
             if (response.data.message) {
                 setShow(response.data.message)
-               
+                localStorage.setItem('updateclose', "close");
             } else {
                 setShow("Registered Successfully");
-               
+                localStorage.setItem('updateclose', "close"); 
             }
         });
     }

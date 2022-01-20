@@ -28,8 +28,7 @@ function Adminticket(props) {
     ticketscount = tickets.length
     const [notificationcount, setnotificationcount] = useState()
     useEffect(() => {
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-        
+        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)       
     }, [tickets])
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
@@ -40,7 +39,7 @@ function Adminticket(props) {
             ticketsId: ticketsId,
         }).then((_response) => {
             setShow("update Successfully");
-           
+            localStorage.setItem('updateclose', "close"); 
         });
     }
     useEffect(() => {
@@ -99,7 +98,7 @@ function Adminticket(props) {
                 function (err) {
 
                     setShowmailstatus("Sending Email Failed")
-                   
+                    localStorage.setItem('updateclose', "close"); 
                 }
             );
         }
@@ -121,7 +120,7 @@ function Adminticket(props) {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-      
+        localStorage.setItem('updateclose', "open");      
     })
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
@@ -138,7 +137,6 @@ function Adminticket(props) {
         });
     }
     //pagination
-
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
     function handlePageChange(pageNumber) {
@@ -147,7 +145,6 @@ function Adminticket(props) {
     const pagedatalimit = (e) => {
         setdatalimit(e.target.value)
     }
-
     return (
         <div>
             <Head>

@@ -358,7 +358,14 @@ img.slide-banner2 {
     max-width: 1340px !important;
   }
 }
+@media (max-width:1310px){
+  .userbody {
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    width: 1120px;
+    margin: auto;
+}
 
+}
 
 
 

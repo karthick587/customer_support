@@ -86,7 +86,7 @@ export default function Users(props) {
         } else if (login === null) {
             router.push("/")
         }
-       
+        localStorage.setItem('updateclose', "open");
     })
     //pagination
 
@@ -104,7 +104,7 @@ export default function Users(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-            <div className="container mainbody">
+           
                 <div className="userbody">
                     <div className='header-user'>
                         <h1>USERS</h1>
@@ -206,6 +206,6 @@ export default function Users(props) {
                     </TableContainer>
                 </div>
             </div>
-        </div>
+       
     )
 }
