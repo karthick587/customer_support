@@ -12,11 +12,7 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  useEffect(()=>{
-    if(window.localStorage.getItem('updateclose')==="close"){
-      setOpen(false);
-    }
-  })
+
 
   return (
     <div className={props.dialog_className}>

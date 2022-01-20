@@ -40,7 +40,7 @@ function Adminticket(props) {
             ticketsId: ticketsId,
         }).then((_response) => {
             setShow("update Successfully");
-            localStorage.setItem('updateclose', "close");
+           
         });
     }
     useEffect(() => {
@@ -99,7 +99,7 @@ function Adminticket(props) {
                 function (err) {
 
                     setShowmailstatus("Sending Email Failed")
-                    localStorage.setItem('updateclose', "close");
+                   
                 }
             );
         }
@@ -121,7 +121,7 @@ function Adminticket(props) {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-        localStorage.setItem('updateclose', "open");
+      
     })
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {

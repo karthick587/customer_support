@@ -43,7 +43,7 @@ export default function Users(props) {
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {
-            localStorage.setItem('updateclose', "close");
+            
         })
         // <-- declare id parameter
         // Axios
@@ -86,7 +86,7 @@ export default function Users(props) {
         } else if (login === null) {
             router.push("/")
         }
-        localStorage.setItem('updateclose', "open");
+       
     })
     //pagination
 

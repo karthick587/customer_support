@@ -33,7 +33,7 @@ export default function Team(props) {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {
-            localStorage.setItem('updateclose', "close");
+            
         })
         // <-- declare id parameter
         //     Axios
@@ -78,7 +78,7 @@ export default function Team(props) {
         } else if (login === null) {
             Router.push("/")
         }
-        localStorage.setItem('updateclose', "open");
+       
     })
     const [teamcount, setteamcount] = useState();
 
