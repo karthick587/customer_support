@@ -51,6 +51,7 @@ export default function Login1() {
       Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
         username: SlicedName,
         password: password,
+        
       }).then((response) => {
         if (response.data.statusCode === 400) {
           setLoginStatus(response.data.message);

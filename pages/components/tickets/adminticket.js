@@ -9,6 +9,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import emailjs from 'emailjs-com';
 import Imageviewer from '../common/imageviewer'
 import ReactPaginate from 'react-paginate';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import FlagIcon from '@mui/icons-material/Flag';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
 function Adminticket(props) {
     const Router = useRouter()
     var [show, setShow] = useState('');
@@ -178,7 +182,7 @@ function Adminticket(props) {
                 <div className="userbody">
                     <div className='adminticket-head'>
                         <div><h1>Tickets</h1></div>
-                        <div className='filter-head'>
+                        <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
                                 <option value="ticketsId">TicketsId</option>
@@ -348,46 +352,126 @@ function Adminticket(props) {
                 </div>
                 :
                 <div className='ticket-details'>
-                    <button onClick={closeDetails}>close</button>
-                    <div className='ticket details-title'>Ticket NO {dticketsId}</div>
-                    <div className='ticket details-name'>
-                        <label className="label">Username</label>
-                        <div className='ticket-input-details' >{username}</div>
+                    <div className='ticket-details-head'>
+                        viewing Support Ticket #{dticketsId}
+                        <div className='ticket-details-head-btn '>
+                            <button className='btn2' onClick={closeDetails}>Back</button>
+                        </div>
                     </div>
-                    <div className='ticket details-no'>
-                        <label className="label">Phonenumber</label>
-                        <div className='ticket-input-details' >{phonenumber}</div>
-                    </div>
-                    <div className='ticket details-domain'>
-                        <label className="label">DomainName</label>
-                        <div className='ticket-input-details' >{domainName}</div>
-                    </div>
-                    <div className='ticket details-Date'>
-                        <label className="label">Date</label>
-                        <div className='ticket-input-details' > {date}</div>
-                    </div>
-                    <div className='ticket details-Des'>
-                        <label className="label">Description</label>
-                        <div className='ticket-input-details' > {description}</div>
-                    </div>
-                    <div className='ticket details-Status'><label className="label">Status</label>
+                    <div className='ticket-details-middle'>
+                        <div className='ticket-details-middle-1 flex'>
+                            <div className='ticket-details-middle-1-1'>
+                                Tickets Details
+                            </div>
+                            <div className='ticket-details-middle-1-2'>
+                                {dstatus}
+                            </div>
+                            <div className='ticket-details-middle-1-3'>
+                                <div className=''>
+                                    <div className='flex'>
+                                        <div className="ticket-status color-green">
+                                            <div className='ticket-new-icon'><FiberNewIcon /></div>
+                                            {dstatus === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div></> : <div className='details-caption-strike'>New</div>}
+                                        </div>
+                                        <div className={dstatus === "New" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
 
-                        <h5  > {dstatus}</h5>
-                        <h5 className='statusUpdateTime'>Updated at {statusUpdatetime}</h5>
-                    </div>
-                    {tickets.timeline === "completed" ? <></> : <div className='ticket details-Status'><label className="label">timeline</label>
-                        <h5 className='statusUpdateTime'>Updated at {team}</h5>
-                    </div>}
+                                        </div>
+                                        <div className={dstatus === "started" || dstatus === "inprogress" || dstatus === "completed" ? "ticket-status color-green" : "ticket-status"}>
+                                            <div className='ticket-start-icon'><FlagIcon /></div>
+                                            {dstatus === "started" ? <div className='details-caption'>Started<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div> : <div className='details-caption-strike'>Started</div>}
+                                        </div>
+                                        <div className={dstatus === "New" || dstatus === "started" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
 
-                    <div className='ticket details-Team' ><label className="label">Team</label>
-                        <div className='ticket-input-details' > {tickets.Team}</div></div>
-                    <div className='ticket details-Team'>
-                        <label className="label">Screenshot</label>
-                        <Imageviewer
-                            imgdialogbutton={<img src={screenshots} alt="screenshots" width={100} height={50} />}
-                            imgdialogbody={<img className='screeshot-img-viewer' src={screenshots} alt="screenshots" />}
-                        />
+                                        </div>
+                                        <div className={dstatus === "New" || dstatus === "started" ? "ticket-status" : "ticket-status color-green"}>
+                                            <div className='ticket-Pending-icon'><MoreHorizIcon /></div>
+                                            {dstatus === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div> : <div className='details-caption-strike'>Inprogress</div>}
+                                        </div>
+                                        <div className={dstatus === "completed" ? "ticket-status-line width-10 color-green-line" : " ticket-status-line width-10 "}>
+
+                                        </div>
+                                        <div className={dstatus === "completed" ? "ticket-status  color-green" : "ticket-status"}>
+                                            <div className='ticket-completed-icon'><CheckCircleIcon /></div>
+                                            {dstatus === "completed" ? <div className='details-caption'>Completed<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div> : <div className='details-caption-strike'>Completed</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='ticket-details-middle-2 row'>
+                            <div className='col'>
+                                <div className='label-ticket-details'>
+                                    Username
+                                </div>
+                                <div className='user-label-ticket-details'>
+                                    {username}
+                                </div>
+                            </div>
+                            <div className='col'>
+                                <div className='label-ticket-details'>
+                                    Ticket NO
+                                </div>
+                                <div className='user-label-ticket-details'>
+                                    {dticketsId}
+                                </div>
+                            </div>
+                            <div className='col'>
+                                <div className='label-ticket-details'>
+                                    Department
+                                </div>
+                                <div className='user-label-ticket-details'>
+                                    {team}
+                                </div>
+                            </div>
+                            <div className='col'>
+                                <div className='label-ticket-details'>
+                                    DomainName
+                                </div>
+                                <div className='user-label-ticket-details'>
+                                    {domainName}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+                    <div className='user-profile-ticket-details row'>
+                        <div className='user-profile-ticket-details-1 col'>
+                            <div className='label-ticket-details'>
+                                Description
+                            </div>
+                            <div className='ticket-input-details' >
+                                {description}
+                            </div>
+                        </div>
+                        <div className='user-profile-ticket-details-2 col flex'>
+                            <div className='width-20'>
+                                <div className='label-ticket-details'>
+                                    Phonenumber
+                                </div>
+                                <div className='ticket-input-details' >
+                                    {phonenumber}
+                                </div>
+                                <div className='label-ticket-details'>
+                                    Date
+                                </div>
+                                <div className='ticket-input-details' >
+                                    {date}
+                                </div>
+
+                            </div>
+                            <div className='ticket-details-screenshot'>
+                                <div className='label-ticket-details'>
+                                    Screenshot
+                                </div>
+                                <Imageviewer
+                                    imgdialogbutton={<img src={screenshots} alt="screenshots" width={200} height={100} />}
+                                    imgdialogbody={<img className='screeshot-img-viewer' src={screenshots} alt="screenshots" />}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             }
         </div>

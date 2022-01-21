@@ -19,31 +19,29 @@ function AdminNotification(props) {
     }
     return (
         <>
-            <div className='notification-head row'>
-                <div className='col notification-left'>
-                    Notification
-                </div>
-                <div className='col notification-right'>
-                    <div className='not-right-con'>
-                        {props.Notification} New
-                    </div>
-                </div>
-            </div>
             <div className='notification-table'>
                 {tickets.filter(val => {
                     return val.Notification.toLowerCase().includes("unseen")
                 }).map((tickets) =>
-                    <div key={tickets.ticketsId} className='tickets-table-row3'>
+                    <div className='' key={tickets.ticketsId}>
                         <FormDialog
                             dialogtitle={
-                                <table>
-                                    <tr className='adminnotification' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
-                                        <div className='mt-1 ms-2'> <FontAwesomeIcon icon={faTicketAlt} /></div>
-                                        <td>Ticket No {tickets.ticketsId}</td>
-                                        <td>{tickets.Username}</td>
-                                        <td>{tickets.Date}</td>
-                                    </tr>
-                                </table>
+                                <div>
+                                    <div className='notification-table-row flex' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
+                                        <div className='notification-table-left'> 
+                                        <FontAwesomeIcon icon={faTicketAlt} />
+                                        </div>
+                                        <div className='notification-table-right'>
+                                            <div className='notification-table-right1 flex'>
+                                                <div className='width-10'>Ticket No {tickets.ticketsId}</div>
+                                                <div className='width-10 ps-2'>{tickets.Username}</div>
+                                            </div>
+                                            <div className='notification-table-right2'>
+                                                {tickets.Date}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                             dialogbody={
                                 <div className='ticket-details'>
