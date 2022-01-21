@@ -26,6 +26,7 @@ function Userticket(props) {
         } else if (login === null) {
             router.push("/")
         }
+        localStorage.setItem('updateclose', "open");
     })
     return (
         <div>
