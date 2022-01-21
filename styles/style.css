@@ -945,6 +945,18 @@ h4.alert1.text-center {
   padding-top: 18px !important;
   font-weight: 550;
 }
+.css-13xy2my {
+  border-radius: 14px !important;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 11px;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  width: 100%;
+  overflow-x: auto;
+}
 .css-13njpue {
   font-size: 14px!important;
   color: #1976d2!important;
