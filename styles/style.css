@@ -87,7 +87,6 @@ a {
 .tickets-bodyrow3 td {
   width: 237px;
   text-align: left;
-  font-weight: 550;
   padding: 34px 0 0;
   font-size: 13px;
   color: rgba(0,0,0,.87);
@@ -95,7 +94,6 @@ a {
 .tickets-bodyrow4 td {
   width: 246px;
   text-align: left;
-  font-weight: 550;
   text-transform: capitalize;
   padding: 34px 0 0;
   font-size: 13px;
@@ -126,7 +124,7 @@ a {
   .tickets-bodyrow3 td {
     width: 100px;
     text-align: left;
-    font-weight: 550;
+   
     padding: 34px 0px 0px 0px;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
@@ -135,7 +133,7 @@ a {
   .tickets-bodyrow td {
     width: 90px !important;
     text-align: left;
-    font-weight: 550;
+    
     padding: 34px 0px 0px 0px;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
@@ -149,7 +147,7 @@ a {
 .tickets-bodyrow td {
   width: 229px;
   text-align: left;
-  font-weight: 550;
+ 
   padding: 34px 0px 0px 0px;
   font-size: 13px;
   color: rgba(0, 0, 0, 0.87);
@@ -943,7 +941,6 @@ h4.alert1.text-center {
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
   padding-top: 18px !important;
-  font-weight: 550;
 }
 .css-13xy2my {
   background-color: #fff;
@@ -970,7 +967,6 @@ h4.alert1.text-center {
 .css-1o6fzn1 {
   font-size: 13px !important;
     padding-top: 25px !important;
-    font-weight: 550 !important;
     color: rgba(0, 0, 0, 0.87) !important;
     padding-bottom: 0px !important;
 }
@@ -1133,7 +1129,7 @@ img.screeshot-img-viewer {
   padding: 34px 0px 0px 0px;
   border-bottom: 1px solid #e2e2e2;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   color: rgba(0, 0, 0, 0.87);
 }
 .tickets-bodyrow td {
@@ -1142,7 +1138,7 @@ img.screeshot-img-viewer {
   padding: 34px 0px 0px 0px;
   border-bottom: 1px solid #e2e2e2;
   font-size: 13px;
-  font-weight: 550;
+ 
   color: rgba(0, 0, 0, 0.87);
 }
 .notification-head div {

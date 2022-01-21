@@ -116,7 +116,7 @@ function Teamticket(props) {
             }).map((item) => setTeamname(item.Team),
             )
         }
-        localStorage.setItem('updateclose', "open");
+      localStorage.setItem('updateclose', "open");
     })
     //auth access for team ticket page
     const [login, setLogin] = useState()
