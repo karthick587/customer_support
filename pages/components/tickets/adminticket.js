@@ -22,13 +22,13 @@ function Adminticket(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
-            
+
     }, [tickets]);
     let ticketscount = 0;
     ticketscount = tickets.length
     const [notificationcount, setnotificationcount] = useState()
     useEffect(() => {
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)       
+        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
     }, [tickets])
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
@@ -39,7 +39,7 @@ function Adminticket(props) {
             ticketsId: ticketsId,
         }).then((_response) => {
             setShow("update Successfully");
-            localStorage.setItem('updateclose', "close"); 
+            localStorage.setItem('updateclose', "close");
         });
     }
     useEffect(() => {
@@ -98,7 +98,7 @@ function Adminticket(props) {
                 function (err) {
 
                     setShowmailstatus("Sending Email Failed")
-                    localStorage.setItem('updateclose', "close"); 
+                    localStorage.setItem('updateclose', "close");
                 }
             );
         }
@@ -120,7 +120,7 @@ function Adminticket(props) {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-        localStorage.setItem('updateclose', "open");      
+        localStorage.setItem('updateclose', "open");
     })
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
@@ -128,17 +128,17 @@ function Adminticket(props) {
     }
     //emailjs
     // notificationupdate
-const[dticketsId,setdticketsId]=useState("")
-const[username,setusername]=useState("")
-const[phonenumber,setphonenumber]=useState("")
-const[domainName,setdomainName]=useState("")
-const[date,setdate]=useState("")
-const[description,setdescription]=useState("")
-const[dstatus,setdstatus]=useState("")
-const[statusUpdatetime,setstatusUpdateTime]=useState("")
-const[team,setteam]=useState("")
-const[screenshots,setscreenshots]=useState("")
-    const Notificationupdate=(ticketsId,Username,Phonenumber,DomainName,Date,Description,Status,statusUpdateTime,Team,Screenshots)=> {
+    const [dticketsId, setdticketsId] = useState("")
+    const [username, setusername] = useState("")
+    const [phonenumber, setphonenumber] = useState("")
+    const [domainName, setdomainName] = useState("")
+    const [date, setdate] = useState("")
+    const [description, setdescription] = useState("")
+    const [dstatus, setdstatus] = useState("")
+    const [statusUpdatetime, setstatusUpdateTime] = useState("")
+    const [team, setteam] = useState("")
+    const [screenshots, setscreenshots] = useState("")
+    const Notificationupdate = (ticketsId, Username, Phonenumber, DomainName, Date, Description, Status, statusUpdateTime, Team, Screenshots) => {
         setdticketsId(ticketsId)
         setusername(Username)
         setphonenumber(Phonenumber)
@@ -165,231 +165,231 @@ const[screenshots,setscreenshots]=useState("")
     const pagedatalimit = (e) => {
         setdatalimit(e.target.value)
     }
-    const [showdetails,setShowdetails]=useState(false)
-  function  closeDetails(){
-    setShowdetails(false)
-  }
+    const [showdetails, setShowdetails] = useState(false)
+    function closeDetails() {
+        setShowdetails(false)
+    }
     return (
         <div>
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-            {showdetails===false ?
-            <div className="userbody">
-                <div className='adminticket-head'>
-                    <div><h1>Tickets</h1></div>
-                    <div className='filter-head'>
-                        <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
-                            <option value="all">All</option>
-                            <option value="ticketsId">TicketsId</option>
-                            <option value="Username">Username</option>
-                            <option value="Date">Date</option>
-                            <option value="Team">Team</option>
-                            <option value="Status">Status</option>
-                        </select>
-                        {isOpenfilter && (
-                            <input className='filter-select' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                        )}
-                        {isOpenstatusfilter && (
-                            <select className='filter-select' onChange={(e) => setFilteredStatus(e.target.value)}>
-
+            {showdetails === false ?
+                <div className="userbody">
+                    <div className='adminticket-head'>
+                        <div><h1>Tickets</h1></div>
+                        <div className='filter-head'>
+                            <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
-                                <option value="new">new</option>
-                                <option value="inprogress">In Progress</option>
-                                <option value="completed">Completed</option>
+                                <option value="ticketsId">TicketsId</option>
+                                <option value="Username">Username</option>
+                                <option value="Date">Date</option>
+                                <option value="Team">Team</option>
+                                <option value="Status">Status</option>
                             </select>
-                        )}
-                    </div>
-                    <div className='pagedatalimit'>
-                        <select className='pagedatalimit-select' onChange={pagedatalimit}>
+                            {isOpenfilter && (
+                                <input className='filter-select' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                            )}
+                            {isOpenstatusfilter && (
+                                <select className='filter-select' onChange={(e) => setFilteredStatus(e.target.value)}>
 
-                            <option value={10}>10</option>
-                            <option value={25}>25</option>
-                            <option value={50}>50</option>
-                            <option value={100}>100</option>
-                        </select>
-                        <div className='float-end caption'>Number of Tickets per page</div>
+                                    <option value="all">All</option>
+                                    <option value="new">new</option>
+                                    <option value="inprogress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            )}
+                        </div>
+                        <div className='pagedatalimit'>
+                            <select className='pagedatalimit-select' onChange={pagedatalimit}>
+
+                                <option value={10}>10</option>
+                                <option value={25}>25</option>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                            </select>
+                            <div className='float-end caption'>Number of Tickets per page</div>
+                        </div>
+                    </div>
+                    <TableContainer component={Paper}>
+                        <div className='tickets-bodyrow2'>
+                            <div>TicketId</div>
+                            <div>Username</div>
+                            <div >Date</div>
+                            <div>Team</div>
+                            <div>Status</div>
+                            <div className='empty-col'></div>
+                        </div>
+                        {tickets.filter(val => {
+                            if (search === " ") {
+                                return val;
+                            } else {
+                                if (filteredTitle === "all") {
+                                    return val
+                                } else if (filteredTitle === "ticketsId") {
+                                    return val.ticketsId.toString().includes(search.toString())
+                                } else if (filteredTitle === "Username") {
+                                    if (search === " ") {
+                                        return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes(`${filteredStatus}`)
+                                    }
+                                    else if (filteredStatus === "all") {
+                                        return val.Username.toLowerCase().includes(search.toLowerCase())
+                                    } else if (filteredStatus === "new") {
+                                        return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
+                                    } else if (filteredStatus === "inprogress") {
+                                        return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
+                                    } else if (filteredStatus === "completed") {
+                                        return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('completed')
+                                    } else return val;
+                                } else if (filteredTitle === "Status") {
+                                    return val.Status.toLowerCase().includes(search.toLowerCase())
+                                } else if (filteredTitle === "Team") {
+                                    return val.Team.toLowerCase().includes(search.toLowerCase())
+                                } else if (filteredTitle === "Date") {
+                                    return val.Date.toString().includes(search.toString())
+                                } else if (filteredTitle === "Username") {
+                                    if (filteredStatus === "inprogress") {
+                                        console.log("inprogress selected")
+                                        //return val.Status.toLowerCase().includes("inprogress")
+                                    } else if (filteredStatus === "completed") {
+                                        console.log("completed selected")
+                                        // return val.Status.toLowerCase().includes("completed")
+                                    } else return val;
+                                }
+                            }
+
+                        }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
+                            <div key={tickets.ticketsId} className='tickets-table-row'>
+
+                                <table  >
+                                    <tbody>
+
+                                        <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Username, tickets.Phonenumber, tickets.DomainName, tickets.Date, tickets.Description, tickets.Status, tickets.statusUpdateTime, tickets.Team, tickets.Screenshots)} >
+                                            <td>{tickets.ticketsId}</td>
+                                            <td>{tickets.Username}</td>
+                                            <td>{tickets.Date}</td>
+                                            <td>{tickets.Team}</td>
+                                            <td >
+                                                <h5 className={tickets.Status}>
+                                                    {tickets.Status}
+                                                </h5>
+                                                <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <FormDialog
+                                    dialog_className="Assign-team-dailog"
+                                    dialogtitle="Assign"
+                                    className="btn3 ticket-update2"
+                                    dialogbody={
+                                        <div className="form dialog">
+                                            <div className="form-toggle"></div>
+                                            <div className="form-panel update one">
+                                                <div className="form-header">
+                                                    <h1>Update Ticket {tickets.ticketsId}</h1>
+                                                </div>
+                                                <div className="addform">
+                                                    <form>
+                                                        <div className="form-group">
+                                                            <label className="label">Team</label>
+                                                            <select className="form-input" name="Status" onChange={handleTeam}>
+                                                                <option value="">--Select--</option>
+                                                                <option className='new' value="design">Design Team</option>
+                                                                <option className='inprogress' value="development">Development Team</option>
+                                                                <option className='completed' value="server">Server Team</option>
+                                                                <option className='completed' value="seo">SEO Team</option>
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+                                            <h4 className="alert1 text-center">{show}</h4>
+                                        </div>
+                                    }
+                                />
+                                <FormDialog
+                                    dialog_className="send-email-dailog"
+                                    dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
+                                    className="btn3 ticket-update2"
+                                    dialogbody={
+                                        <div className="form dialog emaildialog">
+
+                                            <div className="form-group">
+                                                <label className="label">status</label>
+                                                <select className="form-input" onChange={handlestatus}>
+                                                    <option value="">--Select stutus--</option>
+
+                                                    <option className='completed' value="completed">completed</option>
+                                                </select>
+                                            </div>
+                                            <button className="btn2 float-end mt-3 mb-3" onClick={SendEmail}>Send Email</button>
+                                            <h4 className="alert1 text-center">{showmailstatus}</h4>
+
+                                        </div>
+                                    }
+                                />
+                            </div>
+                        )}
+                        < ReactPaginate
+                            previousLabel={""}
+                            nextLabel={""}
+                            pageCount={tickets.length / datalimit}
+                            onPageChange={(e) => handlePageChange(e.selected)}
+                            containerClassName={"pagination justify-content-center mt-3"}
+                            pageClassName={"page-item"}
+                            pageLinkClassName={"page-link"}
+                            activeClassName={"active"}
+                        />
+                    </TableContainer>
+                </div>
+                :
+                <div className='ticket-details'>
+                    <button onClick={closeDetails}>close</button>
+                    <div className='ticket details-title'>Ticket NO {dticketsId}</div>
+                    <div className='ticket details-name'>
+                        <label className="label">Username</label>
+                        <div className='ticket-input-details' >{username}</div>
+                    </div>
+                    <div className='ticket details-no'>
+                        <label className="label">Phonenumber</label>
+                        <div className='ticket-input-details' >{phonenumber}</div>
+                    </div>
+                    <div className='ticket details-domain'>
+                        <label className="label">DomainName</label>
+                        <div className='ticket-input-details' >{domainName}</div>
+                    </div>
+                    <div className='ticket details-Date'>
+                        <label className="label">Date</label>
+                        <div className='ticket-input-details' > {date}</div>
+                    </div>
+                    <div className='ticket details-Des'>
+                        <label className="label">Description</label>
+                        <div className='ticket-input-details' > {description}</div>
+                    </div>
+                    <div className='ticket details-Status'><label className="label">Status</label>
+
+                        <h5  > {dstatus}</h5>
+                        <h5 className='statusUpdateTime'>Updated at {statusUpdatetime}</h5>
+                    </div>
+                    {tickets.timeline === "completed" ? <></> : <div className='ticket details-Status'><label className="label">timeline</label>
+                        <h5 className='statusUpdateTime'>Updated at {team}</h5>
+                    </div>}
+
+                    <div className='ticket details-Team' ><label className="label">Team</label>
+                        <div className='ticket-input-details' > {tickets.Team}</div></div>
+                    <div className='ticket details-Team'>
+                        <label className="label">Screenshot</label>
+                        <Imageviewer
+                            imgdialogbutton={<img src={screenshots} alt="screenshots" width={100} height={50} />}
+                            imgdialogbody={<img className='screeshot-img-viewer' src={screenshots} alt="screenshots" />}
+                        />
                     </div>
                 </div>
-                <TableContainer component={Paper}>
-                    <div className='tickets-bodyrow2'>
-                        <div>TicketId</div>
-                        <div>Username</div>
-                        <div >Date</div>
-                        <div>Team</div>
-                        <div>Status</div>
-                        <div className='empty-col'></div>
-                    </div>
-                    {tickets.filter(val => {
-                        if (search === " ") {
-                            return val;
-                        } else {
-                            if (filteredTitle === "all") {
-                                return val
-                            } else if (filteredTitle === "ticketsId") {
-                                return val.ticketsId.toString().includes(search.toString())
-                            } else if (filteredTitle === "Username") {
-                                if (search === " ") {
-                                    return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes(`${filteredStatus}`)
-                                }
-                                else if (filteredStatus === "all") {
-                                    return val.Username.toLowerCase().includes(search.toLowerCase())
-                                } else if (filteredStatus === "new") {
-                                    return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
-                                } else if (filteredStatus === "inprogress") {
-                                    return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
-                                } else if (filteredStatus === "completed") {
-                                    return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('completed')
-                                } else return val;
-                            } else if (filteredTitle === "Status") {
-                                return val.Status.toLowerCase().includes(search.toLowerCase())
-                            } else if (filteredTitle === "Team") {
-                                return val.Team.toLowerCase().includes(search.toLowerCase())
-                            } else if (filteredTitle === "Date") {
-                                return val.Date.toString().includes(search.toString())
-                            } else if (filteredTitle === "Username") {
-                                if (filteredStatus === "inprogress") {
-                                    console.log("inprogress selected")
-                                    //return val.Status.toLowerCase().includes("inprogress")
-                                } else if (filteredStatus === "completed") {
-                                    console.log("completed selected")
-                                    // return val.Status.toLowerCase().includes("completed")
-                                } else return val;
-                            }
-                        }
-
-                    }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
-                        <div key={tickets.ticketsId} className='tickets-table-row'>
-                           
-                                    <table  >
-                                        <tbody>
-
-                                            <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Username,tickets.Phonenumber,tickets.DomainName,tickets.Date,tickets.Description,tickets.Status,tickets.statusUpdateTime,tickets.Team,tickets.Screenshots)} >
-                                                <td>{tickets.ticketsId}</td>
-                                                <td>{tickets.Username}</td>
-                                                <td>{tickets.Date}</td>
-                                                <td>{tickets.Team}</td>
-                                                <td >
-                                                    <h5 className={tickets.Status}>
-                                                        {tickets.Status}
-                                                    </h5>
-                                                    <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                             
-                            <FormDialog
-                                dialog_className="Assign-team-dailog"
-                                dialogtitle="Assign"
-                                className="btn3 ticket-update2"
-                                dialogbody={
-                                    <div className="form dialog">
-                                        <div className="form-toggle"></div>
-                                        <div className="form-panel update one">
-                                            <div className="form-header">
-                                                <h1>Update Ticket {tickets.ticketsId}</h1>
-                                            </div>
-                                            <div className="addform">
-                                                <form>
-                                                    <div className="form-group">
-                                                        <label className="label">Team</label>
-                                                        <select className="form-input" name="Status" onChange={handleTeam}>
-                                                            <option value="">--Select--</option>
-                                                            <option className='new' value="design">Design Team</option>
-                                                            <option className='inprogress' value="development">Development Team</option>
-                                                            <option className='completed' value="server">Server Team</option>
-                                                            <option className='completed' value="seo">SEO Team</option>
-                                                        </select>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
-                                        <h4 className="alert1 text-center">{show}</h4>
-                                    </div>
-                                }
-                            />
-                            <FormDialog
-                                dialog_className="send-email-dailog"
-                                dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
-                                className="btn3 ticket-update2"
-                                dialogbody={
-                                    <div className="form dialog emaildialog">
-
-                                        <div className="form-group">
-                                            <label className="label">status</label>
-                                            <select className="form-input" onChange={handlestatus}>
-                                                <option value="">--Select stutus--</option>
-
-                                                <option className='completed' value="completed">completed</option>
-                                            </select>
-                                        </div>
-                                        <button className="btn2 float-end mt-3 mb-3" onClick={SendEmail}>Send Email</button>
-                                        <h4 className="alert1 text-center">{showmailstatus}</h4>
-
-                                    </div>
-                                }
-                            />
-                        </div>
-                    )}
-                    < ReactPaginate
-                        previousLabel={""}
-                        nextLabel={""}
-                        pageCount={tickets.length / datalimit}
-                        onPageChange={(e) => handlePageChange(e.selected)}
-                        containerClassName={"pagination justify-content-center mt-3"}
-                        pageClassName={"page-item"}
-                        pageLinkClassName={"page-link"}
-                        activeClassName={"active"}
-                    />
-                </TableContainer>
-            </div>
-            :
-<div className='ticket-details'>
-<button onClick={closeDetails}>close</button>
-                                        <div className='ticket details-title'>Ticket NO {dticketsId}</div>
-                                        <div className='ticket details-name'>
-                                            <label className="label">Username</label>
-                                            <div className='ticket-input-details' >{username}</div>
-                                        </div>
-                                        <div className='ticket details-no'>
-                                            <label className="label">Phonenumber</label>
-                                            <div className='ticket-input-details' >{phonenumber}</div>
-                                        </div>
-                                        <div className='ticket details-domain'>
-                                            <label className="label">DomainName</label>
-                                            <div className='ticket-input-details' >{domainName}</div>
-                                        </div>
-                                        <div className='ticket details-Date'>
-                                            <label className="label">Date</label>
-                                            <div className='ticket-input-details' > {date}</div>
-                                        </div>
-                                        <div className='ticket details-Des'>
-                                            <label className="label">Description</label>
-                                            <div className='ticket-input-details' > {description}</div>
-                                        </div>
-                                        <div className='ticket details-Status'><label className="label">Status</label>
-
-                                            <h5  > {dstatus}</h5>
-                                            <h5 className='statusUpdateTime'>Updated at {statusUpdatetime}</h5>
-                                        </div>
-                                        {tickets.timeline === "completed" ? <></> : <div className='ticket details-Status'><label className="label">timeline</label>
-                                            <h5 className='statusUpdateTime'>Updated at {team}</h5>
-                                        </div>}
-
-                                        <div className='ticket details-Team' ><label className="label">Team</label>
-                                            <div className='ticket-input-details' > {tickets.Team}</div></div>
-                                        <div className='ticket details-Team'>
-                                            <label className="label">Screenshot</label>
-                                            <Imageviewer
-                                                imgdialogbutton={<img src={screenshots} alt="screenshots" width={100} height={50} />}
-                                                imgdialogbody={<img className='screeshot-img-viewer' src={screenshots} alt="screenshots" />}
-                                            />
-                                        </div>
-                                    </div>
-}
+            }
         </div>
     );
 }

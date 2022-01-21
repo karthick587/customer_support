@@ -205,13 +205,23 @@ a {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   width: 1253px;
   margin: auto;
+  padding: 17px;
 }
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
- 
   margin: auto;
+  padding: 11px 15px;
+  background-color: transparent;
 }
-
+div#v-pills-users {
+  background-color: #edf4fb;
+}
+div#v-pills-tickets {
+  background-color: #1976d214;
+}
+div#v-pills-team {
+  background-color: #edf4fb;
+}
 .ticket {
   width: 417px;
 }
@@ -658,7 +668,7 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   padding: 10px 15px;
- 
+  border-radius: 17px;
 }
 .filter-head {
   margin: 2px 0px 0px 12px;
@@ -758,7 +768,7 @@ form.form2 {
 }
 .header-user {
   display: flex;
-  padding: 16px 0px 0px 0px;
+  padding: 16px 13px 10px 11px;
   position: relative;
 }
 
@@ -825,7 +835,7 @@ form.form2 {
 
 .adminticket-head {
   display: flex;
-  padding: 16px 0px 0px 0px;
+  padding: 7px 7px 2px 8px;
 }
 
 .adminticket-head h1 {
