@@ -351,7 +351,9 @@ function Adminticket(props) {
                                 />
                             </div>
                         )}
-                        < ReactPaginate
+                       
+                    </TableContainer>
+                    < ReactPaginate
                             previousLabel={""}
                             nextLabel={""}
                             pageCount={tickets.length / datalimit}
@@ -361,7 +363,6 @@ function Adminticket(props) {
                             pageLinkClassName={"page-link"}
                             activeClassName={"active"}
                         />
-                    </TableContainer>
                 </div>
                 :
                 <div className='ticket-details'>
@@ -383,28 +384,28 @@ function Adminticket(props) {
                                 <div className=''>
                                     <div className='flex'>
                                         <div className="ticket-status color-green">
-                                            <div className='ticket-new-icon'><FiberNewIcon /></div>
+                                        <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {dstatus === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div></> : <div className='details-caption-strike'>New</div>}
                                         </div>
                                         <div className={dstatus === "New" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
 
                                         </div>
                                         <div className={dstatus === "started" || dstatus === "inprogress" || dstatus === "completed" ? "ticket-status color-green" : "ticket-status"}>
-                                            <div className='ticket-start-icon'><FlagIcon /></div>
+                                        <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {dstatus === "started" ? <div className='details-caption'>Started<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div> : <div className='details-caption-strike'>Started</div>}
                                         </div>
                                         <div className={dstatus === "New" || dstatus === "started" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
 
                                         </div>
                                         <div className={dstatus === "New" || dstatus === "started" ? "ticket-status" : "ticket-status color-green"}>
-                                            <div className='ticket-Pending-icon'><MoreHorizIcon /></div>
+                                        <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {dstatus === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div> : <div className='details-caption-strike'>Inprogress</div>}
                                         </div>
                                         <div className={dstatus === "completed" ? "ticket-status-line width-10 color-green-line" : " ticket-status-line width-10 "}>
 
                                         </div>
                                         <div className={dstatus === "completed" ? "ticket-status  color-green" : "ticket-status"}>
-                                            <div className='ticket-completed-icon'><CheckCircleIcon /></div>
+                                            <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {dstatus === "completed" ? <div className='details-caption'>Completed<div className='details-caption-2'>Updated at {statusUpdatetime}</div></div> : <div className='details-caption-strike'>Completed</div>}
                                         </div>
                                     </div>

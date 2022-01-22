@@ -221,7 +221,9 @@ export default function Team(props) {
                                 </>
                             }
                         </Table>
-                        < ReactPaginate
+                       
+                    </TableContainer>
+                    < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
                         pageCount={team.length / datalimit}
@@ -231,7 +233,6 @@ export default function Team(props) {
                         pageLinkClassName={"page-link"}
                         activeClassName={"active"}
                     />
-                    </TableContainer>
                 </div>
                 </div>
             </div>

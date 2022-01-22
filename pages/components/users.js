@@ -204,7 +204,9 @@ useEffect(()=>{
                                 </TableBody>
                             )}
                         </Table>
-                        < ReactPaginate
+                       
+                    </TableContainer>
+                    < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
                         pageCount={users.length / datalimit}
@@ -214,7 +216,6 @@ useEffect(()=>{
                         pageLinkClassName={"page-link"}
                         activeClassName={"active"}
                     />
-                    </TableContainer>
                 </div>
                 </div>
             </div>
