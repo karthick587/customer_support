@@ -20,19 +20,30 @@ import Imageviewer from './common/imageviewer';
 import ReactPaginate from 'react-paginate';
 export default function Users(props) {
     var [search, setSearch] = useState('');
-    var [selectedValue, setSelectedValue] = useState('');
+    //var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
     //console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
     var [exportUsers, setExportUsers] = useState([]);
+    var [selectedValue, setSelectedValue] = useState([]);
 
 
-
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data))
-    }, [users]);
+  
+useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/customer/list")
+        .then((res) => {
+            setUsers(res.data);
+            if(localStorage.getItem("passValue") === true){
+                setSelectedValue(team)
+            }else{
+                setSelectedValue([])
+            }
+        })
+}, [selectedValue]);
+useEffect(()=>{
+    localStorage.setItem("passValue",false)
+})
     const [usercount, setusercount] = useState();
     useEffect(() => {
         setusercount(users.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((userd) => setusercount(userd.Status)).length)

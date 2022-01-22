@@ -25,10 +25,21 @@ export default function Team(props) {
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
     var [exportTeam, setExportTeam] = useState([]);
+    var [selectedValue, setSelectedValue] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data));
-    }, [team]);
+            .then((res) => {
+                setTeam(res.data);
+               if(localStorage.getItem("passValue") === true){
+                   setSelectedValue(team)
+               }else{
+                   setSelectedValue([])
+               }
+            });
+    }, [selectedValue]);
+    useEffect(()=>{
+        localStorage.setItem("passValue",false)
+    })
     const deleteUsers = (id, name) => {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'

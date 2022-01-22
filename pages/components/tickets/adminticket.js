@@ -22,12 +22,24 @@ function Adminticket(props) {
     var [filteredStatus, setFilteredStatus] = useState('all');
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
+    var [selectedValue, setSelectedValue] = useState([]);
+    //const[passValue,setPassValue] = useState(localStorage.getItem("passValue",false))
     var [tickets, setTickets,] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
+            .then((res) => {
+                setTickets(res.data)
+                if(localStorage.getItem("passValue") === true){
+                    setSelectedValue(team)
+                }else{
+                    setSelectedValue([])
+                }
+            });
 
-    }, [tickets]);
+    }, [selectedValue]);
+    useEffect(()=>{
+        localStorage.setItem("passValue",false)
+    })
     let ticketscount = 0;
     ticketscount = tickets.length
     const [notificationcount, setnotificationcount] = useState()
@@ -44,6 +56,7 @@ function Adminticket(props) {
         }).then((_response) => {
             setShow("update Successfully");
             localStorage.setItem('updateclose', "close");
+            localStorage.setItem("passValue",true);
         });
     }
     useEffect(() => {

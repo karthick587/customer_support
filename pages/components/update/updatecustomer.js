@@ -12,7 +12,8 @@ function Updatecustomer({ usersId }) {
     const [uploadLogo, setUploadLogo] = useState();
     const [selected, setSelected] = useState(false);
     var [show, setShow] = useState('');
-    const [Adminname, setAdminname] = useState([])
+    const [Adminname, setAdminname] = useState([]);
+    const[passValue,setPassValue] = useState(localStorage.getItem("passValue",false))
     let CompanynameR = createRef();
     let ClientnameR = createRef();
     let UsernameR = createRef();
@@ -31,7 +32,7 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
-    }, [getCustomer]);
+    }, []);
 
     function handleUpdate(Logo,Companyname,Clientname, Username, Password, Email, Phonenumber) {
 
@@ -76,6 +77,7 @@ function Updatecustomer({ usersId }) {
         }).then((res) => {
                 setShow("Updated Successfully")
                 localStorage.setItem('updateclose', "close"); 
+                localStorage.setItem("passValue",true)
             })
            
         }

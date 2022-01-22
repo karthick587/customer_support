@@ -10,6 +10,8 @@ function Updateteam({ teamId }) {
     var [getTeam, setGetTeam] = useState([]);
     var [editTeam, setEditTeam] = useState('');
     var [show, setShow] = useState('');
+    const[passValue,setPassValue] = useState(localStorage.getItem("passValue",false))
+
 
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/team/list/${teamId}`)
@@ -23,6 +25,8 @@ function Updateteam({ teamId }) {
         }).then((res) => {
             setShow("Updated Successfully")
             localStorage.setItem('updateclose', "close"); 
+            localStorage.setItem("passValue",true)
+
         })
     }
 
