@@ -47,7 +47,7 @@ export default function Login1() {
 
         localStorage.setItem('clientname', SlicedName);
     }
-    if (validate === "admin") {
+    
       Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
         username: SlicedName,
         password: password,
@@ -63,23 +63,6 @@ export default function Login1() {
           });
         }
       });
-    } else {
-      Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-        username: SlicedName,
-        password: password,
-        Isdeleted: "n"
-      }).then((response) => {
-        if (response.data.statusCode === 400) {
-          setLoginStatus(response.data.message);
-        } else {
-          localStorage.setItem('loggedin', true);
-          localStorage.setItem('activeTab', "Dashboard")
-          router.push({
-            pathname: `../components/dash/${validate}dashboard`,
-          });
-        }
-      });
-    }
   }
   const onBackButtonEvent = (e) => {
     e.preventDefault();

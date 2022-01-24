@@ -55,12 +55,12 @@ function Userissue(props) {
         data.append("Email", Email);
         data.append("Phonenumber", Phonenumber);
         data.append("DomainName", DomainName);
-        data.append("date", date+ ' ' + fullTime);
+        data.append("Date", date+ ' ' + fullTime);
         data.append("Description", Description);
-        data.append("Team", Team);
-        data.append("Status", Status);
+        //data.append("Team", Team);
+        //data.append("Status", Status);
         data.append("file", Screenshots);
-        data.append("Notification", "unseen");
+        //data.append("Notification", "unseen");
         data.append("statusUpdatedTime", date + ' ' + fullTime)
         Axios.post("https://mindmadetech.in/api/tickets/new", data, {
             headers: {

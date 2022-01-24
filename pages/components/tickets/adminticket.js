@@ -23,8 +23,8 @@ function Adminticket(props) {
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
-    //const[passValue,setPassValue] = useState(localStorage.getItem("passValue",false))
     var [tickets, setTickets,] = useState([]);
+    var[Adm_CreatedBy,setAdm_CreatedBy] = useState('')
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => {
@@ -38,14 +38,44 @@ function Adminticket(props) {
 
     }, [selectedValue]);
     useEffect(()=>{
-        localStorage.setItem("passValue",false)
+        localStorage.setItem("passValue",false);
+        setAdm_CreatedBy(localStorage.getItem('user'))
     })
+   
     let ticketscount = 0;
     ticketscount = tickets.length
     const [notificationcount, setnotificationcount] = useState()
     useEffect(() => {
         setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
     }, [tickets])
+
+    var today = new Date();
+    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+    var fullDate, TimeType, hour, minutes, seconds, Adm_CreatedOn;
+    fullDate = new Date();
+    hour = fullDate.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = fullDate.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = fullDate.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
+    Adm_CreatedOn = date + ' ' + hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
+    
     function handleTeam(e) {
         setSelectedTeam(e.target.value)
     }
@@ -53,6 +83,8 @@ function Adminticket(props) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateteam/${ticketsId}`, {
             Team: selectedTeam,
             ticketsId: ticketsId,
+            Adm_CreatedOn : Adm_CreatedOn,
+            Adm_CreatedBy : Adm_CreatedBy
         }).then((_response) => {
             setShow("update Successfully");
             localStorage.setItem('updateclose', "close");
@@ -149,7 +181,7 @@ function Adminticket(props) {
     const [username, setusername] = useState("")
     const [phonenumber, setphonenumber] = useState("")
     const [domainName, setdomainName] = useState("")
-    const [date, setdate] = useState("")
+    //const [date, setdate] = useState("")
     const [description, setdescription] = useState("")
     const [dstatus, setdstatus] = useState("")
     const [statusUpdatetime, setstatusUpdateTime] = useState("")
@@ -160,7 +192,7 @@ function Adminticket(props) {
         setusername(Username)
         setphonenumber(Phonenumber)
         setdomainName(DomainName)
-        setdate(Date)
+       // setdate(Date)
         setdescription(Description)
         setdstatus(Status)
         setstatusUpdateTime(statusUpdateTime)
@@ -186,6 +218,9 @@ function Adminticket(props) {
     function closeDetails() {
         setShowdetails(false)
     }
+
+    
+
     return (
         <div>
             <Head>
@@ -212,6 +247,7 @@ function Adminticket(props) {
 
                                     <option value="all">All</option>
                                     <option value="new">new</option>
+                                    <option value="started">started</option>
                                     <option value="inprogress">In Progress</option>
                                     <option value="completed">Completed</option>
                                 </select>
@@ -251,6 +287,8 @@ function Adminticket(props) {
                                     }
                                     else if (filteredStatus === "all") {
                                         return val.Username.toLowerCase().includes(search.toLowerCase())
+                                    } else if (filteredStatus === "started") {
+                                        return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
                                     } else if (filteredStatus === "new") {
                                         return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
                                     } else if (filteredStatus === "inprogress") {
@@ -262,8 +300,8 @@ function Adminticket(props) {
                                     return val.Status.toLowerCase().includes(search.toLowerCase())
                                 } else if (filteredTitle === "Team") {
                                     return val.Team.toLowerCase().includes(search.toLowerCase())
-                                } else if (filteredTitle === "Date") {
-                                    return val.Date.toString().includes(search.toString())
+                                // } else if (filteredTitle === "Date") {
+                                //     return val.Date.toString().includes(search.toString())
                                 } else if (filteredTitle === "Username") {
                                     if (filteredStatus === "inprogress") {
                                         console.log("inprogress selected")
@@ -284,13 +322,13 @@ function Adminticket(props) {
                                         <tr className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Username, tickets.Phonenumber, tickets.DomainName, tickets.Date, tickets.Description, tickets.Status, tickets.statusUpdateTime, tickets.Team, tickets.Screenshots)} >
                                             <td>{tickets.ticketsId}</td>
                                             <td>{tickets.Username}</td>
-                                            <td>{tickets.Date}</td>
+                                            {/* <td>{tickets.Date}</td> */}
                                             <td>{tickets.Team}</td>
                                             <td >
                                                 <h5 className={tickets.Status}>
                                                     {tickets.Status}
                                                 </h5>
-                                                <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
+                                                {/* <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5> */}
                                             </td>
                                         </tr>
 
@@ -465,18 +503,19 @@ function Adminticket(props) {
                                 <div className='ticket-input-details' >
                                     {phonenumber}
                                 </div>
-                                <div className='label-ticket-details'>
+                                {/* <div className='label-ticket-details'>
                                     Date
                                 </div>
                                 <div className='ticket-input-details' >
                                     {date}
-                                </div>
+                                </div> */}
 
                             </div>
                             <div className='ticket-details-screenshot'>
                                 <div className='label-ticket-details'>
                                     Screenshot
                                 </div>
+                                
                                 <Imageviewer
                                     imgdialogbutton={<img src={screenshots} alt="screenshots" width={200} height={100} />}
                                     imgdialogbody={<img className='screeshot-img-viewer' src={screenshots} alt="screenshots" />}
