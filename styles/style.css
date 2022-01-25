@@ -195,7 +195,7 @@ a {
 }
 .teambody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 1356px;
+  background-color: #1976d214;
   padding: 22px 36px;
   margin: auto;
 }
@@ -204,24 +204,16 @@ a {
   width: 1254px;
   padding: 17px;
   margin: auto;
+  background-color: #1976d214;
 }
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   margin: auto;
   padding: 11px 15px;
-  background-color: transparent;
-}
-div#v-pills-users {
-  background-color: #edf4fb;
- 
-}
-div#v-pills-tickets {
   background-color: #1976d214;
-}
-div#v-pills-team {
-  background-color: #edf4fb;
 
 }
+
 .ticket {
   width: 417px;
 }
@@ -1128,7 +1120,7 @@ img.screeshot-img-viewer {
   text-align: left;
   padding: 34px 0px 0px 0px;
   border-bottom: 1px solid #e2e2e2;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -1281,6 +1273,7 @@ img.screeshot-img-viewer {
 .ticket-details {
   padding: 18px 50px;
   height: 100vh;
+  background-color: #1976d214;
 }
 .ticket-details-head {
   padding: 10px 0px;
@@ -1458,5 +1451,27 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   font-size: 18px;
 }
 .ticket-icon {
-  margin: -1px 2px;
+  margin: -1.3px 2.84px;
+}
+.update-right{
+  position: relative;
+}
+.update7 {
+  position: absolute;
+  right: 0;
+  top: 16px;
+}
+.updateadminpage {
+  position: absolute;
+  right: 0;
+  margin-top: -18px;
+  top: 0;
+}
+.tickets-bodyrow:hover{
+  background-color: #1976d214;
+  cursor: pointer;
+}
+.highlighted-row:hover{
+  background-color: #1976d214;
+  cursor: pointer;
 }

@@ -61,7 +61,7 @@ function Userissue(props) {
         //data.append("Status", Status);
         data.append("file", Screenshots);
         //data.append("Notification", "unseen");
-        data.append("statusUpdatedTime", date + ' ' + fullTime)
+        data.append("Cus_CreatedOn", date + ' ' + fullTime)
         Axios.post("https://mindmadetech.in/api/tickets/new", data, {
             headers: {
                 'Content-Type': 'multipart/form-data',

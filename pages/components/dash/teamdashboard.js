@@ -15,17 +15,14 @@ import Dashcard from "../common/dashCard";
 const TeamDashboard = (props) => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-
   //access for team dashboard
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-
     if (login === "false") {
       router.push("/")
     } else if (login === null) {
       router.push("/")
     }
-  
   })
   //alert to conform logout
   const onBackButtonEvent = (e) => {

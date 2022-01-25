@@ -1,47 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import {Formik,Form,Field} from 'formik';
-import * as Yup from 'yup';
 
-function FormikYup() {
-    
 
+function Test() {
     
+    const [email, setEmail] = useState('')
    
-    const getvalue=({firstname,lastname,email})=>{
-
-    }
-
-const [initialValues]=useState(
-    {  
-        firstname:"karthickraja",
-        lastname:'raja',
-        email:'karthickduarai587@gmail.com'
+    const [checked, setChecked] = useState(false)
+    useEffect(()=>{
+        if(checked===false){
+            setEmail('')
+           }
+       
     })
-useEffect(()=>{
-
-})
+    const handleClick = () =>{
+         setChecked(!checked)
+        }
+ 
+    
+console.log(email)
+  
 
     return (
         <div>
-            <Formik
-            initialValues = {initialValues}
-            onSubmit = {value =>getvalue(value)}
-            >
-          
-                <Form >
-                 <Field name="firstname" />
-                
-                 <Field name="lastname" />
-                
-                 <Field name="email"  />
-                
-                 <button type="submit" className="btn btn-success">Submit</button>
-                 </Form>
-          
-
-            </Formik>
+          <input onClick={handleClick} checked={checked} value="check" type="checkbox" onChange={(e) => setEmail(e.target.value)}   />
         </div>
     )
 }
 
-export default FormikYup
+export default Test
