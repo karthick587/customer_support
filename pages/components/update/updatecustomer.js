@@ -13,7 +13,7 @@ function Updatecustomer({ usersId }) {
     const [selected, setSelected] = useState(false);
     var [show, setShow] = useState('');
     const [Adminname, setAdminname] = useState([]);
-    const[passValue,setPassValue] = useState(localStorage.getItem("passValue",false))
+    const[passValue,setPassValue] = useState()
     let CompanynameR = createRef();
     let ClientnameR = createRef();
     let UsernameR = createRef();
@@ -24,7 +24,9 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
     }, [])
-    
+    useEffect(()=>{
+        setPassValue(localStorage.getItem("passValue",false))
+    })
     const [Modifiedby, setModifiedby] = useState()
     useEffect(() => {
         setModifiedby(Adminname.slice(3, 20));
