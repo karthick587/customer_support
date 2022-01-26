@@ -15,7 +15,7 @@ useEffect(() => {
   return (
       <>
     {ticket.map((tickets) =>
-    <div className='ticket-details'>
+    <div className='ticket-details' key={tickets.ticketsId}>
                     <div className='ticket-details-head'>
                         viewing Support Ticket #{tickets.ticketsId}
                         <div className='ticket-details-head-btn '>

@@ -25,7 +25,6 @@ function Adminticket(props) {
     var [selectedValue, setSelectedValue] = useState([]);
     var [tickets, setTickets,] = useState([]);
     var [Adm_CreatedBy, setAdm_CreatedBy] = useState('')
-   
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => {
@@ -45,11 +44,12 @@ function Adminticket(props) {
 
     let ticketscount = 0;
     ticketscount = tickets.length
+    //notification count
     const [notificationcount, setnotificationcount] = useState()
     useEffect(() => {
         setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
     }, [tickets])
-
+//current date and time
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();
@@ -79,7 +79,7 @@ function Adminticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
-   
+   //filter function
 
     useEffect(() => {
         if (filteredTitle === "all") {
@@ -98,6 +98,7 @@ function Adminticket(props) {
             setIsOpenstatusfilter(false);
         }
     });
+    //page access
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))
@@ -107,6 +108,7 @@ function Adminticket(props) {
         } else if (login === null) {
             Router.push("/")
         }
+        //passing value to parent component
         props.parentCallback(ticketscount);
         props.notificationcount(notificationcount);
 
@@ -377,16 +379,16 @@ function Adminticket(props) {
                                                           
                                                                 <div className="form-group">
                                                                     <label className="label">Team</label>
-                                                                    <div class="dropdown">
-                                                                <button class="form-input dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <div className="dropdown">
+                                                                <button className="form-input dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                                    Assign Team
                                                                 </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                                 
-                                                                    <li className='flex'><div class="dropdown-item">design</div><input onClick={handleClick1} checked={checked1} type="checkbox" value=",design" onChange={(e) => setselecteddesignTeam(e.target.value)}  /></li>
-                                                                    <li className='flex'><div class="dropdown-item">server</div><input className="form-check-input" onClick={handleClick2} checked={checked2} type="checkbox"  value=",server" onChange={(e) => setselectedserverTeam(e.target.value)} /></li>
-                                                                    <li className='flex'><div class="dropdown-item">development</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox"  value=",development" onChange={(e) => setselecteddevelopmentTeam(e.target.value)} /></li>
-                                                                    <li className='flex'><div class="dropdown-item">seo</div><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value=",seo" onChange={(e) => setselectedseoTeam(e.target.value)} /></li>
+                                                                    <li className='flex'><div className="dropdown-item">design</div><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value=",design" onChange={(e) => setselecteddesignTeam(e.target.value)}  /></li>
+                                                                    <li className='flex'><div className="dropdown-item">server</div><input className="form-check-input" onClick={handleClick2} checked={checked2} type="checkbox"  value=",server" onChange={(e) => setselectedserverTeam(e.target.value)} /></li>
+                                                                    <li className='flex'><div className="dropdown-item">development</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox"  value=",development" onChange={(e) => setselecteddevelopmentTeam(e.target.value)} /></li>
+                                                                    <li className='flex'><div className="dropdown-item">seo</div><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value=",seo" onChange={(e) => setselectedseoTeam(e.target.value)} /></li>
                                                                 </ul>
                                                             </div>
 
