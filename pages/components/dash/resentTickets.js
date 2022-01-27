@@ -37,7 +37,7 @@ export default function Resentticket() {
                         {tickets.filter(val => {
                             return val.Status.toLowerCase().includes("New".toLowerCase())
                         }).map((tickets) =>
-                            <TableRow >
+                            <TableRow key={tickets.ticketsId}>
                                  <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                 <TableCell >{tickets.ticketsId}</TableCell>
                                 <TableCell >{tickets.Username}</TableCell>                             

@@ -16,7 +16,7 @@ function Teamticket(props) {
     const { tickets } = useContext(CounterContext);
     const Router = useRouter()
     var [show, setShow] = useState('');
-    var [tickets, setTickets] = useState([]);
+   
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
