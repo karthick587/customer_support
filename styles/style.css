@@ -130,29 +130,12 @@ a {
     color: rgba(0, 0, 0, 0.87);
   }
 
-  .tickets-bodyrow td {
-    width: 90px !important;
-    text-align: left;
-    
-    padding: 34px 0px 0px 0px;
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.87);
-}
+  
 
   .ticket {
     width: 300px !important;
   }
 }
-
-.tickets-bodyrow td {
-  width: 229px;
-  text-align: left;
- 
-  padding: 34px 0px 0px 0px;
-  font-size: 13px;
-  color: rgba(0, 0, 0, 0.87);
-}
-
 .css-dsuxgy-MuiTableCell-root {
   padding: 0px !important;
 }
@@ -196,20 +179,19 @@ a {
 .teambody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
  
-  padding: 22px 36px;
+  padding: 22px 0px;
   margin: auto;
 }
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 1254px;
-  padding: 17px;
+  padding: 17px 0px;
   margin: auto;
  
 }
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   margin: auto;
-  padding: 11px 15px;
+  padding: 11px 0px;
  
 
 }
@@ -932,8 +914,9 @@ h4.alert1.text-center {
 }
 
 .css-dsuxgy-MuiTableCell-root {
-  font-size: 13px;
-  padding-top: 18px !important;
+  font-size: 14px;
+  font-weight: 500 !important;
+  padding-top: 30px !important;
 }
 .css-13xy2my {
   background-color: #fff;
@@ -1123,16 +1106,6 @@ img.screeshot-img-viewer {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.87);
 }
-.tickets-bodyrow td {
-  width: 229x;
-  text-align: left;
-  padding: 34px 0px 0px 0px;
-  border-bottom: 1px solid #e2e2e2;
-  font-size: 13px;
- 
-  color: rgba(0, 0, 0, 0.87);
-}
-
 .notification-head div {
   color: white;
   font-weight: 500;
@@ -1272,8 +1245,8 @@ img.screeshot-img-viewer {
 }
 .ticket-details {
   padding: 18px 50px;
-  height: 100vh;
-  background-color: #1976d214;
+ 
+ 
 }
 .ticket-details-head {
   padding: 10px 0px;
