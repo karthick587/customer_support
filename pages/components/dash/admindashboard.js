@@ -158,19 +158,19 @@ const AdminDashboard = () => {
                             <Dashcard
                               cardHead="No of Tickets"
                               cardbody={ticketscount}
-
+                              cardfooter="Rised"
                               cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                             />
                             <Dashcard
                               cardHead="No of users"
                               cardbody={usercount}
-
+                              cardfooter="Active"
                               cardIcon={<FontAwesomeIcon icon={faUser} />}
                             />
                             <Dashcard
                               cardHead="No of Team members"
                               cardbody={teamcount}
-
+                              cardfooter="Active"
                               cardIcon={<FontAwesomeIcon icon={faUsers} />}
                             />
                           </div>

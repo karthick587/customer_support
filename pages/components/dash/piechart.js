@@ -20,7 +20,7 @@ export default function Piechart() {
         name: "Tickets",
         type: "pie",
         radius: "50%",
-        center: ["50%", "60%"],
+        center: ["50%", "50%"],
         data: [{ name: "New", value: adminNewcount }, { name: "Start", value: adminStartedcount },{name:"Inprogress",value:adminprogresscount},{name:"Completed",value:adminCompletedcount}],
         color: color
       }
