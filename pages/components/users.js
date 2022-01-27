@@ -53,8 +53,7 @@ useEffect(()=>{
 
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
-        }).then(() => {
-            
+        }).then(() => {          
         })
         // <-- declare id parameter
         // Axios

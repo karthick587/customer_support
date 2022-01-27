@@ -1,10 +1,10 @@
-import React, { useEffect, useState,createRef } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import FormDialog from '../common/dialogsform';
 import EditIcon from '@mui/icons-material/Edit';
-
+import Button from '@mui/material/Button';
 function Updatecustomer({ usersId }) {
     let router = useRouter();
     var [getCustomer, setGetCustomer] = useState([]);
@@ -13,7 +13,7 @@ function Updatecustomer({ usersId }) {
     const [selected, setSelected] = useState(false);
     var [show, setShow] = useState('');
     const [Adminname, setAdminname] = useState([]);
-    const[passValue,setPassValue] = useState()
+    const [passValue, setPassValue] = useState()
     let CompanynameR = createRef();
     let ClientnameR = createRef();
     let UsernameR = createRef();
@@ -24,28 +24,28 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
     }, [])
-    useEffect(()=>{
-        setPassValue(localStorage.getItem("passValue",false))
+    useEffect(() => {
+        setPassValue(localStorage.getItem("passValue", false))
     })
     const [Modifiedby, setModifiedby] = useState()
     useEffect(() => {
         setModifiedby(Adminname.slice(3, 20));
-    },[])
+    }, [])
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
     }, []);
 
-    function handleUpdate(Logo,Companyname,Clientname, Username, Password, Email, Phonenumber) {
+    function handleUpdate(Logo, Companyname, Clientname, Username, Password, Email, Phonenumber) {
 
-        var Logo,Companyname,Clientname,Username,Password,Email,Phonenumber;
+        var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber;
         Companyname = CompanynameR.current.value;
         Clientname = ClientnameR.current.value;
         Username = UsernameR.current.value;
         Password = PasswordR.current.value;
         Email = EmailR.current.value;
         Phonenumber = PhonenumberR.current.value;
-        console.log(Companyname,Clientname,Username,Password,Email,Phonenumber)
+        console.log(Companyname, Clientname, Username, Password, Email, Phonenumber)
         switch (editLogo) {
             case undefined:
                 Logo = Logo;
@@ -64,26 +64,26 @@ function Updatecustomer({ usersId }) {
         data.append("Phonenumber", Phonenumber);
         data.append("Username", Username);
         data.append("Password", Password);
-        if(editLogo){
+        if (editLogo) {
             data.append("file", Logo);
-        }else {
-            data.append("Logo",Logo)
+        } else {
+            data.append("Logo", Logo)
         }
-        data.append("Modifiedon",date + ' ' + fullTime);
-        data.append("Modifiedby",Modifiedby)
-    
-        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`,data,{
+        data.append("Modifiedon", date + ' ' + fullTime);
+        data.append("Modifiedby", Modifiedby)
+
+        axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
         }).then((res) => {
-                setShow("Updated Successfully")
-                localStorage.setItem('updateclose', "close"); 
-                localStorage.setItem("passValue",true)
-            })
-           
-        }
-   
+            setShow("Updated Successfully")
+            localStorage.setItem('updateclose', "close");
+            localStorage.setItem("passValue", true)
+        })
+
+    }
+
     setTimeout(() => {
         setShow()
     }, [3500])
@@ -130,50 +130,54 @@ function Updatecustomer({ usersId }) {
                         <div className="container mainbody" key={data.usersId}>
                             <div className="addform">
                                 <form>
-                                <div className="form-group upload">
-                                    <label htmlFor="contained-button-file">
-                                        <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e)=>handleScreenshot(e)} />
-                                        <Avatar
-                                            alt="Remy Sharp"
-                                            src = {selected === false ? data.Logo : uploadLogo}
-                                            sx={{ width: 65, height: 65 }}
-                                        />
-                                    </label>
-                                </div>
+                                    <div className="form-group upload">
+                                        <label htmlFor="contained-button-file">
+                                            <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
+                                            <Avatar
+                                                alt="Remy Sharp"
+                                                src={selected === false ? data.Logo : uploadLogo}
+                                                sx={{ width: 65, height: 65 }}
+                                            />
+                                            <Button size="small" variant="contained" component="span">
+                                                Upload
+                                            </Button>
+                                        </label>
 
-                                <div className="form-group">
+                                    </div>
+
+                                    <div className="form-group">
                                         <label className="label"> Comapany Name</label>
-                                        <input className="form-input" name="Name" type="text" ref={CompanynameR} defaultValue={data.Companyname}  />
+                                        <input className="form-input" name="Name" type="text" ref={CompanynameR} defaultValue={data.Companyname} />
 
                                     </div>
                                     <div className="form-group">
                                         <label className="label"> Client Name</label>
-                                        <input className="form-input" name="Name" type="text" ref={ClientnameR} defaultValue={data.Clientname}  />
+                                        <input className="form-input" name="Name" type="text" ref={ClientnameR} defaultValue={data.Clientname} />
 
                                     </div>
                                     <div className="form-group">
                                         <label className="label">Username</label>
-                                        <input className="form-input" name="Username" type="text" ref={UsernameR} defaultValue={data.Username}  />
+                                        <input className="form-input" name="Username" type="text" ref={UsernameR} defaultValue={data.Username} />
 
                                     </div>
                                     <div className="form-group">
                                         <label className="col label">Password</label>
-                                        <input className="form-input" name="Password" type="text" ref={PasswordR} defaultValue={data.Password}  />
+                                        <input className="form-input" name="Password" type="text" ref={PasswordR} defaultValue={data.Password} />
 
                                     </div>
                                     <div className="form-group">
                                         <label className="col label">EMail ID</label>
-                                        <input className="form-input" name="Email" type="text" ref={EmailR} defaultValue={data.Email}  />
+                                        <input className="form-input" name="Email" type="text" ref={EmailR} defaultValue={data.Email} />
 
                                     </div>
                                     <div className="form-group">
                                         <label className="col label">Phone Number</label>
-                                        <input className="form-input" name="Phonenumber" type="text" ref={PhonenumberR} defaultValue={data.Phonenumber}  />
+                                        <input className="form-input" name="Phonenumber" type="text" ref={PhonenumberR} defaultValue={data.Phonenumber} />
 
                                     </div>
                                     <div className="row justify-content-center">
                                         <div className='bottom-area'>
-                                            <button type="button" onClick={() => handleUpdate(data.Logo,data.Companyname,data.Clientname, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
+                                            <button type="button" onClick={() => handleUpdate(data.Logo, data.Companyname, data.Clientname, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
                                         </div>
                                     </div>
                                     <h3>{show}</h3>

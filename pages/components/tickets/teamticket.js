@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
 import TableContainer from '@mui/material/TableContainer';
@@ -11,15 +11,12 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
+import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
+    const { tickets } = useContext(CounterContext);
     const Router = useRouter()
     var [show, setShow] = useState('');
     var [tickets, setTickets] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
-    }, [tickets]);
-
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)

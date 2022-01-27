@@ -213,9 +213,7 @@ a {
  
 
 }
-div#v-pills-tickets {
-  background-color: #1976d214;
-}
+
 
 .ticket {
   width: 417px;
@@ -643,8 +641,7 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-size
   padding: 0px !important;
 }
 .css-fxbtpg {
-  background-color: white !important;
-  
+  background-color: #d5e5f4ab !important;
 }
 .Imageviewer-userimg{
   
@@ -662,7 +659,7 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  padding: 10px 15px;
+  padding: 14px 31px;
   border-radius: 17px;
 }
 .filter-head {
@@ -909,6 +906,7 @@ form.form2 {
 }
 .deteleandedit button {
   margin: 11px 0px 0px 0px;
+  min-width: 43px !important;
 }
 
 h4.alert1.text-center {
@@ -984,9 +982,7 @@ h4.alert1.text-center {
 }
 
 .main-dash {
-  background-color: #1976d20f;
   font-family: Roboto, sans-serif;
-  height: 100vh;
 }
 
 .card-left {
@@ -1136,12 +1132,7 @@ img.screeshot-img-viewer {
  
   color: rgba(0, 0, 0, 0.87);
 }
-div#v-pills-users {
-  background-color: #1976d214;
-}
-div#v-pills-team {
-  background-color: #1976d214;
-}
+
 .notification-head div {
   color: white;
   font-weight: 500;
@@ -1297,7 +1288,7 @@ div#v-pills-team {
   border-radius: 10px;
 }
 .ticket-details-middle-1.flex {
-  padding: 7px 0px 20px 0px;
+  padding: 7px 0px 30px 0px;
   border-bottom: 1px solid #8080806e;
   position: relative;
 }
@@ -1361,10 +1352,11 @@ div#v-pills-team {
 color: white;
 }
 .ticket-details-middle-1-3 {
-  left: 0;
-  right: 0;
-  display: block;
+  /* left: 0; */
+  /* right: 0; */
+  /* display: block; */
   margin: auto;
+  margin-top: 10px;
 }
 .ticket-status {
   border-radius: 40px;
@@ -1406,7 +1398,7 @@ color: white;
   font-size: 14px;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500;
-  padding: 10px 0px;
+  padding: 0px 0px;
 }
 .details-caption-2 {
   margin: 35px -67px;
@@ -1483,4 +1475,61 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 .highlighted-row:hover{
   background-color: #1976d214;
   cursor: pointer;
+}
+.fixed-bottom{
+  bottom: 0 !important;
+  position: fixed !important;
+}
+.resentticket {
+  background-color: white;
+  padding: 7px 23px;
+  
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
+}
+.Resentticket-page {
+  margin: 0px 8px;
+}
+.copyright-com {
+  padding: 10px;
+}
+.resentticket-table{
+ overflow-y: scroll;
+}
+.Resentticket-page.row {
+  margin: 3px 10px;
+}
+.resentticket-table {
+  overflow-y: auto !important;
+  height: 38vh !important;
+  position: relative !important;
+}
+.resentticket-table::-webkit-scrollbar {
+  width: 4px;
+  height: 2vh;
+
+}
+
+/* Track */
+.resentticket-table::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+ 
+}
+ 
+/* Handle */
+.resentticket-table::-webkit-scrollbar-thumb {
+  background: #3387da; 
+  margin-right: 20px !important;
+}
+
+/* Handle on hover */
+.resentticket-table::-webkit-scrollbar-thumb:hover {
+  background: #07519b; 
+}
+.css-gi7hi0-MuiTypography-root {
+  margin-bottom: 0px !important;
+}
+.echarts-for-react {
+  width: 426px !important;
+  margin-top: -28px;
 }

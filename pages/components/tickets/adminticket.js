@@ -14,6 +14,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
+
 function Adminticket(props) {
     const Router = useRouter()
     var [show, setShow] = useState('');
@@ -35,20 +36,13 @@ function Adminticket(props) {
                     setSelectedValue([])
                 }
             });
-
     }, [selectedValue]);
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'))
     })
-
-    let ticketscount = 0;
-    ticketscount = tickets.length
-    //notification count
-    const [notificationcount, setnotificationcount] = useState()
-    useEffect(() => {
-        setnotificationcount(tickets.filter(val => { return val.Notification.toLowerCase().includes("unseen") }).map((ticket) => setnotificationcount(ticket.Notification.length)).length)
-    }, [tickets])
+    
+   
 //current date and time
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -80,7 +74,6 @@ function Adminticket(props) {
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
    //filter function
-
     useEffect(() => {
         if (filteredTitle === "all") {
             setIsOpenfilter(false);
@@ -108,10 +101,6 @@ function Adminticket(props) {
         } else if (login === null) {
             Router.push("/")
         }
-        //passing value to parent component
-        props.parentCallback(ticketscount);
-        props.notificationcount(notificationcount);
-
     })
     // emailjs
     function updateemail(ticketsId, Username) {
@@ -170,10 +159,8 @@ function Adminticket(props) {
     //emailjs
     // notificationupdate
     const [dticketsId, setdticketsId] = useState("")
-
     const Notificationupdate = (ticketsId) => {
         setdticketsId(ticketsId)
-
         setShowdetails(true)
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
@@ -190,11 +177,11 @@ function Adminticket(props) {
     const pagedatalimit = (e) => {
         setdatalimit(e.target.value)
     }
+    //ticket viewing page open and close
     const [showdetails, setShowdetails] = useState(false)
     function closeDetails() {
         setShowdetails(false)
     }
-
     //admin multiteam assign 
     const [selecteddesignTeam, setselecteddesignTeam] = useState('');
     const [selectedserverTeam, setselectedserverTeam] = useState('');
@@ -216,20 +203,16 @@ function Adminticket(props) {
            }
            if(checked3===false){
             setselectedseoTeam('')
-           }
-       
+           }     
     })
     const handleClick1 = () => setChecked1(!checked1)
     const handleClick2 = () => setChecked2(!checked2)
     const handleClick3 = () => setChecked3(!checked3)
     const handleClick4 = () => setChecked4(!checked4)
     const [selectedTeam, setselectedTeam] = useState('')
-    
     useEffect(() => {
-        setselectedTeam(selecteddesignTeam+selectedserverTeam+selecteddevelopmentTeam+selectedseoTeam)
-       
+        setselectedTeam(selecteddesignTeam+selectedserverTeam+selecteddevelopmentTeam+selectedseoTeam) 
     })
-   
     function handleUpdate(ticketsId) {
         Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
             Team: selectedTeam.slice(1, 50),
@@ -274,7 +257,6 @@ function Adminticket(props) {
                             )}
                             {isOpenstatusfilter && (
                                 <select className='filter-select' onChange={(e) => setFilteredStatus(e.target.value)}>
-
                                     <option value="all">All</option>
                                     <option value="new">new</option>
                                     <option value="started">started</option>
@@ -285,7 +267,6 @@ function Adminticket(props) {
                         </div>
                         <div className='pagedatalimit'>
                             <select className='pagedatalimit-select' onChange={pagedatalimit}>
-
                                 <option value={10}>10</option>
                                 <option value={25}>25</option>
                                 <option value={50}>50</option>
@@ -432,7 +413,7 @@ function Adminticket(props) {
                     < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
-                        pageCount={tickets.length / datalimit}
+                        pageCount={tickets.length/datalimit}
                         onPageChange={(e) => handlePageChange(e.selected)}
                         containerClassName={"pagination justify-content-center mt-3"}
                         pageClassName={"page-item"}

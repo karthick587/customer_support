@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt, faUsers, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -16,11 +16,16 @@ import Adminticket from '../tickets/adminticket';
 import Dashcard from '../common/dashCard';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AdminNotification from '../notification/adminNotifiction';
-const AdminDashboard = (props) => {
+import Resentticket from './resentTickets';
+import Copyrights from '../common/copyRight';
+import { CounterContext } from '../contex/adminProvider'
+import Piechart from './piechart';
+const AdminDashboard = () => {
+  const { notificationcount, ticketscount } = useContext(CounterContext);
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-   // cannot access page without login
+  // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
     if (login === "false") {
@@ -56,8 +61,8 @@ const AdminDashboard = (props) => {
     localStorage.removeItem('activeTab');
     router.push("/")
   }
- 
-    // dashtab
+
+  // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', 'Dashboard')
     setActivetab('Dashboard')
@@ -82,16 +87,6 @@ const AdminDashboard = (props) => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
-  // ticketscount
-  var [ticketscount, setticketscount,] = useState();
-  const handleCallback = (childData) => {
-    setticketscount(childData)
-  }
-  // notificationcount
-  const [notificationcount, setnotificationcount] = useState()
-  const handleCallback2 = (childData) => {
-    setnotificationcount(childData)
-  }
   // usercount
   const [usercount, setusercount] = useState();
   const handleCallback3 = (childData) => {
@@ -102,6 +97,8 @@ const AdminDashboard = (props) => {
   const handleCallback4 = (childData) => {
     setteamcount(childData)
   }
+
+
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -161,26 +158,33 @@ const AdminDashboard = (props) => {
                             <Dashcard
                               cardHead="No of Tickets"
                               cardbody={ticketscount}
-                              cardfooter="last Ticket no"
+
                               cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                             />
                             <Dashcard
                               cardHead="No of users"
                               cardbody={usercount}
-                              cardfooter="last Ticket no"
+
                               cardIcon={<FontAwesomeIcon icon={faUser} />}
                             />
                             <Dashcard
                               cardHead="No of Team members"
                               cardbody={teamcount}
-                              cardfooter="last Ticket no"
+
                               cardIcon={<FontAwesomeIcon icon={faUsers} />}
                             />
                           </div>
                         </div>
-                        <div className='piechart'>
+                        <div className='Resentticket-page row'>
+                          <Resentticket />
+                          <div className='piechart2 col-4'>
+                            <Piechart />
+                          </div>
                         </div>
                       </div>
+                    </div>
+                    <div className='copyright-com'>
+                      <Copyrights />
                     </div>
                   </div>
                 </div>
@@ -188,10 +192,7 @@ const AdminDashboard = (props) => {
                   <Users usercountcallback={handleCallback3} />
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Adminticket
-                    parentCallback={handleCallback}
-                    notificationcount={handleCallback2}
-                  />
+                  <Adminticket />
                 </div>
                 <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <Team teamcountcallback={handleCallback4} />
