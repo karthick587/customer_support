@@ -11,10 +11,13 @@ export default function Piechart() {
     "#a0a7e6"
   ];
   const pie = {
-   
+    tooltip: {
+     
+      formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
     series: [
       {
-        name: "pie",
+        name: "Tickets",
         type: "pie",
         radius: "50%",
         center: ["50%", "60%"],
