@@ -1514,3 +1514,9 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 .react-piechart {
   margin-left: 18px;
 }
+.ticket-icon svg {
+  font-size: 17px;
+}
+.ticket-icon {
+  margin: -1.3px 3.84px;
+}
