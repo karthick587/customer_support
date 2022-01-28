@@ -192,9 +192,7 @@ function Teamticket(props) {
                                             }
                                         />
                                     </TableBody>
-                                   
-                               
-                            )}
+                               )}
                         </Table>
                     </TableContainer>
                 </div>
