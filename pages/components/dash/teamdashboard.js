@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import Typography from '@mui/material/Typography';
 import Dashboard from "../common/navdashboard";
 import { withRouter } from "next/router";
-import Axios from "axios";
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -12,7 +11,17 @@ import Teamticket from "../tickets/teamticket";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 import Dashcard from "../common/dashCard";
+import Resentticket from "./resentTickets";
+import Piechart from "./piechart";
+import { CounterContext } from '../contex/adminProvider'
 const TeamDashboard = (props) => {
+  const {
+    teamassignedcount,
+    teaminprogresscount,
+    teamstartedcount,
+    teamcompletedcount,
+    teamteamNotificationcount
+   } = useContext(CounterContext);
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
   //access for team dashboard
@@ -72,27 +81,7 @@ const TeamDashboard = (props) => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
 
-  //get tickets status count value from teamticket 
-  const [inprogresscount, setinprogresscount] = useState()
-  const [assignedcount, setassignedcount] = useState()
-  const [completedcount, setcompletedcount] = useState()
-  const [teamNotificationcount, setteamNotificationcount] = useState()
-  const [tickets, setTickets] = useState([]);
-  const assignedcallback = (childData) => {
-    setassignedcount(childData)
-  }
-  const inprogresscallback = (childData) => {
-    setinprogresscount(childData)
-  }
-  const completedcallback = (childData) => {
-    setcompletedcount(childData)
-  }
-  const teamNotificationcallback = (childData) => {
-    setteamNotificationcount(childData)
-  }
-  const ticketscallback = (childData) => {
-    setTickets(childData)
-  }
+  
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -112,7 +101,7 @@ const TeamDashboard = (props) => {
             </button>
           }
           headertext="USER DASHBOARD"
-          Notificationscount={teamNotificationcount}
+          Notificationscount={teamteamNotificationcount}
           navcontent={
             <Typography
               component="h1"
@@ -138,50 +127,34 @@ const TeamDashboard = (props) => {
                           <div className='row'>
                             <Dashcard
                               cardHead="Tickets assigned"
-                              cardbody={assignedcount}
+                              cardbody={teamassignedcount}
                               cardfooter="last Ticket no"
                               cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                             />
                             <Dashcard
                               cardHead="Tickets in inprogress"
-                              cardbody={inprogresscount}
+                              cardbody={teaminprogresscount}
                               cardfooter="last Ticket no"
                               cardIcon={<FontAwesomeIcon icon={faUsers} />}
                             />
                             <Dashcard
                               cardHead="Tickets completed"
-                              cardbody={completedcount}
+                              cardbody={teamcompletedcount}
                               cardfooter="last Ticket no"
                               cardIcon="icon3"
                             />
                           </div>
                         </div>
-                      </div>
-                      <div className="dash-body-middle">
-                        <div className="dash-cards-2">
-                          <div className="row">
-                            <div className="col">
-                              <div className="dash-cards-2-left">
-                                {tickets.filter(val => {
-                                  return val.Status.toLowerCase().includes("new")
-                                }).map((tickets) =>
-                                  <div className="flex" key={tickets.ticketsId}>
-                                      <div className='width-10'>{tickets.ticketsId}</div>
-                                      <div className='width-20'>{tickets.Username}</div>
-                                      <div className='width-20'>{tickets.Date}</div>
-                                      <div className='width-20'>{tickets.Status}</div>
-                                    </div>
-                                  
-                                )}
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="dash-cards-2-right ">
-                                right
-                              </div>
-                            </div>
+                        <div className='Resentticket-page row'>
+                         <Resentticket />
+                          <div className='col-4'>
+                          <Piechart 
+                            newcount={teamteamNotificationcount}
+                            started={teamstartedcount}
+                            inprogress={teaminprogresscount}
+                            completed={teamcompletedcount}
+                             />
                           </div>
-
                         </div>
                       </div>
                     </div>
@@ -191,13 +164,7 @@ const TeamDashboard = (props) => {
                   profile
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Teamticket
-                    assignedcount={assignedcallback}
-                    inprogresscount={inprogresscallback}
-                    completedcount={completedcallback}
-                    teamNotificationcount={teamNotificationcallback}
-                    tickets={ticketscallback}
-                  />
+                  <Teamticket />
                 </div>
               </div>
             </div>

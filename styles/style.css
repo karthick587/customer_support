@@ -1503,10 +1503,14 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   margin-bottom: 0px !important;
 }
 .echarts-for-react {
-  width: 432px !important;
-  height: 343px !important;
+  width: 369px !important;
+  height: 308px !important;
   background-color: white;
-  margin: 0px 19px;
+  /* margin: 0px 19px; */
   border-radius: 14px;
+  -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
+}
+.react-piechart {
+  margin-left: 18px;
 }

@@ -20,7 +20,6 @@ function Updatecustomer({ usersId }) {
     let PasswordR = createRef();
     let EmailR = createRef();
     let PhonenumberR = createRef();
-
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
     }, [])

@@ -21,7 +21,7 @@ import Copyrights from '../common/copyRight';
 import { CounterContext } from '../contex/adminProvider'
 import Piechart from './piechart';
 const AdminDashboard = () => {
-  const { notificationcount, ticketscount } = useContext(CounterContext);
+  const { notificationcount, ticketscount,adminNewcount,adminStartedcount,adminprogresscount,adminCompletedcount } = useContext(CounterContext);
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
@@ -177,8 +177,13 @@ const AdminDashboard = () => {
                         </div>
                         <div className='Resentticket-page row'>
                           <Resentticket />
-                          <div className='piechart2 col-4'>
-                            <Piechart />
+                          <div className='col-4'>
+                            <Piechart 
+                            newcount={adminNewcount}
+                            started={adminStartedcount}
+                            inprogress={adminprogresscount}
+                            completed={adminCompletedcount}
+                             />
                           </div>
                         </div>
                       </div>

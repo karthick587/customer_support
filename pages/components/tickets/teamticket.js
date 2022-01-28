@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
-    const { tickets } = useContext(CounterContext);
+    const { tickets,teamname} = useContext(CounterContext);
     const Router = useRouter()
     var [show, setShow] = useState('');
    
@@ -21,22 +21,7 @@ function Teamticket(props) {
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
-    // ticket count, ticket status count for team dashboard
-    const [assignedcount, setassignedcount] = useState()
-    const [inprogresscount, setinprogresscount] = useState()
-    const [completedcount, setcompletedcount] = useState()
-    const [teamNotificationcount, setteamNotificationcount] = useState()
-    useEffect(() => {
-        setassignedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname) }).map((ticket) => setassignedcount(ticket.Team.length)).length)
-        setinprogresscount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Team.length)).length)
-        setcompletedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Team.length)).length)
-        setteamNotificationcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Team.length)).length)
-        props.assignedcount(assignedcount);
-        props.inprogresscount(inprogresscount);
-        props.completedcount(completedcount);
-        props.teamNotificationcount(teamNotificationcount);
-        props.tickets(tickets);
-    }, [tickets])
+   
     //tickets status update functions 
     const [disabled, setdisabled] = useState("enable")
     const updateemail = (Status) => {
@@ -115,26 +100,7 @@ function Teamticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
-    //team tickets filter function
-    var [teamname, setTeamname] = useState(" ");
-    var [search1, setSearch1] = useState('');
-    useEffect(() => {
-        setSearch1(window.localStorage.getItem('tm_name'))
-    })
-    var [team, setTeam] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data));
-    }, [team]);
-    useEffect(() => {
-        {
-            team.filter(val => {
-                return val.Username.toLowerCase().includes(search1)
-            }).map((item) => setTeamname(item.Team),
-            )
-        }
-        localStorage.setItem('updateclose', "open");
-    })
+   
     //auth access for team ticket page
     const [login, setLogin] = useState()
     useEffect(() => {
@@ -146,12 +112,9 @@ function Teamticket(props) {
         }
     })
     const [dticketsId, setdticketsId] = useState("")
-
     const Notificationupdate = (ticketsId) => {
         setdticketsId(ticketsId)
-
         setShowdetails(true)
-
     }
     const [showdetails, setShowdetails] = useState(false)
     function closeDetails() {
@@ -163,6 +126,7 @@ function Teamticket(props) {
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
+            <div className='container'>
                 <div className="teambody">
                     <div className='adminticket-head'>
                         <h1>Tickets</h1>
@@ -233,6 +197,7 @@ function Teamticket(props) {
                             )}
                         </Table>
                     </TableContainer>
+                </div>
                 </div> :
                 <>
                     <Ticketviewer

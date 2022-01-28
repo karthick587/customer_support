@@ -1,8 +1,7 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import ReactEcharts from "echarts-for-react";
-import { CounterContext } from '../contex/adminProvider'
-export default function Piechart() {
-    const {adminNewcount,adminStartedcount,adminprogresscount,adminCompletedcount} = useContext(CounterContext);
+export default function Piechart(props) {
+  const {newcount,started,inprogress,completed}=props
     //piechart
   const color = [
     "#3fb1e3",
@@ -21,14 +20,14 @@ export default function Piechart() {
         type: "pie",
         radius: "50%",
         center: ["50%", "50%"],
-        data: [{ name: "New", value: adminNewcount }, { name: "Start", value: adminStartedcount },{name:"Inprogress",value:adminprogresscount},{name:"Completed",value:adminCompletedcount}],
+        data: [{ name: "New", value: newcount }, { name: "Started", value: started },{name:"Inprogress",value:inprogress},{name:"Completed",value:completed}],
         color: color
       }
     ]
   };
   
     return (
-        <div>
+        <div className='react-piechart'>
              <ReactEcharts option={pie} />
         </div>
     )
