@@ -47,6 +47,7 @@ function Userticket({Username}) {
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
+            <div className='container'>
                 <div className="teambody">
                     <div className='adminticket-head'>
                         <h1>Tickets</h1>
@@ -77,6 +78,7 @@ function Userticket({Username}) {
                             )}
                         </Table>
                     </TableContainer>
+                </div>
                 </div> :
                 <>
                     <Ticketviewer
