@@ -54,7 +54,7 @@ export default function CounterContextProvider(props){
      const [teamcompletedcount, setcompletedcount] = useState()
      const [teamteamNotificationcount, setteamNotificationcount] = useState()
      useEffect(() => {
-         setassignedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname) }).map((ticket) => setassignedcount(ticket.Team.length)).length)
+         setassignedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) }).map((ticket) => setassignedcount(ticket.Team.length)).length)
          setstartedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("started") }).map((ticket) => setstartedcount(ticket.Team.length)).length)
          setinprogresscount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Team.length)).length)
          setcompletedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Team.length)).length)

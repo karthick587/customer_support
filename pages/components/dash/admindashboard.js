@@ -177,14 +177,14 @@ const AdminDashboard = () => {
                         </div>
                         <div className='Resentticket-page row'>
                           <Resentticket />
-                          <div className='col-4'>
+                        
                             <Piechart 
                             newcount={adminNewcount}
                             started={adminStartedcount}
                             inprogress={adminprogresscount}
                             completed={adminCompletedcount}
                              />
-                          </div>
+                         
                         </div>
                       </div>
                     </div>

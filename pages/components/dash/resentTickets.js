@@ -18,18 +18,18 @@ export default function Resentticket() {
     const { tickets } = useContext(CounterContext);
 
     return (
-        <div className='resentticket col-8'>
+        <div className='resentticket'>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
                 Recent Tickets
             </Typography>
             <div className='resentticket-table'>
                 <Table size="small" >
                     <TableHead>
-                        <TableRow>
+                        <TableRow className="resentticket-row">
                             <TableCell>Date</TableCell>
-                            <TableCell>TicketId</TableCell>
-                            <TableCell>Username</TableCell>
-                            <TableCell>Team</TableCell>
+                            <TableCell >TicketId</TableCell>
+                            <TableCell >Username</TableCell>
+                            <TableCell >Team</TableCell>
                             <TableCell align="right">Status</TableCell>
                         </TableRow>
                     </TableHead>
@@ -37,11 +37,11 @@ export default function Resentticket() {
                         {tickets.filter(val => {
                             return val.Status.toLowerCase().includes("New".toLowerCase())
                         }).map((tickets) =>
-                            <TableRow key={tickets.ticketsId}>
-                                 <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                            <TableRow className="resentticket-row" key={tickets.ticketsId}>
+                                <TableCell  >{tickets.Cus_CreatedOn}</TableCell>
                                 <TableCell >{tickets.ticketsId}</TableCell>
                                 <TableCell >{tickets.Username}</TableCell>                             
-                                <TableCell >{tickets.Team}</TableCell>
+                                <TableCell  >{tickets.Team}</TableCell>
                                 <TableCell align="right">{tickets.Status}</TableCell>
                             </TableRow>
                         )}

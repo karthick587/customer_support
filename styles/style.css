@@ -120,7 +120,15 @@ a {
     color: #1976d2;
     font-weight: 700;
   }
-
+  .echarts-for-react{
+    width: 226px !important;
+    height: 249px !important;
+  
+}
+  .react-piechart {
+    /* margin-left: -15px; */
+    margin: 16px 0px 3px -15px !important;
+}
   .tickets-bodyrow3 td {
     width: 100px;
     text-align: left;
@@ -1423,9 +1431,7 @@ color: white;
 svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   font-size: 18px;
 }
-.ticket-icon {
-  margin: -1.3px 2.84px;
-}
+
 .update-right{
   position: relative;
 }
@@ -1455,7 +1461,7 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 .resentticket {
   background-color: white;
   padding: 7px 23px;
-  
+  width: 800px;
   border-radius: 12px;
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
@@ -1502,8 +1508,6 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   margin-bottom: 0px !important;
 }
 .echarts-for-react {
-  width: 369px !important;
-  height: 308px !important;
   background-color: white;
   /* margin: 0px 19px; */
   border-radius: 14px;
@@ -1512,10 +1516,11 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 }
 .react-piechart {
   margin-left: 18px;
+  width: 376px;
 }
 .ticket-icon svg {
   font-size: 17px;
 }
 .ticket-icon {
-  margin: -1.3px 3.84px;
+  margin: -2.3px 2.84px;
 }
