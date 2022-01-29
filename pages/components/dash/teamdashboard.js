@@ -145,16 +145,16 @@ const TeamDashboard = (props) => {
                             />
                           </div>
                         </div>
-                        <div className='Resentticket-page row'>
+                        <div className='Resentticket-page'>
                          <Resentticket />
-                          <div className='col-4'>
+
                           <Piechart 
                             newcount={teamteamNotificationcount}
                             started={teamstartedcount}
                             inprogress={teaminprogresscount}
                             completed={teamcompletedcount}
                              />
-                          </div>
+                         
                         </div>
                       </div>
                     </div>

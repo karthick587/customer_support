@@ -175,7 +175,7 @@ const AdminDashboard = () => {
                             />
                           </div>
                         </div>
-                        <div className='Resentticket-page row'>
+                        <div className='Resentticket-page'>
                           <Resentticket />
                         
                             <Piechart 

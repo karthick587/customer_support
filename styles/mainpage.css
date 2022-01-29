@@ -70,6 +70,13 @@
 
   }
 }
+@media only screen and (max-width: 900px) {
+  .Resentticket-page {
+    margin: 0px 8px;
+    display: block;
+  }
+  
+}
 
 @media only screen and (max-width: 600px) {
   .col-6 {
@@ -78,6 +85,17 @@
   .filter-head {
     margin: 0px 0px 8px 7px;
     display: flex;
+}
+
+.echarts-for-react {
+  width: auto !important;
+  margin: 9px 2px 0px 14px;
+  height: 249px !important;
+}
+.react-piechart {
+  margin-left: 18px;
+  width: 267px !important;
+  margin: 16px 0px 3px -15px !important;
 }
 .resentticket-row{
   width: 20px !important;

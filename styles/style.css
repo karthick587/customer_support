@@ -120,15 +120,7 @@ a {
     color: #1976d2;
     font-weight: 700;
   }
-  .echarts-for-react{
-    width: 226px !important;
-    height: 249px !important;
   
-}
-  .react-piechart {
-    /* margin-left: -15px; */
-    margin: 16px 0px 3px -15px !important;
-}
   .tickets-bodyrow3 td {
     width: 100px;
     text-align: left;
@@ -1461,12 +1453,13 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 .resentticket {
   background-color: white;
   padding: 7px 23px;
-  width: 800px;
+  max-width: max-content;
   border-radius: 12px;
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
 .Resentticket-page {
   margin: 0px 8px;
+  display: flex;
 }
 .copyright-com {
   padding: 10px;
@@ -1509,14 +1502,15 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 }
 .echarts-for-react {
   background-color: white;
-  /* margin: 0px 19px; */
+  width: 370px !important;
   border-radius: 14px;
   -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
+
 .react-piechart {
   margin-left: 18px;
-  width: 376px;
+  width: 370px !important;
 }
 .ticket-icon svg {
   font-size: 17px;
