@@ -70,7 +70,7 @@ function Userticket({Username}) {
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                             <TableCell >{tickets.Team}</TableCell>
-                                            <TableCell > <h5 className={tickets.Status}>{tickets.Status}</h5>
+                                            <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                                
                                             </TableCell>            
                                         </TableRow>                                       

@@ -268,6 +268,12 @@ form.form3 {
   color: red !important;
   font-size: 13px;
 }
+.Completed{
+  
+    color: green !important;
+    font-size: 13px;
+ 
+}
 .upload {
   text-align: center;
   display: block;
@@ -1074,7 +1080,11 @@ img.screeshot-img-viewer {
   background-color: transparent !important;
 }
 .send-email-dailog button a svg {
-  color: #1976d2 !important;
+  color: white;
+  background-color: #1976d2 !important;
+}
+.send-email-dailog {
+  margin: 5px 5px;
 }
 .Assign-team-dailog button {
   margin: 36px 0px 0px 0px !important;

@@ -14,7 +14,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
-
+import UpgradeIcon from '@mui/icons-material/Upgrade';
 function Adminticket(props) {
     const Router = useRouter()
     var [show, setShow] = useState('');
@@ -103,23 +103,45 @@ function Adminticket(props) {
         }
     })
     // emailjs
+    const [ticketid, setTicketid] = useState()
+   
     function updateemail(ticketsId, Username) {
         setName(Username);
         setTicketid(ticketsId)
     }
+    console.log(ticketid)
+    const [sendmail,setsendmail]=useState(false)
     const [name, setName] = useState(" ")
-    const [ticketid, setTicketid] = useState()
+    
+  
     const [showmailstatus, setShowmailstatus] = useState("")
+    var [selectedstatus, setSelectedstatus] = useState('');
     const SERVICE_ID = "service_56f9av6"
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
-    function SendEmail() {
+    function finalStatus(ticketsId,Tm_Complete_UpdatedOn,Tm_Complete_UpdatedBy) {
+        if(selectedstatus==="Completed"){
+            
+            console.log(Tm_Complete_UpdatedOn)
+            console.log(Tm_Complete_UpdatedBy)
+            Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketid}`, {
+                Status: selectedstatus,
+                ticketsId: ticketsId,
+                Tm_Complete_UpdatedOn: Tm_Complete_UpdatedOn,
+                Tm_Complete_UpdatedBy: Tm_Complete_UpdatedBy
+            }).then((response) => {
+                setShow("update started Successfully");
+                localStorage.setItem('updateclose', "close");
+                console.log("ad_completed")
+            });
+        }
+       
         var data = {
             to_email: email,
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
             to_name: name
         };
-        if (selectedstatus === "completed") {
+        if (sendmail === "true") {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
                 function (response) {
                     localStorage.setItem('updateclose', "close");
@@ -152,15 +174,16 @@ function Adminticket(props) {
         }
         localStorage.setItem('updateclose', "open");
     })
-    var [selectedstatus, setSelectedstatus] = useState('');
+    
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
     //emailjs
-    // notificationupdate
     const [dticketsId, setdticketsId] = useState("")
-    const Notificationupdate = (ticketsId) => {
+    const[dticketsscreenshots,setdticketsscreenshots] = useState("")
+    const Notificationupdate = (ticketsId,Screenshots) => {
         setdticketsId(ticketsId)
+        setdticketsscreenshots(Screenshots)
         setShowdetails(true)
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
@@ -330,7 +353,7 @@ function Adminticket(props) {
                                 }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
 
                                     <TableBody className='update-right' key={tickets.ticketsId}>
-                                        <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId)}>
+                                        <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Screenshots)}>
 
 
 
@@ -338,8 +361,7 @@ function Adminticket(props) {
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                             <TableCell >{tickets.Team}</TableCell>
-                                            <TableCell > <h5 className={tickets.Status}>{tickets.Status}</h5>
-                                                <h5 className='statusUpdateTime'>Updated at {tickets.statusUpdateTime}</h5>
+                                            <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
 
 
@@ -385,21 +407,26 @@ function Adminticket(props) {
                                             />
                                             <FormDialog
                                                 dialog_className="send-email-dailog"
-                                                dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><MailIcon /></a>}
+                                                dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><UpgradeIcon /></a>}
                                                 className="btn3 ticket-update2"
                                                 dialogbody={
                                                     <div className="form dialog emaildialog">
 
                                                         <div className="form-group">
-                                                            <label className="label">status</label>
+                                                            <label className="label">status final update</label>
                                                             <select className="form-input" onChange={handlestatus}>
                                                                 <option value="">--Select stutus--</option>
 
-                                                                <option className='completed' value="completed">completed</option>
+                                                                <option className='Completed' value="Completed">Completed</option>
                                                             </select>
+                                                            <div className='flex'>
+                                                            <input className="form-check-input" type="checkbox" value="true" onChange={(e) => setsendmail(e.target.value)} />
+                                                            <div>Send mail to Client</div>
+                                                            </div>
+                                                            
                                                         </div>
-                                                        <button className="btn2 float-end mt-3 mb-3" onClick={SendEmail}>Send Email</button>
-                                                        <h4 className="alert1 text-center">{showmailstatus}</h4>
+                                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>finalStatus(tickets.ticketsId,tickets.Tm_Complete_UpdatedOn,tickets.Tm_Complete_UpdatedBy)}>Update</button>
+                                                        <h4 className="alert1 text-center">{show}</h4>
 
                                                     </div>
                                                 }
@@ -427,7 +454,7 @@ function Adminticket(props) {
                 <>
                     <Ticketviewer
                         dticketsId={dticketsId}
-
+                        dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}
                     />
                 </>}
