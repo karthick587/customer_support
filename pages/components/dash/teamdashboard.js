@@ -16,6 +16,7 @@ import Piechart from "./piechart";
 import { CounterContext } from '../contex/adminProvider'
 const TeamDashboard = (props) => {
   const {
+    teamname,
     teamassignedcount,
     teaminprogresscount,
     teamstartedcount,
@@ -146,13 +147,16 @@ const TeamDashboard = (props) => {
                           </div>
                         </div>
                         <div className='Resentticket-page'>
-                         <Resentticket />
+                         <Resentticket
+                          teamname={teamname}
+                          />
 
                           <Piechart 
                             newcount={teamteamNotificationcount}
                             started={teamstartedcount}
                             inprogress={teaminprogresscount}
                             completed={teamcompletedcount}
+                           
                              />
                          
                         </div>

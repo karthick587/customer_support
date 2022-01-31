@@ -86,7 +86,7 @@ const AdminDashboard = () => {
   const [activeTab, setActivetab] = useState()
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
-  }, [])
+  },[])
   // usercount
   const [usercount, setusercount] = useState();
   const handleCallback3 = (childData) => {

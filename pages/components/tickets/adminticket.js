@@ -388,16 +388,13 @@ function Adminticket(props) {
                                                                             Assign Team
                                                                         </button>
                                                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
                                                                             <li className='flex'><div className="dropdown-item">design</div><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value=",design" onChange={(e) => setselecteddesignTeam(e.target.value)} /></li>
                                                                             <li className='flex'><div className="dropdown-item">server</div><input className="form-check-input" onClick={handleClick2} checked={checked2} type="checkbox" value=",server" onChange={(e) => setselectedserverTeam(e.target.value)} /></li>
                                                                             <li className='flex'><div className="dropdown-item">development</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value=",development" onChange={(e) => setselecteddevelopmentTeam(e.target.value)} /></li>
                                                                             <li className='flex'><div className="dropdown-item">seo</div><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value=",seo" onChange={(e) => setselectedseoTeam(e.target.value)} /></li>
                                                                         </ul>
                                                                     </div>
-
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                         <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
@@ -411,29 +408,25 @@ function Adminticket(props) {
                                                 className="btn3 ticket-update2"
                                                 dialogbody={
                                                     <div className="form dialog emaildialog">
-
                                                         <div className="form-group">
-                                                            <label className="label">status final update</label>
+                                                        <div className="form-header">
+                                                                <h1>Status Final Update</h1>
+                                                            </div>
                                                             <select className="form-input" onChange={handlestatus}>
                                                                 <option value="">--Select stutus--</option>
-
                                                                 <option className='Completed' value="Completed">Completed</option>
                                                             </select>
                                                             <div className='flex'>
                                                             <input className="form-check-input" type="checkbox" value="true" onChange={(e) => setsendmail(e.target.value)} />
                                                             <div>Send mail to Client</div>
-                                                            </div>
-                                                            
+                                                            </div>                                                  
                                                         </div>
                                                         <button className="btn2 float-end mt-3 mb-3" onClick={()=>finalStatus(tickets.ticketsId,tickets.Tm_Complete_UpdatedOn,tickets.Tm_Complete_UpdatedBy)}>Update</button>
                                                         <h4 className="alert1 text-center">{show}</h4>
-
                                                     </div>
                                                 }
-
                                             />
                                         </div>
-
                                     </TableBody>
                                 )}
                             </Table>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,16 +7,18 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { CounterContext } from '../contex/adminProvider'
-
-
-
 function preventDefault(event) {
     event.preventDefault();
 }
-
-export default function Resentticket() {
-    const { tickets } = useContext(CounterContext);
-
+export default function Resentticket(props) {
+    const { tickets} = useContext(CounterContext);
+const {teamname}=props
+const [team,seteam]=useState(" ")
+useEffect(()=>{
+    if(teamname!==undefined){
+        seteam(teamname)
+    }
+})
     return (
         <div className='resentticket'>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
@@ -27,22 +29,22 @@ export default function Resentticket() {
                     <TableHead>
                         <TableRow className="resentticket-row">
                             <TableCell>Date</TableCell>
-                            <TableCell >TicketId</TableCell>
-                            <TableCell >Username</TableCell>
-                            <TableCell >Team</TableCell>
-                            <TableCell align="right">Status</TableCell>
+                            <TableCell>TicketId</TableCell>
+                            <TableCell>Username</TableCell>
+                            <TableCell>Team</TableCell>
+                            <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {tickets.filter(val => {
-                            return val.Status.toLowerCase().includes("New".toLowerCase())
+                            return val.Status.toLowerCase().includes("New".toLowerCase())&&val.Team.toLowerCase().includes(team.toLowerCase())
                         }).map((tickets) =>
                             <TableRow className="resentticket-row" key={tickets.ticketsId}>
                                 <TableCell  >{tickets.Cus_CreatedOn}</TableCell>
                                 <TableCell >{tickets.ticketsId}</TableCell>
                                 <TableCell >{tickets.Username}</TableCell>                             
                                 <TableCell  >{tickets.Team}</TableCell>
-                                <TableCell align="right">{tickets.Status}</TableCell>
+                                <TableCell >{tickets.Status}</TableCell>
                             </TableRow>
                         )}
                     </TableBody>
