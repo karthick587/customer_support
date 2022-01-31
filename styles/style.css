@@ -1107,6 +1107,10 @@ img.screeshot-img-viewer {
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   text-align: left !important;
 }
+h5.Completed {
+  color: green !important;
+  font-size: 13px;
+}
 .highlighted-row td {
   width: 229px;
   text-align: left;
