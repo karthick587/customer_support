@@ -30,12 +30,11 @@ function Userticket({Username}) {
     })
     const [showdetails, setShowdetails] = useState(false)
     const [dticketsId, setdticketsId] = useState("")
-
-    const Openticket = (ticketsId) => {
+    const[dticketsscreenshots,setdticketsscreenshots] = useState("")
+    const Openticket = (ticketsId,Screenshots) => {
         setdticketsId(ticketsId)
-
+        setdticketsscreenshots(Screenshots)
         setShowdetails(true)
-
     }
     function closeDetails() {
         setShowdetails(false)
@@ -65,7 +64,7 @@ function Userticket({Username}) {
                             </TableHead>
                             {tickets.map((tickets) =>                         
                                     <TableBody key={tickets.ticketsId} >
-                                        <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId)}>                                            
+                                        <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId,tickets.Screenshots)}>                                            
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
@@ -81,9 +80,9 @@ function Userticket({Username}) {
                 </div>
                 </div> :
                 <>
-                    <Ticketviewer
+                   <Ticketviewer
                         dticketsId={dticketsId}
-
+                        dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}
                     />
                 </>

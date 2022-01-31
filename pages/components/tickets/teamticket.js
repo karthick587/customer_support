@@ -32,8 +32,9 @@ function Teamticket(props) {
         }
     }
    //status submit function
-    function handleUpdatestatus(ticketsId, timeline) {
-
+   const[dticketsscreenshots,setdticketsscreenshots] = useState("")
+    function handleUpdatestatus(ticketsId, timeline,Screenshots) {
+        setdticketsscreenshots(Screenshots)
         if (selectedstatus === 'started') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -183,7 +184,7 @@ function Teamticket(props) {
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId, tickets.timeline)}>update</button>
+                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId, tickets.timeline,tickets.Screenshots)}>update</button>
                                                     <h4 className="alert1 text-center">{show}</h4>
                                                 </div>
                                             }
@@ -197,9 +198,9 @@ function Teamticket(props) {
                 </div>
                 </div> :
                 <>
-                    <Ticketviewer
+                     <Ticketviewer
                         dticketsId={dticketsId}
-
+                        dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}
                     />
                 </>
