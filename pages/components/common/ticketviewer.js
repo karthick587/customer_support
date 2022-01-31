@@ -145,7 +145,7 @@ useEffect(()=>{
                                     imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={200} height={100} />}
                                     imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
                                 /> :
-                                <a href={tickets.Screenshots} download="doc" target="_blank">View File</a>
+                                <a href={tickets.Screenshots} download="doc" target="_blank" rel='noopener noreferrer'>View File</a>
                             }
                             {/* <button onClick={()=>handleDownload(tickets.Screenshots)}>Download</button> */}
                             </div>
