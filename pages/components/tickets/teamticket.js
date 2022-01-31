@@ -32,9 +32,9 @@ function Teamticket(props) {
         }
     }
    //status submit function
-   const[dticketsscreenshots,setdticketsscreenshots] = useState("")
-    function handleUpdatestatus(ticketsId, timeline,Screenshots) {
-        setdticketsscreenshots(Screenshots)
+  
+    function handleUpdatestatus(ticketsId) {
+        
         if (selectedstatus === 'started') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -112,8 +112,10 @@ function Teamticket(props) {
             Router.push("/")
         }
     })
-    const [dticketsId, setdticketsId] = useState("")
-    const Notificationupdate = (ticketsId) => {
+    const [dticketsId, setdticketsId] = useState("");
+    const[dticketsscreenshots,setdticketsscreenshots] = useState("")
+    const Notificationupdate = (ticketsId,Screenshots) => {
+        setdticketsscreenshots(Screenshots)
         setdticketsId(ticketsId)
         setShowdetails(true)
     }
@@ -148,7 +150,7 @@ function Teamticket(props) {
                             }).map((tickets) =>
                               
                                     <TableBody key={tickets.ticketsId} className='update-right' >
-                                        <TableRow className={tickets.Notification === "unseen" ? "highlighted-row update6" : "tickets-bodyrow update6"}  onClick={() => Notificationupdate(tickets.ticketsId)}>
+                                        <TableRow className={tickets.Notification === "unseen" ? "highlighted-row update6" : "tickets-bodyrow update6"}  onClick={() => Notificationupdate(tickets.ticketsId,tickets.Screenshots)}>
                                               
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
@@ -184,7 +186,7 @@ function Teamticket(props) {
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId, tickets.timeline,tickets.Screenshots)}>update</button>
+                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>update</button>
                                                     <h4 className="alert1 text-center">{show}</h4>
                                                 </div>
                                             }
