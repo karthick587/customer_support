@@ -23,10 +23,7 @@ const CustomerDashboard = (props) => {
     setUser(window.localStorage.getItem('clientname'))
     
   })
-
-
-
-  const onBackButtonEvent = (e) => {
+const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {

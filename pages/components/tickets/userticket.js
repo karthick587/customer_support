@@ -41,7 +41,6 @@ function Userticket({Username}) {
     }
     return (
         <div>
-
             <Head>
                 <title>Admin Dashboard</title>
             </Head>

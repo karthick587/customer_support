@@ -150,7 +150,7 @@ function Teamticket(props) {
                             }).map((tickets) =>
                               
                                     <TableBody key={tickets.ticketsId} className='update-right' >
-                                        <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId)}>
+                                        <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId,tickets.Screenshots)}>
                                               
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
