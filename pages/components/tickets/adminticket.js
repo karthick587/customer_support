@@ -327,7 +327,7 @@ function Adminticket(props) {
                                         }
                                     }
 
-                                }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
+                                }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
 
                                     <TableBody className='update-right' key={tickets.ticketsId}>
                                         <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId)}>

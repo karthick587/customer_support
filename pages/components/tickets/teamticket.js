@@ -39,7 +39,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 Tm_Start_UpdatedOn: fulldate + ' ' + fullTime,
-                Tm_Start_UpdatedBy: search1
+                Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update started Successfully");
                 localStorage.setItem('updateclose', "close");
@@ -49,7 +49,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 Tm_Process_UpdatedOn: fulldate + ' ' + fullTime,
-                Tm_Process_UpdatedBy: search1
+                Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update inprogress Successfully");
                 localStorage.setItem('updateclose', "close");
@@ -59,7 +59,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 Tm_Complete_UpdatedOn: fulldate + ' ' + fullTime,
-                Tm_Complete_UpdatedBy: search1
+                Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update completed Successfully");
                 localStorage.setItem('updateclose', "close");

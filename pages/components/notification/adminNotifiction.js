@@ -37,7 +37,7 @@ function AdminNotification(props) {
                                                 <div className='width-10 ps-2'>{tickets.Username}</div>
                                             </div>
                                             <div className='notification-table-right2'>
-                                                {tickets.Date}
+                                                {tickets.Cus_CreatedOn}
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@ function AdminNotification(props) {
                                     </div>
                                     <div className='ticket details-Date'>
                                         <label className="label">Date</label>
-                                        <div className='ticket-input-details' > {tickets.Date}</div>
+                                        <div className='ticket-input-details' > {tickets.Cus_CreatedOn}</div>
                                     </div>
                                     <div className='ticket details-Des'>
                                         <label className="label">Description</label>
