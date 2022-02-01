@@ -32,6 +32,15 @@ export default function CounterContextProvider(props){
      }, [team]);
     //team ticket count
    
+  const [loginTmName,setloginTmName]=useState("")
+  const [teamticket,setteamticket]=useState([])
+  useEffect(() => {
+      setloginTmName( window.localStorage.getItem('tm_name')) 
+      Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
+          .then((res) => {
+              setteamticket(res.data);         
+          });
+  },[setteamticket,loginTmName]);
      // ticket count, ticket status count for team dashboard
      const [teamassignedcount, setassignedcount] = useState()
      const [teaminprogresscount, setinprogresscount] = useState()
