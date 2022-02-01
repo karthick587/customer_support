@@ -359,7 +359,7 @@ function Adminticket(props) {
                                             <TableCell >{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Team}</TableCell>
+                                            <TableCell >{tickets.Design==="y"? <>Design</>:<></>} {tickets.Development ==="y"? <>Development</>:<></>} {tickets.Seo==="y"? <>Seo</>:<></>} {tickets.Server==="y"? <>Server</>:<></>} {tickets.Server==="n"&&tickets.Design==="n"&&tickets.Seo==="n"&&tickets.Development==="n" ? <>Not assigned</>:<></>}</TableCell>
                                             <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
 
