@@ -17,6 +17,7 @@ import { CounterContext } from '../contex/adminProvider';
 import Axios from "axios";
 const TeamDashboard = (props) => {
   const {
+    teamticket,
     teamassignedcount,
     teaminprogresscount,
     teamstartedcount,
@@ -82,15 +83,7 @@ const TeamDashboard = (props) => {
     setActivetab(window.localStorage.getItem('activeTab'))
   },[])
 
-  const [loginTmName,setloginTmName]=useState("")
-  const [teamticket,setteamticket]=useState([])
-  useEffect(() => {
-      setloginTmName( window.localStorage.getItem('tm_name')) 
-      Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
-          .then((res) => {
-              setteamticket(res.data);         
-          });
-  },[setteamticket,loginTmName]);
+  
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
