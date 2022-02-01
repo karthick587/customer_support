@@ -51,8 +51,7 @@ const onBackButtonEvent = (e) => {
   const onBackButtonEvent3 = () => {
     router.push("/")
     localStorage.setItem('loggedin', false);
-    localStorage.removeItem('activeTab');
-
+    localStorage.removeItem('activeTab'); 
   }
   useEffect(() => {
     setUser(window.localStorage.getItem('user'))

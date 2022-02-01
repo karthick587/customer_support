@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
-    if (login === "false") {
+    if (login === "false"){
       router.push("/")
     } else if (login === null) {
       router.push("/")
@@ -61,7 +61,6 @@ const AdminDashboard = () => {
     localStorage.removeItem('activeTab');
     router.push("/")
   }
-
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', 'Dashboard')
@@ -86,7 +85,7 @@ const AdminDashboard = () => {
   const [activeTab, setActivetab] = useState()
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
-  },[])
+  }, [])
   // usercount
   const [usercount, setusercount] = useState();
   const handleCallback3 = (childData) => {
@@ -97,8 +96,6 @@ const AdminDashboard = () => {
   const handleCallback4 = (childData) => {
     setteamcount(childData)
   }
-
-
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>

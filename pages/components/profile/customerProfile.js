@@ -12,12 +12,12 @@ export default function CustomerProfile(props) {
         <div className="container">
             <div className="profile-body">
                 {users.map((users) =>
-                    <div className="row gutters-sm">
+                    <div className="row gutters-sm" key={users.usersId}>
                         <div className="col-md-4 mb-3">
                             <div className="profile-card">
                                 <div className="profile-card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
-                                        <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" class="rounded-circle" width="150"  height="150" />
+                                        <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle" width="150"  height="150" />
                                        
                                             <h4 className="profile-label">{users.Username}</h4>
                                             <div className="row">

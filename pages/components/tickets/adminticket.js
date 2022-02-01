@@ -109,7 +109,7 @@ function Adminticket(props) {
         setName(Username);
         setTicketid(ticketsId)
     }
-   
+    console.log(ticketid)
     const [sendmail,setsendmail]=useState(false)
     const [name, setName] = useState(" ")
     
@@ -174,7 +174,6 @@ function Adminticket(props) {
         }
         localStorage.setItem('updateclose', "open");
     })
-    
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
@@ -237,26 +236,26 @@ function Adminticket(props) {
         setselectedTeam(selecteddesignTeam + selectedserverTeam + selecteddevelopmentTeam + selectedseoTeam)
     })
     function handleUpdate(ticketsId) {
-        // Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
-        //     Team: selectedTeam.slice(1, 50),
-        //     ticketsId: ticketsId,
-        //     Adm_UpdatedOn: fulldate + ' ' + fullTime,
-        //     Adm_UpdatedBy: "admin1"
-        // }).then((_response) => {
-        //     setShow("update Successfully");
-        //     localStorage.setItem('updateclose', "close");
-        //     localStorage.setItem("passValue", true);
-        //     setselecteddesignTeam('')
-        //     setselectedserverTeam('')
-        //     setselecteddevelopmentTeam('')
-        //     setselectedseoTeam('')
-        //     setChecked1(false)
-        //     setChecked2(false)
-        //     setChecked3(false)
-        //     setChecked4(false)
-        // });
+        Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
+            Team: selectedTeam.slice(1, 50),
+            ticketsId: ticketsId,
+            Adm_UpdatedOn: fulldate + ' ' + fullTime,
+            Adm_UpdatedBy: "admin1"
+        }).then((_response) => {
+            setShow("update Successfully");
+            localStorage.setItem('updateclose', "close");
+            localStorage.setItem("passValue", true);
+            setselecteddesignTeam('')
+            setselectedserverTeam('')
+            setselecteddevelopmentTeam('')
+            setselectedseoTeam('')
+            setChecked1(false)
+            setChecked2(false)
+            setChecked3(false)
+            setChecked4(false)
+        });
     }
-    
+    console.log(selectedTeam)
     return (
         <div>
             <Head>
