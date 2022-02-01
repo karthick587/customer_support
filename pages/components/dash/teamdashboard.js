@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Typography from '@mui/material/Typography';
 import Dashboard from "../common/navdashboard";
 import { withRouter } from "next/router";
@@ -8,21 +8,20 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemText from '@mui/material/ListItemText';
 import router from "next/router";
 import Teamticket from "../tickets/teamticket";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTicketAlt, faUsers } from '@fortawesome/free-solid-svg-icons';
 import Dashcard from "../common/dashCard";
 import Resentticket from "./resentTickets";
 import Piechart from "./piechart";
-import { CounterContext } from '../contex/adminProvider'
+import { CounterContext } from '../contex/adminProvider';
 const TeamDashboard = (props) => {
   const {
-    teamname,
     teamassignedcount,
     teaminprogresscount,
     teamstartedcount,
     teamcompletedcount,
     teamteamNotificationcount
-   } = useContext(CounterContext);
+  } = useContext(CounterContext);
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
   //access for team dashboard
@@ -80,9 +79,7 @@ const TeamDashboard = (props) => {
   var [activeTab, setActivetab] = useState(" ")
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
-  }, [])
-
-  
+  },[])
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -147,18 +144,15 @@ const TeamDashboard = (props) => {
                           </div>
                         </div>
                         <div className='Resentticket-page'>
-                         <Resentticket
-                          teamname={teamname}
+                          <Resentticket
+                            teamname={teamname}
                           />
-
-                          <Piechart 
+                          <Piechart
                             newcount={teamteamNotificationcount}
                             started={teamstartedcount}
                             inprogress={teaminprogresscount}
                             completed={teamcompletedcount}
-                           
-                             />
-                         
+                          />
                         </div>
                       </div>
                     </div>

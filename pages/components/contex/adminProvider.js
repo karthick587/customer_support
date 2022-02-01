@@ -24,10 +24,7 @@ export default function CounterContextProvider(props){
      //tickets count 
     let ticketscount = 0;
     ticketscount = tickets.length
-
-
      //team tickets filter function
-     var [teamname, setTeamname] = useState(" ");
      var [search1, setSearch1] = useState('');
      useEffect(() => {
          setSearch1(window.localStorage.getItem('tm_name'))
@@ -37,16 +34,16 @@ export default function CounterContextProvider(props){
          Axios.get("https://mindmadetech.in/api/team/list")
              .then((res) => setTeam(res.data));
      }, [team]);
-     useEffect(() => {
-         {
-             team.filter(val => {
-                 return val.Username.toLowerCase().includes(search1)
-             }).map((item) => setTeamname(item.Team),
-             )
-         }
-         localStorage.setItem('updateclose', "open");
-     })
     //team ticket count
+    const [loginTmName,setloginTmName]=useState()
+    const [teamticket,setteamticket]=useState([])
+    useEffect(() => {
+        setloginTmName( window.localStorage.getItem('tm_name')) 
+        Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
+            .then((res) => {
+                setteamticket(res.data);         
+            });
+    },[setteamticket,loginTmName]);
      // ticket count, ticket status count for team dashboard
      const [teamassignedcount, setassignedcount] = useState()
      const [teaminprogresscount, setinprogresscount] = useState()
@@ -54,17 +51,17 @@ export default function CounterContextProvider(props){
      const [teamcompletedcount, setcompletedcount] = useState()
      const [teamteamNotificationcount, setteamNotificationcount] = useState()
      useEffect(() => {
-         setassignedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) }).map((ticket) => setassignedcount(ticket.Team.length)).length)
-         setstartedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("started") }).map((ticket) => setstartedcount(ticket.Team.length)).length)
-         setinprogresscount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Team.length)).length)
-         setcompletedcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Team.length)).length)
-         setteamNotificationcount(tickets.filter(val => { return val.Team.toLowerCase().includes(teamname.toLowerCase()) && val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Team.length)).length)
-     }, [tickets])
+         setassignedcount(teamticket.filter(val => { return val }).map((ticket) => setassignedcount(ticket.Status.length)).length)
+         setstartedcount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("started") }).map((ticket) => setstartedcount(ticket.Status.length)).length)
+         setinprogresscount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Status.length)).length)
+         setcompletedcount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Status.length)).length)
+         setteamNotificationcount(teamticket.filter(val => { return val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Status.length)).length)
+     }, [teamticket])
     return(
         <CounterContext.Provider value={{
             tickets,
             team,
-            teamname,
+            teamticket,
             notificationcount,
             ticketscount,
             adminNewcount,

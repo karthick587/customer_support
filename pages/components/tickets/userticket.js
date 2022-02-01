@@ -61,13 +61,13 @@ function Userticket({Username}) {
                                     <TableCell align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {tickets.map((tickets) =>                         
+                            {tickets.reverse().map((tickets) =>                         
                                     <TableBody key={tickets.ticketsId} >
                                         <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId,tickets.Screenshots)}>                                            
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Team}</TableCell>
+                                            <TableCell ></TableCell>
                                             <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                                
                                             </TableCell>            

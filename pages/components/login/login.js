@@ -29,9 +29,7 @@ export default function Login1() {
     switch (TableValidate) {
       case 'ad_':
         validate = "admin";
-
         SlicedName = username.slice(3, 20);
-
         break;
       case 'tm_':
         validate = "team";

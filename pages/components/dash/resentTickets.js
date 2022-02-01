@@ -11,12 +11,11 @@ function preventDefault(event) {
     event.preventDefault();
 }
 export default function Resentticket(props) {
-    const { tickets} = useContext(CounterContext);
-const {teamname}=props
-const [team,seteam]=useState(" ")
+    const { tickets,teamticket} = useContext(CounterContext);
+const [team,seteam]=useState([...teamticket])
 useEffect(()=>{
-    if(teamname!==undefined){
-        seteam(teamname)
+    if(teamticket===undefined){
+        seteam(tickets)
     }
 })
     return (
@@ -36,8 +35,8 @@ useEffect(()=>{
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {tickets.filter(val => {
-                            return val.Status.toLowerCase().includes("New".toLowerCase())&&val.Team.toLowerCase().includes(team.toLowerCase())
+                        {team.filter(val => {
+                            return val.Status.toLowerCase().includes("New".toLowerCase())
                         }).map((tickets) =>
                             <TableRow className="resentticket-row" key={tickets.ticketsId}>
                                 <TableCell  >{tickets.Cus_CreatedOn}</TableCell>

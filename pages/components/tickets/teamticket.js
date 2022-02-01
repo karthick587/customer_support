@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
 import TableContainer from '@mui/material/TableContainer';
@@ -13,10 +13,10 @@ import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
-    const { tickets,teamname} = useContext(CounterContext);
+    const { teamticket} = useContext(CounterContext);
     const Router = useRouter()
     var [show, setShow] = useState('');
-   
+    
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
@@ -31,10 +31,10 @@ function Teamticket(props) {
             setdisabled("enable")
         }
     }
-   //status submit function
-  
+    //status submit function
+
     function handleUpdatestatus(ticketsId) {
-        
+
         if (selectedstatus === 'started') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -101,7 +101,7 @@ function Teamticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
-   
+
     //auth access for team ticket page
     const [login, setLogin] = useState()
     useEffect(() => {
@@ -113,8 +113,8 @@ function Teamticket(props) {
         }
     })
     const [dticketsId, setdticketsId] = useState("");
-    const[dticketsscreenshots,setdticketsscreenshots] = useState("")
-    const Notificationupdate = (ticketsId,Screenshots) => {
+    const [dticketsscreenshots, setdticketsscreenshots] = useState("")
+    const Notificationupdate = (ticketsId, Screenshots) => {
         setdticketsscreenshots(Screenshots)
         setdticketsId(ticketsId)
         setShowdetails(true)
@@ -129,38 +129,36 @@ function Teamticket(props) {
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
-            <div className='container'>
-                <div className="teambody">
-                    <div className='adminticket-head'>
-                        <h1>Tickets</h1>
-                    </div>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell  >TicketId</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Team</TableCell>
-                                    <TableCell align="left">Status</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            {tickets.filter(val => {
-                                return val.Team.toLowerCase().includes(teamname.toLowerCase())
-                            }).map((tickets) =>
-                              
+                <div className='container'>
+                    <div className="teambody">
+                        <div className='adminticket-head'>
+                            <h1>Tickets</h1>
+                        </div>
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell  >TicketId</TableCell>
+                                        <TableCell align="left">Username</TableCell>
+                                        <TableCell align="left">Date</TableCell>
+                                        <TableCell align="left">Team</TableCell>
+                                        <TableCell align="left">Status</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                {teamticket.map((tickets) =>
+
                                     <TableBody key={tickets.ticketsId} className='update-right' >
-                                        <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId,tickets.Screenshots)}>
-                                              
+                                        <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
+
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Team}</TableCell>
-                                            <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
-                                            </TableCell>            
+                                            <TableCell ></TableCell>
+                                            <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
+                                            </TableCell>
                                         </TableRow>
                                         <FormDialog
-                                        dialog_className="update7"
+                                            dialog_className="update7"
                                             dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
                                             className="btn3 ticket-update2"
                                             dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>ticket has been completed</div> :
@@ -194,13 +192,13 @@ function Teamticket(props) {
                                             }
                                         />
                                     </TableBody>
-                               )}
-                        </Table>
-                    </TableContainer>
-                </div>
+                                )}
+                            </Table>
+                        </TableContainer>
+                    </div>
                 </div> :
                 <>
-                     <Ticketviewer
+                    <Ticketviewer
                         dticketsId={dticketsId}
                         dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}

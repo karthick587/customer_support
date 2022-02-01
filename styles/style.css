@@ -1521,7 +1521,6 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
-
 .react-piechart {
   margin-left: 18px;
   width: 370px !important;
@@ -1532,3 +1531,20 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 .ticket-icon {
   margin: -2.3px 2.84px;
 }
+.profile-card {
+  padding: 50px;
+  background-color: white;
+  border-radius: 14px;
+}
+.profile-body {
+  padding: 50px 50px;
+  /* background-color: white; */
+}
+.profile-label {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 1px;
+}
+
+
