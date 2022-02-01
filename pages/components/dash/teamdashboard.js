@@ -14,6 +14,7 @@ import Dashcard from "../common/dashCard";
 import Resentticket from "./resentTickets";
 import Piechart from "./piechart";
 import { CounterContext } from '../contex/adminProvider';
+import Axios from "axios";
 const TeamDashboard = (props) => {
   const {
     teamassignedcount,
@@ -80,6 +81,16 @@ const TeamDashboard = (props) => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   },[])
+
+  const [loginTmName,setloginTmName]=useState("")
+  const [teamticket,setteamticket]=useState([])
+  useEffect(() => {
+      setloginTmName( window.localStorage.getItem('tm_name')) 
+      Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
+          .then((res) => {
+              setteamticket(res.data);         
+          });
+  },[setteamticket,loginTmName]);
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -144,9 +155,7 @@ const TeamDashboard = (props) => {
                           </div>
                         </div>
                         <div className='Resentticket-page'>
-                          <Resentticket
-                            teamname={teamname}
-                          />
+                          <Resentticket teamticket={teamticket} />
                           <Piechart
                             newcount={teamteamNotificationcount}
                             started={teamstartedcount}
@@ -162,7 +171,7 @@ const TeamDashboard = (props) => {
                   profile
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Teamticket />
+                  <Teamticket teamticket={teamticket} />
                 </div>
               </div>
             </div>

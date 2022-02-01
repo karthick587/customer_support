@@ -184,7 +184,6 @@ const AdminDashboard = () => {
                             inprogress={adminprogresscount}
                             completed={adminCompletedcount}
                           />
-
                         </div>
                       </div>
                     </div>

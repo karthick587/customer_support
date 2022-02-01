@@ -33,23 +33,17 @@ export default function Login1() {
         break;
       case 'tm_':
         validate = "team";
-
         SlicedName = username.slice(3, 20);
-
         localStorage.setItem('tm_name', SlicedName);
         break;
       default:
         validate = "customer";
-
         SlicedName = username;
-
         localStorage.setItem('clientname', SlicedName);
     }
-    
       Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
         username: SlicedName,
         password: password,
-        
       }).then((response) => {
         if (response.data.statusCode === 400) {
           setLoginStatus(response.data.message);
@@ -75,7 +69,6 @@ export default function Login1() {
   }, []);
   useEffect(() => {
     localStorage.setItem('user', userlogin);
-
   });
   return (
     <div className="login-page">
