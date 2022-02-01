@@ -25,22 +25,25 @@ export default function CounterContextProvider(props){
     let ticketscount = 0;
     ticketscount = tickets.length
      //team tickets filter function
+     var [search1, setSearch1] = useState('');
+     useEffect(() => {
+         setSearch1(window.localStorage.getItem('tm_name'))
+     })
      var [team, setTeam] = useState([]);
      useEffect(() => {
          Axios.get("https://mindmadetech.in/api/team/list")
              .then((res) => setTeam(res.data));
-     }, [team]);
+     }, [setTeam]);
     //team ticket count
-   
-  const [loginTmName,setloginTmName]=useState("")
-  const [teamticket,setteamticket]=useState([])
-  useEffect(() => {
-      setloginTmName( window.localStorage.getItem('tm_name')) 
-      Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
-          .then((res) => {
-              setteamticket(res.data);         
-          });
-  },[setteamticket,loginTmName]);
+    var [loginTmName,setloginTmName]=useState()
+    const [teamticket,setteamticket]=useState([])
+    useEffect(() => {
+        setloginTmName( loginTmName = window.localStorage.getItem('tm_name')) 
+        Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
+            .then((res) => {
+                setteamticket(res.data);         
+            });
+    },[setteamticket,loginTmName]);
      // ticket count, ticket status count for team dashboard
      const [teamassignedcount, setassignedcount] = useState()
      const [teaminprogresscount, setinprogresscount] = useState()

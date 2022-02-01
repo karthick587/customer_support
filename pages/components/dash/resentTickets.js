@@ -12,7 +12,7 @@ function preventDefault(event) {
 }
 export default function Resentticket(props) {
     const { tickets,teamticket} = useContext(CounterContext);
-    const {teamticket}=props
+    // const {teamticket}=props
 const [team,seteam]=useState([...teamticket])
 useEffect(()=>{
     if(teamticket===undefined){
