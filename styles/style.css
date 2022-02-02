@@ -732,7 +732,7 @@ form.form2 {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  min-width: 603px;
+  min-width: 500px;
 }
 .right-user-btns {
   display: flex;

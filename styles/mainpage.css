@@ -163,13 +163,13 @@ div#v-pills-dash {
 }
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 539px;
+  width: 700px;
   margin: auto;
   padding: 0px !important;
 }
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 488px !important;
+  width: 522px !important;
   margin: auto;
 }
   .css-1howxi1-MuiTableCell-root {
@@ -224,7 +224,7 @@ div#v-pills-team{
 
 .teambody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 600px;
+  width: 700px;
   margin: auto;
 }
 .tickets-bodyrow4 td {

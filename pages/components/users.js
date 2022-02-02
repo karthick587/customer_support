@@ -153,7 +153,7 @@ useEffect(()=>{
                                 <TableRow className='usertable'>
                                     <TableCell className="client-logo-col" >USERID</TableCell>
                                     <TableCell className="client-logo-col" align="left">LOGO</TableCell>
-                                    <TableCell className="client-logo-cn" align="left">COMPANY NAME</TableCell>
+                                    <TableCell className="client-logo-col" align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">PHONE NUMBER</TableCell>
