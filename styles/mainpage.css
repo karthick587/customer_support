@@ -84,8 +84,16 @@
   .width-25 {
     width: 100%;
 }
+.css-1o6fzn1 {
+  padding: 0px !important;
+  font-size: 12px !important;
+}
 .profile-body {
   padding: 34px 0px;
+}
+.resentticket-table::-webkit-scrollbar {
+  width: 4px;
+  height: 0.5vh;
 }
 .profile-card-body {
   /* text-align: left !important; */
@@ -102,7 +110,7 @@
 
 .echarts-for-react {
   width: auto !important;
-  margin: 9px 2px 0px 14px;
+ 
   height: 249px !important;
 }
 .react-piechart {
@@ -114,9 +122,7 @@
   width: 20px !important;
   font-size: 5px !important;
 }
-.resentticket-table {
-  overflow-x: hidden !important;
-}
+
 .adminticket-head {
   padding: 0px !important;
 }
@@ -282,9 +288,7 @@ form.form3 {
   display: flex;
   z-index: 7;
 }
-.css-dsuxgy-MuiTableCell-root {
-  line-height: 3.43 !important;
-}
+
 .deteleandedit {
   display: flex;
   margin: 14px 10px;

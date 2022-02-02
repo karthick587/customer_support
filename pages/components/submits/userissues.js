@@ -68,7 +68,7 @@ function Userissue(props) {
             }
         }).then((res) => {
             setShow("Updated Successfully")
-            setDescription("")
+            setDescription(" ")
         })
     }
     setTimeout(() => {
