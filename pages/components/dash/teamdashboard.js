@@ -16,14 +16,7 @@ import Piechart from "./piechart";
 import { CounterContext } from '../contex/adminProvider';
 import Axios from "axios";
 const TeamDashboard = (props) => {
-  const {
-    teamticket,
-    teamassignedcount,
-    teaminprogresscount,
-    teamstartedcount,
-    teamcompletedcount,
-    teamteamNotificationcount
-  } = useContext(CounterContext);
+ 
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
   //access for team dashboard
@@ -83,6 +76,29 @@ const TeamDashboard = (props) => {
     setActivetab(window.localStorage.getItem('activeTab'))
   },[])
 
+  var [loginTmName,setloginTmName]=useState()
+  const [teamticket,setteamticket]=useState([])
+  useEffect(() => {
+      setloginTmName( loginTmName = window.localStorage.getItem('tm_name')) 
+      Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
+          .then((res) => {
+              setteamticket(res.data);         
+          });
+  },[setteamticket,loginTmName]);
+    // ticket count, ticket status count for team dashboard
+    const [teamassignedcount, setassignedcount] = useState()
+    const [teaminprogresscount, setinprogresscount] = useState()
+    const [teamstartedcount, setstartedcount] = useState()
+    const [teamcompletedcount, setcompletedcount] = useState()
+    const [teamteamNotificationcount, setteamNotificationcount] = useState()
+    useEffect(() => {
+        setassignedcount(teamticket.filter(val => { return val }).map((ticket) => setassignedcount(ticket.Status.length)).length)
+        setstartedcount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("started") }).map((ticket) => setstartedcount(ticket.Status.length)).length)
+        setinprogresscount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Status.length)).length)
+        setcompletedcount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Status.length)).length)
+        setteamNotificationcount(teamticket.filter(val => { return val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Status.length)).length)
+    }, [teamticket])
+ 
   
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :

@@ -17,18 +17,28 @@ export default function CustomerProfile(props) {
                             <div className="profile-card">
                                 <div className="profile-card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
-                                        <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle" width="150"  height="150" />
-                                       
-                                            <h4 className="profile-label">{users.Username}</h4>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <h6 className="mb-0 profile-label">Project code</h6>
-                                                </div>
-                                                <div className="col text-secondary">
-                                                    MMM000001
-                                                </div>
+                                        <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle" width="150" height="150" />
+                                        <div className="row">
+                                            <div className="col">
+                                                <h6 className="mb-0 profile-label">
+                                                    UserName
+                                                </h6>
                                             </div>
-                                       
+                                            :
+                                            <div className="col text-secondary">
+                                                {users.Username}
+                                            </div>
+                                        </div>
+                                        <h4 className="profile-label"></h4>
+                                        <div className="row">
+                                            <div className="col">
+                                                <h6 className="mb-0 profile-label">Project code</h6>
+                                            </div>:
+                                            <div className="col text-secondary">
+                                                MMM000001
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +51,7 @@ export default function CustomerProfile(props) {
                                             <h6 className="mb-0 profile-label">Full Name</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                        {users.Username}
+                                            {users.Username}
                                         </div>
                                     </div>
                                     <hr />
@@ -50,7 +60,7 @@ export default function CustomerProfile(props) {
                                             <h6 className="mb-0 profile-label">Email</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                        {users.Email}
+                                            {users.Email}
                                         </div>
                                     </div>
                                     <hr />

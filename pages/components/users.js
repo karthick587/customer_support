@@ -203,7 +203,8 @@ useEffect(()=>{
                     < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
-                        pageCount={users.length / datalimit}
+                        pageCount={Math.ceil(users.length / datalimit)}
+                      
                         onPageChange={(e) => handlePageChange(e.selected)}
                         containerClassName={"pagination justify-content-center mt-3"}
                         pageClassName={"page-item"}

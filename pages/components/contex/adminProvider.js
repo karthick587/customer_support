@@ -35,44 +35,19 @@ export default function CounterContextProvider(props){
              .then((res) => setTeam(res.data));
      }, [setTeam]);
     //team ticket count
-    var [loginTmName,setloginTmName]=useState()
-    const [teamticket,setteamticket]=useState([])
-    useEffect(() => {
-        setloginTmName( loginTmName = window.localStorage.getItem('tm_name')) 
-        Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
-            .then((res) => {
-                setteamticket(res.data);         
-            });
-    },[setteamticket,loginTmName]);
-     // ticket count, ticket status count for team dashboard
-     const [teamassignedcount, setassignedcount] = useState()
-     const [teaminprogresscount, setinprogresscount] = useState()
-     const [teamstartedcount, setstartedcount] = useState()
-     const [teamcompletedcount, setcompletedcount] = useState()
-     const [teamteamNotificationcount, setteamNotificationcount] = useState()
-     useEffect(() => {
-         setassignedcount(teamticket.filter(val => { return val }).map((ticket) => setassignedcount(ticket.Status.length)).length)
-         setstartedcount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("started") }).map((ticket) => setstartedcount(ticket.Status.length)).length)
-         setinprogresscount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Status.length)).length)
-         setcompletedcount(teamticket.filter(val => { return  val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Status.length)).length)
-         setteamNotificationcount(teamticket.filter(val => { return val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Status.length)).length)
-     }, [teamticket])
+   
+   
     return(
         <CounterContext.Provider value={{
             tickets,
             team,
-            teamticket,
             notificationcount,
             ticketscount,
             adminNewcount,
             adminStartedcount,
             adminprogresscount,
-            adminCompletedcount,
-            teamassignedcount,
-            teaminprogresscount,
-            teamstartedcount,
-            teamcompletedcount,
-            teamteamNotificationcount
+            adminCompletedcount
+           
             }}>
             {props.children}
         </CounterContext.Provider>

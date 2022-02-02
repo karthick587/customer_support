@@ -22,13 +22,11 @@ function Addteam(props) {
     const { errors } = formState;
     //console.log(addteam);
     const addTeam = ({ Username, Password }) => {
-
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
             Password: Password,
             Team: addteam
         }).then((response) => {
-
             if (response.data.message) {
                 setShow(response.data.message)
                 localStorage.setItem('updateclose', "close");
@@ -38,7 +36,6 @@ function Addteam(props) {
             }
         });
     }
-
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))

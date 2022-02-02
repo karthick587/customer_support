@@ -71,7 +71,7 @@ function AdminNotification(props) {
                                         <div className={tickets.Status} > {tickets.Status}</div>
                                     </div>
                                     <div className='ticket details-Team' ><label className="label">Team</label>
-                                        <div className='ticket-input-details' > {tickets.Team}</div></div>
+                                        <div className='ticket-input-details' > </div></div>
                                     <div className='ticket details-screenshots'><img src={tickets.screenshots} alt="screenshots" height="80vh" width="50%" /></div>
                                 </div>
                             }

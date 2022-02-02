@@ -193,7 +193,7 @@ export default function Team(props) {
                     < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
-                        pageCount={team.length / datalimit}
+                        pageCount={Math.ceil(team.length / datalimit)}                    
                         onPageChange={(e) => handlePageChange(e.selected)}
                         containerClassName={"pagination justify-content-center mt-3"}
                         pageClassName={"page-item"}

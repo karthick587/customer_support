@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
-    const { teamticket } = useContext(CounterContext);
+    const { teamticket } = props
    
     const Router = useRouter()
     var [show, setShow] = useState('');
@@ -147,7 +147,6 @@ function Teamticket(props) {
                                     </TableRow>
                                 </TableHead>
                                 {teamticket.map((tickets) =>
-
                                     <TableBody key={tickets.ticketsId} className='update-right' >
                                         <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
 
@@ -173,14 +172,12 @@ function Teamticket(props) {
                                                             <form>
                                                                 <div className="form-group">
                                                                     <label className="label">status</label>
-
                                                                     <select className="form-input" onChange={handlestatus}>
                                                                         <option value="">--Select Team--</option>
                                                                         <option className='started' value="started">started</option>
                                                                         <option className='inprogress' value="inprogress">inprogress</option>
                                                                         <option className='completed' value="completed">completed</option>
                                                                     </select>
-
                                                                 </div>
                                                             </form>
                                                         </div>

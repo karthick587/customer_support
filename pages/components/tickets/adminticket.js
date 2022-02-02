@@ -104,24 +104,24 @@ function Adminticket(props) {
     })
     // emailjs
     const [ticketid, setTicketid] = useState()
-   
+
     function updateemail(ticketsId, Username) {
         setName(Username);
         setTicketid(ticketsId)
     }
-    console.log(ticketid)
-    const [sendmail,setsendmail]=useState(false)
+
+    const [sendmail, setsendmail] = useState(false)
     const [name, setName] = useState(" ")
-    
-  
+
+
     const [showmailstatus, setShowmailstatus] = useState("")
     var [selectedstatus, setSelectedstatus] = useState('');
     const SERVICE_ID = "service_56f9av6"
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
-    function finalStatus(ticketsId,Tm_Complete_UpdatedOn,Tm_Complete_UpdatedBy) {
-        if(selectedstatus==="Completed"){
-            
+    function finalStatus(ticketsId, Tm_Complete_UpdatedOn, Tm_Complete_UpdatedBy) {
+        if (selectedstatus === "Completed") {
+
             console.log(Tm_Complete_UpdatedOn)
             console.log(Tm_Complete_UpdatedBy)
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketid}`, {
@@ -135,7 +135,7 @@ function Adminticket(props) {
                 console.log("ad_completed")
             });
         }
-       
+
         var data = {
             to_email: email,
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
@@ -174,13 +174,14 @@ function Adminticket(props) {
         }
         localStorage.setItem('updateclose', "open");
     })
+
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
     //emailjs
     const [dticketsId, setdticketsId] = useState("")
-    const[dticketsscreenshots,setdticketsscreenshots] = useState("")
-    const Notificationupdate = (ticketsId,Screenshots) => {
+    const [dticketsscreenshots, setdticketsscreenshots] = useState("")
+    const Notificationupdate = (ticketsId, Screenshots) => {
         setdticketsId(ticketsId)
         setdticketsscreenshots(Screenshots)
         setShowdetails(true)
@@ -205,14 +206,32 @@ function Adminticket(props) {
         setShowdetails(false)
     }
     //admin multiteam assign 
+  
     const [selecteddesignTeam, setselecteddesignTeam] = useState('');
     const [selectedserverTeam, setselectedserverTeam] = useState('');
     const [selecteddevelopmentTeam, setselecteddevelopmentTeam] = useState('');
     const [selectedseoTeam, setselectedseoTeam] = useState('');
-    const [checked1, setChecked1] = useState(false)
-    const [checked2, setChecked2] = useState(false)
-    const [checked3, setChecked3] = useState(false)
-    const [checked4, setChecked4] = useState(false)
+    var [checked1, setChecked1] = useState(false)
+    var [checked2, setChecked2] = useState(false)
+    var [checked3, setChecked3] = useState(false)
+    var [checked4, setChecked4] = useState(false)
+   
+  
+    function defaultcheck(Design,Development,Server,Seo) {
+        if(Design==="y"){
+            setChecked1(true)
+        }
+         if(Development==="y"){
+            handleClick2(true)
+        }
+         if(Server==="y"){
+        handleClick3(true)
+        }
+        if(Seo==="y"){
+            handleClick4(true)
+        }
+        }
+       
     useEffect(() => {
         if (checked1 === false) {
             setselecteddesignTeam('')
@@ -231,13 +250,20 @@ function Adminticket(props) {
     const handleClick2 = () => setChecked2(!checked2)
     const handleClick3 = () => setChecked3(!checked3)
     const handleClick4 = () => setChecked4(!checked4)
-    const [selectedTeam, setselectedTeam] = useState('')
-    useEffect(() => {
-        setselectedTeam(selecteddesignTeam + selectedserverTeam + selecteddevelopmentTeam + selectedseoTeam)
-    })
+
     function handleUpdate(ticketsId) {
+        console.log(selecteddesignTeam, selectedserverTeam, selecteddevelopmentTeam, selectedseoTeam)
+        var Design, Development, Server, Seo;
+        (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
+        (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
+        (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
+        (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
+
         Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
-            Team: selectedTeam.slice(1, 50),
+            Design: Design,
+            Development: Development,
+            Seo: Seo,
+            Server: Server,
             ticketsId: ticketsId,
             Adm_UpdatedOn: fulldate + ' ' + fullTime,
             Adm_UpdatedBy: "admin1"
@@ -255,7 +281,7 @@ function Adminticket(props) {
             setChecked4(false)
         });
     }
-    console.log(selectedTeam)
+
     return (
         <div>
             <Head>
@@ -352,24 +378,18 @@ function Adminticket(props) {
                                 }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
 
                                     <TableBody className='update-right' key={tickets.ticketsId}>
-                                        <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId,tickets.Screenshots)}>
-
-
-
+                                        <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                             <TableCell >{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Design==="y"? <>Design</>:<></>} {tickets.Development ==="y"? <>Development</>:<></>} {tickets.Seo==="y"? <>Seo</>:<></>} {tickets.Server==="y"? <>Server</>:<></>} {tickets.Server==="n"&&tickets.Design==="n"&&tickets.Seo==="n"&&tickets.Development==="n" ? <>Not assigned</>:<></>}</TableCell>
-                                            <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
+                                            <TableCell >{tickets.Design === "y" ? <>Design</> : <></>} {tickets.Development === "y" ? <>Development</> : <></>} {tickets.Seo === "y" ? <>Seo</> : <></>} {tickets.Server === "y" ? <>Server</> : <></>} {tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                            <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
-
-
                                         </TableRow>
                                         <div className='updateadminpage flex'>
-
                                             <FormDialog
                                                 dialog_className="Assign-team-dailog"
-                                                dialogtitle="Assign"
+                                                dialogtitle={<div onClick={()=>defaultcheck(tickets.Design,tickets.Development,tickets.Server,tickets.Seo)}>Assign</div>}
                                                 className="btn3 ticket-update2"
                                                 dialogbody={
                                                     <div className="form dialog">
@@ -379,18 +399,14 @@ function Adminticket(props) {
                                                                 <h1>Update Ticket {tickets.ticketsId}</h1>
                                                             </div>
                                                             <div className="addform">
-
                                                                 <div className="form-group">
                                                                     <label className="label">Team</label>
-                                                                    <div className="dropdown">
-                                                                        <button className="form-input dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                            Assign Team
-                                                                        </button>
-                                                                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                            <li className='flex'><div className="dropdown-item">design</div><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value=",design" onChange={(e) => setselecteddesignTeam(e.target.value)} /></li>
-                                                                            <li className='flex'><div className="dropdown-item">server</div><input className="form-check-input" onClick={handleClick2} checked={checked2} type="checkbox" value=",server" onChange={(e) => setselectedserverTeam(e.target.value)} /></li>
-                                                                            <li className='flex'><div className="dropdown-item">development</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value=",development" onChange={(e) => setselecteddevelopmentTeam(e.target.value)} /></li>
-                                                                            <li className='flex'><div className="dropdown-item">seo</div><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value=",seo" onChange={(e) => setselectedseoTeam(e.target.value)} /></li>
+                                                                    <div className='check-input-list'>
+                                                                        <ul>
+                                                                            <li className='flex '><input className="form-check-input me-1" onClick={handleClick1} checked={checked1} type="checkbox" value="Design" onChange={(e) => setselecteddesignTeam(e.target.value)} /><div >design</div></li>
+                                                                            <li className='flex'><input className="form-check-input me-1" onClick={handleClick2} checked={checked2} type="checkbox" value="Server" onChange={(e) => setselectedserverTeam(e.target.value)} /><div >server</div></li>
+                                                                            <li className='flex'><input className="form-check-input me-1" onClick={handleClick3} checked={checked3} type="checkbox" value="Development" onChange={(e) => setselecteddevelopmentTeam(e.target.value)} /><div>development</div></li>
+                                                                            <li className='flex'><input className="form-check-input me-1" onClick={handleClick4} checked={checked4} type="checkbox" value="Seo" onChange={(e) => setselectedseoTeam(e.target.value)} /><div >seo</div></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -408,7 +424,7 @@ function Adminticket(props) {
                                                 dialogbody={
                                                     <div className="form dialog emaildialog">
                                                         <div className="form-group">
-                                                        <div className="form-header">
+                                                            <div className="form-header">
                                                                 <h1>Status Final Update</h1>
                                                             </div>
                                                             <select className="form-input" onChange={handlestatus}>
@@ -416,11 +432,11 @@ function Adminticket(props) {
                                                                 <option className='Completed' value="Completed">Completed</option>
                                                             </select>
                                                             <div className='flex'>
-                                                            <input className="form-check-input" type="checkbox" value="true" onChange={(e) => setsendmail(e.target.value)} />
-                                                            <div>Send mail to Client</div>
-                                                            </div>                                                  
+                                                                <input className="form-check-input" type="checkbox" value="true" onChange={(e) => setsendmail(e.target.value)} />
+                                                                <div>Send mail to Client</div>
+                                                            </div>
                                                         </div>
-                                                        <button className="btn2 float-end mt-3 mb-3" onClick={()=>finalStatus(tickets.ticketsId,tickets.Tm_Complete_UpdatedOn,tickets.Tm_Complete_UpdatedBy)}>Update</button>
+                                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId, tickets.Tm_Complete_UpdatedOn, tickets.Tm_Complete_UpdatedBy)}>Update</button>
                                                         <h4 className="alert1 text-center">{show}</h4>
                                                     </div>
                                                 }
@@ -433,7 +449,7 @@ function Adminticket(props) {
                         < ReactPaginate
                             previousLabel={""}
                             nextLabel={""}
-                            pageCount={tickets.length / datalimit}
+                            pageCount={Math.ceil(tickets.length / datalimit)}
                             onPageChange={(e) => handlePageChange(e.selected)}
                             containerClassName={"pagination justify-content-center mt-3"}
                             pageClassName={"page-item"}
