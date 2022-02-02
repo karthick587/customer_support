@@ -94,6 +94,12 @@
 .profile-body {
   padding: 34px 0px;
 }
+.updateadminpage {
+  position: absolute;
+  right: -100px;
+  margin-top: -18px;
+  top: 0;
+}
 .resentticket-table::-webkit-scrollbar {
   width: 4px;
   height: 0.5vh;
@@ -186,14 +192,12 @@ div#v-pills-team{
 }
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
-  padding-top: 4px !important;
   font-weight: 550;
 }
 .highlighted-row td {
   width: 90px;
   text-align: left;
   font-weight: 600;
-  padding: 34px 0px 0px 0px;
   font-size: 13px;
   color: black;
 }
