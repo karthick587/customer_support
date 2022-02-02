@@ -13,6 +13,10 @@ import { useRouter } from 'next/router'
 function Userticket(props) {
     const {tickets}=props
     const[maptickets,setmaptickets]=useState([])
+    useEffect(() => {
+        setmaptickets(tickets)
+        
+    },[tickets])
     const Router = useRouter()
    
     
