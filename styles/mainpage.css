@@ -84,8 +84,11 @@
   .width-25 {
     width: 100%;
 }
+.echarts-for-react {
+  width: auto !important;
+  height: 249px!important;
+}
 .css-1o6fzn1 {
-  padding: 0px !important;
   font-size: 12px !important;
 }
 .profile-body {
@@ -107,16 +110,10 @@
     margin: 0px 0px 8px 7px;
     display: flex;
 }
-
-.echarts-for-react {
-  width: auto !important;
- 
-  height: 249px !important;
-}
 .react-piechart {
   margin-left: 18px;
-  width: 267px !important;
-  margin: 16px 0px 3px -15px !important;
+  width: 100% !important;
+  margin: 16px 0px 3px 0px !important;
 }
 .resentticket-row{
   width: 20px !important;
