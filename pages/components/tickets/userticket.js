@@ -12,11 +12,13 @@ import Ticketviewer from '../common/ticketviewer';
 import { useRouter } from 'next/router'
 function Userticket(props) {
     const {tickets}=props
+    const[maptickets,setmaptickets]=useState([])
     const Router = useRouter()
    
     
     const [login, setLogin] = useState()
     useEffect(() => {
+        setmaptickets(tickets)
         setLogin(window.localStorage.getItem('loggedin'))
         if (login === "false") {
             Router.push("/")
@@ -24,7 +26,7 @@ function Userticket(props) {
             Router.push("/")
         }
         localStorage.setItem('updateclose', "open");
-    })
+    },[tickets])
     const [showdetails, setShowdetails] = useState(false)
     const [dticketsId, setdticketsId] = useState("")
     const[dticketsscreenshots,setdticketsscreenshots] = useState("")
@@ -58,7 +60,7 @@ function Userticket(props) {
                                     <TableCell align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {tickets.reverse().map((tickets) =>                         
+                            {maptickets.reverse().map((tickets) =>                         
                                     <TableBody key={tickets.ticketsId} >
                                         <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId,tickets.Screenshots)}>                                            
                                             <TableCell>{tickets.ticketsId}</TableCell>

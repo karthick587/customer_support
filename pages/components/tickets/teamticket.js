@@ -14,7 +14,7 @@ import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
     const { teamticket } = props
-   
+   const[mapteamticket,setmapteamticket]=useState([])
     const Router = useRouter()
     var [show, setShow] = useState('');
     
@@ -106,13 +106,14 @@ function Teamticket(props) {
     //auth access for team ticket page
     const [login, setLogin] = useState()
     useEffect(() => {
+        setmapteamticket(teamticket)
         setLogin(window.localStorage.getItem('loggedin'))
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {
             Router.push("/")
         }
-    })
+    },[teamticket])
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("")
     const Notificationupdate = (ticketsId, Screenshots) => {
@@ -146,7 +147,7 @@ function Teamticket(props) {
                                         <TableCell align="left">Status</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {teamticket.map((tickets) =>
+                                {mapteamticket.map((tickets) =>
                                     <TableBody key={tickets.ticketsId} className='update-right' >
                                         <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
 

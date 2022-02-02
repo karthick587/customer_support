@@ -80,10 +80,14 @@ const TeamDashboard = (props) => {
   const [teamticket,setteamticket]=useState([])
   useEffect(() => {
       setloginTmName( loginTmName = window.localStorage.getItem('tm_name')) 
-      Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
-          .then((res) => {
-              setteamticket(res.data);         
-          });
+      console.log(loginTmName)
+      if(loginTmName!==" "||loginTmName!==undefined||loginTmName!==null){
+        Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
+        .then((res) => {
+            setteamticket(res.data);         
+        });
+      }
+   
   },[setteamticket,loginTmName]);
     // ticket count, ticket status count for team dashboard
     const [teamassignedcount, setassignedcount] = useState()
@@ -99,7 +103,6 @@ const TeamDashboard = (props) => {
         setteamNotificationcount(teamticket.filter(val => { return val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Status.length)).length)
     }, [teamticket])
  
-  
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
