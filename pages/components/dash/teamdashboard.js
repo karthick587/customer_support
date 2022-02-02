@@ -81,7 +81,7 @@ const TeamDashboard = (props) => {
   useEffect(() => {
       setloginTmName( loginTmName = window.localStorage.getItem('tm_name')) 
       console.log(loginTmName)
-      if(loginTmName!==" "||loginTmName!==undefined||loginTmName!==null){
+      if(loginTmName!==""||loginTmName!==undefined||loginTmName!==null){
         Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${loginTmName}`)
         .then((res) => {
             setteamticket(res.data);         

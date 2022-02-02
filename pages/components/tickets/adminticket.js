@@ -248,36 +248,40 @@ function Adminticket(props) {
             setselectedseoTeam('')
         }
     },[checked1,checked2,checked3,checked4])
-    function handleUpdate(ticketsId) {
-        console.log(selecteddesignTeam, selectedserverTeam, selecteddevelopmentTeam, selectedseoTeam)
-        var Design, Development, Server, Seo;
-        (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
-        (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
-        (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
-        (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
-
-        Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
-            Design: Design,
-            Development: Development,
-            Seo: Seo,
-            Server: Server,
-            ticketsId: ticketsId,
-            Adm_UpdatedOn: fulldate + ' ' + fullTime,
-            Adm_UpdatedBy: "admin1"
-        }).then((_response) => {
-            setShow("update Successfully");
-            localStorage.setItem('updateclose', "close");
-            localStorage.setItem("passValue", true);
-            setselecteddesignTeam('')
-            setselectedserverTeam('')
-            setselecteddevelopmentTeam('')
-            setselectedseoTeam('')
-            setChecked1(false)
-            setChecked2(false)
-            setChecked3(false)
-            setChecked4(false)
-        });
-    }
+   
+        function handleUpdate(ticketsId) {
+            console.log(selecteddesignTeam, selectedserverTeam, selecteddevelopmentTeam, selectedseoTeam)
+            var Design, Development, Server, Seo;
+            (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
+            (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
+            (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
+            (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
+            if(ticketsId!==""){
+            Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
+                Design: Design,
+                Development: Development,
+                Seo: Seo,
+                Server: Server,
+                ticketsId: ticketsId,
+                Adm_UpdatedOn: fulldate + ' ' + fullTime,
+                Adm_UpdatedBy: "admin1"
+            }).then((_response) => {
+                setShow("update Successfully");
+                localStorage.setItem('updateclose', "close");
+                localStorage.setItem("passValue", true);
+                setselecteddesignTeam('')
+                setselectedserverTeam('')
+                setselecteddevelopmentTeam('')
+                setselectedseoTeam('')
+                setChecked1(false)
+                setChecked2(false)
+                setChecked3(false)
+                setChecked4(false)
+            });
+        }
+        }
+    
+   
     return (
         <div>
             <Head>
