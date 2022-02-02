@@ -75,29 +75,28 @@ function Userissue(props) {
         setShow()
     }, [3500])
     return (
-        <div className="container">
             <div>
                 <form className="form3" action="/" method="post">
                     <h4 className="issue-head">Submit your Issues Here!!!</h4>
-                    <div className="form-group">
-                        <label className="label">User Name</label>
-                        <h5 className="form-input">{props.customername}</h5>
+                    <div className="form-group flex">
+                        <label className="label width-25">User Name</label>
+                        <h5 className="issue-form-input">{props.customername}</h5>
                     </div>
-                    <div className="form-group">
-                        <label className="label">Email</label>
-                        <input className="form-input" name="email" type="text" onChange={(e) => { setEmail(e.target.value); }} />
+                    <div className="form-group flex">
+                        <label className="label width-25">Email</label>
+                        <input className="issue-form-input" name="email" type="text" onChange={(e) => { setEmail(e.target.value); }} />
                     </div>
-                    <div className="form-group">
-                        <label className="label">Phonenumber</label>
-                        <input className="form-input" name="phonenumber" type="text" onChange={(e) => { setPhonenumber(e.target.value); }} />
+                    <div className="form-group flex">
+                        <label className="label width-25">Phonenumber</label>
+                        <input className="issue-form-input" name="phonenumber" type="text" onChange={(e) => { setPhonenumber(e.target.value); }} />
                     </div>
-                    <div className="form-group">
-                        <label className="label">Domain Name</label>
-                        <input className="form-input" name="domainName" type="text" onChange={(e) => { setDomainName(e.target.value); }} />
+                    <div className="form-group flex">
+                        <label className="label width-25">Domain Name</label>
+                        <input className="issue-form-input" name="domainName" type="text" onChange={(e) => { setDomainName(e.target.value); }} />
                     </div>
                     <div className="form-group">
                         <label className="label">Description</label>
-                        <textarea className="form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
+                        <textarea className="issue-form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                     <div className="form-group">
                         <form>
@@ -114,11 +113,10 @@ function Userissue(props) {
                         </form>
                     </div>
                     <div className="">
-                        <button className="btn2 mt-3 mb-4" type="button" onClick={addIssues}>Submit</button>
+                        <button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button>
                     </div>
                 </form>
                 <h4 className="alert1 text-center">{show}</h4>
             </div>
-        </div>
     );
 }

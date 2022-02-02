@@ -13,9 +13,8 @@ a {
   color: black;
   font-size: 12px;
   font-weight: 600;
-  padding: 10px 1px;
+  padding: 10px 1px; 
 }
-
 .tickets-table-row {
   display: flex;
 }
@@ -249,15 +248,26 @@ a {
   margin: -9px 1px -3px 0px !important;
 }
 form.form3 {
+  background-color: white;
+  border-radius: 20px;
   width: 600px;
-  margin: 27px 4px 0px 67px;
+  margin: 22px 3px 0px 38px;
+  padding: 30px;
+  overflow: auto;
 }
-
 .btn-login {
   text-align: center;
   margin-top: 10%;
 }
-
+.issue-form-input {
+  padding: 6px 11px;
+  border-radius: 6px;
+  border: 0px solid #e3eef8;
+  font-size: 14px;
+  width: 100%;
+  background: #e3eef8;
+  z-index: 99;
+}
 .ticket-update2 {
   z-index: 99;
 }
@@ -362,10 +372,13 @@ img.slide-banner1 {
   border-radius: 19px;
   border: 1px solid #8080804a;
   font-size: 14px;
+  width: 100%;
   background: transparent;
   z-index: 99;
 }
-
+.width-25{
+  width: 25%;
+}
 input:focus-visible {
   border: 1.5px solid #1976d2 !important;
   outline: none;
@@ -808,9 +821,12 @@ form.form2 {
   font-weight: 500;
 }
 .issue-head {
-  color: #1976d2;
-  font-size: 25px;
 
+  font-size: 19px;
+  text-transform: capitalize;
+  color: #1976d2;
+  font-family: system-ui;
+  font-weight: 500;
 }
 
 .adminticket-head {
@@ -1434,10 +1450,6 @@ color: white;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500;
 }
-svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
-  font-size: 18px;
-}
-
 .update-right{
   position: relative;
 }
@@ -1553,4 +1565,6 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   padding: 5px 0px;
   font-family: system-ui;
 }
-
+.customer-cards {
+  padding: 38px 0px;
+}

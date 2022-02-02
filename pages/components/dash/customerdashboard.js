@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Dashboard from "../common/navdashboard";
 import Userissue from "../submits/userissues";
 import { withRouter } from "next/router";
+import Axios from "axios";
 import router from "next/router";
 import Userticket from "../tickets/userticket";
 import ListItem from '@mui/material/ListItem';
@@ -10,11 +11,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemText from '@mui/material/ListItemText';
 import CustomerProfile from "../profile/customerProfile";
+import Dashcard from "../common/dashCard";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 const CustomerDashboard = (props) => {
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
-
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'))
     if (login === "false") {
@@ -25,9 +30,9 @@ const CustomerDashboard = (props) => {
   })
   useEffect(() => {
     setUser(window.localStorage.getItem('clientname'))
-    
+
   })
-const onBackButtonEvent = (e) => {
+  const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
@@ -51,7 +56,7 @@ const onBackButtonEvent = (e) => {
   const onBackButtonEvent3 = () => {
     router.push("/")
     localStorage.setItem('loggedin', false);
-    localStorage.removeItem('activeTab'); 
+    localStorage.removeItem('activeTab');
   }
   useEffect(() => {
     setUser(window.localStorage.getItem('user'))
@@ -73,6 +78,21 @@ const onBackButtonEvent = (e) => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   }, [])
+  var [tickets, setTickets] = useState([]);
+    useEffect(()=>{
+        Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
+        .then((res)=>setTickets(res.data));
+    })
+  const [ticketraisedcount, setticketraisedcount] = useState()
+  const [raisedinprogresscount, setraisedinprogresscount] = useState()
+  const [raisedcompletedcount, setraisedcompletedcount] = useState()
+ 
+  useEffect(() => {
+    setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length)
+    setraisedinprogresscount(tickets.filter(val => { return  val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length)
+    setraisedcompletedcount(tickets.filter(val => { return  val.Status.includes("Completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length)
+  }, [tickets])
+
   return (
     <>{login === "false" ? <div className="access ">access denied</div> :
       <div>
@@ -107,13 +127,39 @@ const onBackButtonEvent = (e) => {
             <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
               <div className="tab-content" id="v-pills-tabContent">
                 <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                  <Userissue customername={user} />
+                  <div className="container">
+                    <div className="row">
+                      <div className="col"> <Userissue customername={user} /></div>
+                      <div className="col">
+                        <div className="customer-cards">
+                        <Dashcard
+                          cardHead="No of Tickets"
+                          cardbody={ticketraisedcount}
+                          cardfooter="Rised"
+                          cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
+                        />
+                        <Dashcard
+                          cardHead="No of Tickets"
+                          cardbody={raisedinprogresscount}
+                          cardfooter="InProgress"
+                          cardIcon={<HourglassBottomIcon />}
+                        />
+                         <Dashcard
+                          cardHead="No of Tickets"
+                          cardbody={raisedcompletedcount}
+                          cardfooter="Completed"
+                          cardIcon={<DoneAllIcon />}
+                        />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                   <CustomerProfile customername={user} />
                 </div>
                 <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Userticket Username={user} />
+                  <Userticket  tickets={tickets} />
                 </div>
               </div>
             </div>

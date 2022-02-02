@@ -10,14 +10,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { useRouter } from 'next/router'
-function Userticket({Username}) {
+function Userticket(props) {
+    const {tickets}=props
     const Router = useRouter()
-    console.log(Username)
-    var [tickets, setTickets] = useState([]);
-    useEffect(()=>{
-        Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${Username}`)
-        .then((res)=>setTickets(res.data));
-    })
+   
+    
     const [login, setLogin] = useState()
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'))

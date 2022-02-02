@@ -40,10 +40,7 @@
   font-size: 20px;
   font-family: system-ui;
 }
-.form-group {
-  padding: 4px 0px;
-  display: grid;
-}
+
 .label {
   color: black;
   font-size: 12px;
@@ -66,9 +63,11 @@
 
 @media only screen and (max-width: 340px) {
   form.form3 {
-    width: 210px !important;
-
+    width: auto;
+    margin: 0px;
+    padding: 18px;
   }
+  
 }
 @media only screen and (max-width: 900px) {
   .Resentticket-page {
@@ -82,6 +81,20 @@
   .col-6 {
     width: 100% !important;
   }
+  .width-25 {
+    width: 100%;
+}
+.profile-body {
+  padding: 34px 0px;
+}
+.profile-card-body {
+  /* text-align: left !important; */
+  margin: 11px 0px;
+}
+.form-group {
+  padding: 4px 0px;
+  display: grid;
+}
   .filter-head {
     margin: 0px 0px 8px 7px;
     display: flex;
@@ -248,10 +261,18 @@ div#v-pills-team{
 }
 
 form.form3 {
-    width: 270px;
-    margin: 13px;
-  }
- 
+  width: auto;
+  margin: 13px;
+  padding: 18px;
+}
+.customer-cards {
+  padding: 0px;
+}
+.profile-card {
+  padding: 0px;
+  background-color: white;
+  border-radius: 14px;
+}
 .form.login {
   width: 267px;
   align-items: center;

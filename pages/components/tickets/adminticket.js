@@ -135,7 +135,6 @@ function Adminticket(props) {
                 console.log("ad_completed")
             });
         }
-
         var data = {
             to_email: email,
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
@@ -148,7 +147,6 @@ function Adminticket(props) {
                     setShowmailstatus("EMail sended Successfully")
                 },
                 function (err) {
-
                     setShowmailstatus("Sending Email Failed")
                     localStorage.setItem('updateclose', "close");
                 }
@@ -217,6 +215,11 @@ function Adminticket(props) {
     var [checked4, setChecked4] = useState(false)
    
   
+   
+    const handleClick1 = () => setChecked1(!checked1)
+    const handleClick2 = () => setChecked2(!checked2)
+    const handleClick3 = () => setChecked3(!checked3)
+    const handleClick4 = () => setChecked4(!checked4)
     function defaultcheck(Design,Development,Server,Seo) {
         if(Design==="y"){
             setChecked1(true)
@@ -231,7 +234,6 @@ function Adminticket(props) {
             handleClick4(true)
         }
         }
-       
     useEffect(() => {
         if (checked1 === false) {
             setselecteddesignTeam('')
@@ -245,12 +247,7 @@ function Adminticket(props) {
         if (checked3 === false) {
             setselectedseoTeam('')
         }
-    })
-    const handleClick1 = () => setChecked1(!checked1)
-    const handleClick2 = () => setChecked2(!checked2)
-    const handleClick3 = () => setChecked3(!checked3)
-    const handleClick4 = () => setChecked4(!checked4)
-
+    },[checked1,checked2,checked3,checked4])
     function handleUpdate(ticketsId) {
         console.log(selecteddesignTeam, selectedserverTeam, selecteddevelopmentTeam, selectedseoTeam)
         var Design, Development, Server, Seo;
@@ -281,7 +278,6 @@ function Adminticket(props) {
             setChecked4(false)
         });
     }
-
     return (
         <div>
             <Head>
@@ -409,7 +405,7 @@ function Adminticket(props) {
                                                                             <li className='flex'><input className="form-check-input me-1" onClick={handleClick4} checked={checked4} type="checkbox" value="Seo" onChange={(e) => setselectedseoTeam(e.target.value)} /><div >seo</div></li>
                                                                         </ul>
                                                                     </div>
-                                                                </div>
+                                                                </div>                                                                                                                                                                                                      
                                                             </div>
                                                         </div>
                                                         <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
