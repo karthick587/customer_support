@@ -1,33 +1,33 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Imageviewer from '../common/imageviewer'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
 // import jsPDF from 'jspdf';
-
 function Ticketviewer(props) {
-    const { dticketsId,closeDetails,dticketsscreenshots
-}=props
-const[ticket,settickets]=useState([])
-const[mimetype,setMimetype] = useState('')
-useEffect(() => {
-    Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
-        .then((res) => settickets(res.data))
-}, [settickets]);
-
-useEffect(()=>{
-    setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 3))
-},[setMimetype])
-
-// function handleDownload(Screenshot){
-//     const doc = new jsPDF({orientation: "landscape", unit: "in", format: [4, 2]});
-//     doc.addImage = (Screenshot,'png',0,0)
-//     doc.save('screenshot.pdf')
-// }
-
-  return (
-      <>
-    {ticket.map((tickets) =>
-    <div className='ticket-details' key={tickets.ticketsId}>
+    const { dticketsId, closeDetails, dticketsscreenshots
+    } = props
+    const [ticket, settickets] = useState([])
+    const [mimetype, setMimetype] = useState('')
+    useEffect(() => {
+        Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
+            .then((res) => settickets(res.data))
+    }, [settickets]);
+    useEffect(() => {
+        setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 3))
+    }, [setMimetype])
+    // function handleDownload(Screenshot){
+    //     const doc = new jsPDF({orientation: "landscape", unit: "in", format: [4, 2]});
+    //     doc.addImage = (Screenshot,'png',0,0)
+    //     doc.save('screenshot.pdf')
+    // }
+  const[downloadlink,setdownloadlink]=useState()
+     const downloadimg= (Screenshots) =>{
+        setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`)  
+     } 
+    return (
+        <>
+            {ticket.map((tickets) =>
+                <div className='ticket-details' key={tickets.ticketsId}>
                     <div className='ticket-details-head'>
                         viewing Support Ticket #{tickets.ticketsId}
                         <div className='ticket-details-head-btn '>
@@ -44,32 +44,29 @@ useEffect(()=>{
                             </div>
                             <div className='ticket-details-middle-1-3'>
                                 <div className=''>
-                                
-                                <div className='flex'>
+
+                                    <div className='flex'>
                                         <div className="ticket-status color-green">
-                                        <div className='ticket-icon'><CheckCircleIcon /></div>
+                                            <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
                                         </div>
                                         <div className={tickets.Status === "New" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
-
                                         </div>
-                                        <div className={tickets.Status === "started" || tickets.Status === "inprogress" || tickets.Status === "completed" || tickets.Status === "Completed"  ? "ticket-status color-green" : "ticket-status"}>
-                                        <div className='ticket-icon'><CheckCircleIcon /></div>
+                                        <div className={tickets.Status === "started" || tickets.Status === "inprogress" || tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status color-green" : "ticket-status"}>
+                                            <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "started" ? <div className='details-caption'>Started<div className='details-caption-2'>Updated at<br /> {tickets.Tm_Start_UpdatedOn}</div></div> : <div className='details-caption-strike'>Started<div className='details-caption-2'>Updated at <br />{tickets.Tm_Start_UpdatedOn}</div></div>}
                                         </div>
                                         <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
-
                                         </div>
                                         <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
-                                        <div className='ticket-icon'><CheckCircleIcon /></div>
+                                            <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className='details-caption-strike'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
                                         </div>
-                                        <div className={tickets.Status === "completed" ||tickets.Status === "Completed"? "ticket-status-line width-10 color-green-line" : " ticket-status-line width-10 "}>
-
+                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 color-green-line" : " ticket-status-line width-10 "}>
                                         </div>
-                                        <div className={tickets.Status === "completed"||tickets.Status === "Completed" ? "ticket-status  color-green" : "ticket-status"}>
+                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status  color-green" : "ticket-status"}>
                                             <div className='ticket-icon'><CheckCircleIcon /></div>
-                                            {tickets.Status === "completed" ||tickets.Status === "Completed" ? <div className='details-caption'>{tickets.Status==="completed" ? <>Done</> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div>}
+                                            {tickets.Status === "completed" || tickets.Status === "Completed" ? <div className='details-caption'>{tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div>}
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +94,7 @@ useEffect(()=>{
                                     Department
                                 </div>
                                 <div className='user-label-ticket-details'>
-                                    {tickets.Team}
+                                    {tickets.Design === "y" ? <>Design</> : <></>} {tickets.Development === "y" ? <>Development</> : <></>} {tickets.Seo === "y" ? <>Seo</> : <></>} {tickets.Server === "y" ? <>Server</> : <></>} {tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
                                 </div>
                             </div>
                             <div className='col'>
@@ -128,12 +125,12 @@ useEffect(()=>{
                                 <div className='ticket-input-details' >
                                     {tickets.Phonenumber}
                                 </div>
-                                 <div className='label-ticket-details'>
+                                <div className='label-ticket-details'>
                                     Date
                                 </div>
                                 <div className='ticket-input-details' >
                                     {tickets.Cus_CreatedOn}
-                                </div> 
+                                </div>
 
                             </div>
                             <div className='ticket-details-screenshot'>
@@ -141,21 +138,25 @@ useEffect(()=>{
                                     Screenshot
                                 </div>
                                 {mimetype === "png" || mimetype === "jpg" || mimetype === "jpeg" ?
-                                <Imageviewer
-                                    imgdialogbutton={<img src={tickets.Screenshots} alt="screenshots" width={200} height={100} />}
-                                    imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
-                                /> :
-                                <a href={tickets.Screenshots} download="doc" target="_blank" rel='noopener noreferrer'>View File</a>
-                            }
-                            {/* <button onClick={()=>handleDownload(tickets.Screenshots)}>Download</button> */}
+                                    <Imageviewer
+                                        imgdialogbutton={<img src={tickets.Screenshots}  alt="screenshots" width={200} height={100} />}
+                                        imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
+                                    /> :
+                                    <a href={tickets.Screenshots} download="doc" target="_blank" rel='noopener noreferrer'>View File</a>
+                                }
+                                {/* <button onClick={()=>handleDownload(tickets.Screenshots)}>Download</button> */}
+                                <a href={downloadlink}  onClick={()=>downloadimg(tickets.Screenshots)}>download
+                                </a>
+                                <a href={tickets.Screenshots}>View File</a>
                             </div>
+
                         </div>
                     </div>
 
 
                 </div>
-                )}
-                </>
-  );
+            )}
+        </>
+    );
 }
 export default Ticketviewer;
