@@ -36,7 +36,6 @@ function Updatecustomer({ usersId }) {
     }, []);
 
     function handleUpdate(Logo, Companyname, Clientname, Username, Password, Email, Phonenumber) {
-
         var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber;
         Companyname = CompanynameR.current.value;
         Clientname = ClientnameR.current.value;
@@ -70,7 +69,6 @@ function Updatecustomer({ usersId }) {
         }
         data.append("Modifiedon", date + ' ' + fullTime);
         data.append("Modifiedby", Modifiedby)
-
         axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -80,9 +78,7 @@ function Updatecustomer({ usersId }) {
             localStorage.setItem('updateclose', "close");
             localStorage.setItem("passValue", true)
         })
-
     }
-
     setTimeout(() => {
         setShow()
     }, [3500])
@@ -114,7 +110,6 @@ function Updatecustomer({ usersId }) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     function handleScreenshot(e) {
-
         setEditLogo(e.target.files[0]);
         setSelected(true);
         setUploadLogo(URL.createObjectURL(e.target.files[0]))

@@ -44,7 +44,6 @@ function Ticketviewer(props) {
                             </div>
                             <div className='ticket-details-middle-1-3'>
                                 <div className=''>
-
                                     <div className='flex'>
                                         <div className="ticket-status color-green">
                                             <div className='ticket-icon'><CheckCircleIcon /></div>
@@ -106,7 +105,6 @@ function Ticketviewer(props) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div className='user-profile-ticket-details row'>
                         <div className='user-profile-ticket-details-1 col'>
@@ -131,7 +129,6 @@ function Ticketviewer(props) {
                                 <div className='ticket-input-details' >
                                     {tickets.Cus_CreatedOn}
                                 </div>
-
                             </div>
                             <div className='ticket-details-screenshot'>
                                 <div className='label-ticket-details'>

@@ -11,31 +11,26 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
-import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
     const { teamticket } = props
-   const[mapteamticket,setmapteamticket]=useState([])
+    const[mapteamticket,setmapteamticket]=useState([])
     const Router = useRouter()
     var [show, setShow] = useState('');
-    
     var [selectedstatus, setSelectedstatus] = useState('');
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
-   
     //tickets status update functions 
     const [disabled, setdisabled] = useState("enable")
     const updateemail = (Status) => {
-        if (Status === "completed") {
+        if (Status === "Completed") {
             setdisabled("disabled")
         } else {
             setdisabled("enable")
         }
     }
     //status submit function
-
     function handleUpdatestatus(ticketsId) {
-
         if (selectedstatus === 'started') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -71,7 +66,6 @@ function Teamticket(props) {
     setTimeout(() => {
         setShow()
     }, [3500])
-
     //current time and date 
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -102,7 +96,6 @@ function Teamticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
-
     //auth access for team ticket page
     const [login, setLogin] = useState()
     useEffect(() => {

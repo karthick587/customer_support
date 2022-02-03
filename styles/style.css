@@ -831,7 +831,7 @@ form.form2 {
 
 .adminticket-head {
   display: flex;
-  padding: 11px 7px 12px 8px !important;
+  padding: 0px 7px 0px 8px!important;
 }
 
 .adminticket-head h1 {
@@ -968,11 +968,7 @@ h4.alert1.text-center {
     color: rgba(0, 0, 0, 0.87) !important;
     padding-bottom: 0px !important;
 }
-
 /*admindash board*/
-
-
-
 .main-dash-sub {
   padding: 20px 30px;
 }
@@ -983,9 +979,16 @@ h4.alert1.text-center {
 }
 
 .dash-head {
-  padding: 7px 7px;
+  padding: 0px 0px 0px 11px;
 }
-
+.left-siedebar {
+  position: fixed;
+}
+div#v-pills-tab {
+  z-index: 99;
+  position: relative;
+  width: 220px;
+}
 .main-dash {
   font-family: Roboto, sans-serif;
 }

@@ -21,7 +21,6 @@ export default function Team(props) {
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
-    //console.log(selectedValue)
     var [team, setTeam] = useState([]);
     const [open, setOpen] = useState(false);
     var [exportTeam, setExportTeam] = useState([]);
@@ -30,33 +29,22 @@ export default function Team(props) {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => {
                 setTeam(res.data);
-               if(localStorage.getItem("passValue") === true){
-                   setSelectedValue(team)
-               }else{
-                   setSelectedValue([])
-               }
+                if (localStorage.getItem("passValue") === true) {
+                    setSelectedValue(team)
+                } else {
+                    setSelectedValue([])
+                }
             });
     }, [selectedValue]);
-    useEffect(()=>{
-        localStorage.setItem("passValue",false)
+    useEffect(() => {
+        localStorage.setItem("passValue", false)
     })
     const deleteUsers = (id, name) => {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {
-            
+
         })
-        // <-- declare id parameter
-        //     Axios
-        //         .delete(`https://mindmadetech.in/api/team/delete/${id}`) // <-- remove ;
-        //         .then(() => {
-        //             // Issue GET request after item deleted to get updated list
-        //             // that excludes note of id
-        //             Router.reload(window.location.pathname);
-        //         })
-        // };
-        //  const handleClose = () => {
-        //     Router.reload(window.location.pathname)
     };
     const TeamList = [
         [
@@ -89,17 +77,15 @@ export default function Team(props) {
         } else if (login === null) {
             Router.push("/")
         }
-       
+
     })
     const [teamcount, setteamcount] = useState();
-
     useEffect(() => {
         setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length)
         props.teamcountcallback(teamcount);
         localStorage.setItem('updateclose', "open");
     })
     //pagination
-
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
     function handlePageChange(pageNumber) {
@@ -113,14 +99,13 @@ export default function Team(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-        <div className='container'>
+            <div className='container'>
                 <div className="userbody2">
                     <div className='header-user'>
                         <h1>TEAM </h1>
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                         <div className='userpage-pagedatalimit'>
                             <select className='pagedatalimit-select' onChange={pagedatalimit}>
-
                                 <option value={10}>10</option>
                                 <option value={25}>25</option>
                                 <option value={50}>50</option>
@@ -154,46 +139,42 @@ export default function Team(props) {
                                     <TableCell className="teamtablecel" align="left">TEAM</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {team.filter(val=>{
-                                if(search === ""){
+                            {team.filter(val => {
+                                if (search === "") {
                                     return val;
-                                }else if(val.Username.toLowerCase().includes(search.toLowerCase())) {
+                                } else if (val.Username.toLowerCase().includes(search.toLowerCase())) {
                                     return val;
-                                }else null;
-                            }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item)=>
-                            <TableBody key={item.teamId}>
-                            <TableRow >
-                                <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
-                                <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
-                                <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
-                                <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
-
-
-                                <div className='deteleandedit'>
-                                    <Updateteam teamId={item.teamId} />
-                                    <FormDialog
-                                        className="team-delete"
-                                        dialogtitle={<DeleteIcon />}
-                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                        dialogactions={
-                                            <div>
-                                                <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
-                                                <Button  >NO</Button>
-                                            </div>
-                                        }
-                                    />
-                                </div>
-                            </TableRow>
-                        </TableBody>
-                    )}
-                
+                                } else null;
+                            }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
+                                <TableBody key={item.teamId}>
+                                    <TableRow >
+                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
+                                        <div className='deteleandedit'>
+                                            <Updateteam teamId={item.teamId} />
+                                            <FormDialog
+                                                className="team-delete"
+                                                dialogtitle={<DeleteIcon />}
+                                                headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                                dialogactions={
+                                                    <div>
+                                                        <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
+                                                        <Button  >NO</Button>
+                                                    </div>
+                                                }
+                                            />
+                                        </div>
+                                    </TableRow>
+                                </TableBody>
+                            )}
                         </Table>
-                       
                     </TableContainer>
                     < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
-                        pageCount={Math.ceil(team.length / datalimit)}                    
+                        pageCount={Math.ceil(team.length / datalimit)}
                         onPageChange={(e) => handlePageChange(e.selected)}
                         containerClassName={"pagination justify-content-center mt-3"}
                         pageClassName={"page-item"}
@@ -201,8 +182,7 @@ export default function Team(props) {
                         activeClassName={"active"}
                     />
                 </div>
-                </div>
             </div>
-      
+        </div>
     )
 }

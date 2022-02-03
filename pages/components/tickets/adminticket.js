@@ -361,9 +361,24 @@ function Adminticket(props) {
                                         } else if (filteredTitle === "Status") {
                                             return val.Status.toLowerCase().includes(search.toLowerCase())
                                         } else if (filteredTitle === "Team") {
-                                            return val.Team.toLowerCase().includes(search.toLowerCase())
-                                            // } else if (filteredTitle === "Date") {
-                                            //     return val.Date.toString().includes(search.toString())
+                                            if(search==="server"||search==="Server"){
+                                                return val.Server.toLowerCase().includes("y".toLowerCase())
+                                            }else if(search==="Design"||search==="design"){
+                                                return val.Design.toLowerCase().includes("y".toLowerCase())
+                                            }else if(search==="Development"||search==="development"){
+                                                return val.Development.toLowerCase().includes("y".toLowerCase())
+                                            }else if(search==="Seo"||search==="seo"){
+                                                return val.Seo.toLowerCase().includes("y".toLowerCase())
+                                            }else{
+                                                return val
+                                            }                                       
+                                            } else if (filteredTitle === "Date") {
+                                                if(search===""||search===" "){
+                                                    return val
+                                                }else{
+                                                    return val.Cus_CreatedOn.includes(search)
+                                                }
+                                               
                                         } else if (filteredTitle === "Username") {
                                             if (filteredStatus === "inprogress") {
                                                 console.log("inprogress selected")
