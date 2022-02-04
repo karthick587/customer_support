@@ -1181,9 +1181,7 @@ h5.Completed {
   font-size: 10px !important;
   background-color: #05529f;
 }
-.client-logo-col {
-  width: 100px!important;
-}
+
 .notification-table::-webkit-scrollbar {
   width: 4px;
   height: 2vh;

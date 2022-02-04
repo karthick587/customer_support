@@ -29,9 +29,6 @@ export default function Users(props) {
     const [open, setOpen] = useState(false);
     var [exportUsers, setExportUsers] = useState([]);
     var [selectedValue, setSelectedValue] = useState([]);
-
-
-  
 useEffect(() => {
     Axios.get("https://mindmadetech.in/api/customer/list")
         .then((res) => {
@@ -52,7 +49,6 @@ useEffect(()=>{
         props.usercountcallback(usercount);
     })
     const deleteUsers = (id, name) => {
-
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {          
@@ -102,7 +98,6 @@ useEffect(()=>{
         localStorage.setItem('updateclose', "open");
     })
     //pagination
-
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
     function handlePageChange(pageNumber) {
@@ -111,7 +106,6 @@ useEffect(()=>{
     const pagedatalimit = (e) => {
         setdatalimit(e.target.value)
     }
-
     return (
         <div>
             <Head>
@@ -124,7 +118,6 @@ useEffect(()=>{
                         <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                         <div className='userpage-pagedatalimit'>
                             <select className='pagedatalimit-select' onChange={pagedatalimit}>
-
                                 <option value={10}>10</option>
                                 <option value={25}>25</option>
                                 <option value={50}>50</option>
@@ -146,10 +139,8 @@ useEffect(()=>{
                                 dialogtitle="+ADD customer"
                                 dialogbody={<Addcustomer />}
                             />
-                        </div>
-                       
-                    </div>
-               
+                        </div>                      
+                    </div>              
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
@@ -200,14 +191,12 @@ useEffect(()=>{
                             </TableRow>
                         </TableBody>
                             )}
-                        </Table>
-                       
+                        </Table>                      
                     </TableContainer>
                     < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
-                        pageCount={Math.ceil(users.length / datalimit)}
-                      
+                        pageCount={Math.ceil(users.length / datalimit)}                    
                         onPageChange={(e) => handlePageChange(e.selected)}
                         containerClassName={"pagination justify-content-center mt-3"}
                         pageClassName={"page-item"}
