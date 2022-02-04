@@ -54,7 +54,8 @@ export default function Login1() {
             pathname: `../components/dash/${validate}dashboard`,
           });
         }
-      });
+      })
+      .catch((err)=>{ return err; })
   }
   const onBackButtonEvent = (e) => {
     e.preventDefault();

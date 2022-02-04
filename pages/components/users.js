@@ -24,7 +24,6 @@ export default function Users(props) {
     var [search, setSearch] = useState('');
     //var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
-    //console.log(selectedValue)
     var [users, setUsers] = useState([]);
     const [open, setOpen] = useState(false);
     var [exportUsers, setExportUsers] = useState([]);
@@ -38,7 +37,7 @@ useEffect(() => {
             }else{
                 setSelectedValue([])
             }
-        })
+        }).catch((err)=>{ return err; })
 }, [selectedValue]);
 useEffect(()=>{
     localStorage.setItem("passValue",false)
@@ -53,7 +52,7 @@ useEffect(()=>{
             Isdeleted: 'y'
         }).then(() => {          
             setdialogformopen("true")
-        })
+        }).catch((err)=>{ return err; })
         // <-- declare id parameter
         // Axios
         //     .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
@@ -82,7 +81,7 @@ useEffect(()=>{
         ])
     ]
     UsersList.reduce((prev, curr) => [prev, curr]);
-    //console.log(UsersList)
+
     const handleExport = async () => {
         const data = await UsersList;
         setExportUsers(data)

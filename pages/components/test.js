@@ -17,7 +17,6 @@ function Test() {
         }
  
     
-console.log(email)
   
 
     return (

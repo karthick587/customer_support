@@ -11,6 +11,7 @@ function Ticketviewer(props) {
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
             .then((res) => settickets(res.data))
+            .catch((err)=>{ return err;})
     }, [settickets]);
     useEffect(() => {
         setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 3))

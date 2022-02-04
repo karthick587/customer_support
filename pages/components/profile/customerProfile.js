@@ -7,7 +7,8 @@ export default function CustomerProfile(props) {
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
             .then((res) => setUsers(res.data))
-    }, [users])
+            .catch((err)=>{ return err; })
+    }, [setUsers])
     return (
         <div className="container">
             <div className="profile-body">

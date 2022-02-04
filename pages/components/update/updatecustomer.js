@@ -35,6 +35,7 @@ function Updatecustomer({ usersId }) {
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
+            .catch((err)=>{ return err; })
     }, []);
 
     function handleUpdate(Logo, Companyname, Clientname, Username, Password, Email, Phonenumber) {
@@ -45,7 +46,6 @@ function Updatecustomer({ usersId }) {
         Password = PasswordR.current.value;
         Email = EmailR.current.value;
         Phonenumber = PhonenumberR.current.value;
-        console.log(Companyname, Clientname, Username, Password, Email, Phonenumber)
         switch (editLogo) {
             case undefined:
                 Logo = Logo;
@@ -56,7 +56,6 @@ function Updatecustomer({ usersId }) {
                 console.log("editLogo");
                 break;
         }
-        console.log(Logo);
         const data = new FormData();
         data.append("Companyname", Companyname);
         data.append("Clientname", Clientname);
@@ -79,7 +78,7 @@ function Updatecustomer({ usersId }) {
             setShow("Updated Successfully")
             setdialogformopen("true")
             localStorage.setItem("passValue", true)
-        })
+        }).catch((err)=>{ return err; })
     }
     setTimeout(() => {
         setShow()

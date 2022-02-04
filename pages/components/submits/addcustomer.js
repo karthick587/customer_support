@@ -99,6 +99,7 @@ function Addcustomer(props) {
                     setdialogformopen("true")
                 }
             })
+            .catch((err)=>{ return err; })
         }
     }
 

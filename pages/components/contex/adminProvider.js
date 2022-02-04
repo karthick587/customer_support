@@ -8,8 +8,9 @@ export default function CounterContextProvider(props){
     useEffect(() => {
         
         Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
-    }, [tickets]);
+            .then((res) => setTickets(res.data))
+            .catch((err)=>{ return err; })
+    }, [setTickets]);
      //notification count
      const [notificationcount, setnotificationcount] = useState()
      const [adminNewcount, setadminNewcount] = useState()
@@ -34,7 +35,8 @@ export default function CounterContextProvider(props){
      var [team, setTeam] = useState([]);
      useEffect(() => {
          Axios.get("https://mindmadetech.in/api/team/list")
-             .then((res) => setTeam(res.data));
+             .then((res) => setTeam(res.data))
+            .catch((err)=>{ return err; })
      }, [setTeam]);
     //team ticket count
    

@@ -20,6 +20,7 @@ useEffect(()=>{
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/team/list/${teamId}`)
             .then(res => setGetTeam(res.data))
+            .catch((err)=>{ return err; })
     }, [])
     const getvalue = ({ Username, Password, Team }) => {
         axios.put(`https://mindmadetech.in/api/team/update/${teamId}`, {
@@ -31,7 +32,7 @@ useEffect(()=>{
             setdialogformopen("true")
             localStorage.setItem("passValue",true)
 
-        })
+        }).catch((err)=>{ return err; })
     }
 
     setTimeout(() => {

@@ -7,7 +7,6 @@ export default function Landingpage() {
     const router = useRouter();
 
     function handleSelect(value) {
-        console.log(value)
         router.push({
             pathname: './components/login/userLogin',
             query: { value: value }

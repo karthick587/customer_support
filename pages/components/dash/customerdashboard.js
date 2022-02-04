@@ -81,7 +81,8 @@ const CustomerDashboard = (props) => {
   var [tickets, setTickets] = useState([]);
     useEffect(()=>{
         Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
-        .then((res)=>setTickets(res.data));
+        .then((res)=>setTickets(res.data))
+        .catch((err)=>{ return err; })
     })
   const [ticketraisedcount, setticketraisedcount] = useState()
   const [raisedinprogresscount, setraisedinprogresscount] = useState()

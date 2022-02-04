@@ -38,7 +38,8 @@ function Adminticket(props) {
                 } else {
                     setSelectedValue([])
                 }
-            });
+            })
+            .catch((err)=>{ return err; })
     }, [selectedValue]);
     useEffect(() => {
         localStorage.setItem("passValue", false);
@@ -125,8 +126,6 @@ function Adminticket(props) {
     function finalStatus(ticketsId, Tm_Complete_UpdatedOn, Tm_Complete_UpdatedBy) {
         if (selectedstatus === "Completed") {
 
-            console.log(Tm_Complete_UpdatedOn)
-            console.log(Tm_Complete_UpdatedBy)
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketid}`, {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
@@ -135,8 +134,8 @@ function Adminticket(props) {
             }).then((response) => {
                 setShow("update started Successfully");
                 setdialogformopen("true")
-                console.log("ad_completed")
-            });
+            })
+            .catch((err)=>{ return err; })
         }
         var data = {
             to_email: email,
@@ -165,7 +164,8 @@ function Adminticket(props) {
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
-    }, [users]);
+            .catch((err)=>{ return err; })
+    }, [setUsers]);
     useEffect(() => {
         {
             users.filter(val => {
@@ -189,7 +189,8 @@ function Adminticket(props) {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
-        });
+            return _response;
+        }).catch((err)=>{ return err; })
     }
     //pagination
     const [datalimit, setdatalimit] = useState(10);
@@ -247,7 +248,6 @@ function Adminticket(props) {
         }
     },[checked1,checked2,checked3,checked4])  
         function handleUpdate(ticketsId) {
-            console.log(selecteddesignTeam, selectedserverTeam, selecteddevelopmentTeam, selectedseoTeam)
             var Design, Development, Server, Seo;
             (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
             (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
@@ -274,7 +274,8 @@ function Adminticket(props) {
                 setChecked2(false)
                 setChecked3(false)
                 setChecked4(false)
-            });
+            })
+            .catch((err)=>{ return err; })
         }
         }
     return (
@@ -376,10 +377,10 @@ function Adminticket(props) {
                                                
                                         } else if (filteredTitle === "Username") {
                                             if (filteredStatus === "inprogress") {
-                                                console.log("inprogress selected")
+                                               
                                                 //return val.Status.toLowerCase().includes("inprogress")
                                             } else if (filteredStatus === "completed") {
-                                                console.log("completed selected")
+                                              
                                                 // return val.Status.toLowerCase().includes("completed")
                                             } else return val;
                                         }
