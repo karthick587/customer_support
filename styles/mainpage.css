@@ -163,13 +163,12 @@ div#v-pills-dash {
 }
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 700px;
   margin: auto;
   padding: 0px !important;
 }
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 522px !important;
+  width: auto !important;
   margin: auto;
 }
   .css-1howxi1-MuiTableCell-root {
