@@ -89,7 +89,7 @@
     width: 100%;
 }
 .header-user h1 {
-  display: block;
+  display: none;
 }
 
 .right-user-btns {
@@ -176,7 +176,7 @@ div#v-pills-dash {
 }
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: 300px !important;
+  width: 373px!important;
   margin: auto;
 }
   .css-1howxi1-MuiTableCell-root {
@@ -341,13 +341,13 @@ form.form3 {
     height: 53vh;
 }
 
-  .header-user input {
-    padding: 3px 10px;
-    border: none;
-    border-radius: 27px;
-    background-color: #58a2ea38;
-    margin: 0px 13px 0px 13px;
-  }
+.header-user input {
+  padding: 3px 10px;
+  border: none;
+  border-radius: 27px;
+  background-color: #58a2ea38;
+  margin: 0px 8px 0px 4px;
+}
   div#v-pills-users {
     background-color: white !important;
     height: 100vh;
@@ -418,8 +418,8 @@ img.slide-banner2 {
   }
 
   .header-user input {
-    width: 120px;
-  }
+    width: 100px;
+}
 
   .user-filter-input {
     padding: 0px 7px;
