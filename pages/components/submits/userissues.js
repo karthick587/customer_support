@@ -13,6 +13,7 @@ function Userissue(props) {
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
+    const[projectcode,setProjectcode] = useState('');
     const [show, setShow] = useState();
     const EmailR = useRef();
     const PhonenumberR = useRef();
@@ -48,8 +49,14 @@ function Userissue(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
 
-    function handleScreenshot(e) {
+    useEffect(()=>{
+        Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
+        .then(res =>{
+            setProjectcode(res.data[0].Projectcode)
+        }).catch(err=>{ return err; })
+    })
 
+    function handleScreenshot(e) {
         setScreenshots(e.target.files[0]);
     }
     const addIssues = () => {
@@ -61,6 +68,7 @@ function Userissue(props) {
         data.append("DomainName", DomainName);
         data.append("Date", date+ ' ' + fullTime);
         data.append("Description", Description);
+        data.append("Projectcode",projectcode);
         //data.append("Team", Team);
         //data.append("Status", Status);
         data.append("file", Screenshots);
