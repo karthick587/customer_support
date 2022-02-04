@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import Axios from "axios";
 import Avatar from '@mui/material/Avatar';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router'
+import { CounterContext } from '../contex/adminProvider'
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -14,6 +15,7 @@ const schema = yup.object().shape({
     Password: yup.string().required(),
 });
 function Addcustomer(props) {
+    const { setdialogformopen } = useContext(CounterContext);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
@@ -94,7 +96,7 @@ function Addcustomer(props) {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                    localStorage.setItem('updateclose', "close"); 
+                    setdialogformopen("true")
                 }
             })
         }

@@ -16,7 +16,6 @@ import Piechart from "./piechart";
 import { CounterContext } from '../contex/adminProvider';
 import Axios from "axios";
 const TeamDashboard = (props) => {
- 
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState()
   //access for team dashboard
@@ -39,7 +38,7 @@ const TeamDashboard = (props) => {
         localStorage.setItem('loggedin', false);
       } else {
         window.history.pushState(null, null, window.location.pathname);
-        setfinishStatus(false)
+        setfinishStatus(true)
       }
     }
   }
@@ -54,7 +53,6 @@ const TeamDashboard = (props) => {
   const onBackButtonEvent3 = () => {
     router.push("/")
     localStorage.setItem('loggedin', false);
-    localStorage.removeItem('tm_name');
     localStorage.removeItem('activeTab');
   }
   //dashboard tab functions
@@ -75,7 +73,6 @@ const TeamDashboard = (props) => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'))
   },[])
-
   var [loginTmName,setloginTmName]=useState()
   const [teamticket,setteamticket]=useState([])
   useEffect(() => {
@@ -87,8 +84,7 @@ const TeamDashboard = (props) => {
             setteamticket(res.data);         
         });
       }
-   
-  },[setteamticket,loginTmName]);
+  },[teamticket,loginTmName]);
     // ticket count, ticket status count for team dashboard
     const [teamassignedcount, setassignedcount] = useState()
     const [teaminprogresscount, setinprogresscount] = useState()

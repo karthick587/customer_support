@@ -11,9 +11,11 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
+import { CounterContext } from '../contex/adminProvider'
 function Teamticket(props) {
+    const { setdialogformopen, dialogformopen } = useContext(CounterContext);
     const { teamticket } = props
-    const[mapteamticket,setmapteamticket]=useState([])
+    const [mapteamticket, setmapteamticket] = useState([])
     const Router = useRouter()
     var [show, setShow] = useState('');
     var [selectedstatus, setSelectedstatus] = useState('');
@@ -39,7 +41,8 @@ function Teamticket(props) {
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update started Successfully");
-                localStorage.setItem('updateclose', "close");
+                setdialogformopen("true")
+                localStorage.setItem("passValue", true);
             });
         } else if (selectedstatus === 'inprogress') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
@@ -49,7 +52,8 @@ function Teamticket(props) {
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update inprogress Successfully");
-                localStorage.setItem('updateclose', "close");
+                setdialogformopen("true")
+                localStorage.setItem("passValue", true);
             });
         } else if (selectedstatus === 'completed') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
@@ -59,7 +63,8 @@ function Teamticket(props) {
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update completed Successfully");
-                localStorage.setItem('updateclose', "close");
+                setdialogformopen("true")
+                localStorage.setItem("passValue", true);
             });
         } else return null
     }
@@ -99,6 +104,7 @@ function Teamticket(props) {
     //auth access for team ticket page
     const [login, setLogin] = useState()
     useEffect(() => {
+        localStorage.setItem('updateclose', "open");
         setmapteamticket(teamticket)
         setLogin(window.localStorage.getItem('loggedin'))
         if (login === "false") {
@@ -106,7 +112,7 @@ function Teamticket(props) {
         } else if (login === null) {
             Router.push("/")
         }
-    },[teamticket])
+    }, [teamticket])
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("")
     const Notificationupdate = (ticketsId, Screenshots) => {
@@ -147,7 +153,11 @@ function Teamticket(props) {
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Design==="y"? <>Design</>:<></>} {tickets.Development ==="y"? <>Development</>:<></>} {tickets.Seo==="y"? <>Seo</>:<></>} {tickets.Server==="y"? <>Server</>:<></>} {tickets.Server===""&&tickets.Design===""&&tickets.Seo===""&&tickets.Development==="" ? <>Not assigned</>:<></>}</TableCell>
+                                            <TableCell >
+                                               
+                                            {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === ""||tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
+                                              
+                                            </TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
                                         </TableRow>

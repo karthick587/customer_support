@@ -13,13 +13,7 @@ import { useRouter } from 'next/router'
 function Userticket(props) {
     const {tickets}=props
     const[maptickets,setmaptickets]=useState([])
-  
-     
-        
-  
     const Router = useRouter()
-   
-    
     const [login, setLogin] = useState()
     useEffect(() => {
         setmaptickets(tickets)
@@ -70,7 +64,7 @@ function Userticket(props) {
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Design==="y"? <>Design</>:<></>} {tickets.Development ==="y"? <>Development</>:<></>} {tickets.Seo==="y"? <>Seo</>:<></>} {tickets.Server==="y"? <>Server</>:<></>} {tickets.Server===""&&tickets.Design===""&&tickets.Seo===""&&tickets.Development==="" ||tickets.Server==="n"&&tickets.Design==="n"&&tickets.Seo==="n"&&tickets.Development==="n" ? <>Not assigned</>:<></>}</TableCell>
+                                            <TableCell > {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === ""||tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
                                             <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                                
                                             </TableCell>            

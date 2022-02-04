@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import EditIcon from '@mui/icons-material/Edit';
 import FormDialog from '../common/dialogsform';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { CounterContext } from '../contex/adminProvider'
 function Updateteam({ teamId }) {
+    const { setdialogformopen } = useContext(CounterContext);
     let router = useRouter();
     var [getTeam, setGetTeam] = useState([]);
     var [editTeam, setEditTeam] = useState('');
@@ -26,7 +28,7 @@ useEffect(()=>{
             Team: Team,
         }).then((res) => {
             setShow("Updated Successfully")
-            localStorage.setItem('updateclose', "close"); 
+            setdialogformopen("true")
             localStorage.setItem("passValue",true)
 
         })
@@ -75,7 +77,7 @@ useEffect(()=>{
                                                 <button type="submit" className="btn2 float-end">Submit</button>
                                             </div>
                                         </div>
-                                        <h3>{show}</h3>
+                                        <h4 className="alert1 text-center">{show}</h4>
                                     </Form>
                                 </Formik>
                             </div>

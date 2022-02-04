@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { DialogActions } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { CounterContext } from '../contex/adminProvider';
 export default function FormDialog(props) {
-  const [open, setOpen] = React.useState(false);
+  const { setdialogformopen,dialogformopen } = useContext(CounterContext);
+  const [open, setOpen] = React.useState();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -13,10 +15,12 @@ export default function FormDialog(props) {
     setOpen(false);
   };
   useEffect(()=>{
-    if(window.localStorage.getItem('updateclose')==="close"){
+   
+    if(dialogformopen==="true"){
       setOpen(false);
+      setdialogformopen(false)
     }
-  })
+  },[dialogformopen,setdialogformopen])
 
   return (
     <div className={props.dialog_className}>

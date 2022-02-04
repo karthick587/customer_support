@@ -11,17 +11,17 @@ function preventDefault(event) {
     event.preventDefault();
 }
 export default function Resentticket(props) {
-    const { tickets,teamticket}=props
-    
-const [team,seteam]=useState([])
-useEffect(()=>{
-   
-    if(teamticket===undefined){
-        seteam(tickets)
-    }else{
-        seteam(teamticket)
-    }
-},[teamticket,tickets])
+    const { tickets, teamticket } = props
+
+    const [team, seteam] = useState([])
+    useEffect(() => {
+
+        if (teamticket === undefined) {
+            seteam(tickets)
+        } else {
+            seteam(teamticket)
+        }
+    }, [teamticket, tickets, seteam])
     return (
         <div className='resentticket'>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
@@ -42,13 +42,15 @@ useEffect(()=>{
                         {team.filter(val => {
                             return val.Status.toLowerCase().includes("New".toLowerCase())
                         }).map((tickets) =>
-                            <TableRow className="resentticket-row" key={tickets.ticketsId}>
-                                <TableCell  >{tickets.Cus_CreatedOn}</TableCell>
-                                <TableCell >{tickets.ticketsId}</TableCell>
-                                <TableCell >{tickets.Username}</TableCell>                             
-                                <TableCell >{tickets.Design === "y" ? <>Design</> : <></>} {tickets.Development === "y" ? <>Development</> : <></>} {tickets.Seo === "y" ? <>Seo</> : <></>} {tickets.Server === "y" ? <>Server</> : <></>} {tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
-                                <TableCell >{tickets.Status}</TableCell>
-                            </TableRow>
+                            <>
+                                <TableRow className="resentticket-row" key={tickets.ticketsId}>
+                                    <TableCell  >{tickets.Cus_CreatedOn}</TableCell>
+                                    <TableCell >{tickets.ticketsId}</TableCell>
+                                    <TableCell >{tickets.Username}</TableCell>
+                                    <TableCell > {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                    <TableCell >{tickets.Status}</TableCell>
+                                </TableRow>
+                            </>
                         )}
                     </TableBody>
                 </Table>

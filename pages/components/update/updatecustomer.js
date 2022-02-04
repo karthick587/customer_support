@@ -1,11 +1,13 @@
-import React, { useEffect, useState, createRef } from 'react';
+import React, { useEffect, useState, createRef,useContext } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import FormDialog from '../common/dialogsform';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
+import { CounterContext } from '../contex/adminProvider'
 function Updatecustomer({ usersId }) {
+    const { setdialogformopen, dialogformopen } = useContext(CounterContext);
     let router = useRouter();
     var [getCustomer, setGetCustomer] = useState([]);
     const [editLogo, setEditLogo] = useState();
@@ -75,7 +77,7 @@ function Updatecustomer({ usersId }) {
             }
         }).then((res) => {
             setShow("Updated Successfully")
-            localStorage.setItem('updateclose', "close");
+            setdialogformopen("true")
             localStorage.setItem("passValue", true)
         })
     }
@@ -174,7 +176,7 @@ function Updatecustomer({ usersId }) {
                                             <button type="button" onClick={() => handleUpdate(data.Logo, data.Companyname, data.Clientname, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
                                         </div>
                                     </div>
-                                    <h3>{show}</h3>
+                                    <h4 className="alert1 text-center">{show}</h4>
                                 </form>
 
                             </div>

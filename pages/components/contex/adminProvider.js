@@ -3,8 +3,10 @@ import Axios from "axios";
 export const CounterContext = createContext();
 
 export default function CounterContextProvider(props){
+    const [dialogformopen, setdialogformopen] = useState("false")
     var [tickets, setTickets] = useState([]);
     useEffect(() => {
+        
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data));
     }, [tickets]);
@@ -39,6 +41,7 @@ export default function CounterContextProvider(props){
    
     return(
         <CounterContext.Provider value={{
+            setdialogformopen,
             tickets,
             team,
             notificationcount,
@@ -46,8 +49,8 @@ export default function CounterContextProvider(props){
             adminNewcount,
             adminStartedcount,
             adminprogresscount,
-            adminCompletedcount
-           
+            adminCompletedcount,
+            dialogformopen
             }}>
             {props.children}
         </CounterContext.Provider>

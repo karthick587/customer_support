@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
 import TableContainer from '@mui/material/TableContainer';
@@ -15,7 +15,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
+import { CounterContext } from '../contex/adminProvider'
 function Adminticket(props) {
+    const { setdialogformopen } = useContext(CounterContext);
+ 
     const Router = useRouter()
     var [show, setShow] = useState('');
     var [search, setSearch] = useState('');
@@ -131,7 +134,7 @@ function Adminticket(props) {
                 Tm_Complete_UpdatedBy: Tm_Complete_UpdatedBy
             }).then((response) => {
                 setShow("update started Successfully");
-                localStorage.setItem('updateclose', "close");
+                setdialogformopen("true")
                 console.log("ad_completed")
             });
         }
@@ -143,12 +146,12 @@ function Adminticket(props) {
         if (sendmail === "true") {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
                 function (response) {
-                    localStorage.setItem('updateclose', "close");
+                    setdialogformopen("true")
                     setShowmailstatus("EMail sended Successfully")
                 },
                 function (err) {
                     setShowmailstatus("Sending Email Failed")
-                    localStorage.setItem('updateclose', "close");
+                    setdialogformopen("true")
                 }
             );
         }
@@ -170,9 +173,8 @@ function Adminticket(props) {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-        localStorage.setItem('updateclose', "open");
+       
     })
-
     function handlestatus(e) {
         setSelectedstatus(e.target.value)
     }
@@ -204,7 +206,6 @@ function Adminticket(props) {
         setShowdetails(false)
     }
     //admin multiteam assign 
-  
     const [selecteddesignTeam, setselecteddesignTeam] = useState('');
     const [selectedserverTeam, setselectedserverTeam] = useState('');
     const [selecteddevelopmentTeam, setselecteddevelopmentTeam] = useState('');
@@ -213,9 +214,6 @@ function Adminticket(props) {
     var [checked2, setChecked2] = useState(false)
     var [checked3, setChecked3] = useState(false)
     var [checked4, setChecked4] = useState(false)
-   
-  
-   
     const handleClick1 = () => setChecked1(!checked1)
     const handleClick2 = () => setChecked2(!checked2)
     const handleClick3 = () => setChecked3(!checked3)
@@ -247,8 +245,7 @@ function Adminticket(props) {
         if (checked3 === false) {
             setselectedseoTeam('')
         }
-    },[checked1,checked2,checked3,checked4])
-   
+    },[checked1,checked2,checked3,checked4])  
         function handleUpdate(ticketsId) {
             console.log(selecteddesignTeam, selectedserverTeam, selecteddevelopmentTeam, selectedseoTeam)
             var Design, Development, Server, Seo;
@@ -267,7 +264,7 @@ function Adminticket(props) {
                 Adm_UpdatedBy: "admin1"
             }).then((_response) => {
                 setShow("update Successfully");
-                localStorage.setItem('updateclose', "close");
+                setdialogformopen("true")
                 localStorage.setItem("passValue", true);
                 setselecteddesignTeam('')
                 setselectedserverTeam('')
@@ -280,8 +277,6 @@ function Adminticket(props) {
             });
         }
         }
-    
-   
     return (
         <div>
             <Head>
@@ -389,15 +384,13 @@ function Adminticket(props) {
                                             } else return val;
                                         }
                                     }
-
                                 }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
-
                                     <TableBody className='update-right' key={tickets.ticketsId}>
                                         <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                             <TableCell >{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Design === "y" ? <>Design</> : <></>} {tickets.Development === "y" ? <>Development</> : <></>} {tickets.Seo === "y" ? <>Seo</> : <></>} {tickets.Server === "y" ? <>Server</> : <></>} {tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                            <TableCell >{tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === ""||tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
                                         </TableRow>

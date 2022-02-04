@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import Button from '@mui/material/Button';
 import { useRouter } from 'next/router'
-import { useDispatch, useSelector } from 'react-redux';
+import CircularProgress from '@mui/material/CircularProgress';
 export default Userissue;
 function Userissue(props) {
     const Router = useRouter();
+    const [loader,setloader]=useState(false)
     const { customername } = props
     //const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
@@ -50,6 +50,7 @@ function Userissue(props) {
         setScreenshots(e.target.files[0]);
     }
     const addIssues = () => {
+        setloader(true)
         const data = new FormData();
         data.append("UserName", customername);
         data.append("Email", Email);
@@ -68,7 +69,7 @@ function Userissue(props) {
             }
         }).then((res) => {
             setShow("Updated Successfully")
-            setDescription(" ")
+            setloader(false)
         })
     }
     setTimeout(() => {
@@ -102,6 +103,7 @@ function Userissue(props) {
                         <form>
                             <label htmlFor="contained-button-file">
                                 <input type="file"
+                                className="upload-proof"
                                     id="file"
                                     accept="image/*,application/pdf,
                                                 application/msword,
@@ -113,7 +115,8 @@ function Userissue(props) {
                         </form>
                     </div>
                     <div className="">
-                        <button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button>
+                    {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={30} /></>} 
+                   
                     </div>
                 </form>
                 <h4 className="alert1 text-center">{show}</h4>

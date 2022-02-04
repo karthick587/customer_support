@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -18,7 +18,9 @@ import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Imageviewer from './common/imageviewer';
 import ReactPaginate from 'react-paginate';
+import { CounterContext } from './contex/adminProvider'
 export default function Users(props) {
+    const { setdialogformopen, dialogformopen } = useContext(CounterContext);
     var [search, setSearch] = useState('');
     //var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
@@ -54,6 +56,7 @@ useEffect(()=>{
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {          
+            setdialogformopen("true")
         })
         // <-- declare id parameter
         // Axios
