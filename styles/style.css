@@ -961,7 +961,6 @@ h4.alert1.text-center {
   padding: 9px 0px 0px 15px !important;
   width: 229px;
 }
-
 .css-1o6fzn1 {
   font-size: 13px !important;
     padding-top: 25px !important;
@@ -972,7 +971,6 @@ h4.alert1.text-center {
 .main-dash-sub {
   padding: 20px 30px;
 }
-
 .dash-head h2 {
   font-size: 20px;
   color: #1976d2;
@@ -1003,12 +1001,10 @@ div#v-pills-tab {
 .main-dash {
   font-family: Roboto, sans-serif;
 }
-
 .card-left {
   font-family: "Roboto", sans-serif;
 
 }
-
 .card-1 {
   display: flex;
   padding: 24px 25px;
@@ -1581,4 +1577,23 @@ color: white;
 }
 .customer-cards {
   padding: 38px 0px;
+}
+.icon-rotation svg {
+  border-radius: 50%;
+  transform: rotate(0deg) !important;
+  transition: transform 3s !important;
+  animation: manpoweranimation 2s infinite !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+}
+@keyframes manpoweranimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

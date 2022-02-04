@@ -129,26 +129,26 @@ const CustomerDashboard = (props) => {
                 <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <div className="container">
                     <div className="row">
-                      <div className="col"> <Userissue customername={user} /></div>
+                      <div className="col"> <Userissue customername={user}/></div>
                       <div className="col">
                         <div className="customer-cards">
                         <Dashcard
                           cardHead="No of Tickets"
                           cardbody={ticketraisedcount}
                           cardfooter="Rised"
-                          cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
+                          cardIcon={<div className="icon-rotation"><FontAwesomeIcon icon={faTicketAlt} /></div>}
                         />
                         <Dashcard
                           cardHead="No of Tickets"
                           cardbody={raisedinprogresscount}
                           cardfooter="InProgress"
-                          cardIcon={<HourglassBottomIcon />}
+                          cardIcon={<div className="icon-rotation"><HourglassBottomIcon /></div>}
                         />
                          <Dashcard
                           cardHead="No of Tickets"
                           cardbody={raisedcompletedcount}
                           cardfooter="Completed"
-                          cardIcon={<DoneAllIcon />}
+                          cardIcon={<div className="icon-rotation"><DoneAllIcon /></div>}
                         />
                         </div>
                       </div>
