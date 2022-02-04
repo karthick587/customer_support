@@ -34,7 +34,7 @@ export default function Team(props) {
                 } else {
                     setSelectedValue([])
                 }
-            });
+            }).catch((err)=>{ return err; })
     }, [selectedValue]);
     useEffect(() => {
         localStorage.setItem("passValue", false)
@@ -42,9 +42,9 @@ export default function Team(props) {
     const deleteUsers = (id, name) => {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
-        }).then(() => {
-
-        })
+        }).then((res) => {
+            return res;
+        }).catch((err)=>{ return err; })
     };
     const TeamList = [
         [
@@ -61,10 +61,8 @@ export default function Team(props) {
         ])
     ]
     TeamList.reduce((prev, curr) => [prev, curr]);
-    // console.log(TeamList)    
     const handleExport = async () => {
         const data = await TeamList;
-        //console.log(data);
         setExportTeam(data)
 
     }

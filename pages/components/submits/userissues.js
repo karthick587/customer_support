@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import Axios from "axios";
 import { useRouter } from 'next/router'
 import CircularProgress from '@mui/material/CircularProgress';
@@ -14,8 +14,11 @@ function Userissue(props) {
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState();
     const [show, setShow] = useState();
-    var Team = 'not Assigned';
-    var Status = 'New';
+    const EmailR = useRef();
+    const PhonenumberR = useRef();
+    const DomainnameR = useRef();
+    const DescriptionR = useRef();
+    const FileR = useRef();
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     //const time = today.getHours() + ':' + today.getMinutes();
@@ -68,9 +71,15 @@ function Userissue(props) {
                 'Content-Type': 'multipart/form-data',
             }
         }).then((res) => {
-            setShow("Updated Successfully")
-            setloader(false)
+            setShow("Updated Successfully");
+            setloader(false);
+            EmailR.current.value = " "
+            PhonenumberR.current.value = " "
+            DomainnameR.current.value = " "
+            DescriptionR.current.value = " "
+            FileR.current.value = null;
         })
+        .catch((err)=>{ return err; })
     }
     setTimeout(() => {
         setShow()
@@ -85,19 +94,19 @@ function Userissue(props) {
                     </div>
                     <div className="form-group flex">
                         <label className="label width-25">Email</label>
-                        <input className="issue-form-input" name="email" type="text" onChange={(e) => { setEmail(e.target.value); }} />
+                        <input className="issue-form-input" name="email" type="text" ref={EmailR} onChange={(e) => { setEmail(e.target.value); }} />
                     </div>
                     <div className="form-group flex">
                         <label className="label width-25">Phonenumber</label>
-                        <input className="issue-form-input" name="phonenumber" type="text" onChange={(e) => { setPhonenumber(e.target.value); }} />
+                        <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR} onChange={(e) => { setPhonenumber(e.target.value); }} />
                     </div>
                     <div className="form-group flex">
                         <label className="label width-25">Domain Name</label>
-                        <input className="issue-form-input" name="domainName" type="text" onChange={(e) => { setDomainName(e.target.value); }} />
+                        <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} onChange={(e) => { setDomainName(e.target.value); }} />
                     </div>
                     <div className="form-group">
                         <label className="label">Description</label>
-                        <textarea className="issue-form-input" name="description" rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
+                        <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
                     <div className="form-group">
                         <form>
@@ -105,6 +114,7 @@ function Userissue(props) {
                                 <input type="file"
                                 className="upload-proof"
                                     id="file"
+                                    ref={FileR}
                                     accept="image/*,application/pdf,
                                                 application/msword,
                                                 application/vnd.openxmlformats-officedocument.wordprocessingml.document,

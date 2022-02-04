@@ -20,7 +20,6 @@ function Addteam(props) {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    //console.log(addteam);
     const addTeam = ({ Username, Password }) => {
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
@@ -34,7 +33,8 @@ function Addteam(props) {
                 setShow("Registered Successfully");
                 localStorage.setItem('updateclose', "close"); 
             }
-        });
+        })
+        .catch((err)=>{ return err; })
     }
     const [login, setLogin] = useState()
     useEffect(() => {

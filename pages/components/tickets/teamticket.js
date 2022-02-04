@@ -43,7 +43,7 @@ function Teamticket(props) {
                 setShow("update started Successfully");
                 setdialogformopen("true")
                 localStorage.setItem("passValue", true);
-            });
+            }).catch((err)=>{ return err; })
         } else if (selectedstatus === 'inprogress') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -54,7 +54,7 @@ function Teamticket(props) {
                 setShow("update inprogress Successfully");
                 setdialogformopen("true")
                 localStorage.setItem("passValue", true);
-            });
+            }).catch((err)=>{ return err; })
         } else if (selectedstatus === 'completed') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -65,7 +65,7 @@ function Teamticket(props) {
                 setShow("update completed Successfully");
                 setdialogformopen("true")
                 localStorage.setItem("passValue", true);
-            });
+            }).catch((err)=>{ return err; })
         } else return null
     }
     setTimeout(() => {

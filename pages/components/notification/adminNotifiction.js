@@ -7,15 +7,17 @@ function AdminNotification(props) {
     var [tickets, setTickets,] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => setTickets(res.data));
-    }, [tickets]);
+            .then((res) => setTickets(res.data))
+            .catch((err)=>{ return err; })
+    }, [setTickets]);
     function Notificationupdate(ticketsId, Notification) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
-            console.log("viewed ticket No " + ticketsId)
-        });
+            return _response;
+        })
+        .catch((err)=>{ return err; })
     }
     return (
         <>
