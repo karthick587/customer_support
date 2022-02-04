@@ -88,7 +88,15 @@
   .width-25 {
     width: 100%;
 }
+.header-user h1 {
+  display: block;
+}
 
+.right-user-btns {
+  display: flex;
+  right: -22px;
+  position: absolute;
+}
 .css-1o6fzn1 {
   font-size: 12px !important;
 }
@@ -168,7 +176,7 @@ div#v-pills-dash {
 }
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  width: auto !important;
+  width: 300px !important;
   margin: auto;
 }
   .css-1howxi1-MuiTableCell-root {
