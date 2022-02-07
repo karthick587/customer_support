@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import React,{ useState } from 'react';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -17,8 +16,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
+
 const drawerWidth = 190;
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -87,112 +87,108 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Dashboard(props) {
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [shownotification, setshowNotification] = useState(false)
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  const [shownotification, setshowNotification] = useState(false)
-
+  
   function notificationset() {
-    setshowNotification(!shownotification)
-  }
-
-
+    setshowNotification(!shownotification);
+  };
 
   return (
-
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar
-          sx={{
-            pr: '24px', // keep right padding when drawer closed
-          }}
-        >
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
-            sx={{
-              marginRight: '36px',
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          {props.navcontent}
-          <IconButton color="inherit" onClick={notificationset}>
-          <Badge badgeContent={props.Notificationscount} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <a onClick={props.logout} className="text-white">Logout</a>
-          {props.menuBar}
-          {shownotification && (
-            <div className='notification-body'>
-             {props.notificationbody}
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-      <div className="d-flex align-items-start">
-        <Drawer variant="permanent" open={open}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
           <Toolbar
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
+              pr: '24px', // keep right padding when drawer closed
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
             </IconButton>
-          </Toolbar>
-          <Divider />
-          <List>
-            <div>
-              <div className="nav flex-column nav-pills silebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <button className={props.dashActive} onClick={props.DashTabActive} id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dash" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
-                  <ListItemIcon>
-                    <DashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Dashboard" />
-                </ListItem>
-                </button>
-
-                {props.sidenavcontent}
-                <button className={props.ticketActive} id="v-pills-settings-tab" onClick={props.TicketTabActive} data-bs-toggle="pill" data-bs-target="#v-pills-tickets" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
-                  <ListItemIcon>
-                    <FontAwesomeIcon icon={faTicketAlt} />
-                  </ListItemIcon>
-                  <ListItemText primary="Ticket" />
-                </ListItem>
-                </button>
+            {props.navcontent}
+            <IconButton color="inherit" onClick={notificationset}>
+            <Badge badgeContent={props.Notificationscount} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <a onClick={props.logout} className="text-white">Logout</a>
+            {props.menuBar}
+            {shownotification && (
+              <div className='notification-body'>
+              {props.notificationbody}
               </div>
-            </div>
-          </List>
-          <Divider />
-        </Drawer>
-      </div>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: '100vh',
-          overflow: 'auto',
-        }}
-      >
-        <Toolbar />
-        {props.tabbody}
-      </Box>
-    </Box>
+            )}
+          </Toolbar>
+        </AppBar>
+        <div className="d-flex align-items-start">
+          <Drawer variant="permanent" open={open}>
+            <Toolbar
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                px: [1],
+              }}
+            >
+              <IconButton onClick={toggleDrawer}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </Toolbar>
+            <Divider />
+            <List>
+              <div>
+                <div className="nav flex-column nav-pills silebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <button className={props.dashActive} onClick={props.DashTabActive} id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dash" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <ListItem button>
+                    <ListItemIcon>
+                      <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                  </ListItem>
+                  </button>
 
+                  {props.sidenavcontent}
+                  <button className={props.ticketActive} id="v-pills-settings-tab" onClick={props.TicketTabActive} data-bs-toggle="pill" data-bs-target="#v-pills-tickets" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><ListItem button>
+                    <ListItemIcon>
+                      <FontAwesomeIcon icon={faTicketAlt} />
+                    </ListItemIcon>
+                    <ListItemText primary="Ticket" />
+                  </ListItem>
+                  </button>
+                </div>
+              </div>
+            </List>
+            <Divider />
+          </Drawer>
+        </div>
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
+        >
+          <Toolbar />
+          {props.tabbody}
+        </Box>
+      </Box>
   );
 }

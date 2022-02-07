@@ -12,40 +12,51 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListItemText from '@mui/material/ListItemText';
 import CustomerProfile from "../profile/customerProfile";
 import Dashcard from "../common/dashCard";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-const CustomerDashboard = (props) => {
+
+const CustomerDashboard = () => {
+
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
-  const [login, setLogin] = useState()
-  useEffect(() => {
-    setLogin(window.localStorage.getItem('loggedin'))
-    if (login === "false") {
-      router.push("/")
-    } else if (login === null) {
-      router.push("/")
-    }
-  })
-  useEffect(() => {
-    setUser(window.localStorage.getItem('clientname'))
+  const [login, setLogin] = useState();
+  // usertab
+  var [activeTab, setActivetab] = useState(" ");
+  var [tickets, setTickets] = useState([]);
+  const [ticketraisedcount, setticketraisedcount] = useState();
+  const [raisedinprogresscount, setraisedinprogresscount] = useState();
+  const [raisedcompletedcount, setraisedcompletedcount] = useState();
 
-  })
+  useEffect(() => {
+    setLogin(window.localStorage.getItem('loggedin'));
+    if (login === "false") {
+      router.push("/");
+    } else if (login === null) {
+      router.push("/");
+    }
+  });
+
+  useEffect(() => {
+    setUser(window.localStorage.getItem('clientname'));
+  });
+
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
       if (window.confirm("Do you want to Logout ?")) {
-        setfinishStatus(true)
+        setfinishStatus(true);
         // your logic
-        router.push("/")
+        router.push("/");
         localStorage.setItem('loggedin', false);
       } else {
         window.history.pushState(null, null, window.location.pathname);
-        setfinishStatus(false)
+        setfinishStatus(false);
       }
     }
-  }
+  };
+
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -53,120 +64,123 @@ const CustomerDashboard = (props) => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
+
   const onBackButtonEvent3 = () => {
-    router.push("/")
+    router.push("/");
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('activeTab');
-  }
+  };
+
   useEffect(() => {
-    setUser(window.localStorage.getItem('user'))
-  })
-  //default tab
+    setUser(window.localStorage.getItem('user'));
+  });
+
   // dashtab
   const DashTabActive = () => {
-    localStorage.setItem('activeTab', "Dashboard")
-  }
+    localStorage.setItem('activeTab', "Dashboard");
+  };
+
   // tickettab
   const TicketTabActive = () => {
-    localStorage.setItem('activeTab', 'ticket')
-  }
+    localStorage.setItem('activeTab', 'ticket');
+  };
+
   const profileTabActive = () => {
-    localStorage.setItem('activeTab', 'profile')
-  }
+    localStorage.setItem('activeTab', 'profile');
+  };
+
   // usertab
-  var [activeTab, setActivetab] = useState(" ")
   useEffect(() => {
-    setActivetab(window.localStorage.getItem('activeTab'))
-  }, [])
-  var [tickets, setTickets] = useState([]);
-    useEffect(()=>{
-        Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
-        .then((res)=>setTickets(res.data))
-        .catch((err)=>{ return err; })
-    })
-  const [ticketraisedcount, setticketraisedcount] = useState()
-  const [raisedinprogresscount, setraisedinprogresscount] = useState()
-  const [raisedcompletedcount, setraisedcompletedcount] = useState()
- 
+    setActivetab(window.localStorage.getItem('activeTab'));
+  }, []);
+
   useEffect(() => {
-    setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length)
-    setraisedinprogresscount(tickets.filter(val => { return  val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length)
-    setraisedcompletedcount(tickets.filter(val => { return  val.Status.includes("Completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length)
-  }, [tickets])
+    Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
+      .then((res) => setTickets(res.data))
+      .catch((err) => { return err; })
+  });
+
+  useEffect(() => {
+    setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);
+    setraisedinprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length);
+    setraisedcompletedcount(tickets.filter(val => { return val.Status.includes("Completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length);
+  }, [tickets]);
 
   return (
-    <>{login === "false" ? <div className="access ">access denied</div> :
-      <div>
-        <Dashboard
-          dashActive={activeTab === "Dashboard" ? "nav-link active" : "nav-link"}
-          ticketActive={activeTab === "ticket" ? "nav-link active" : "nav-link"}
-          TicketTabActive={TicketTabActive}
-          DashTabActive={DashTabActive}
-          logout={onBackButtonEvent3}
-          sidenavcontent={
-            <button className={activeTab === "profile" ? "nav-link active" : "nav-link"} onClick={profileTabActive} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
-              <ListItemIcon>
-                <AccountCircleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItem>
-            </button>
-          }
-          headertext="USER DASHBOARD"
-          navcontent={
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              USER Dashboard
-            </Typography>
-          }
-          tabbody={
-            <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
-              <div className="tab-content" id="v-pills-tabContent">
-                <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col"> <Userissue customername={user}/></div>
-                      <div className="col">
-                        <div className="customer-cards">
-                        <Dashcard
-                          cardHead="No of Tickets"
-                          cardbody={ticketraisedcount}
-                          cardfooter="Rised"
-                          cardIcon={<div className="icon-rotation"><FontAwesomeIcon icon={faTicketAlt} /></div>}
-                        />
-                        <Dashcard
-                          cardHead="No of Tickets"
-                          cardbody={raisedinprogresscount}
-                          cardfooter="InProgress"
-                          cardIcon={<div className="icon-rotation"><HourglassBottomIcon /></div>}
-                        />
-                         <Dashcard
-                          cardHead="No of Tickets"
-                          cardbody={raisedcompletedcount}
-                          cardfooter="Completed"
-                          cardIcon={<div className="icon-rotation"><DoneAllIcon /></div>}
-                        />
+    <>
+      {login === "false" ? <div className="access ">access denied</div> :
+        <div>
+          <Dashboard
+            dashActive={activeTab === "Dashboard" ? "nav-link active" : "nav-link"}
+            ticketActive={activeTab === "ticket" ? "nav-link active" : "nav-link"}
+            TicketTabActive={TicketTabActive}
+            DashTabActive={DashTabActive}
+            logout={onBackButtonEvent3}
+            sidenavcontent={
+              <button className={activeTab === "profile" ? "nav-link active" : "nav-link"} onClick={profileTabActive} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItem>
+              </button>
+            }
+            headertext="USER DASHBOARD"
+            navcontent={
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                USER Dashboard
+              </Typography>
+            }
+            tabbody={
+              <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
+                <div className="tab-content" id="v-pills-tabContent">
+                  <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div className="container">
+                      <div className="row">
+                        <div className="col"> <Userissue customername={user} /></div>
+                        <div className="col">
+                          <div className="customer-cards">
+                            <Dashcard
+                              cardHead="No of Tickets"
+                              cardbody={ticketraisedcount}
+                              cardfooter="Rised"
+                              cardIcon={<div className="icon-rotation"><FontAwesomeIcon icon={faTicketAlt} /></div>}
+                            />
+                            <Dashcard
+                              cardHead="No of Tickets"
+                              cardbody={raisedinprogresscount}
+                              cardfooter="InProgress"
+                              cardIcon={<div className="icon-rotation"><HourglassBottomIcon /></div>}
+                            />
+                            <Dashcard
+                              cardHead="No of Tickets"
+                              cardbody={raisedcompletedcount}
+                              cardfooter="Completed"
+                              cardIcon={<div className="icon-rotation"><DoneAllIcon /></div>}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                  <CustomerProfile customername={user} />
-                </div>
-                <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <Userticket  tickets={tickets} />
+                  <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <CustomerProfile customername={user} />
+                  </div>
+                  <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <Userticket tickets={tickets} />
+                  </div>
                 </div>
               </div>
-            </div>
-          } />
-      </div>
-    }</>
+            } />
+        </div>
+      }
+    </>
   )
 }
 export default withRouter(CustomerDashboard);

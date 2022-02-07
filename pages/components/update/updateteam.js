@@ -1,43 +1,46 @@
 import React, { useEffect, useState ,useContext} from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import EditIcon from '@mui/icons-material/Edit';
 import FormDialog from '../common/dialogsform';
 import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { CounterContext } from '../contex/adminProvider'
-function Updateteam({ teamId }) {
-    const { setdialogformopen } = useContext(CounterContext);
-    let router = useRouter();
-    var [getTeam, setGetTeam] = useState([]);
-    var [editTeam, setEditTeam] = useState('');
-    var [show, setShow] = useState('');
-    const[passValue,setPassValue] = useState()
+import { CounterContext } from '../contex/adminProvider';
 
-useEffect(()=>{
-    localStorage.getItem("passValue",false)
-})
+function Updateteam({ teamId }) {
+
+    const { setdialogformopen } = useContext(CounterContext);
+    var [getTeam, setGetTeam] = useState([]);
+    var [show, setShow] = useState('');
+
+    useEffect(()=>{
+    localStorage.getItem("passValue",false);
+    });
+
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/team/list/${teamId}`)
             .then(res => setGetTeam(res.data))
             .catch((err)=>{ return err; })
-    }, [])
+    }, []);
+
     const getvalue = ({ Username, Password, Team }) => {
         axios.put(`https://mindmadetech.in/api/team/update/${teamId}`, {
             Username: Username,
             Password: Password,
             Team: Team,
         }).then((res) => {
-            setShow("Updated Successfully")
-            setdialogformopen("true")
-            localStorage.setItem("passValue",true)
-
+            setShow("Updated Successfully");
+            setdialogformopen(true);
+            localStorage.setItem("passValue",true);
         }).catch((err)=>{ return err; })
-    }
+    };
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setShow();
+          }, [4000]);
+          return () =>{
+              clearTimeout(timer);
+          }
+      })
 
-    setTimeout(() => {
-        setShow()
-    }, [4000])
     return (
         <FormDialog
             className=""

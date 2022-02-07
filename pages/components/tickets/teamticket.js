@@ -11,26 +11,34 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
-import { CounterContext } from '../contex/adminProvider'
+import { CounterContext } from '../contex/adminProvider';
+
 function Teamticket(props) {
-    const { setdialogformopen, dialogformopen } = useContext(CounterContext);
-    const { teamticket } = props
-    const [mapteamticket, setmapteamticket] = useState([])
-    const Router = useRouter()
+    const { setdialogformopen } = useContext(CounterContext);
+    const { teamticket } = props;
+    const [mapteamticket, setmapteamticket] = useState([]);
+    const Router = useRouter();
     var [show, setShow] = useState('');
     var [selectedstatus, setSelectedstatus] = useState('');
+    const [disabled, setdisabled] = useState("enable");
+    const [login, setLogin] = useState();
+    const [dticketsId, setdticketsId] = useState("");
+    const [dticketsscreenshots, setdticketsscreenshots] = useState("");
+    const [showdetails, setShowdetails] = useState(false);
+
     function handlestatus(e) {
-        setSelectedstatus(e.target.value)
-    }
+        setSelectedstatus(e.target.value);
+    };
+
     //tickets status update functions 
-    const [disabled, setdisabled] = useState("enable")
     const updateemail = (Status) => {
         if (Status === "Completed") {
-            setdisabled("disabled")
+            setdisabled("disabled");
         } else {
-            setdisabled("enable")
+            setdisabled("enable");
         }
-    }
+    };
+
     //status submit function
     function handleUpdatestatus(ticketsId) {
         if (selectedstatus === 'started') {
@@ -41,7 +49,7 @@ function Teamticket(props) {
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update started Successfully");
-                setdialogformopen("true")
+                setdialogformopen(true);
                 localStorage.setItem("passValue", true);
             }).catch((err)=>{ return err; })
         } else if (selectedstatus === 'inprogress') {
@@ -52,7 +60,7 @@ function Teamticket(props) {
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update inprogress Successfully");
-                setdialogformopen("true")
+                setdialogformopen(true);
                 localStorage.setItem("passValue", true);
             }).catch((err)=>{ return err; })
         } else if (selectedstatus === 'completed') {
@@ -63,22 +71,28 @@ function Teamticket(props) {
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update completed Successfully");
-                setdialogformopen("true")
+                setdialogformopen(true);
                 localStorage.setItem("passValue", true);
             }).catch((err)=>{ return err; })
         } else return null
-    }
-    setTimeout(() => {
-        setShow()
-    }, [3500])
+    };
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setShow();
+          }, [4000]);
+          return () =>{
+              clearTimeout(timer);
+          }
+      })
+
     //current time and date 
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();
     if (hour <= 11) {
         TimeType = 'AM';
-    }
-    else {
+    }else {
         TimeType = 'PM';
     }
     if (hour > 12) {
@@ -99,31 +113,31 @@ function Teamticket(props) {
     monthupadate = (date.getMonth() + 1);
     yearupadate = date.getFullYear();
     // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
+    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+
     //auth access for team ticket page
-    const [login, setLogin] = useState()
     useEffect(() => {
         localStorage.setItem('updateclose', "open");
-        setmapteamticket(teamticket)
-        setLogin(window.localStorage.getItem('loggedin'))
+        setmapteamticket(teamticket);
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
-            Router.push("/")
+            Router.push("/");
         } else if (login === null) {
-            Router.push("/")
+            Router.push("/");
         }
-    }, [teamticket])
-    const [dticketsId, setdticketsId] = useState("");
-    const [dticketsscreenshots, setdticketsscreenshots] = useState("")
+    }, [teamticket]);
+
     const Notificationupdate = (ticketsId, Screenshots) => {
-        setdticketsscreenshots(Screenshots)
-        setdticketsId(ticketsId)
-        setShowdetails(true)
-    }
-    const [showdetails, setShowdetails] = useState(false)
+        setdticketsscreenshots(Screenshots);
+        setdticketsId(ticketsId);
+        setShowdetails(true);
+    };
+
     function closeDetails() {
-        setShowdetails(false)
-    }
+        setShowdetails(false);
+    };
+
     return (
         <div>
             <Head>

@@ -1,14 +1,16 @@
-import * as React from 'react';
+import React,{ useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import { DialogActions } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+
 export default function Imageviewer(props) {
-    const [open, setOpen] = React.useState(false);
+
+    const [open, setOpen] = useState(false);
+
     const handleClickOpen = () => {
         setOpen(true);
     };
+
     const handleClose = () => {
         setOpen(false);
     };

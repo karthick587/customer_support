@@ -1,13 +1,12 @@
 import React, { useEffect, useState,useRef } from "react";
 import Axios from "axios";
-import { useRouter } from 'next/router'
 import CircularProgress from '@mui/material/CircularProgress';
 export default Userissue;
+
 function Userissue(props) {
-    const Router = useRouter();
-    const [loader,setloader]=useState(false)
-    const { customername } = props
-    //const [UserName, setUserName] = useState('');
+
+    const [loader,setloader]=useState(false);
+    const { customername } = props;
     const [Email, setEmail] = useState('');
     const [Phonenumber, setPhonenumber] = useState('');
     const [DomainName, setDomainName] = useState('');
@@ -20,9 +19,9 @@ function Userissue(props) {
     const DomainnameR = useRef();
     const DescriptionR = useRef();
     const FileR = useRef();
+
     var today = new Date();
     const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-    //const time = today.getHours() + ':' + today.getMinutes();
     var fullDate, TimeType, hour, minutes, seconds, fullTime;
     fullDate = new Date();
     hour = fullDate.getHours();
@@ -54,11 +53,12 @@ function Userissue(props) {
         .then(res =>{
             setProjectcode(res.data[0].Projectcode)
         }).catch(err=>{ return err; })
-    })
+    });
 
     function handleScreenshot(e) {
         setScreenshots(e.target.files[0]);
-    }
+    };
+
     const addIssues = () => {
         setloader(true)
         const data = new FormData();
@@ -69,10 +69,7 @@ function Userissue(props) {
         data.append("Date", date+ ' ' + fullTime);
         data.append("Description", Description);
         data.append("Projectcode",projectcode);
-        //data.append("Team", Team);
-        //data.append("Status", Status);
         data.append("file", Screenshots);
-        //data.append("Notification", "unseen");
         data.append("Cus_CreatedOn", date + ' ' + fullTime)
         Axios.post("https://mindmadetech.in/api/tickets/new", data, {
             headers: {
@@ -81,17 +78,24 @@ function Userissue(props) {
         }).then((res) => {
             setShow("Updated Successfully");
             setloader(false);
-            EmailR.current.value = " "
-            PhonenumberR.current.value = " "
-            DomainnameR.current.value = " "
-            DescriptionR.current.value = " "
+            EmailR.current.value = " ";
+            PhonenumberR.current.value = " ";
+            DomainnameR.current.value = " ";
+            DescriptionR.current.value = " ";
             FileR.current.value = null;
         })
         .catch((err)=>{ return err; })
-    }
-    setTimeout(() => {
-        setShow()
-    }, [3500])
+    };
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+              setShow();
+          }, [3500]);
+          return () =>{
+              clearTimeout(timer);
+          }
+      })
+
     return (
             <div>
                 <form className="form3" action="/" method="post">

@@ -8,33 +8,39 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+
 function Userticket(props) {
-    const {tickets}=props
-    const[maptickets,setmaptickets]=useState([])
-    const Router = useRouter()
-    const [login, setLogin] = useState()
+
+    const {tickets}=props;
+    const[maptickets,setmaptickets]=useState([]);
+    const Router = useRouter();
+    const [login, setLogin] = useState();
+    const [showdetails, setShowdetails] = useState(false);
+    const [dticketsId, setdticketsId] = useState("");
+    const[dticketsscreenshots,setdticketsscreenshots] = useState("");
+
     useEffect(() => {
-        setmaptickets(tickets)
-        setLogin(window.localStorage.getItem('loggedin'))
+        setmaptickets(tickets);
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
-            Router.push("/")
+            Router.push("/");
         } else if (login === null) {
-            Router.push("/")
-        }
+            Router.push("/");
+        };
         localStorage.setItem('updateclose', "open");
-    },[tickets])
-    const [showdetails, setShowdetails] = useState(false)
-    const [dticketsId, setdticketsId] = useState("")
-    const[dticketsscreenshots,setdticketsscreenshots] = useState("")
+    },[tickets]);
+
     const Openticket = (ticketsId,Screenshots) => {
-        setdticketsId(ticketsId)
-        setdticketsscreenshots(Screenshots)
-        setShowdetails(true)
-    }
+        setdticketsId(ticketsId);
+        setdticketsscreenshots(Screenshots);
+        setShowdetails(true);
+    };
+
     function closeDetails() {
-        setShowdetails(false)
-    }
+        setShowdetails(false);
+    };
+
     return (
         <div>
             <Head>

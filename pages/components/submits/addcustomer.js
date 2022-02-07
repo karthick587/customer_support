@@ -1,11 +1,12 @@
-import React, { useState, useEffect ,useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from "axios";
 import Avatar from '@mui/material/Avatar';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-import { useRouter } from 'next/router'
-import { CounterContext } from '../contex/adminProvider'
+import { useRouter } from 'next/router';
+import { CounterContext } from '../contex/adminProvider';
+
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -13,42 +14,45 @@ const schema = yup.object().shape({
     Phonenumber: yup.string().required().max(10),
     Username: yup.string().required(),
     Password: yup.string().required(),
-    Projectcode:yup.string().required(),
+    Projectcode: yup.string().required(),
 });
-function Addcustomer(props) {
+
+function Addcustomer() {
+
     const { setdialogformopen } = useContext(CounterContext);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
-    const [show, setShow] = React.useState(false);
-   
+    const [show, setShow] = useState(false);
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const [Adminname, setAdminname] = useState([])
+    const [Adminname, setAdminname] = useState([]);
+    const [Createdby, setCreatedby] = useState();
+    var [showlogo, setShowlogo] = useState('');
+    const [logovalidate, setLogovalidate] = useState();
+    const [login, setLogin] = useState();
+
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
-    }, [])
-    const [Createdby, setCreatedby] = useState()
+    }, []);
+
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    })
+    });
 
-    var [showlogo, setShowlogo] = useState('');
-    const [logovalidate, setLogovalidate] = useState()
     function handleScreenshot(e) {
-
         setLogovalidate(e.target.files[0]);
-        setLogo(e.target.files[0])
-        setUploadLogo(URL.createObjectURL(e.target.files[0]))
-    }
+        setLogo(e.target.files[0]);
+        setUploadLogo(URL.createObjectURL(e.target.files[0]));
+    };
+
     const addUser = ({ Companyname, Clientname, Projectcode, Email, Phonenumber, Username, Password }) => {
         if (logovalidate === undefined) {
             setShowlogo("images is required")
-
         } else {
             var today = new Date();
             const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
@@ -81,7 +85,7 @@ function Addcustomer(props) {
             const data = new FormData();
             data.append("Companyname", Companyname);
             data.append("Clientname", Clientname);
-            data.append("Projectcode",Projectcode)
+            data.append("Projectcode", Projectcode)
             data.append("Email", Email);
             data.append("Phonenumber", Phonenumber);
             data.append("Username", Username);
@@ -98,26 +102,31 @@ function Addcustomer(props) {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                    setdialogformopen("true")
+                    setdialogformopen(true)
                 }
             })
-            .catch((err)=>{ return err; })
+                .catch((err) => { return err; })
         }
-    }
-
-    const [login, setLogin] = useState()
+    };
+   
     useEffect(() => {
-        setLogin(window.localStorage.getItem('loggedin'))
-
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
-            Router.push("/")
+            Router.push("/");
         } else if (login === null) {
-            Router.push("/")
+            Router.push("/");
+        }
+    });
+
+    useEffect(()=>{
+      const timer = setTimeout(() => {
+            setShow();
+        }, [3500]);
+        return () =>{
+            clearTimeout(timer);
         }
     })
-    setTimeout(() => {
-        setShow()
-    }, [3500])
+    
 
     return (
         <div>
@@ -129,7 +138,7 @@ function Addcustomer(props) {
                                 <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
                                 <p className="text-danger mt-3 ml-2">{showlogo}</p>
                                 <Avatar
-                                    alt="Remy Sharp"
+                                    alt="uploadlogo"
                                     src={uploadLogo}
                                     sx={{ width: 65, height: 65 }}
                                 />

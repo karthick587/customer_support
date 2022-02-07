@@ -1,4 +1,4 @@
-import { useState, useEffect,useContext } from 'react';
+import React,{ useState, useEffect,useContext } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -18,54 +18,56 @@ import { useRouter } from 'next/router';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Imageviewer from './common/imageviewer';
 import ReactPaginate from 'react-paginate';
-import { CounterContext } from './contex/adminProvider'
+import { CounterContext } from './contex/adminProvider';
+
 export default function Users(props) {
-    const { setdialogformopen, dialogformopen } = useContext(CounterContext);
+
+    const { setdialogformopen } = useContext(CounterContext);
     var [search, setSearch] = useState('');
-    //var [selectedValue, setSelectedValue] = useState('');
-    const Router = useRouter();
+    const router = useRouter();
     var [users, setUsers] = useState([]);
-    const [open, setOpen] = useState(false);
     var [exportUsers, setExportUsers] = useState([]);
     var [selectedValue, setSelectedValue] = useState([]);
-useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/customer/list")
-        .then((res) => {
-            setUsers(res.data);
-            if(localStorage.getItem("passValue") === true){
-                setSelectedValue(team)
-            }else{
-                setSelectedValue([])
-            }
-        }).catch((err)=>{ return err; })
-}, [selectedValue]);
-useEffect(()=>{
-    localStorage.setItem("passValue",false)
-})
     const [usercount, setusercount] = useState();
+    const [login, setLogin] = useState();
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+
     useEffect(() => {
-        setusercount(users.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((userd) => setusercount(userd.Status)).length)
+        Axios.get("https://mindmadetech.in/api/customer/list")
+            .then((res) => {
+                setUsers(res.data);
+                if(localStorage.getItem("passValue") === true){
+                    setSelectedValue(team);
+                }else{
+                    setSelectedValue([]);
+                }
+            }).catch((err)=>{ return err; })
+    }, [selectedValue]);
+
+    useEffect(()=>{
+        localStorage.setItem("passValue",false);
+    });
+
+    useEffect(() => {
+        setusercount(users.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((userd) => setusercount(userd.Status)).length);
         props.usercountcallback(usercount);
-    })
-    const deleteUsers = (id, name) => {
+    });
+
+    const deleteUsers = (id) => {
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {          
-            setdialogformopen("true")
-        }).catch((err)=>{ return err; })
-        // <-- declare id parameter
-        // Axios
-        //     .delete(`https://mindmadetech.in/api/customer/delete/${id}`) // <-- remove ;
-        //     .then(() => {
-        //         // Issue GET request after item deleted to get updated list
-        //         // that excludes note of id
-        //         Router.reload(window.location.pathname);
-        //     })
+            setdialogformopen(true)
+        }).catch((err)=>{ return err; })     
     };
+
     const UsersList = [
         [
             "Users Id",
-            "Name",
+            "Project Code",
+            "Company Name",
+            "Client Name",
             "User Name",
             "Password",
             "Email Id",
@@ -73,7 +75,9 @@ useEffect(()=>{
         ],
         ...users.map(details => [
             details.usersId,
-            details.Name,
+            details.Projectcode,
+            details.Companyname,
+            details.Clientname,
             details.Username,
             details.Password,
             details.Email,
@@ -82,29 +86,30 @@ useEffect(()=>{
     ]
     UsersList.reduce((prev, curr) => [prev, curr]);
 
-    const handleExport = async () => {
-        const data = await UsersList;
-        setExportUsers(data)
-    }
-    const [login, setLogin] = useState()
+    const handleExport = () => {
+        const data = UsersList;
+        setExportUsers(data);
+    };
+ 
     useEffect(() => {
-        setLogin(window.localStorage.getItem('loggedin'))
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
-            router.push("/")
+            router.push("/");
         } else if (login === null) {
-            router.push("/")
+            router.push("/");
         }
         localStorage.setItem('updateclose', "open");
     })
+
     //pagination
-    const [datalimit, setdatalimit] = useState(10);
-    const [currentpage, setCurrentpage] = useState(1);
     function handlePageChange(pageNumber) {
         setCurrentpage(pageNumber + 1);
-    }
+    };
+
     const pagedatalimit = (e) => {
-        setdatalimit(e.target.value)
-    }
+        setdatalimit(e.target.value);
+    };
+
     return (
         <div>
             <Head>
@@ -127,10 +132,9 @@ useEffect(()=>{
                         <div className='right-user-btns'>
                             <CSVLink
                                 data={exportUsers}
-                                filename='Customer_List.csv'
+                                filename={'Customer_List.csv'}
                                 className="float-enduser btn2 button"
                                 target="_blank"
-                                asyncOnClick={true}
                                 onClick={handleExport}
                             >Export</CSVLink>
                             <FormDialog
@@ -182,7 +186,7 @@ useEffect(()=>{
                                         dialogactions={
                                             <div>
                                                 <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                <Button   >NO</Button>
+                                                <Button>NO</Button>
                                             </div>
                                         }
                                     />
@@ -205,6 +209,5 @@ useEffect(()=>{
                 </div>
                 </div>
             </div>
-       
     )
 }

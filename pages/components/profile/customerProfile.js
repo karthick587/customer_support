@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 export default function CustomerProfile(props) {
-    const { customername } = props
-    const [users, setUsers] = useState([])
+    const { customername } = props;
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
             .then((res) => setUsers(res.data))
             .catch((err)=>{ return err; })
-    }, [setUsers])
+    }, [setUsers]);
+
     return (
         <div className="container">
             <div className="profile-body">

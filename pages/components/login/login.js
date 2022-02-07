@@ -9,12 +9,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
+
 const schema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required().min(6)
 });
+
 export default function Login1() {
-  const [user, setUser] = useState('');
+
   const router = useRouter();
   const [loginStatus, setLoginStatus] = useState('');
   const [userlogin, setUserlogin] = useState('');
@@ -22,9 +24,10 @@ export default function Login1() {
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
+  
   const adminLogin = ({ username, password }) => {
-    var TableValidate = username.slice(0, 3)
-    setUserlogin(username)
+    var TableValidate = username.slice(0, 3);
+    setUserlogin(username);
     var validate, SlicedName;
     switch (TableValidate) {
       case 'ad_':
@@ -41,26 +44,28 @@ export default function Login1() {
         SlicedName = username;
         localStorage.setItem('clientname', SlicedName);
     }
-      Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-        username: SlicedName,
-        password: password,
-      }).then((response) => {
-        if (response.data.statusCode === 400) {
-          setLoginStatus(response.data.message);
-        } else {
-          localStorage.setItem('loggedin', true);
-          localStorage.setItem('activeTab', "Dashboard")
-          router.push({
-            pathname: `../components/dash/${validate}dashboard`,
-          });
-        }
-      })
-      .catch((err)=>{ return err; })
-  }
+    Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
+      username: SlicedName,
+      password: password,
+    }).then((response) => {
+      if (response.data.statusCode === 400) {
+        setLoginStatus(response.data.message);
+      } else {
+        localStorage.setItem('loggedin', true);
+        localStorage.setItem('activeTab', "Dashboard");
+        router.push({
+          pathname: `/components/dash/${validate}dashboard`,
+        });
+      }
+    })
+      .catch((err) => { return err; })
+  };
+
   const onBackButtonEvent = (e) => {
     e.preventDefault();
-    router.push("/")
-  }
+    router.push("/");
+  };
+
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -68,9 +73,11 @@ export default function Login1() {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
+
   useEffect(() => {
     localStorage.setItem('user', userlogin);
   });
+
   return (
     <div className="login-page">
       <Head>

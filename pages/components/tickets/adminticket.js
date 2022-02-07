@@ -5,7 +5,6 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import FormDialog from '../common/dialogsform';
 import { useRouter } from 'next/router'
-import MailIcon from '@mui/icons-material/Mail';
 import emailjs from 'emailjs-com';
 import ReactPaginate from 'react-paginate';
 import Table from '@mui/material/Table';
@@ -15,11 +14,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
-import { CounterContext } from '../contex/adminProvider'
-function Adminticket(props) {
+import { CounterContext } from '../contex/adminProvider';
+
+function Adminticket() {
+
     const { setdialogformopen } = useContext(CounterContext);
- 
-    const Router = useRouter()
+    const Router = useRouter();
     var [show, setShow] = useState('');
     var [search, setSearch] = useState('');
     var [filteredTitle, setFilteredTitle] = useState('all');
@@ -28,7 +28,29 @@ function Adminticket(props) {
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
     var [tickets, setTickets,] = useState([]);
-    var [Adm_CreatedBy, setAdm_CreatedBy] = useState('')
+    var [Adm_CreatedBy, setAdm_CreatedBy] = useState('');
+    const [login, setLogin] = useState();
+    const [ticketid, setTicketid] = useState();
+    const [sendmail, setsendmail] = useState(false);
+    const [name, setName] = useState(" ");
+    const [showmailstatus, setShowmailstatus] = useState("");
+    var [selectedstatus, setSelectedstatus] = useState('');
+    const [email, setEmail] = useState();
+    var [users, setUsers] = useState([]);
+    const [dticketsId, setdticketsId] = useState("");
+    const [dticketsscreenshots, setdticketsscreenshots] = useState("");
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+    const [showdetails, setShowdetails] = useState(false);
+    const [selecteddesignTeam, setselecteddesignTeam] = useState('');
+    const [selectedserverTeam, setselectedserverTeam] = useState('');
+    const [selecteddevelopmentTeam, setselecteddevelopmentTeam] = useState('');
+    const [selectedseoTeam, setselectedseoTeam] = useState('');
+    var [checked1, setChecked1] = useState(false);
+    var [checked2, setChecked2] = useState(false);
+    var [checked3, setChecked3] = useState(false);
+    var [checked4, setChecked4] = useState(false);
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => {
@@ -41,11 +63,11 @@ function Adminticket(props) {
             })
             .catch((err)=>{ return err; })
     }, [selectedValue]);
+
     useEffect(() => {
         localStorage.setItem("passValue", false);
-        setAdm_CreatedBy(localStorage.getItem('user'))
-    })
-
+        setAdm_CreatedBy(localStorage.getItem('user'));
+    });
 
     //current date and time
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
@@ -75,18 +97,20 @@ function Adminticket(props) {
     monthupadate = (date.getMonth() + 1);
     yearupadate = date.getFullYear();
     // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString()
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
+    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+
     //filter function
     useEffect(() => {
         if (filteredTitle === "all") {
             setIsOpenfilter(false);
-            setSearch("")
+            setSearch("");
         } else {
             setIsOpenfilter(true);
         }
-        setShow()
+        setShow();
     });
+
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
@@ -95,37 +119,29 @@ function Adminticket(props) {
             setIsOpenstatusfilter(false);
         }
     });
+
     //page access
-    const [login, setLogin] = useState()
     useEffect(() => {
-        setLogin(window.localStorage.getItem('loggedin'))
-
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
-            Router.push("/")
+            Router.push("/");
         } else if (login === null) {
-            Router.push("/")
+            Router.push("/");
         }
-    })
-    // emailjs
-    const [ticketid, setTicketid] = useState()
+    });
 
+    // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
-        setTicketid(ticketsId)
-    }
+        setTicketid(ticketsId);
+    };
 
-    const [sendmail, setsendmail] = useState(false)
-    const [name, setName] = useState(" ")
-
-
-    const [showmailstatus, setShowmailstatus] = useState("")
-    var [selectedstatus, setSelectedstatus] = useState('');
-    const SERVICE_ID = "service_56f9av6"
+    const SERVICE_ID = "service_56f9av6";
     const TEMPLATE_ID = "template_7g9sx6r";
-    const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4"
+    const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4";
+
     function finalStatus(ticketsId, Tm_Complete_UpdatedOn, Tm_Complete_UpdatedBy) {
         if (selectedstatus === "Completed") {
-
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketid}`, {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
@@ -133,127 +149,129 @@ function Adminticket(props) {
                 Tm_Complete_UpdatedBy: Tm_Complete_UpdatedBy
             }).then((response) => {
                 setShow("update started Successfully");
-                setdialogformopen("true")
+                setdialogformopen(true);
             })
             .catch((err)=>{ return err; })
-        }
-        var data = {
-            to_email: email,
-            message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
-            to_name: name
         };
-        if (sendmail === "true") {
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-                function (response) {
-                    setdialogformopen("true")
-                    setShowmailstatus("EMail sended Successfully")
-                },
-                function (err) {
-                    setShowmailstatus("Sending Email Failed")
-                    setdialogformopen("true")
-                }
-            );
-        }
-        setTimeout(() => {
-            setShowmailstatus()
-        }, [4000])
-    }
+
+    var data = {
+        to_email: email,
+        message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
+        to_name: name
+    };
+    if (sendmail === "true") {
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+            function (response) {
+                setdialogformopen(true)
+                setShowmailstatus("EMail sended Successfully")
+            },
+            function (err) {
+                setShowmailstatus("Sending Email Failed")
+                setdialogformopen(true)
+            }
+        );
+    };
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setShowmailstatus();
+          }, [4000]);
+          return () =>{
+              clearTimeout(timer);
+          }
+      })
+}
     //to get client email id 
-    const [email, setEmail] = useState()
-    var [users, setUsers] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
             .catch((err)=>{ return err; })
     }, [setUsers]);
+
     useEffect(() => {
         {
             users.filter(val => {
                 return val.Username.toLowerCase().includes(name)
             }).map((itemed) => setEmail(itemed.Email)
             )
-        }
-       
-    })
+        }  
+    });
+
     function handlestatus(e) {
-        setSelectedstatus(e.target.value)
-    }
+        setSelectedstatus(e.target.value);
+    };
+
     //emailjs
-    const [dticketsId, setdticketsId] = useState("")
-    const [dticketsscreenshots, setdticketsscreenshots] = useState("")
     const Notificationupdate = (ticketsId, Screenshots) => {
-        setdticketsId(ticketsId)
-        setdticketsscreenshots(Screenshots)
-        setShowdetails(true)
+        setdticketsId(ticketsId);
+        setdticketsscreenshots(Screenshots);
+        setShowdetails(true);
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
             return _response;
         }).catch((err)=>{ return err; })
-    }
+    };
+
     //pagination
-    const [datalimit, setdatalimit] = useState(10);
-    const [currentpage, setCurrentpage] = useState(1);
     function handlePageChange(pageNumber) {
         setCurrentpage(pageNumber + 1);
-    }
+    };
+
     const pagedatalimit = (e) => {
-        setdatalimit(e.target.value)
-    }
+        setdatalimit(e.target.value);
+    };
+
     //ticket viewing page open and close
-    const [showdetails, setShowdetails] = useState(false)
     function closeDetails() {
-        setShowdetails(false)
-    }
+        setShowdetails(false);
+    };
+
     //admin multiteam assign 
-    const [selecteddesignTeam, setselecteddesignTeam] = useState('');
-    const [selectedserverTeam, setselectedserverTeam] = useState('');
-    const [selecteddevelopmentTeam, setselecteddevelopmentTeam] = useState('');
-    const [selectedseoTeam, setselectedseoTeam] = useState('');
-    var [checked1, setChecked1] = useState(false)
-    var [checked2, setChecked2] = useState(false)
-    var [checked3, setChecked3] = useState(false)
-    var [checked4, setChecked4] = useState(false)
-    const handleClick1 = () => setChecked1(!checked1)
-    const handleClick2 = () => setChecked2(!checked2)
-    const handleClick3 = () => setChecked3(!checked3)
-    const handleClick4 = () => setChecked4(!checked4)
+
+    const handleClick1 = () => setChecked1(!checked1);
+    const handleClick2 = () => setChecked2(!checked2);
+    const handleClick3 = () => setChecked3(!checked3);
+    const handleClick4 = () => setChecked4(!checked4);
+
     function defaultcheck(Design,Development,Server,Seo) {
         if(Design==="y"){
-            setChecked1(true)
-        }
+            setChecked1(true);
+        };
          if(Development==="y"){
-            handleClick2(true)
-        }
+            handleClick2(true);
+        };
          if(Server==="y"){
-        handleClick3(true)
-        }
+        handleClick3(true);
+        };
         if(Seo==="y"){
-            handleClick4(true)
-        }
-        }
+            handleClick4(true);
+        };
+    };
+
     useEffect(() => {
         if (checked1 === false) {
-            setselecteddesignTeam('')
-        }
+            setselecteddesignTeam('');
+        };
         if (checked2 === false) {
-            setselectedserverTeam('')
-        }
+            setselectedserverTeam('');
+        };
         if (checked3 === false) {
-            setselecteddevelopmentTeam('')
-        }
+            setselecteddevelopmentTeam('');
+        };
         if (checked3 === false) {
-            setselectedseoTeam('')
-        }
-    },[checked1,checked2,checked3,checked4])  
-        function handleUpdate(ticketsId) {
-            var Design, Development, Server, Seo;
-            (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
-            (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
-            (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
-            (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
-            if(ticketsId!==""){
+            setselectedseoTeam('');
+        };
+    },[checked1,checked2,checked3,checked4]);
+
+    function handleUpdate(ticketsId) {
+        var Design, Development, Server, Seo;
+        (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
+        (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
+        (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
+        (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
+        if(ticketsId!==""){
             Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
                 Design: Design,
                 Development: Development,
@@ -264,7 +282,7 @@ function Adminticket(props) {
                 Adm_UpdatedBy: "admin1"
             }).then((_response) => {
                 setShow("update Successfully");
-                setdialogformopen("true")
+                setdialogformopen(true)
                 localStorage.setItem("passValue", true);
                 setselecteddesignTeam('')
                 setselectedserverTeam('')
@@ -277,7 +295,8 @@ function Adminticket(props) {
             })
             .catch((err)=>{ return err; })
         }
-        }
+    };
+
     return (
         <div>
             <Head>

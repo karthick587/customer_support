@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
-function AdminNotification(props) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
+
+function AdminNotification() {
+
     var [tickets, setTickets,] = useState([]);
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data))
-            .catch((err)=>{ return err; })
+            .catch((err) => { return err; })
     }, [setTickets]);
-    function Notificationupdate(ticketsId, Notification) {
+
+    function Notificationupdate(ticketsId) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
             Notification: "seen",
             ticketsId: ticketsId,
         }).then((_response) => {
             return _response;
         })
-        .catch((err)=>{ return err; })
-    }
+            .catch((err) => { return err; })
+    };
+
     return (
         <>
             <div className='notification-table'>
@@ -30,8 +35,8 @@ function AdminNotification(props) {
                             dialogtitle={
                                 <div>
                                     <div className='notification-table-row flex' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
-                                        <div className='notification-table-left'> 
-                                        <FontAwesomeIcon icon={faTicketAlt} />
+                                        <div className='notification-table-left'>
+                                            <FontAwesomeIcon icon={faTicketAlt} />
                                         </div>
                                         <div className='notification-table-right'>
                                             <div className='notification-table-right1 flex'>

@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "axios";
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+
 const schema = yup.object().shape({
     Username: yup.string().required(),
     Password: yup.string().required(),
 });
-function Addteam(props) {
-    var [addmember, setAddmember] = useState('');
+
+function Addteam() {
+
     var [addteam, setAddteam] = useState('');
-    const Router = useRouter()
-    //var [show2, setShow2] = useState('');
-    const [show, setShow] = React.useState(false);
+    const Router = useRouter();
+    const [show, setShow] = useState(false);
+    const [login, setLogin] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
+
     const addTeam = ({ Username, Password }) => {
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
@@ -35,20 +36,26 @@ function Addteam(props) {
             }
         })
         .catch((err)=>{ return err; })
-    }
-    const [login, setLogin] = useState()
+    };
+ 
     useEffect(() => {
-        setLogin(window.localStorage.getItem('loggedin'))
-
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
             Router.push("/")
         } else if (login === null) {
             Router.push("/")
         }
-    })
-    setTimeout(() => {
-        setShow()
-    }, [3500])
+    });
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+              setShow();
+          }, [3500]);
+          return () =>{
+              clearTimeout(timer);
+          }
+      })
+
     return (
         <div>
             <div className="container mainbody">

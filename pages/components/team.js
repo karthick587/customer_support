@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,35 +16,44 @@ import { useRouter } from 'next/router'
 import Updateteam from './update/updateteam';
 import { CSVLink } from 'react-csv';
 import ReactPaginate from 'react-paginate';
+
 export default function Team(props) {
+
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
     var [team, setTeam] = useState([]);
-    const [open, setOpen] = useState(false);
     var [exportTeam, setExportTeam] = useState([]);
     var [selectedValue, setSelectedValue] = useState([]);
+    const [login, setLogin] = useState();
+    const [teamcount, setteamcount] = useState();
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => {
                 setTeam(res.data);
                 if (localStorage.getItem("passValue") === true) {
-                    setSelectedValue(team)
+                    setSelectedValue(team);
                 } else {
-                    setSelectedValue([])
+                    setSelectedValue();
                 }
             }).catch((err)=>{ return err; })
-    }, [selectedValue]);
+    }, [setSelectedValue]);
+
     useEffect(() => {
-        localStorage.setItem("passValue", false)
-    })
-    const deleteUsers = (id, name) => {
+        localStorage.setItem("passValue", false);
+    });
+
+    const deleteUsers = (id) => {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then((res) => {
             return res;
         }).catch((err)=>{ return err; })
     };
+
     const TeamList = [
         [
             "Team Id",
@@ -61,37 +69,36 @@ export default function Team(props) {
         ])
     ]
     TeamList.reduce((prev, curr) => [prev, curr]);
-    const handleExport = async () => {
-        const data = await TeamList;
-        setExportTeam(data)
 
-    }
-    const [login, setLogin] = useState()
+    const handleExport = () => {
+        const data = TeamList;
+        setExportTeam(data);
+    };
+
     useEffect(() => {
-        setLogin(window.localStorage.getItem('loggedin'))
-
+        setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
-            Router.push("/")
+            Router.push("/");
         } else if (login === null) {
-            Router.push("/")
+            Router.push("/");
         }
+    });
 
-    })
-    const [teamcount, setteamcount] = useState();
     useEffect(() => {
-        setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length)
+        setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length);
         props.teamcountcallback(teamcount);
         localStorage.setItem('updateclose', "open");
-    })
+    });
+
     //pagination
-    const [datalimit, setdatalimit] = useState(10);
-    const [currentpage, setCurrentpage] = useState(1);
     function handlePageChange(pageNumber) {
         setCurrentpage(pageNumber + 1);
-    }
+    };
+
     const pagedatalimit = (e) => {
-        setdatalimit(e.target.value)
-    }
+        setdatalimit(e.target.value);
+    };
+
     return (
         <div>
             <Head>
@@ -114,10 +121,9 @@ export default function Team(props) {
                         <div className='right-user-btns'>
                             <CSVLink
                                 data={exportTeam}
-                                filename='Team_List.csv'
+                                filename={'Team_List.csv'}
                                 className="float-enduser btn2 button"
                                 target="_blank"
-                                asyncOnClick={true}
                                 onClick={handleExport}
                             >Export</CSVLink>
                             <FormDialog

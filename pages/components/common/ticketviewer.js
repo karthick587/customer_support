@@ -2,29 +2,28 @@ import React, { useState, useEffect } from 'react';
 import Imageviewer from '../common/imageviewer'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
-// import jsPDF from 'jspdf';
+
 function Ticketviewer(props) {
-    const { dticketsId, closeDetails, dticketsscreenshots
-    } = props
-    const [ticket, settickets] = useState([])
-    const [mimetype, setMimetype] = useState('')
+
+    const { dticketsId, closeDetails, dticketsscreenshots} = props;
+    const [ticket, settickets] = useState([]);
+    const [mimetype, setMimetype] = useState('');
+    const[downloadlink,setdownloadlink]=useState()
+
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
             .then((res) => settickets(res.data))
             .catch((err)=>{ return err;})
     }, [settickets]);
+    
     useEffect(() => {
-        setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 3))
-    }, [setMimetype])
-    // function handleDownload(Screenshot){
-    //     const doc = new jsPDF({orientation: "landscape", unit: "in", format: [4, 2]});
-    //     doc.addImage = (Screenshot,'png',0,0)
-    //     doc.save('screenshot.pdf')
-    // }
-  const[downloadlink,setdownloadlink]=useState()
-     const downloadimg= (Screenshots) =>{
-        setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`)  
-     } 
+        setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
+    }, [setMimetype]);
+
+    const downloadimg= (Screenshots) =>{
+        setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`);  
+    };
+    
     return (
         <>
             {ticket.map((tickets) =>
@@ -91,6 +90,14 @@ function Ticketviewer(props) {
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
+                                    Project Code
+                                </div>
+                                <div className='user-label-ticket-details'>
+                                    {tickets.Projectcode}
+                                </div>
+                            </div>
+                            <div className='col'>
+                                <div className='label-ticket-details'>
                                     Department
                                 </div>
                                 <div className='user-label-ticket-details'>
@@ -135,17 +142,14 @@ function Ticketviewer(props) {
                                 <div className='label-ticket-details'>
                                     Screenshot
                                 </div>
-                                {mimetype === "png" || mimetype === "jpg" || mimetype === "jpeg" ?
+                                {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
                                     <Imageviewer
                                         imgdialogbutton={<img src={tickets.Screenshots}  alt="screenshots" width={200} height={100} />}
                                         imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
                                     /> :
-                                    <a href={tickets.Screenshots} download="doc" target="_blank" rel='noopener noreferrer'>View File</a>
+                                    <a href={tickets.Screenshots} target="_blank" rel="noreferrer noopener">View File</a>
                                 }
-                                {/* <button onClick={()=>handleDownload(tickets.Screenshots)}>Download</button> */}
-                                <a href={downloadlink}  onClick={()=>downloadimg(tickets.Screenshots)}>download
-                                </a>
-                                <a href={tickets.Screenshots}>View File</a>
+                                <a href={downloadlink}   onClick={()=>downloadimg(tickets.Screenshots)}>download</a>
                             </div>
 
                         </div>

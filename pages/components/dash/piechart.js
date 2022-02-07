@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactEcharts from "echarts-for-react";
+
 export default function Piechart(props) {
-  const {newcount,started,inprogress,completed}=props
+  
+  const {newcount,started,inprogress,completed}=props;
     //piechart
   const color = [
     "#3fb1e3",
