@@ -160,7 +160,7 @@ function Teamticket(props) {
                                         <TableCell align="left">Status</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {mapteamticket.map((tickets) =>
+                                {mapteamticket.reverse().map((tickets) =>
                                     <TableBody key={tickets.ticketsId} className='update-right' >
                                         <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
 

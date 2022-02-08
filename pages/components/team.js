@@ -149,7 +149,7 @@ export default function Team(props) {
                                 } else if (val.Username.toLowerCase().includes(search.toLowerCase())) {
                                     return val;
                                 } else null;
-                            }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
+                            }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                                 <TableBody key={item.teamId}>
                                     <TableRow >
                                         <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>

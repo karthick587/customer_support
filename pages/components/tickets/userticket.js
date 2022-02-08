@@ -63,7 +63,7 @@ function Userticket(props) {
                                     <TableCell align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {maptickets.map((tickets) =>                         
+                            {maptickets.reverse().map((tickets) =>                         
                                     <TableBody key={tickets.ticketsId} >
                                         <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId,tickets.Screenshots)}>                                            
                                             <TableCell>{tickets.ticketsId}</TableCell>

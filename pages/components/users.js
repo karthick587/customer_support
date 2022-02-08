@@ -163,7 +163,7 @@ export default function Users(props) {
                                          val.Clientname.toLowerCase().includes(search.toLowerCase())) {
                                     return val;
                                 }else null;
-                            }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item)=>
+                            }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item)=>
                             <TableBody key={item.usersId}>
                             <TableRow >
                                 <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
