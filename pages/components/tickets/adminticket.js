@@ -171,7 +171,7 @@ function Adminticket() {
             }
         );
     };
-
+}
     useEffect(()=>{
         const Timer = setTimeout(() => {
             setShowmailstatus();
@@ -180,7 +180,7 @@ function Adminticket() {
               clearTimeout(Timer);
           }
       })
-}
+
     //to get client email id 
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
