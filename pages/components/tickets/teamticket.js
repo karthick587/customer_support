@@ -51,7 +51,7 @@ function Teamticket(props) {
                 setShow("update started Successfully");
                 setdialogformopen(true);
                 localStorage.setItem("passValue", true);
-            }).catch((err)=>{ return err; })
+            }).catch((err) => { return err; })
         } else if (selectedstatus === 'inprogress') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -62,7 +62,7 @@ function Teamticket(props) {
                 setShow("update inprogress Successfully");
                 setdialogformopen(true);
                 localStorage.setItem("passValue", true);
-            }).catch((err)=>{ return err; })
+            }).catch((err) => { return err; })
         } else if (selectedstatus === 'completed') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
                 Status: selectedstatus,
@@ -73,18 +73,18 @@ function Teamticket(props) {
                 setShow("update completed Successfully");
                 setdialogformopen(true);
                 localStorage.setItem("passValue", true);
-            }).catch((err)=>{ return err; })
+            }).catch((err) => { return err; })
         } else return null
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         const Timer = setTimeout(() => {
             setShow();
-          }, [4000]);
-          return () =>{
-              clearTimeout(Timer);
-          }
-      })
+        }, [4000]);
+        return () => {
+            clearTimeout(Timer);
+        }
+    })
 
     //current time and date 
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
@@ -92,7 +92,7 @@ function Teamticket(props) {
     hour = date.getHours();
     if (hour <= 11) {
         TimeType = 'AM';
-    }else {
+    } else {
         TimeType = 'PM';
     }
     if (hour > 12) {
@@ -168,9 +168,9 @@ function Teamticket(props) {
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                             <TableCell >
-                                               
-                                            {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === ""||tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
-                                              
+
+                                                {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
+
                                             </TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>

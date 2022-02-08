@@ -18,7 +18,7 @@ function Ticketviewer(props) {
     
     useEffect(() => {
         setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
-    }, [setMimetype]);
+    },[setMimetype]);
 
     const downloadimg= (Screenshots) =>{
         setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`);  
@@ -38,9 +38,9 @@ function Ticketviewer(props) {
                         <div className='ticket-details-middle-1'>
                             <div className='ticket-details-middle-1-1'>
                                 Tickets Details
-                            </div>
-                            <div className='ticket-details-middle-1-2'>
-                                {tickets.Status}
+                                <div className='ticket-details-middle-1-2'>
+                                     {tickets.Status}
+                                </div>
                             </div>
                             <div className='ticket-details-middle-1-3'>
                                 <div className=''>

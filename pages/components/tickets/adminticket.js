@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Axios from "axios";
 import TableContainer from '@mui/material/TableContainer';
@@ -17,7 +17,6 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
 
 function Adminticket() {
-
     const { setdialogformopen } = useContext(CounterContext);
     const Router = useRouter();
     var [show, setShow] = useState('');
@@ -60,14 +59,12 @@ function Adminticket() {
                     setSelectedValue([])
                 }
             })
-            .catch((err)=>{ return err; })
+            .catch((err) => { return err; })
     }, [selectedValue]);
-
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
     });
-
     //current date and time
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -98,7 +95,6 @@ function Adminticket() {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
-
     //filter function
     useEffect(() => {
         if (filteredTitle === "all") {
@@ -109,7 +105,6 @@ function Adminticket() {
         }
         setShow();
     });
-
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
@@ -118,7 +113,6 @@ function Adminticket() {
             setIsOpenstatusfilter(false);
         }
     });
-   
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -128,17 +122,14 @@ function Adminticket() {
             Router.push("/");
         }
     });
-
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
         setTicketid(ticketsId);
     };
-
     const SERVICE_ID = "service_56f9av6";
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4";
-
     function finalStatus(ticketsId, Tm_Complete_UpdatedOn, Tm_Complete_UpdatedBy) {
         if (selectedstatus === "Completed") {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketid}`, {
@@ -150,56 +141,51 @@ function Adminticket() {
                 setShow("update started Successfully");
                 setdialogformopen(true);
             })
-            .catch((err)=>{ return err; })
+                .catch((err) => { return err; })
         };
-
-    var data = {
-        to_email: email,
-        message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
-        to_name: name
-    };
-    if (sendmail === "true") {
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-            function (response) {
-                setdialogformopen(true)
-                setShowmailstatus("EMail sended Successfully")
-            },
-            function (err) {
-                setShowmailstatus("Sending Email Failed")
-                setdialogformopen(true)
-            }
-        );
-    };
-}
-    useEffect(()=>{
+        var data = {
+            to_email: email,
+            message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
+            to_name: name
+        };
+        if (sendmail === "true") {
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
+                function (response) {
+                    setdialogformopen(true)
+                    setShowmailstatus("EMail sended Successfully")
+                },
+                function (err) {
+                    setShowmailstatus("Sending Email Failed")
+                    setdialogformopen(true)
+                }
+            );
+        };
+    }
+    useEffect(() => {
         const Timer = setTimeout(() => {
             setShowmailstatus();
-          }, [4000]);
-          return () =>{
-              clearTimeout(Timer);
-          }
-      })
-
+        }, [4000]);
+        return () => {
+            clearTimeout(Timer);
+        }
+    })
     //to get client email id 
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
-            .catch((err)=>{ return err; })
+            .catch((err) => { return err; })
     }, [setUsers]);
-
     useEffect(() => {
         {
             users.filter(val => {
                 return val.Username.toLowerCase().includes(name)
             }).map((itemed) => setEmail(itemed.Email)
             )
-        }  
+        }
     });
-
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
-
     //emailjs
     const Notificationupdate = (ticketsId, Screenshots) => {
         setdticketsId(ticketsId);
@@ -210,31 +196,24 @@ function Adminticket() {
             ticketsId: ticketsId,
         }).then((_response) => {
             return _response;
-        }).catch((err)=>{ return err; })
+        }).catch((err) => { return err; })
     };
-
     //pagination
     function handlePageChange(pageNumber) {
         setCurrentpage(pageNumber + 1);
     };
-
     const pagedatalimit = (e) => {
         setdatalimit(e.target.value);
     };
-
     //ticket viewing page open and close
     function closeDetails() {
         setShowdetails(false);
     };
-
     //admin multiteam assign 
-
     const handleClick1 = () => setChecked1(!checked1);
     const handleClick2 = () => setChecked2(!checked2);
     const handleClick3 = () => setChecked3(!checked3);
     const handleClick4 = () => setChecked4(!checked4);
-
-   
     useEffect(() => {
         if (checked1 === false) {
             setselecteddesignTeam('');
@@ -248,16 +227,14 @@ function Adminticket() {
         if (checked4 === false) {
             setselectedseoTeam('');
         };
-    },[checked1,checked2,checked3,checked4]);
-   
+    }, [checked1, checked2, checked3, checked4]);
     var Design, Development, Server, Seo;
     function handleUpdate(ticketsId) {
-       
         (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
         (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
         (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
         (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
-        if(ticketsId!==""){
+        if (ticketsId !== "") {
             Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
                 Design: Design,
                 Development: Development,
@@ -279,35 +256,9 @@ function Adminticket() {
                 setChecked3(false)
                 setChecked4(false)
             })
-            .catch((err)=>{ return err; })
+                .catch((err) => { return err; })
         }
     };
-    
-    // const [defaultcheckDesign,setdefaultcheckDesign]=useState()
-    // const [defaultcheckDevelopment,setdefaultcheckDevelopment]=useState()
-    // const [defaultcheckServer,setdefaultcheckServer]=useState()
-    // const [defaultcheckSeo,setdefaultcheckSeo]=useState()
-    // function defaultcheck(Design,Development,Server,Seo) {
-    //     setdefaultcheckSeo(Seo)
-    //     setdefaultcheckServer(Server)
-    //     setdefaultcheckDevelopment(Development)
-    //     setdefaultcheckDesign(Design)
-        
-    // };
-    // useEffect(()=>{
-    //     if(defaultcheckDesign==="y"){
-    //         setChecked1(true);
-    //     };
-    //      if(defaultcheckDevelopment==="y"){
-    //         handleClick2(true);
-    //     };
-    //      if(defaultcheckServer==="y"){
-    //     handleClick3(true);
-    //     };
-    //     if(defaultcheckSeo==="y"){
-    //         handleClick4(true);
-    //     };
-    // },[defaultcheckDesign,defaultcheckDevelopment,defaultcheckServer,defaultcheckSeo,setChecked1,handleClick2,handleClick3,handleClick4])
     return (
         <div>
             <Head>
@@ -387,30 +338,30 @@ function Adminticket() {
                                         } else if (filteredTitle === "Status") {
                                             return val.Status.toLowerCase().includes(search.toLowerCase())
                                         } else if (filteredTitle === "Team") {
-                                            if(search==="server"||search==="Server"){
+                                            if (search === "server" || search === "Server") {
                                                 return val.Server.toLowerCase().includes("y".toLowerCase())
-                                            }else if(search==="Design"||search==="design"){
+                                            } else if (search === "Design" || search === "design") {
                                                 return val.Design.toLowerCase().includes("y".toLowerCase())
-                                            }else if(search==="Development"||search==="development"){
+                                            } else if (search === "Development" || search === "development") {
                                                 return val.Development.toLowerCase().includes("y".toLowerCase())
-                                            }else if(search==="Seo"||search==="seo"){
+                                            } else if (search === "Seo" || search === "seo") {
                                                 return val.Seo.toLowerCase().includes("y".toLowerCase())
-                                            }else{
+                                            } else {
                                                 return val
-                                            }                                       
-                                            } else if (filteredTitle === "Date") {
-                                                if(search===""||search===" "){
-                                                    return val
-                                                }else{
-                                                    return val.Cus_CreatedOn.includes(search)
-                                                }
-                                               
+                                            }
+                                        } else if (filteredTitle === "Date") {
+                                            if (search === "" || search === " ") {
+                                                return val
+                                            } else {
+                                                return val.Cus_CreatedOn.includes(search)
+                                            }
+
                                         } else if (filteredTitle === "Username") {
                                             if (filteredStatus === "inprogress") {
-                                               
+
                                                 //return val.Status.toLowerCase().includes("inprogress")
                                             } else if (filteredStatus === "completed") {
-                                              
+
                                                 // return val.Status.toLowerCase().includes("completed")
                                             } else return val;
                                         }
@@ -421,7 +372,7 @@ function Adminticket() {
                                             <TableCell >{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >{tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === ""||tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                            <TableCell >{tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
                                         </TableRow>
@@ -448,7 +399,7 @@ function Adminticket() {
                                                                             <li className='flex'><input className="form-check-input me-1" onClick={handleClick4} checked={checked4} type="checkbox" value="Seo" onChange={(e) => setselectedseoTeam(e.target.value)} /><div >seo</div></li>
                                                                         </ul>
                                                                     </div>
-                                                                </div>                                                                                                                                                                                                      
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>

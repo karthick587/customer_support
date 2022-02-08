@@ -14,7 +14,9 @@ import Dashcard from "../common/dashCard";
 import Resentticket from "./resentTickets";
 import Piechart from "./piechart";
 import Axios from "axios";
-
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
 const TeamDashboard = () => {
 
   const [finishStatus, setfinishStatus] = useState(false);
@@ -132,7 +134,11 @@ const TeamDashboard = () => {
               </button>
             }
             headertext="USER DASHBOARD"
-            Notificationscount={teamteamNotificationcount}
+            shownotification={ <IconButton className='z-index' color="inherit" >
+            <Badge badgeContent={teamteamNotificationcount} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>}
             navcontent={
               <Typography
                 component="h1"

@@ -12,13 +12,13 @@ import { useRouter } from 'next/router';
 
 function Userticket(props) {
 
-    const {tickets}=props;
-    const[maptickets,setmaptickets]=useState([]);
+    const { tickets } = props;
+    const [maptickets, setmaptickets] = useState([]);
     const Router = useRouter();
     const [login, setLogin] = useState();
     const [showdetails, setShowdetails] = useState(false);
     const [dticketsId, setdticketsId] = useState("");
-    const[dticketsscreenshots,setdticketsscreenshots] = useState("");
+    const [dticketsscreenshots, setdticketsscreenshots] = useState("");
 
     useEffect(() => {
         setmaptickets(tickets);
@@ -29,9 +29,9 @@ function Userticket(props) {
             Router.push("/");
         };
         localStorage.setItem('updateclose', "open");
-    },[tickets]);
+    }, [tickets]);
 
-    const Openticket = (ticketsId,Screenshots) => {
+    const Openticket = (ticketsId, Screenshots) => {
         setdticketsId(ticketsId);
         setdticketsscreenshots(Screenshots);
         setShowdetails(true);
@@ -47,41 +47,41 @@ function Userticket(props) {
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
-            <div className='container'>
-                <div className="teambody">
-                    <div className='adminticket-head'>
-                        <h1>Tickets</h1>
-                    </div>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell  >TicketId</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Team</TableCell>
-                                    <TableCell align="left">Status</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            {maptickets.reverse().map((tickets) =>                         
+                <div className='container'>
+                    <div className="teambody">
+                        <div className='adminticket-head'>
+                            <h1>Tickets</h1>
+                        </div>
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell  >TicketId</TableCell>
+                                        <TableCell align="left">Username</TableCell>
+                                        <TableCell align="left">Date</TableCell>
+                                        <TableCell align="left">Team</TableCell>
+                                        <TableCell align="left">Status</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                {maptickets.reverse().map((tickets) =>
                                     <TableBody key={tickets.ticketsId} >
-                                        <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId,tickets.Screenshots)}>                                            
+                                        <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId, tickets.Screenshots)}>
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell > {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === ""||tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
-                                            <TableCell > {tickets.Status==="completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
-                                               
-                                            </TableCell>            
-                                        </TableRow>                                       
-                                    </TableBody>                                                              
-                            )}
-                        </Table>
-                    </TableContainer>
-                </div>
+                                            <TableCell > {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                            <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
+
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                )}
+                            </Table>
+                        </TableContainer>
+                    </div>
                 </div> :
                 <>
-                   <Ticketviewer
+                    <Ticketviewer
                         dticketsId={dticketsId}
                         dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}
