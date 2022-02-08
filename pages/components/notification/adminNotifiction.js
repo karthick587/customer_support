@@ -30,7 +30,7 @@ function AdminNotification(props) {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data))
             .catch((err) => { return err; })
-    }, [setTickets]);
+    }, [setTickets,tickets]);
 
     function Notificationupdate(ticketsId) {
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
