@@ -173,11 +173,11 @@ function Adminticket() {
     };
 
     useEffect(()=>{
-        const timer = setTimeout(() => {
+        const Timer = setTimeout(() => {
             setShowmailstatus();
           }, [4000]);
           return () =>{
-              clearTimeout(timer);
+              clearTimeout(Timer);
           }
       })
 }

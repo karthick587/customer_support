@@ -91,11 +91,11 @@ function Updatecustomer({ usersId }) {
     };
 
     useEffect(()=>{
-        const timer = setTimeout(() => {
+        const Timer = setTimeout(() => {
             setShow();
           }, [4000]);
           return () =>{
-              clearTimeout(timer);
+              clearTimeout(Timer);
           }
       })
 
