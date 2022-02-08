@@ -1121,12 +1121,8 @@ img.screeshot-img-viewer {
   max-width: revert !important;
 }
 .notification-body {
-  position: absolute;
-  top: 73px;
-  background-color: white;
-  padding: 11px;
-  border-radius: 11px;
-  right: 99px;
+  
+  margin-top: 73px;
 }
 .adminnotification td {
   padding: 7px 7px;
@@ -1602,4 +1598,7 @@ color: white;
 }
 .ticket-details-middle-1 {
   display: flex;
+}
+.z-index{
+  z-index: 99;
 }

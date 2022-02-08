@@ -23,7 +23,7 @@ export default function CounterContextProvider(props){
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data))
             .catch((err)=>{ return err; })
-    }, [setTickets]);
+    }, [setTickets,tickets]);
 
      //notification count
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function CounterContextProvider(props){
         setadminStartedcount(tickets.filter(val => { return val.Status.toLowerCase().includes("started".toLowerCase()) }).map((ticket) => setadminStartedcount(ticket.Status.length)).length);
         setadminprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress".toLowerCase()) }).map((ticket) => setadminprogresscount(ticket.Status.length)).length);
         setadminCompletedcount(tickets.filter(val => { return val.Status.toLowerCase().includes("completed".toLowerCase() )}).map((ticket) => setadminCompletedcount(ticket.Status.length)).length);
-    }, [tickets]);
+    }, [tickets],setnotificationcount);
 
     //team tickets filter function
     useEffect(() => {

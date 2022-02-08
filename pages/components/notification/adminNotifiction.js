@@ -3,11 +3,29 @@ import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
-
-function AdminNotification() {
-
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+function AdminNotification(props) {
+ const[open,setopen]=useState()
     var [tickets, setTickets,] = useState([]);
-
+    const [state, setState] = React.useState({
+        right: false
+      });
+    const openclose=()=>{
+        setopen(!open)
+    }
+      const toggleDrawer = (anchor, open) => (event) => {
+      
+        if (
+          event.type === "keydown" &&
+          (event.key === "Tab" || event.key === "Shift")
+        ) {
+          return;
+        }
+    
+        setState({ ...state, [anchor]: open });
+      };
+    
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data))
@@ -24,10 +42,19 @@ function AdminNotification() {
             .catch((err) => { return err; })
     };
 
+
     return (
         <>
-            <div className='notification-table'>
-                {tickets.filter(val => {
+          <div>
+      <React.Fragment>
+        <div onClick={openclose}><div onClick={toggleDrawer("right",!open)}>{props.onclick}</div></div>
+        <Drawer
+          anchor={"right"}
+          open={state["right"]}
+          onClose={toggleDrawer("right", false)}
+        >
+          <div className='notification-body'>
+          {tickets.filter(val => {
                     return val.Notification.toLowerCase().includes("unseen")
                 }).map((tickets) =>
                     <div className='' key={tickets.ticketsId}>
@@ -85,7 +112,10 @@ function AdminNotification() {
                         />
                     </div>
                 )}
-            </div>
+          </div>
+        </Drawer>
+      </React.Fragment>
+    </div>
         </>
     );
 }

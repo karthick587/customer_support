@@ -120,18 +120,11 @@ export default function Dashboard(props) {
               <MenuIcon />
             </IconButton>
             {props.navcontent}
-            <IconButton color="inherit" onClick={notificationset}>
-            <Badge badgeContent={props.Notificationscount} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            {props.shownotification}
+           
             <a onClick={props.logout} className="text-white">Logout</a>
             {props.menuBar}
-            {shownotification && (
-              <div className='notification-body'>
-              {props.notificationbody}
-              </div>
-            )}
+          
           </Toolbar>
         </AppBar>
         <div className="d-flex align-items-start">

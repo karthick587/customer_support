@@ -20,7 +20,9 @@ import Resentticket from './resentTickets';
 import Copyrights from '../common/copyRight';
 import { CounterContext } from '../contex/adminProvider';
 import Piechart from './piechart';
-
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
 const AdminDashboard = () => {
 
   const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
@@ -136,12 +138,19 @@ const AdminDashboard = () => {
                 </Typography>
               </>
             }
-            Notificationscount={notificationcount}
-            notificationbody={
-              <>
-                <AdminNotification Notification={notificationcount} />
-                </>
-            }
+
+            shownotification={
+              <AdminNotification 
+              onclick={
+              <IconButton className='z-index' color="inherit" >
+              <Badge badgeContent={notificationcount} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              } Notification={notificationcount} />
+               }
+         
+          
             sidenavcontent={
               <>
                 <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="/users" ><ListItem button>
