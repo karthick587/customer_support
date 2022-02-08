@@ -102,7 +102,7 @@ function Addcustomer() {
                     setShow(response.data.message)
                 } else {
                     setShow("Registered Successfully");
-                    setdialogformopen(true)
+                    setdialogformopen("true")
                 }
             })
                 .catch((err) => { return err; })

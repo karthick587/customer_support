@@ -188,6 +188,7 @@ a {
  
 }
 
+
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   margin: auto;
@@ -1550,7 +1551,7 @@ color: white;
   font-size: 17px;
 }
 .ticket-icon {
-  margin: -2.3px 2.84px;
+  margin: -1.0px 2.84px;
 }
 .profile-card {
   padding: 50px;
@@ -1595,4 +1596,7 @@ color: white;
   100% {
     transform: rotate(360deg);
   }
+}
+.ticket-details-screenshot a {
+  color: #1976d2 !important;
 }

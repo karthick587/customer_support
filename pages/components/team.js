@@ -87,7 +87,7 @@ export default function Team(props) {
     useEffect(() => {
         setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length);
         props.teamcountcallback(teamcount);
-        localStorage.setItem('updateclose', "open");
+        
     });
 
     //pagination

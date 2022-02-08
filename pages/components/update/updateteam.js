@@ -28,7 +28,7 @@ function Updateteam({ teamId }) {
             Team: Team,
         }).then((res) => {
             setShow("Updated Successfully");
-            setdialogformopen(true);
+            setdialogformopen("true")
             localStorage.setItem("passValue",true);
         }).catch((err)=>{ return err; })
     };

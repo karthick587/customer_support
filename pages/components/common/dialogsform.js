@@ -22,9 +22,9 @@ export default function FormDialog(props) {
   useEffect(()=>{
       if(dialogformopen==="true"){
         setOpen(false);
-        setdialogformopen(false);
       }
-  },[setdialogformopen]);
+      setdialogformopen(false)
+  },[dialogformopen,setdialogformopen]);
 
 
   return (
