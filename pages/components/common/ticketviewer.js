@@ -35,7 +35,7 @@ function Ticketviewer(props) {
                         </div>
                     </div>
                     <div className='ticket-details-middle'>
-                        <div className='ticket-details-middle-1 flex'>
+                        <div className='ticket-details-middle-1'>
                             <div className='ticket-details-middle-1-1'>
                                 Tickets Details
                             </div>

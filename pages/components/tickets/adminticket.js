@@ -50,7 +50,6 @@ function Adminticket() {
     var [checked2, setChecked2] = useState(false);
     var [checked3, setChecked3] = useState(false);
     var [checked4, setChecked4] = useState(false);
-
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => {
@@ -250,10 +249,7 @@ function Adminticket() {
             setselectedseoTeam('');
         };
     },[checked1,checked2,checked3,checked4]);
-    console.log(selecteddesignTeam)
-    console.log(selecteddevelopmentTeam)
-    console.log(selectedseoTeam)
-    console.log(selectedserverTeam)
+   
     var Design, Development, Server, Seo;
     function handleUpdate(ticketsId) {
        
