@@ -119,7 +119,7 @@ function Adminticket() {
             setIsOpenstatusfilter(false);
         }
     });
-
+   
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -235,21 +235,7 @@ function Adminticket() {
     const handleClick3 = () => setChecked3(!checked3);
     const handleClick4 = () => setChecked4(!checked4);
 
-    function defaultcheck(Design,Development,Server,Seo) {
-        if(Design==="y"){
-            setChecked1(true);
-        };
-         if(Development==="y"){
-            handleClick2(true);
-        };
-         if(Server==="y"){
-        handleClick3(true);
-        };
-        if(Seo==="y"){
-            handleClick4(true);
-        };
-    };
-
+   
     useEffect(() => {
         if (checked1 === false) {
             setselecteddesignTeam('');
@@ -260,13 +246,17 @@ function Adminticket() {
         if (checked3 === false) {
             setselecteddevelopmentTeam('');
         };
-        if (checked3 === false) {
+        if (checked4 === false) {
             setselectedseoTeam('');
         };
     },[checked1,checked2,checked3,checked4]);
-
+    console.log(selecteddesignTeam)
+    console.log(selecteddevelopmentTeam)
+    console.log(selectedseoTeam)
+    console.log(selectedserverTeam)
+    var Design, Development, Server, Seo;
     function handleUpdate(ticketsId) {
-        var Design, Development, Server, Seo;
+       
         (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
         (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
         (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
@@ -282,7 +272,7 @@ function Adminticket() {
                 Adm_UpdatedBy: "admin1"
             }).then((_response) => {
                 setShow("update Successfully");
-                setdialogformopen(true)
+                setdialogformopen("true")
                 localStorage.setItem("passValue", true);
                 setselecteddesignTeam('')
                 setselectedserverTeam('')
@@ -296,7 +286,32 @@ function Adminticket() {
             .catch((err)=>{ return err; })
         }
     };
-
+    
+    // const [defaultcheckDesign,setdefaultcheckDesign]=useState()
+    // const [defaultcheckDevelopment,setdefaultcheckDevelopment]=useState()
+    // const [defaultcheckServer,setdefaultcheckServer]=useState()
+    // const [defaultcheckSeo,setdefaultcheckSeo]=useState()
+    // function defaultcheck(Design,Development,Server,Seo) {
+    //     setdefaultcheckSeo(Seo)
+    //     setdefaultcheckServer(Server)
+    //     setdefaultcheckDevelopment(Development)
+    //     setdefaultcheckDesign(Design)
+        
+    // };
+    // useEffect(()=>{
+    //     if(defaultcheckDesign==="y"){
+    //         setChecked1(true);
+    //     };
+    //      if(defaultcheckDevelopment==="y"){
+    //         handleClick2(true);
+    //     };
+    //      if(defaultcheckServer==="y"){
+    //     handleClick3(true);
+    //     };
+    //     if(defaultcheckSeo==="y"){
+    //         handleClick4(true);
+    //     };
+    // },[defaultcheckDesign,defaultcheckDevelopment,defaultcheckServer,defaultcheckSeo,setChecked1,handleClick2,handleClick3,handleClick4])
     return (
         <div>
             <Head>
@@ -417,7 +432,7 @@ function Adminticket() {
                                         <div className='updateadminpage flex'>
                                             <FormDialog
                                                 dialog_className="Assign-team-dailog"
-                                                dialogtitle={<div onClick={()=>defaultcheck(tickets.Design,tickets.Development,tickets.Server,tickets.Seo)}>Assign</div>}
+                                                dialogtitle={<div>Assign</div>}
                                                 className="btn3 ticket-update2"
                                                 dialogbody={
                                                     <div className="form dialog">
