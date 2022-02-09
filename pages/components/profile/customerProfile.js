@@ -12,7 +12,7 @@ export default function CustomerProfile(props) {
     }, [setUsers,customername]);
 console.log(customername)
     return (
-        <div className="container">
+        
             <div className="profile-body">
                 {users.map((users) =>
                     <div className="row gutters-sm" key={users.usersId}>
@@ -99,6 +99,6 @@ console.log(customername)
                     </div>
                 )}
             </div>
-        </div>
+       
     )
 }

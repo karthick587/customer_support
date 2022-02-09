@@ -141,7 +141,6 @@ const CustomerDashboard = () => {
               <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <div className="tab-content" id="v-pills-tabContent">
                   <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div className="container">
                       <div className="row">
                         <div className="col"> <Userissue customername={user} /></div>
                         <div className="col">
@@ -167,7 +166,6 @@ const CustomerDashboard = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                   <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <CustomerProfile customername={user} />

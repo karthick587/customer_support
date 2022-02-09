@@ -85,7 +85,6 @@ function Teamticket(props) {
             clearTimeout(Timer);
         }
     })
-
     //current time and date 
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -115,7 +114,6 @@ function Teamticket(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
-
     //auth access for team ticket page
     useEffect(() => {
         localStorage.setItem('updateclose', "open");
@@ -127,24 +125,21 @@ function Teamticket(props) {
             Router.push("/");
         }
     }, [teamticket]);
-
     const Notificationupdate = (ticketsId, Screenshots) => {
         setdticketsscreenshots(Screenshots);
         setdticketsId(ticketsId);
         setShowdetails(true);
     };
-
     function closeDetails() {
         setShowdetails(false);
     };
-
     return (
         <div>
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
-                <div className='container'>
+     
                     <div className="teambody">
                         <div className='adminticket-head'>
                             <h1>Tickets</h1>
@@ -163,14 +158,11 @@ function Teamticket(props) {
                                 {mapteamticket.reverse().map((tickets) =>
                                     <TableBody key={tickets.ticketsId} className='update-right' >
                                         <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
-
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                             <TableCell >
-
                                                 {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
-
                                             </TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
@@ -212,7 +204,7 @@ function Teamticket(props) {
                             </Table>
                         </TableContainer>
                     </div>
-                </div> :
+                :
                 <>
                     <Ticketviewer
                         dticketsId={dticketsId}

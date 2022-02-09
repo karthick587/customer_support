@@ -9,9 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { useRouter } from 'next/router';
-
 function Userticket(props) {
-
     const { tickets } = props;
     const [maptickets, setmaptickets] = useState([]);
     const Router = useRouter();
@@ -19,7 +17,6 @@ function Userticket(props) {
     const [showdetails, setShowdetails] = useState(false);
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
-
     useEffect(() => {
         setmaptickets(tickets);
         setLogin(window.localStorage.getItem('loggedin'));
@@ -30,24 +27,21 @@ function Userticket(props) {
         };
         localStorage.setItem('updateclose', "open");
     }, [tickets]);
-
     const Openticket = (ticketsId, Screenshots) => {
         setdticketsId(ticketsId);
         setdticketsscreenshots(Screenshots);
         setShowdetails(true);
     };
-
     function closeDetails() {
         setShowdetails(false);
     };
-
     return (
         <div>
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
-                <div className='container'>
+               
                     <div className="teambody">
                         <div className='adminticket-head'>
                             <h1>Tickets</h1>
@@ -78,7 +72,7 @@ function Userticket(props) {
                                 )}
                             </Table>
                         </TableContainer>
-                    </div>
+                    
                 </div> :
                 <>
                     <Ticketviewer

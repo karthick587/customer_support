@@ -265,7 +265,7 @@ function Adminticket() {
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
-                <div className='container'>
+              
                     <div className="userbody">
                         <div className='adminticket-head'>
                             <div><h1>Tickets</h1></div>
@@ -447,7 +447,7 @@ function Adminticket() {
                             activeClassName={"active"}
                         />
                     </div>
-                </div>
+                
                 :
                 <>
                     <Ticketviewer

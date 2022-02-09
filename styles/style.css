@@ -177,24 +177,20 @@ a {
 }
 .teambody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
- 
   padding: 22px 0px;
-  margin: auto;
+  margin: 0px 25px;
 }
 .userbody {
   font-family: Roboto,Helvetica,Arial,sans-serif;
   padding: 17px 0px;
-  margin: auto;
- 
+  margin: 0px 25px;
 }
 
 
 .userbody2 {
   font-family: Roboto,Helvetica,Arial,sans-serif;
-  margin: auto;
+  margin: 0px 25px;
   padding: 11px 0px;
- 
-
 }
 
 
@@ -252,8 +248,7 @@ a {
 form.form3 {
   background-color: white;
   border-radius: 20px;
-  width: 600px;
-  margin: 22px 3px 0px 38px;
+  margin: 22px 0px 0px 38px;
   padding: 30px;
   overflow: auto;
 }
