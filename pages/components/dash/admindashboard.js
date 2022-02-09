@@ -148,9 +148,7 @@ const AdminDashboard = () => {
                 </Badge>
               </IconButton>
               } Notification={notificationcount} />
-               }
-         
-          
+               }         
             sidenavcontent={
               <>
                 <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="/users" ><ListItem button>

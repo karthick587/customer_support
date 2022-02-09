@@ -49,7 +49,7 @@ function Teamticket(props) {
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update started Successfully");
-                setdialogformopen(true);
+                setdialogformopen("true");
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
         } else if (selectedstatus === 'inprogress') {
@@ -60,7 +60,7 @@ function Teamticket(props) {
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update inprogress Successfully");
-                setdialogformopen(true);
+                setdialogformopen("true");
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
         } else if (selectedstatus === 'completed') {
@@ -71,7 +71,7 @@ function Teamticket(props) {
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("update completed Successfully");
-                setdialogformopen(true);
+                setdialogformopen("true");
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
         } else return null
@@ -116,8 +116,8 @@ function Teamticket(props) {
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
     //auth access for team ticket page
     useEffect(() => {
-        localStorage.setItem('updateclose', "open");
-        setmapteamticket(teamticket);
+      
+        setmapteamticket(teamticket.reverse());
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
             Router.push("/");
@@ -139,71 +139,70 @@ function Teamticket(props) {
                 <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
-     
-                    <div className="teambody">
-                        <div className='adminticket-head'>
-                            <h1>Tickets</h1>
-                        </div>
-                        <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell  >TicketId</TableCell>
-                                        <TableCell align="left">Username</TableCell>
-                                        <TableCell align="left">Date</TableCell>
-                                        <TableCell align="left">Team</TableCell>
-                                        <TableCell align="left">Status</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                {mapteamticket.reverse().map((tickets) =>
-                                    <TableBody key={tickets.ticketsId} className='update-right' >
-                                        <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
-                                            <TableCell>{tickets.ticketsId}</TableCell>
-                                            <TableCell >{tickets.Username}</TableCell>
-                                            <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell >
-                                                {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
-                                            </TableCell>
-                                            <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
-                                            </TableCell>
-                                        </TableRow>
-                                        <FormDialog
-                                            dialog_className="update7"
-                                            dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
-                                            className="btn3 ticket-update2"
-                                            dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>ticket has been completed</div> :
-                                                <div className="form dialog" >
-                                                    <div className="form-toggle"></div>
-                                                    <div className="form-panel update one">
-                                                        <div className="form-header">
-                                                            <h1>Update Ticket {tickets.ticketsId}</h1>
-                                                        </div>
-                                                        <div className="addform">
-                                                            <form>
-                                                                <div className="form-group">
-                                                                    <label className="label">status</label>
-                                                                    <select className="form-input" onChange={handlestatus}>
-                                                                        <option value="">--Select Team--</option>
-                                                                        <option className='started' value="started">started</option>
-                                                                        <option className='inprogress' value="inprogress">inprogress</option>
-                                                                        <option className='completed' value="completed">completed</option>
-                                                                    </select>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>update</button>
-                                                    <h4 className="alert1 text-center">{show}</h4>
-                                                </div>
-                                            }
-                                            </div>
-                                            }
-                                        />
-                                    </TableBody>
-                                )}
-                            </Table>
-                        </TableContainer>
+                <div className="teambody">
+                    <div className='adminticket-head'>
+                        <h1>Tickets</h1>
                     </div>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell  >TicketId</TableCell>
+                                    <TableCell align="left">Username</TableCell>
+                                    <TableCell align="left">Date</TableCell>
+                                    <TableCell align="left">Team</TableCell>
+                                    <TableCell align="left">Status</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            {mapteamticket.map((tickets) =>
+                                <TableBody key={tickets.ticketsId} className='update-right' >
+                                    <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
+                                        <TableCell>{tickets.ticketsId}</TableCell>
+                                        <TableCell >{tickets.Username}</TableCell>
+                                        <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                                        <TableCell >
+                                            {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
+                                        </TableCell>
+                                        <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
+                                        </TableCell>
+                                    </TableRow>
+                                    <FormDialog
+                                        dialog_className="update7"
+                                        dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
+                                        className="btn3 ticket-update2"
+                                        dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>ticket has been completed</div> :
+                                            <div className="form dialog" >
+                                                <div className="form-toggle"></div>
+                                                <div className="form-panel update one">
+                                                    <div className="form-header">
+                                                        <h1>Update Ticket {tickets.ticketsId}</h1>
+                                                    </div>
+                                                    <div className="addform">
+                                                        <form>
+                                                            <div className="form-group">
+                                                                <label className="label">status</label>
+                                                                <select className="form-input" onChange={handlestatus}>
+                                                                    <option value="">--Select Team--</option>
+                                                                    <option className='started' value="started">started</option>
+                                                                    <option className='inprogress' value="inprogress">inprogress</option>
+                                                                    <option className='completed' value="completed">completed</option>
+                                                                </select>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>update</button>
+                                                <h4 className="alert1 text-center">{show}</h4>
+                                            </div>
+                                        }
+                                        </div>
+                                        }
+                                    />
+                                </TableBody>
+                            )}
+                        </Table>
+                    </TableContainer>
+                </div>
                 :
                 <>
                     <Ticketviewer

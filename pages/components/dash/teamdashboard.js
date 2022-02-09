@@ -102,7 +102,7 @@ const TeamDashboard = () => {
             })
             .catch((err) => { return err; })
         }
-  }, [setteamticket, loginTmName]);
+  }, [setteamticket, loginTmName,teamticket]);
 
   
   // ticket count, ticket status count for team dashboard
