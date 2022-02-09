@@ -1574,7 +1574,10 @@ color: white;
   font-family: system-ui;
 }
 .customer-cards {
-  padding: 40px 0px;
+  padding: 42px 0px;
+}
+div#v-pills-dash {
+  overflow: hidden;
 }
 .icon-rotation svg {
   border-radius: 50%;
