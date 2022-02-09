@@ -747,7 +747,7 @@ form.form2 {
   font-family: system-ui;
 }
 .addform {
-  width: 400px !important;
+  width: 250px!important;
 }
 
 .btn2:hover {
@@ -912,7 +912,7 @@ form.form2 {
 
 h4.alert1.text-center {
   color: #0e500e;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 550;
 }
 .team-delete{
@@ -1382,7 +1382,7 @@ color: white;
 }
 .ticket-status-line.width-10 {
   border-bottom: 3px solid;
-  margin: 4px 0px 14px 0px;
+  margin: 4px 0px 15.5px 0px;
   color: #1976d2;
 }
 .color-green{
@@ -1574,7 +1574,7 @@ color: white;
   font-family: system-ui;
 }
 .customer-cards {
-  padding: 38px 0px;
+  padding: 40px 0px;
 }
 .icon-rotation svg {
   border-radius: 50%;

@@ -48,7 +48,7 @@ function Teamticket(props) {
                 Tm_Start_UpdatedOn: fulldate + ' ' + fullTime,
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
-                setShow("update started Successfully");
+                setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
@@ -59,7 +59,7 @@ function Teamticket(props) {
                 Tm_Process_UpdatedOn: fulldate + ' ' + fullTime,
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
-                setShow("update inprogress Successfully");
+                setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
@@ -70,7 +70,7 @@ function Teamticket(props) {
                 Tm_Complete_UpdatedOn: fulldate + ' ' + fullTime,
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
-                setShow("update completed Successfully");
+                setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
