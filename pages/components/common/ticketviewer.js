@@ -43,32 +43,41 @@ function Ticketviewer(props) {
                                 </div>
                             </div>
                             <div className='ticket-details-middle-1-3'>
-                                <div className=''>
-                                    <div className='flex'>
+                               
+                                   
                                         <div className="ticket-status color-green">
                                             <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
                                         </div>
-                                        <div className={tickets.Status === "New" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
+                                        <div className={tickets.Status === "New" ? "ticket-status-line width-10 display-1" : "ticket-status-line width-10 display-1 color-green-line"}>
+                                        </div>
+                                        <div className={tickets.Status === "New" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 display-2 color-green-line"}>
+                                            |
                                         </div>
                                         <div className={tickets.Status === "started" || tickets.Status === "inprogress" || tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status color-green" : "ticket-status"}>
                                             <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "started" ? <div className='details-caption'>Started<div className='details-caption-2'>Updated at<br /> {tickets.Tm_Start_UpdatedOn}</div></div> : <div className='details-caption-strike'>Started<div className='details-caption-2'>Updated at <br />{tickets.Tm_Start_UpdatedOn}</div></div>}
                                         </div>
-                                        <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line width-10" : "ticket-status-line width-10 color-green-line"}>
+                                        <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line display-1 width-10" : "ticket-status-line width-10 display-1 color-green-line"}>
+                                        </div>
+                                        <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 color-green-line display-2"}>
+                                            |
                                         </div>
                                         <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
                                             <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className='details-caption-strike'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
                                         </div>
-                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 color-green-line" : " ticket-status-line width-10 "}>
+                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 display-1 color-green-line" : " ticket-status-line display-1 width-10 "}>
+                                        </div>
+                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 display-2 color-green-line" : " ticket-status-line width-10 display-2"}>
+                                            |
                                         </div>
                                         <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status  color-green" : "ticket-status"}>
                                             <div className='ticket-icon'><CheckCircleIcon /></div>
                                             {tickets.Status === "completed" || tickets.Status === "Completed" ? <div className='details-caption'>{tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div>}
                                         </div>
-                                    </div>
-                                </div>
+                                   
+                               
                             </div>
                         </div>
                         <div className='ticket-details-middle-2 row'>
