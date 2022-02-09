@@ -935,7 +935,7 @@ h4.alert1.text-center {
 .css-dsuxgy-MuiTableCell-root {
   font-size: 13px;
   font-weight: 500 !important;
-  padding-top: 30px !important;
+  height: 70px;
 }
 .css-13xy2my {
   background-color: #fff;
@@ -959,10 +959,10 @@ h4.alert1.text-center {
   width: 229px;
 }
 .css-1o6fzn1 {
-  font-size: 13px !important;
-    padding-top: 25px !important;
-    color: rgba(0, 0, 0, 0.87) !important;
-    padding-bottom: 0px !important;
+  font-size: 13px!important;
+  height: 70px !important;
+  color: rgba(0,0,0,.87)!important;
+  padding-bottom: 0!important;
 }
 /*admindash board*/
 .main-dash-sub {
@@ -1110,7 +1110,11 @@ img.screeshot-img-viewer {
   margin: 5px 5px;
 }
 .Assign-team-dailog button {
-  margin: 36px 0px 0px 0px !important;
+  margin: 26px 0px !important;
+}
+.send-email-dailog button {
+  /* margin: 5px; */
+  margin: 22px 0px !important;
 }
 .css-uhb5lp {
   max-width: revert !important;
@@ -1400,9 +1404,9 @@ color: white;
 }
 .user-label-ticket-details {
   font-size: 14px;
-  font-family: 'Poppins', sans-serif !important;
   font-weight: 500;
   padding: 0px 0px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif !important;
 }
 .details-caption-2 {
   margin: 35px -67px;
@@ -1449,8 +1453,8 @@ color: white;
 }
 .ticket-input-details {
   font-size: 14px;
-  font-family: 'Poppins', sans-serif !important;
   font-weight: 500;
+  font-family: "Roboto","Helvetica","Arial",sans-serif !important;
 }
 .update-right{
   position: relative;
@@ -1543,7 +1547,7 @@ color: white;
   font-size: 17px;
 }
 .ticket-icon {
-  margin: -1.0px 2.84px;
+  margin: -1px 3.84px;
 }
 .profile-card {
   padding: 50px;
@@ -1604,4 +1608,8 @@ color: white;
 
 .ticket-details-middle-1-3{
   display: flex;
+}
+.ticket-details-screenshot {
+  background-color: white;
+  border-radius: 12px;
 }

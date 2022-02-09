@@ -147,7 +147,10 @@ function Ticketviewer(props) {
                                     {tickets.Cus_CreatedOn}
                                 </div>
                             </div>
-                            <div className='ticket-details-screenshot'>
+                           
+
+                        </div>
+                        <div className='ticket-details-screenshot col'>
                                 <div className='label-ticket-details'>
                                     Screenshot
                                 </div>
@@ -160,8 +163,6 @@ function Ticketviewer(props) {
                                 }
                                 <a href={downloadlink}   onClick={()=>downloadimg(tickets.Screenshots)}>download</a>
                             </div>
-
-                        </div>
                     </div>
 
 
