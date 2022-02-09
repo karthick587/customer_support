@@ -88,6 +88,15 @@
   .display-2 {
     display: block !important;
 }
+.ticket-details-middle-2.row {
+  padding: 9px 0px;
+}
+.user-profile-ticket-details-2 {
+  background-color: white;
+  margin: 0px 6px;
+  border-radius: 13px;
+  /* padding: 20px; */
+}
   .display-1{
     display: none !important;
   }

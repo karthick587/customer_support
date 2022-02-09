@@ -446,8 +446,7 @@ function Adminticket() {
                             pageLinkClassName={"page-link"}
                             activeClassName={"active"}
                         />
-                    </div>
-                
+                    </div>               
                 :
                 <>
                     <Ticketviewer
