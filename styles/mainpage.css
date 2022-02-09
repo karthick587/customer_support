@@ -91,6 +91,9 @@
 .ticket-details-middle-2.row {
   padding: 9px 0px;
 }
+.ticket-icon svg {
+  margin: -2px 0px 0px 0px !important;
+}
 .user-profile-ticket-details-2 {
   background-color: white;
   margin: 0px 6px;
@@ -110,13 +113,12 @@
   overflow: auto;
   border-radius: 14px;
 }
-  .details-caption-2 {
-    margin: -5px 46px;
-    color: grey;
-    text-align: center;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-size: 11px;
-    /* text-align: center; */
+.details-caption-2 {
+  margin: 4px 46px;
+  color: grey;
+  text-align: center;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-size: 11px;
 }
 .color-green-line.display-2 {
   color: rgba(26, 137, 23, 1) !important;
