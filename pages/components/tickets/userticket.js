@@ -18,7 +18,7 @@ function Userticket(props) {
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
     useEffect(() => {
-        setmaptickets(tickets);
+        setmaptickets(tickets.reverse());
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
             Router.push("/");

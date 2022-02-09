@@ -18,7 +18,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 const TeamDashboard = () => {
-
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
   // activetab
@@ -31,7 +30,6 @@ const TeamDashboard = () => {
   const [teamstartedcount, setstartedcount] = useState();
   const [teamcompletedcount, setcompletedcount] = useState();
   const [teamteamNotificationcount, setteamNotificationcount] = useState();
-
   //access for team dashboard
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
