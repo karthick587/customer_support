@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-
+import Copyrights from "../common/copyRight";
 const CustomerDashboard = () => {
 
   const [user, setUser] = useState();
@@ -165,6 +165,9 @@ const CustomerDashboard = () => {
                             />
                           </div>
                         </div>
+                      </div>
+                      <div className='copyright-com'>
+                        <Copyrights />
                       </div>
                   </div>
                   <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">

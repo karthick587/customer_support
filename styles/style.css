@@ -1493,7 +1493,7 @@ color: white;
   display: flex;
 }
 .copyright-com {
-  padding: 10px;
+  padding-bottom: 10px;
 }
 .resentticket-table{
  overflow-y: scroll;

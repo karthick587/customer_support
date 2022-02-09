@@ -17,6 +17,7 @@ import Axios from "axios";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
+import Copyrights from "../common/copyRight";
 const TeamDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -190,6 +191,9 @@ const TeamDashboard = () => {
                             />
                           </div>
                         </div>
+                      </div>
+                      <div className='copyright-com'>
+                        <Copyrights />
                       </div>
                     </div>
                   </div>
