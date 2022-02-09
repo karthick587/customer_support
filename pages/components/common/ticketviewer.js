@@ -39,7 +39,7 @@ function Ticketviewer(props) {
                             <div className='ticket-details-middle-1-1'>
                                 Tickets Details
                                 <div className='ticket-details-middle-1-2'>
-                                     {tickets.Status}
+                                {tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}
                                 </div>
                             </div>
                             <div className='ticket-details-middle-1-3'>
