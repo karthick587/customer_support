@@ -134,13 +134,13 @@ export default function Team(props) {
                         </div>
                     </div>
                     <TableContainer component={Paper}>
-                        <Table  aria-label="a dense table">
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell  >TEAMID</TableCell>
-                                    <TableCell  align="left">USERNAME</TableCell>
-                                    <TableCell  align="left">PASSWORD</TableCell>
-                                    <TableCell  align="left">TEAM</TableCell>
+                                    <TableCell className="teamtablecel" >TEAMID</TableCell>
+                                    <TableCell className="teamtablecel" align="left">USERNAME</TableCell>
+                                    <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
+                                    <TableCell className="teamtablecel" align="left">TEAM</TableCell>
                                 </TableRow>
                             </TableHead>
                             {team.filter(val => {
@@ -152,10 +152,10 @@ export default function Team(props) {
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                                 <TableBody key={item.teamId}>
                                     <TableRow >
-                                        <TableCell  component="th" scope="row">{item.teamId}</TableCell>
-                                        <TableCell  align="left">{item.Username}</TableCell>
-                                        <TableCell  align="left">{item.Password}</TableCell>
-                                        <TableCell  align="left">{item.Team}</TableCell>
+                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
                                         <div className='deteleandedit'>
                                             <Updateteam teamId={item.teamId} />
                                             <FormDialog
