@@ -166,7 +166,7 @@ export default function Users(props) {
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item)=>
                             <TableBody key={item.usersId}>
                             <TableRow >
-                                <TableCell className="teamtablecel" component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
+                                <TableCell className="teamtablecel" component="th"  scope="row">{item.usersId}</TableCell>
                                 <TableCell className="teamtablecel" align="left" >
                                     <Imageviewer
                                         imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
