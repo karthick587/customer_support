@@ -134,7 +134,7 @@ export default function Team(props) {
                         </div>
                     </div>
                     <TableContainer component={Paper}>
-                        <Table  aria-label="a dense table">
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell  >TEAMID</TableCell>
@@ -150,13 +150,13 @@ export default function Team(props) {
                                     return val;
                                 } else null;
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
-                                <TableBody  key={item.teamId}>
-                                    <TableRow className="tickets-bodyrow">
+                                <TableBody key={item.teamId}>
+                                    <TableRow >
                                         <TableCell  component="th" scope="row">{item.teamId}</TableCell>
                                         <TableCell  align="left">{item.Username}</TableCell>
                                         <TableCell  align="left">{item.Password}</TableCell>
                                         <TableCell  align="left">{item.Team}</TableCell>
-                                        <TableCell  align="left"> <div className='deteleandedit'>
+                                        <div className='deteleandedit'>
                                             <Updateteam teamId={item.teamId} />
                                             <FormDialog
                                                 className="team-delete"
@@ -169,8 +169,7 @@ export default function Team(props) {
                                                     </div>
                                                 }
                                             />
-                                        </div></TableCell>
-                                       
+                                        </div>
                                     </TableRow>
                                 </TableBody>
                             )}

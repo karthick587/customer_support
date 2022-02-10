@@ -747,7 +747,7 @@ form.form2 {
   font-family: system-ui;
 }
 .addform {
-  width: 500px!important;
+  width: 250px!important;
 }
 
 .btn2:hover {
@@ -860,7 +860,7 @@ form.form2 {
 }
 .deteleandedit {
   display: flex;
-  width: 20px;
+  margin-top: 15px;
 }
 .form-group p {
   position: absolute;
@@ -1484,9 +1484,8 @@ color: white;
 .resentticket {
   background-color: white;
   padding: 7px 23px;
-  width: 75%;
+  max-width: max-content;
   border-radius: 12px;
-  -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
 .Resentticket-page {
@@ -1534,16 +1533,14 @@ color: white;
 }
 .echarts-for-react {
   background-color: white;
-  width: 100%;
+  width: 370px;
   border-radius: 14px;
-  height: auto !important;
   -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
 .react-piechart {
   margin-left: 18px;
-  width: 37%;
-  /* max-width: fit-content; */
+  width: 370px !important;
 }
 .ticket-icon svg {
   font-size: 17px;
@@ -1620,33 +1617,4 @@ div#v-pills-dash {
 .ticket-details-screenshot {
   background-color: white;
   border-radius: 12px;
-}
-.deteleandedit2 {
-  display: flex;
-  width: 50px;
-}
-.deteleandedit2 button {
-  margin: 11px 0px 0px 0px;
-  min-width: 43px !important;
-}
-.deteleandedit2 div button svg {
-  font-size: 20px;
-}
-.css-1ex1afd-MuiTableCell-root {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  color: rgba(0, 0, 0, 0.87);
-  
-}
-.css-1ygcj2i-MuiTableCell-root {
-  padding: 0px !important;
-}
-th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-sizeMedium.css-1bigob2 {
-    font-size: 14px!important;
-    color: #1976d2!important;
-    font-family: Poppins,sans-serif!important;
-    font-weight: 700!important;
-    padding: 0px 0 0 15px!important;
-    width: 229px;
 }
