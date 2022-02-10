@@ -148,12 +148,12 @@ export default function Users(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow className='usertable'>
-                                    <TableCell className="client-logo-col" >USERID</TableCell>
-                                    <TableCell className="client-logo-col" align="left">LOGO</TableCell>
-                                    <TableCell className="client-logo-col" align="left">COMPANY NAME</TableCell>
-                                    <TableCell align="left">CLIENT NAME</TableCell>
-                                    <TableCell align="left">EMAIL</TableCell>
-                                    <TableCell align="left">PHONE NUMBER</TableCell>
+                                    <TableCell className="teamtablecel" >USERID</TableCell>
+                                    <TableCell className="teamtablecel" align="left">LOGO</TableCell>
+                                    <TableCell className="teamtablecel" align="left">COMPANY NAME</TableCell>
+                                    <TableCell className="teamtablecel">CLIENT NAME</TableCell>
+                                    <TableCell className="teamtablecel">EMAIL</TableCell>
+                                    <TableCell className="teamtablecel">PHONE NUMBER</TableCell>
                                 </TableRow>
                             </TableHead>
                             {users.filter(val=>{
@@ -166,17 +166,17 @@ export default function Users(props) {
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item)=>
                             <TableBody key={item.usersId}>
                             <TableRow >
-                                <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
-                                <TableCell className="client-logo-ver" align="left" >
+                                <TableCell className="teamtablecel" component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
+                                <TableCell className="teamtablecel" align="left" >
                                     <Imageviewer
                                         imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
                                         imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
                                     />
                                 </TableCell>
-                                <TableCell align="left">{item.Companyname}</TableCell>
-                                <TableCell align="left">{item.Clientname}</TableCell>
-                                <TableCell align="left">{item.Email}</TableCell>
-                                <TableCell align="left">{item.Phonenumber}</TableCell>
+                                <TableCell className="teamtablecel" align="left">{item.Companyname}</TableCell>
+                                <TableCell className="teamtablecel" align="left">{item.Clientname}</TableCell>
+                                <TableCell className="teamtablecel" align="left">{item.Email}</TableCell>
+                                <TableCell className="teamtablecel" align="left">{item.Phonenumber}</TableCell>
                                 <div className='deteleandedit'>
                                     <Updatecustomer usersId={item.usersId} />
                                     <FormDialog
