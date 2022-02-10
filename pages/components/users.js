@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React,{ useState, useEffect,useContext } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -37,16 +37,16 @@ export default function Users(props) {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => {
                 setUsers(res.data);
-                if (localStorage.getItem("passValue") === true) {
+                if(localStorage.getItem("passValue") === true){
                     setSelectedValue(team);
-                } else {
+                }else{
                     setSelectedValue([]);
                 }
-            }).catch((err) => { return err; })
+            }).catch((err)=>{ return err; })
     }, [selectedValue]);
 
-    useEffect(() => {
-        localStorage.setItem("passValue", false);
+    useEffect(()=>{
+        localStorage.setItem("passValue",false);
     });
 
     useEffect(() => {
@@ -57,9 +57,9 @@ export default function Users(props) {
     const deleteUsers = (id) => {
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
-        }).then(() => {
+        }).then(() => {          
             setdialogformopen(true)
-        }).catch((err) => { return err; })
+        }).catch((err)=>{ return err; })     
     };
 
     const UsersList = [
@@ -90,7 +90,7 @@ export default function Users(props) {
         const data = UsersList;
         setExportUsers(data);
     };
-
+ 
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
@@ -115,102 +115,99 @@ export default function Users(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-
-            <div className="userbody2">
-                <div className='header-user'>
-                    <h1>USERS</h1>
-                    <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                    <div className='userpage-pagedatalimit'>
-                        <select className='pagedatalimit-select' onChange={pagedatalimit}>
-                            <option value={10}>10</option>
-                            <option value={25}>25</option>
-                            <option value={50}>50</option>
-                            <option value={100}>100</option>
-                        </select>
-                        <div className='float-end caption'>Number of users per page</div>
-                    </div>
-                    <div className='right-user-btns'>
-                        <CSVLink
-                            data={exportUsers}
-                            filename={'Customer_List.csv'}
-                            className="float-enduser btn2 button"
-                            target="_blank"
-                            onClick={handleExport}
-                        >Export</CSVLink>
-                        <FormDialog
-                            className="float-enduser btn2 button"
-                            dialogtitle="+ADD customer"
-                            dialogbody={<Addcustomer />}
-                        />
-                    </div>
-                </div>
-                <TableContainer component={Paper}>
-                    <Table aria-label="a dense table">
-                        <TableHead>
-                            <TableRow className='usertable'>
-                                <TableCell className="client-logo-col" >USERID</TableCell>
-                                <TableCell className="client-logo-col" align="left">LOGO</TableCell>
-                                <TableCell className="client-logo-col" align="left">COMPANY NAME</TableCell>
-                                <TableCell align="left">CLIENT NAME</TableCell>
-                                <TableCell align="left">EMAIL</TableCell>
-                                <TableCell align="left">PHONE NUMBER</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        {users.filter(val => {
-                            if (search === "") {
-                                return val;
-                            } else if (val.Companyname.toLowerCase().includes(search.toLowerCase()) ||
-                                val.Clientname.toLowerCase().includes(search.toLowerCase())) {
-                                return val;
-                            } else null;
-                        }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
-                            <TableBody key={item.usersId}>
-                                <TableRow >
-                                    <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
-                                    <TableCell className="client-logo-ver" align="left" >
-                                        <Imageviewer
-                                            imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
-                                            imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
-                                        />
-                                    </TableCell>
-                                    <TableCell align="left">{item.Companyname}</TableCell>
-                                    <TableCell align="left">{item.Clientname}</TableCell>
-                                    <TableCell align="left">{item.Email}</TableCell>
-                                    <TableCell align="left">{item.Phonenumber}</TableCell>
-                                    <TableCell align="left">
-                                        <div className='deteleandedit2'>
-                                            <Updatecustomer usersId={item.usersId} />
-                                            <FormDialog
-                                                className="user-delete"
-                                                dialogtitle={<DeleteIcon />}
-                                                headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                                dialogactions={
-                                                    <div>
-                                                        <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                        <Button>NO</Button>
-                                                    </div>
-                                                }
-                                            />
-                                        </div>
-                                    </TableCell>
-
+           
+                <div className="userbody2">
+                    <div className='header-user'>
+                        <h1>USERS</h1>
+                        <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <div className='userpage-pagedatalimit'>
+                            <select className='pagedatalimit-select' onChange={pagedatalimit}>
+                                <option value={10}>10</option>
+                                <option value={25}>25</option>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                            </select>
+                            <div className='float-end caption'>Number of users per page</div>
+                        </div>
+                        <div className='right-user-btns'>
+                            <CSVLink
+                                data={exportUsers}
+                                filename={'Customer_List.csv'}
+                                className="float-enduser btn2 button"
+                                target="_blank"
+                                onClick={handleExport}
+                            >Export</CSVLink>
+                            <FormDialog
+                                className="float-enduser btn2 button"
+                                dialogtitle="+ADD customer"
+                                dialogbody={<Addcustomer />}
+                            />
+                        </div>                      
+                    </div>              
+                    <TableContainer component={Paper}>
+                        <Table  aria-label="a dense table">
+                            <TableHead>
+                                <TableRow className='usertable'>
+                                    <TableCell className="client-logo-col" >USERID</TableCell>
+                                    <TableCell className="client-logo-col" align="left">LOGO</TableCell>
+                                    <TableCell className="client-logo-col" align="left">COMPANY NAME</TableCell>
+                                    <TableCell align="left">CLIENT NAME</TableCell>
+                                    <TableCell align="left">EMAIL</TableCell>
+                                    <TableCell align="left">PHONE NUMBER</TableCell>
                                 </TableRow>
-                            </TableBody>
-                        )}
-                    </Table>
-                </TableContainer>
-                < ReactPaginate
-                    previousLabel={""}
-                    nextLabel={""}
-                    pageCount={Math.ceil(users.length / datalimit)}
-                    onPageChange={(e) => handlePageChange(e.selected)}
-                    containerClassName={"pagination justify-content-center mt-3"}
-                    pageClassName={"page-item"}
-                    pageLinkClassName={"page-link"}
-                    activeClassName={"active"}
-                />
+                            </TableHead>
+                            {users.filter(val=>{
+                                if(search === ""){
+                                    return val;
+                                }else if(val.Companyname.toLowerCase().includes(search.toLowerCase())||
+                                         val.Clientname.toLowerCase().includes(search.toLowerCase())) {
+                                    return val;
+                                }else null;
+                            }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item)=>
+                            <TableBody key={item.usersId}>
+                            <TableRow >
+                                <TableCell component="th" className="client-logo-ver" scope="row">{item.usersId}</TableCell>
+                                <TableCell className="client-logo-ver" align="left" >
+                                    <Imageviewer
+                                        imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
+                                        imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
+                                    />
+                                </TableCell>
+                                <TableCell align="left">{item.Companyname}</TableCell>
+                                <TableCell align="left">{item.Clientname}</TableCell>
+                                <TableCell align="left">{item.Email}</TableCell>
+                                <TableCell align="left">{item.Phonenumber}</TableCell>
+                                <div className='deteleandedit'>
+                                    <Updatecustomer usersId={item.usersId} />
+                                    <FormDialog
+                                        className="user-delete"
+                                        dialogtitle={<DeleteIcon />}
+                                        headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                        dialogactions={
+                                            <div>
+                                                <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
+                                                <Button>NO</Button>
+                                            </div>
+                                        }
+                                    />
+                                </div>
+                            </TableRow>
+                        </TableBody>
+                            )}
+                        </Table>                      
+                    </TableContainer>
+                    < ReactPaginate
+                        previousLabel={""}
+                        nextLabel={""}
+                        pageCount={Math.ceil(users.length / datalimit)}                    
+                        onPageChange={(e) => handlePageChange(e.selected)}
+                        containerClassName={"pagination justify-content-center mt-3"}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        activeClassName={"active"}
+                    />
+                </div>
+              
             </div>
-
-        </div>
     )
 }

@@ -134,7 +134,7 @@ export default function Team(props) {
                         </div>
                     </div>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                        <Table  aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell  >TEAMID</TableCell>
