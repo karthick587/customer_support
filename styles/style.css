@@ -1642,3 +1642,11 @@ div#v-pills-dash {
 .css-1ygcj2i-MuiTableCell-root {
   padding: 0px !important;
 }
+th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-sizeMedium.css-1bigob2 {
+    font-size: 14px!important;
+    color: #1976d2!important;
+    font-family: Poppins,sans-serif!important;
+    font-weight: 700!important;
+    padding: 0px 0 0 15px!important;
+    width: 229px;
+}
