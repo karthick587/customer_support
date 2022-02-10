@@ -75,46 +75,38 @@ const AdminDashboard = () => {
     localStorage.removeItem('activeTab');
     router.push("/");
   };
-
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', 'Dashboard');
     setActivetab('Dashboard');
   };
-
   // tickettab
   const TicketTabActive = () => {
     localStorage.setItem('activeTab', 'ticket');
     setActivetab('ticket');
   };
-
   // usertab
   const UserTabActive = () => {
     localStorage.setItem('activeTab', 'user');
     setActivetab('user');
   };
-
   // teamtab
   const TeamTabActive = () => {
     localStorage.setItem('activeTab', 'team');
     setActivetab('team');
   };
-
   // getactivetab
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
   }, []);
-
   // usercount
   const handleCallback3 = (childData) => {
     setusercount(childData);
   };
-
   //team members count
   const handleCallback4 = (childData) => {
     setteamcount(childData);
   }
-
   return (
     <>
       {login === "false" ? <div className="access ">access denied</div> :
@@ -138,7 +130,6 @@ const AdminDashboard = () => {
                 </Typography>
               </>
             }
-
             shownotification={
               <AdminNotification 
               onclick={
@@ -201,7 +192,6 @@ const AdminDashboard = () => {
                           </div>
                           <div className='Resentticket-page'>
                             <Resentticket tickets={tickets} />
-
                             <Piechart
                               newcount={adminNewcount}
                               started={adminStartedcount}
@@ -224,7 +214,6 @@ const AdminDashboard = () => {
                   </div>
                   <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <Team teamcountcallback={handleCallback4} />
-
                   </div>
                   <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
                     product details

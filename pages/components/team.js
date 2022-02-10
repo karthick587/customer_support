@@ -134,13 +134,13 @@ export default function Team(props) {
                         </div>
                     </div>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                        <Table  aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell className="teamtablecel" >TEAMID</TableCell>
-                                    <TableCell className="teamtablecel" align="left">USERNAME</TableCell>
-                                    <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
-                                    <TableCell className="teamtablecel" align="left">TEAM</TableCell>
+                                    <TableCell  >TEAMID</TableCell>
+                                    <TableCell  align="left">USERNAME</TableCell>
+                                    <TableCell  align="left">PASSWORD</TableCell>
+                                    <TableCell  align="left">TEAM</TableCell>
                                 </TableRow>
                             </TableHead>
                             {team.filter(val => {
@@ -150,13 +150,13 @@ export default function Team(props) {
                                     return val;
                                 } else null;
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
-                                <TableBody key={item.teamId}>
-                                    <TableRow >
-                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
-                                        <div className='deteleandedit'>
+                                <TableBody  key={item.teamId}>
+                                    <TableRow className="tickets-bodyrow">
+                                        <TableCell  component="th" scope="row">{item.teamId}</TableCell>
+                                        <TableCell  align="left">{item.Username}</TableCell>
+                                        <TableCell  align="left">{item.Password}</TableCell>
+                                        <TableCell  align="left">{item.Team}</TableCell>
+                                        <TableCell  align="left"> <div className='deteleandedit'>
                                             <Updateteam teamId={item.teamId} />
                                             <FormDialog
                                                 className="team-delete"
@@ -169,7 +169,8 @@ export default function Team(props) {
                                                     </div>
                                                 }
                                             />
-                                        </div>
+                                        </div></TableCell>
+                                       
                                     </TableRow>
                                 </TableBody>
                             )}
