@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
+import DesignTeamList from './adminticketTeamList/designTeamList';
 
 function Adminticket() {
     const { setdialogformopen } = useContext(CounterContext);
@@ -41,14 +42,7 @@ function Adminticket() {
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
     const [showdetails, setShowdetails] = useState(false);
-    const [selecteddesignTeam, setselecteddesignTeam] = useState('');
-    const [selectedserverTeam, setselectedserverTeam] = useState('');
-    const [selecteddevelopmentTeam, setselecteddevelopmentTeam] = useState('');
-    const [selectedseoTeam, setselectedseoTeam] = useState('');
-    var [checked1, setChecked1] = useState(false);
-    var [checked2, setChecked2] = useState(false);
-    var [checked3, setChecked3] = useState(false);
-    var [checked4, setChecked4] = useState(false);
+    const [selectTeam, setselectTeam] = useState('x');
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => {
@@ -60,7 +54,7 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    }, [selectedValue]);
+    });
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
@@ -209,56 +203,39 @@ function Adminticket() {
     function closeDetails() {
         setShowdetails(false);
     };
-    //admin multiteam assign 
-    const handleClick1 = () => setChecked1(!checked1);
-    const handleClick2 = () => setChecked2(!checked2);
-    const handleClick3 = () => setChecked3(!checked3);
-    const handleClick4 = () => setChecked4(!checked4);
-    useEffect(() => {
-        if (checked1 === false) {
-            setselecteddesignTeam('');
-        };
-        if (checked2 === false) {
-            setselectedserverTeam('');
-        };
-        if (checked3 === false) {
-            setselecteddevelopmentTeam('');
-        };
-        if (checked4 === false) {
-            setselectedseoTeam('');
-        };
-    }, [checked1, checked2, checked3, checked4]);
-    var Design, Development, Server, Seo;
-    function handleUpdate(ticketsId) {
-        (selecteddesignTeam === "Design") ? Design = "y" : Design = "n";
-        (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
-        (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
-        (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
-        if (ticketsId !== "") {
-            Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
-                Design: Design,
-                Development: Development,
-                Seo: Seo,
-                Server: Server,
-                ticketsId: ticketsId,
-                Adm_UpdatedOn: fulldate + ' ' + fullTime,
-                Adm_UpdatedBy: "admin1"
-            }).then((_response) => {
-                setShow("update Successfully");
-                setdialogformopen("true")
-                localStorage.setItem("passValue", true);
-                setselecteddesignTeam('')
-                setselectedserverTeam('')
-                setselecteddevelopmentTeam('')
-                setselectedseoTeam('')
-                setChecked1(false)
-                setChecked2(false)
-                setChecked3(false)
-                setChecked4(false)
-            })
-                .catch((err) => { return err; })
-        }
-    };
+   
+  
+    // var Design, Development, Server, Seo;
+    // function handleUpdate(ticketsId) {
+    //     (selecteddesignTeam === "Design") ? Design="y" : Design = "n";
+    //     (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
+    //     (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
+    //     (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
+    //     if (ticketsId !== "") {
+    //         Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
+    //             Teamassign: Design,
+    //             Development: Development,
+    //             Seo: Seo,
+    //             Server: Server,
+    //             ticketsId: ticketsId,
+    //             Adm_UpdatedOn: fulldate + ' ' + fullTime,
+    //             Adm_UpdatedBy: "admin1"
+    //         }).then((_response) => {
+    //             setShow("update Successfully");
+    //             setdialogformopen("true")
+    //             localStorage.setItem("passValue", true);
+    //             setselecteddesignTeam('')
+    //             setselectedserverTeam('')
+    //             setselecteddevelopmentTeam('')
+    //             setselectedseoTeam('')
+    //             setChecked1(false)
+    //             setChecked2(false)
+    //             setChecked3(false)
+    //             setChecked4(false)
+    //         })
+    //             .catch((err) => { return err; })
+    //     }
+    // };
     return (
         <div>
             <Head>
@@ -390,14 +367,20 @@ function Adminticket() {
                                                             </div>
                                                             <div className="addform">
                                                                 <div className="form-group">
-                                                                    <label className="label">Team</label>
+                                                                    <div className='flex'>
                                                                     <div className='check-input-list'>
                                                                         <ul>
-                                                                            <li className='flex '><input className="form-check-input me-1" onClick={handleClick1} checked={checked1} type="checkbox" value="Design" onChange={(e) => setselecteddesignTeam(e.target.value)} /><div >design</div></li>
-                                                                            <li className='flex'><input className="form-check-input me-1" onClick={handleClick2} checked={checked2} type="checkbox" value="Server" onChange={(e) => setselectedserverTeam(e.target.value)} /><div >server</div></li>
-                                                                            <li className='flex'><input className="form-check-input me-1" onClick={handleClick3} checked={checked3} type="checkbox" value="Development" onChange={(e) => setselecteddevelopmentTeam(e.target.value)} /><div>development</div></li>
-                                                                            <li className='flex'><input className="form-check-input me-1" onClick={handleClick4} checked={checked4} type="checkbox" value="Seo" onChange={(e) => setselectedseoTeam(e.target.value)} /><div >seo</div></li>
+                                                                            <li className='flex '><input className="form-check-input me-1"  name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Design" onChange={(e) => setselectTeam(e.target.value)} /><div >design</div></li>
+                    
+                                                                            <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1"   type="radio" value="Server" onChange={(e) => setselectTeam(e.target.value)} /><div >server</div></li>
+                                                                           
+                                                                            <li className='flex'><input className="form-check-input me-1"  name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Development" onChange={(e) => setselectTeam(e.target.value)} /><div>development</div></li>
+                                                                           
+                                                                            <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Seo" onChange={(e) => setselectTeam(e.target.value)} /><div >seo</div></li>
+                                                                           
                                                                         </ul>
+                                                                    </div>
+                                                                    <div><DesignTeamList selectedteam={selectTeam} /></div>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -747,7 +747,7 @@ form.form2 {
   font-family: system-ui;
 }
 .addform {
-  width: 250px!important;
+  width: 400px!important;
 }
 
 .btn2:hover {
@@ -1494,6 +1494,9 @@ color: white;
 }
 .copyright-com {
   padding-bottom: 10px;
+  bottom: 0;
+  left: 50%;
+  position: absolute;
 }
 .resentticket-table{
  overflow-y: scroll;
@@ -1617,4 +1620,15 @@ div#v-pills-dash {
 .ticket-details-screenshot {
   background-color: white;
   border-radius: 12px;
+}
+.admin-team-list{
+  max-height: 15vh;
+  overflow-y: auto;
+}
+.team-list-select {
+  width: 10px;
+}
+.team-list-input {
+  font-size: 10px;
+  margin-left: 16px;
 }
