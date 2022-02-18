@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import FormDialog from './common/dialogsform';
 
 
 function Test() {
     
-    const [email, setEmail] = useState('')
    
-    const [checked, setChecked] = useState(false)
-    useEffect(()=>{
-        if(checked===false){
-            setEmail('')
-           }
-       
-    })
-    const handleClick = () =>{
-         setChecked(!checked)
-        }
- 
-    
   
 
     return (
         <div>
-          <input onClick={handleClick} checked={checked} value="check" type="checkbox" onChange={(e) => setEmail(e.target.value)}   />
+        <FormDialog dialogtitle="button1" dialogbody={<h1>button1 opened</h1>}/>
+        <FormDialog dialogtitle="button2"   dialogbody={<h1>button2 opened</h1>}/>
         </div>
     )
 }

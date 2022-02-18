@@ -26,15 +26,12 @@ function Updatecustomer({ usersId }) {
     let ProjectcodeR = createRef();
 
     useEffect(() => {
-        setAdminname(window.localStorage.getItem('user'));
-    }, []);
-
-    useEffect(() => {
         setPassValue(localStorage.getItem("passValue", false));
     });
 
     useEffect(() => {
         setModifiedby(Adminname.slice(3, 20));
+        setAdminname(window.localStorage.getItem('user'));
     }, []);
 
     useEffect(() => {
@@ -85,7 +82,7 @@ function Updatecustomer({ usersId }) {
             }
         }).then((res) => {
             setShow("Updated Successfully");
-            setdialogformopen(true);
+            setdialogformopen("true");
             localStorage.setItem("passValue", true);
         }).catch((err)=>{ return err; })
     };

@@ -16,6 +16,7 @@ import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
 import DesignTeamList from './adminticketTeamList/designTeamList';
+import { array } from 'yup';
 
 function Adminticket() {
     const { setdialogformopen } = useContext(CounterContext);
@@ -54,7 +55,7 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    });
+    },[tickets]);
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
@@ -203,46 +204,26 @@ function Adminticket() {
     function closeDetails() {
         setShowdetails(false);
     };
-   
-  
-    // var Design, Development, Server, Seo;
-    // function handleUpdate(ticketsId) {
-    //     (selecteddesignTeam === "Design") ? Design="y" : Design = "n";
-    //     (selecteddevelopmentTeam === "Development") ? Development = "y" : Development = "n";
-    //     (selectedseoTeam === "Seo") ? Seo = "y" : Seo = "n";
-    //     (selectedserverTeam === "Server") ? Server = "y" : Server = "n";
-    //     if (ticketsId !== "") {
-    //         Axios.put(`https://mindmadetech.in/api/tickets/team/update/${ticketsId}`, {
-    //             Teamassign: Design,
-    //             Development: Development,
-    //             Seo: Seo,
-    //             Server: Server,
-    //             ticketsId: ticketsId,
-    //             Adm_UpdatedOn: fulldate + ' ' + fullTime,
-    //             Adm_UpdatedBy: "admin1"
-    //         }).then((_response) => {
-    //             setShow("update Successfully");
-    //             setdialogformopen("true")
-    //             localStorage.setItem("passValue", true);
-    //             setselecteddesignTeam('')
-    //             setselectedserverTeam('')
-    //             setselecteddevelopmentTeam('')
-    //             setselectedseoTeam('')
-    //             setChecked1(false)
-    //             setChecked2(false)
-    //             setChecked3(false)
-    //             setChecked4(false)
-    //         })
-    //             .catch((err) => { return err; })
-    //     }
-    // };
+    var desing=JSON.stringify({1:20,2:30,3:30,4:56})
+    function handleUpdate(ticketsId,Teamassign) {
+     
+        console.log(Teamassign)
+            Axios.put(`https://mindmadetech.in/api/tickets/teamassigns/${ticketsId}`, {
+                Teamassign: desing,
+                ticketsId: ticketsId,
+            }).then((_response) => {
+                setShow("update Successfully");
+                setdialogformopen("true")
+                localStorage.setItem("passValue", true);
+            })
+                .catch((err) => { return err; })
+    };
     return (
         <div>
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-            {showdetails === false ?
-              
+            {showdetails === false ?             
                     <div className="userbody">
                         <div className='adminticket-head'>
                             <div><h1>Tickets</h1></div>
@@ -348,7 +329,7 @@ function Adminticket() {
                                         <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                             <TableCell >{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
-                                            <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                                            <TableCell >{tickets.Teamassign}</TableCell>
                                             <TableCell >{tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
@@ -370,22 +351,22 @@ function Adminticket() {
                                                                     <div className='flex'>
                                                                     <div className='check-input-list'>
                                                                         <ul>
-                                                                            <li className='flex '><input className="form-check-input me-1"  name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Design" onChange={(e) => setselectTeam(e.target.value)} /><div >design</div></li>
+                                                                            {/* <li className='flex '><input className="form-check-input me-1"  name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Design" onChange={(e) => setselectTeam(e.target.value)} /><div >design</div></li>
                     
                                                                             <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1"   type="radio" value="Server" onChange={(e) => setselectTeam(e.target.value)} /><div >server</div></li>
                                                                            
                                                                             <li className='flex'><input className="form-check-input me-1"  name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Development" onChange={(e) => setselectTeam(e.target.value)} /><div>development</div></li>
                                                                            
-                                                                            <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Seo" onChange={(e) => setselectTeam(e.target.value)} /><div >seo</div></li>
+                                                                            <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1"  type="radio" value="Seo" onChange={(e) => setselectTeam(e.target.value)} /><div >seo</div></li> */}
                                                                            
                                                                         </ul>
                                                                     </div>
-                                                                    <div><DesignTeamList selectedteam={selectTeam} /></div>
+                                                                    {/* <div><DesignTeamList selectedteam={selectTeam} /></div> */}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+                                                        <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId,tickets.Teamassign)}>Assign</button>
                                                         <h4 className="alert1 text-center">{show}</h4>
                                                     </div>
                                                 }

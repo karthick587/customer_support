@@ -9,14 +9,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
-
 const schema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required().min(6)
 });
-
 export default function Login1() {
-
   const router = useRouter();
   const [loginStatus, setLoginStatus] = useState('');
   const [userlogin, setUserlogin] = useState('');
@@ -24,7 +21,6 @@ export default function Login1() {
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
-  
   const adminLogin = ({ username, password }) => {
     var TableValidate = username.slice(0, 3);
     setUserlogin(username);
@@ -60,12 +56,10 @@ export default function Login1() {
     })
       .catch((err) => { return err; })
   };
-
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     router.push("/");
   };
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -73,17 +67,15 @@ export default function Login1() {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
-
   useEffect(() => {
     localStorage.setItem('user', userlogin);
   });
-
   return (
     <div className="login-page">
       <Head>
         <title>userlogin</title>
       </Head>
-      <div >
+      <div>
         <div className="login-body">
           <div className="left-body">
             <div className="form login">
