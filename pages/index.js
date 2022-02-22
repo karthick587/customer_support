@@ -4,12 +4,14 @@ import Login1 from './components/login/login';
 
 export default function Home() {
 
-  return (  
-      <div>
-          <Head>
-              <title>Customer Support</title>
-          </Head>
-          <Login1 />
-      </div>
-  )
+    return (
+        <div>
+           <Head>
+            <link rel="shortcut icon" href="../public/favicon.png" type="image/png" />
+                <title>Customer Support</title>
+            </Head>
+           
+            <Login1 />
+        </div>
+    )
 }

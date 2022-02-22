@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import Head from 'next/head';
 import Axios from 'axios';
+
 import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
@@ -72,9 +73,7 @@ export default function Login1() {
   });
   return (
     <div className="login-page">
-      <Head>
-        <title>userlogin</title>
-      </Head>
+      
       <div>
         <div className="login-body">
           <div className="left-body">
