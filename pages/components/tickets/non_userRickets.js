@@ -39,9 +39,6 @@ function NonUserTickets(props) {
                      <div className='adminticket-head'>
                      <h1>Non User Tickets</h1>
                     </div>
-                    <div className='adminticket-head'>
-                        <h1>Non User Tickets</h1>
-                    </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
