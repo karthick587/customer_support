@@ -98,6 +98,15 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .water-mark {
+    position: absolute!important;
+    z-index: 9999;
+    bottom: 10px;
+    right: 10px;
+    font-weight: 500;
+    opacity: 50%;
+    font-size: 15px;
+}
   .ticket-details-middle {
     padding: 5px 5px;
   }

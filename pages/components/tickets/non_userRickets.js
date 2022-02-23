@@ -36,6 +36,9 @@ function NonUserTickets(props) {
             </Head>
             {showdetails === false ?
                 <div className="teambody">
+                     <div className='adminticket-head'>
+                     <h1>Non User Tickets</h1>
+                    </div>
                     <div className='adminticket-head'>
                         <h1>Non User Tickets</h1>
                     </div>
