@@ -663,8 +663,8 @@ thead.MuiTableHead-root.css-15wwp11-MuiTableHead-root tr th {
   margin: 2px 0px 0px 12px;
 }
 .header-user div button {
-  margin-right: 17px;
-  margin-left: 21px;
+  margin-right: 0px;
+  margin-left: 0px;
   padding: 3px !important;
 }
 select.team-dialog-box {
