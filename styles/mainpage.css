@@ -116,16 +116,6 @@
     width: 100% !important;
   }
 
-  .water-mark {
-    position: absolute !important;
-    z-index: 9999;
-    bottom: 25px;
-    right: 12px;
-    font-weight: 500;
-    opacity: 40%;
-    font-size: 15px;
-  }
-
   .display-2 {
     display: block !important;
     border: none !important;
