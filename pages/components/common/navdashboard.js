@@ -183,8 +183,8 @@ export default function Dashboard(props) {
           <Toolbar />
           {props.tabbody}
         </Box>
-        <div className='water-mark'><span>Designed by</span> MindMade</div>
       </Box>
+
     
   );
 }

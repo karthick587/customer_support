@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps }) {
           <title>Customer Support</title>
         </Head>
         <Component {...pageProps} />
+        <div className='water-mark'><span>Designed by</span> MindMade</div>
       </CounterContextProvider>
     </>
   )
