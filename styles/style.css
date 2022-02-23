@@ -1536,14 +1536,15 @@ color: white;
 }
 .echarts-for-react {
   background-color: white;
-  width: 370px;
+  height: 100% !important;
+  width: 100% !important;
   border-radius: 14px;
   -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
 .react-piechart {
   margin-left: 18px;
-  width: 370px !important;
+  width: 100% !important;
 }
 .ticket-icon svg {
   font-size: 17px;
