@@ -218,8 +218,8 @@
 
   .right-user-btns {
     display: flex;
-    position: absolute;
-  }
+    position: relative !important;
+}
 
   .css-1o6fzn1 {
     font-size: 12px !important;
@@ -516,10 +516,10 @@
 
   .header-user {
     display: flex;
-    padding: 19px 0px 0px 0px !important;
+    padding: 20px 0px 0px 1px !important;
     position: relative;
-  }
-
+    margin: 0px 16px 0px 0px;
+}
   .keen-slider__slide.number-slide2 {
     background-color: transparent;
   }
