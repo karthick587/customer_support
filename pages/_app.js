@@ -21,17 +21,17 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-            {/* Add the favicon */}
-      <Head>
-        <link rel="shortcut icon" href="../public/fav.png" />
-        <title>Customer Support</title>
-      </Head>
       {/* Add the favicon */}
-              
-  <CounterContextProvider>
-    
-    <Component {...pageProps} />
-    </CounterContextProvider>
+
+      {/* Add the favicon */}
+
+      <CounterContextProvider>
+        <Head>
+          <link rel="shortcut icon" href="../public/fav.png" type="image/png" />
+          <title>Customer Support</title>
+        </Head>
+        <Component {...pageProps} />
+      </CounterContextProvider>
     </>
   )
 }

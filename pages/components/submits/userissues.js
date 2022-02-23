@@ -100,27 +100,27 @@ function Userissue(props) {
             <div>
                 <form className="form3" action="/" method="post">
                     <h4 className="issue-head">Submit your Issues Here!!!</h4>
-                    <div className="form-group flex">
+                    <div className="form-group mt-2 mb-2 flex" >
                         <label className="label width-25">User Name</label>
                         <h5 className="issue-form-input">{props.customername}</h5>
                     </div>
-                    <div className="form-group flex">
+                    <div className="form-group mb-2 flex">
                         <label className="label width-25">Email</label>
                         <input className="issue-form-input" name="email" type="text" ref={EmailR} onChange={(e) => { setEmail(e.target.value); }} />
                     </div>
-                    <div className="form-group flex">
+                    <div className="form-group mb-2 flex">
                         <label className="label width-25">Phonenumber</label>
                         <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR} onChange={(e) => { setPhonenumber(e.target.value); }} />
                     </div>
-                    <div className="form-group flex">
+                    <div className="form-group mb-2 flex">
                         <label className="label width-25">Domain Name</label>
                         <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} onChange={(e) => { setDomainName(e.target.value); }} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group scrolable  mb-2">
                         <label className="label">Description</label>
                         <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group  mb-2">
                         <form>
                             <label htmlFor="contained-button-file">
                                 <input type="file"

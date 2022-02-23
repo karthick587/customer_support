@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
+import ScrollDialog from '../non_user';
 const schema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required().min(6)
@@ -83,12 +84,12 @@ export default function Login1() {
                   <h1>Login</h1>
                 </div>
                 <form>
-                  <div className="form-group">
+                  <div className="form-group mb-2">
                     <label className="label">Username*</label>
                     <input className="form-input" name="username" type="text"  {...register('username')} />
                     <p className="me-2 text-danger">{errors.username?.message}</p>
                   </div>
-                  <div className="form-group log">
+                  <div className="form-group mb-2 log">
                     <label className="label">Password*</label>
                     <input className="form-input" name="password" type="password"  {...register('password')} />
                     <p className="me-2 text-danger">{errors.password?.message}</p>
@@ -102,6 +103,7 @@ export default function Login1() {
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
                   <h4 className="alert1">{loginStatus}</h4>
+                  <ScrollDialog />
                 </form>
               </div>
             </div>

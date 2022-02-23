@@ -41,14 +41,13 @@ function Updatecustomer({ usersId }) {
     }, [setGetCustomer]);
 
     function handleUpdate() {
-        var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber,Projectcode;
+        var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber;
         Companyname = CompanynameR.current.value;
         Clientname = ClientnameR.current.value;
         Username = UsernameR.current.value;
         Password = PasswordR.current.value;
         Email = EmailR.current.value;
         Phonenumber = PhonenumberR.current.value;
-        Projectcode = ProjectcodeR.current.value;
 
         switch (editLogo) {
             case undefined:
@@ -75,7 +74,6 @@ function Updatecustomer({ usersId }) {
         }
         data.append("Modifiedon", date + ' ' + fullTime);
         data.append("Modifiedby", Modifiedby)
-        data.append("Projectcode",Projectcode)
         axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -88,6 +86,7 @@ function Updatecustomer({ usersId }) {
     };
 
     useEffect(()=>{
+        setShow("");
         const Timer = setTimeout(() => {
             setShow();
           }, [4000]);
@@ -164,11 +163,7 @@ function Updatecustomer({ usersId }) {
                                         <input className="form-input" name="Name" type="text" ref={ClientnameR} defaultValue={data.Clientname} />
 
                                     </div>
-                                    <div className="form-group">
-                                        <label className="label"> Project Code</label>
-                                        <input className="form-input" name="Projectcode" type="text" ref={ProjectcodeR} defaultValue={data.Projectcode} />
-
-                                    </div>
+                                  
                                     <div className="form-group">
                                         <label className="label">Username</label>
                                         <input className="form-input" name="Username" type="text" ref={UsernameR} defaultValue={data.Username} />

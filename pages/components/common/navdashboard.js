@@ -99,6 +99,7 @@ export default function Dashboard(props) {
   };
 
   return (
+   
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
@@ -182,6 +183,8 @@ export default function Dashboard(props) {
           <Toolbar />
           {props.tabbody}
         </Box>
+        <div className='water-mark'><span>Designed by</span> MindMade</div>
       </Box>
+    
   );
 }

@@ -15,7 +15,6 @@ const Page = () => {
       setLoaded(true);
     },
   });
-
   return (
     <>
       <div className="carocel">
@@ -24,7 +23,6 @@ const Page = () => {
             <div className="keen-slider__slide number-slide1">
               <img className="slide-banner" src='/chatbot-bg.png' />
               <div className="slide-text">
-
                 <h3>Simple ticketing <br />system </h3>
                 <p>Work as a team to help your customers get all the answers<br />Analyze customer support reports..</p>
               </div>
@@ -43,7 +41,6 @@ const Page = () => {
                 <p>Work as a team to help your customers get all the answers<br />Analyze customer support reports..</p>
               </div>
             </div>
-
           </div>
           {loaded && instanceRef.current && (
             <>

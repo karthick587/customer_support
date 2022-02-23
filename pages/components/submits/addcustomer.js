@@ -14,12 +14,11 @@ const schema = yup.object().shape({
     Phonenumber: yup.string().required().max(10),
     Username: yup.string().required(),
     Password: yup.string().required(),
-    Projectcode: yup.string().required(),
 });
 
-function Addcustomer() {
+export default function Addcustomer() {
 
-    const { setdialogformopen } = useContext(CounterContext);
+    // const { setdialogformopen } = useContext(CounterContext);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
@@ -49,8 +48,9 @@ function Addcustomer() {
         setLogo(e.target.files[0]);
         setUploadLogo(URL.createObjectURL(e.target.files[0]));
     };
-
-    const addUser = ({ Companyname, Clientname, Projectcode, Email, Phonenumber, Username, Password }) => {
+    
+   
+    const addUser = ({ Companyname, Clientname, Email, Phonenumber, Username, Password }) => {
         if (logovalidate === undefined) {
             setShowlogo("images is required")
         } else {
@@ -85,7 +85,6 @@ function Addcustomer() {
             const data = new FormData();
             data.append("Companyname", Companyname);
             data.append("Clientname", Clientname);
-            data.append("Projectcode", Projectcode)
             data.append("Email", Email);
             data.append("Phonenumber", Phonenumber);
             data.append("Username", Username);
@@ -110,6 +109,7 @@ function Addcustomer() {
     };
    
     useEffect(() => {
+        setShow();
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
             Router.push("/");
@@ -126,8 +126,6 @@ function Addcustomer() {
             clearTimeout(timer);
         }
     })
-    
-
     return (
         <div>
             <div className="container mainbody">
@@ -154,11 +152,11 @@ function Addcustomer() {
                             <input className="form-input" name="Clientname" type="text" {...register('Clientname')} />
                             <p className="me-2 text-danger">{errors.Clientname?.message}</p>
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label className="label"> Project Code</label>
                             <input className="form-input" name="Projectcode" type="text" {...register('Projectcode')} />
                             <p className="me-2 text-danger">{errors.Projectcode?.message}</p>
-                        </div>
+                        </div> */}
                         <div className="form-group">
                             <label className="col label">EMail ID</label>
                             <input className="form-input" name="Email" type="text" {...register('Email')} />
@@ -191,4 +189,3 @@ function Addcustomer() {
         </div>
     );
 }
-export default Addcustomer;

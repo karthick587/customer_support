@@ -23,6 +23,8 @@ import Piechart from './piechart';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import NonUserTickets from '../tickets/non_userRickets';
 const AdminDashboard = () => {
 
   const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
@@ -95,6 +97,11 @@ const AdminDashboard = () => {
     localStorage.setItem('activeTab', 'team');
     setActivetab('team');
   };
+   // teamtab
+   const NonUserTabActive = () => {
+    localStorage.setItem('activeTab', 'NonUser');
+    setActivetab('NonUser');
+  };
   // getactivetab
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
@@ -156,6 +163,13 @@ const AdminDashboard = () => {
                   <ListItemText primary="Team" />
                 </ListItem>
                 </button>
+                <button className={activeTab === "NonUser" ? "nav-link active" : "nav-link"} onClick={NonUserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-NonUser" type="button" role="tab" href="/users" ><ListItem button>
+                  <ListItemIcon>
+                    <PersonAddAltIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="NonUser" />
+                </ListItem>
+                </button>
               </>
             }
             tabbody={
@@ -214,6 +228,9 @@ const AdminDashboard = () => {
                   </div>
                   <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <Team teamcountcallback={handleCallback4} />
+                  </div>
+                  <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-NonUser" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                   <NonUserTickets />
                   </div>
                   <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
                     product details

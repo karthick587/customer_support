@@ -133,7 +133,7 @@ function Ticketviewer(props) {
                             </div>
                         </div>
                         <div className='user-profile-ticket-details-2 col flex'>
-                            <div className='width-20'>
+                            <div>
                                 <div className='label-ticket-details'>
                                     Phonenumber
                                 </div>
