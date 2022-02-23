@@ -435,7 +435,7 @@ form.form3 {
     height: 100vh;
 }
 .adminticket-head {
-  padding: 0px !important;
+  padding: 0px 14px 0px 2px !important;
 }
 
   .header-user {
