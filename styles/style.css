@@ -735,6 +735,10 @@ form.form2 {
   right: 0;
   position: absolute;
 }
+.z-index-99{
+  z-index: 9999 !important;
+  margin: -9px 0px 11px 5px;
+}
 .btn2 {
   border-radius: 24px !important;
   background-color: #1976d2 !important;
@@ -1493,7 +1497,6 @@ color: white;
   padding-bottom: 10px;
   bottom: 0;
   left: 50%;
-  position: absolute;
 }
 .resentticket-table{
  overflow-y: scroll;

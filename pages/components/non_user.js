@@ -30,7 +30,7 @@ export default function ScrollDialog() {
     }, [open]);
 
     return (
-        <div>
+        <div className='z-index-99'>
             <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
             <Dialog
                 open={open}
