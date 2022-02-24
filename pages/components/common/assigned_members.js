@@ -14,7 +14,7 @@ export default function AssignedMenber(props){
                                       
                                     }
                                 }).map((product) =>
-                                    <div className="assignTeam-m me-1 col ">
+                                    <div className="assignTeam-m me-1 col " key={value.registerId}>
                                         <div>{product.Username}</div> <button className="removeTeammember" onClick={()=>removeTeammember(product.teamId)}>X</button>
                                    </div>
                                 )}
