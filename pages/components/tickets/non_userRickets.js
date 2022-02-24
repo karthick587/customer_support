@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Axios from 'axios';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -7,28 +8,30 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
+import Non_userTickets from '../common/non_userviewer';
+import Imageviewer from '../common/imageviewer';
 
 function NonUserTickets(props) {
-  
 
     const [showdetails, setShowdetails] = useState(false);
+    var[nonUser,setNonUser] = useState([]);
+    const[registerId,setRegisterId] = useState(null);
 
-    
-
-    //tickets status update functions 
-  
-
-    //status submit function
-   function ShowDetail(){
+   function ShowDetail(registerId){
+    setRegisterId(registerId)
     setShowdetails(true)
    }
 
-    //current time and date 
+   useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/unregisteredcustomer/list")
+        .then((res) => setNonUser(res.data))
+        .catch((err) => { return err; })
+}, [setNonUser]);
    
     function closeDetails() {
         setShowdetails(false);
     };
+
     return (
         <div>
             <Head>
@@ -43,38 +46,38 @@ function NonUserTickets(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell  >TicketId</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Team</TableCell>
+                                    <TableCell>ID</TableCell>
+                                    <TableCell>Logo</TableCell>
+                                    <TableCell align="left">Companyname</TableCell>
+                                    <TableCell align="left">Clientname</TableCell>
+                                    <TableCell align="left">date</TableCell>
                                     <TableCell align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
                           
                                 <TableBody  className='update-right' >
-                                    <TableRow className="tickets-bodyrow update6" onClick={ShowDetail}>
-                                        <TableCell>test</TableCell>
-                                        <TableCell >test</TableCell>
-                                        <TableCell >test</TableCell>
-                                        <TableCell >
-                                            {/* {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>} */}
-                                            test
+                                {nonUser.map(value=>
+                                    <TableRow className="tickets-bodyrow update6" onClick={()=>ShowDetail(value.registerId)}>
+                                        <TableCell>{value.registerId}</TableCell>
+                                        <TableCell className="teamtablecel" align="left" >
+                                            <Imageviewer
+                                                imgdialogbutton={<img src={value.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
+                                                imgdialogbody={<img className="Imageviewer-userimg" src={value.Logo} alt='logo' />}
+                                            />
                                         </TableCell>
-                                        <TableCell > 
-                                        test
-                                            {/* {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>} */}
-                                        </TableCell>
+                                        <TableCell>{value.Companyname}</TableCell>
+                                        <TableCell >{value.Clientname}</TableCell>
+                                        <TableCell >{value.CreatedOn}</TableCell>
+                                        <TableCell >{value.Status}</TableCell>
                                     </TableRow>
-                                  
-                                </TableBody>
-                           
+                                )}
+                            </TableBody>  
                         </Table>
                     </TableContainer>
                 </div>
                 :
                 <>
-                   test
-                   <button onClick={closeDetails}>close</button>
+                   <Non_userTickets registerId={registerId} closeDetails={closeDetails} />
                 </>
             }
         </div>

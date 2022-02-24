@@ -17,13 +17,13 @@ export default function CounterContextProvider(props){
     ticketscount = tickets.length;
     //team tickets filter function
     var [search1, setSearch1] = useState('');
-    var [team, setTeam] = useState([]);
-
+    // var [team, setTeam] = useState([]);
+    const[designTeamList,setdesignTeamList]=useState([])
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data))
             .catch((err)=>{ return err; })
-    }, [setTickets,tickets]);
+    });
 
      //notification count
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function CounterContextProvider(props){
         setadminStartedcount(tickets.filter(val => { return val.Status.toLowerCase().includes("started".toLowerCase()) }).map((ticket) => setadminStartedcount(ticket.Status.length)).length);
         setadminprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress".toLowerCase()) }).map((ticket) => setadminprogresscount(ticket.Status.length)).length);
         setadminCompletedcount(tickets.filter(val => { return val.Status.toLowerCase().includes("completed".toLowerCase() )}).map((ticket) => setadminCompletedcount(ticket.Status.length)).length);
-    }, [tickets,setnotificationcount]);
+    });
 
     //team tickets filter function
     useEffect(() => {
@@ -40,17 +40,29 @@ export default function CounterContextProvider(props){
     });
 
      
-     useEffect(() => {
-         Axios.get("https://mindmadetech.in/api/team/list")
-             .then((res) => setTeam(res.data))
-            .catch((err)=>{ return err; })
-     }, [setTeam]);
+    //  useEffect(() => {
+    //      Axios.get("https://mindmadetech.in/api/team/list")
+    //          .then((res) => setTeam(res.data))
+    //         .catch((err)=>{ return err; })
+    //  }, [setTeam]);
+   function addTeammember(teamId){
+       
+        setdesignTeamList([...designTeamList,teamId])
+      
+   
+   }
+   function removeTeammember(teamId){
+    
+        setdesignTeamList([...designTeamList].filter((val)=> {if(val!==teamId){ return val }}))
+   }
    
     return(
         <CounterContext.Provider value={{
+            designTeamList,
+            removeTeammember,
+            addTeammember,
             setdialogformopen,
             tickets,
-            team,
             notificationcount,
             ticketscount,
             adminNewcount,
