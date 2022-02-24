@@ -5,9 +5,10 @@ export default function DesignTeamList(props) {
  
   const { addTeammember } = useContext(CounterContext);
 const{selectedteam,team}=props
+const [teams,setTeams]=useState(team)
   return (
       <div>
-          {team.filter(val => {
+          {teams.filter(val => {
              return val.Team.toLowerCase().includes(selectedteam.toLowerCase())
            }).map((teams) =>
         <div className='flex team-list-input' key={teams.teamId}>
