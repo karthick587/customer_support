@@ -9,9 +9,9 @@ const{selectedteam,team}=props
       <div>
           {team.filter(val => {
              return val.Team.toLowerCase().includes(selectedteam.toLowerCase())
-           }).map((team) =>
-        <div className='flex team-list-input' key={team.teamId}>
-        <button className='team-assign-list'  onClick={()=>addTeammember(team.teamId)}>{team.Username}</button>
+           }).map((teams) =>
+        <div className='flex team-list-input' key={teams.teamId}>
+        <button className='team-assign-list'  onClick={()=>addTeammember(teams.teamId)}>{teams.Username}</button>
         </div>
          )}
       </div>
