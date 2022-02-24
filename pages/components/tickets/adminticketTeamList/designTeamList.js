@@ -4,11 +4,16 @@ import Axios from "axios";
 export default function DesignTeamList(props) {
  
   const { addTeammember } = useContext(CounterContext);
-const{selectedteam,team}=props
-const [teams,setTeams]=useState(team)
+const{selectedteam,}=props
+const [team, setTeam] = useState([]);
+useEffect(() => {
+    Axios.get("https://mindmadetech.in/api/team/list")
+        .then((res) => setTeam(res.data))
+        .catch((err) => { return err; })
+});
   return (
       <div>
-          {teams.filter(val => {
+          {team.filter(val => {
              return val.Team.toLowerCase().includes(selectedteam.toLowerCase())
            }).map((teams) =>
         <div className='flex team-list-input' key={teams.teamId}>

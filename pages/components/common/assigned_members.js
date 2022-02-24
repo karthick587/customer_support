@@ -2,11 +2,15 @@ import React, { useContext,useState } from "react";
 import { CounterContext } from "../contex/adminProvider";
 export default function AssignedMenber(props){
     const{removeTeammember,designTeamList}=useContext(CounterContext)
-   const {team}=props
-   const [teams,setTeams]=useState(team)
+    const [team, setTeam] = useState([]);
+    useEffect(() => {
+        Axios.get("https://mindmadetech.in/api/team/list")
+            .then((res) => setTeam(res.data))
+            .catch((err) => { return err; })
+    });
     return(
         <div className="mt-3 row">
-          {teams.filter(val => {
+          {team.filter(val => {
                                     for (let i = 0; i <= 20; i++) {
                                         if (val.teamId === designTeamList[i]) {
                                             return val;
