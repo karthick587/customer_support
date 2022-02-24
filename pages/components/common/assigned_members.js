@@ -1,5 +1,6 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useState,useEffect } from "react";
 import { CounterContext } from "../contex/adminProvider";
+import Axios from "axios";
 export default function AssignedMenber(props){
     const{removeTeammember,designTeamList}=useContext(CounterContext)
     const [team, setTeam] = useState([]);

@@ -4,13 +4,9 @@ import Axios from "axios";
 export default function DesignTeamList(props) {
  
   const { addTeammember } = useContext(CounterContext);
-const{selectedteam,}=props
-const [team, setTeam] = useState([]);
-useEffect(() => {
-    Axios.get("https://mindmadetech.in/api/team/list")
-        .then((res) => setTeam(res.data))
-        .catch((err) => { return err; })
-});
+const{selectedteam,team}=props
+
+
   return (
       <div>
           {team.filter(val => {
