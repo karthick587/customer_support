@@ -10,7 +10,7 @@ const{selectedteam,team}=props
           {team.filter(val => {
              return val.Team.toLowerCase().includes(selectedteam.toLowerCase())
            }).map((team) =>
-        <div className='flex team-list-input'>
+        <div className='flex team-list-input' key={team.teamId}>
         <button className='team-assign-list'  onClick={()=>addTeammember(team.teamId)}>{team.Username}</button>
         </div>
          )}

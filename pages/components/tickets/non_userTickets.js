@@ -57,7 +57,7 @@ function NonUserTickets(props) {
                           
                                 <TableBody  className='update-right' >
                                 {nonUser.map(value=>
-                                    <TableRow className="tickets-bodyrow update6" onClick={()=>ShowDetail(value.registerId)}>
+                                    <TableRow className="tickets-bodyrow update6" key={value.registerId} onClick={()=>ShowDetail(value.registerId)}>
                                         <TableCell>{value.registerId}</TableCell>
                                         <TableCell className="teamtablecel" align="left" >
                                             <Imageviewer
