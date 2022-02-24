@@ -16,7 +16,7 @@ import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
 import DesignTeamList from './adminticketTeamList/designTeamList';
-import { array } from 'yup';
+// import { array } from 'yup';
 import AssignedMenber from '../common/assigned_members';
 
 function Adminticket() {
@@ -57,17 +57,17 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    });
+    },[]);
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data))
             .catch((err) => { return err; })
-    });
+    },[]);
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
-    });
+    },[]);
     //current date and time
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -107,7 +107,7 @@ function Adminticket() {
             setIsOpenfilter(true);
         }
         setShow();
-    });
+    },[]);
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
@@ -115,7 +115,7 @@ function Adminticket() {
         } else {
             setIsOpenstatusfilter(false);
         }
-    });
+    },[]);
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -124,7 +124,7 @@ function Adminticket() {
         } else if (login === null) {
             Router.push("/");
         }
-    });
+    },[]);
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
@@ -171,8 +171,8 @@ function Adminticket() {
         return () => {
             clearTimeout(Timer);
         }
-    })
-    //to get client email id 
+    },[])
+    //to get client email id
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
             .then((res) => setUsers(res.data))
@@ -185,7 +185,7 @@ function Adminticket() {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-    });
+    },[]);
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
@@ -213,15 +213,15 @@ function Adminticket() {
         setShowdetails(false);
     };
 
-    const desing = designTeamList.map((o)=> JSON.stringify(o))
-    function handleUpdate(ticketsId) {
+   
 
-      
-        Axios.put(`https://mindmadetech.in/api/tickets/team/update`, {
-           teamId:JSON.stringify(designTeamList),
+    function handleUpdate(ticketsId) {
+        const teamId = designTeamList.map((o)=> JSON.stringify(o));
+        Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
+            teamId: teamId,
             ticketsId: ticketsId,
-            Adm_CreatedBy:"admin1",
-            Adm_CreatedOn:fulldate+" "+fullTime,
+            Adm_UpdatedBy:'admin1',
+            Adm_UpdatedOn:fulldate+' '+fullTime,
         }).then((_response) => {
             setShow("update Successfully");
             setdialogformopen("true")
