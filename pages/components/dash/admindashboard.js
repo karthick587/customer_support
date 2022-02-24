@@ -24,7 +24,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import NonUserTickets from '../tickets/non_userRickets';
+import NonUserTickets from '../tickets/non_userTickets';
 const AdminDashboard = () => {
 
   const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
