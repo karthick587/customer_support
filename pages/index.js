@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <link rel="shortcut icon" href="../public/fav.png" type="image/png" />
+               
                 <title>Customer Support</title>
             </Head>
 

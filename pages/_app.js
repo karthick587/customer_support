@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
       {/* Add the favicon */}
       <CounterContextProvider>
         <Head>
-          <link rel="shortcut icon" href="../public/fav.png" type="image/png" />
+         
           <title>Customer Support</title>
         </Head>
         <Component {...pageProps} />
