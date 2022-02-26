@@ -42,6 +42,7 @@ function Adminticket() {
     const [email, setEmail] = useState();
     var [users, setUsers] = useState([]);
     const [dticketsId, setdticketsId] = useState("");
+    const [teamarray, setteamarray] = useState([]);
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
@@ -191,8 +192,9 @@ function Adminticket() {
         setSelectedstatus(e.target.value);
     };
     //emailjs
-    const Notificationupdate = (ticketsId, Screenshots) => {
+    const Notificationupdate = (ticketsId, Screenshots,TeamAssign) => {
         setdticketsId(ticketsId);
+        setteamarray(TeamAssign)
         setdticketsscreenshots(Screenshots);
         setShowdetails(true);
         Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
@@ -342,7 +344,7 @@ function Adminticket() {
                                 }
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                                 <TableBody className='update-right' key={tickets.ticketsId}>
-                                    <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
+                                    <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots,tickets.TeamAssign)}>
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
@@ -434,6 +436,7 @@ function Adminticket() {
                 :
                 <>
                     <Ticketviewer
+                    teamarray={teamarray}
                         dticketsId={dticketsId}
                         dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}

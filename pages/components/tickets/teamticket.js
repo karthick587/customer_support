@@ -12,6 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider';
+import ViewTeam from '../common/view_team';
 
 function Teamticket(props) {
     const { setdialogformopen } = useContext(CounterContext);
@@ -117,7 +118,7 @@ function Teamticket(props) {
     //auth access for team ticket page
     useEffect(() => {
       
-        setmapteamticket(teamticket.reverse());
+        setmapteamticket(teamticket);
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
             Router.push("/");
@@ -133,6 +134,12 @@ function Teamticket(props) {
     function closeDetails() {
         setShowdetails(false);
     };
+     var [team, setTeam] = useState([]);
+     useEffect(() => {
+         Axios.get("https://mindmadetech.in/api/team/list")
+             .then((res) => setTeam(res.data))
+            .catch((err)=>{ return err; })
+     });
     return (
         <div>
             <Head>
@@ -161,7 +168,7 @@ function Teamticket(props) {
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                         <TableCell >
-                                            {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
+                                            <ViewTeam team={team} teamArray={tickets.TeamAssign}  />
                                         </TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Imageviewer from '../common/imageviewer'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
+import ViewTeam from './view_team';
 
 function Ticketviewer(props) {
 
-    const { dticketsId, closeDetails, dticketsscreenshots} = props;
+    const { dticketsId, closeDetails, dticketsscreenshots,teamarray} = props;
     const [ticket, settickets] = useState([]);
     const [mimetype, setMimetype] = useState('');
     const[downloadlink,setdownloadlink]=useState()
@@ -16,14 +17,19 @@ function Ticketviewer(props) {
             .catch((err)=>{ return err;})
     }, [settickets]);
     
-    useEffect(() => {
-        setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
-    },[setMimetype]);
+    // useEffect(() => {
+    //     setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
+    // },[setMimetype]);
 
     const downloadimg= (Screenshots) =>{
         setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`);  
     };
-    
+     var [team, setTeam] = useState([]);
+     useEffect(() => {
+         Axios.get("https://mindmadetech.in/api/team/list")
+             .then((res) => setTeam(res.data))
+            .catch((err)=>{ return err; })
+     }, [setTeam]);
     return (
         <>
             {ticket.reverse().map((tickets) =>
@@ -110,7 +116,7 @@ function Ticketviewer(props) {
                                     Department
                                 </div>
                                 <div className='user-label-ticket-details'>
-                                    {tickets.Design === "y" ? <>Design</> : <></>} {tickets.Development === "y" ? <>Development</> : <></>} {tickets.Seo === "y" ? <>Seo</> : <></>} {tickets.Server === "y" ? <>Server</> : <></>} {tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}
+                               <ViewTeam team={team} teamArray={teamarray} /> 
                                 </div>
                             </div>
                             <div className='col'>
