@@ -118,7 +118,7 @@ function Teamticket(props) {
     //auth access for team ticket page
     useEffect(() => {
       
-        setmapteamticket(teamticket);
+        setmapteamticket(teamticket.reverse());
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
             Router.push("/");
@@ -168,7 +168,7 @@ function Teamticket(props) {
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                         <TableCell >
-                                            <ViewTeam team={team} teamArray={tickets.TeamAssign}  />
+                                            {/* <ViewTeam team={team} teamArray={tickets.TeamAssign}  /> */}
                                         </TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
