@@ -3,7 +3,8 @@ import Axios from "axios";
 export const CounterContext = createContext();
 
 export default function CounterContextProvider(props){
-
+    const[testing,setTesting]=useState(false)
+    const[showvalue,setshowvalue]=useState("")
     const [dialogformopen, setdialogformopen] = useState(false);
     var [tickets, setTickets] = useState([]);
     //notification count
@@ -55,9 +56,13 @@ export default function CounterContextProvider(props){
     
         setdesignTeamList([...designTeamList].filter((val)=> {if(val!==teamId){ return val }}))
    }
-   
+
     return(
         <CounterContext.Provider value={{
+            showvalue,
+            setshowvalue,
+            testing,
+            setTesting,
             designTeamList,
             removeTeammember,
             addTeammember,

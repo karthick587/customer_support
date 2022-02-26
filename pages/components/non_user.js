@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState,useContext, useEffect } from 'react';
 import Axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
+import {CounterContext} from "../components/contex/adminProvider"
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -21,15 +22,15 @@ const schema = yup.object().shape({
     DomainName: yup.string().required(),
     Description: yup.string().required(),
 });
-export default function ScrollDialog() {
-
+export default function ScrollDialog(props) {
+    const { setTesting,setshowvalue} = useContext(CounterContext);
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
     const [show,setShow] = useState('');
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     var [showlogo, setShowlogo] = useState('');
-    const [logovalidate, setLogovalidate] = useState();
+    const [logovalidate, setLogovalidate] = useState(); 
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
@@ -99,18 +100,24 @@ export default function ScrollDialog() {
                     'Content-Type': 'multipart/form-data',
                 }
             }).then((response) => {
+                
                 if (response.data.statusCode === 400) {
                     setShow(response.data.message)
+                    setshowvalue(response.data.message)
+                    setTesting(true)
                 } else {
                     setShow("Registered Successfully");
-                    setOpen(false);
+                    setshowvalue("Registered Successfully")
+                    setOpen(false);               
+                    setTesting(true)
                 }
             }).catch((err) => { return err; })
         }
     }
-
+    
     const descriptionElementRef = React.useRef(null);
     React.useEffect(() => {
+        setTesting(false)
         if (open) {
             const { current: descriptionElement } = descriptionElementRef;
             if (descriptionElement !== null) {
@@ -192,6 +199,7 @@ export default function ScrollDialog() {
                                 </div>
                             </form>
                             <h4 className="alert1 text-center">{show}</h4>
+                           
                         </div>
                     </DialogContentText>
                 </DialogContent>

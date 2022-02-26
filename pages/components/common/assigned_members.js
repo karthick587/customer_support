@@ -10,14 +10,12 @@ export default function AssignedMenber(props){
             .catch((err) => { return err; })
     });
     return(
-        <div className="mt-3 row">
-          {team.filter(val => {
-                                    for (let i = 0; i <= 20; i++) {
-                                        if (val.teamId === designTeamList[i]) {
+           <div className="mt-3 row">
+           {team.filter(val => {
+               for (let i = 0; i <= 20; i++) {
+                if (val.teamId === designTeamList[i]) {
                                             return val;
                                         }
-                                      
-                                      
                                     }
                                 }).map((product) =>
                                     <div className="assignTeam-m me-1 col " key={product.teamId}>

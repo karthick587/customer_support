@@ -25,6 +25,8 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import NonUserTickets from '../tickets/non_userTickets';
+import Adminissues from '../submits/adminIssues';
+import SendIcon from '@mui/icons-material/Send';
 const AdminDashboard = () => {
 
   const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
@@ -97,10 +99,15 @@ const AdminDashboard = () => {
     localStorage.setItem('activeTab', 'team');
     setActivetab('team');
   };
-   // teamtab
+   // NonUserTabActive
    const NonUserTabActive = () => {
     localStorage.setItem('activeTab', 'NonUser');
     setActivetab('NonUser');
+  };
+   // RaiseTicket
+   const RaiseTicket = () => {
+    localStorage.setItem('activeTab', 'RaiseTicket');
+    setActivetab('RaiseTicket');
   };
   // getactivetab
   useEffect(() => {
@@ -170,6 +177,13 @@ const AdminDashboard = () => {
                   <ListItemText primary="NonUser" />
                 </ListItem>
                 </button>
+                <button className={activeTab === "RaiseTicket" ? "nav-link active" : "nav-link"} onClick={RaiseTicket} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-RaiseTicket" type="button" role="tab" href="/users" ><ListItem button>
+                  <ListItemIcon>
+                    <SendIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Raise Tickets" />
+                </ListItem>
+                </button>
               </>
             }
             tabbody={
@@ -231,6 +245,9 @@ const AdminDashboard = () => {
                   </div>
                   <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-NonUser" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                    <NonUserTickets />
+                  </div>
+                  <div className={activeTab === "RaiseTicket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-RaiseTicket" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                   <Adminissues />
                   </div>
                   <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">
                     product details

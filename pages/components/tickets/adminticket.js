@@ -18,6 +18,7 @@ import { CounterContext } from '../contex/adminProvider';
 import DesignTeamList from './adminticketTeamList/designTeamList';
 // import { array } from 'yup';
 import AssignedMenber from '../common/assigned_members';
+import ViewTeam from '../common/view_team';
 
 function Adminticket() {
     const { setdialogformopen, designTeamList } = useContext(CounterContext);
@@ -47,7 +48,7 @@ function Adminticket() {
     const [showdetails, setShowdetails] = useState(false);
     const [selectTeam, setselectTeam] = useState('x');
     useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
+        Axios.get("https://mindmadetech.in/api/tickets/listtest")
             .then((res) => {
                 setTickets(res.data)
                 if (localStorage.getItem("passValue") === true) {
@@ -107,7 +108,7 @@ function Adminticket() {
             setIsOpenfilter(true);
         }
         setShow();
-    },[]);
+    },[filteredTitle]);
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
@@ -115,7 +116,7 @@ function Adminticket() {
         } else {
             setIsOpenstatusfilter(false);
         }
-    },[]);
+    },[filteredTitle]);
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -344,8 +345,8 @@ function Adminticket() {
                                     <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
-                                        <TableCell >{tickets.Teamassign}</TableCell>
-                                        <TableCell >{tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                        <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                                        <TableCell > <ViewTeam teamArray={tickets.TeamAssign}/></TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
                                     </TableRow>

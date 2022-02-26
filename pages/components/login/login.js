@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import Head from 'next/head';
 import Axios from 'axios';
-
+import { CounterContext } from '../contex/adminProvider';
 import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
@@ -16,6 +16,7 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6)
 });
 export default function Login1() {
+  const {testing}=useContext(CounterContext)
   const router = useRouter();
   const [loginStatus, setLoginStatus] = useState('');
   const [userlogin, setUserlogin] = useState('');
@@ -72,9 +73,10 @@ export default function Login1() {
   useEffect(() => {
     localStorage.setItem('user', userlogin);
   });
+  
+
   return (
     <div className="login-page">
-      
       <div>
         <div className="login-body">
           <div className="left-body">

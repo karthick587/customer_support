@@ -10,6 +10,8 @@ import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
 import Router from 'next/router';
 import CounterContextProvider from './components/contex/adminProvider';
+import FormAlert from './components/common/alert';
+import { CounterContext } from './components/contex/adminProvider';
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
@@ -22,18 +24,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {/* Add the favicon */}
-
       {/* Add the favicon */}
-
       <CounterContextProvider>
         <Head>
           <link rel="shortcut icon" href="../public/fav.png" type="image/png" />
           <title>Customer Support</title>
         </Head>
         <Component {...pageProps} />
-        
       </CounterContextProvider>
       <div className='water-mark'><span>Designed by</span> MindMade</div>
+
     </>
   )
 }

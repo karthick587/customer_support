@@ -956,10 +956,10 @@ form.form2 {
 
 .form-group p {
   position: absolute;
-  padding: 52px 24px !important;
-  font-size: 11px;
+  padding: 47px 24px !important;
+  font-size: 12px;
+  z-index: 9999;
 }
-
 .deteleandedit div button svg {
   font-size: 20px;
 }
@@ -2016,4 +2016,10 @@ div#v-pills-dash {
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%) !important;
   margin: 10px 10px 0px 10px;
   border-radius: 4px;
+}
+.form-alert{
+  position: absolute;
+  bottom:0 !important;
+  z-index:999999999;
+  left: 20px !important;
 }

@@ -2,28 +2,112 @@ import React, { useState, useEffect } from 'react';
 import Imageviewer from '../common/imageviewer'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
+import FormDialog from '../common/dialogsform';
+import { Button } from '@mui/material';
 
 function Non_userTickets(props) {
 
     const { registerId, closeDetails} = props;
-   
     const [nonUserDetails, setNonUserDetails] = useState([]);
-    // const [mimetype, setMimetype] = useState('');
-    // const[downloadlink,setdownloadlink]=useState()
+    const [Adminname, setAdminname] = useState([]);
+    const [Createdby, setCreatedby] = useState();
+
+    useEffect(() => {
+        setAdminname(window.localStorage.getItem('user'));
+    }, []);
+
+    useEffect(() => {
+        setCreatedby(Adminname.slice(3, 20));
+    });
+
+    var today = new Date();
+    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+    var fullDate, TimeType, hour, minutes, seconds, fullTime;
+    fullDate = new Date();
+    hour = fullDate.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = fullDate.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = fullDate.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
+    // Adding all the variables in fullTime variable.
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
 
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err)=>{ return err;})
     }, [setNonUserDetails]);
-    
-    // useEffect(() => {
-    //     setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
-    // },[setMimetype]);
 
-    // const downloadimg= (Screenshots) =>{
-    //     setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`);  
-    // };
+    function handleRejection(Id){
+        Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`,{
+            Status : "Rejected",
+            Adm_UpdatedOn : date + ' ' + fullTime,
+            Adm_UpdatedBy : Createdby
+        });
+    }
+
+    function handleApproval(nonuser){
+        console.log(nonuser.DomainName,nonuser.Description,nonuser.CreatedOn)
+        const data = new FormData();
+            data.append("Companyname", nonuser.Companyname);
+            data.append("Clientname",  nonuser.Clientname);
+            data.append("Email",  nonuser.Email);
+            data.append("Phonenumber",  nonuser.Phonenumber);
+            data.append("Username",  nonuser.Username);
+            data.append("Password",  nonuser.Password);
+            data.append("Logo",  nonuser.Logo);
+            data.append("Createdon", date+ ' ' + fullTime);
+            data.append("Createdby",  Createdby)
+            Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }).then((response) => {
+                if (response.data.statusCode === 400) {
+                    return null;
+                } else {
+                    return response;
+                }
+            }).catch((err)=>{ return err; });
+
+            const formData = new FormData();
+            formData.append("Username", nonuser.Username);
+            formData.append("Email", nonuser.Email);
+            formData.append("Phonenumber", nonuser.Phonenumber);
+            formData.append("DomainName", nonuser.DomainName);
+            formData.append("Cus_CreatedOn", nonuser.CreatedOn);
+            formData.append("Description", nonuser.Description);
+            Axios.post("https://mindmadetech.in/api/tickets/new", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+            }).then((res) => {
+                return res;
+            }) .catch((err)=>{ return err });
+
+            Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`,{
+                Status : "Approved",
+                Adm_UpdatedOn : date + ' ' + fullTime,
+                Adm_UpdatedBy : Createdby
+            });
+             
+    }
     
     return (
         <>
@@ -36,51 +120,6 @@ function Non_userTickets(props) {
                         </div>
                     </div>
                     <div className='ticket-details-middle'>
-                        {/* <div className='ticket-details-middle-1'>
-                            <div className='ticket-details-middle-1-1'>
-                                Tickets Details
-                                <div className='ticket-details-middle-1-2'>
-                                {tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}
-                                </div>
-                            </div>
-                            <div className='ticket-details-middle-1-3'>
-                               
-                                   
-                                        <div className="ticket-status color-green">
-                                            <div className='ticket-icon'><CheckCircleIcon /></div>
-                                            {tickets.Status === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
-                                        </div>
-                                        <div className={tickets.Status === "New" ? "ticket-status-line width-10 display-1" : "ticket-status-line width-10 display-1 color-green-line"}>
-                                        </div>
-                                        <div className={tickets.Status === "New" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 display-2 color-green-line"}>
-                                            |
-                                        </div>
-                                        <div className={tickets.Status === "started" || tickets.Status === "inprogress" || tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status color-green" : "ticket-status"}>
-                                            <div className='ticket-icon'><CheckCircleIcon /></div>
-                                            {tickets.Status === "started" ? <div className='details-caption'>Started<div className='details-caption-2'>Updated at<br /> {tickets.Tm_Start_UpdatedOn}</div></div> : <div className='details-caption-strike'>Started<div className='details-caption-2'>Updated at <br />{tickets.Tm_Start_UpdatedOn}</div></div>}
-                                        </div>
-                                        <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line display-1 width-10" : "ticket-status-line width-10 display-1 color-green-line"}>
-                                        </div>
-                                        <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 color-green-line display-2"}>
-                                            |
-                                        </div>
-                                        <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
-                                            <div className='ticket-icon'><CheckCircleIcon /></div>
-                                            {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className='details-caption-strike'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
-                                        </div>
-                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 display-1 color-green-line" : " ticket-status-line display-1 width-10 "}>
-                                        </div>
-                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 display-2 color-green-line" : " ticket-status-line width-10 display-2"}>
-                                            |
-                                        </div>
-                                        <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status  color-green" : "ticket-status"}>
-                                            <div className='ticket-icon'><CheckCircleIcon /></div>
-                                            {tickets.Status === "completed" || tickets.Status === "Completed" ? <div className='details-caption'>{tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div>}
-                                        </div>
-                                   
-                               
-                            </div>
-                        </div> */}
                         <div className='ticket-details-middle-2 row'>
                             <div className='col'>
                                 <div className='label-ticket-details'>
@@ -153,17 +192,38 @@ function Non_userTickets(props) {
                                 <div className='user-label-ticket-details'>
                                     {nonuser.DomainName}
                                 </div>
-                            </div>
+                        </div>
                             <div className='label-ticket-details'>
                                 Description
                             </div>
                             <div className='ticket-input-details' >
                                 {nonuser.Description}
                             </div>
+                            <FormDialog
+                                className="team-delete"
+                                dialogtitle={"Reject"}
+                                headtitle={<div className='head-dialog'>Are you sure to reject the unregsitered client?</div>}
+                                dialogactions={
+                                    <div>
+                                        <Button onClick={()=>handleRejection(nonuser.registerId)}>YES</Button>
+                                        <Button  >NO</Button>
+                                    </div>
+                                }
+                            />
+                            <FormDialog
+                                className="team-delete"
+                                dialogtitle={"Approve"}
+                                headtitle={<div className='head-dialog'>Are you sure to Approve the unregsitered client?</div>}
+                                dialogactions={
+                                    <div>
+                                        <Button onClick={()=>handleApproval(nonuser)}>YES</Button>
+                                        <Button  >NO</Button>
+                                    </div>
+                                }
+                            />
                         </div>
-                            </div>
-                            
-                        </div>
+                    </div>
+                </div>
             )}
         </>
     );
