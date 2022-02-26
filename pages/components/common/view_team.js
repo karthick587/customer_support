@@ -3,7 +3,7 @@ import React, { useContext,useState,useEffect } from "react";
 import Axios from "axios";
 export default function ViewTeam(props){
     const {teamArray,team}=props
-   
+    const [teams,setteams]=useState(team)
     const [newarray,setnewarray]=useState([])
     useEffect(()=>{
         setnewarray(teamArray.map((product)=>[...newarray,product.teamId] )) 
@@ -11,7 +11,7 @@ export default function ViewTeam(props){
   
     return(
         <div className="">
-        {team.filter(val => { 
+        {teams.filter(val => { 
              for (let i = 0; i <= 20; i++) {
             return val.teamId.toString().includes(newarray[i])
              } 
