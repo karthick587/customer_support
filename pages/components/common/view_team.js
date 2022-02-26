@@ -2,18 +2,12 @@ import React, { useContext,useState,useEffect } from "react";
 
 import Axios from "axios";
 export default function ViewTeam(props){
-    const {teamArray}=props
-    const [team, setTeam] = useState([]);
+    const {teamArray,team}=props
+   
     const [newarray,setnewarray]=useState([])
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data))
-            .catch((err) => { return err; })
-           
-    });
     useEffect(()=>{
         setnewarray(teamArray.map((product)=>[...newarray,product.teamId] )) 
-    },[])
+    },[setnewarray])
     console.log(newarray)
     return(
         <div className="row">

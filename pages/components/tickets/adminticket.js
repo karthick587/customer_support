@@ -346,14 +346,14 @@ function Adminticket() {
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                        <TableCell ></TableCell>
+                                        <TableCell ><ViewTeam team={team} teamArray={tickets.TeamAssign} /></TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
                                     </TableRow>
                                     <div className='updateadminpage flex'>
                                         <FormDialog
                                             dialog_className="Assign-team-dailog"
-                                            dialogtitle={<div>Assign</div>}
+                                            dialogtitle={<div onClick={()=>setselectTeam("x")}>Assign</div>}
                                             className="btn3 ticket-update2"
                                             dialogbody={
                                                 <div className="form dialog">
