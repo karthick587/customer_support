@@ -1680,7 +1680,7 @@ h5.Completed {
   background-color: white;
   padding: 7px 23px;
   max-width: max-content;
-  border-radius: 12px;
+  border-radius: 6px;
   box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
 }
 
@@ -1705,7 +1705,7 @@ h5.Completed {
 
 .resentticket-table {
   overflow-y: auto !important;
-  height: 38vh !important;
+  height: 42vh !important;
   position: relative !important;
 }
 
@@ -1769,7 +1769,7 @@ h5.Completed {
 .profile-card {
   padding: 50px;
   background-color: white;
-  border-radius: 14px;
+  border-radius: 6px;
 }
 
 .profile-body {
@@ -2030,4 +2030,15 @@ div#v-pills-dash {
   bottom:0 !important;
   z-index:999999999;
   left: 20px !important;
+}
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  width: 50% !important;
+  border-radius: 4px;
+  margin: 0px 0px 0px 30px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  overflow: hidden;
 }
