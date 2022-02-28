@@ -114,8 +114,8 @@ function Non_userTickets(props) {
             {nonUserDetails.reverse().map((nonuser) =>
                 <div className='ticket-details' key={nonuser.registerId}>
                     <div className='ticket-details-head'>
-                        Unregistered Customer's Details
-                        <div className='ticket-details-head-btn '>
+                        Unregistered Customers Details
+                        <div className='ticket-details-head-btn'>
                             <button className='btn2' onClick={closeDetails}>Back</button>
                         </div>
                     </div>

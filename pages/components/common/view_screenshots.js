@@ -24,7 +24,7 @@ export default function ViewScreenshots(props){
     return(
         <div className="">
             {newarray.map((screenshots)=>
-                 <div>
+                 <div key={screenshots}>
                      {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
                  <Imageviewer
                      imgdialogbutton={<img src={screenshots}  alt="screenshots" width={200} height={100} />}
