@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { CounterContext } from '../contex/adminProvider';
 
 export default function FormAlert(props) {
-    const {testing,showvalue}=useContext(CounterContext)
+    const {testing,setTesting,showvalue}=useContext(CounterContext)
     const [open, setOpen] = React.useState(true);
 
     return (
@@ -21,7 +21,8 @@ export default function FormAlert(props) {
                             <IconButton
                                 aria-label="close"
                                 color="inherit"
-                                size="small"                             
+                                size="small" 
+                                onClick={()=>setTesting(false)}                            
                             >
                                 <CloseIcon fontSize="inherit" />
                             </IconButton>

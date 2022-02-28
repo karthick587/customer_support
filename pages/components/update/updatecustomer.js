@@ -8,7 +8,7 @@ import { CounterContext } from '../contex/adminProvider';
 
 function Updatecustomer({ usersId }) {
 
-    const { setdialogformopen } = useContext(CounterContext);
+    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     var [getCustomer, setGetCustomer] = useState([]);
     const [editLogo, setEditLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
@@ -81,8 +81,13 @@ function Updatecustomer({ usersId }) {
         }).then((res) => {
             setShow("Updated Successfully");
             setdialogformopen("true");
+            setTesting(true)
+            setshowvalue("Updated Successfully");
             localStorage.setItem("passValue", true);
-        }).catch((err)=>{ return err; })
+        }).catch((err)=>{ 
+            setTesting(true)
+            setshowvalue("Error");
+            return err; })
     };
 
     useEffect(()=>{

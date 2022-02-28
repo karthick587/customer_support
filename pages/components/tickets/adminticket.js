@@ -60,7 +60,7 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    },[]);
+    },[tickets]);
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
@@ -341,7 +341,7 @@ function Adminticket() {
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                        <TableCell ><ViewTeam team={team} teamArray={tickets.TeamAssign} /></TableCell>
+                                        <TableCell >{tickets.TeamAssign.length<=0 ?<>Not assigned</>:<ViewTeam team={team} teamArray={tickets.TeamAssign} />}</TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
                                     </TableRow>

@@ -109,7 +109,7 @@ function Ticketviewer(props) {
                                     Department
                                 </div>
                                 <div className='user-label-ticket-details'>
-                               <ViewTeam team={team} teamArray={tickets.TeamAssign} /> 
+                                {tickets.TeamAssign.length<=0 ?<>Not assigned</>:<ViewTeam team={team} teamArray={tickets.TeamAssign} /> }
                                 </div>
                             </div>
                             <div className='col'>

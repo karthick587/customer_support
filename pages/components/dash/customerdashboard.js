@@ -17,6 +17,7 @@ import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import Copyrights from "../common/copyRight";
+import FormAlert from "../common/alert";
 const CustomerDashboard = () => {
 
   const [user, setUser] = useState();
@@ -181,6 +182,7 @@ const CustomerDashboard = () => {
                 </div>
               </div>
             } />
+            <FormAlert />
         </div>
       }
     </>

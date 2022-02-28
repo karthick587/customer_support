@@ -7,7 +7,7 @@ import { CounterContext } from '../contex/adminProvider';
 
 function Updateteam({ teamId }) {
 
-    const { setdialogformopen } = useContext(CounterContext);
+    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     var [getTeam, setGetTeam] = useState([]);
     var [show, setShow] = useState('');
 
@@ -28,9 +28,15 @@ function Updateteam({ teamId }) {
             Team: Team,
         }).then((res) => {
             setShow("Updated Successfully");
+         
             setdialogformopen("true")
+            setTesting(true)
+            setshowvalue("Updated Successfully");
             localStorage.setItem("passValue",true);
-        }).catch((err)=>{ return err; })
+        }).catch((err)=>{ 
+            setTesting(true)
+            setshowvalue("Error");
+            return err; })
     };
     useEffect(()=>{
         const Timer = setTimeout(() => {
@@ -39,6 +45,7 @@ function Updateteam({ teamId }) {
           return () =>{
               clearTimeout(Timer);
           }
+        
       })
 
     return (

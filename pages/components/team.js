@@ -21,7 +21,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Typography } from '@mui/material';
 import { CounterContext } from './contex/adminProvider';
 export default function Team(props) {
-const {setdialogformopen}=useContext(CounterContext)
+const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
@@ -53,8 +53,13 @@ const {setdialogformopen}=useContext(CounterContext)
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then((res) => {
+            setshowvalue("Deleted Successfully")
+            setTesting(true)
             return res;
-        }).catch((err) => { return err; })
+        }).catch((err) => { 
+            setshowvalue("Error")
+            setTesting(true)
+            return err; })
     };
 
     const TeamList = [

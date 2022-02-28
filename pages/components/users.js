@@ -23,7 +23,7 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 export default function Users(props) {
 
-    const { setdialogformopen } = useContext(CounterContext);
+    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     var [search, setSearch] = useState('');
     const router = useRouter();
     var [users, setUsers] = useState([]);
@@ -60,7 +60,12 @@ export default function Users(props) {
             Isdeleted: 'y'
         }).then(() => {
             setdialogformopen(true)
-        }).catch((err) => { return err; })
+            setshowvalue("Deleted Successfully")
+            setTesting(true)
+        }).catch((err) => { 
+            setshowvalue("Error")
+            setTesting(true)
+            return err; })
     };
 
     const UsersList = [

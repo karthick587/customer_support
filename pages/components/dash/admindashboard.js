@@ -27,6 +27,8 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import NonUserTickets from '../tickets/non_userTickets';
 import Adminissues from '../submits/adminIssues';
 import SendIcon from '@mui/icons-material/Send';
+import FormAlert from '../common/alert';
+
 const AdminDashboard = () => {
 
   const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
@@ -144,8 +146,16 @@ const AdminDashboard = () => {
                 </Typography>
               </>
             }
-            shownotification={notificationcount}
-            
+            shownotification={
+              <AdminNotification 
+              onclick={
+              <IconButton className='z-index' color="inherit" >
+              <Badge badgeContent={notificationcount} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              } Notification={notificationcount} />
+               }         
             sidenavcontent={
               <>
                 <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="/users" ><ListItem button>
@@ -248,6 +258,7 @@ const AdminDashboard = () => {
               </div>
             }
           />
+            <FormAlert />
         </div>
       }
     </>

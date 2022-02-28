@@ -18,6 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Copyrights from "../common/copyRight";
+import FormAlert from "../common/alert";
 const TeamDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -196,6 +197,7 @@ const TeamDashboard = () => {
                 </div>
               </div>
             } />
+            <FormAlert />
         </div>
       }
     </>

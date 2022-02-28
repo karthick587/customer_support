@@ -2204,3 +2204,8 @@ div#v-pills-dash {
   letter-spacing: 0em;
   display: block;
 }
+.css-kgmwx6-MuiPaper-root-MuiAlert-root {
+  background-color: rgb(149 220 149 / 62%) !important;
+  padding: 1px 16px !important;
+  
+}
