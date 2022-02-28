@@ -16,10 +16,10 @@ import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
 import DesignTeamList from './adminticketTeamList/designTeamList';
+import { Typography } from '@mui/material';
 // import { array } from 'yup';
 import AssignedMenber from '../common/assigned_members';
 import ViewTeam from '../common/view_team';
-import { Typography } from '@mui/material';
 
 function Adminticket() {
     const { setdialogformopen, designTeamList } = useContext(CounterContext);
@@ -60,17 +60,17 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    }, []);
+    },[]);
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
             .then((res) => setTeam(res.data))
             .catch((err) => { return err; })
-    }, []);
+    },[]);
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
-    }, []);
+    },[]);
     //current date and time
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -110,7 +110,7 @@ function Adminticket() {
             setIsOpenfilter(true);
         }
         setShow();
-    }, [filteredTitle]);
+    },[filteredTitle]);
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
@@ -118,7 +118,7 @@ function Adminticket() {
         } else {
             setIsOpenstatusfilter(false);
         }
-    }, [filteredTitle]);
+    },[filteredTitle]);
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -127,7 +127,7 @@ function Adminticket() {
         } else if (login === null) {
             Router.push("/");
         }
-    }, []);
+    },[]);
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
@@ -158,7 +158,7 @@ function Adminticket() {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
                 function (response) {
                     setdialogformopen(true)
-                    setShowmailstatus("EMail sended Successfully")
+                    setShowmailstatus("Email sent successfully")
                 },
                 function (err) {
                     setShowmailstatus("Sending Email Failed")
@@ -174,7 +174,7 @@ function Adminticket() {
         return () => {
             clearTimeout(Timer);
         }
-    }, [])
+    },[])
     //to get client email id
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/customer/list")
@@ -188,12 +188,12 @@ function Adminticket() {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-    }, []);
+    },[]);
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
     //emailjs
-    const Notificationupdate = (ticketsId, Screenshots, TeamAssign) => {
+    const Notificationupdate = (ticketsId, Screenshots,TeamAssign) => {
         setdticketsId(ticketsId);
         setteamarray(TeamAssign)
         setdticketsscreenshots(Screenshots);
@@ -217,15 +217,15 @@ function Adminticket() {
         setShowdetails(false);
     };
 
-
+   
 
     function handleUpdate(ticketsId) {
-        const teamId = designTeamList.map((o) => JSON.stringify(o));
+        const teamId = designTeamList.map((o)=> JSON.stringify(o));
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
             ticketsId: ticketsId,
-            Adm_UpdatedBy: 'admin1',
-            Adm_UpdatedOn: fulldate + ' ' + fullTime,
+            Adm_UpdatedBy:Adm_CreatedBy,
+            Adm_UpdatedOn:fulldate+' '+fullTime,
         }).then((_response) => {
             setShow("update Successfully");
             setdialogformopen("true")
@@ -236,7 +236,7 @@ function Adminticket() {
     function callback(childdata) {
         setdesignTeamList(childdata)
     }
-
+   
     return (
         <div>
             <Head>
@@ -268,7 +268,7 @@ function Adminticket() {
                                 </select>
                             )}
                         </div>
-
+                       
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -337,7 +337,7 @@ function Adminticket() {
                                 }
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                                 <TableBody className='update-right' key={tickets.ticketsId}>
-                                    <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots, tickets.TeamAssign)}>
+                                    <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots,tickets.TeamAssign)}>
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
@@ -348,7 +348,7 @@ function Adminticket() {
                                     <div className='updateadminpage flex'>
                                         <FormDialog
                                             dialog_className="Assign-team-dailog"
-                                            dialogtitle={<div onClick={() => setselectTeam("x")}>Assign</div>}
+                                            dialogtitle={<div onClick={()=>setselectTeam("x")}>Assign</div>}
                                             className="btn3 ticket-update2"
                                             dialogbody={
                                                 <div className="form dialog">
@@ -397,7 +397,7 @@ function Adminticket() {
                                                             <h1>Status Final Update</h1>
                                                         </div>
                                                         <select className="form-input" onChange={handlestatus}>
-                                                            <option value="">--Select stutus--</option>
+                                                            <option value="">--Select status--</option>
                                                             <option className='Completed' value="Completed">Completed</option>
                                                         </select>
                                                         <div className='flex'>
@@ -415,7 +415,7 @@ function Adminticket() {
                             )}
                         </Table>
                     </TableContainer>
-                    <div className='page-bottom'>
+                     <div className='page-bottom'>
                         < ReactPaginate
                             previousLabel={""}
                             nextLabel={""}
@@ -440,7 +440,7 @@ function Adminticket() {
                 :
                 <>
                     <Ticketviewer
-                        teamarray={teamarray}
+                    teamarray={teamarray}
                         dticketsId={dticketsId}
                         dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}

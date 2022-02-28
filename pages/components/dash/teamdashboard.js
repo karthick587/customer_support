@@ -123,15 +123,7 @@ const TeamDashboard = () => {
             TicketTabActive={TicketTabActive}
             DashTabActive={DashTabActive}
             logout={onBackButtonEvent3}
-            sidenavcontent={
-              <button className={activeTab === "profile" ? "nav-link active" : "nav-link"} onClick={profileTabActive} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
-                <ListItemIcon>
-                  <AccountCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Profile" />
-              </ListItem>
-              </button>
-            }
+           
             headertext="USER DASHBOARD"
             shownotification={ <IconButton className='z-index' color="inherit" >
             <Badge badgeContent={teamteamNotificationcount} color="secondary">
@@ -156,7 +148,7 @@ const TeamDashboard = () => {
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
                         <div className='dash-head'>
-                          <h2>Dashboaard</h2>
+                          <h2>Dashboard</h2>
                         </div>
                         <div className='dash-body'>
                           <div className='dash-cards'>
@@ -197,9 +189,7 @@ const TeamDashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    profile
-                  </div>
+               
                   <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <Teamticket teamticket={teamticket} />
                   </div>

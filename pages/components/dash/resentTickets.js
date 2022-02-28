@@ -36,7 +36,7 @@ export default function Resentticket(props) {
                             <TableCell>Date</TableCell>
                             <TableCell>TicketId</TableCell>
                             <TableCell>Username</TableCell>
-                            <TableCell>Team</TableCell>
+                            <TableCell>Domainname</TableCell>
                             <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
@@ -49,7 +49,7 @@ export default function Resentticket(props) {
                                     <TableCell  >{tickets.Cus_CreatedOn}</TableCell>
                                     <TableCell >{tickets.ticketsId}</TableCell>
                                     <TableCell >{tickets.Username}</TableCell>
-                                    <TableCell > {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                    <TableCell > {tickets.DomainName}</TableCell>
                                     <TableCell >{tickets.Status}</TableCell>
                                 </TableRow>
                         </TableBody>

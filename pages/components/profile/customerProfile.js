@@ -10,7 +10,6 @@ export default function CustomerProfile(props) {
             .then((res) => setUsers(res.data))
             .catch((err)=>{ return err; })
     }, [setUsers,customername]);
-console.log(customername)
     return (
         
             <div className="profile-body">

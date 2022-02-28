@@ -56,37 +56,61 @@ function Userissue(props) {
     });
 
     function handleScreenshot(e) {
-        setScreenshots(e.target.files[0]);
+        setScreenshots(e.target.files);
     };
 
     const addIssues = () => {
-        setloader(true)
-        const data = new FormData();
-        data.append("UserName", customername);
-        data.append("Email", Email);
-        data.append("Phonenumber", Phonenumber);
-        data.append("DomainName", DomainName);
-        data.append("Date", date+ ' ' + fullTime);
-        data.append("Description", Description);
-        data.append("Projectcode",projectcode);
-        data.append("file", Screenshots);
-        data.append("Cus_CreatedOn", date + ' ' + fullTime)
-        Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
+        setloader(true);
+        if(Screenshots!==undefined || Screenshots.length>0){
+            const data = new FormData();
+            data.append("Username", customername);
+            data.append("Email", EmailR.current.value);
+            data.append("Phonenumber", PhonenumberR.current.value);
+            data.append("DomainName", DomainnameR.current.value);
+            data.append("Description",  DescriptionR.current.value);
+            for(let i=0; i<Screenshots.length; i++){
+                data.append("files",Screenshots[i]);  
             }
-        }).then((res) => {
-            setShow("Updated Successfully");
-            setloader(false);
-            EmailR.current.value = " ";
-            PhonenumberR.current.value = " ";
-            DomainnameR.current.value = " ";
-            DescriptionR.current.value = " ";
-            FileR.current.value = null;
-        })
-        .catch((err)=>{ return err; })
+            data.append("Cus_CreatedOn", date + ' ' + fullTime)
+            Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }).then((res) => {
+                setShow("Ticket Raised Successfully");
+                setloader(false);
+                EmailR.current.value = " ";
+                PhonenumberR.current.value = " ";
+                DomainnameR.current.value = " ";
+                DescriptionR.current.value = " ";
+                FileR.current.value = null;
+            })
+            .catch((err)=>{ return err; })
+        }else{
+            const data = new FormData();
+            data.append("Username", customername);
+            data.append("Email", EmailR.current.value);
+            data.append("Phonenumber", PhonenumberR.current.value);
+            data.append("DomainName", DomainnameR.current.value);
+            data.append("Description",  DescriptionR.current.value);
+            data.append("Cus_CreatedOn", date + ' ' + fullTime)
+            Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }).then((res) => {
+                setShow("Ticket Raised Successfully");
+                setloader(false);
+                EmailR.current.value = " ";
+                PhonenumberR.current.value = " ";
+                DomainnameR.current.value = " ";
+                DescriptionR.current.value = " ";
+                FileR.current.value = null;
+            })
+            .catch((err)=>{ return err; })
+        }
+        
     };
-
     useEffect(()=>{
         const timer = setTimeout(() => {
               setShow();
@@ -97,51 +121,51 @@ function Userissue(props) {
       })
 
     return (
-            <div>
-                <form className="form3" action="/" method="post">
-                    <h4 className="issue-head">Submit your Issues Here!!!</h4>
-                    <div className="form-group mt-2 mb-2 flex" >
-                        <label className="label width-25">User Name</label>
-                        <h5 className="issue-form-input">{props.customername}</h5>
-                    </div>
-                    <div className="form-group mb-2 flex">
-                        <label className="label width-25">Email</label>
-                        <input className="issue-form-input" name="email" type="text" ref={EmailR} onChange={(e) => { setEmail(e.target.value); }} />
-                    </div>
-                    <div className="form-group mb-2 flex">
-                        <label className="label width-25">Phonenumber</label>
-                        <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR} onChange={(e) => { setPhonenumber(e.target.value); }} />
-                    </div>
-                    <div className="form-group mb-2 flex">
-                        <label className="label width-25">Domain Name</label>
-                        <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} onChange={(e) => { setDomainName(e.target.value); }} />
-                    </div>
-                    <div className="form-group scrolable  mb-2">
-                        <label className="label">Description</label>
-                        <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" onChange={(e) => { setDescription(e.target.value) }} />
-                    </div>
-                    <div className="form-group  mb-2">
-                        <form>
-                            <label htmlFor="contained-button-file">
-                                <input type="file"
-                                className="upload-proof"
-                                    id="file"
-                                    ref={FileR}
-                                    accept="image/*,application/pdf,
-                                                application/msword,
-                                                application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-                                                application/zip"
-                                    onChange={handleScreenshot} multiple="true"
-                                />
-                            </label>
-                        </form>
-                    </div>
-                    <div className="">
-                    {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={30} /></>} 
-                   
-                    </div>
-                </form>
-                <h4 className="alert1 text-center">{show}</h4>
+        <div>
+        <form className="form3" action="/" method="post">
+            <h4 className="issue-head">Submit your Issues Here!!!</h4>
+            <div className="form-group mt-2 mb-2 flex" >
+                <label className="label width-25">User Name</label>
+                <h5 className="issue-form-input">{props.customername}</h5>
             </div>
+            <div className="form-group mb-2 flex">
+                <label className="label width-25">Email</label>
+                <input className="issue-form-input" name="email" type="text" ref={EmailR} />
+            </div>
+            <div className="form-group mb-2 flex">
+                <label className="label width-25">Phonenumber</label>
+                <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR}/>
+            </div>
+            <div className="form-group mb-2 flex">
+                <label className="label width-25">Domain Name</label>
+                <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} />
+            </div>
+            <div className="form-group scrolable  mb-2">
+                <label className="label">Description</label>
+                <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" />
+            </div>
+            <div className="form-group  mb-2">
+                <form>
+                    <label htmlFor="contained-button-file">
+                        <input type="file"
+                        className="upload-proof"
+                            id="file"
+                            ref={FileR}
+                            accept="image/*,application/pdf,
+                                        application/msword,
+                                        application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                        application/zip"
+                            onChange={handleScreenshot} multiple="true"
+                        />
+                    </label>
+                </form>
+            </div>
+            <div className="">
+            {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={30} /></>} 
+           
+            </div>
+        </form>
+        <h4 className="alert1 text-center">{show}</h4>
+    </div>
     );
 }

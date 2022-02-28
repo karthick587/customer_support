@@ -40,7 +40,7 @@ function NonUserTickets(props) {
             {showdetails === false ?
                 <div className="teambody">
                      <div className='adminticket-head'>
-                     <h1>Non User Tickets</h1>
+                     <h1>Unregistered Customer</h1>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">

@@ -1,26 +1,33 @@
-import React, { useContext,useState,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 
 import Axios from "axios";
 export default function ViewTeam(props){
     const {teamArray,team}=props
-    
+  
     const [newarray,setnewarray]=useState([])
     useEffect(()=>{
-       
-        setnewarray(teamArray.map((product)=>[...newarray,product.teamId] )) 
+       var TeamList = [...newarray]
+       if(teamArray !== undefined){
+        teamArray.map((product)=>{
+            TeamList.push(product.teamId)
+        })
+        setnewarray(TeamList)
+       }  
     },[setnewarray,teamArray])
-  
+    
     return(
-        <div className="">{team!==undefined ?<> {team.filter(val => { 
-            for (let i = 0; i <= 20; i++) {
-           return val.teamId.toString().includes(newarray[i])
-            } 
+        <div className="">
+        { newarray !== undefined ?<> {team.filter(val => { 
+            if(newarray.includes(val.teamId)){
+                return val
+            }
         }).map((product) =>
-                                <div className=" " key={product.teamId}>
-                                    <div>{product.Username},</div>
-                               </div>
-                            )}</>:<>hello</>}
-       
+            <div className=" " key={product.teamId}>
+                <div>{product.Username},</div>
+            </div>
+        )}</>:
+            <></>
+        }
      </div>
     )
 }

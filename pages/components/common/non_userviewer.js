@@ -4,9 +4,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { Button } from '@mui/material';
-
+import { CounterContext } from '../contex/adminProvider';
 function Non_userTickets(props) {
-
+    const { setdialogformopen } = useContext(CounterContext);
     const { registerId, closeDetails} = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
     const [Adminname, setAdminname] = useState([]);
@@ -114,7 +114,7 @@ function Non_userTickets(props) {
             {nonUserDetails.reverse().map((nonuser) =>
                 <div className='ticket-details' key={nonuser.registerId}>
                     <div className='ticket-details-head'>
-                        viewing Unregistered Customer Details
+                        Unregistered Customer's Details
                         <div className='ticket-details-head-btn '>
                             <button className='btn2' onClick={closeDetails}>Back</button>
                         </div>
@@ -202,22 +202,22 @@ function Non_userTickets(props) {
                             <FormDialog
                                 className="team-delete"
                                 dialogtitle={"Reject"}
-                                headtitle={<div className='head-dialog'>Are you sure to reject the unregsitered client?</div>}
+                                headtitle={<div className='head-dialog'>Are you sure want to reject this ticket?</div>}
                                 dialogactions={
                                     <div>
                                         <Button onClick={()=>handleRejection(nonuser.registerId)}>YES</Button>
-                                        <Button  >NO</Button>
+                                        <Button  onClick={()=>setdialogformopen("true")}>NO</Button>
                                     </div>
                                 }
                             />
                             <FormDialog
                                 className="team-delete"
                                 dialogtitle={"Approve"}
-                                headtitle={<div className='head-dialog'>Are you sure to Approve the unregsitered client?</div>}
+                                headtitle={<div className='head-dialog'>Are you sure want to Approve this ticket?</div>}
                                 dialogactions={
                                     <div>
                                         <Button onClick={()=>handleApproval(nonuser)}>YES</Button>
-                                        <Button  >NO</Button>
+                                        <Button  onClick={()=>setdialogformopen("true")}>NO</Button>
                                     </div>
                                 }
                             />

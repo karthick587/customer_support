@@ -9,6 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { useRouter } from 'next/router';
+import Axios from 'axios';
+import ViewTeam from '../common/view_team';
+
 function Userticket(props) {
     const { tickets } = props;
     const [maptickets, setmaptickets] = useState([]);
@@ -17,6 +20,7 @@ function Userticket(props) {
     const [showdetails, setShowdetails] = useState(false);
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
+    var [team, setTeam] = useState([]);
     useEffect(() => {
         setmaptickets(tickets.reverse());
         setLogin(window.localStorage.getItem('loggedin'));
@@ -35,10 +39,17 @@ function Userticket(props) {
     function closeDetails() {
         setShowdetails(false);
     };
+
+    useEffect(() => {
+        Axios.get("https://mindmadetech.in/api/team/list")
+            .then((res) => setTeam(res.data))
+            .catch((err) => { return err; })
+    },[]);
+
     return (
         <div>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>Customer Dashboard</title>
             </Head>
             {showdetails === false ?
                
@@ -63,7 +74,7 @@ function Userticket(props) {
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell > {tickets.Design === "y" ? <div>Design</div> : <></>}{tickets.Development === "y" ? <div>Development</div> : <></>} {tickets.Seo === "y" ? <div>Seo</div> : <></>} {tickets.Server === "y" ? <div>Server</div> : <></>} {tickets.Server === "" && tickets.Design === "" && tickets.Seo === "" && tickets.Development === "" || tickets.Server === "n" && tickets.Design === "n" && tickets.Seo === "n" && tickets.Development === "n" ? <>Not assigned</> : <></>}</TableCell>
+                                            <TableCell ><ViewTeam team={team} teamArray={tickets.TeamAssign} /></TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
 
                                             </TableCell>

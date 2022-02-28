@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -19,8 +19,9 @@ import ReactPaginate from 'react-paginate';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Typography } from '@mui/material';
+import { CounterContext } from './contex/adminProvider';
 export default function Team(props) {
-
+const {setdialogformopen}=useContext(CounterContext)
     var [search, setSearch] = useState('');
     var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
@@ -167,7 +168,7 @@ export default function Team(props) {
                                             dialogactions={
                                                 <div>
                                                     <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
-                                                    <Button  >NO</Button>
+                                                    <Button onClick={()=>setdialogformopen("true")} >NO</Button>
                                                 </div>
                                             }
                                         />

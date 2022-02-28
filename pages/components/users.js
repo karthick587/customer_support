@@ -185,11 +185,11 @@ export default function Users(props) {
                                         <FormDialog
                                             className="user-delete"
                                             dialogtitle={<DeleteIcon />}
-                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                            headtitle={<div className='head-dialog'>Are you sure want to delete this Customer?</div>}
                                             dialogactions={
                                                 <div>
                                                     <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                    <Button>NO</Button>
+                                                    <Button onClick={()=>setdialogformopen("true")}>NO</Button>
                                                 </div>
                                             }
                                         />

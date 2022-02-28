@@ -144,16 +144,8 @@ const AdminDashboard = () => {
                 </Typography>
               </>
             }
-            shownotification={
-              <AdminNotification 
-              onclick={
-              <IconButton className='z-index' color="inherit" >
-              <Badge badgeContent={notificationcount} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              } Notification={notificationcount} />
-               }         
+            shownotification={notificationcount}
+            
             sidenavcontent={
               <>
                 <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="/users" ><ListItem button>

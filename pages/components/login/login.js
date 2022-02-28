@@ -96,11 +96,7 @@ export default function Login1() {
                     <input className="form-input" name="password" type="password"  {...register('password')} />
                     <p className="me-2 text-danger">{errors.password?.message}</p>
                   </div>
-                  <div className="form-group log">
-                    <label className="form-remember">
-                      <input type="checkbox" />Remember Me
-                    </label>
-                  </div>
+                
                   <div className="form-group log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>

@@ -149,7 +149,7 @@ const CustomerDashboard = () => {
                             <Dashcard
                               cardHead="No of Tickets"
                               cardbody={ticketraisedcount}
-                              cardfooter="Rised"
+                              cardfooter="Raised"
                               cardIcon={<div className="icon-rotation"><FontAwesomeIcon icon={faTicketAlt} /></div>}
                             />
                             <Dashcard

@@ -3,20 +3,21 @@ import Imageviewer from '../common/imageviewer'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
 import ViewTeam from './view_team';
+import ViewScreenshots from './view_screenshots';
 
 function Ticketviewer(props) {
 
     const { dticketsId, closeDetails, dticketsscreenshots,teamarray} = props;
-    const [ticket, settickets] = useState([]);
+    const [ticket, setticket] = useState([]);
     const [mimetype, setMimetype] = useState('');
     const[downloadlink,setdownloadlink]=useState()
 
     useEffect(() => {
-        Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
-            .then((res) => settickets(res.data))
+        Axios.get(`https://mindmadetech.in/api/tickets/listtest/${dticketsId}`)
+            .then((res) => setticket(res.data))
             .catch((err)=>{ return err;})
-    }, [settickets]);
-    
+    }, [setticket]);
+ 
     // useEffect(() => {
     //     setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
     // },[setMimetype]);
@@ -35,7 +36,7 @@ function Ticketviewer(props) {
             {ticket.reverse().map((tickets) =>
                 <div className='ticket-details' key={tickets.ticketsId}>
                     <div className='ticket-details-head'>
-                        viewing Support Ticket #{tickets.ticketsId}
+                        Ticket Details #{tickets.ticketsId}
                         <div className='ticket-details-head-btn '>
                             <button className='btn2' onClick={closeDetails}>Back</button>
                         </div>
@@ -97,7 +98,7 @@ function Ticketviewer(props) {
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Ticket NO
+                                    Ticket No
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {tickets.ticketsId}
@@ -105,18 +106,10 @@ function Ticketviewer(props) {
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Project Code
-                                </div>
-                                <div className='user-label-ticket-details'>
-                                    {tickets.Projectcode}
-                                </div>
-                            </div>
-                            <div className='col'>
-                                <div className='label-ticket-details'>
                                     Department
                                 </div>
                                 <div className='user-label-ticket-details'>
-                               <ViewTeam team={team} teamArray={teamarray} /> 
+                               <ViewTeam team={team} teamArray={tickets.TeamAssign} /> 
                                 </div>
                             </div>
                             <div className='col'>
@@ -160,14 +153,15 @@ function Ticketviewer(props) {
                                 <div className='label-ticket-details'>
                                     Screenshot
                                 </div>
-                                {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
+                                <ViewScreenshots FileArray={tickets.Files} />
+                                {/* {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
                                     <Imageviewer
                                         imgdialogbutton={<img src={tickets.Screenshots}  alt="screenshots" width={200} height={100} />}
                                         imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
                                     /> :
                                     <a href={tickets.Screenshots} target="_blank" rel="noreferrer noopener">View File</a>
                                 }
-                                <a href={downloadlink}   onClick={()=>downloadimg(tickets.Screenshots)}>download</a>
+                                <a href={downloadlink}   onClick={()=>downloadimg(tickets.Screenshots)}>download</a> */}
                             </div>
                     </div>
 

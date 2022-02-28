@@ -143,7 +143,7 @@ function Teamticket(props) {
     return (
         <div>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>Team Dashboard</title>
             </Head>
             {showdetails === false ?
                 <div className="teambody">
@@ -168,7 +168,7 @@ function Teamticket(props) {
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                         <TableCell >
-                                            {/* <ViewTeam team={team} teamArray={tickets.TeamAssign}  /> */}
+                                        <ViewTeam team={team} teamArray={tickets.TeamAssign}  />
                                         </TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>

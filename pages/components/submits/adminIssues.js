@@ -57,68 +57,72 @@ import CircularProgress from '@mui/material/CircularProgress';
     };
 
     function addIssues(){
-       if(Logo.length > 0){
-       
-        const data = new FormData();
-        data.append("Username", UsernameR.current.value);
-        data.append("Email", EmailR.current.value);
-        data.append("Phonenumber", PhonenumberR.current.value);
-        data.append("DomainName", DomainnameR.current.value);
-        data.append("Description", DescriptionR.current.value);
-        data.append("Adm_CreatedOn", date+ ' ' + fullTime);
-        data.append("Adm_CreatedBy", "admin");
-        data.append("Cus_CreatedOn","null")
-        for(let i=0; i<Logo.length; i++){
-            data.append("files",Logo[i]);  
-        }
-     
-        Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    }
-        }).then((res) => {
-                    setShow("Updated Successfully");
-                    setloader(false);
-                    UsernameR.current.value = " ";
-                    EmailR.current.value = " ";
-                    PhonenumberR.current.value = " ";
-                    DomainnameR.current.value = " ";
-                    DescriptionR.current.value = " ";
-                    FileR.current.value = null;
-        }).catch((err)=>{ return err; })
-    
-       }else{
-        const data = new FormData();
-        data.append("Username", UsernameR.current.value);
-        data.append("Email", EmailR.current.value);
-        data.append("Phonenumber", PhonenumberR.current.value);
-        data.append("DomainName", DomainnameR.current.value);
-        data.append("Description", DescriptionR.current.value);
-        data.append("Adm_CreatedOn", date+ ' ' + fullTime);
-        data.append("Adm_CreatedBy", "admin");
-        data.append("Cus_CreatedOn","null")
+        if(Logo!==undefined || Logo.length > 0){
         
-        Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    }
-        }).then((res) => {
-                    setShow("Updated Successfully");
-                    setloader(false);
-                    UsernameR.current.value = " ";
-                    EmailR.current.value = " ";
-                    PhonenumberR.current.value = " ";
-                    DomainnameR.current.value = " ";
-                    DescriptionR.current.value = " ";
-                    FileR.current.value = null;
-        }).catch((err)=>{ return err; })
-       }    
-    }
+         const data = new FormData();
+         data.append("Username", UsernameR.current.value);
+         data.append("Email", EmailR.current.value);
+         data.append("Phonenumber", PhonenumberR.current.value);
+         data.append("DomainName", DomainnameR.current.value);
+         data.append("Description", DescriptionR.current.value);
+         data.append("Adm_CreatedOn", date+ ' ' + fullTime);
+         data.append("Adm_CreatedBy", Createdby);
+         data.append("Cus_CreatedOn","null")
+         for(let i=0; i<Logo.length; i++){
+             data.append("files",Logo[i]);  
+         }
+      
+         Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                     headers: {
+                         'Content-Type': 'multipart/form-data',
+                     }
+         }).then((res) => {
+                     setShow("Updated Successfully");
+                     setloader(false);
+                     UsernameR.current.value = " ";
+                     EmailR.current.value = " ";
+                     PhonenumberR.current.value = " ";
+                     DomainnameR.current.value = " ";
+                     DescriptionR.current.value = " ";
+                     FileR.current.value = null;
+         }).catch((err)=>{ return err; })
+     
+        }else{
+         const data = new FormData();
+         data.append("Username", UsernameR.current.value);
+         data.append("Email", EmailR.current.value);
+         data.append("Phonenumber", PhonenumberR.current.value);
+         data.append("DomainName", DomainnameR.current.value);
+         data.append("Description", DescriptionR.current.value);
+         data.append("Adm_CreatedOn", date+ ' ' + fullTime);
+         data.append("Adm_CreatedBy", Createdby);
+         data.append("Cus_CreatedOn","null")
+         
+         Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                     headers: {
+                         'Content-Type': 'multipart/form-data',
+                     }
+         }).then((res) => {
+                     setShow("Updated Successfully");
+                     setloader(false);
+                     UsernameR.current.value = " ";
+                     EmailR.current.value = " ";
+                     PhonenumberR.current.value = " ";
+                     DomainnameR.current.value = " ";
+                     DescriptionR.current.value = " ";
+                     FileR.current.value = null;
+         }).catch((err)=>{ return err; })
+        }    
+     }
 
     return (
             <div className="userbody">
+                <div className='adminticket-head'>
+                        <div><h1>Raise The Tickets</h1></div>
+                        
+
+                    </div>
                 <form className="form3" action="/" method="post">
-                    <h4 className="issue-head">Submit your Issues Here!!!</h4>
                     <div className="form-group mt-2 mb-2 flex" >
                         <label className="label width-25">User Name</label>
                         <input className="issue-form-input" name="email" type="text" ref={UsernameR}  />
