@@ -91,7 +91,7 @@ export default function Login1() {
                     <input className="form-input" name="username" type="text"  {...register('username')} />
                     <p className="me-2 text-danger">{errors.username?.message}</p>
                   </div>
-                  <div className="form-group mb-2 log">
+                  <div className="form-group mb-3 log">
                     <label className="label">Password*</label>
                     <input className="form-input" name="password" type="password"  {...register('password')} />
                     <p className="me-2 text-danger">{errors.password?.message}</p>
