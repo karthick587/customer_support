@@ -17,7 +17,7 @@ export default function ViewTeam(props){
     
     return(
         <div className="">
-        { newarray !== undefined ||team !== undefined|| team !== null ?<> {team.filter(val => { 
+        { newarray !== undefined&&team !== undefined ?<div> {team.filter(val => { 
             if(newarray.includes(val.teamId)){
                 return val
             }
@@ -25,8 +25,8 @@ export default function ViewTeam(props){
             <div className=" " key={product.teamId}>
                 <div>{product.Username},</div>
             </div>
-        )}</>:
-            <></>
+        )}</div>:
+            <div></div>
         }
      </div>
     )
