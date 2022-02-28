@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Axios from 'axios';
 import Table from '@mui/material/Table';
@@ -16,7 +16,9 @@ import { useRouter } from 'next/router'
 import Updateteam from './update/updateteam';
 import { CSVLink } from 'react-csv';
 import ReactPaginate from 'react-paginate';
-
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { Typography } from '@mui/material';
 export default function Team(props) {
 
     var [search, setSearch] = useState('');
@@ -39,7 +41,7 @@ export default function Team(props) {
                 } else {
                     setSelectedValue();
                 }
-            }).catch((err)=>{ return err; })
+            }).catch((err) => { return err; })
     }, [setSelectedValue]);
 
     useEffect(() => {
@@ -51,7 +53,7 @@ export default function Team(props) {
             Isdeleted: 'y'
         }).then((res) => {
             return res;
-        }).catch((err)=>{ return err; })
+        }).catch((err) => { return err; })
     };
 
     const TeamList = [
@@ -87,7 +89,7 @@ export default function Team(props) {
     useEffect(() => {
         setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length);
         props.teamcountcallback(teamcount);
-        
+
     });
 
     //pagination
@@ -104,77 +106,78 @@ export default function Team(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-           
-                <div className="userbody2">
-                    <div className='header-user'>
-                        <h1>TEAM </h1>
-                        <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-                        <div className='userpage-pagedatalimit'>
-                            <select className='pagedatalimit-select' onChange={pagedatalimit}>
-                                <option value={10}>10</option>
-                                <option value={25}>25</option>
-                                <option value={50}>50</option>
-                                <option value={100}>100</option>
-                            </select>
-                            <div className='float-end caption'>Number of Team per page</div>
-                        </div>
-                        <div className='right-user-btns'>
+
+            <div className="userbody2">
+                <div className='header-user'>
+
+                    <div><h1>TEAM </h1></div>
+                    <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+
+
+
+                    <div className='header-right'>
+                        <Button>
                             <CSVLink
                                 data={exportTeam}
                                 filename={'Team_List.csv'}
-                                className="float-enduser btn2 button"
+                                className="me-1 header-export"
                                 target="_blank"
                                 onClick={handleExport}
-                            >Export</CSVLink>
-                            <FormDialog
-                                className="float-enduser btn2 button"
-                                dialogtitle="+ADD Team"
-                                dialogbody={<Addteam />}
-                            />
-                        </div>
+                            >
+                                <FileDownloadIcon />Export
+                            </CSVLink>
+                        </Button>
+
+                        <FormDialog
+                            className="me-1 header-adduser"
+                            dialogtitle={<> <PersonAddIcon />ADD Team</>}
+                            dialogbody={<Addteam />}
+                        />
                     </div>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell className="teamtablecel" >TEAMID</TableCell>
-                                    <TableCell className="teamtablecel" align="left">USERNAME</TableCell>
-                                    <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
-                                    <TableCell className="teamtablecel" align="left">TEAM</TableCell>
+                </div>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell className="teamtablecel" >TEAMID</TableCell>
+                                <TableCell className="teamtablecel" align="left">USERNAME</TableCell>
+                                <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
+                                <TableCell className="teamtablecel" align="left">TEAM</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        {team.filter(val => {
+                            if (search === "") {
+                                return val;
+                            } else if (val.Username.toLowerCase().includes(search.toLowerCase())) {
+                                return val;
+                            } else null;
+                        }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
+                            <TableBody key={item.teamId}>
+                                <TableRow >
+                                    <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
+                                    <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                    <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                    <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
+                                    <div className='deteleandedit'>
+                                        <Updateteam teamId={item.teamId} />
+                                        <FormDialog
+                                            className="team-delete"
+                                            dialogtitle={<DeleteIcon />}
+                                            headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
+                                            dialogactions={
+                                                <div>
+                                                    <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
+                                                    <Button  >NO</Button>
+                                                </div>
+                                            }
+                                        />
+                                    </div>
                                 </TableRow>
-                            </TableHead>
-                            {team.filter(val => {
-                                if (search === "") {
-                                    return val;
-                                } else if (val.Username.toLowerCase().includes(search.toLowerCase())) {
-                                    return val;
-                                } else null;
-                            }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
-                                <TableBody key={item.teamId}>
-                                    <TableRow >
-                                        <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
-                                        <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
-                                        <div className='deteleandedit'>
-                                            <Updateteam teamId={item.teamId} />
-                                            <FormDialog
-                                                className="team-delete"
-                                                dialogtitle={<DeleteIcon />}
-                                                headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
-                                                dialogactions={
-                                                    <div>
-                                                        <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
-                                                        <Button  >NO</Button>
-                                                    </div>
-                                                }
-                                            />
-                                        </div>
-                                    </TableRow>
-                                </TableBody>
-                            )}
-                        </Table>
-                    </TableContainer>
+                            </TableBody>
+                        )}
+                    </Table>
+                </TableContainer>
+                <div className='page-bottom'>
                     < ReactPaginate
                         previousLabel={""}
                         nextLabel={""}
@@ -185,8 +188,19 @@ export default function Team(props) {
                         pageLinkClassName={"page-link"}
                         activeClassName={"active"}
                     />
+                    <div className='pagedata-limit flex'>
+                        <Typography>Team per page</Typography>
+
+                        <select className='pagedatalimit-select' onChange={pagedatalimit}>
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                        </select>
+                    </div>
                 </div>
-            
+            </div>
+
         </div>
     )
 }

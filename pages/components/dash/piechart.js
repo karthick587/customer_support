@@ -12,7 +12,7 @@ export default function Piechart(props){
     datasets: [
       {
         data: [newcount, started, inprogress,completed],
-        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00','black'],
+        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00','green'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
@@ -72,6 +72,7 @@ export default function Piechart(props){
 
   return (
     <Card {...props}>
+      <CardHeader title="Tickets status" />
       <Divider />
       <CardContent>
         <Box
@@ -85,42 +86,7 @@ export default function Piechart(props){
             options={options}
           />
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 2
-          }}
-        >
-          {devices.map(({
-            color,
-            icon: Icon,
-            title,
-            value
-          }) => (
-            <Box
-              key={title}
-              sx={{
-                p: 1,
-                textAlign: 'center'
-              }}
-            >
-              <Typography
-                color="#1976d2"
-                variant="body1"
-              >
-                {title}
-              </Typography>
-              <Typography
-                style={{ color }}
-                variant="h6"
-              >
-                {value}
-                %
-              </Typography>
-            </Box>
-          ))}
-        </Box>
+       
       </CardContent>
     </Card>
   );
