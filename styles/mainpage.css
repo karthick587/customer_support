@@ -126,7 +126,7 @@
 }
   .css-bhp9pd-MuiPaper-root-MuiCard-root {
     width: auto !important;
-    margin: 20px 0px;
+    margin: 20px -10px !important;
   }
 
 }
