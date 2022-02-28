@@ -1,6 +1,6 @@
 a {
   text-decoration: none !important;
-  padding: 2px 10px;
+  padding: 0px 10px;
   cursor: pointer;
   color:#1976d2 !important;
 }
@@ -1051,8 +1051,7 @@ h4.alert1.text-center {
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   padding: 20px !important;
-  border-radius: 14px !important;
-  border-radius: 4px;
+  border-radius: 4px !important;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   width: 100%;
   overflow-x: auto;
@@ -2071,8 +2070,8 @@ div#v-pills-dash {
   background-color: #fff;
   color: rgba(0, 0, 0, 0.87);
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  width: 50% !important;
-  margin: 0px 0px 0px 27px !important;
+  width: 32% !important;
+  margin: 10px 0px 10px 20px !important;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border-radius: 4px;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
