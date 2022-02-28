@@ -2147,3 +2147,23 @@ div#v-pills-dash {
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
+.css-chjbjb-MuiTypography-root {
+  margin: 0;
+  font-size: 0.80rem !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.5px;
+  /* line-height: 2.5; */
+  text-transform: uppercase;
+  font-family: inherit;
+  margin-bottom: 0.35em;
+  color: #65748B !important;
+}
+.css-1g3izzu {
+  margin: 0;
+  font-family: inherit;
+  font-weight: 500 !important;
+  color: #1976d2 !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0em;
+  display: block;
+}
