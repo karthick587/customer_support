@@ -12,6 +12,17 @@ export default function FormAlert(props) {
     const {testing,setTesting,showvalue}=useContext(CounterContext)
     const [open, setOpen] = React.useState(true);
 
+useEffect(() => {
+    if(testing===true){
+        const Timer = setTimeout(() => {
+            setTesting(false);
+        }, [4000]);
+        return () => {
+            clearTimeout(Timer);
+        }
+    }
+   
+},[testing])
     return (
         <div className='form-alert'>
             <Box sx={{ width: '100%' }}>

@@ -12,10 +12,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider';
+import { CurrentDateContext } from '../contex/currentdateProvider';
 import ViewTeam from '../common/view_team';
 
 function Teamticket(props) {
     const { setdialogformopen } = useContext(CounterContext);
+    const { currentDate } = useContext(CurrentDateContext);
     const { teamticket,loginTmName } = props;
     const [mapteamticket, setmapteamticket] = useState([]);
     const Router = useRouter();
@@ -26,36 +28,6 @@ function Teamticket(props) {
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
     const [showdetails, setShowdetails] = useState(false);
-
-     //current time and date 
-     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
-     date = new Date();
-     hour = date.getHours();
-     if (hour <= 11) {
-         TimeType = 'AM';
-     } else {
-         TimeType = 'PM';
-     }
-     if (hour > 12) {
-         hour = hour - 12;
-     }
-     if (hour == 0) {
-         hour = 12;
-     }
-     minutes = date.getMinutes();
-     if (minutes < 10) {
-         minutes = '0' + minutes.toString();
-     }
-     seconds = date.getSeconds();
-     if (seconds < 10) {
-         seconds = '0' + seconds.toString();
-     }
-     dateupadate = date.getDate();
-     monthupadate = (date.getMonth() + 1);
-     yearupadate = date.getFullYear();
-     // Adding all the variables in fullTime variable.
-     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
-     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
 
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
@@ -92,7 +64,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 tickets_assignId : tickets_assignId[0],
-                Tm_Start_UpdatedOn: fulldate + ' ' + fullTime,
+                Tm_Start_UpdatedOn: currentDate,
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("updated Successfully");
@@ -104,7 +76,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 tickets_assignId : tickets_assignId[0],
-                Tm_Process_UpdatedOn: fulldate + ' ' + fullTime,
+                Tm_Process_UpdatedOn: currentDate,
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("updated Successfully");
@@ -116,7 +88,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 tickets_assignId : tickets_assignId[0],
-                Tm_Complete_UpdatedOn: fulldate + ' ' + fullTime,
+                Tm_Complete_UpdatedOn: currentDate,
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setShow("updated Successfully");

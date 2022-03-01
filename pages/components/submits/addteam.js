@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
+import { CounterContext } from '../contex/adminProvider';
 
 const schema = yup.object().shape({
     Username: yup.string().required(),
@@ -11,7 +12,7 @@ const schema = yup.object().shape({
 });
 
 function Addteam() {
-
+const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
     var [addteam, setAddteam] = useState('');
     const Router = useRouter();
     const [show, setShow] = useState(false);
@@ -30,9 +31,15 @@ function Addteam() {
             if (response.data.message) {
                 setShow(response.data.message)
                 localStorage.setItem('updateclose', "close");
+                setTesting(true)
+                setshowvalue(response.data.message);
+                setdialogformopen("true")
             } else {
                 setShow("Registered Successfully");
                 localStorage.setItem('updateclose', "close"); 
+                setTesting(true)
+                setshowvalue("Registered Successfully");
+                setdialogformopen("true")
             }
         })
         .catch((err)=>{ return err; })

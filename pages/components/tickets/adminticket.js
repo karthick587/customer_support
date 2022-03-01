@@ -15,14 +15,15 @@ import TableRow from '@mui/material/TableRow';
 import Ticketviewer from '../common/ticketviewer';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
+import { CurrentDateContext } from '../contex/currentdateProvider';
 import DesignTeamList from './adminticketTeamList/designTeamList';
 import { Typography } from '@mui/material';
-// import { array } from 'yup';
 import AssignedMenber from '../common/assigned_members';
 import ViewTeam from '../common/view_team';
 
 function Adminticket() {
-    const { setdialogformopen, designTeamList } = useContext(CounterContext);
+    const { setdialogformopen, designTeamList,setTesting,setshowvalue,setdesignTeamList } = useContext(CounterContext);
+    const { currentDate } = useContext(CurrentDateContext);
 
     const Router = useRouter();
     var [show, setShow] = useState('');
@@ -60,7 +61,7 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    },[tickets]);
+    },[selectedValue]);
     var [team, setTeam] = useState([]);
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/team/list")
@@ -71,36 +72,7 @@ function Adminticket() {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
     },[]);
-    //current date and time
-    var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
-    date = new Date();
-    hour = date.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    }
-    else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = date.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = date.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    dateupadate = date.getDate();
-    monthupadate = (date.getMonth() + 1);
-    yearupadate = date.getFullYear();
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
-    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+    
     //filter function
     useEffect(() => {
         if (filteredTitle === "all") {
@@ -146,8 +118,13 @@ function Adminticket() {
             }).then((response) => {
                 setShow("update started Successfully");
                 setdialogformopen(true);
+                setTesting(true)
+                setshowvalue("Submitted Successfully");
             })
-                .catch((err) => { return err; })
+                .catch((err) => { 
+                    setTesting(true)
+                    setshowvalue("Submitted Failed");
+                    return err; })
         };
         var data = {
             to_email: email,
@@ -225,13 +202,19 @@ function Adminticket() {
             teamId: teamId,
             ticketsId: ticketsId,
             Adm_UpdatedBy:Adm_CreatedBy,
-            Adm_UpdatedOn:fulldate+' '+fullTime,
+            Adm_UpdatedOn:currentDate,
         }).then((_response) => {
-            setShow("update Successfully");
+            
             setdialogformopen("true")
             localStorage.setItem("passValue", true);
+            setTesting(true)
+                setshowvalue("Assigned Successfully");
+                setdesignTeamList([])
         })
-            .catch((err) => { return err; })
+            .catch((err) => { 
+                setTesting(true)
+                setshowvalue("Assigned Failed");
+                return err; })
     };
     function callback(childdata) {
         setdesignTeamList(childdata)
@@ -244,9 +227,9 @@ function Adminticket() {
             </Head>
             {showdetails === false ?
                 <div className="userbody">
-                    <div className='adminticket-head'>
-                        <div><h1>Tickets</h1></div>
-                        <div className='filter-head flex'>
+                      <div className='header-user'>
+                      <h1>Tickets</h1>
+                      <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
                                 <option value="ticketsId">TicketsId</option>
@@ -268,8 +251,8 @@ function Adminticket() {
                                 </select>
                             )}
                         </div>
-                       
-                    </div>
+                          </div>
+                    
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
@@ -382,7 +365,7 @@ function Adminticket() {
                                                         </div>
                                                     </div>
                                                     <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
-                                                    <h4 className="alert1 text-center">{show}</h4>
+                                                   
                                                 </div>
                                             }
                                         />

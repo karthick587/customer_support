@@ -5,8 +5,11 @@ import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { Button } from '@mui/material';
 import { CounterContext } from '../contex/adminProvider';
-function Non_userTickets(props) {
+import { CurrentDateContext } from '../contex/currentdateProvider';
+
+function Non_userviewer(props) {
     const { setdialogformopen } = useContext(CounterContext);
+    const { currentDate } = useContext(CurrentDateContext);
     const { registerId, closeDetails} = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
     const [Adminname, setAdminname] = useState([]);
@@ -20,34 +23,6 @@ function Non_userTickets(props) {
         setCreatedby(Adminname.slice(3, 20));
     });
 
-    var today = new Date();
-    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-    var fullDate, TimeType, hour, minutes, seconds, fullTime;
-    fullDate = new Date();
-    hour = fullDate.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    }
-    else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = fullDate.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = fullDate.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
@@ -57,7 +32,7 @@ function Non_userTickets(props) {
     function handleRejection(Id){
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`,{
             Status : "Rejected",
-            Adm_UpdatedOn : date + ' ' + fullTime,
+            Adm_UpdatedOn : currentDate,
             Adm_UpdatedBy : Createdby
         });
     }
@@ -72,7 +47,7 @@ function Non_userTickets(props) {
             data.append("Username",  nonuser.Username);
             data.append("Password",  nonuser.Password);
             data.append("Logo",  nonuser.Logo);
-            data.append("Createdon", date+ ' ' + fullTime);
+            data.append("Createdon", currentDate);
             data.append("Createdby",  Createdby)
             Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
                 headers: {
@@ -103,7 +78,7 @@ function Non_userTickets(props) {
 
             Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`,{
                 Status : "Approved",
-                Adm_UpdatedOn : date + ' ' + fullTime,
+                Adm_UpdatedOn : currentDate,
                 Adm_UpdatedBy : Createdby
             });
              
@@ -228,4 +203,4 @@ function Non_userTickets(props) {
         </>
     );
 }
-export default Non_userTickets;
+export default Non_userviewer;

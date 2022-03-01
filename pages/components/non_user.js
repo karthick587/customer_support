@@ -10,8 +10,9 @@ import Avatar from '@mui/material/Avatar';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
+import { CurrentDateContext } from '../components/contex/currentdateProvider';
+import {CounterContext} from "../components/contex/adminProvider";
 
-import {CounterContext} from "../components/contex/adminProvider"
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -24,6 +25,7 @@ const schema = yup.object().shape({
 });
 export default function ScrollDialog(props) {
     const { setTesting,setshowvalue} = useContext(CounterContext);
+    const { currentDate } = useContext(CurrentDateContext);
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
     const [show,setShow] = useState('');
@@ -56,34 +58,6 @@ export default function ScrollDialog(props) {
         if (logovalidate === undefined) {
             setShowlogo("images is required")
         } else {
-        var today = new Date();
-            const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-            var fullDate, TimeType, hour, minutes, seconds, fullTime;
-            fullDate = new Date();
-            hour = fullDate.getHours();
-            if (hour <= 11) {
-                TimeType = 'AM';
-            }
-            else {
-                TimeType = 'PM';
-            }
-            if (hour > 12) {
-                hour = hour - 12;
-            }
-            if (hour == 0) {
-                hour = 12;
-            }
-            minutes = fullDate.getMinutes();
-            if (minutes < 10) {
-                minutes = '0' + minutes.toString();
-            }
-            seconds = fullDate.getSeconds();
-            if (seconds < 10) {
-                seconds = '0' + seconds.toString();
-            }
-            // Adding all the variables in fullTime variable.
-            fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
-            console.log(Companyname,Clientname,Email,Phonenumber,Username,Password,date + ' ' + fullTime,DomainName,Description)
             const data = new FormData();
             data.append("Companyname", Companyname);
             data.append("Clientname", Clientname);
@@ -92,7 +66,7 @@ export default function ScrollDialog(props) {
             data.append("Username", Username);
             data.append("Password", Password);
             data.append("file", Logo);
-            data.append("CreatedOn", date + ' ' + fullTime);
+            data.append("CreatedOn", currentDate);
             data.append("DomainName", DomainName);
             data.append("Description", Description)
             Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, data, {

@@ -39,7 +39,7 @@ function NonUserTickets(props) {
             </Head>
             {showdetails === false ?
                 <div className="teambody">
-                     <div className='adminticket-head'>
+                      <div className='header-user'>
                      <h1>Unregistered Customer</h1>
                     </div>
                     <TableContainer component={Paper}>

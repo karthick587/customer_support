@@ -142,7 +142,7 @@ const AdminDashboard = () => {
                   noWrap
                   sx={{ flexGrow: 1 }}
                 >
-                  ADMIN Dashboard
+                  ADMIN DASHBOARD
                 </Typography>
               </>
             }
@@ -195,7 +195,7 @@ const AdminDashboard = () => {
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
                         <div className='dash-head'>
-                          <h2>Dashboaard</h2>
+                          <h2>Dashboard</h2>
                         </div>
                         <div className='dash-body'>
                           <div className='dash-cards'>

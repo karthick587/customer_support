@@ -5,10 +5,12 @@ import FormDialog from '../common/dialogsform';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 import { CounterContext } from '../contex/adminProvider';
+import { CurrentDateContext } from '../contex/currentdateProvider';
 
 function Updatecustomer({ usersId }) {
 
-    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
+    const { setdialogformopen } = useContext(CounterContext);
+    const { currentDate } = useContext(CurrentDateContext);
     var [getCustomer, setGetCustomer] = useState([]);
     const [editLogo, setEditLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
@@ -23,7 +25,6 @@ function Updatecustomer({ usersId }) {
     let PasswordR = createRef();
     let EmailR = createRef();
     let PhonenumberR = createRef();
-    let ProjectcodeR = createRef();
 
     useEffect(() => {
         setPassValue(localStorage.getItem("passValue", false));
@@ -73,7 +74,7 @@ function Updatecustomer({ usersId }) {
             data.append("Logo", Logo);
         }
         
-        data.append("Modifiedon", date + ' ' + fullTime);
+        data.append("Modifiedon", currentDate);
         data.append("Modifiedby", Modifiedby)
         axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {
@@ -83,12 +84,7 @@ function Updatecustomer({ usersId }) {
             setShow("Updated Successfully");
             setdialogformopen("true");
             localStorage.setItem("passValue", true);
-            setTesting(true)
-            setshowvalue("Updated Successfully");
-        }).catch((err)=>{
-            setTesting(true)
-            setshowvalue("Error");
-             return err; })
+        }).catch((err)=>{ return err; })
     };
 
     useEffect(()=>{
@@ -100,33 +96,6 @@ function Updatecustomer({ usersId }) {
               clearTimeout(Timer);
           }
       })
-
-    var today = new Date();
-    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-    var fullDate, TimeType, hour, minutes, seconds, fullTime;
-    fullDate = new Date();
-    hour = fullDate.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    }else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = fullDate.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = fullDate.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
 
     function handleScreenshot(e) {
         setEditLogo(e.target.files[0]);

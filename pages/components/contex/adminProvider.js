@@ -21,7 +21,7 @@ export default function CounterContextProvider(props){
    
     const[designTeamList,setdesignTeamList]=useState([])
     useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
+        Axios.get("https://mindmadetech.in/api/tickets/listtest")
             .then((res) => setTickets(res.data))
             .catch((err)=>{ return err; })
     });
@@ -64,6 +64,7 @@ export default function CounterContextProvider(props){
             testing,
             setTesting,
             designTeamList,
+            setdesignTeamList,
             removeTeammember,
             addTeammember,
             setdialogformopen,

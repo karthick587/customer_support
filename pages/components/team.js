@@ -152,11 +152,12 @@ const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
                             </TableRow>
                         </TableHead>
                         {team.filter(val => {
-                            if (search === "") {
-                                return val;
-                            } else if (val.Username.toLowerCase().includes(search.toLowerCase())) {
-                                return val;
-                            } else null;
+                          if (search === "") {
+                            return val;
+                        } else if (val.Username.toLowerCase().includes(search.toLowerCase())||
+                                    val.Team.toLowerCase().includes(search.toLowerCase())) {
+                            return val;
+                        } else null;
                         }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                             <TableBody key={item.teamId}>
                                 <TableRow >

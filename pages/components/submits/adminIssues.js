@@ -1,9 +1,10 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState,useRef, useContext } from "react";
 import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
+import { CounterContext } from "../contex/adminProvider";
 
  export default function Adminissues(props) {
-
+const{setTesting,setshowvalue}=useContext(CounterContext)
     const [loader,setloader]=useState(false);
     const [show, setShow] = useState();
     const UsernameR = useRef();
@@ -105,23 +106,27 @@ import CircularProgress from '@mui/material/CircularProgress';
          }).then((res) => {
                      setShow("Updated Successfully");
                      setloader(false);
+                     setTesting(true)
+                     setshowvalue("Submitted Successfully");
+                     setdialogformopen("true")
                      UsernameR.current.value = " ";
                      EmailR.current.value = " ";
                      PhonenumberR.current.value = " ";
                      DomainnameR.current.value = " ";
                      DescriptionR.current.value = " ";
                      FileR.current.value = null;
-         }).catch((err)=>{ return err; })
+         }).catch((err)=>{ 
+            setshowvalue("Submission Failed");
+            setTesting(true)
+             return err; })
         }    
      }
 
     return (
             <div className="userbody">
-                <div className='adminticket-head'>
-                        <div><h1>Raise The Tickets</h1></div>
-                        
-
-                    </div>
+                 <div className='header-user'>
+                 <h1>Raise The Tickets</h1>
+                 </div>
                 <form className="form3" action="/" method="post">
                     <div className="form-group mt-2 mb-2 flex" >
                         <label className="label width-25">User Name</label>

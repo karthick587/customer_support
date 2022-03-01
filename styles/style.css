@@ -182,7 +182,7 @@ a {
 }
 
 .filter-head.flex {
-  margin: 0px 0px 9px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .form.login {
@@ -202,14 +202,14 @@ a {
 
 .teambody {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  padding: 22px 0px;
   margin: 0px 25px;
+  padding: 11px 0px;
 }
 
 .userbody {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  padding: 17px 0px;
   margin: 0px 25px;
+  padding: 11px 0px;
 }
 
 
@@ -937,7 +937,8 @@ form.form2 {
 }
 
 .adminticket-head h1 {
-  font-size: 25px;
+  font-size: 20px;
+  font-family: unset;
   color: #1976d2;
   text-transform: uppercase;
   font-weight: 600;

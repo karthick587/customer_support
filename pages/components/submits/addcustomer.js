@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
+import { CurrentDateContext } from '../contex/currentdateProvider';
 
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
@@ -17,7 +18,8 @@ const schema = yup.object().shape({
 });
 
 export default function Addcustomer() {
-
+    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
+    const { currentDate } = useContext(CurrentDateContext);
     // const { setdialogformopen } = useContext(CounterContext);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
@@ -54,34 +56,6 @@ export default function Addcustomer() {
         if (logovalidate === undefined) {
             setShowlogo("images is required")
         } else {
-            var today = new Date();
-            const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-            var fullDate, TimeType, hour, minutes, seconds, fullTime;
-            fullDate = new Date();
-            hour = fullDate.getHours();
-            if (hour <= 11) {
-                TimeType = 'AM';
-            }
-            else {
-                TimeType = 'PM';
-            }
-            if (hour > 12) {
-                hour = hour - 12;
-            }
-            if (hour == 0) {
-                hour = 12;
-            }
-            minutes = fullDate.getMinutes();
-            if (minutes < 10) {
-                minutes = '0' + minutes.toString();
-            }
-            seconds = fullDate.getSeconds();
-            if (seconds < 10) {
-                seconds = '0' + seconds.toString();
-            }
-            // Adding all the variables in fullTime variable.
-            fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
-
             const data = new FormData();
             data.append("Companyname", Companyname);
             data.append("Clientname", Clientname);
@@ -90,7 +64,7 @@ export default function Addcustomer() {
             data.append("Username", Username);
             data.append("Password", Password);
             data.append("file", Logo);
-            data.append("Createdon", date + ' ' + fullTime);
+            data.append("Createdon", currentDate);
             data.append("Createdby", Createdby)
             Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
                 headers: {
@@ -99,9 +73,14 @@ export default function Addcustomer() {
             }).then((response) => {
                 if (response.data.statusCode === 400) {
                     setShow(response.data.message)
+                    setTesting(true)
+                    console.log(response.data.message);
+                    setshowvalue(1+response.data.message);
                 } else {
                     setShow("Registered Successfully");
                     setdialogformopen("true")
+                    setTesting(true)
+                    setshowvalue(2+"Registered Successfully");
                 }
             })
                 .catch((err) => { return err; })

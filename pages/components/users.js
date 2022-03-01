@@ -71,7 +71,6 @@ export default function Users(props) {
     const UsersList = [
         [
             "Users Id",
-            "Project Code",
             "Company Name",
             "Client Name",
             "User Name",
@@ -81,7 +80,6 @@ export default function Users(props) {
         ],
         ...users.map(details => [
             details.usersId,
-            details.Projectcode,
             details.Companyname,
             details.Clientname,
             details.Username,
@@ -168,7 +166,9 @@ export default function Users(props) {
                             if (search === "") {
                                 return val;
                             } else if (val.Companyname.toLowerCase().includes(search.toLowerCase()) ||
-                                val.Clientname.toLowerCase().includes(search.toLowerCase())) {
+                                val.Clientname.toLowerCase().includes(search.toLowerCase()) ||
+                                val.usersId.toString().toLowerCase().includes(search.toLowerCase().toString())||
+                                val.Email.toLowerCase().includes(search.toLowerCase())) {
                                 return val;
                             } else null;
                         }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>

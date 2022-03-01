@@ -16,7 +16,7 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6)
 });
 export default function Login1() {
-  const {testing}=useContext(CounterContext)
+  const {setTesting,setshowvalue}=useContext(CounterContext)
   const router = useRouter();
   const [loginStatus, setLoginStatus] = useState('');
   const [userlogin, setUserlogin] = useState('');
@@ -49,9 +49,13 @@ export default function Login1() {
     }).then((response) => {
       if (response.data.statusCode === 400) {
         setLoginStatus(response.data.message);
+        setTesting(true)
+        setshowvalue("login Failed");
       } else {
         localStorage.setItem('loggedin', true);
         localStorage.setItem('activeTab', "Dashboard");
+        setTesting(true)
+        setshowvalue("login Success");
         router.push({
           pathname: `/components/dash/${validate}dashboard`,
         });

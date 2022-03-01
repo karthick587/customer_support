@@ -1,10 +1,11 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState,useRef, useContext } from "react";
 import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
+import { CounterContext } from "../contex/adminProvider";
 export default Userissue;
 
 function Userissue(props) {
-
+const{setTesting,setshowvalue}=useContext(CounterContext)
     const [loader,setloader]=useState(false);
     const { customername } = props;
     const [Email, setEmail] = useState('');
@@ -79,13 +80,18 @@ function Userissue(props) {
             }).then((res) => {
                 setShow("Ticket Raised Successfully");
                 setloader(false);
+                setTesting(true)
+                setshowvalue("Submitted Successfully");
                 EmailR.current.value = " ";
                 PhonenumberR.current.value = " ";
                 DomainnameR.current.value = " ";
                 DescriptionR.current.value = " ";
                 FileR.current.value = null;
             })
-            .catch((err)=>{ return err; })
+            .catch((err)=>{ 
+                setTesting(true)
+                setshowvalue("Submitted Failed");
+                return err; })
         }else{
             const data = new FormData();
             data.append("Username", customername);
@@ -101,13 +107,18 @@ function Userissue(props) {
             }).then((res) => {
                 setShow("Ticket Raised Successfully");
                 setloader(false);
+                setTesting(true)
+                setshowvalue("Submitted Successfully");
                 EmailR.current.value = " ";
                 PhonenumberR.current.value = " ";
                 DomainnameR.current.value = " ";
                 DescriptionR.current.value = " ";
                 FileR.current.value = null;
             })
-            .catch((err)=>{ return err; })
+            .catch((err)=>{
+                setTesting(true)
+                setshowvalue("Submitted Failed");
+                return err; })
         }
         
     };
