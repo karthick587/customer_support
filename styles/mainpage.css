@@ -8,13 +8,13 @@
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 361px) {
   .echarts-for-react {
 
     width: 225px;
   }
   .addform {
-    width: 250px !important;
+    width: 190px!important;
 }
   .form.login {
 
