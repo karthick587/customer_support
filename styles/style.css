@@ -1760,7 +1760,7 @@ h5.Completed {
 }
 
 .addform {
-  width: 450px !important;
+  width: 450px;
 }
 
 .react-piechart {
