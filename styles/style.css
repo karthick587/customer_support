@@ -939,6 +939,7 @@ form.form2 {
 .adminticket-head h1 {
   font-size: 25px;
   color: #1976d2;
+  text-transform: uppercase;
   font-weight: 600;
 }
 
