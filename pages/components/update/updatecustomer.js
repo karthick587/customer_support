@@ -8,7 +8,7 @@ import { CounterContext } from '../contex/adminProvider';
 
 function Updatecustomer({ usersId }) {
 
-    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
+    const { setdialogformopen } = useContext(CounterContext);
     var [getCustomer, setGetCustomer] = useState([]);
     const [editLogo, setEditLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
@@ -40,7 +40,7 @@ function Updatecustomer({ usersId }) {
             .catch((err)=>{ return err; })
     }, [setGetCustomer]);
 
-    function handleUpdate() {
+    function handleUpdate(Logo) {
         var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber;
         Companyname = CompanynameR.current.value;
         Clientname = ClientnameR.current.value;
@@ -72,6 +72,7 @@ function Updatecustomer({ usersId }) {
         } else {
             data.append("Logo", Logo);
         }
+        
         data.append("Modifiedon", date + ' ' + fullTime);
         data.append("Modifiedby", Modifiedby)
         axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
@@ -81,13 +82,8 @@ function Updatecustomer({ usersId }) {
         }).then((res) => {
             setShow("Updated Successfully");
             setdialogformopen("true");
-            setTesting(true)
-            setshowvalue("Updated Successfully");
             localStorage.setItem("passValue", true);
-        }).catch((err)=>{ 
-            setTesting(true)
-            setshowvalue("Error");
-            return err; })
+        }).catch((err)=>{ return err; })
     };
 
     useEffect(()=>{
@@ -140,7 +136,7 @@ function Updatecustomer({ usersId }) {
             dialogbody={
                 <div>
                     {getCustomer.map((data) =>
-                        <div className="mainbody" key={data.usersId}>
+                        <div className="container mainbody" key={data.usersId}>
                             <div className="addform">
                                 <form>
                                     <div className="form-group upload">
@@ -191,7 +187,7 @@ function Updatecustomer({ usersId }) {
                                     </div>
                                     <div className="row justify-content-center">
                                         <div className='bottom-area'>
-                                            <button type="button" onClick={() => handleUpdate(data.Logo, data.Companyname, data.Clientname, data.Username, data.Password, data.Email, data.Phonenumber)} className="btn2 float-end"> Update </button>
+                                            <button type="button" onClick={() => handleUpdate(data.Logo)} className="btn2 float-end"> Update </button>
                                         </div>
                                     </div>
                                     <h4 className="alert1 text-center">{show}</h4>
