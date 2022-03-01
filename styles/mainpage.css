@@ -14,7 +14,7 @@
     width: 225px;
   }
   .addform {
-    width: 190px!important;
+    width: 190px !important;
 }
   .form.login {
 
@@ -154,7 +154,7 @@
   font-size: 12px !important;
 }
 .addform{
-  width: 250px !important;
+  width: 250px;
 }
 .adminticket-head h1{
   font-size: 17px;
