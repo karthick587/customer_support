@@ -140,7 +140,7 @@ function Updatecustomer({ usersId }) {
             dialogbody={
                 <div>
                     {getCustomer.map((data) =>
-                        <div className="container mainbody" key={data.usersId}>
+                        <div className="mainbody" key={data.usersId}>
                             <div className="addform">
                                 <form>
                                     <div className="form-group upload">
