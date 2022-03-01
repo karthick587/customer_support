@@ -192,7 +192,7 @@ const TeamDashboard = () => {
                   </div>
                
                   <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <Teamticket teamticket={teamticket} />
+                  <Teamticket teamticket={teamticket} loginTmName={loginTmName} />
                   </div>
                 </div>
               </div>

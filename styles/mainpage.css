@@ -115,9 +115,9 @@
   .addform {
     width: auto !important;
 }
-  .css-s18byi {
+  .css-s18byi{
     width: auto !important;
-    margin: 20px -10px;
+    margin: 20px -10px !important;
   
   }
   .form.dialog {
@@ -147,6 +147,11 @@
   margin: 10px 0px !important;
   
 }
+.css-s18byi{
+  width: auto !important;
+  margin: 20px -10px !important;
+
+}
 .Resentticket-page {
   margin: 0px 0px !important;
   display: block;
@@ -156,7 +161,7 @@
   margin: 10px -10px !important;
   
 }
-.css-s18byi {
+.css-s18byi{
   width: auto !important;
   margin: 20px -10px;
 

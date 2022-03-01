@@ -16,7 +16,7 @@ import ViewTeam from '../common/view_team';
 
 function Teamticket(props) {
     const { setdialogformopen } = useContext(CounterContext);
-    const { teamticket } = props;
+    const { teamticket,loginTmName } = props;
     const [mapteamticket, setmapteamticket] = useState([]);
     const Router = useRouter();
     var [show, setShow] = useState('');
@@ -27,10 +27,40 @@ function Teamticket(props) {
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
     const [showdetails, setShowdetails] = useState(false);
 
+     //current time and date 
+     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
+     date = new Date();
+     hour = date.getHours();
+     if (hour <= 11) {
+         TimeType = 'AM';
+     } else {
+         TimeType = 'PM';
+     }
+     if (hour > 12) {
+         hour = hour - 12;
+     }
+     if (hour == 0) {
+         hour = 12;
+     }
+     minutes = date.getMinutes();
+     if (minutes < 10) {
+         minutes = '0' + minutes.toString();
+     }
+     seconds = date.getSeconds();
+     if (seconds < 10) {
+         seconds = '0' + seconds.toString();
+     }
+     dateupadate = date.getDate();
+     monthupadate = (date.getMonth() + 1);
+     yearupadate = date.getFullYear();
+     // Adding all the variables in fullTime variable.
+     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
+     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
-
+    
     //tickets status update functions 
     const updateemail = (Status) => {
         if (Status === "Completed") {
@@ -39,13 +69,29 @@ function Teamticket(props) {
             setdisabled("enable");
         }
     };
-
+   
     //status submit function
-    function handleUpdatestatus(ticketsId) {
+    function handleUpdatestatus(ticketsId,TeamAssign) {
+       var teamId = team.filter(Id=>{
+           if(Id.Username.includes(loginTmName)){
+               return Id;
+           }
+        }).map(team=>{
+            return team.teamId
+        });
+       var tickets_assignId = TeamAssign.filter(id=>{
+           if(id.teamId.toString().includes(teamId[0].toString())){
+               return id;
+           }
+        }).map(assign=>{
+            return assign.tickets_assignId;
+        })
+        
         if (selectedstatus === 'started') {
-            Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
+            Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
+                tickets_assignId : tickets_assignId[0],
                 Tm_Start_UpdatedOn: fulldate + ' ' + fullTime,
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
@@ -54,9 +100,10 @@ function Teamticket(props) {
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
         } else if (selectedstatus === 'inprogress') {
-            Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
+            Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
+                tickets_assignId : tickets_assignId[0],
                 Tm_Process_UpdatedOn: fulldate + ' ' + fullTime,
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
@@ -65,9 +112,10 @@ function Teamticket(props) {
                 localStorage.setItem("passValue", true);
             }).catch((err) => { return err; })
         } else if (selectedstatus === 'completed') {
-            Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketsId}`, {
+            Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
+                tickets_assignId : tickets_assignId[0],
                 Tm_Complete_UpdatedOn: fulldate + ' ' + fullTime,
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
@@ -86,35 +134,7 @@ function Teamticket(props) {
             clearTimeout(Timer);
         }
     })
-    //current time and date 
-    var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
-    date = new Date();
-    hour = date.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    } else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = date.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = date.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    dateupadate = date.getDate();
-    monthupadate = (date.getMonth() + 1);
-    yearupadate = date.getFullYear();
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
-    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+   
     //auth access for team ticket page
     useEffect(() => {
       
@@ -198,7 +218,7 @@ function Teamticket(props) {
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId)}>update</button>
+                                                <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.TeamAssign)}>update</button>
                                                 <h4 className="alert1 text-center">{show}</h4>
                                             </div>
                                         }
