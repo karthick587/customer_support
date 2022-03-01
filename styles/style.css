@@ -1979,7 +1979,7 @@ div#v-pills-dash {
 /* width */
 ::-webkit-scrollbar {
   width: 3px;
-  height: 0.7vh;
+  height: 0.4vh;
 }
 
 /* Track */

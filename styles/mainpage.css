@@ -141,6 +141,18 @@
   padding: 0px !important;
   font-size: 12px !important;
 }
+.adminticket-head h1{
+  font-size: 17px;
+  text-transform: uppercase;
+}
+.dash-head{
+  padding: 0px;
+}
+.dash-head h2 {
+  font-size: 20px;
+  margin: 0px -7px !important;
+  color: #1976d2;
+}
 .card-1 {
   display: flex;
   padding: 24px 25px;
@@ -596,7 +608,7 @@
     display: flex;
     padding: 20px 0px 0px 1px !important;
     position: relative;
-    margin: 0px 16px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
   .keen-slider__slide.number-slide2 {
     background-color: transparent;
