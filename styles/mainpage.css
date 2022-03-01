@@ -144,6 +144,9 @@
   .react-piechart div div {
     width: 100% !important;
 }
+.filter-head.flex {
+  margin: 0px 0px 0px 0px !important;
+}
 .header-user div button {
  
   margin-left: 0px !important;
@@ -540,9 +543,9 @@
 
   form.form3 {
     width: auto;
-    margin: 13px;
-    padding: 18px;
-  }
+    margin: 0px 10px 0px 4px;
+    padding: 0px;
+}
 
   .customer-cards {
     padding: 0px;
