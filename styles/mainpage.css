@@ -13,9 +13,11 @@
 
     width: 225px;
   }
+
   .addform {
     width: 190px !important;
-}
+  }
+
   .form.login {
 
     width: 0px;
@@ -88,14 +90,15 @@
     margin: 0px;
     padding: 18px;
     overflow: hidden;
-    
+
   }
+
   .css-1ty026z {
     flex: 1 1 auto;
     overflow-y: auto;
     min-width: 250px !important;
     padding: 20px 24px;
-}
+  }
 
 }
 
@@ -104,48 +107,59 @@
     margin: 0px 8px;
     display: block;
   }
+
   .header-user input {
     width: 100px;
-    
-}
-.css-13xy2my {
-  padding: 0px !important;
-}
-.header-user {
-  display: flex;
-  padding: 12px 9px 8px 11px!important;
-  position: relative;
-}
+
+  }
+
+  .css-13xy2my {
+    padding: 0px !important;
+  }
+
+  .header-user {
+    display: flex;
+    padding: 12px 9px 8px 11px !important;
+    position: relative;
+  }
+
   .resentticket {
     width: auto !important;
     margin: 10px -10px !important;
-    
+
   }
+
   .TeamList-right {
     height: 24vh !important;
-    width: auto!important;
+    width: auto !important;
     overflow-y: auto;
     border: 1px solid #1976d23b !important;
     -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%) !important;
     box-shadow: 0px 5px 10px rgb(31 30 47 / 10%) !important;
     margin: 10px 10px 0px 10px;
     border-radius: 4px;
-}
-.check-input-list ul {
-  margin: 0px !important;
-}
+  }
+
+  .check-input-list ul {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
   .addform {
     width: 450px;
-}
-  .css-s18byi{
+  }
+
+  .css-s18byi {
     width: auto !important;
     margin: 20px -10px !important;
-  
+
   }
+
   .form.dialog {
     padding-bottom: 40px;
     width: 250px !important;
-}
+  }
+
   .css-bhp9pd-MuiPaper-root-MuiCard-root {
     width: auto !important;
     margin: 20px -10px !important;
@@ -156,75 +170,94 @@
 @media only screen and (max-width: 600px) {
   .react-piechart div div {
     width: 100% !important;
-}
-.filter-head.flex {
-  margin: 0px 0px 0px 0px !important;
-}
-.header-user div button {
- 
-  margin-left: 0px !important;
-  padding: 0px !important;
-  font-size: 12px !important;
-}
-.addform{
-  width: 250px;
-}
-.adminticket-head h1{
-  font-size: 17px;
-  text-transform: uppercase;
-}
-.dash-head{
-  padding: 0px;
-}
-.dash-head h2 {
-  font-size: 20px;
-  margin: 0px -7px !important;
-  color: #1976d2;
-}
-.card-1 {
-  display: flex;
-  padding: 24px 25px;
-  margin: 10px 0px !important;
-  
-}
-.css-1ty026z {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  min-width: 290px;
-  padding: 20px 24px;
-}
-.css-s18byi{
-  width: auto !important;
-  margin: 20px -10px !important;
+  }
 
-}
-.Resentticket-page {
-  margin: 0px 0px !important;
-  display: block;
-}
-.resentticket {
-  width: auto !important;
-  margin: 10px -10px !important;
-  
-}
-.css-s18byi{
-  width: auto !important;
-  margin: 20px -10px;
+  .filter-head.flex {
+    margin: 0px 0px 0px 0px !important;
+  }
 
-}
-.css-bhp9pd-MuiPaper-root-MuiCard-root {
-  width: auto !important;
-  margin: 20px -10px;
-}
+  .header-user div button {
+
+    margin-left: 0px !important;
+    padding: 0px !important;
+    font-size: 12px !important;
+  }
+
+  .pagedata-limit p {
+    display: none;
+  }
+
+  .addform {
+    width: 250px;
+  }
+
+  .adminticket-head h1 {
+    font-size: 17px;
+    text-transform: uppercase;
+  }
+
+  .dash-head {
+    padding: 0px;
+  }
+
+  .dash-head h2 {
+    font-size: 20px;
+    margin: 0px -7px !important;
+    color: #1976d2;
+  }
+
+  .card-1 {
+    display: flex;
+    padding: 24px 25px;
+    margin: 10px 0px !important;
+
+  }
+
+  .css-1ty026z {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-width: 290px;
+    padding: 20px 24px;
+  }
+
+  .css-s18byi {
+    width: auto !important;
+    margin: 20px -10px !important;
+
+  }
+
+  .Resentticket-page {
+    margin: 0px 0px !important;
+    display: block;
+  }
+
+  .resentticket {
+    width: auto !important;
+    margin: 10px -10px !important;
+
+  }
+
+  .css-s18byi {
+    width: auto !important;
+    margin: 20px -10px;
+
+  }
+
+  .css-bhp9pd-MuiPaper-root-MuiCard-root {
+    width: auto !important;
+    margin: 20px -10px;
+  }
+
   .water-mark {
-    position: absolute!important;
+    position: absolute !important;
     z-index: 9999;
     bottom: 10px;
     right: 10px;
     font-weight: 500;
     opacity: 50%;
     font-size: 15px;
-}
+  }
+
   .ticket-details-middle {
     padding: 5px 5px;
   }
@@ -336,7 +369,7 @@
   .right-user-btns {
     display: flex;
     position: relative !important;
-}
+  }
 
   .css-1o6fzn1 {
     font-size: 12px !important;
@@ -378,19 +411,22 @@
     border-radius: 14px;
     -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
     box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
-}
+  }
 
   .react-piechart {
     margin-left: 18px;
     width: 100% !important;
     margin: 16px 0px 3px 0px !important;
-}
-.react-piechart div{
-  width: 100% !important;
-}
-.react-piechart div div{
-  width: 100% !important;
-}
+  }
+
+  .react-piechart div {
+    width: 100% !important;
+  }
+
+  .react-piechart div div {
+    width: 100% !important;
+  }
+
   .resentticket-row {
     width: 20px !important;
     font-size: 5px !important;
@@ -558,7 +594,7 @@
     width: auto;
     margin: 0 5px 0 4px;
     padding: 0px 11px 0px 0px;
-}
+  }
 
   .customer-cards {
     padding: 0px;
@@ -643,7 +679,8 @@
     padding: 20px 0px 0px 1px !important;
     position: relative;
     margin: 0px 0px 0px 0px;
-}
+  }
+
   .keen-slider__slide.number-slide2 {
     background-color: transparent;
   }

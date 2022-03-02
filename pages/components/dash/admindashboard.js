@@ -242,7 +242,7 @@ const AdminDashboard = () => {
                   <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <Adminticket />
                   </div>
-                  <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div className={activeTab === "team" ? "tab-pane fade show acti`ve" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <Team teamcountcallback={handleCallback4} />
                   </div>
                   <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-NonUser" role="tabpanel" aria-labelledby="v-pills-settings-tab">

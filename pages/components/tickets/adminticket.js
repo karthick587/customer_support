@@ -340,7 +340,7 @@ function Adminticket() {
                                                         <div className="form-header">
                                                             <h1>Update Ticket {tickets.ticketsId}</h1>
                                                         </div>
-                                                        <div className='w-30'>
+                                                        <div >
                                                             <div className="form-group">
                                                                 <div className='flex'>
                                                                     <div className='check-input-list'>
