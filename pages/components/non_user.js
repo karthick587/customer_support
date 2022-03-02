@@ -77,7 +77,7 @@ export default function ScrollDialog(props) {
                 
                 if (response.data.statusCode === 400) {
                     setShow(response.data.message)
-                    setshowvalue(response.data.message)
+                    setshowvalue(1+response.data.message)
                     setTesting(true)
                 } else {
                     setShow("Registered Successfully");

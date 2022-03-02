@@ -80,7 +80,7 @@ export default function Addcustomer() {
                     setShow("Registered Successfully");
                     setdialogformopen("true")
                     setTesting(true)
-                    setshowvalue(2+"Registered Successfully");
+                    setshowvalue("Registered Successfully");
                 }
             })
                 .catch((err) => { return err; })

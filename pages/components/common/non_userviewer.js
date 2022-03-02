@@ -55,11 +55,19 @@ function Non_userviewer(props) {
                 }
             }).then((response) => {
                 if (response.data.statusCode === 400) {
+                    setTesting(true)
+                    setshowvalue(1+"Registration failed");
                     return null;
                 } else {
                     return response;
+                    setTesting(true)
+                    setshowvalue(1+"Registered Successfully");
+                    
                 }
-            }).catch((err)=>{ return err; });
+            }).catch((err)=>{
+                setTesting(true)
+                setshowvalue(1+"Error");
+                 return err; });
 
             const formData = new FormData();
             formData.append("Username", nonuser.Username);
@@ -73,6 +81,7 @@ function Non_userviewer(props) {
                         'Content-Type': 'multipart/form-data',
                     }
             }).then((res) => {
+
                 return res;
             }) .catch((err)=>{ return err });
 

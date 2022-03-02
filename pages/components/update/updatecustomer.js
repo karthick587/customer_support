@@ -9,7 +9,7 @@ import { CurrentDateContext } from '../contex/currentdateProvider';
 
 function Updatecustomer({ usersId }) {
 
-    const { setdialogformopen } = useContext(CounterContext);
+    const { setdialogformopen ,setTesting,setshowvalue} = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     var [getCustomer, setGetCustomer] = useState([]);
     const [editLogo, setEditLogo] = useState();
@@ -84,7 +84,12 @@ function Updatecustomer({ usersId }) {
             setShow("Updated Successfully");
             setdialogformopen("true");
             localStorage.setItem("passValue", true);
-        }).catch((err)=>{ return err; })
+            setTesting(true)
+            setshowvalue("Registered Successfully");
+        }).catch((err)=>{
+            setTesting(true)
+            setshowvalue(1+"Registered failed");
+            return err; })
     };
 
     useEffect(()=>{

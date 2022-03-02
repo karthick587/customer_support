@@ -117,7 +117,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
             })
             .catch((err)=>{
                 setTesting(true)
-                setshowvalue("Submitted Failed");
+                setshowvalue(1+"Submitted Failed");
                 return err; })
         }
         

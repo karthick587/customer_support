@@ -123,7 +123,7 @@ function Adminticket() {
             })
                 .catch((err) => { 
                     setTesting(true)
-                    setshowvalue("Submitted Failed");
+                    setshowvalue(1+"Submitted Failed");
                     return err; })
         };
         var data = {
@@ -138,7 +138,7 @@ function Adminticket() {
                     setShowmailstatus("Email sent successfully")
                 },
                 function (err) {
-                    setShowmailstatus("Sending Email Failed")
+                    setShowmailstatus(1+"Sending Email Failed")
                     setdialogformopen(true)
                 }
             );
@@ -213,7 +213,7 @@ function Adminticket() {
         })
             .catch((err) => { 
                 setTesting(true)
-                setshowvalue("Assigned Failed");
+                setshowvalue(1+"Assigned Failed");
                 return err; })
     };
     function callback(childdata) {

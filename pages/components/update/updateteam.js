@@ -35,7 +35,7 @@ function Updateteam({ teamId }) {
             localStorage.setItem("passValue",true);
         }).catch((err)=>{ 
             setTesting(true)
-            setshowvalue("Error");
+            setshowvalue(1+"Error");
             return err; })
     };
     useEffect(()=>{

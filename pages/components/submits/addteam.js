@@ -32,7 +32,7 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
                 setShow(response.data.message)
                 localStorage.setItem('updateclose', "close");
                 setTesting(true)
-                setshowvalue(response.data.message);
+                setshowvalue(1+response.data.message);
                 setdialogformopen("true")
             } else {
                 setShow("Registered Successfully");

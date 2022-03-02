@@ -50,7 +50,7 @@ export default function Login1() {
       if (response.data.statusCode === 400) {
         setLoginStatus(response.data.message);
         setTesting(true)
-        setshowvalue("login Failed");
+        setshowvalue(1+"login Failed");
       } else {
         localStorage.setItem('loggedin', true);
         localStorage.setItem('activeTab', "Dashboard");

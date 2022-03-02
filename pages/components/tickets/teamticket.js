@@ -16,7 +16,7 @@ import { CurrentDateContext } from '../contex/currentdateProvider';
 import ViewTeam from '../common/view_team';
 
 function Teamticket(props) {
-    const { setdialogformopen } = useContext(CounterContext);
+    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { teamticket,loginTmName } = props;
     const [mapteamticket, setmapteamticket] = useState([]);
@@ -70,7 +70,12 @@ function Teamticket(props) {
                 setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
-            }).catch((err) => { return err; })
+                setTesting(true)
+                setshowvalue("Registered Successfully");
+            }).catch((err) => {
+                setTesting(true)
+                setshowvalue(1+"Registered failed");
+                return err; })
         } else if (selectedstatus === 'inprogress') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
                 Status: selectedstatus,
@@ -82,7 +87,12 @@ function Teamticket(props) {
                 setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
-            }).catch((err) => { return err; })
+                setTesting(true)
+                setshowvalue("Registered Successfully");
+            }).catch((err) => { 
+                setTesting(true)
+                setshowvalue(1+"Registered failed");
+                return err; })
         } else if (selectedstatus === 'completed') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
                 Status: selectedstatus,
@@ -94,7 +104,12 @@ function Teamticket(props) {
                 setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
-            }).catch((err) => { return err; })
+                setTesting(true)
+                setshowvalue("Registered Successfully");
+            }).catch((err) => { 
+                setTesting(true)
+                setshowvalue(1+"Registered failed");
+                return err; })
         } else return null
     };
 

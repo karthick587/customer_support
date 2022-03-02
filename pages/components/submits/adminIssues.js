@@ -104,7 +104,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                          'Content-Type': 'multipart/form-data',
                      }
          }).then((res) => {
-                     setShow("Updated Successfully");
+                   
                      setloader(false);
                      setTesting(true)
                      setshowvalue("Submitted Successfully");
@@ -116,7 +116,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                      DescriptionR.current.value = " ";
                      FileR.current.value = null;
          }).catch((err)=>{ 
-            setshowvalue("Submission Failed");
+            setshowvalue(1+"Submission Failed");
             setTesting(true)
              return err; })
         }    
