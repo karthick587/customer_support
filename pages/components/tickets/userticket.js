@@ -20,7 +20,7 @@ function Userticket(props) {
     const [showdetails, setShowdetails] = useState(false);
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
-    var [team, setTeam] = useState([]);
+    // var [team, setTeam] = useState([]);
     useEffect(() => {
         setmaptickets(tickets.reverse());
         setLogin(window.localStorage.getItem('loggedin'));
@@ -40,11 +40,11 @@ function Userticket(props) {
         setShowdetails(false);
     };
 
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data))
-            .catch((err) => { return err; })
-    },[]);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/team/list")
+    //         .then((res) => setTeam(res.data))
+    //         .catch((err) => { return err; })
+    // },[]);
 
     return (
         <div>
@@ -74,7 +74,7 @@ function Userticket(props) {
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                            <TableCell ><ViewTeam team={team} teamArray={tickets.TeamAssign} /></TableCell>
+                                            <TableCell ><ViewTeam  teamArray={tickets.TeamAssign} /></TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
 
                                             </TableCell>

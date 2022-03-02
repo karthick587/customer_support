@@ -20,45 +20,51 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Typography } from '@mui/material';
 import { CounterContext } from './contex/adminProvider';
+// import { TeamListContext } from './contex/teamListProvider';
+import { ListContext } from './contex/ListProvider';
+
 export default function Team(props) {
-const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
+    const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
+    const {team}=useContext(ListContext)
     var [search, setSearch] = useState('');
-    var [selectedValue, setSelectedValue] = useState('');
+    // var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
-    var [team, setTeam] = useState([]);
+    // var [team, setTeam] = useState([]);
     var [exportTeam, setExportTeam] = useState([]);
     var [selectedValue, setSelectedValue] = useState([]);
     const [login, setLogin] = useState();
-    const [teamcount, setteamcount] = useState();
+    
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
 
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => {
-                setTeam(res.data);
-                if (localStorage.getItem("passValue") === true) {
-                    setSelectedValue(team);
-                } else {
-                    setSelectedValue();
-                }
-            }).catch((err) => { return err; })
-    }, [setSelectedValue]);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/team/list")
+    //         .then((res) => {
+    //             setTeam(res.data);
+    //             if (localStorage.getItem("passValue") === true) {
+    //                 setSelectedValue(team);
+    //             } else {
+    //                 setSelectedValue();
+    //             }
+    //         }).catch((err) => { return err; })
+    // }, [setSelectedValue]);
 
-    useEffect(() => {
-        localStorage.setItem("passValue", false);
-    });
+    // useEffect(() => {
+    //     localStorage.setItem("passValue", false);
+    // },[]);
 
-    const deleteUsers = (id) => {
+    const deleteUsers = (id)=> {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then((res) => {
             setshowvalue("Deleted Successfully")
             setTesting(true)
+            setdialogformopen("true")
             return res;
         }).catch((err) => { 
             setshowvalue("Error")
             setTesting(true)
+            
             return err; })
     };
 
@@ -90,13 +96,9 @@ const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
         } else if (login === null) {
             Router.push("/");
         }
-    });
+    },[]);
 
-    useEffect(() => {
-        setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams) => setteamcount(teams.Status)).length);
-        props.teamcountcallback(teamcount);
-
-    });
+   
 
     //pagination
     function handlePageChange(pageNumber) {
@@ -211,3 +213,5 @@ const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
         </div>
     )
 }
+
+

@@ -14,8 +14,11 @@ import Ticketviewer from '../common/ticketviewer';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import ViewTeam from '../common/view_team';
+import { ListContext } from '../contex/ListProvider';
+
 
 function Teamticket(props) {
+    const { team } = useContext(ListContext);
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { teamticket,loginTmName } = props;
@@ -141,12 +144,12 @@ function Teamticket(props) {
     function closeDetails() {
         setShowdetails(false);
     };
-     var [team, setTeam] = useState([]);
-     useEffect(() => {
-         Axios.get("https://mindmadetech.in/api/team/list")
-             .then((res) => setTeam(res.data))
-            .catch((err)=>{ return err; })
-     });
+    //  var [team, setTeam] = useState([]);
+    //  useEffect(() => {
+    //      Axios.get("https://mindmadetech.in/api/team/list")
+    //          .then((res) => setTeam(res.data))
+    //         .catch((err)=>{ return err; })
+    //  });
     return (
         <div>
             <Head>
@@ -175,7 +178,7 @@ function Teamticket(props) {
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
                                         <TableCell >
-                                        <ViewTeam team={team} teamArray={tickets.TeamAssign}  />
+                                        <ViewTeam  teamArray={tickets.TeamAssign}  />
                                         </TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>

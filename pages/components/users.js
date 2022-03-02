@@ -19,32 +19,34 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Imageviewer from './common/imageviewer';
 import ReactPaginate from 'react-paginate';
 import { CounterContext } from './contex/adminProvider';
+import { ListContext } from './contex/ListProvider';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 export default function Users(props) {
 
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
+    const { users } = useContext(ListContext);
     var [search, setSearch] = useState('');
     const router = useRouter();
-    var [users, setUsers] = useState([]);
+    // var [users, setUsers] = useState([]);
     var [exportUsers, setExportUsers] = useState([]);
-    var [selectedValue, setSelectedValue] = useState([]);
+    // var [selectedValue, setSelectedValue] = useState([]);
     const [usercount, setusercount] = useState();
     const [login, setLogin] = useState();
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
 
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => {
-                setUsers(res.data);
-                if (localStorage.getItem("passValue") === true) {
-                    setSelectedValue(team);
-                } else {
-                    setSelectedValue([]);
-                }
-            }).catch((err) => { return err; })
-    }, [selectedValue]);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/customer/list")
+    //         .then((res) => {
+    //             setUsers(res.data);
+    //             if (localStorage.getItem("passValue") === true) {
+    //                 setSelectedValue(team);
+    //             } else {
+    //                 setSelectedValue([]);
+    //             }
+    //         }).catch((err) => { return err; })
+    // }, [selectedValue]);
 
     useEffect(() => {
         localStorage.setItem("passValue", false);
@@ -55,7 +57,7 @@ export default function Users(props) {
         props.usercountcallback(usercount);
     });
 
-    const deleteUsers = (id) => {
+    const deleteUsers = (id)=> {
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {

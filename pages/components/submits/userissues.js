@@ -2,9 +2,11 @@ import React, { useEffect, useState,useRef, useContext } from "react";
 import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from "../contex/adminProvider";
+import { CurrentDateContext } from '../contex/currentdateProvider';
 export default Userissue;
 
 function Userissue(props) {
+    const { currentDate } = useContext(CurrentDateContext);
 const{setTesting,setshowvalue}=useContext(CounterContext)
     const [loader,setloader]=useState(false);
     const { customername } = props;
@@ -21,33 +23,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const DescriptionR = useRef();
     const FileR = useRef();
 
-    var today = new Date();
-    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-    var fullDate, TimeType, hour, minutes, seconds, fullTime;
-    fullDate = new Date();
-    hour = fullDate.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    }
-    else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = fullDate.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = fullDate.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString()
+  
 
     useEffect(()=>{
         Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
@@ -72,7 +48,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
             for(let i=0; i<Screenshots.length; i++){
                 data.append("files",Screenshots[i]);  
             }
-            data.append("Cus_CreatedOn", date + ' ' + fullTime)
+            data.append("Cus_CreatedOn", currentDate)
             Axios.post("https://mindmadetech.in/api/tickets/new", data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -99,7 +75,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
             data.append("Phonenumber", PhonenumberR.current.value);
             data.append("DomainName", DomainnameR.current.value);
             data.append("Description",  DescriptionR.current.value);
-            data.append("Cus_CreatedOn", date + ' ' + fullTime)
+            data.append("Cus_CreatedOn", currentDate)
             Axios.post("https://mindmadetech.in/api/tickets/new", data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',

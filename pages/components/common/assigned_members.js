@@ -1,14 +1,10 @@
 import React, { useContext,useState,useEffect } from "react";
 import { CounterContext } from "../contex/adminProvider";
 import Axios from "axios";
+import { ListContext } from "../contex/ListProvider";
 export default function AssignedMenber(props){
     const{removeTeammember,designTeamList}=useContext(CounterContext)
-    const [team, setTeam] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data))
-            .catch((err) => { return err; })
-    });
+    const{team}=useContext(ListContext)
     return(
            <div className="mt-3 row">
            {team.filter(val => {

@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
+import { ListContext } from '../contex/ListProvider';
 
 import Axios from "axios";
 export default function ViewTeam(props){
-    const {teamArray,team}=props
-  
+    const {teamArray}=props
+    const { team } = useContext(ListContext);
     const [newarray,setnewarray]=useState([])
     useEffect(()=>{
        var TeamList = [...newarray]

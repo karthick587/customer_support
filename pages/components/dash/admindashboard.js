@@ -28,9 +28,9 @@ import NonUserTickets from '../tickets/non_userTickets';
 import Adminissues from '../submits/adminIssues';
 import SendIcon from '@mui/icons-material/Send';
 import FormAlert from '../common/alert';
-
+import { ListContext } from '../contex/ListProvider';
 const AdminDashboard = () => {
-
+  const {teamcount}=useContext(ListContext)
   const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
@@ -39,8 +39,7 @@ const AdminDashboard = () => {
   const [activeTab, setActivetab] = useState();
   // usercount
   const [usercount, setusercount] = useState();
-   //team members count
-   const [teamcount, setteamcount] = useState();
+   
 
   // cannot access page without login
   useEffect(() => {
@@ -119,10 +118,7 @@ const AdminDashboard = () => {
   const handleCallback3 = (childData) => {
     setusercount(childData);
   };
-  //team members count
-  const handleCallback4 = (childData) => {
-    setteamcount(childData);
-  }
+  
   return (
     <>
       {login === "false" ? <div className="access ">access denied</div> :
@@ -243,7 +239,7 @@ const AdminDashboard = () => {
                     <Adminticket />
                   </div>
                   <div className={activeTab === "team" ? "tab-pane fade show acti`ve" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <Team teamcountcallback={handleCallback4} />
+                    <Team  />
                   </div>
                   <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-NonUser" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                    <NonUserTickets />

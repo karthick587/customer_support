@@ -2,8 +2,11 @@ import React, { useEffect, useState,useRef, useContext } from "react";
 import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from "../contex/adminProvider";
+import { CurrentDateContext } from '../contex/currentdateProvider';
+
 
  export default function Adminissues(props) {
+    const { currentDate } = useContext(CurrentDateContext);
 const{setTesting,setshowvalue}=useContext(CounterContext)
     const [loader,setloader]=useState(false);
     const [show, setShow] = useState();
@@ -25,34 +28,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
         setCreatedby(Adminname.slice(3, 20));
     });
 
-    var today = new Date();
-    const date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-    var fullDate, TimeType, hour, minutes, seconds, fullTime;
-    fullDate = new Date();
-    hour = fullDate.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    }
-    else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = fullDate.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = fullDate.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
-
+  
     function handleScreenshot(e) {
         setLogo(e.target.files)
     };
@@ -66,7 +42,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
          data.append("Phonenumber", PhonenumberR.current.value);
          data.append("DomainName", DomainnameR.current.value);
          data.append("Description", DescriptionR.current.value);
-         data.append("Adm_CreatedOn", date+ ' ' + fullTime);
+         data.append("Adm_CreatedOn", currentDate);
          data.append("Adm_CreatedBy", Createdby);
          data.append("Cus_CreatedOn","null")
          for(let i=0; i<Logo.length; i++){
@@ -95,7 +71,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
          data.append("Phonenumber", PhonenumberR.current.value);
          data.append("DomainName", DomainnameR.current.value);
          data.append("Description", DescriptionR.current.value);
-         data.append("Adm_CreatedOn", date+ ' ' + fullTime);
+         data.append("Adm_CreatedOn", currentDate);
          data.append("Adm_CreatedBy", Createdby);
          data.append("Cus_CreatedOn","null")
          

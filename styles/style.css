@@ -1,6 +1,6 @@
 a {
   text-decoration: none !important;
-  padding: 3px 10px;
+  padding: 0px 10px;
   cursor: pointer;
   color: #1976d2 !important;
 }
@@ -121,14 +121,29 @@ a {
 }
 
 .close-btn {
+  min-width: 30px !important;
+  right: 0px !important;
+  position: absolute !important;
+  font-size: 30px !important;
+  color: white !important;
+  font-weight: 700 !important;
+  background-color: #0c3b69;
+  margin: 10px 14px !important;
+  z-index: 99 !important;
+}
+.close-btn:hover{
+  color: black !important;
+    text-decoration: none;
+    background-color: rgba(25, 118, 210, 0.04);
+}
+.download-btn{
   width: 30px !important;
   right: 0px !important;
-  position: absolute;
+  top: 40px;
   position: absolute !important;
   margin: 10px 1px !important;
   z-index: 99 !important;
 }
-
 @media only screen and (max-width: 600px) {
   .tickets-bodyrow3 div {
     width: 100px;
@@ -263,6 +278,7 @@ a {
 
 .close-btn-div {
   width: 40px;
+
 }
 
 .keen-slider__slide.number-slide3 {
@@ -844,11 +860,16 @@ form.form2 {
   color: white !important;
   font-weight: 450 !important;
   font-size: 16px !important;
-  padding: 5px 14px !important;
+  padding: 4px 14px 4px 14px!important;
   border: none !important;
   font-family: system-ui;
 }
-
+.viewer-img-body {
+  height: 90vh !important;
+  overflow: auto;
+  width: 90% !important;
+  margin: auto;
+}
 
 .btn2:hover {
   background-color: #1463b1;
@@ -1221,7 +1242,7 @@ span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-yb0lig {
 }
 
 .viewer-img-body {
-  overflow: auto;
+  overflow: hidden;
 }
 
 img.screeshot-img-viewer {
@@ -2214,4 +2235,31 @@ div#v-pills-dash {
   background-color: rgb(149 220 149 / 62%) !important;
   padding: 1px 16px !important;
 
+}
+.viewer-img-body-img {
+  width: 100%;
+  height: 86%;
+  left: 0;
+  /* margin-top: 11px; */
+  right: 0;
+  margin: auto;
+  display: block;
+}
+.justify-content-center{
+  left: 0;
+  right: 0;
+  display: block;
+  margin: auto;
+}
+.viewer-img-body-bottom{
+ background-color: white;
+ padding: 10px;
+}
+.viewer-img-body-bottom-img {
+  /* display: flex; */
+  display: block;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: min-content;
 }

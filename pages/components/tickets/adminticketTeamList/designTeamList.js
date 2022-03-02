@@ -1,11 +1,13 @@
 import React, { useEffect, useState ,useContext} from 'react';
 import { CounterContext } from '../../contex/adminProvider';
 import Axios from "axios";
+import { ListContext } from '../../contex/ListProvider';
+
 export default function DesignTeamList(props) {
  
   const { addTeammember } = useContext(CounterContext);
-const{selectedteam,team}=props
-
+const{selectedteam}=props
+const{team}=useContext(ListContext)
 
   return (
       <div>

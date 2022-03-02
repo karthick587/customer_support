@@ -17,13 +17,15 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import DesignTeamList from './adminticketTeamList/designTeamList';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import AssignedMenber from '../common/assigned_members';
 import ViewTeam from '../common/view_team';
+import { ListContext } from '../contex/ListProvider';
 
 function Adminticket() {
-    const { setdialogformopen, designTeamList,setTesting,setshowvalue,setdesignTeamList } = useContext(CounterContext);
+    const { setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
+    const { users, team } = useContext(ListContext);
 
     const Router = useRouter();
     var [show, setShow] = useState('');
@@ -42,7 +44,7 @@ function Adminticket() {
     const [showmailstatus, setShowmailstatus] = useState("");
     var [selectedstatus, setSelectedstatus] = useState('');
     const [email, setEmail] = useState();
-    var [users, setUsers] = useState([]);
+
     const [dticketsId, setdticketsId] = useState("");
     const [teamarray, setteamarray] = useState([]);
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
@@ -61,18 +63,18 @@ function Adminticket() {
                 }
             })
             .catch((err) => { return err; })
-    },[selectedValue]);
-    var [team, setTeam] = useState([]);
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/team/list")
-            .then((res) => setTeam(res.data))
-            .catch((err) => { return err; })
-    },[]);
+    }, [selectedValue]);
+    // var [team, setTeam] = useState([]);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/team/list")
+    //         .then((res) => setTeam(res.data))
+    //         .catch((err) => { return err; })
+    // },[]);
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
-    },[]);
-    
+    }, []);
+
     //filter function
     useEffect(() => {
         if (filteredTitle === "all") {
@@ -82,7 +84,7 @@ function Adminticket() {
             setIsOpenfilter(true);
         }
         setShow();
-    },[filteredTitle]);
+    }, [filteredTitle]);
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
@@ -90,7 +92,7 @@ function Adminticket() {
         } else {
             setIsOpenstatusfilter(false);
         }
-    },[filteredTitle]);
+    }, [filteredTitle]);
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -99,7 +101,7 @@ function Adminticket() {
         } else if (login === null) {
             Router.push("/");
         }
-    },[]);
+    }, []);
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
@@ -121,10 +123,11 @@ function Adminticket() {
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
             })
-                .catch((err) => { 
+                .catch((err) => {
                     setTesting(true)
-                    setshowvalue(1+"Submitted Failed");
-                    return err; })
+                    setshowvalue(1 + "Submitted Failed");
+                    return err;
+                })
         };
         var data = {
             to_email: email,
@@ -138,7 +141,7 @@ function Adminticket() {
                     setShowmailstatus("Email sent successfully")
                 },
                 function (err) {
-                    setShowmailstatus(1+"Sending Email Failed")
+                    setShowmailstatus(1 + "Sending Email Failed")
                     setdialogformopen(true)
                 }
             );
@@ -151,13 +154,13 @@ function Adminticket() {
         return () => {
             clearTimeout(Timer);
         }
-    },[])
+    }, [])
     //to get client email id
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/customer/list")
-            .then((res) => setUsers(res.data))
-            .catch((err) => { return err; })
-    }, [setUsers]);
+    // useEffect(() => {
+    //     Axios.get("https://mindmadetech.in/api/customer/list")
+    //         .then((res) => setUsers(res.data))
+    //         .catch((err) => { return err; })
+    // }, [setUsers]);
     useEffect(() => {
         {
             users.filter(val => {
@@ -165,12 +168,15 @@ function Adminticket() {
             }).map((itemed) => setEmail(itemed.Email)
             )
         }
-    },[]);
+        if (search !== "") {
+            setCurrentpage(1)
+        }
+    }, [search]);
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
     //emailjs
-    const Notificationupdate = (ticketsId, Screenshots,TeamAssign) => {
+    const Notificationupdate = (ticketsId, Screenshots, TeamAssign) => {
         setdticketsId(ticketsId);
         setteamarray(TeamAssign)
         setdticketsscreenshots(Screenshots);
@@ -194,32 +200,33 @@ function Adminticket() {
         setShowdetails(false);
     };
 
-   
+
 
     function handleUpdate(ticketsId) {
-        const teamId = designTeamList.map((o)=> JSON.stringify(o));
+        const teamId = designTeamList.map((o) => JSON.stringify(o));
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
             ticketsId: ticketsId,
-            Adm_UpdatedBy:Adm_CreatedBy,
-            Adm_UpdatedOn:currentDate,
+            Adm_UpdatedBy: Adm_CreatedBy,
+            Adm_UpdatedOn: currentDate,
         }).then((_response) => {
-            
+
             setdialogformopen("true")
             localStorage.setItem("passValue", true);
             setTesting(true)
-                setshowvalue("Assigned Successfully");
-                setdesignTeamList([])
+            setshowvalue("Assigned Successfully");
+            setdesignTeamList([])
         })
-            .catch((err) => { 
+            .catch((err) => {
                 setTesting(true)
-                setshowvalue(1+"Assigned Failed");
-                return err; })
+                setshowvalue(1 + "Assigned Failed");
+                return err;
+            })
     };
     function callback(childdata) {
         setdesignTeamList(childdata)
     }
-   
+
     return (
         <div>
             <Head>
@@ -227,9 +234,9 @@ function Adminticket() {
             </Head>
             {showdetails === false ?
                 <div className="userbody">
-                      <div className='header-user'>
-                      <h1>Tickets</h1>
-                      <div className='filter-head flex'>
+                    <div className='header-user'>
+                        <h1>Tickets</h1>
+                        <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
                                 <option value="ticketsId">TicketsId</option>
@@ -251,8 +258,8 @@ function Adminticket() {
                                 </select>
                             )}
                         </div>
-                          </div>
-                    
+                    </div>
+
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
@@ -320,18 +327,18 @@ function Adminticket() {
                                 }
                             }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                                 <TableBody className='update-right' key={tickets.ticketsId}>
-                                    <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots,tickets.TeamAssign)}>
+                                    <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots, tickets.TeamAssign)}>
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn}</TableCell>
-                                        <TableCell >{tickets.TeamAssign.length<=0 ?<>Not assigned</>:<ViewTeam team={team} teamArray={tickets.TeamAssign} />}</TableCell>
+                                        <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
                                     </TableRow>
                                     <div className='updateadminpage flex'>
                                         <FormDialog
                                             dialog_className="Assign-team-dailog"
-                                            dialogtitle={<div onClick={()=>setselectTeam("x")}>Assign</div>}
+                                            dialogtitle={<div onClick={() => setselectTeam("x")}>Assign</div>}
                                             className="btn3 ticket-update2"
                                             dialogbody={
                                                 <div className="form dialog">
@@ -356,16 +363,20 @@ function Adminticket() {
                                                                         </ul>
                                                                     </div>
                                                                     <div className='TeamList-right'>
-                                                                        <DesignTeamList team={team} selectedteam={selectTeam} designTeamList={callback} />
+                                                                        <DesignTeamList selectedteam={selectTeam} designTeamList={callback} />
                                                                     </div>
 
                                                                 </div>
-                                                                <AssignedMenber team={team} />
+                                                                <AssignedMenber />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
-                                                   
+                                                    <div className='flex float-end'>
+                                                        <Button onClick={() => setdesignTeamList([])&setdialogformopen("true")}>Cancel</Button>
+                                                        <button className="btn2 mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+                                                    </div>
+
+
                                                 </div>
                                             }
                                         />
@@ -398,7 +409,7 @@ function Adminticket() {
                             )}
                         </Table>
                     </TableContainer>
-                     <div className='page-bottom'>
+                    <div className='page-bottom'>
                         < ReactPaginate
                             previousLabel={""}
                             nextLabel={""}
@@ -423,7 +434,7 @@ function Adminticket() {
                 :
                 <>
                     <Ticketviewer
-                    teamarray={teamarray}
+                        teamarray={teamarray}
                         dticketsId={dticketsId}
                         dticketsscreenshots={dticketsscreenshots}
                         closeDetails={closeDetails}

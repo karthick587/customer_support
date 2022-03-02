@@ -11,6 +11,7 @@ import 'nprogress/nprogress.css'; //styles of nprogress
 import Router from 'next/router';
 import CounterContextProvider from './components/contex/adminProvider';
 import CurrentDateContextProvider from './components/contex/currentdateProvider';
+import ListContextProvider from './components/contex/ListProvider';
 import FormAlert from './components/common/alert';
 
 function MyApp({ Component, pageProps }) {
@@ -28,10 +29,12 @@ function MyApp({ Component, pageProps }) {
       {/ Add the favicon /} */}
       <CounterContextProvider>
           <CurrentDateContextProvider>
-            <Head>
-                <title>Customer Support</title>
-            </Head>
-            <Component {...pageProps} />
+            <ListContextProvider>
+                  <Head>
+                      <title>Customer Support</title>
+                  </Head>
+                  <Component {...pageProps} />
+            </ListContextProvider>
           </CurrentDateContextProvider>
       </CounterContextProvider>
       <div className='water-mark'><span>Designed by</span> MindMade</div>
