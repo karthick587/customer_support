@@ -1,6 +1,6 @@
 a {
   text-decoration: none !important;
-  padding: 0px 10px;
+  padding: 3px 10px;
   cursor: pointer;
   color: #1976d2 !important;
 }
@@ -429,16 +429,19 @@ textarea:focus-visible {
 .nav-link.active div span {
   margin-left: 0px;
 }
+
 .nav-link.active div span svg {
   width: 25px !important;
   font-size: 75px !important;
   height: 24px !important;
 }
+
 .nav-link div span svg {
   width: 25px !important;
   font-size: 75px !important;
   height: 24px !important;
 }
+
 select:focus-visible {
   border: 1.5px solid #1976d2 !important;
   outline: none;
@@ -836,12 +839,12 @@ form.form2 {
 }
 
 .btn2 {
-  border-radius: 24px !important;
+  border-radius: 5px !important;
   background-color: #1976d2 !important;
   color: white !important;
   font-weight: 450 !important;
-  font-size: 13px !important;
-  padding: 3px 10px !important;
+  font-size: 16px !important;
+  padding: 5px 14px !important;
   border: none !important;
   font-family: system-ui;
 }
@@ -1412,7 +1415,7 @@ h5.Completed {
   word-wrap: normal;
   background-color: #58a2ea38;
   padding: 6px 10px;
-
+  margin-top: 4px;
   border: navajowhite;
   margin-left: 4px;
   font-family: inherit;
@@ -2206,8 +2209,9 @@ div#v-pills-dash {
   letter-spacing: 0em;
   display: block;
 }
+
 .css-kgmwx6-MuiPaper-root-MuiAlert-root {
   background-color: rgb(149 220 149 / 62%) !important;
   padding: 1px 16px !important;
-  
+
 }
