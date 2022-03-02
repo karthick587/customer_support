@@ -13,7 +13,7 @@ function Ticketviewer(props) {
     const[downloadlink,setdownloadlink]=useState()
 
     useEffect(() => {
-        Axios.get(`https://mindmadetech.in/api/tickets/listtest/${dticketsId}`)
+        Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
             .then((res) => setticket(res.data))
             .catch((err)=>{ return err;})
     }, [setticket]);
