@@ -129,7 +129,7 @@ a {
   font-size: 30px !important;
   color: white !important;
   font-weight: 700 !important;
-  background-color: #0c3b69;
+  background-color: #0c3b69 !important;
   margin: 10px 14px !important;
   z-index: 99 !important;
 }
