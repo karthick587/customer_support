@@ -2265,3 +2265,6 @@ div#v-pills-dash {
   right: 0;
   width: min-content;
 }
+.btn2:active{
+  background-color: #0c3b69!important;
+}
