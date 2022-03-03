@@ -38,7 +38,7 @@ const CustomerDashboard = () => {
   },[]);
   useEffect(() => {
     setUser(window.localStorage.getItem('clientname'));
-  },[]);
+  },[setUser,user]);
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -67,7 +67,7 @@ const CustomerDashboard = () => {
   };
   useEffect(() => {
     setUser(window.localStorage.getItem('user'));
-  },[]);
+  },[setUser]);
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', "Dashboard");
@@ -87,7 +87,7 @@ const CustomerDashboard = () => {
     Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
       .then((res) => setTickets(res.data))
       .catch((err) => { return err; })
-  },[]);
+  },[setTickets,user]);
   useEffect(() => {
     setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);
     setraisedinprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length);
