@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Imageviewer from '../common/imageviewer'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Imageviewer from '../common/imageviewer';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { Button } from '@mui/material';
@@ -21,14 +20,13 @@ function Non_userviewer(props) {
 
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    });
+    },[]);
 
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
     }, [setNonUserDetails]);
-
     function handleRejection(Id) {
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
@@ -36,9 +34,7 @@ function Non_userviewer(props) {
             Adm_UpdatedBy: Createdby
         });
     }
-
     function handleApproval(nonuser) {
-        console.log(nonuser.DomainName, nonuser.Description, nonuser.CreatedOn)
         const data = new FormData();
         data.append("Companyname", nonuser.Companyname);
         data.append("Clientname", nonuser.Clientname);
@@ -59,7 +55,7 @@ function Non_userviewer(props) {
                 setshowvalue(1 + "Registration failed");
                 return null;
             } else {
-                return response;
+               
                 setTesting(true)
                 setshowvalue(1 + "Registered Successfully");
 
@@ -67,7 +63,7 @@ function Non_userviewer(props) {
         }).catch((err) => {
             setTesting(true)
             setshowvalue(1 + "Error");
-            return err;
+           
         });
 
         const formData = new FormData();

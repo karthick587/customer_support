@@ -19,7 +19,6 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import Copyrights from "../common/copyRight";
 import FormAlert from "../common/alert";
 const CustomerDashboard = () => {
-
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -29,7 +28,6 @@ const CustomerDashboard = () => {
   const [ticketraisedcount, setticketraisedcount] = useState();
   const [raisedinprogresscount, setraisedinprogresscount] = useState();
   const [raisedcompletedcount, setraisedcompletedcount] = useState();
-
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
     if (login === "false") {
@@ -37,12 +35,10 @@ const CustomerDashboard = () => {
     } else if (login === null) {
       router.push("/");
     }
-  });
-
+  },[]);
   useEffect(() => {
     setUser(window.localStorage.getItem('clientname'));
-  });
-
+  },[]);
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -57,56 +53,46 @@ const CustomerDashboard = () => {
       }
     }
   };
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
     return () => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
-  }, []);
-
+  },[]);
   const onBackButtonEvent3 = () => {
     router.push("/");
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('activeTab');
   };
-
   useEffect(() => {
     setUser(window.localStorage.getItem('user'));
-  });
-
+  },[]);
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', "Dashboard");
   };
-
   // tickettab
   const TicketTabActive = () => {
     localStorage.setItem('activeTab', 'ticket');
   };
-
   const profileTabActive = () => {
     localStorage.setItem('activeTab', 'profile');
   };
-
   // usertab
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
-  }, []);
-
+  },[]);
   useEffect(() => {
     Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
       .then((res) => setTickets(res.data))
       .catch((err) => { return err; })
-  });
-
+  },[]);
   useEffect(() => {
     setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);
     setraisedinprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length);
     setraisedcompletedcount(tickets.filter(val => { return val.Status.includes("Completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length);
-  }, [tickets]);
-
+  },[tickets]);
   return (
     <>
       {login === "false" ? <div className="access ">access denied</div> :

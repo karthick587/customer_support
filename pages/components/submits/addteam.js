@@ -52,7 +52,7 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
         } else if (login === null) {
             Router.push("/")
         }
-    });
+    },[]);
 
     useEffect(()=>{
         const timer = setTimeout(() => {
@@ -61,7 +61,7 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
           return () =>{
               clearTimeout(timer);
           }
-      })
+      },[])
 
     return (
         <div>

@@ -39,11 +39,11 @@ export default function Addcustomer() {
 
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
-    }, []);
+    },[]);
 
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    });
+    },[]);
 
     function handleScreenshot(e) {
         setLogovalidate(e.target.files[0]);
@@ -95,7 +95,7 @@ export default function Addcustomer() {
         } else if (login === null) {
             Router.push("/");
         }
-    });
+    },[]);
 
     useEffect(()=>{
       const timer = setTimeout(() => {
@@ -104,7 +104,7 @@ export default function Addcustomer() {
         return () =>{
             clearTimeout(timer);
         }
-    })
+    },[])
     return (
         <div>
             <div className="container mainbody">
@@ -131,11 +131,6 @@ export default function Addcustomer() {
                             <input className="form-input" name="Clientname" type="text" {...register('Clientname')} />
                             <p className="me-2 text-danger">{errors.Clientname?.message}</p>
                         </div>
-                        {/* <div className="form-group">
-                            <label className="label"> Project Code</label>
-                            <input className="form-input" name="Projectcode" type="text" {...register('Projectcode')} />
-                            <p className="me-2 text-danger">{errors.Projectcode?.message}</p>
-                        </div> */}
                         <div className="form-group">
                             <label className="col label">EMail ID</label>
                             <input className="form-input" name="Email" type="text" {...register('Email')} />

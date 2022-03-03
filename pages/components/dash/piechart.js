@@ -3,15 +3,18 @@ import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } fro
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import PhoneIcon from '@mui/icons-material/Phone';
 import TabletIcon from '@mui/icons-material/Tablet';
+import { useContext } from 'react';
+import { CounterContext } from '../contex/adminProvider';
 
 export default function Piechart(props){
+  const{adminNewcount,adminStartedcount,adminprogresscount,adminCompletedcount}=useContext(CounterContext)
   const {newcount,started,inprogress,completed}=props;
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        data: [newcount, started, inprogress,completed],
+        data: [adminNewcount, adminStartedcount, adminprogresscount,adminCompletedcount],
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00','green'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
@@ -42,33 +45,6 @@ export default function Piechart(props){
       titleFontColor: theme.palette.text.primary
     }
   };
-
-  const devices = [
-    {
-      title: 'New',
-      value: newcount,
-      icon: LaptopMacIcon,
-      color: '#E53935'
-    },
-    {
-      title: 'started',
-      value: started,
-      icon: TabletIcon,
-      color: '#3F51B5'
-    },
-    {
-      title: 'inprogress',
-      value: inprogress,
-      icon: PhoneIcon,
-      color: '#FB8C00'
-    },
-    {
-      title: 'Completed',
-      value: completed,
-      icon: PhoneIcon,
-      color: 'green'
-    }
-  ];
 
   return (
     <Card {...props}>

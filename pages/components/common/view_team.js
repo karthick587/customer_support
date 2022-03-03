@@ -1,7 +1,5 @@
 import React, { useState,useEffect,useContext } from "react";
 import { ListContext } from '../contex/ListProvider';
-
-import Axios from "axios";
 export default function ViewTeam(props){
     const {teamArray}=props
     const { team } = useContext(ListContext);
@@ -15,7 +13,6 @@ export default function ViewTeam(props){
         setnewarray(TeamList)
        }  
     },[setnewarray,teamArray])
-    
     return(
         <div className="">
         { newarray !== undefined&&team !== undefined ?<div> {team.filter(val => { 

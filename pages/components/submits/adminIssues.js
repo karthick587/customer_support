@@ -3,8 +3,6 @@ import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from "../contex/adminProvider";
 import { CurrentDateContext } from '../contex/currentdateProvider';
-
-
  export default function Adminissues(props) {
     const { currentDate } = useContext(CurrentDateContext);
 const{setTesting,setshowvalue}=useContext(CounterContext)
@@ -19,23 +17,17 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
     const [Logo, setLogo] = useState();
-
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
     }, []);
-
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    });
-
-  
+    },[]);
     function handleScreenshot(e) {
         setLogo(e.target.files)
     };
-
     function addIssues(){
         if(Logo!==undefined || Logo.length > 0){
-        
          const data = new FormData();
          data.append("Username", UsernameR.current.value);
          data.append("Email", EmailR.current.value);

@@ -12,6 +12,7 @@ import Router from 'next/router';
 import CounterContextProvider from './components/contex/adminProvider';
 import CurrentDateContextProvider from './components/contex/currentdateProvider';
 import ListContextProvider from './components/contex/ListProvider';
+import TicketsContextProvider from './components/contex/ticketsProvider';
 import FormAlert from './components/common/alert';
 
 function MyApp({ Component, pageProps }) {
@@ -27,16 +28,20 @@ function MyApp({ Component, pageProps }) {
     <>
       {/* {/ Add the favicon /}
       {/ Add the favicon /} */}
-      <CounterContextProvider>
-          <CurrentDateContextProvider>
-            <ListContextProvider>
-                  <Head>
-                      <title>Customer Support</title>
-                  </Head>
-                  <Component {...pageProps} />
-            </ListContextProvider>
-          </CurrentDateContextProvider>
-      </CounterContextProvider>
+
+      <CurrentDateContextProvider>
+        <ListContextProvider>
+          <TicketsContextProvider>
+            <CounterContextProvider>
+              <Head>
+                <title>Customer Support</title>
+              </Head>
+              <Component {...pageProps} />
+            </CounterContextProvider>
+          </TicketsContextProvider>
+        </ListContextProvider>
+      </CurrentDateContextProvider>
+
       <div className='water-mark'><span>Designed by</span> MindMade</div>
 
     </>

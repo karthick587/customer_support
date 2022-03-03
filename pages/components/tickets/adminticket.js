@@ -21,12 +21,13 @@ import { Button, Typography } from '@mui/material';
 import AssignedMenber from '../common/assigned_members';
 import ViewTeam from '../common/view_team';
 import { ListContext } from '../contex/ListProvider';
+import { TicketsContext } from '../contex/ticketsProvider';
 
 function Adminticket() {
     const { setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { users, team } = useContext(ListContext);
-
+    const { tickets } = useContext(TicketsContext);
     const Router = useRouter();
     var [show, setShow] = useState('');
     var [search, setSearch] = useState('');
@@ -35,8 +36,6 @@ function Adminticket() {
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
-    var [tickets, setTickets,] = useState([]);
-  
     var [Adm_CreatedBy, setAdm_CreatedBy] = useState('');
     const [login, setLogin] = useState();
     const [ticketid, setTicketid] = useState();
@@ -52,24 +51,7 @@ function Adminticket() {
     const [currentpage, setCurrentpage] = useState(1);
     const [showdetails, setShowdetails] = useState(false);
     const [selectTeam, setselectTeam] = useState('x');
-    useEffect(() => {
-        Axios.get("https://mindmadetech.in/api/tickets/list")
-            .then((res) => {
-                setTickets(res.data)
-                if (localStorage.getItem("passValue") === true) {
-                    setSelectedValue(team)
-                } else {
-                    setSelectedValue([])
-                }
-            })
-            .catch((err) => { return err; })
-    }, [selectedValue]);
-    // var [team, setTeam] = useState([]);
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/team/list")
-    //         .then((res) => setTeam(res.data))
-    //         .catch((err) => { return err; })
-    // },[]);
+    
     useEffect(() => {
         localStorage.setItem("passValue", false);
         setAdm_CreatedBy(localStorage.getItem('user'));
@@ -155,12 +137,7 @@ function Adminticket() {
             clearTimeout(Timer);
         }
     }, [])
-    //to get client email id
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/customer/list")
-    //         .then((res) => setUsers(res.data))
-    //         .catch((err) => { return err; })
-    // }, [setUsers]);
+    
     useEffect(() => {
         {
             users.filter(val => {
@@ -200,7 +177,6 @@ function Adminticket() {
         setShowdetails(false);
     };
 
-  
 
     function handleUpdate(ticketsId) {
         const teamId = designTeamList.map((o) => JSON.stringify(o));
@@ -242,7 +218,7 @@ function Adminticket() {
                                 <option value="ticketsId">TicketsId</option>
                                 <option value="Username">Username</option>
                                 <option value="Date">Date</option>
-                                <option value="Team">Team</option>
+                                {/* <option value="Team">Team</option> */}
                                 <option value="Status">Status</option>
                             </select>
                             {isOpenfilter && (
@@ -297,8 +273,8 @@ function Adminticket() {
                                         } else return val;
                                     } else if (filteredTitle === "Status") {
                                         return val.Status.toLowerCase().includes(search.toLowerCase())
-                                    } else if (filteredTitle === "Team") {
-                                       ftf
+                                    // } else if (filteredTitle === "Team") {
+                                    //    ftf
                                     } else if (filteredTitle === "Date") {
                                         if (search === "" || search === " ") {
                                             return val

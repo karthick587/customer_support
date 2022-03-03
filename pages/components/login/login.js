@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
-import Head from 'next/head';
 import Axios from 'axios';
 import { CounterContext } from '../contex/adminProvider';
 import Button from '@mui/material/Button';
@@ -73,10 +72,10 @@ export default function Login1() {
     return () => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
-  }, []);
+  },[]);
   useEffect(() => {
     localStorage.setItem('user', userlogin);
-  });
+  },[]);
   
 
   return (

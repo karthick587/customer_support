@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Imageviewer from '../common/imageviewer'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Axios from "axios";
 import ViewTeam from './view_team';
@@ -7,30 +6,19 @@ import ViewScreenshots from './view_screenshots';
 
 function Ticketviewer(props) {
 
-    const { dticketsId, closeDetails, dticketsscreenshots,teamarray} = props;
+    const { dticketsId, closeDetails} = props;
     const [ticket, setticket] = useState([]);
-    const [mimetype, setMimetype] = useState('');
-    const[downloadlink,setdownloadlink]=useState()
-
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
             .then((res) => setticket(res.data))
             .catch((err)=>{ return err;})
     }, [setticket]);
- 
-    // useEffect(() => {
-    //     setMimetype(dticketsscreenshots.slice(dticketsscreenshots.length - 4));
-    // },[setMimetype]);
-
-    const downloadimg= (Screenshots) =>{
-        setdownloadlink(`https://mindmadetech.in/download/${Screenshots.slice(38,100)}`);  
-    };
      var [team, setTeam] = useState([]);
      useEffect(() => {
          Axios.get("https://mindmadetech.in/api/team/list")
              .then((res) => setTeam(res.data))
             .catch((err)=>{ return err; })
-     }, [setTeam]);
+     },[setTeam]);
     return (
         <>
             {ticket.reverse().map((tickets) =>

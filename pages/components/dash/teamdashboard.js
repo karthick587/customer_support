@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import Typography from '@mui/material/Typography';
 import Dashboard from "../common/navdashboard";
 import { withRouter } from "next/router";
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ListItemText from '@mui/material/ListItemText';
 import router from "next/router";
 import Teamticket from "../tickets/teamticket";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -40,8 +36,7 @@ const TeamDashboard = () => {
     } else if (login === null) {
       router.push("/");
     }
-  });
-
+  },[]);
   //alert to conform logout
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -57,7 +52,6 @@ const TeamDashboard = () => {
       }
     }
   };
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
@@ -65,34 +59,28 @@ const TeamDashboard = () => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
   }, []);
-
   //logout function
   const onBackButtonEvent3 = () => {
     router.push("/");
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('activeTab');
   }
-
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', "Dashboard");
   };
-
   // tickettab
   const TicketTabActive = () => {
     localStorage.setItem('activeTab', 'ticket');
   };
-
   // usertab
   const profileTabActive = () => {
     localStorage.setItem('activeTab', 'profile');
   };
-
    // activetab
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
   }, []);
-
   useEffect(() => {
       setloginTmName(loginTmName = window.localStorage.getItem('tm_name'));
         if (loginTmName !== "" || loginTmName !== undefined || loginTmName !== null) {
@@ -103,8 +91,6 @@ const TeamDashboard = () => {
             .catch((err) => { return err; })
         }
   }, [setteamticket, loginTmName,teamticket]);
-
-  
   // ticket count, ticket status count for team dashboard
   useEffect(() => {
     setassignedcount(teamticket.filter(val => { return val }).map((ticket) => setassignedcount(ticket.Status.length)).length);

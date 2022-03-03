@@ -29,9 +29,12 @@ import Adminissues from '../submits/adminIssues';
 import SendIcon from '@mui/icons-material/Send';
 import FormAlert from '../common/alert';
 import { ListContext } from '../contex/ListProvider';
+import { TicketsContext } from '../contex/ticketsProvider';
 const AdminDashboard = () => {
+  const { notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
   const {teamcount}=useContext(ListContext)
-  const { tickets, notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
+ 
+
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -39,8 +42,6 @@ const AdminDashboard = () => {
   const [activeTab, setActivetab] = useState();
   // usercount
   const [usercount, setusercount] = useState();
-   
-
   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
@@ -50,7 +51,6 @@ const AdminDashboard = () => {
       router.push("/");
     }
   });
-
   // alert to conform logout white click back
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -65,15 +65,13 @@ const AdminDashboard = () => {
       }
     }
   };
-
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
     return () => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
-  }, []);
-
+  },[]);
   // logout function
   const onBackButtonEvent2 = () => {
     localStorage.setItem('loggedin', false);
@@ -118,7 +116,6 @@ const AdminDashboard = () => {
   const handleCallback3 = (childData) => {
     setusercount(childData);
   };
-  
   return (
     <>
       {login === "false" ? <div className="access ">access denied</div> :
@@ -217,7 +214,7 @@ const AdminDashboard = () => {
                             </div>
                           </div>
                           <div className='Resentticket-page'>
-                            <Resentticket tickets={tickets} />
+                            <Resentticket />
                             <Piechart
                               newcount={adminNewcount}
                               started={adminStartedcount}

@@ -23,20 +23,15 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const DomainnameR = useRef();
     const DescriptionR = useRef();
     const FileR = useRef();
-
-  
-
     useEffect(()=>{
         Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
         .then(res =>{
             setProjectcode(res.data[0].Projectcode)
         }).catch(err=>{ return err; })
-    });
-
+    },[]);
     function handleScreenshot(e) {
         setScreenshots(e.target.files);
     };
-
     const addIssues = () => {
         setloader(true);
         if(Screenshots!==undefined || Screenshots.length>0){
@@ -106,8 +101,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
           return () =>{
               clearTimeout(timer);
           }
-      })
-
+      },[])
     return (
         <div>
         <form className="form5" action="/" method="post">
