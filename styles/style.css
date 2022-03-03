@@ -136,7 +136,7 @@ a {
 .close-btn:hover{
   color: black !important;
     text-decoration: none;
-    background-color: rgba(25, 118, 210, 0.04);
+    background-color: rgba(25, 118, 210, 0.04) !important;
 }
 .download-btn{
   width: 30px !important;
