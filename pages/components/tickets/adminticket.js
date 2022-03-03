@@ -36,7 +36,7 @@ function Adminticket() {
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
     var [tickets, setTickets,] = useState([]);
-    var[filteredTickets,setFilteredTickets] = useState([]);
+  
     var [Adm_CreatedBy, setAdm_CreatedBy] = useState('');
     const [login, setLogin] = useState();
     const [ticketid, setTicketid] = useState();
@@ -200,13 +200,7 @@ function Adminticket() {
         setShowdetails(false);
     };
 
-    useEffect(()=>{
-        setFilteredTickets(tickets.filter(values=>{
-            if (search==='') {
-                return values;
-            }
-        }))
-    },[tickets,setFilteredTickets])
+  
 
     function handleUpdate(ticketsId) {
         const teamId = designTeamList.map((o) => JSON.stringify(o));
@@ -277,52 +271,52 @@ function Adminticket() {
                                     <TableCell align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {filteredTickets
-                            // .filter(val => {
-                            //     if (search === " ") {
-                            //         return val;
-                            //     } else {
-                            //         if (filteredTitle === "all") {
-                            //             return val
-                            //         } else if (filteredTitle === "ticketsId") {
-                            //             return val.ticketsId.toString().includes(search.toString())
-                            //         } else if (filteredTitle === "Username") {
-                            //             if (search === " ") {
-                            //                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes(`${filteredStatus}`)
-                            //             }
-                            //             else if (filteredStatus === "all") {
-                            //                 return val.Username.toLowerCase().includes(search.toLowerCase())
-                            //             } else if (filteredStatus === "started") {
-                            //                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
-                            //             } else if (filteredStatus === "new") {
-                            //                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
-                            //             } else if (filteredStatus === "inprogress") {
-                            //                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
-                            //             } else if (filteredStatus === "completed") {
-                            //                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('completed')
-                            //             } else return val;
-                            //         } else if (filteredTitle === "Status") {
-                            //             return val.Status.toLowerCase().includes(search.toLowerCase())
-                            //         } else if (filteredTitle === "Team") {
-                            //            ftf
-                            //         } else if (filteredTitle === "Date") {
-                            //             if (search === "" || search === " ") {
-                            //                 return val
-                            //             } else {
-                            //                 return val.Cus_CreatedOn.includes(search)
-                            //             }
+                            {tickets
+                            .filter(val => {
+                                if (search === " ") {
+                                    return val;
+                                } else {
+                                    if (filteredTitle === "all") {
+                                        return val
+                                    } else if (filteredTitle === "ticketsId") {
+                                        return val.ticketsId.toString().includes(search.toString())
+                                    } else if (filteredTitle === "Username") {
+                                        if (search === " ") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes(`${filteredStatus}`)
+                                        }
+                                        else if (filteredStatus === "all") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase())
+                                        } else if (filteredStatus === "started") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
+                                        } else if (filteredStatus === "new") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
+                                        } else if (filteredStatus === "inprogress") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
+                                        } else if (filteredStatus === "completed") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('completed')
+                                        } else return val;
+                                    } else if (filteredTitle === "Status") {
+                                        return val.Status.toLowerCase().includes(search.toLowerCase())
+                                    } else if (filteredTitle === "Team") {
+                                       ftf
+                                    } else if (filteredTitle === "Date") {
+                                        if (search === "" || search === " ") {
+                                            return val
+                                        } else {
+                                            return val.Cus_CreatedOn.includes(search)
+                                        }
 
-                            //         } else if (filteredTitle === "Username") {
-                            //             if (filteredStatus === "inprogress") {
+                                    } else if (filteredTitle === "Username") {
+                                        if (filteredStatus === "inprogress") {
 
-                            //                 //return val.Status.toLowerCase().includes("inprogress")
-                            //             } else if (filteredStatus === "completed") {
+                                            //return val.Status.toLowerCase().includes("inprogress")
+                                        } else if (filteredStatus === "completed") {
 
-                            //                 // return val.Status.toLowerCase().includes("completed")
-                            //             } else return val;
-                            //         }
-                            //     }
-                            // })
+                                            // return val.Status.toLowerCase().includes("completed")
+                                        } else return val;
+                                    }
+                                }
+                            })
                             .reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                                 <TableBody className='update-right' key={tickets.ticketsId}>
                                     <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots, tickets.TeamAssign)}>
