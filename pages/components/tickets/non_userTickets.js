@@ -10,7 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Non_userTickets from '../common/non_userviewer';
 import Imageviewer from '../common/imageviewer';
-
+import ReactPaginate from 'react-paginate';
+import { Typography } from '@mui/material';
 function NonUserTickets(props) {
 
     const [showdetails, setShowdetails] = useState(false);
@@ -31,7 +32,16 @@ function NonUserTickets(props) {
     function closeDetails() {
         setShowdetails(false);
     };
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+    //pagination
+    function handlePageChange(pageNumber) {
+        setCurrentpage(pageNumber + 1);
+    };
 
+    const pagedatalimit = (e) => {
+        setdatalimit(e.target.value);
+    };
     return (
         <div>
             <Head>
@@ -55,9 +65,9 @@ function NonUserTickets(props) {
                                 </TableRow>
                             </TableHead>
                           
-                                <TableBody  className='update-right' >
-                                {nonUser.map(value=>
-                                    <TableRow className="tickets-bodyrow update6" key={value.registerId} onClick={()=>ShowDetail(value.registerId)}>
+                                <TableBody   >
+                                {nonUser.slice((currentpage - 1) * datalimit, currentpage * datalimit).map(value=>
+                                    <TableRow  key={value.registerId} onClick={()=>ShowDetail(value.registerId)}>
                                         <TableCell>{value.registerId}</TableCell>
                                         <TableCell className="teamtablecel" align="left" >
                                             <Imageviewer
@@ -74,6 +84,28 @@ function NonUserTickets(props) {
                             </TableBody>  
                         </Table>
                     </TableContainer>
+                    <div className='page-bottom'>
+                    < ReactPaginate
+                        previousLabel={""}
+                        nextLabel={""}
+                        pageCount={Math.ceil(nonUser.length / datalimit)}
+                        onPageChange={(e) => handlePageChange(e.selected)}
+                        containerClassName={"pagination mt-3"}
+                        pageClassName={"page-item"}
+                        pageLinkClassName={"page-link"}
+                        activeClassName={"active"}
+                    />
+                    <div className='pagedata-limit flex'>
+                        <Typography>Team per page</Typography>
+
+                        <select className='pagedatalimit-select' onChange={pagedatalimit}>
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                        </select>
+                    </div>
+                </div>
                 </div>
                 :
                 <>

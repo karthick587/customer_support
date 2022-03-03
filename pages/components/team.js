@@ -34,8 +34,7 @@ export default function Team(props) {
     var [selectedValue, setSelectedValue] = useState([]);
     const [login, setLogin] = useState();
     
-    const [datalimit, setdatalimit] = useState(10);
-    const [currentpage, setCurrentpage] = useState(1);
+   
 
     // useEffect(() => {
     //     Axios.get("https://mindmadetech.in/api/team/list")
@@ -99,7 +98,8 @@ export default function Team(props) {
     },[]);
 
    
-
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
     //pagination
     function handlePageChange(pageNumber) {
         setCurrentpage(pageNumber + 1);
@@ -192,7 +192,7 @@ export default function Team(props) {
                         nextLabel={""}
                         pageCount={Math.ceil(team.length / datalimit)}
                         onPageChange={(e) => handlePageChange(e.selected)}
-                        containerClassName={"pagination justify-content-center mt-3"}
+                        containerClassName={"pagination mt-3"}
                         pageClassName={"page-item"}
                         pageLinkClassName={"page-link"}
                         activeClassName={"active"}

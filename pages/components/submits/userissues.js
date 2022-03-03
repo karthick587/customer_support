@@ -3,6 +3,7 @@ import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from "../contex/adminProvider";
 import { CurrentDateContext } from '../contex/currentdateProvider';
+import { Typography } from "@mui/material";
 export default Userissue;
 
 function Userissue(props) {
@@ -109,8 +110,8 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
 
     return (
         <div>
-        <form className="form3" action="/" method="post">
-            <h4 className="issue-head">Submit your Issues Here!!!</h4>
+        <form className="form5" action="/" method="post">
+            <Typography>Raise Your Tickets</Typography>
             <div className="form-group mt-2 mb-2 flex" >
                 <label className="label width-25">User Name</label>
                 <h5 className="issue-form-input">{props.customername}</h5>

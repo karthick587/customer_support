@@ -13,7 +13,14 @@
 
     width: 225px;
   }
-
+  .ticket-details-middle-1-3 {
+    margin: auto;
+    margin-top: 30px;
+    /* left: 0; */
+    margin-left: 60px !important;
+    /* right: 0; */
+    /* display: block; */
+  }
   .addform {
     width: 190px !important;
   }
@@ -107,7 +114,53 @@
     margin: 0px 8px;
     display: block;
   }
-
+  .pagedata-limit p {
+    display: none;
+}
+.updateadminpage {
+  position: absolute;
+  right: -100px;
+  margin-top: 0px;
+  top: 0;
+}
+.ticket-details-middle-1 {
+  display: block;
+}
+.ticket-details-head-btn {
+  display: 100% !important;
+  /* float: right; */
+  text-align: right;
+  width: 80%;
+}
+.ticket-details-head {
+  padding: 10px 0px;
+  font-size: 18px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  color: #1976d2;
+}
+.ticket-details-middle-1-1 {
+  font-size: 21px;
+  display: flex;
+  padding: 0px 11px;
+  /* border-bottom: 1px solid grey; */
+  border-bottom: 1px solid #8080806e;
+  font-weight: 600;
+  margin-bottom: 56px;
+  color: #1976d2;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+.ticket-details-middle-1-3 {
+  padding: 0px 39px;
+}
+  .user-profile-ticket-details-1 {
+    padding: 20px;
+    background-color: white;
+    height: auto;
+    min-width: 239px !important;
+    overflow: auto;
+    border-radius: 14px;
+}
   .header-user input {
     width: 100px;
 
@@ -171,6 +224,32 @@
   .react-piechart div div {
     width: 100% !important;
   }
+  .user-profile-ticket-details.row {
+    margin: 0;
+}
+  .treambody div h1 {
+    font-size: 21px !important;
+  }
+.w-20{
+  width: auto;
+}
+.user-profile-ticket-details-1 {
+  padding: 0px;
+}
+.user-profile-ticket-details-2 {
+  background-color: white;
+  margin: 0px 6px;
+  border-radius: 13px;
+  padding: 0px;
+}
+  .form5 {
+    width: auto;
+    background-color: white !important;
+    border-radius: 6px;
+    margin: 0 0px 0 0px;
+    overflow: hidden;
+    padding: 6px 6px 10px 10px;
+  }
 
   .filter-head.flex {
     margin: 0px 0px 0px 0px !important;
@@ -180,7 +259,7 @@
 
     margin-left: 0px !important;
     padding: 0px !important;
-    font-size: 12px !important;
+    font-size: 9px !important;
   }
 
   .pagedata-limit p {
@@ -283,6 +362,7 @@
 
   .ticket-details-middle-2.row {
     padding: 9px 0px;
+    margin: 0px
   }
 
   .ticket-icon svg {
@@ -305,7 +385,7 @@
   }
 
   .user-profile-ticket-details-1 {
-    padding: 20px;
+    padding: 0px;
     background-color: white;
     height: auto;
     overflow: auto;
@@ -362,7 +442,7 @@
     display: block;
   }
 
-  .header-user h1 {
+  .userbody2 div h1 {
     display: none;
   }
 
@@ -479,7 +559,6 @@
 
   .css-1howxi1-MuiTableCell-root {
     padding: 4px 14px 3px 0px !important;
-    width: 99px;
   }
 
   .container.dialog-body {
