@@ -199,7 +199,7 @@ const AdminDashboard = () => {
                               <Dashcard
                                 cardHead="No of Tickets"
                                 cardbody={ticketscount}
-                                cardfooter="Rised"
+                                cardfooter="Raised"
                                 cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                               />
                               <Dashcard
