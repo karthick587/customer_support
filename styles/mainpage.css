@@ -714,6 +714,7 @@
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     padding: 0px 0px;
+    overflow-y: hidden;
   }
 
   .login-body {

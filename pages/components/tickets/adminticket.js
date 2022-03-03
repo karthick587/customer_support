@@ -398,7 +398,7 @@ function Adminticket() {
                                                         </div>
                                                     </div>
                                                     <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId, tickets.Tm_Complete_UpdatedOn, tickets.Tm_Complete_UpdatedBy)}>Update</button>
-                                                    <h4 className="alert1 text-center">{show}</h4>
+                                            
                                                 </div>
                                             }
                                         />
@@ -407,6 +407,7 @@ function Adminticket() {
                             )}
                         </Table>
                     </TableContainer>
+                    {tickets.length<10 ? <></>:
                     <div className='page-bottom'>
                         < ReactPaginate
                             previousLabel={""}
@@ -428,6 +429,7 @@ function Adminticket() {
                             </select>
                         </div>
                     </div>
+}
                 </div>
                 :
                 <>

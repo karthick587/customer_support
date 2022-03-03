@@ -15,7 +15,8 @@ import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import ViewTeam from '../common/view_team';
 import { ListContext } from '../contex/ListProvider';
-
+import ReactPaginate from 'react-paginate';
+import { Typography } from '@mui/material';
 
 function Teamticket(props) {
     const { team } = useContext(ListContext);
@@ -150,6 +151,16 @@ function Teamticket(props) {
     //          .then((res) => setTeam(res.data))
     //         .catch((err)=>{ return err; })
     //  });
+    const [datalimit, setdatalimit] = useState(10);
+    const [currentpage, setCurrentpage] = useState(1);
+    //pagination
+    function handlePageChange(pageNumber) {
+        setCurrentpage(pageNumber + 1);
+    };
+
+    const pagedatalimit = (e) => {
+        setdatalimit(e.target.value);
+    };
     return (
         <div>
             <Head>
@@ -171,7 +182,7 @@ function Teamticket(props) {
                                     <TableCell align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {mapteamticket.map((tickets) =>
+                            {mapteamticket.slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                                 <TableBody key={tickets.ticketsId} className='update-right' >
                                     <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                         <TableCell>{tickets.ticketsId}</TableCell>
@@ -208,8 +219,7 @@ function Teamticket(props) {
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.TeamAssign)}>update</button>
-                                                <h4 className="alert1 text-center">{show}</h4>
+                                                <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.TeamAssign)}>update</button>                                  
                                             </div>
                                         }
                                         </div>
@@ -219,6 +229,31 @@ function Teamticket(props) {
                             )}
                         </Table>
                     </TableContainer>
+                    {mapteamticket.length<10 ? <></>:
+                     <div className='page-bottom'>
+                     < ReactPaginate
+                         previousLabel={""}
+                         nextLabel={""}
+                         pageCount={Math.ceil(mapteamticket.length / datalimit)}
+                         onPageChange={(e) => handlePageChange(e.selected)}
+                         containerClassName={"pagination mt-3"}
+                         pageClassName={"page-item"}
+                         pageLinkClassName={"page-link"}
+                         activeClassName={"active"}
+                     />
+                     <div className='pagedata-limit flex'>
+                         <Typography>Team per page</Typography>
+
+                         <select className='pagedatalimit-select' onChange={pagedatalimit}>
+                             <option value={10}>10</option>
+                             <option value={25}>25</option>
+                             <option value={50}>50</option>
+                             <option value={100}>100</option>
+                         </select>
+                     </div>
+                 </div>
+                    }
+                   
                 </div>
                 :
                 <>
