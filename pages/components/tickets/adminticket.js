@@ -36,7 +36,8 @@ function Adminticket() {
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
-    var [Adm_CreatedBy, setAdm_CreatedBy] = useState('');
+    const [Adminname, setAdminname] = useState([]);
+    const [Createdby, setCreatedby] = useState();
     const [login, setLogin] = useState();
     const [ticketid, setTicketid] = useState();
     const [sendmail, setsendmail] = useState(false);
@@ -54,8 +55,15 @@ function Adminticket() {
     
     useEffect(() => {
         localStorage.setItem("passValue", false);
-        setAdm_CreatedBy(localStorage.getItem('user'));
     }, []);
+
+    useEffect(() => {
+        setAdminname(window.localStorage.getItem('user'));
+    },[]);
+
+    useEffect(() => {
+        setCreatedby(Adminname.slice(3, 20));
+    },[Adminname]);
 
     //filter function
     useEffect(() => {
@@ -92,25 +100,29 @@ function Adminticket() {
     const SERVICE_ID = "service_56f9av6";
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4";
-    function finalStatus(ticketsId, Tm_Complete_UpdatedOn, Tm_Complete_UpdatedBy) {
-        if (selectedstatus === "Completed") {
-            Axios.put(`https://mindmadetech.in/api/tickets/status/update/${ticketid}`, {
+    function finalStatus(ticketsId,Status) {
+        console.log(ticketsId,Status,currentDate,Createdby)
+        if (Status === "completed") {
+            Axios.put(`https://mindmadetech.in/api/tickets/status/finalupdate/${ticketsId}`, {
                 Status: selectedstatus,
-                ticketsId: ticketsId,
-                Tm_Complete_UpdatedOn: Tm_Complete_UpdatedOn,
-                Tm_Complete_UpdatedBy: Tm_Complete_UpdatedBy
+                FinalUpdate_CreatedOn: currentDate,
+                FinalUpdate_CreatedBy: Createdby
             }).then((response) => {
                 setShow("update started Successfully");
-                setdialogformopen(true);
+                setdialogformopen("true");
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
             })
                 .catch((err) => {
                     setTesting(true)
-                    setshowvalue(1 + "Submitted Failed");
-                    return err;
+                    setshowvalue(1 + "Submission Failed");
+                    setdialogformopen("true");
                 })
-        };
+        }else{
+                    setTesting(true)
+                    setshowvalue(1 + "Submission Failed");
+                    setdialogformopen("true");
+        }
         var data = {
             to_email: email,
             message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
@@ -183,7 +195,7 @@ function Adminticket() {
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
             ticketsId: ticketsId,
-            Adm_UpdatedBy: Adm_CreatedBy,
+            Adm_UpdatedBy: Createdby,
             Adm_UpdatedOn: currentDate,
         }).then((_response) => {
 
@@ -298,7 +310,7 @@ function Adminticket() {
                                     <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots, tickets.TeamAssign)}>
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
-                                        <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                                        <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
                                         <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
@@ -367,7 +379,7 @@ function Adminticket() {
                                                             <div>Send mail to Client</div>
                                                         </div>
                                                     </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId, tickets.Tm_Complete_UpdatedOn, tickets.Tm_Complete_UpdatedBy)}>Update</button>
+                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId,tickets.Status)}>Update</button>
                                             
                                                 </div>
                                             }

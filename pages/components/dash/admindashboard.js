@@ -29,19 +29,17 @@ import Adminissues from '../submits/adminIssues';
 import SendIcon from '@mui/icons-material/Send';
 import FormAlert from '../common/alert';
 import { ListContext } from '../contex/ListProvider';
-import { TicketsContext } from '../contex/ticketsProvider';
-const AdminDashboard = () => {
-  const { notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
-  const {teamcount}=useContext(ListContext)
- 
+import CircularProgress from '@mui/material/CircularProgress';
 
+const AdminDashboard = () => {
+
+  const { notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
+  const {teamcount,usercount}=useContext(ListContext)
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
-  // getactivetab
   const [activeTab, setActivetab] = useState();
-  // usercount
-  const [usercount, setusercount] = useState();
+
   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
@@ -50,7 +48,7 @@ const AdminDashboard = () => {
     } else if (login === null) {
       router.push("/");
     }
-  });
+  },[login,setLogin]);
   // alert to conform logout white click back
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -112,13 +110,15 @@ const AdminDashboard = () => {
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
   }, []);
-  // usercount
-  const handleCallback3 = (childData) => {
-    setusercount(childData);
-  };
+
+  const[pendingCount,setpendingCount]=useState('')
+  function callback(childData){
+    setpendingCount(childData)
+  }
+ 
   return (
     <>
-      {login === "false" ? <div className="access ">access denied</div> :
+      {login === "false" ? <div className="access "> <CircularProgress /></div> :
         <div>
           <Dashboard
             dashActive={activeTab === "Dashboard" ? "nav-link active" : "nav-link"}
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Users" />
+                  <ListItemText primary="Customer" />
                 </ListItem>
                 </button>
                 <button className={activeTab === "team" ? "nav-link active" : "nav-link"} onClick={TeamTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="/users" ><ListItem button>
@@ -167,9 +167,11 @@ const AdminDashboard = () => {
                 </button>
                 <button className={activeTab === "NonUser" ? "nav-link active" : "nav-link"} onClick={NonUserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-NonUser" type="button" role="tab" href="/users" ><ListItem button>
                   <ListItemIcon>
+                  <Badge className='side-badge' badgeContent={pendingCount} color="secondary">
                     <PersonAddAltIcon />
+                    </Badge>
                   </ListItemIcon>
-                  <ListItemText primary="NonUser" />
+                  <ListItemText primary="Non-Users" />
                 </ListItem>
                 </button>
                 <button className={activeTab === "RaiseTicket" ? "nav-link active" : "nav-link"} onClick={RaiseTicket} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-RaiseTicket" type="button" role="tab" href="/users" ><ListItem button>
@@ -188,7 +190,7 @@ const AdminDashboard = () => {
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
                         <div className='dash-head'>
-                          <h2>Dashboard</h2>
+                          <h2>DASHBOARD</h2>
                         </div>
                         <div className='dash-body'>
                           <div className='dash-cards'>
@@ -230,7 +232,7 @@ const AdminDashboard = () => {
                     </div>
                   </div>
                   <div className={activeTab === "user" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <Users usercountcallback={handleCallback3} />
+                    <Users />
                   </div>
                   <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <Adminticket />
@@ -239,7 +241,7 @@ const AdminDashboard = () => {
                     <Team  />
                   </div>
                   <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-NonUser" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                   <NonUserTickets />
+                  <NonUserTickets callback={callback} />
                   </div>
                   <div className={activeTab === "RaiseTicket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-RaiseTicket" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                    <Adminissues />

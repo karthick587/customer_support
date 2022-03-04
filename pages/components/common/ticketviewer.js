@@ -13,12 +13,7 @@ function Ticketviewer(props) {
             .then((res) => setticket(res.data))
             .catch((err)=>{ return err;})
     }, [setticket]);
-     var [team, setTeam] = useState([]);
-     useEffect(() => {
-         Axios.get("https://mindmadetech.in/api/team/list")
-             .then((res) => setTeam(res.data))
-            .catch((err)=>{ return err; })
-     },[setTeam]);
+    
     return (
         <>
             {ticket.reverse().map((tickets) =>
@@ -100,7 +95,7 @@ function Ticketviewer(props) {
                                     Department
                                 </div>
                                 <div className='user-label-ticket-details'>
-                                {tickets.TeamAssign.length<=0 ?<>Not assigned</>:<ViewTeam team={team} teamArray={tickets.TeamAssign} /> }
+                                {tickets.TeamAssign.length<=0 ?<>Not assigned</>:<ViewTeam teamArray={tickets.TeamAssign} /> }
                                 </div>
                             </div>
                             <div className='col'>
@@ -145,14 +140,6 @@ function Ticketviewer(props) {
                                     Screenshot
                                 </div>
                                 <ViewScreenshots FileArray={tickets.Files} />
-                                {/* {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
-                                    <Imageviewer
-                                        imgdialogbutton={<img src={tickets.Screenshots}  alt="screenshots" width={200} height={100} />}
-                                        imgdialogbody={<img className='screeshot-img-viewer' src={tickets.Screenshots} alt="screenshots" />}
-                                    /> :
-                                    <a href={tickets.Screenshots} target="_blank" rel="noreferrer noopener">View File</a>
-                                }
-                                <a href={downloadlink}   onClick={()=>downloadimg(tickets.Screenshots)}>download</a> */}
                             </div>
                     </div>
 

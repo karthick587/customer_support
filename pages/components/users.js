@@ -28,40 +28,20 @@ export default function Users(props) {
     const { users } = useContext(ListContext);
     var [search, setSearch] = useState('');
     const router = useRouter();
-    // var [users, setUsers] = useState([]);
     var [exportUsers, setExportUsers] = useState([]);
-    // var [selectedValue, setSelectedValue] = useState([]);
-    const [usercount, setusercount] = useState();
     const [login, setLogin] = useState();
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
 
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/customer/list")
-    //         .then((res) => {
-    //             setUsers(res.data);
-    //             if (localStorage.getItem("passValue") === true) {
-    //                 setSelectedValue(team);
-    //             } else {
-    //                 setSelectedValue([]);
-    //             }
-    //         }).catch((err) => { return err; })
-    // }, [selectedValue]);
-
     useEffect(() => {
         localStorage.setItem("passValue", false);
-    });
-
-    useEffect(() => {
-        setusercount(users.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((userd) => setusercount(userd.Status)).length);
-        props.usercountcallback(usercount);
-    });
+    },[]);
 
     const deleteUsers = (id)=> {
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {
-            setdialogformopen(true)
+            setdialogformopen("true")
             setshowvalue("Deleted Successfully")
             setTesting(true)
         }).catch((err) => { 
@@ -105,7 +85,7 @@ export default function Users(props) {
             router.push("/");
         }
         localStorage.setItem('updateclose', "open");
-    })
+    },[login,setLogin])
 
     //pagination
     function handlePageChange(pageNumber) {

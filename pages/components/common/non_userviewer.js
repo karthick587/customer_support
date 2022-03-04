@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import Imageviewer from '../common/imageviewer';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 
 function Non_userviewer(props) {
-    const { setdialogformopen } = useContext(CounterContext);
+    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { registerId, closeDetails } = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
@@ -27,7 +27,8 @@ function Non_userviewer(props) {
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
     }, [setNonUserDetails]);
-    function handleRejection(Id) {
+    function handleRejection(Id)
+ {
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
             Adm_UpdatedOn: currentDate,
@@ -53,12 +54,13 @@ function Non_userviewer(props) {
             if (response.data.statusCode === 400) {
                 setTesting(true)
                 setshowvalue(1 + "Registration failed");
+                setdialogformopen("true")
                 return null;
             } else {
                
                 setTesting(true)
-                setshowvalue(1 + "Registered Successfully");
-
+                setshowvalue("Registered Successfully");
+                setdialogformopen("true")
             }
         }).catch((err) => {
             setTesting(true)
@@ -180,6 +182,7 @@ function Non_userviewer(props) {
                             <div className='ticket-input-details' >
                                 {nonuser.Description}
                             </div>
+                            {nonuser.Status==="Approved"||nonuser.Status==="Rejected" ? <Typography className='mt-4'>{nonuser.Status==="Approved" ? <>Approved</>:<>Rejected</>}</Typography>: 
                             <div className='flex mt-4'>
                                 <FormDialog
                                     className="team-delete me-3"
@@ -204,6 +207,8 @@ function Non_userviewer(props) {
                                     }
                                 />
                             </div>
+                            }
+                           
 
                         </div>
                     </div>

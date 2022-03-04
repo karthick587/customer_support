@@ -22,12 +22,14 @@ function NonUserTickets(props) {
         setRegisterId(registerId)
         setShowdetails(true)
     }
-
+    const[PendingCount,setPendingCount]=useState("")
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/unregisteredcustomer/list")
             .then((res) => setNonUser(res.data))
             .catch((err) => { return err; })
-    }, [setNonUser]);
+            setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket)=> setPendingCount(ticket.Status.length)).length);
+            props.callback(PendingCount)
+    }, [setNonUser,nonUser]);
 
     function closeDetails() {
         setShowdetails(false);
@@ -56,8 +58,8 @@ function NonUserTickets(props) {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>ID</TableCell>
-                                    <TableCell>Logo</TableCell>
+                                    <TableCell align="left">ID</TableCell>
+                                    <TableCell align="left">Logo</TableCell>
                                     <TableCell align="left">Companyname</TableCell>
                                     <TableCell align="left">Clientname</TableCell>
                                     <TableCell align="left">date</TableCell>
@@ -67,18 +69,18 @@ function NonUserTickets(props) {
 
                             <TableBody   >
                                 {nonUser.slice((currentpage - 1) * datalimit, currentpage * datalimit).map(value =>
-                                    <TableRow key={value.registerId} onClick={() => ShowDetail(value.registerId)}>
-                                        <TableCell>{value.registerId}</TableCell>
-                                        <TableCell className="teamtablecel" align="left" >
+                                    <TableRow key={value.registerId} onClick={() => ShowDetail(value.registerId)} className={value.Status === "Pending" ? "highlighted-row" : "tickets-bodyrow"}>
+                                        <TableCell align="left">{value.registerId}</TableCell>
+                                        <TableCell align="left">
                                             <Imageviewer
                                                 imgdialogbutton={<img src={value.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
                                                 imgdialogbody={<img className="Imageviewer-userimg" src={value.Logo} alt='logo' />}
                                             />
                                         </TableCell>
-                                        <TableCell>{value.Companyname}</TableCell>
-                                        <TableCell >{value.Clientname}</TableCell>
-                                        <TableCell >{value.CreatedOn}</TableCell>
-                                        <TableCell >{value.Status}</TableCell>
+                                        <TableCell align="left">{value.Companyname}</TableCell>
+                                        <TableCell align="left">{value.Clientname}</TableCell>
+                                        <TableCell align="left">{value.CreatedOn}</TableCell>
+                                        <TableCell align="left">{value.Status}</TableCell>
                                     </TableRow>
                                 )}
                             </TableBody>

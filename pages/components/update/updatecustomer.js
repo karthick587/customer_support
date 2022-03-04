@@ -15,7 +15,9 @@ function Updatecustomer({ usersId }) {
     const [editLogo, setEditLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     const [selected, setSelected] = useState(false);
-    var [show, setShow] = useState('');
+    const [Adminname, setAdminname] = useState([]);
+    const [Createdby, setCreatedby] = useState();
+    // var [show, setShow] = useState('');
     const [Adminname, setAdminname] = useState([]);
     const [passValue, setPassValue] = useState();
     const [Modifiedby, setModifiedby] = useState();
@@ -27,13 +29,12 @@ function Updatecustomer({ usersId }) {
     let PhonenumberR = createRef();
 
     useEffect(() => {
-        setPassValue(localStorage.getItem("passValue", false));
-    });
+        setAdminname(window.localStorage.getItem('user'));
+    },[]);
 
     useEffect(() => {
-        setModifiedby(Adminname.slice(3, 20));
-        setAdminname(window.localStorage.getItem('user'));
-    }, []);
+        setCreatedby(Adminname.slice(3, 20));
+    },[Adminname]);
 
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
@@ -41,7 +42,8 @@ function Updatecustomer({ usersId }) {
             .catch((err)=>{ return err; })
     }, [setGetCustomer]);
 
-    function handleUpdate(Logo) {
+
+    const handleUpdate = (Logo) => {
         var Logo, Companyname, Clientname, Username, Password, Email, Phonenumber;
         Companyname = CompanynameR.current.value;
         Clientname = ClientnameR.current.value;
@@ -75,32 +77,21 @@ function Updatecustomer({ usersId }) {
         }
         
         data.append("Modifiedon", currentDate);
-        data.append("Modifiedby", Modifiedby)
+        data.append("Modifiedby", Createdby)
         axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
         }).then((res) => {
-            setShow("Updated Successfully");
+            // setShow("Updated Successfully");
             setdialogformopen("true");
-            localStorage.setItem("passValue", true);
             setTesting(true)
-            setshowvalue("Registered Successfully");
+            setshowvalue("Updated Successfully");
         }).catch((err)=>{
             setTesting(true)
-            setshowvalue(1+"Registered failed");
+            setshowvalue(1+"Failed to Update");
             return err; })
     };
-
-    useEffect(()=>{
-        setShow("");
-        const Timer = setTimeout(() => {
-            setShow();
-          }, [4000]);
-          return () =>{
-              clearTimeout(Timer);
-          }
-      })
 
     function handleScreenshot(e) {
         setEditLogo(e.target.files[0]);
@@ -169,7 +160,7 @@ function Updatecustomer({ usersId }) {
                                             <button type="button" onClick={() => handleUpdate(data.Logo)} className="btn2 float-end"> Update </button>
                                         </div>
                                     </div>
-                                    <h4 className="alert1 text-center">{show}</h4>
+                                    {/* <h4 className="alert1 text-center">{show}</h4> */}
                                 </form>
 
                             </div>

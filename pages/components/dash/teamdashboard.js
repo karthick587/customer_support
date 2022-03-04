@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Copyrights from "../common/copyRight";
 import FormAlert from "../common/alert";
+import TeamPiechart from "./teamPiechart";
 const TeamDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -162,7 +163,7 @@ const TeamDashboard = () => {
                           </div>
                           <div className='Resentticket-page'>
                             <Resentticket teamticket={teamticket} />
-                            <Piechart
+                            <TeamPiechart
                               newcount={teamteamNotificationcount}
                               started={teamstartedcount}
                               inprogress={teaminprogresscount}

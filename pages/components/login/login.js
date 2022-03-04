@@ -15,14 +15,15 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6)
 });
 export default function Login1() {
+
   const {setTesting,setshowvalue}=useContext(CounterContext)
   const router = useRouter();
-  const [loginStatus, setLoginStatus] = useState('');
   const [userlogin, setUserlogin] = useState('');
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
+
   const adminLogin = ({ username, password }) => {
     var TableValidate = username.slice(0, 3);
     setUserlogin(username);
@@ -47,20 +48,18 @@ export default function Login1() {
       password: password,
     }).then((response) => {
       if (response.data.statusCode === 400) {
-        setLoginStatus(response.data.message);
         setTesting(true)
-        setshowvalue(1+"login Failed");
+        setshowvalue(1+"Invalid username or password");
       } else {
         localStorage.setItem('loggedin', true);
         localStorage.setItem('activeTab', "Dashboard");
         setTesting(true)
-        setshowvalue("login Success");
+        setshowvalue("Logged in successfully");
         router.push({
           pathname: `/components/dash/${validate}dashboard`,
         });
       }
-    })
-      .catch((err) => { return err; })
+    }).catch((err) => { return err; })
   };
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -75,7 +74,7 @@ export default function Login1() {
   },[]);
   useEffect(() => {
     localStorage.setItem('user', userlogin);
-  },[]);
+  },[userlogin]);
   
 
   return (
@@ -103,7 +102,6 @@ export default function Login1() {
                   <div className="form-group log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
-                  <h4 className="alert1">{loginStatus}</h4>
                   <ScrollDialog />
                 </form>
               </div>
