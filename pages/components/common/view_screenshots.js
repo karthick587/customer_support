@@ -37,7 +37,7 @@ export default function ViewScreenshots(props) {
         <div className=''>
             <div className="flex">
                 {newarray.map((screenshots) =>
-                    <div>
+                    <div key={screenshots}>
                         {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
                         <div  key={screenshots} className="me-2" variant="outlined" onClick={() => handleClickOpen(screenshots)}>
                             <img src={screenshots} width="70px" height="70px" />
