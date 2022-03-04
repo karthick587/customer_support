@@ -15,7 +15,6 @@ function Addteam() {
 const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
     var [addteam, setAddteam] = useState('');
     const Router = useRouter();
-    const [show, setShow] = useState(false);
     const [login, setLogin] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
@@ -28,14 +27,12 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
             Password: Password,
             Team: addteam
         }).then((response) => {
-            if (response.data.message) {
-                setShow(response.data.message)
+            if (response.data.statusCode === 400) {
                 localStorage.setItem('updateclose', "close");
                 setTesting(true)
                 setshowvalue(1+response.data.message);
                 setdialogformopen("true")
             } else {
-                setShow("Registered Successfully");
                 localStorage.setItem('updateclose', "close"); 
                 setTesting(true)
                 setshowvalue("Registered Successfully");
@@ -53,15 +50,6 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
             Router.push("/")
         }
     },[]);
-
-    useEffect(()=>{
-        const timer = setTimeout(() => {
-              setShow();
-          }, [3500]);
-          return () =>{
-              clearTimeout(timer);
-          }
-      },[])
 
     return (
         <div>
@@ -106,7 +94,6 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
                             </div>
                         </div>
                     </form>
-                    <h4 className="alert1 text-center">{show}</h4>
                 </div>
             </div>
         </div>

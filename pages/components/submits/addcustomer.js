@@ -20,7 +20,6 @@ const schema = yup.object().shape({
 export default function Addcustomer() {
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
-    // const { setdialogformopen } = useContext(CounterContext);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
@@ -43,7 +42,7 @@ export default function Addcustomer() {
 
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    },[]);
+    },[Adminname]);
 
     function handleScreenshot(e) {
         setLogovalidate(e.target.files[0]);
@@ -72,12 +71,9 @@ export default function Addcustomer() {
                 }
             }).then((response) => {
                 if (response.data.statusCode === 400) {
-                    setShow(response.data.message)
                     setTesting(true)
-                    console.log(response.data.message);
                     setshowvalue(1+response.data.message);
                 } else {
-                    setShow("Registered Successfully");
                     setdialogformopen("true")
                     setTesting(true)
                     setshowvalue("Registered Successfully");
@@ -95,16 +91,8 @@ export default function Addcustomer() {
         } else if (login === null) {
             Router.push("/");
         }
-    },[]);
+    },[login]);
 
-    useEffect(()=>{
-      const timer = setTimeout(() => {
-            setShow();
-        }, [3500]);
-        return () =>{
-            clearTimeout(timer);
-        }
-    },[])
     return (
         <div>
             <div className="container mainbody">
@@ -157,7 +145,6 @@ export default function Addcustomer() {
                             </div>
                         </div>
                     </form>
-                    <h4 className="alert1 text-center">{show}</h4>
                 </div>
             </div>
         </div>

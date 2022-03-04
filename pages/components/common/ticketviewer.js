@@ -129,7 +129,7 @@ function Ticketviewer(props) {
                                     Date
                                 </div>
                                 <div className='ticket-input-details' >
-                                    {tickets.Cus_CreatedOn}
+                                {tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }
                                 </div>
                             </div>
                            
@@ -139,7 +139,11 @@ function Ticketviewer(props) {
                                 <div className='label-ticket-details'>
                                     Screenshot
                                 </div>
+                                {tickets.Files.length<=0 ?<div>No Attachments</div>
+                                 :
                                 <ViewScreenshots FileArray={tickets.Files} />
+                                }
+                                
                             </div>
                     </div>
 

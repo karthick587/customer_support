@@ -38,7 +38,7 @@ export default function Resentticket(props) {
                     }).map((tickets) =>
                         <TableBody key={tickets.ticketsId}>
                             <TableRow className="resentticket-row" >
-                                <TableCell  >{tickets.Cus_CreatedOn}</TableCell>
+                            <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
                                 <TableCell >{tickets.ticketsId}</TableCell>
                                 <TableCell >{tickets.Username}</TableCell>
                                 <TableCell > {tickets.DomainName}</TableCell>

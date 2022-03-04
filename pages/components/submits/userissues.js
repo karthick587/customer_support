@@ -15,9 +15,8 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const [Phonenumber, setPhonenumber] = useState('');
     const [DomainName, setDomainName] = useState('');
     const [Description, setDescription] = useState('');
-    const [Screenshots, setScreenshots] = useState();
+    const [Screenshots, setScreenshots] = useState('x');
     const[projectcode,setProjectcode] = useState('');
-    const [show, setShow] = useState();
     const EmailR = useRef();
     const PhonenumberR = useRef();
     const DomainnameR = useRef();
@@ -34,7 +33,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     };
     const addIssues = () => {
         setloader(true);
-        if(Screenshots!==undefined || Screenshots.length>0){
+        if(Screenshots!=='x'){
             const data = new FormData();
             data.append("Username", customername);
             data.append("Email", EmailR.current.value);
@@ -50,7 +49,6 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     'Content-Type': 'multipart/form-data',
                 }
             }).then((res) => {
-                setShow("Ticket Raised Successfully");
                 setloader(false);
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
@@ -77,7 +75,6 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     'Content-Type': 'multipart/form-data',
                 }
             }).then((res) => {
-                setShow("Ticket Raised Successfully");
                 setloader(false);
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
@@ -94,14 +91,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
         }
         
     };
-    useEffect(()=>{
-        const timer = setTimeout(() => {
-              setShow();
-          }, [3500]);
-          return () =>{
-              clearTimeout(timer);
-          }
-      },[])
+
     return (
         <div>
         <form className="form5" action="/" method="post">
@@ -147,7 +137,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
            
             </div>
         </form>
-        <h4 className="alert1 text-center">{show}</h4>
+       
     </div>
     );
 }

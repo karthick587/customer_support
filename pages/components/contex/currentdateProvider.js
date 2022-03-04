@@ -1,7 +1,7 @@
 import {createContext,useState,useEffect} from "react";
 export const CurrentDateContext = createContext();
 export default function CurentDateContextProvider(props){
-    const[currentDate,setCurrentDate] = useState('');
+    var[currentDate,setCurrentDate] = useState('');
     useEffect(()=>{
         var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
@@ -32,8 +32,8 @@ export default function CurentDateContextProvider(props){
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
-    setCurrentDate(fulldate + ' ' + fullTime)
-    },[setCurrentDate])
+    setCurrentDate(currentDate = fulldate + ' ' + fullTime)
+    },[setCurrentDate,currentDate])
     return(
         <CurrentDateContext.Provider value={{
             currentDate

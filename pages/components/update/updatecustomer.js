@@ -17,10 +17,6 @@ function Updatecustomer({ usersId }) {
     const [selected, setSelected] = useState(false);
     const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
-    // var [show, setShow] = useState('');
-    const [Adminname, setAdminname] = useState([]);
-    const [passValue, setPassValue] = useState();
-    const [Modifiedby, setModifiedby] = useState();
     let CompanynameR = createRef();
     let ClientnameR = createRef();
     let UsernameR = createRef();
@@ -83,14 +79,13 @@ function Updatecustomer({ usersId }) {
                 'Content-Type': 'multipart/form-data',
             }
         }).then((res) => {
-            // setShow("Updated Successfully");
             setdialogformopen("true");
             setTesting(true)
             setshowvalue("Updated Successfully");
         }).catch((err)=>{
             setTesting(true)
             setshowvalue(1+"Failed to Update");
-            return err; })
+        })
     };
 
     function handleScreenshot(e) {
@@ -160,7 +155,6 @@ function Updatecustomer({ usersId }) {
                                             <button type="button" onClick={() => handleUpdate(data.Logo)} className="btn2 float-end"> Update </button>
                                         </div>
                                     </div>
-                                    {/* <h4 className="alert1 text-center">{show}</h4> */}
                                 </form>
 
                             </div>

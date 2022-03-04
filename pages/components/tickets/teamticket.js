@@ -25,7 +25,6 @@ function Teamticket(props) {
     const { teamticket,loginTmName } = props;
     const [mapteamticket, setmapteamticket] = useState([]);
     const Router = useRouter();
-    var [show, setShow] = useState('');
     var [selectedstatus, setSelectedstatus] = useState('');
     const [disabled, setdisabled] = useState("enable");
     const [login, setLogin] = useState();
@@ -71,7 +70,6 @@ function Teamticket(props) {
                 Tm_Start_UpdatedOn: currentDate,
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
-                setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
                 setTesting(true)
@@ -88,11 +86,10 @@ function Teamticket(props) {
                 Tm_Process_UpdatedOn: currentDate,
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
-                setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
                 setTesting(true)
-                setshowvalue("Registered Successfully");
+                setshowvalue("Updated Successfully");
             }).catch((err) => { 
                 setTesting(true)
                 setshowvalue(1+"Registered failed");
@@ -105,11 +102,10 @@ function Teamticket(props) {
                 Tm_Complete_UpdatedOn: currentDate,
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
-                setShow("updated Successfully");
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
                 setTesting(true)
-                setshowvalue("Registered Successfully");
+                setshowvalue("Updated Successfully");
             }).catch((err) => { 
                 setTesting(true)
                 setshowvalue(1+"Registered failed");
@@ -117,15 +113,7 @@ function Teamticket(props) {
         } else return null
     };
 
-    useEffect(() => {
-        const Timer = setTimeout(() => {
-            setShow();
-        }, [4000]);
-        return () => {
-            clearTimeout(Timer);
-        }
-    })
-   
+
     //auth access for team ticket page
     useEffect(() => {
       
@@ -145,12 +133,7 @@ function Teamticket(props) {
     function closeDetails() {
         setShowdetails(false);
     };
-    //  var [team, setTeam] = useState([]);
-    //  useEffect(() => {
-    //      Axios.get("https://mindmadetech.in/api/team/list")
-    //          .then((res) => setTeam(res.data))
-    //         .catch((err)=>{ return err; })
-    //  });
+   
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
     //pagination
@@ -187,7 +170,7 @@ function Teamticket(props) {
                                     <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                         <TableCell>{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
-                                        <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                                        <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
                                         <TableCell >
                                         <ViewTeam  teamArray={tickets.TeamAssign}  />
                                         </TableCell>

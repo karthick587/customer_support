@@ -59,7 +59,7 @@ function AdminNotification(props) {
                                                             <div className='width-10 ps-2'>{tickets.Username}</div>
                                                         </div>
                                                         <div className='notification-table-right2'>
-                                                            {tickets.Cus_CreatedOn}
+                                                        {tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }
                                                         </div>
                                                     </div>
                                                 </div>

@@ -40,12 +40,6 @@ function Userticket(props) {
         setShowdetails(false);
     };
 
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/team/list")
-    //         .then((res) => setTeam(res.data))
-    //         .catch((err) => { return err; })
-    // },[]);
-
     return (
         <div>
             <Head>
@@ -73,7 +67,7 @@ function Userticket(props) {
                                         <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId, tickets.Screenshots)}>
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell >{tickets.Username}</TableCell>
-                                            <TableCell >{tickets.Cus_CreatedOn}</TableCell>
+                                            <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
                                             <TableCell ><ViewTeam  teamArray={tickets.TeamAssign} /></TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
 

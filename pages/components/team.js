@@ -157,7 +157,8 @@ export default function Team(props) {
                           if (search === "") {
                             return val;
                         } else if (val.Username.toLowerCase().includes(search.toLowerCase())||
-                                    val.Team.toLowerCase().includes(search.toLowerCase())) {
+                                    val.Team.toLowerCase().includes(search.toLowerCase())||
+                                    val.teamId.toString().includes(search.toString())) {
                             return val;
                         } else null;
                         }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>

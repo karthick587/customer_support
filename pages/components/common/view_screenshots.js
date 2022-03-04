@@ -37,9 +37,11 @@ export default function ViewScreenshots(props) {
         <div className=''>
             <div className="flex">
                 {newarray.map((screenshots) =>
-                    <div key={screenshots} className="me-2" variant="outlined" onClick={() => handleClickOpen(screenshots)}>
+                    <div>
                         {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
-                            <img src={screenshots} width="70px" height="70px" /> :
+                        <div  key={screenshots} className="me-2" variant="outlined" onClick={() => handleClickOpen(screenshots)}>
+                            <img src={screenshots} width="70px" height="70px" />
+                        </div> :
                             <a href={screenshots} target="_blank" rel="noreferrer noopener">View File</a>
                         }
                     </div>
@@ -60,10 +62,7 @@ export default function ViewScreenshots(props) {
                                 <div className='flex'>
                                     {newarray.map((screenshots) =>
                                         <div key={screenshots} className="me-2" variant="outlined" onClick={() => handleClickOpen(screenshots)}>
-                                            {mimetype === ".png" || mimetype === ".jpg" || mimetype === "jpeg" ?
-                                                <img src={screenshots} width="70px" height="70px" /> :
-                                                <a href={screenshots} target="_blank" rel="noreferrer noopener">View File</a>
-                                            }
+                                                <img src={screenshots} width="70px" height="70px" /> 
                                         </div>
                                     )}
                                 </div>

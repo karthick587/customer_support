@@ -16,22 +16,51 @@ function Non_userviewer(props) {
 
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
-    }, []);
+    },[setAdminname]);
 
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    },[]);
+    },[setCreatedby,Adminname]);
 
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
-    }, [setNonUserDetails]);
-    function handleRejection(Id)
- {
+    }, [setNonUserDetails,nonUserDetails,registerId]);
+    var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
+    date = new Date();
+    hour = date.getHours();
+    if (hour <= 11) {
+        TimeType = 'AM';
+    }
+    else {
+        TimeType = 'PM';
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes.toString();
+    }
+    seconds = date.getSeconds();
+    if (seconds < 10) {
+        seconds = '0' + seconds.toString();
+    }
+    dateupadate = date.getDate();
+    monthupadate = (date.getMonth() + 1);
+    yearupadate = date.getFullYear();
+    // Adding all the variables in fullTime variable.
+    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
+    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+    function handleRejection(Id){
+    
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
-            Adm_UpdatedOn: currentDate,
+            Adm_UpdatedOn: fulldate+" "+fullTime,
             Adm_UpdatedBy: Createdby
         });
     }
@@ -44,7 +73,7 @@ function Non_userviewer(props) {
         data.append("Username", nonuser.Username);
         data.append("Password", nonuser.Password);
         data.append("Logo", nonuser.Logo);
-        data.append("Createdon", currentDate);
+        data.append("Createdon", fulldate+" "+fullTime);
         data.append("Createdby", Createdby)
         Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
             headers: {
@@ -86,7 +115,7 @@ function Non_userviewer(props) {
 
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
             Status: "Approved",
-            Adm_UpdatedOn: currentDate,
+            Adm_UpdatedOn: fulldate+" "+fullTime,
             Adm_UpdatedBy: Createdby
         });
 

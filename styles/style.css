@@ -1494,7 +1494,7 @@ h5.Completed {
 .ticket-details-middle {
   background-color: white;
   padding: 20px;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 .ticket-details-middle-1 {
@@ -2190,7 +2190,6 @@ div#v-pills-dash {
   position: absolute;
   right: 10px;
   top: 10px;
-  z-index: 9999;
 }
 
 .page-bottom {
