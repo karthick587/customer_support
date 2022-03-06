@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
-
+import CircularProgress from '@mui/material/CircularProgress';
 const schema = yup.object().shape({
     Username: yup.string().required(),
     Password: yup.string().required(),
@@ -13,6 +13,7 @@ const schema = yup.object().shape({
 
 function Addteam() {
 const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
+const [loader,setloader]=useState(false);
     var [addteam, setAddteam] = useState('');
     const Router = useRouter();
     const [login, setLogin] = useState();
@@ -22,6 +23,7 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
     const { errors } = formState;
 
     const addTeam = ({ Username, Password }) => {
+        setloader(true)
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Username: Username,
             Password: Password,
@@ -37,6 +39,7 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
                 setTesting(true)
                 setshowvalue("Registered Successfully");
                 setdialogformopen("true")
+                setloader(false)
             }
         })
         .catch((err)=>{ return err; })
@@ -90,7 +93,8 @@ const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
-                                <button type="submit" onClick={handleSubmit(addTeam)} className="btn2 float-end"> Add </button>
+                               
+                                {loader===false ? <> <button type="submit" onClick={handleSubmit(addTeam)} className="btn2 float-end"> Add </button></>:<> <CircularProgress className="float-end" size={25} /></>} 
                             </div>
                         </div>
                     </form>

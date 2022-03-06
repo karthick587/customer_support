@@ -2013,7 +2013,7 @@ div#v-pills-dash {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 6px;
   height: 0.4vh;
 }
 

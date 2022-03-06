@@ -22,9 +22,11 @@ import AssignedMenber from '../common/assigned_members';
 import ViewTeam from '../common/view_team';
 import { ListContext } from '../contex/ListProvider';
 import { TicketsContext } from '../contex/ticketsProvider';
-
+import CircularProgress from '@mui/material/CircularProgress';
 function Adminticket() {
     const { setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
+    const [loader,setloader]=useState(false);
+    
     const { currentDate } = useContext(CurrentDateContext);
     const { users, team } = useContext(ListContext);
     const { tickets } = useContext(TicketsContext);
@@ -95,12 +97,14 @@ function Adminticket() {
     // emailjs
     function updateemail(ticketsId, Username) {
         setName(Username);
+        
         setTicketid(ticketsId);
     };
     const SERVICE_ID = "service_56f9av6";
     const TEMPLATE_ID = "template_7g9sx6r";
     const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4";
     function finalStatus(ticketsId,Status) {
+        setloader(true)
         console.log(ticketsId,Status,currentDate,Createdby)
         if (Status === "completed") {
             Axios.put(`https://mindmadetech.in/api/tickets/status/finalupdate/${ticketsId}`, {
@@ -112,16 +116,19 @@ function Adminticket() {
                 setdialogformopen("true");
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
+                setloader(false)
             })
                 .catch((err) => {
                     setTesting(true)
                     setshowvalue(1 + "Submission Failed");
                     setdialogformopen("true");
+                    setloader(false)
                 })
         }else{
                     setTesting(true)
                     setshowvalue(1 + "Ticket is not Done");
-                    setdialogformopen("true");
+                    setloader(false)
+                   
         }
         var data = {
             to_email: email,
@@ -191,6 +198,7 @@ function Adminticket() {
 
 
     function handleUpdate(ticketsId) {
+        setloader(true)
         const teamId = designTeamList.map((o) => JSON.stringify(o));
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
@@ -204,6 +212,7 @@ function Adminticket() {
             setTesting(true)
             setshowvalue("Assigned Successfully");
             setdesignTeamList([])
+            setloader(false)
         })
             .catch((err) => {
                 setTesting(true)
@@ -371,8 +380,8 @@ function Adminticket() {
                                                         </div>
                                                     </div>
                                                     <div className='flex float-end'>
-                                                        <Button onClick={() => setdesignTeamList([])&setdialogformopen("true")}>Cancel</Button>
-                                                        <button className="btn2 mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button>
+                                                    {loader===false ? <><Button onClick={() => setdesignTeamList([])&setdialogformopen("true")}>Cancel</Button>
+                                                        <button className="btn2 mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button></>:<> <CircularProgress className="float-end" size={25} /></>} 
                                                     </div>
 
 
@@ -398,7 +407,8 @@ function Adminticket() {
                                                             <div>Send mail to Client</div>
                                                         </div>
                                                     </div>
-                                                    <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId,tickets.Status)}>Update</button>
+                                                    {loader===false ? <>  <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId,tickets.Status)}>Update</button></>:<> <CircularProgress className="float-end" size={25} /></>} 
+                                                  
                                             
                                                 </div>
                                             }

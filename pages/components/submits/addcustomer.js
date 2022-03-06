@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
-
+import { CircularProgress } from '@mui/material';
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -20,6 +20,7 @@ const schema = yup.object().shape({
 export default function Addcustomer() {
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
+    const [loader,setloader]=useState(false);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
@@ -52,6 +53,7 @@ export default function Addcustomer() {
     
    
     const addUser = ({ Companyname, Clientname, Email, Phonenumber, Username, Password }) => {
+        setloader(true)
         if (logovalidate === undefined) {
             setShowlogo("images is required")
         } else {
@@ -77,6 +79,7 @@ export default function Addcustomer() {
                     setdialogformopen("true")
                     setTesting(true)
                     setshowvalue("Registered Successfully");
+                    setloader(false)
                 }
             })
                 .catch((err) => { return err; })
@@ -141,7 +144,7 @@ export default function Addcustomer() {
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
-                                <button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add {addmember}</button>
+                            {loader===false ? <><button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add {addmember}</button></>:<> <CircularProgress className="float-end" size={25} /></>} 
                             </div>
                         </div>
                     </form>

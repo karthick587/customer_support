@@ -233,6 +233,10 @@
 .w-20{
   width: auto;
 }
+::-webkit-scrollbar {
+  width: 3px;
+  height: 0.4vh;
+}
 .user-profile-ticket-details-1 {
   padding: 0px;
 }
