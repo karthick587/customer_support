@@ -76,36 +76,6 @@ const AdminDashboard = () => {
     localStorage.removeItem('activeTab');
     router.push("/");
   };
-  // dashtab
-  const DashTabActive = () => {
-    localStorage.setItem('activeTab', 'Dashboard');
-    setActivetab('Dashboard');
-  };
-  // tickettab
-  const TicketTabActive = () => {
-    localStorage.setItem('activeTab', 'ticket');
-    setActivetab('ticket');
-  };
-  // usertab
-  const UserTabActive = () => {
-    localStorage.setItem('activeTab', 'user');
-    setActivetab('user');
-  };
-  // teamtab
-  const TeamTabActive = () => {
-    localStorage.setItem('activeTab', 'team');
-    setActivetab('team');
-  };
-   // NonUserTabActive
-   const NonUserTabActive = () => {
-    localStorage.setItem('activeTab', 'NonUser');
-    setActivetab('NonUser');
-  };
-   // RaiseTicket
-   const RaiseTicket = () => {
-    localStorage.setItem('activeTab', 'RaiseTicket');
-    setActivetab('RaiseTicket');
-  };
   // getactivetab
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
@@ -123,8 +93,8 @@ const AdminDashboard = () => {
           <Dashboard
             dashActive={activeTab === "Dashboard" ? "nav-link active" : "nav-link"}
             ticketActive={activeTab === "ticket" ? "nav-link active" : "nav-link"}
-            TicketTabActive={TicketTabActive}
-            DashTabActive={DashTabActive}
+            TicketTabActive={()=>setActivetab('ticket')&localStorage.setItem('activeTab', 'ticket')}
+            DashTabActive={()=>setActivetab('Dashboard')&localStorage.setItem('activeTab', 'Dashboard')}
             logout={onBackButtonEvent2}
             navcontent={
               <>
@@ -151,21 +121,21 @@ const AdminDashboard = () => {
                }         
             sidenavcontent={
               <>
-                <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={UserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="/users" ><ListItem button>
+                <button className={activeTab === "user" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('user')&localStorage.setItem('activeTab', 'user')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" href="/users" ><ListItem button>
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
                   <ListItemText primary="Customer" />
                 </ListItem>
                 </button>
-                <button className={activeTab === "team" ? "nav-link active" : "nav-link"} onClick={TeamTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="/users" ><ListItem button>
+                <button className={activeTab === "team" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('team')&localStorage.setItem('activeTab', 'team')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="/users" ><ListItem button>
                   <ListItemIcon>
                     <GroupsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Team" />
                 </ListItem>
                 </button>
-                <button className={activeTab === "NonUser" ? "nav-link active" : "nav-link"} onClick={NonUserTabActive} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-NonUser" type="button" role="tab" href="/users" ><ListItem button>
+                <button className={activeTab === "NonUser" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('NonUser')&localStorage.setItem('activeTab', 'NonUser')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-NonUser" type="button" role="tab" href="/users" ><ListItem button>
                   <ListItemIcon>
                   <Badge className='side-badge' badgeContent={pendingCount} color="secondary">
                     <PersonAddAltIcon />
@@ -174,7 +144,7 @@ const AdminDashboard = () => {
                   <ListItemText primary="Non-Users" />
                 </ListItem>
                 </button>
-                <button className={activeTab === "RaiseTicket" ? "nav-link active" : "nav-link"} onClick={RaiseTicket} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-RaiseTicket" type="button" role="tab" href="/users" ><ListItem button>
+                <button className={activeTab === "RaiseTicket" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('RaiseTicket')&localStorage.setItem('activeTab', 'RaiseTicket')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-RaiseTicket" type="button" role="tab" href="/users" ><ListItem button>
                   <ListItemIcon>
                     <SendIcon />
                   </ListItemIcon>
