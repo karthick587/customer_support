@@ -300,6 +300,9 @@ function Adminticket() {
                                             return val.Status === "completed";
                                         }else if(search === "completed" || search === "Completed"){
                                             return val.Status === "Completed";
+                                        }else{
+                                            return val.Status.toLowerCase().includes(search.toLowerCase())
+                                           
                                         }
                                     } else if (filteredTitle === "Date") {
                                         if (search === "" || search === " ") {

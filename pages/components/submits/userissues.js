@@ -31,64 +31,72 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     function handleScreenshot(e) {
         setScreenshots(e.target.files);
     };
+    const[validate,setValidate]=useState(false)
     const addIssues = () => {
-        setloader(true);
-        if(Screenshots!=='x'){
-            const data = new FormData();
-            data.append("Username", customername);
-            data.append("Email", EmailR.current.value);
-            data.append("Phonenumber", PhonenumberR.current.value);
-            data.append("DomainName", DomainnameR.current.value);
-            data.append("Description",  DescriptionR.current.value);
-            for(let i=0; i<Screenshots.length; i++){
-                data.append("files",Screenshots[i]);  
+        
+        if(EmailR.current.value!==""&&PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""&&FileR.current.value!==""){
+            setloader(true);
+            setValidate(flase)
+            if(Screenshots!=='x'){
+                const data = new FormData();
+                data.append("Username", customername);
+                data.append("Email", EmailR.current.value);
+                data.append("Phonenumber", PhonenumberR.current.value);
+                data.append("DomainName", DomainnameR.current.value);
+                data.append("Description",  DescriptionR.current.value);
+                for(let i=0; i<Screenshots.length; i++){
+                    data.append("files",Screenshots[i]);  
+                }
+                data.append("Cus_CreatedOn", currentDate)
+                Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                }).then((res) => {
+                    setloader(false);
+                    setTesting(true)
+                    setshowvalue("Submitted Successfully");
+                    EmailR.current.value = " ";
+                    PhonenumberR.current.value = " ";
+                    DomainnameR.current.value = " ";
+                    DescriptionR.current.value = " ";
+                    FileR.current.value = null;
+                })
+                .catch((err)=>{ 
+                    setTesting(true)
+                    setshowvalue("Submitted Failed");
+                    return err; })
+            }else{
+                const data = new FormData();
+                data.append("Username", customername);
+                data.append("Email", EmailR.current.value);
+                data.append("Phonenumber", PhonenumberR.current.value);
+                data.append("DomainName", DomainnameR.current.value);
+                data.append("Description",  DescriptionR.current.value);
+                data.append("Cus_CreatedOn", currentDate)
+                Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                }).then((res) => {
+                    setloader(false);
+                    setTesting(true)
+                    setshowvalue("Submitted Successfully");
+                    EmailR.current.value = " ";
+                    PhonenumberR.current.value = " ";
+                    DomainnameR.current.value = " ";
+                    DescriptionR.current.value = " ";
+                    FileR.current.value = null;
+                })
+                .catch((err)=>{
+                    setTesting(true)
+                    setshowvalue(1+"Submitted Failed");
+                    return err; })
             }
-            data.append("Cus_CreatedOn", currentDate)
-            Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            }).then((res) => {
-                setloader(false);
-                setTesting(true)
-                setshowvalue("Submitted Successfully");
-                EmailR.current.value = " ";
-                PhonenumberR.current.value = " ";
-                DomainnameR.current.value = " ";
-                DescriptionR.current.value = " ";
-                FileR.current.value = null;
-            })
-            .catch((err)=>{ 
-                setTesting(true)
-                setshowvalue("Submitted Failed");
-                return err; })
         }else{
-            const data = new FormData();
-            data.append("Username", customername);
-            data.append("Email", EmailR.current.value);
-            data.append("Phonenumber", PhonenumberR.current.value);
-            data.append("DomainName", DomainnameR.current.value);
-            data.append("Description",  DescriptionR.current.value);
-            data.append("Cus_CreatedOn", currentDate)
-            Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            }).then((res) => {
-                setloader(false);
-                setTesting(true)
-                setshowvalue("Submitted Successfully");
-                EmailR.current.value = " ";
-                PhonenumberR.current.value = " ";
-                DomainnameR.current.value = " ";
-                DescriptionR.current.value = " ";
-                FileR.current.value = null;
-            })
-            .catch((err)=>{
-                setTesting(true)
-                setshowvalue(1+"Submitted Failed");
-                return err; })
+            setValidate(true)
         }
+      
         
     };
 
@@ -132,6 +140,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     </label>
                 </form>
             </div>
+            {validate===true ? <div className="alert1">All Field is required</div>:<></>}
             <div className="">
             {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={30} /></>} 
            
