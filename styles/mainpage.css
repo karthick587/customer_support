@@ -224,6 +224,9 @@
   .react-piechart div div {
     width: 100% !important;
   }
+  .css-jcn4dz-MuiBadge-badge {
+    margin: -3px 5px;
+  }
   .user-profile-ticket-details.row {
     margin: 0;
 }

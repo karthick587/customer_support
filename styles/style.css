@@ -1077,7 +1077,7 @@ h4.alert1.text-center {
   border: none;
   border-radius: 27px;
   background-color: #58a2ea38;
-  margin: 0px 0px 0px 27px;
+  margin: 0px 0px 0px 15px;
 }
 
 .header-user input::placeholder {
@@ -1600,7 +1600,7 @@ h5.Completed {
 }
 
 .ticket-status-line.width-10 {
-  border-bottom: 3px solid;
+  border-bottom: 4px solid;
   margin: 4px 0px 15.5px 0px;
   color: #1976d2;
 }
@@ -2306,4 +2306,37 @@ form.form5 {
   line-height: 1;
   padding: 0px 5px !important;
   height: 17px;
+}
+select:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+input:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+textarea:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+textarea:focus-visible {
+  border: none !important;
+  outline: none;
+}
+input:focus-visible {
+  border: none !important;
+  outline: none;
+}
+.noNotification{
+  display: flex;
+  padding: 20px;
 }

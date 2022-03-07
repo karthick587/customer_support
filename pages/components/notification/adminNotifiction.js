@@ -1,12 +1,14 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 import Drawer from "@mui/material/Drawer";
 import { TicketsContext } from '../contex/ticketsProvider';
+import { CounterContext } from '../contex/adminProvider';
 function AdminNotification(props) {
-    const {tickets} = useContext(TicketsContext);
+    const { tickets } = useContext(TicketsContext);
+    const { notificationcount } = useContext(CounterContext)
     const [open, setopen] = useState()
     const [state, setState] = React.useState({
         right: false
@@ -43,31 +45,32 @@ function AdminNotification(props) {
                         onClose={toggleDrawer("right", false)}
                     >
                         <div className='notification-body'>
-                            {tickets.filter(val => {
-                                return val.Notification.toLowerCase().includes("unseen")
-                            }).map((tickets) =>
-                                <div className='' key={tickets.ticketsId}>
-                                  
-                                            <div>
-                                                <div className='notification-table-row flex' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
-                                                    <div className='notification-table-left'>
-                                                        <FontAwesomeIcon icon={faTicketAlt} />
+                            {notificationcount === 0 ? <div className='noNotification'>No Notification</div> : <>
+                                {tickets.filter(val => {
+                                    return val.Notification.toLowerCase().includes("unseen")
+                                }).map((tickets) => <>
+                                    <div className='' key={tickets.ticketsId}>
+                                        <div>
+                                            <div className='notification-table-row flex' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
+                                                <div className='notification-table-left'>
+                                                    <FontAwesomeIcon icon={faTicketAlt} />
+                                                </div>
+                                                <div className='notification-table-right'>
+                                                    <div className='notification-table-right1 flex'>
+                                                        <div className='width-10'>Ticket No {tickets.ticketsId}</div>
+                                                        <div className='width-10 ps-2'>{tickets.Username}</div>
                                                     </div>
-                                                    <div className='notification-table-right'>
-                                                        <div className='notification-table-right1 flex'>
-                                                            <div className='width-10'>Ticket No {tickets.ticketsId}</div>
-                                                            <div className='width-10 ps-2'>{tickets.Username}</div>
-                                                        </div>
-                                                        <div className='notification-table-right2'>
-                                                        {tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }
-                                                        </div>
+                                                    <div className='notification-table-right2'>
+                                                        {tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}
                                                     </div>
                                                 </div>
                                             </div>
-                                    
-                                     
-                                </div>
-                            )}
+                                        </div>
+                                    </div>
+                                </>
+                                )}
+                            </>}
+
                         </div>
                     </Drawer>
                 </React.Fragment>
