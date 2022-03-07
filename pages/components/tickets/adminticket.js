@@ -431,7 +431,7 @@ function Adminticket() {
                             activeClassName={"active"}
                         />
                         <div className='pagedata-limit flex'>
-                            <Typography>Number of Tickets per page</Typography>
+                            <Typography>Tickets per page</Typography>
                             <select className='pagedatalimit-select' onChange={pagedatalimit}>
                                 <option value={10}>10</option>
                                 <option value={25}>25</option>

@@ -198,7 +198,7 @@ export default function Users(props) {
                         activeClassName={"active"}
                     />
                     <div className='pagedata-limit flex'>
-                        <Typography>Customer per page</Typography>
+                        <Typography>Customers per page</Typography>
 
                         <select className='pagedatalimit-select' onChange={pagedatalimit}>
                             <option value={10}>10</option>
