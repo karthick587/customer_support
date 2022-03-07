@@ -16,6 +16,7 @@ import Badge from '@mui/material/Badge';
 import Copyrights from "../common/copyRight";
 import FormAlert from "../common/alert";
 import TeamPiechart from "./teamPiechart";
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 const TeamDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -144,20 +145,20 @@ const TeamDashboard = () => {
                               <Dashcard
                                 cardHead="Tickets assigned"
                                 cardbody={teamassignedcount}
-                                cardfooter="last Ticket no"
+                              
                                 cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                               />
                               <Dashcard
                                 cardHead="Tickets in inprogress"
                                 cardbody={teaminprogresscount}
-                                cardfooter="last Ticket no"
+                                
                                 cardIcon={<FontAwesomeIcon icon={faUsers} />}
                               />
                               <Dashcard
                                 cardHead="Tickets completed"
                                 cardbody={teamcompletedcount}
-                                cardfooter="last Ticket no"
-                                cardIcon="icon3"
+                                
+                                cardIcon={<DoneAllIcon />}
                               />
                             </div>
                           </div>

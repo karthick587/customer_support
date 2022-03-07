@@ -2340,3 +2340,6 @@ input:focus-visible {
   display: flex;
   padding: 20px;
 }
+.copyright-text{
+  padding: 0px 2px !important;
+}

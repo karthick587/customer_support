@@ -7,8 +7,8 @@ export default function Copyrights(props){
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://www.mindmade.in/">
-        mindmade
+        <Link className='copyright-text' color="inherit" href="https://www.mindmade.in/">
+        MindMade
         </Link>{' '}
         {new Date().getFullYear()}
        
