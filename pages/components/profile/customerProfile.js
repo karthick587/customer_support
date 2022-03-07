@@ -17,17 +17,39 @@ export default function CustomerProfile(props) {
                     <div className='header-user'>
                         <div><h1>Profile </h1></div>
                     </div>
+                    <div className="col-md-4 mb-3">
+                        <div className="profile-card">
+                            <div className="profile-card-body">
+                                <div className="d-flex flex-column">
+                                    <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle justify-content-center mb-4" width="179" height="179" />
+
+                                    <div className="row">
+                                        <div className="col">
+                                            <h6 className="mb-0 profile-label">
+                                                UserName
+                                            </h6>
+                                        </div>
+                                        :
+                                        <div className="col text-secondary">
+                                            {users.Username}
+                                        </div>
+                                    </div>
+                                    <h4 className="profile-label"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="col-md-8">
                         <div className="profile-card mb-3">
                             <div className="profile-card-body">
-                            <div className="row">
+                                <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0 profile-label">Companyname</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
                                         {users.Companyname}
                                     </div>
-                                </div>  
+                                </div>
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
@@ -67,29 +89,6 @@ export default function CustomerProfile(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-4 mb-3">
-                        <div className="profile-card">
-                            <div className="profile-card-body">
-                                <div className="d-flex flex-column">
-                                    <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle justify-content-center mb-4" width="179" height="179" />
-                                    
-                                    <div className="row">
-                                        <div className="col">
-                                            <h6 className="mb-0 profile-label">
-                                                UserName
-                                            </h6>
-                                        </div>
-                                        :
-                                        <div className="col text-secondary">
-                                            {users.Username}
-                                        </div>
-                                    </div>
-                                    <h4 className="profile-label"></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             )}
         </div>
