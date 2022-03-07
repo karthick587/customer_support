@@ -125,7 +125,7 @@ const AdminDashboard = () => {
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Customer" />
+                  <ListItemText primary="Customers" />
                 </ListItem>
                 </button>
                 <button className={activeTab === "team" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('team')&localStorage.setItem('activeTab', 'team')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="/users" ><ListItem button>

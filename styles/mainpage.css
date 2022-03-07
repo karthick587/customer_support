@@ -463,8 +463,8 @@
   }
 
   .profile-body {
-    padding: 34px 0px;
-  }
+    padding: 20px 12px;
+}
 
   .updateadminpage {
     position: absolute;
@@ -763,7 +763,6 @@
 
   .header-user {
     display: flex;
-    padding: 20px 0px 0px 1px !important;
     position: relative;
     margin: 0px 0px 0px 0px;
   }

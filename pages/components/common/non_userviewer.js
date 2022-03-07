@@ -7,7 +7,7 @@ import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 
 function Non_userviewer(props) {
-    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
+    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { registerId, closeDetails } = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
@@ -16,17 +16,17 @@ function Non_userviewer(props) {
 
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
-    },[setAdminname]);
+    }, [setAdminname]);
 
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
-    },[setCreatedby,Adminname]);
+    }, [setCreatedby, Adminname]);
 
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
-    }, [setNonUserDetails,nonUserDetails,registerId]);
+    }, [setNonUserDetails, nonUserDetails, registerId]);
     var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
     date = new Date();
     hour = date.getHours();
@@ -56,11 +56,11 @@ function Non_userviewer(props) {
     // Adding all the variables in fullTime variable.
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
-    function handleRejection(Id){
-    
+    function handleRejection(Id) {
+
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
-            Adm_UpdatedOn: fulldate+" "+fullTime,
+            Adm_UpdatedOn: fulldate + " " + fullTime,
             Adm_UpdatedBy: Createdby
         });
     }
@@ -73,7 +73,7 @@ function Non_userviewer(props) {
         data.append("Username", nonuser.Username);
         data.append("Password", nonuser.Password);
         data.append("Logo", nonuser.Logo);
-        data.append("Createdon", fulldate+" "+fullTime);
+        data.append("Createdon", fulldate + " " + fullTime);
         data.append("Createdby", Createdby)
         Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
             headers: {
@@ -86,7 +86,7 @@ function Non_userviewer(props) {
                 setdialogformopen("true")
                 return null;
             } else {
-               
+
                 setTesting(true)
                 setshowvalue("Registered Successfully");
                 setdialogformopen("true")
@@ -94,7 +94,7 @@ function Non_userviewer(props) {
         }).catch((err) => {
             setTesting(true)
             setshowvalue(1 + "Error");
-           
+
         });
 
         const formData = new FormData();
@@ -115,7 +115,7 @@ function Non_userviewer(props) {
 
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
             Status: "Approved",
-            Adm_UpdatedOn: fulldate+" "+fullTime,
+            Adm_UpdatedOn: fulldate + " " + fullTime,
             Adm_UpdatedBy: Createdby
         });
 
@@ -127,7 +127,7 @@ function Non_userviewer(props) {
                 <div className='ticket-details' key={nonuser.registerId}>
                     <div className='ticket-details-head'>
                         <div className='ticket-details-head-title'>Unregistered Customers Details</div>
-                        
+
                         <div className='ticket-details-head-btn'>
                             <button className='btn2 float-end' onClick={closeDetails}>Back</button>
                         </div>
@@ -212,33 +212,33 @@ function Non_userviewer(props) {
                             <div className='ticket-input-details' >
                                 {nonuser.Description}
                             </div>
-                            {nonuser.Status==="Approved"||nonuser.Status==="Rejected" ? <Typography className='mt-4'>{nonuser.Status==="Approved" ? <>Approved</>:<>Rejected</>}</Typography>: 
-                            <div className='flex mt-4'>
-                                <FormDialog
-                                    className="team-delete me-3"
-                                    dialogtitle={<Button>Reject</Button>}
-                                    headtitle={<div className='head-dialog'>Are you sure want to reject this ticket?</div>}
-                                    dialogactions={
-                                        <div>
-                                            <Button onClick={() => handleRejection(nonuser.registerId)}>YES</Button>
-                                            <Button onClick={() => setdialogformopen("true")}>NO</Button>
-                                        </div>
-                                    }
-                                />
-                                <FormDialog
-                                    className="team-delete"
-                                    dialogtitle={<button className='btn2'>Approve</button>}
-                                    headtitle={<div className='head-dialog'>Are you sure want to Approve this ticket?</div>}
-                                    dialogactions={
-                                        <div>
-                                            <Button onClick={() => handleApproval(nonuser)}>YES</Button>
-                                            <Button onClick={() => setdialogformopen("true")}>NO</Button>
-                                        </div>
-                                    }
-                                />
-                            </div>
+                            {nonuser.Status === "Approved" || nonuser.Status === "Rejected" ? <Typography className='mt-4'>{nonuser.Status === "Approved" ? <>Approved</> : <>Rejected</>}</Typography> :
+                                <div className='flex mt-4'>
+                                    <FormDialog
+                                        className="team-delete me-3"
+                                        dialogtitle={<Button>Reject</Button>}
+                                        headtitle={<div className='head-dialog'>Are you sure want to reject this ticket?</div>}
+                                        dialogactions={
+                                            <div>
+                                                <Button onClick={() => handleRejection(nonuser.registerId)}>YES</Button>
+                                                <Button onClick={() => setdialogformopen("true")}>NO</Button>
+                                            </div>
+                                        }
+                                    />
+                                    <FormDialog
+                                        className="team-delete"
+                                        dialogtitle={<button className='btn2'>Approve</button>}
+                                        headtitle={<div className='head-dialog'>Are you sure want to Approve this ticket?</div>}
+                                        dialogactions={
+                                            <div>
+                                                <Button onClick={() => handleApproval(nonuser)}>YES</Button>
+                                                <Button onClick={() => setdialogformopen("true")}>NO</Button>
+                                            </div>
+                                        }
+                                    />
+                                </div>
                             }
-                           
+
 
                         </div>
                     </div>

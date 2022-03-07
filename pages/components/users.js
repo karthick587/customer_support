@@ -104,7 +104,7 @@ export default function Users(props) {
 
             <div className="userbody2">
                 <div className='header-user'>
-                    <h1>USERS</h1>
+                    <h1>CUSTOMERS</h1>
                     <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
 
 
@@ -136,7 +136,7 @@ export default function Users(props) {
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow className='usertable'>
-                                <TableCell className="teamtablecel" >USERID</TableCell>
+                                <TableCell className="teamtablecel" >CUSTOMERID</TableCell>
                                 <TableCell className="teamtablecel" align="left">LOGO</TableCell>
                                 <TableCell className="teamtablecel" align="left">COMPANY NAME</TableCell>
                                 <TableCell className="teamtablecel">CLIENT NAME</TableCell>

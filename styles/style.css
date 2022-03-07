@@ -450,7 +450,7 @@ textarea:focus-visible {
 }
 
 .nav-link.active div span {
-  margin-left: 0px;
+  margin-left: 6px;
 }
 
 .nav-link.active div span svg {

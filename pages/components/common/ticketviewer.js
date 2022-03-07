@@ -19,12 +19,12 @@ function Ticketviewer(props) {
             {ticket.reverse().map((tickets) =>
                 <div className='ticket-details' key={tickets.ticketsId}>
                     <div className='ticket-details-head'>
-                        <div className='w-20'>
+                        <div className='ticket-details-head-title'>
                         Ticket Details #{tickets.ticketsId}
                         </div>
                         
                         <div className='ticket-details-head-btn '>
-                            <button className='btn2' onClick={closeDetails}>Back</button>
+                            <button className='btn2 float-end' onClick={closeDetails}>Back</button>
                         </div>
                     </div>
                     <div className='ticket-details-middle'>
