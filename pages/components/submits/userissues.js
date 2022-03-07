@@ -142,7 +142,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
             </div>
             {validate===true ? <div className="alert1">All Field is required</div>:<></>}
             <div className="">
-            {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={30} /></>} 
+            {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={25} /></>} 
            
             </div>
         </form>
