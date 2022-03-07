@@ -11,7 +11,7 @@ const{team}=useContext(ListContext)
 
   return (
       <div>
-        {selectedteam==="x" ? <div className='text-midle'>SELECT Team</div>:<> {team===undefined ? <></>:<>  {team.filter(val => {
+        {selectedteam==="x" ? <div className='text-midle'>Select Team</div>:<> {team===undefined ? <></>:<>  {team.filter(val => {
              return val.Team.toLowerCase().includes(selectedteam.toLowerCase())
            }).map((teams) =>
         <div className='flex team-list-input' key={teams.teamId}>

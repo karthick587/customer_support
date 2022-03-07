@@ -44,7 +44,7 @@ import {
               color="primary"
               variant="contained"
             >
-              Add Customers
+              Add Clients
             </Button>
           </Box>
         </Box>
@@ -66,7 +66,7 @@ import {
                       </InputAdornment>
                     )
                   }}
-                  placeholder="Search customer"
+                  placeholder="Search client"
                   variant="outlined"
                 />
               </Box>

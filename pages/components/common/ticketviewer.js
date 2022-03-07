@@ -19,8 +19,8 @@ function Ticketviewer(props) {
             {ticket.reverse().map((tickets) =>
                 <div className='ticket-details' key={tickets.ticketsId}>
                     <div className='ticket-details-head'>
-                        <div className='ticket-details-head-title'>
-                        Ticket Details #{tickets.ticketsId}
+                        <div className='ticket-details-head-title dash-head'>
+                        <h2>TICKET'S DETAILS #{tickets.ticketsId}</h2>
                         </div>
                         
                         <div className='ticket-details-head-btn '>

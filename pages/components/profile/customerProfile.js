@@ -15,7 +15,7 @@ export default function CustomerProfile(props) {
             {users.map((users) =>
                 <div className="row gutters-sm" key={users.usersId}>
                     <div className='header-user'>
-                        <div><h1>Profile </h1></div>
+                        <div><h1>PROFILE</h1></div>
                     </div>
                     <div className="col-md-4 mb-3">
                         <div className="profile-card">
@@ -44,7 +44,7 @@ export default function CustomerProfile(props) {
                             <div className="profile-card-body">
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <h6 className="mb-0 profile-label">Companyname</h6>
+                                        <h6 className="mb-0 profile-label">Company Name</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
                                         {users.Companyname}
@@ -62,7 +62,7 @@ export default function CustomerProfile(props) {
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <h6 className="mb-0 profile-label">Email</h6>
+                                        <h6 className="mb-0 profile-label">Email ID</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
                                         {users.Email}
@@ -71,7 +71,7 @@ export default function CustomerProfile(props) {
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <h6 className="mb-0 profile-label">Phone</h6>
+                                        <h6 className="mb-0 profile-label">Phonenumber</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
                                         {users.Phonenumber}
@@ -80,7 +80,7 @@ export default function CustomerProfile(props) {
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <h6 className="mb-0 profile-label">User Id</h6>
+                                        <h6 className="mb-0 profile-label">Client Id</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
                                         {users.usersId}

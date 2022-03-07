@@ -227,16 +227,16 @@ function Adminticket() {
     return (
         <div>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>ADMIN DASHBOARD</title>
             </Head>
             {showdetails === false ?
                 <div className="userbody">
-                    <div className='header-user'>
-                        <h1>Tickets</h1>
+                    <div className='dash-head mt-1 mb-1'>
+                        <h1>TICKETS</h1>
                         <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
-                                <option value="ticketsId">TicketsId</option>
+                                <option value="ticketsId">Tickets Id</option>
                                 <option value="Username">Username</option>
                                 <option value="Date">Date</option>
                                 {/* <option value="Team">Team</option> */}
@@ -262,11 +262,11 @@ function Adminticket() {
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell  >TicketId</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Team</TableCell>
-                                    <TableCell align="left">Status</TableCell>
+                                    <TableCell  >TICKETS ID</TableCell>
+                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">DATE</TableCell>
+                                    <TableCell align="left">TEAM</TableCell>
+                                    <TableCell align="left">STATUS</TableCell>
                                 </TableRow>
                             </TableHead>
                             {tickets
@@ -339,7 +339,7 @@ function Adminticket() {
                                         <TableCell >{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
-                                        <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
+                                        <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                         </TableCell>
                                     </TableRow>
@@ -399,7 +399,7 @@ function Adminticket() {
                                                             <h1>Status Final Update</h1>
                                                         </div>
                                                         <select className="form-input" onChange={handlestatus}>
-                                                            <option value="">--Select status--</option>
+                                                            <option value="">--Select Status--</option>
                                                             <option className='Completed' value="Completed">Completed</option>
                                                         </select>
                                                         <div className='flex'>

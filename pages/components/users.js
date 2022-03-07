@@ -99,12 +99,12 @@ export default function Users(props) {
     return (
         <div>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>ADMIN DASHBOARD</title>
             </Head>
 
             <div className="userbody2">
                 <div className='header-user'>
-                    <h1>CUSTOMERS</h1>
+                    <h1>CLIENTS</h1>
                     <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
 
 
@@ -113,17 +113,17 @@ export default function Users(props) {
                         <Button>
                             <CSVLink
                                 data={exportUsers}
-                                filename={'Customer_List.csv'}
+                                filename={'Client_List.csv'}
                                 className="me-1 header-export"
                                 target="_blank"
                                 onClick={handleExport}
-                            > <FileDownloadIcon />Export</CSVLink>
+                            > <FileDownloadIcon />EXPORT</CSVLink>
                         </Button>
 
 
                         <FormDialog
                             className="me-1 header-adduser"
-                            dialogtitle={<> <PersonAddIcon className='me-1' />ADD CUSTOMER</>}
+                            dialogtitle={<> <PersonAddIcon className='me-1' />ADD CLIENT</>}
                             dialogbody={<Addcustomer />}
                         />
 
@@ -136,7 +136,7 @@ export default function Users(props) {
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow className='usertable'>
-                                <TableCell className="teamtablecel" >CUSTOMERID</TableCell>
+                                <TableCell className="teamtablecel" >CLIENT ID</TableCell>
                                 <TableCell className="teamtablecel" align="left">LOGO</TableCell>
                                 <TableCell className="teamtablecel" align="left">COMPANY NAME</TableCell>
                                 <TableCell className="teamtablecel">CLIENT NAME</TableCell>
@@ -172,7 +172,7 @@ export default function Users(props) {
                                         <FormDialog
                                             className="user-delete"
                                             dialogtitle={<DeleteIcon />}
-                                            headtitle={<div className='head-dialog'>Are you sure want to delete this Customer?</div>}
+                                            headtitle={<div className='head-dialog'>Are you sure want to delete this Client?</div>}
                                             dialogactions={
                                                 <div>
                                                     <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
@@ -198,7 +198,7 @@ export default function Users(props) {
                         activeClassName={"active"}
                     />
                     <div className='pagedata-limit flex'>
-                        <Typography>Customers per page</Typography>
+                        <Typography>Clients per page</Typography>
 
                         <select className='pagedatalimit-select' onChange={pagedatalimit}>
                             <option value={10}>10</option>

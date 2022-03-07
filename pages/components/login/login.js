@@ -85,7 +85,7 @@ export default function Login1() {
             <div className="form login">
               <div className='sublogin'>
                 <div className='login-header'>
-                  <h1>Login</h1>
+                  <h1>LOGIN</h1>
                 </div>
                 <form>
                   <div className="form-group mb-2">

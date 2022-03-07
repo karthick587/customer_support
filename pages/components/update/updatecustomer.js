@@ -120,7 +120,7 @@ function Updatecustomer({ usersId }) {
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="label"> Comapany Name</label>
+                                        <label className="label"> Company Name</label>
                                         <input className="form-input" name="Name" type="text" ref={CompanynameR} defaultValue={data.Companyname} />
 
                                     </div>
@@ -141,12 +141,12 @@ function Updatecustomer({ usersId }) {
 
                                     </div>
                                     <div className="form-group">
-                                        <label className="col label">EMail ID</label>
+                                        <label className="col label">Email ID</label>
                                         <input className="form-input" name="Email" type="text" ref={EmailR} defaultValue={data.Email} />
 
                                     </div>
                                     <div className="form-group">
-                                        <label className="col label">Phone Number</label>
+                                        <label className="col label">Phonenumber</label>
                                         <input className="form-input" name="Phonenumber" type="text" ref={PhonenumberR} defaultValue={data.Phonenumber} />
 
                                     </div>

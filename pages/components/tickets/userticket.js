@@ -53,23 +53,23 @@ function Userticket(props) {
     return (
         <div>
             <Head>
-                <title>Customer Dashboard</title>
+                <title>CLIENT DASHBOARD</title>
             </Head>
             {showdetails === false ?
 
                 <div className="teambody">
-                     <div className='header-user'>
-                        <h1>Tickets</h1>
+                     <div className='dash-head mt-1 mb-1'>
+                        <h1>TICKETS</h1>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell  >TicketId</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Team</TableCell>
-                                    <TableCell align="left">Status</TableCell>
+                                    <TableCell>TICKETS ID</TableCell>
+                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">DATE</TableCell>
+                                    <TableCell align="left">TEAM</TableCell>
+                                    <TableCell align="left">STATUS</TableCell>
                                 </TableRow>
                             </TableHead>
                             {maptickets.slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
@@ -78,7 +78,7 @@ function Userticket(props) {
                                         <TableCell>{tickets.ticketsId}</TableCell>
                                         <TableCell >{tickets.Username}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
-                                        <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell> 
+                                        <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell> 
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
 
                                         </TableCell>
@@ -100,7 +100,7 @@ function Userticket(props) {
                          activeClassName={"active"}
                      />
                      <div className='pagedata-limit flex'>
-                         <Typography>Customers per page</Typography>
+                         <Typography>Clients per page</Typography>
 
                          <select className='pagedatalimit-select' onChange={pagedatalimit}>
                              <option value={10}>10</option>

@@ -24,21 +24,21 @@ const Page = () => {
               <img className="slide-banner" src='/chatbot-bg.png' />
               <div className="slide-text">
                 <h3>Simple ticketing <br />system </h3>
-                <p>Work as a team to help your customers get all the answers<br />Analyze customer support reports..</p>
+                <p>Work as a team to help your clients get all the answers<br />Analyze client support reports..</p>
               </div>
             </div>
             <div className="keen-slider__slide number-slide2">
               <img className="slide-banner2" src='/banner33.png' />
               <div className="slide-text">
                 <h3>Simple ticketing <br />system </h3>
-                <p>Work as a team to help your customers get all the answers<br />Analyze customer support reports..</p>
+                <p>Work as a team to help your clients get all the answers<br />Analyze client support reports..</p>
               </div>
             </div>
             <div className="keen-slider__slide number-slide3">
               <img className="slide-banner3" src='/social.png' />
               <div className="slide-text">
                 <h3>Simple ticketing <br />system </h3>
-                <p>Work as a team to help your customers get all the answers<br />Analyze customer support reports..</p>
+                <p>Work as a team to help your clients get all the answers<br />Analyze client support reports..</p>
               </div>
             </div>
           </div>

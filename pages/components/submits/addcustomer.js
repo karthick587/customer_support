@@ -123,12 +123,12 @@ export default function Addcustomer() {
                             <p className="me-2 text-danger">{errors.Clientname?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">EMail ID</label>
+                            <label className="col label">Email ID</label>
                             <input className="form-input" name="Email" type="text" {...register('Email')} />
                             <p className="me-2 text-danger">{errors.Email?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">Phone Number</label>
+                            <label className="col label">Phonenumber</label>
                             <input className="form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                             <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                         </div>

@@ -102,7 +102,7 @@ export default function ScrollDialog(props) {
 
     return (
         <div className='z-index-99'>
-            <Button className='mt-1' onClick={handleClickOpen('paper')}>Unregistered Customer</Button>
+            <Button className='mt-1' onClick={handleClickOpen('paper')}>UNREGISTERED CLIENT</Button>
             <Dialog
                 open={open}
 
@@ -110,7 +110,7 @@ export default function ScrollDialog(props) {
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
             >
-                <DialogTitle id="scroll-dialog-title"><div className='form-title'>Non User Ticket Form</div></DialogTitle>
+                <DialogTitle id="scroll-dialog-title"><div className='form-title'>RAISE YOUR TICKETS</div></DialogTitle>
                 <DialogContent dividers={scroll === 'paper'}>
                     <DialogContentText
                         id="scroll-dialog-description"
@@ -141,12 +141,12 @@ export default function ScrollDialog(props) {
                                     <p className="me-2 text-danger">{errors.Clientname?.message}</p>
                                 </div>
                                 <div className="form-group">
-                                    <label className="col label">EMail ID</label>
+                                    <label className="col label">Email ID</label>
                                     <input className="issue-form-input" name="Email" type="text" {...register('Email')} />
                                     <p className="me-2 text-danger">{errors.Email?.message}</p>
                                 </div>
                                 <div className="form-group">
-                                    <label className="col label">Phone Number</label>
+                                    <label className="col label">Phonenumber</label>
                                     <input className="issue-form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                                     <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                                 </div>

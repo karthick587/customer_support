@@ -112,7 +112,7 @@ export default function Team(props) {
     return (
         <div>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>ADMIN DASHBOARD</title>
             </Head>
 
             <div className="userbody2">
@@ -132,7 +132,7 @@ export default function Team(props) {
                                 target="_blank"
                                 onClick={handleExport}
                             >
-                                <FileDownloadIcon />Export
+                                <FileDownloadIcon />EXPORT
                             </CSVLink>
                         </Button>
 
@@ -147,7 +147,7 @@ export default function Team(props) {
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>
-                                <TableCell className="teamtablecel" >TEAMID</TableCell>
+                                <TableCell className="teamtablecel" >TEAM ID</TableCell>
                                 <TableCell className="teamtablecel" align="left">USERNAME</TableCell>
                                 <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
                                 <TableCell className="teamtablecel" align="left">TEAM</TableCell>

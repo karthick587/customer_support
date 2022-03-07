@@ -224,6 +224,12 @@
   .react-piechart div div {
     width: 100% !important;
   }
+  .form-group p {
+    position: absolute;
+    padding: 37px 24px!important;
+    font-size: 12px;
+    z-index: 1;
+  }
   .css-jcn4dz-MuiBadge-badge {
     margin: -3px 5px !important;
   }

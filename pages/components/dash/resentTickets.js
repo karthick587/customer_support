@@ -20,17 +20,17 @@ export default function Resentticket(props) {
     return (
         <div className='resentticket'>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                Recent Tickets
+                RECENT TICKETS
             </Typography>
             <div className='resentticket-table'>
                 <Table size="small" >
                     <TableHead>
                         <TableRow className="resentticket-row">
-                            <TableCell>Date</TableCell>
-                            <TableCell>TicketId</TableCell>
-                            <TableCell>Username</TableCell>
-                            <TableCell>Domainname</TableCell>
-                            <TableCell>Status</TableCell>
+                            <TableCell>DATE</TableCell>
+                            <TableCell>TICKET ID</TableCell>
+                            <TableCell>USERNAME</TableCell>
+                            <TableCell>DOMAIN NAME</TableCell>
+                            <TableCell>STATUS</TableCell>
                         </TableRow>
                     </TableHead>
                     {team.filter(val => {

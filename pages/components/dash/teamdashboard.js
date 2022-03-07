@@ -113,7 +113,7 @@ const TeamDashboard = () => {
             DashTabActive={DashTabActive}
             logout={onBackButtonEvent3}
            
-            headertext="USER DASHBOARD"
+            headertext="TEAM DASHBOARD"
             shownotification={ <IconButton className='z-index' color="inherit" >
             <Badge badgeContent={teamteamNotificationcount} color="secondary">
                 <NotificationsIcon />
@@ -127,7 +127,7 @@ const TeamDashboard = () => {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                TEAM Dashboard
+                TEAM DASHBOARD
               </Typography>
             }
             tabbody={
@@ -137,7 +137,7 @@ const TeamDashboard = () => {
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
                         <div className='dash-head'>
-                          <h2>Dashboard</h2>
+                          <h2>DASHBOARD</h2>
                         </div>
                         <div className='dash-body'>
                           <div className='dash-cards'>

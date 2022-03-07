@@ -47,23 +47,23 @@ function NonUserTickets(props) {
     return (
         <div>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>ADMIN DASHBOARD</title>
             </Head>
             {showdetails === false ?
                 <div className="teambody">
-                    <div className='header-user'>
-                        <h1>Unregistered Customer</h1>
+                    <div className='dash-head mt-1 mb-1'>
+                        <h1>UNREGISTERED CLIENTS</h1>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="left">ID</TableCell>
-                                    <TableCell align="left">Logo</TableCell>
-                                    <TableCell align="left">Companyname</TableCell>
-                                    <TableCell align="left">Clientname</TableCell>
-                                    <TableCell align="left">date</TableCell>
-                                    <TableCell align="left">Status</TableCell>
+                                    <TableCell align="left">LOGO</TableCell>
+                                    <TableCell align="left">COMPANY NAME</TableCell>
+                                    <TableCell align="left">CLIENT NAME</TableCell>
+                                    <TableCell align="left">DATE</TableCell>
+                                    <TableCell align="left">STATUS</TableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -98,7 +98,7 @@ function NonUserTickets(props) {
                             activeClassName={"active"}
                         />
                         <div className='pagedata-limit flex'>
-                            <Typography>Customers per page</Typography>
+                            <Typography>Clients per page</Typography>
 
                             <select className='pagedatalimit-select' onChange={pagedatalimit}>
                                 <option value={10}>10</option>

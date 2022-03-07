@@ -125,7 +125,7 @@ const AdminDashboard = () => {
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Customers" />
+                  <ListItemText primary="Clients" />
                 </ListItem>
                 </button>
                 <button className={activeTab === "team" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('team')&localStorage.setItem('activeTab', 'team')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-team" type="button" role="tab" href="/users" ><ListItem button>
@@ -141,7 +141,7 @@ const AdminDashboard = () => {
                     <PersonAddAltIcon />
                     </Badge>
                   </ListItemIcon>
-                  <ListItemText primary="Non-Users" />
+                  <ListItemText primary="Unregistered" />
                 </ListItem>
                 </button>
                 <button className={activeTab === "RaiseTicket" ? "nav-link active" : "nav-link"} onClick={()=>setActivetab('RaiseTicket')&localStorage.setItem('activeTab', 'RaiseTicket')} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-RaiseTicket" type="button" role="tab" href="/users" ><ListItem button>
@@ -159,8 +159,8 @@ const AdminDashboard = () => {
                   <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
-                        <div className='dash-head'>
-                          <h2>DASHBOARD</h2>
+                      <div className='dash-head mt-1 mb-1'>
+                          <h1>DASHBOARD</h1>
                         </div>
                         <div className='dash-body'>
                           <div className='dash-cards'>
@@ -172,7 +172,7 @@ const AdminDashboard = () => {
                                 cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                               />
                               <Dashcard
-                                cardHead="No of users"
+                                cardHead="No of Clients"
                                 cardbody={usercount}
                                 cardfooter="Active"
                                 cardIcon={<FontAwesomeIcon icon={faUser} />}

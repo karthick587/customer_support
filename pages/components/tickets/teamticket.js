@@ -147,22 +147,22 @@ function Teamticket(props) {
     return (
         <div>
             <Head>
-                <title>Team Dashboard</title>
+                <title>TEAM DASHBOARD</title>
             </Head>
             {showdetails === false ?
                 <div className="teambody">
-                   <div className='header-user'>
-                        <h1>Tickets</h1>
+                   <div className='dash-head mt-1 mb-1'>
+                        <h1>TICKETS</h1>
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell  >TicketId</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Date</TableCell>
-                                    <TableCell align="left">Team</TableCell>
-                                    <TableCell align="left">Status</TableCell>
+                                    <TableCell  >TICKETS ID</TableCell>
+                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">DATE</TableCell>
+                                    <TableCell align="left">TEAM</TableCell>
+                                    <TableCell align="left">STATUS</TableCell>
                                 </TableRow>
                             </TableHead>
                             {mapteamticket.slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
@@ -181,7 +181,7 @@ function Teamticket(props) {
                                         dialog_className="update7"
                                         dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
                                         className="btn3 ticket-update2"
-                                        dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>ticket has been completed</div> :
+                                        dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>Ticket has been completed</div> :
                                             <div className="form dialog" >
                                                 <div className="form-toggle"></div>
                                                 <div className="form-panel update one">
@@ -191,7 +191,7 @@ function Teamticket(props) {
                                                     <div className="addform">
                                                         <form>
                                                             <div className="form-group">
-                                                                <label className="label">status</label>
+                                                                <label className="label">Status</label>
                                                                 <select className="form-input" onChange={handlestatus}>
                                                                     <option value="">--Select Status--</option>
                                                                     <option className='started' value="started">started</option>

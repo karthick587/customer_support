@@ -75,7 +75,7 @@ function Updateteam({ teamId }) {
                                             <div className="form-group">
                                                 <label className="col label">Team</label>
                                                 <Field className="form-input" as="select" name="Team">
-                                                    <option >select</option>
+                                                    <option >--select Team--</option>
                                                     <option value="design">Design</option>
                                                     <option value="development">Development</option>
                                                     <option value="server">server</option>

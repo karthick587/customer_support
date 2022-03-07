@@ -121,7 +121,7 @@ const CustomerDashboard = () => {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                USER Dashboard
+                USER DASHBOARD
               </Typography>
             }
             tabbody={

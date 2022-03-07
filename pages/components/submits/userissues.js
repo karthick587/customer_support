@@ -105,13 +105,13 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     return (
         <div>
         <form className="form5" action="/" method="post">
-            <Typography >Raise Your Tickets</Typography>
+            <Typography >RAISE YOUR TICKETS</Typography>
             <div className="form-group mt-2 mb-2 flex" >
                 <label className="label width-25">User Name</label>
                 <h5 className="issue-form-input">{props.customername}</h5>
             </div>
             <div className="form-group mb-2 flex">
-                <label className="label width-25">Email</label>
+                <label className="label width-25">Email ID</label>
                 <input className="issue-form-input" name="email" type="text" ref={EmailR} />
             </div>
             <div className="form-group mb-2 flex">
@@ -142,7 +142,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     </label>
                 </form>
             </div>
-            {validate===true ? <div className="alert1">All Field is required</div>:<></>}
+            {validate===true ? <div className="alert1">All Fields are required</div>:<></>}
             <div className="">
             {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={25} /></>} 
            

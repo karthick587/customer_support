@@ -94,8 +94,8 @@ export default function Adminissues(props) {
 
     return (
         <div className="userbody">
-            <div className='header-user'>
-                <h1>Raise The Tickets</h1>
+            <div className='dash-head mt-1 mb-1'>
+                <h1>RAISE THE TICKETS</h1>
             </div>
             <form className="form3" action="/" method="post">
                 <div className="form-group mt-2 mb-2 flex" >
@@ -103,7 +103,7 @@ export default function Adminissues(props) {
                     <input className="issue-form-input" name="email" type="text" ref={UsernameR} />
                 </div>
                 <div className="form-group mb-2 flex">
-                    <label className="label width-25">Email</label>
+                    <label className="label width-25">Email ID</label>
                     <input className="issue-form-input" name="email" type="text" ref={EmailR} />
                 </div>
                 <div className="form-group mb-2 flex">

@@ -45,7 +45,7 @@ export default function Piechart(props){
 
   return (
     <Card {...props}>
-      <CardHeader title="Tickets status" />
+      <CardHeader title="TICKET STATUS" />
       <Divider />
       <CardContent>
         <Box
