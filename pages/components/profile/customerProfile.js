@@ -71,7 +71,7 @@ export default function CustomerProfile(props) {
                         <div className="profile-card">
                             <div className="profile-card-body">
                                 <div className="d-flex flex-column">
-                                    <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle justify-content-center mb-4" width="165" height="165" />
+                                    <img src="https://mindmadetech.in/public/images/file-1642586098635.png" alt="Admin" className="rounded-circle justify-content-center mb-4" width="179" height="179" />
                                     
                                     <div className="row">
                                         <div className="col">

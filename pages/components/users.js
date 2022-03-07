@@ -123,7 +123,7 @@ export default function Users(props) {
 
                         <FormDialog
                             className="me-1 header-adduser"
-                            dialogtitle={<> <PersonAddIcon />ADD customer</>}
+                            dialogtitle={<> <PersonAddIcon className='me-1' />ADD CUSTOMER</>}
                             dialogbody={<Addcustomer />}
                         />
 

@@ -138,7 +138,7 @@ export default function Team(props) {
 
                         <FormDialog
                             className="me-1 header-adduser"
-                            dialogtitle={<> <PersonAddIcon />ADD Team</>}
+                            dialogtitle={<> <PersonAddIcon className='me-1' />ADD TEAM</>}
                             dialogbody={<Addteam />}
                         />
                     </div>
