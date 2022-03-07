@@ -126,7 +126,7 @@ function Non_userviewer(props) {
             {nonUserDetails.reverse().map((nonuser) =>
                 <div className='ticket-details' key={nonuser.registerId}>
                     <div className='ticket-details-head'>
-                        <div className='ticket-details-head-title'>Unregistered Client's Details</div>
+                        <div className='ticket-details-head-title'>Unregistered Clients Details</div>
 
                         <div className='ticket-details-head-btn'>
                             <button className='btn2 float-end' onClick={closeDetails}>Back</button>
