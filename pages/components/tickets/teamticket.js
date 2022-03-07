@@ -193,7 +193,7 @@ function Teamticket(props) {
                                                             <div className="form-group">
                                                                 <label className="label">status</label>
                                                                 <select className="form-input" onChange={handlestatus}>
-                                                                    <option value="">--Select Team--</option>
+                                                                    <option value="">--Select Status--</option>
                                                                     <option className='started' value="started">started</option>
                                                                     <option className='inprogress' value="inprogress">inprogress</option>
                                                                     <option className='completed' value="completed">completed</option>
