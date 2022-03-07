@@ -58,7 +58,7 @@ function Userticket(props) {
             {showdetails === false ?
 
                 <div className="teambody">
-                    <div className='adminticket-head'>
+                     <div className='header-user'>
                         <h1>Tickets</h1>
                     </div>
                     <TableContainer component={Paper}>
@@ -100,7 +100,7 @@ function Userticket(props) {
                          activeClassName={"active"}
                      />
                      <div className='pagedata-limit flex'>
-                         <Typography>Team per page</Typography>
+                         <Typography>Customers per page</Typography>
 
                          <select className='pagedatalimit-select' onChange={pagedatalimit}>
                              <option value={10}>10</option>

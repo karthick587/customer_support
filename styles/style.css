@@ -2298,7 +2298,7 @@ form.form5 {
   color: #1976d2 !important;
 }
 .customer-cards {
-  padding: 18px 0px;
+  padding: 7px 0px;
 }
 .side-badge {
   min-width: 17px !important;
@@ -2348,4 +2348,13 @@ input:focus-visible {
 }
 .ticket-details-head-btn{
   width: 30%;
+}
+.date-sort {
+  display: inline-grid;
+  margin: -4px 0px;
+}
+.date-sort svg {
+  width: 24px !important;
+  height: 17px !important;
+  cursor: pointer;
 }

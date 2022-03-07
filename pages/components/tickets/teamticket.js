@@ -151,7 +151,7 @@ function Teamticket(props) {
             </Head>
             {showdetails === false ?
                 <div className="teambody">
-                    <div className='adminticket-head'>
+                   <div className='header-user'>
                         <h1>Tickets</h1>
                     </div>
                     <TableContainer component={Paper}>
