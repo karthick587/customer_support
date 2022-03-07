@@ -34,9 +34,9 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const[validate,setValidate]=useState(false)
     const addIssues = () => {
         
-        if(EmailR.current.value!==""&&PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""&&FileR.current.value!==""){
+        if(EmailR.current.value!==""&&PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){
             setloader(true);
-            setValidate(flase)
+            setValidate(false)
             if(Screenshots!=='x'){
                 const data = new FormData();
                 data.append("Username", customername);
@@ -65,6 +65,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                 .catch((err)=>{ 
                     setTesting(true)
                     setshowvalue("Submitted Failed");
+                    setloader(false);
                     return err; })
             }else{
                 const data = new FormData();
@@ -90,6 +91,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                 })
                 .catch((err)=>{
                     setTesting(true)
+                    setloader(false);
                     setshowvalue(1+"Submitted Failed");
                     return err; })
             }
