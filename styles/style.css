@@ -2343,3 +2343,9 @@ input:focus-visible {
 .copyright-text{
   padding: 0px 2px !important;
 }
+.ticket-details-head-title{
+  width: 70%;
+}
+.ticket-details-head-btn{
+  width: 30%;
+}
