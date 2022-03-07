@@ -1657,7 +1657,7 @@ h5.Completed {
 }
 
 .user-profile-ticket-details-1 {
-  padding: 13px 9px;
+  padding: 20px;
   background-color: white;
   height: 39vh;
   overflow: auto;
@@ -1886,8 +1886,8 @@ div#v-pills-dash {
 .ticket-details-screenshot {
   background-color: white;
   border-radius: 6px;
+  padding: 20px;
 }
-
 .admin-team-list {
   max-height: 15vh;
   overflow-y: auto;
