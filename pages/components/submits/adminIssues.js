@@ -94,8 +94,9 @@ export default function Adminissues(props) {
 
     return (
         <div className="userbody">
-            <div className='dash-head mt-1 mb-1'>
-                <h1>RAISE THE TICKETS</h1>
+              <div className='header-user'>
+
+<div><h1>RAISE THE TICKETS</h1></div>
             </div>
             <form className="form3" action="/" method="post">
                 <div className="form-group mt-2 mb-2 flex" >

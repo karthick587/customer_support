@@ -172,9 +172,9 @@
 
   .header-user {
     display: flex;
-    padding: 12px 9px 8px 11px !important;
+    padding: 12px 9px 8px 0px;
     position: relative;
-  }
+}
 
   .resentticket {
     width: auto !important;
@@ -224,6 +224,13 @@
   .react-piechart div div {
     width: 100% !important;
   }
+  .header-user h1 {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 5px 0px;
+    font-family: 'Readex Pro', sans-serif;
+    color: #1976d2;
+}
   .form-group p {
     position: absolute;
     padding: 37px 24px!important;
@@ -770,9 +777,9 @@
   .header-user {
     display: flex;
     position: relative;
-    margin: 0px 0px 0px 0px;
-  }
-
+    padding: 0px;
+    margin: 4px 0px 4px 0px;
+}
   .keen-slider__slide.number-slide2 {
     background-color: transparent;
   }

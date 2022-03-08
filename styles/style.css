@@ -891,13 +891,13 @@ form.form2 {
 
 .header-user {
   display: flex;
-  padding: 19px 9px 16px 11px !important;
+  padding: 19px 9px 16px 11px;
   position: relative;
 }
 
 .header-user h1 {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0px;
   font-family: 'Readex Pro', sans-serif;
   color: #1976d2;

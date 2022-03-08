@@ -22,14 +22,14 @@ function NonUserTickets(props) {
         setRegisterId(registerId)
         setShowdetails(true)
     }
-    const[PendingCount,setPendingCount]=useState("")
+    const [PendingCount, setPendingCount] = useState("")
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/unregisteredcustomer/list")
             .then((res) => setNonUser(res.data))
             .catch((err) => { return err; })
-            setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket)=> setPendingCount(ticket.Status.length)).length);
-            props.callback(PendingCount)
-    }, [setNonUser,nonUser]);
+        setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket) => setPendingCount(ticket.Status.length)).length);
+        props.callback(PendingCount)
+    }, [setNonUser, nonUser]);
 
     function closeDetails() {
         setShowdetails(false);
@@ -51,8 +51,10 @@ function NonUserTickets(props) {
             </Head>
             {showdetails === false ?
                 <div className="teambody">
-                    <div className='dash-head mt-1 mb-1'>
-                        <h1>UNREGISTERED CLIENTS</h1>
+                    <div className='header-user'>
+
+                        <div><h1>UNREGISTERED CLIENTS </h1></div>
+
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
