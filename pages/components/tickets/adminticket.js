@@ -231,8 +231,9 @@ function Adminticket() {
             </Head>
             {showdetails === false ?
                 <div className="userbody">
-                    <div className='dash-head mt-1 mb-1'>
-                        <h1>TICKETS</h1>
+                  <div className='header-user'>
+
+<div><h1>Tickets </h1></div>
                         <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
