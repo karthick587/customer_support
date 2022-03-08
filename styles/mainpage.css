@@ -267,7 +267,13 @@
   .react-piechart div div {
     width: 100% !important;
   }
-
+  .Imageviewer-userimg2 {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 400px;
+    max-height: 400px;
+    object-fit: contain;
+}
   .viewer-img-body {
     padding: 0px 0px;
   }
