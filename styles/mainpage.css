@@ -148,7 +148,13 @@
     margin: 0px 8px;
     display: block;
   }
-
+  .Imageviewer-userimg2 {
+  min-width: 550px;
+  max-width: 550px;
+  object-fit: contain;
+  min-height: 430px;
+  max-height: 430px;
+  }
   .pagedata-limit p {
     display: none;
   }
