@@ -312,7 +312,7 @@ form.form3 {
 .issue-form-input {
   padding: 6px 11px;
   border-radius: 6px;
-  border: 0px solid #e3eef8;
+  border: 0.1rem solid #1976d230;
   font-size: 14px;
   width: 100%;
   background: #e3eef89e;
