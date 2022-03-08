@@ -177,7 +177,7 @@ function Non_userviewer(props) {
                             </div>
                             <Imageviewer
                                 imgdialogbutton={<img src={nonuser.Logo} alt="screenshots" width={200} height={100} />}
-                                imgdialogbody={<img className='screeshot-img-viewer' src={nonuser.Logo} alt="screenshots" />}
+                                imgdialogbody={<img className=' Imageviewer-userimg' src={nonuser.Logo} alt="screenshots" />}
                             />
                         </div>
                         <div className='user-profile-ticket-details-2 col flex'>
