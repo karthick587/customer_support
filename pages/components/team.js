@@ -112,7 +112,7 @@ export default function Team(props) {
     return (
         <div>
             <Head>
-                <title>ADMIN DASHBOARD</title>
+                <title>Admin Dashboard</title>
             </Head>
 
             <div className="userbody2">

@@ -99,7 +99,7 @@ export default function Users(props) {
     return (
         <div>
             <Head>
-                <title>ADMIN DASHBOARD</title>
+                <title>Admin Dashboard</title>
             </Head>
 
             <div className="userbody2">

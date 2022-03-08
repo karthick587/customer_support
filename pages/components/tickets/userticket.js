@@ -53,7 +53,7 @@ function Userticket(props) {
     return (
         <div>
             <Head>
-                <title>CLIENT DASHBOARD</title>
+                <title>Client Dashboard</title>
             </Head>
             {showdetails === false ?
 

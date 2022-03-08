@@ -47,7 +47,7 @@ function NonUserTickets(props) {
     return (
         <div>
             <Head>
-                <title>ADMIN DASHBOARD</title>
+                <title>Admin Dashboard</title>
             </Head>
             {showdetails === false ?
                 <div className="teambody">

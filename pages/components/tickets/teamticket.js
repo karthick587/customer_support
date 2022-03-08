@@ -147,7 +147,7 @@ function Teamticket(props) {
     return (
         <div>
             <Head>
-                <title>TEAM DASHBOARD</title>
+                <title>Team Dashboard</title>
             </Head>
             {showdetails === false ?
                 <div className="teambody">
