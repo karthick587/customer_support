@@ -84,6 +84,10 @@ function Adminticket() {
         } else {
             setIsOpenstatusfilter(false);
         }
+        if (filteredTitle === "Status") {
+            setIsOpenstatusfilter(true);
+            setIsOpenfilter(false)
+        } 
     }, [filteredTitle]);
     //page access
     useEffect(() => {
@@ -235,7 +239,7 @@ function Adminticket() {
                                 <option value="Status">Status</option>
                             </select>
                             {isOpenfilter && (
-                                <input className='filter-select' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <input className='filter-select ms-1' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                             )}
                             {isOpenstatusfilter && (
                                 <select className='filter-select' onChange={(e) => setFilteredStatus(e.target.value)}>
@@ -247,6 +251,7 @@ function Adminticket() {
                                     <option value="Completed">Completed</option>
                                 </select>
                             )}
+                            
                         </div>
                     </div>
 
@@ -295,16 +300,24 @@ function Adminticket() {
                                             return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
                                         }else return val;
                                     } else if (filteredTitle === "Status") {
-                                        if (search === "" || search === " ") {
-                                            return val
-                                        }else if(search === "done" || search === "Done"){
-                                            return val.Status === "completed";
-                                        }else if(search === "completed" || search === "Completed"){
-                                            return val.Status === "Completed";
-                                        }else{
-                                            return val.Status.toLowerCase().includes(search.toLowerCase())
-                                           
-                                        }
+
+                                        if (filteredStatus === "all") {
+                                            return val;
+                                        } else if (filteredStatus === "started") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
+                                        } else if (filteredStatus === "new") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
+                                        } else if (filteredStatus === "inprogress") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
+                                        } else if (filteredStatus === "completed") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('completed')
+                                        } else if (filteredStatus === "Completed") {
+                                            return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
+                                        }else return val;
+
+
+
+                                      
                                     } else if (filteredTitle === "Date") {
                                         if (search === "" || search === " ") {
                                             return val
