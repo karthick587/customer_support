@@ -35,7 +35,7 @@ const Page = () => {
               </div>
             </div>
             <div className="keen-slider__slide number-slide3">
-              <img className="slide-banner3" src='/social.png' />
+              <img className="slide-banner3" src='/Social-Media-Row-3.jpg' />
               <div className="slide-text">
                 <h3>Simple ticketing <br />system </h3>
                 <p>Work as a team to help your clients get all the answers<br />Analyze client support reports..</p>
