@@ -56,7 +56,7 @@ export default function ViewScreenshots(props) {
                         </div>
                     </div>
                     <div className="viewer-img-body">
-                        <img className='viewer-img-body-img' src={viewimg} />
+                        <img className='Imageviewer-userimg2' src={viewimg} />
                         <div className="viewer-img-body-bottom">
                             <div className='viewer-img-body-bottom-img'>
                                 <div className='flex'>

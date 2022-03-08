@@ -745,8 +745,14 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-size
   background-color: #d5e5f4ab !important;
 }
 
+.Imageviewer-userimg2 {
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 450px;
+  max-height: 450px;
+  object-fit: contain;
+}
 .Imageviewer-userimg {
-
   min-width: 800px;
   max-width: 800px;
   min-height: 558px;
@@ -875,12 +881,8 @@ form.form2 {
 }
 
 .viewer-img-body {
-  height: 80vh !important;
-  overflow: auto;
-  width: 80% !important;
-  margin: auto;
+  padding: 0px 60px;
 }
-
 .btn2:hover {
   background-color: #1463b1;
 }

@@ -6,6 +6,13 @@
   .echarts-for-react {
     width: 187px;
   }
+  .Imageviewer-userimg2 {
+    min-width: 240px;
+    max-width: 240px;
+    min-height: 400px;
+    max-height: 400px;
+    object-fit: contain;
+}
   .Imageviewer-userimg {
     /* width: 338px; */
     min-width: 240px;
@@ -14,7 +21,7 @@
     max-height: 400px;
     object-fit: contain;
     /* height: 34vh; */
-}
+  }
 }
 
 @media only screen and (max-width: 361px) {
@@ -22,6 +29,13 @@
 
     width: 225px;
   }
+  .Imageviewer-userimg2 {
+    min-width: 270px;
+    max-width: 270px;
+    min-height: 400px;
+    max-height: 400px;
+    object-fit: contain;
+}
   .Imageviewer-userimg {
     /* width: 338px; */
     min-width: 270px;
@@ -30,7 +44,8 @@
     max-height: 500px;
     object-fit: contain;
     /* height: 34vh; */
-}
+  }
+
   .ticket-details-middle-1-3 {
     margin: auto;
     margin-top: 30px;
@@ -39,6 +54,7 @@
     /* right: 0; */
     /* display: block; */
   }
+
   .addform {
     width: 190px !important;
   }
@@ -132,45 +148,53 @@
     margin: 0px 8px;
     display: block;
   }
+
   .pagedata-limit p {
     display: none;
-}
-.updateadminpage {
-  position: absolute;
-  right: -100px;
-  margin-top: 0px;
-  top: 0;
-}
-.ticket-details-middle-1 {
-  display: block;
-}
-.ticket-details-head-btn {
-  display: 100% !important;
-  /* float: right; */
-  text-align: right;
-  width: 80%;
-}
-.ticket-details-head {
-  padding: 10px 0px;
-  font-size: 18px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 500;
-  color: #1976d2;
-}
-.ticket-details-middle-1-1 {
-  font-size: 21px;
-  display: flex;
-  padding: 0px 11px;
-  /* border-bottom: 1px solid grey; */
-  border-bottom: 1px solid #8080806e;
-  font-weight: 600;
-  margin-bottom: 56px;
-  color: #1976d2;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-.ticket-details-middle-1-3 {
-  padding: 0px 39px;
-}
+  }
+
+  .updateadminpage {
+    position: absolute;
+    right: -100px;
+    margin-top: 0px;
+    top: 0;
+  }
+
+  .ticket-details-middle-1 {
+    display: block;
+  }
+
+  .ticket-details-head-btn {
+    display: 100% !important;
+    /* float: right; */
+    text-align: right;
+    width: 80%;
+  }
+
+  .ticket-details-head {
+    padding: 10px 0px;
+    font-size: 18px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    color: #1976d2;
+  }
+
+  .ticket-details-middle-1-1 {
+    font-size: 21px;
+    display: flex;
+    padding: 0px 11px;
+    /* border-bottom: 1px solid grey; */
+    border-bottom: 1px solid #8080806e;
+    font-weight: 600;
+    margin-bottom: 56px;
+    color: #1976d2;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+
+  .ticket-details-middle-1-3 {
+    padding: 0px 39px;
+  }
+
   .user-profile-ticket-details-1 {
     padding: 20px;
     background-color: white;
@@ -178,7 +202,8 @@
     min-width: 239px !important;
     overflow: auto;
     border-radius: 14px;
-}
+  }
+
   .header-user input {
     width: 100px;
 
@@ -192,7 +217,7 @@
     display: flex;
     padding: 12px 9px 8px 0px;
     position: relative;
-}
+  }
 
   .resentticket {
     width: auto !important;
@@ -242,49 +267,64 @@
   .react-piechart div div {
     width: 100% !important;
   }
-  .css-zhwrlg{
+
+  .viewer-img-body {
+    padding: 0px 0px;
+  }
+
+  .css-zhwrlg {
     margin: -2px 6px !important;
   }
+
   .header-user h1 {
     font-weight: 600;
     font-size: 18px;
     padding: 0px;
     margin: 0px;
-    font-family: Readex Pro,sans-serif;
+    font-family: Readex Pro, sans-serif;
     color: #1976d2;
-}
+  }
+
   .form-group p {
-  
+
     position: absolute;
-    padding: 37px 24px!important;
+    padding: 37px 24px !important;
     font-size: 12px;
     z-index: 1;
   }
+
   .css-jcn4dz-MuiBadge-badge {
     margin: -3px 5px !important;
   }
+
   .user-profile-ticket-details.row {
     margin: 0;
-}
+  }
+
   .treambody div h1 {
     font-size: 21px !important;
   }
-.w-20{
-  width: auto;
-}
-::-webkit-scrollbar {
-  width: 3px;
-  height: 0.4vh;
-}
-.user-profile-ticket-details-1 {
-  padding: 0px;
-}
-.user-profile-ticket-details-2 {
-  background-color: white;
-  margin: 0px 6px;
-  border-radius: 13px;
-  padding: 0px;
-}
+
+  .w-20 {
+    width: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 0.4vh;
+  }
+
+  .user-profile-ticket-details-1 {
+    padding: 0px;
+  }
+
+  .user-profile-ticket-details-2 {
+    background-color: white;
+    margin: 0px 6px;
+    border-radius: 13px;
+    padding: 0px;
+  }
+
   .form5 {
     width: auto;
     background-color: white !important;
@@ -500,7 +540,7 @@
 
   .profile-body {
     padding: 20px 12px;
-}
+  }
 
   .updateadminpage {
     position: absolute;
@@ -653,7 +693,8 @@
     min-height: 500px;
     max-height: 500px;
     object-fit: contain;
-}
+  }
+
   .teambody {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     width: 700px;
@@ -804,7 +845,8 @@
     position: relative;
     padding: 0px;
     margin: 15px 0px 0px 0px;
-}
+  }
+
   .keen-slider__slide.number-slide2 {
     background-color: transparent;
   }
