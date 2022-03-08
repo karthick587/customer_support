@@ -159,7 +159,7 @@ export default function Users(props) {
                                     <TableCell className="teamtablecel" component="th" scope="row">{item.usersId}</TableCell>
                                     <TableCell className="teamtablecel" align="left" >
                                         <Imageviewer
-                                            imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
+                                            imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2 user-profile-img" />}
                                             imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
                                         />
                                     </TableCell>
