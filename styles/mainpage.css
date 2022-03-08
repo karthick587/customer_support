@@ -648,13 +648,11 @@
   }
 
   .Imageviewer-userimg {
-    /* width: 338px; */
-    min-width: 320px;
-    max-width: 320px;
+    min-width: 300px;
+    max-width: 300px;
     min-height: 500px;
     max-height: 500px;
     object-fit: contain;
-    /* height: 34vh; */
 }
   .teambody {
     font-family: Roboto, Helvetica, Arial, sans-serif;
