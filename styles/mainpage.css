@@ -6,13 +6,15 @@
   .echarts-for-react {
     width: 187px;
   }
+
   .Imageviewer-userimg2 {
     min-width: 240px;
     max-width: 240px;
     min-height: 400px;
     max-height: 400px;
     object-fit: contain;
-}
+  }
+
   .Imageviewer-userimg {
     /* width: 338px; */
     min-width: 240px;
@@ -29,13 +31,15 @@
 
     width: 225px;
   }
+
   .Imageviewer-userimg2 {
     min-width: 270px;
     max-width: 270px;
     min-height: 400px;
     max-height: 400px;
     object-fit: contain;
-}
+  }
+
   .Imageviewer-userimg {
     /* width: 338px; */
     min-width: 270px;
@@ -141,18 +145,21 @@
     padding: 20px 24px;
   }
 }
+
 @media only screen and (max-width: 900px) {
   .Resentticket-page {
     margin: 0px 8px;
     display: block;
   }
+
   .Imageviewer-userimg2 {
-  min-width: 550px;
-  max-width: 550px;
-  object-fit: contain;
-  min-height: 430px;
-  max-height: 430px;
+    min-width: 550px;
+    max-width: 550px;
+    object-fit: contain;
+    min-height: 430px;
+    max-height: 430px;
   }
+
   .pagedata-limit p {
     display: none;
   }
@@ -271,13 +278,15 @@
   .react-piechart div div {
     width: 100% !important;
   }
+
   .Imageviewer-userimg2 {
     min-width: 300px;
     max-width: 300px;
     min-height: 400px;
     max-height: 400px;
     object-fit: contain;
-}
+  }
+
   .viewer-img-body {
     padding: 0px 0px;
   }

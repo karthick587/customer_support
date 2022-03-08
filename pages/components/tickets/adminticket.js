@@ -95,9 +95,10 @@ function Adminticket() {
         }
     }, []);
     // emailjs
-    function updateemail(ticketsId, Username) {
+
+    function updateemail(ticketsId, Username,Email) {
         setName(Username);
-        
+        setEmail(Email)
         setTicketid(ticketsId);
     };
     const SERVICE_ID = "service_56f9av6";
@@ -157,17 +158,7 @@ function Adminticket() {
         }
     }, [])
     
-    useEffect(() => {
-        {
-            users.filter(val => {
-                return val.Username.toLowerCase().includes(name)
-            }).map((itemed) => setEmail(itemed.Email)
-            )
-        }
-        if (search !== "") {
-            setCurrentpage(1)
-        }
-    }, [search]);
+ 
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
@@ -391,7 +382,7 @@ function Adminticket() {
                                         />
                                         <FormDialog
                                             dialog_className="send-email-dailog"
-                                            dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username)}><UpgradeIcon /></a>}
+                                            dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username,tickets.Email)}><UpgradeIcon /></a>}
                                             className="btn3 ticket-update2"
                                             dialogbody={
                                                 <div className="form dialog emaildialog">
@@ -406,6 +397,7 @@ function Adminticket() {
                                                         <div className='flex'>
                                                             <input className="form-check-input" type="checkbox" value="true" onChange={(e) => setsendmail(e.target.value)} />
                                                             <div>Send mail to Client</div>
+                                                            {showmailstatus}
                                                         </div>
                                                     </div>
                                                     {loader===false ? <>  <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId,tickets.Status)}>Update</button></>:<> <CircularProgress className="float-end" size={25} /></>} 

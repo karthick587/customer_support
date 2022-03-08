@@ -752,6 +752,7 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-size
   max-height: 450px;
   object-fit: contain;
 }
+
 .Imageviewer-userimg {
   min-width: 800px;
   max-width: 800px;
@@ -759,6 +760,7 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-size
   max-height: 558px;
   object-fit: contain;
 }
+
 button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonBase-root.css-79xub {
   border: none !important;
 }
@@ -883,6 +885,7 @@ form.form2 {
 .viewer-img-body {
   padding: 0px 60px;
 }
+
 .btn2:hover {
   background-color: #1463b1;
 }
@@ -1011,10 +1014,11 @@ form.form2 {
 
 .form-group p {
   position: absolute;
-  padding: 47px 24px!important;
+  padding: 47px 24px !important;
   font-size: 12px;
   z-index: 1;
 }
+
 .deteleandedit div button svg {
   font-size: 20px;
 }
@@ -1648,15 +1652,16 @@ h5.Completed {
   margin-left: -9px;
 }
 
-.user-profile-img{
+.user-profile-img {
   min-width: 60px;
   max-width: 60px;
   min-height: 60px;
   max-height: 60px;
   object-fit: contain;
-  
+
 }
-.profile-page-img{
+
+.profile-page-img {
   min-width: 150px;
   max-width: 150px;
   min-height: 150px;
@@ -1907,6 +1912,7 @@ div#v-pills-dash {
   border-radius: 6px;
   padding: 20px;
 }
+
 .admin-team-list {
   max-height: 15vh;
   overflow-y: auto;
@@ -2257,11 +2263,13 @@ div#v-pills-dash {
   letter-spacing: 0em;
   display: block;
 }
+
 .css-kgmwx6-MuiPaper-root-MuiAlert-root {
   background-color: rgb(149 220 149 / 62%) !important;
   padding: 1px 16px !important;
 
 }
+
 .viewer-img-body-img {
   width: 100%;
   height: 86%;
@@ -2271,16 +2279,19 @@ div#v-pills-dash {
   margin: auto;
   display: block;
 }
+
 .justify-content-center {
   left: 0;
   right: 0;
   display: block;
   margin: auto;
 }
+
 .viewer-img-body-bottom {
   background-color: white;
   padding: 10px;
 }
+
 .viewer-img-body-bottom-img {
   /* display: flex; */
   display: block;
@@ -2289,9 +2300,11 @@ div#v-pills-dash {
   right: 0;
   width: min-content;
 }
+
 .btn2:active {
   background-color: #0c3b69 !important;
 }
+
 form.form5 {
   background-color: #fff !important;
   border-radius: 6px;
@@ -2299,6 +2312,7 @@ form.form5 {
   overflow: hidden;
   padding: 20px 21px 20px 20px;
 }
+
 .css-9l3uo3 {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -2308,6 +2322,7 @@ form.form5 {
   line-height: 1.9 !important;
   letter-spacing: 0.00938em;
 }
+
 .css-1ypgufv {
   margin: 0 !important;
   font-weight: 650 !important;
@@ -2316,9 +2331,11 @@ form.form5 {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
   color: #1976d2 !important;
 }
+
 .customer-cards {
   padding: 7px 0px;
 }
+
 .side-badge {
   min-width: 17px !important;
   margin: 0px -3px !important;
@@ -2326,6 +2343,7 @@ form.form5 {
   padding: 0px 5px !important;
   height: 17px;
 }
+
 select:focus {
   color: #495057;
   background-color: #fff;
@@ -2333,6 +2351,7 @@ select:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
+
 input:focus {
   color: #495057;
   background-color: #fff;
@@ -2340,6 +2359,7 @@ input:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
+
 textarea:focus {
   color: #495057;
   background-color: #fff;
@@ -2347,31 +2367,39 @@ textarea:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
+
 textarea:focus-visible {
   border: none !important;
   outline: none;
 }
+
 input:focus-visible {
   border: none !important;
   outline: none;
 }
-.noNotification{
+
+.noNotification {
   display: flex;
   padding: 20px;
 }
-.copyright-text{
+
+.copyright-text {
   padding: 0px 2px !important;
 }
-.ticket-details-head-title{
+
+.ticket-details-head-title {
   width: 70%;
 }
-.ticket-details-head-btn{
+
+.ticket-details-head-btn {
   width: 30%;
 }
+
 .date-sort {
   display: inline-grid;
   margin: -4px 0px;
 }
+
 .date-sort svg {
   width: 24px !important;
   height: 17px !important;
