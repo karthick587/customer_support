@@ -78,7 +78,10 @@ export default function Login1() {
   },[userlogin]);
   
 function forgetpassword(){
-
+  console.log("1")
+}
+function send(){
+  console.log("2")
 }
 
   return (
@@ -106,7 +109,7 @@ function forgetpassword(){
                   <div className="form-group log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
-                  <a onClick={forgetpassword&send}>ForgetPassword</a>
+                  <a onClick={forgetpassword}>ForgetPassword</a>
                   <ScrollDialog />
                 </form>
               </div>
