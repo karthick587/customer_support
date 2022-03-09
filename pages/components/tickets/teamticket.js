@@ -83,7 +83,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 tickets_assignId : tickets_assignId[0],
-                Tm_Process_UpdatedOn: currentDate,
+                Tm_Process_UpdatedOn:  moment(new Date()).format('DD-MM-YYYY hh:mm A'),
                 Tm_Process_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setdialogformopen("true");
