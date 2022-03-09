@@ -10,6 +10,8 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
 import ScrollDialog from '../non_user';
+import FormDialog from '../common/dialogsform';
+import { Typography } from '@mui/material';
 import { send } from 'emailjs-com';
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -17,7 +19,7 @@ const schema = yup.object().shape({
 });
 export default function Login1() {
 
-  const {setTesting,setshowvalue}=useContext(CounterContext)
+  const { setTesting, setshowvalue, setdialogformopen } = useContext(CounterContext)
   const router = useRouter();
   const [userlogin, setUserlogin] = useState('');
   const { register, handleSubmit, formState } = useForm({
@@ -50,7 +52,7 @@ export default function Login1() {
     }).then((response) => {
       if (response.data.statusCode === 400) {
         setTesting(true)
-        setshowvalue(1+"Invalid username or password");
+        setshowvalue(1 + "Invalid username or password");
       } else {
         localStorage.setItem('loggedin', true);
         localStorage.setItem('activeTab', "Dashboard");
@@ -72,18 +74,16 @@ export default function Login1() {
     return () => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
-  },[]);
+  }, []);
   useEffect(() => {
     localStorage.setItem('user', userlogin);
-  },[userlogin]);
-  
-function forgetpassword(){
-  console.log("1")
-}
-function send(){
-  console.log("2")
-}
-
+  }, [userlogin]);
+  const [forgetValidate, setforgetValidate] = useState(false)
+  const [forgetValue, setforgetValue] = useState()
+  console.log(forgetValue)
+  function forgetpassword() {
+    console.log("1")
+  }
   return (
     <div className="login-page">
       <div>
@@ -105,11 +105,33 @@ function send(){
                     <input className="form-input" name="password" type="password"  {...register('password')} />
                     <p className="me-2 text-danger">{errors.password?.message}</p>
                   </div>
-                
+
                   <div className="form-group log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
-                  <a onClick={forgetpassword}>ForgetPassword</a>
+                  <FormDialog
+                    dialogbody_className="forget-body"
+                    className="forget-text"
+                    dialogtitle="button1"
+                    dialogbody={
+                      <div>
+                        <Typography variant="h5" className='text-center mb-2'>
+                          Reset Your Password
+                        </Typography>
+                        <Typography variant="p" className='mt-2'>
+                          Please enter and submit your Email id below. We'll send <br />
+                          password reset instructions to the email address <br />
+                          associated with your account.
+                        </Typography>
+                        <div className="form-group mt-3 mb-2 flex">
+                          <label className="forget-label width-25">Email ID</label>
+                          <input className="forget-input" name="email" type="text" onChange={(e) => setforgetValue(e.target.value)} />
+                        </div>
+                        <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>
+                        <Button className='w-100' onClick={() => setdialogformopen("true")} >Cancel</Button>
+                      </div>
+                    }
+                  />
                   <ScrollDialog />
                 </form>
               </div>

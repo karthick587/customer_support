@@ -2413,6 +2413,65 @@ input:focus-visible {
   font-family: 'Readex Pro', sans-serif;
   color: #1976d2;
 }
-.red{
+
+.red {
   color: red;
+}
+
+.forget-text {
+  padding: 0px;
+  margin: 0px;
+  color: black;
+}
+
+.forget-button {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  color: var(--lwc-colorTextButtonBrand, rgb(255, 255, 255));
+  cursor: pointer;
+  background-color: var(--lwc-colorBackgroundButtonBrand, rgb(0, 94, 184));
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-family: var(--lwc-fontFamily, Roboto);
+  font-weight: 700;
+  line-height: 1.42857143;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
+
+.forget-button:hover {
+  background-color: var(--lwc-colorBackgroundButtonBrandHover, #004485);
+}
+
+.forget-body {
+  padding: 10px !important;
+}
+
+.forget-input {
+  padding: 0px 11px;
+  border-radius: 6px;
+  border: 0.1rem solid #1976d230;
+  font-size: 14px;
+  width: 100%;
+  line-height: 1;
+  background: #e3eef89e;
+  z-index: 99;
+}
+
+.forget-label {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 1px;
 }

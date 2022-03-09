@@ -32,7 +32,8 @@ export default function FormDialog(props) {
           <Button className={props.className} variant="outlined" onClick={handleClickOpen}>
             {props.dialogtitle}
           </Button>
-          <Dialog open={open}>
+          <Dialog open={open} >
+            <div className={props.dialogbody_className}>
               <div className='row'>
                   <div className='col close-btn-div'><Button className='close-btn' onClick={handleClose}><CloseIcon /></Button></div>
               </div>
@@ -43,6 +44,7 @@ export default function FormDialog(props) {
               <DialogActions>
                   {props.dialogactions}
               </DialogActions>
+              </div>
           </Dialog>
       </div>
   );
