@@ -10,6 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import Sidebody from '../common/login&singupSidebody';
 import ScrollDialog from '../non_user';
+import { send } from 'emailjs-com';
 const schema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required().min(6)
@@ -76,6 +77,9 @@ export default function Login1() {
     localStorage.setItem('user', userlogin);
   },[userlogin]);
   
+function forgetpassword(){
+
+}
 
   return (
     <div className="login-page">
@@ -102,6 +106,7 @@ export default function Login1() {
                   <div className="form-group log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
+                  <a onClick={forgetpassword&send}>ForgetPassword</a>
                   <ScrollDialog />
                 </form>
               </div>

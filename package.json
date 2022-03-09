@@ -24,6 +24,7 @@
     "formik": "^2.2.9",
     "keen-slider": "^6.4.1",
     "kill-port": "^1.6.1",
+    "moment": "^2.29.1",
     "next": "^12.0.7",
     "nprogress": "^0.2.0",
     "react": "17.0.2",

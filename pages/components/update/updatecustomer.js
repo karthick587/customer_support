@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
-
+import moment from 'moment';
 function Updatecustomer({ usersId }) {
 
     const { setdialogformopen ,setTesting,setshowvalue} = useContext(CounterContext);
@@ -72,7 +72,7 @@ function Updatecustomer({ usersId }) {
             data.append("Logo", Logo);
         }
         
-        data.append("Modifiedon", currentDate);
+        data.append("Modifiedon", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
         data.append("Modifiedby", Createdby)
         axios.put(`https://mindmadetech.in/api/customer/update/${usersId}`, data, {
             headers: {

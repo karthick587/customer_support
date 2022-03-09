@@ -3,6 +3,7 @@ import Axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from "../contex/adminProvider";
 import { CurrentDateContext } from '../contex/currentdateProvider';
+import moment from "moment";
 export default function Adminissues(props) {
     const { currentDate } = useContext(CurrentDateContext);
     const { setTesting, setshowvalue } = useContext(CounterContext)
@@ -34,7 +35,7 @@ export default function Adminissues(props) {
             data.append("Phonenumber", PhonenumberR.current.value);
             data.append("DomainName", DomainnameR.current.value);
             data.append("Description", DescriptionR.current.value);
-            data.append("Adm_CreatedOn", currentDate);
+            data.append("Adm_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
             data.append("Adm_CreatedBy", Createdby);
             data.append("Cus_CreatedOn", "null")
             for (let i = 0; i < Logo.length; i++) {
@@ -66,7 +67,7 @@ export default function Adminissues(props) {
             data.append("Phonenumber", PhonenumberR.current.value);
             data.append("DomainName", DomainnameR.current.value);
             data.append("Description", DescriptionR.current.value);
-            data.append("Adm_CreatedOn", currentDate);
+            data.append("Adm_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
             data.append("Adm_CreatedBy", Createdby);
             data.append("Cus_CreatedOn", "null")
 

@@ -33,7 +33,7 @@ function Test() {
             To : 'karthickdurai587@gmail.com',
             From : "karthickraja@mindmade.in",
             Subject : "successs",
-            Body : <ForgetPasswordBody />
+            Body : `${<div></div>}`
         }).then(
           message => alert(message)&console.log(message)
         );

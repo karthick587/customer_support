@@ -4,6 +4,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from "../contex/adminProvider";
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import { Typography } from "@mui/material";
+import moment from "moment";
 export default Userissue;
 
 function Userissue(props) {
@@ -47,7 +48,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                 for(let i=0; i<Screenshots.length; i++){
                     data.append("files",Screenshots[i]);  
                 }
-                data.append("Cus_CreatedOn", currentDate)
+                data.append("Cus_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'))
                 Axios.post("https://mindmadetech.in/api/tickets/new", data, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -74,7 +75,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                 data.append("Phonenumber", PhonenumberR.current.value);
                 data.append("DomainName", DomainnameR.current.value);
                 data.append("Description",  DescriptionR.current.value);
-                data.append("Cus_CreatedOn", currentDate)
+                data.append("Cus_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'))
                 Axios.post("https://mindmadetech.in/api/tickets/new", data, {
                     headers: {
                         'Content-Type': 'multipart/form-data',

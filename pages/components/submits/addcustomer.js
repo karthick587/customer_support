@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import { CircularProgress } from '@mui/material';
+import moment from 'moment';
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -65,7 +66,7 @@ export default function Addcustomer() {
             data.append("Username", Username);
             data.append("Password", Password);
             data.append("file", Logo);
-            data.append("Createdon", currentDate);
+            data.append("Createdon", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
             data.append("Createdby", Createdby)
             Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
                 headers: {

@@ -17,7 +17,7 @@ import ViewTeam from '../common/view_team';
 import { ListContext } from '../contex/ListProvider';
 import ReactPaginate from 'react-paginate';
 import { Typography } from '@mui/material';
-
+import moment from 'moment';
 function Teamticket(props) {
     const { team } = useContext(ListContext);
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
@@ -67,7 +67,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 tickets_assignId : tickets_assignId[0],
-                Tm_Start_UpdatedOn: currentDate,
+                Tm_Start_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
                 Tm_Start_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setdialogformopen("true");
@@ -99,7 +99,7 @@ function Teamticket(props) {
                 Status: selectedstatus,
                 ticketsId: ticketsId,
                 tickets_assignId : tickets_assignId[0],
-                Tm_Complete_UpdatedOn: currentDate,
+                Tm_Complete_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
                 Tm_Complete_UpdatedBy: window.localStorage.getItem('tm_name')
             }).then((response) => {
                 setdialogformopen("true");
