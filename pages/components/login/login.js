@@ -112,7 +112,7 @@ export default function Login1() {
                   <FormDialog
                     dialogbody_className="forget-body"
                     className="forget-text"
-                    dialogtitle="button1"
+                    dialogtitle="forget password"
                     dialogbody={
                       <div>
                         <Typography variant="h5" className='text-center mb-2'>
