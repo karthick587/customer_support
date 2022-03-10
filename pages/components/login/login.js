@@ -119,7 +119,7 @@ export default function Login1() {
                           Reset Your Password
                         </Typography>
                         <Typography variant="p" className='mt-2'>
-                          Please enter and submit your Email id below. We'll send <br />
+                          Please enter and submit your Email id below. We will send <br />
                           password reset instructions to the email address <br />
                           associated with your account.
                         </Typography>
