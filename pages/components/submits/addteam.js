@@ -6,9 +6,11 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
 import CircularProgress from '@mui/material/CircularProgress';
+import moment from 'moment';
 const schema = yup.object().shape({
-    Username: yup.string().required(),
+    Email: yup.string().required().email(),
     Password: yup.string().required(),
+    Phonenumber:yup.string().required().min(6)
 });
 
 function Addteam() {
@@ -22,12 +24,15 @@ const [loader,setloader]=useState(false);
     });
     const { errors } = formState;
 
-    const addTeam = ({ Username, Password }) => {
+    const addTeam = ({ Email, Password,Phonenumber }) => {
         setloader(true)
         Axios.post(`https://mindmadetech.in/api/team/new`, {
-            Username: Username,
+            Email: Email,
             Password: Password,
-            Team: addteam
+            Team: addteam,
+            Phonenumber:Phonenumber,
+            CreatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+            CreatedBy: window.localStorage.getItem('ad_email')
         }).then((response) => {
             if (response.data.statusCode === 400) {
                 localStorage.setItem('updateclose', "close");
@@ -82,14 +87,19 @@ const [loader,setloader]=useState(false);
                 <div className="addform">
                     <form>
                         <div className="form-group">
-                            <label className="label">Username</label>
-                            <input className="form-input" name="Username" type="text" {...register('Username')} />
-                            <p className="me-2 text-danger">{errors.Username?.message}</p>
+                            <label className="label">Email</label>
+                            <input className="form-input" name="Email" type="email" {...register('Email')} />
+                            <p className="me-2 text-danger">{errors.Email?.message}</p>
                         </div>
                         <div className="form-group">
                             <label className="col label">Password</label>
                             <input className="form-input" name="Password" type="password" {...register('Password')} />
                             <p className="me-2 text-danger">{errors.Password?.message}</p>
+                        </div>
+                        <div className="form-group">
+                            <label className="col label">Phonenumber</label>
+                            <input className="form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
+                            <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>

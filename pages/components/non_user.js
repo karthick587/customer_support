@@ -13,6 +13,7 @@ import * as yup from 'yup';
 import { CurrentDateContext } from '../components/contex/currentdateProvider';
 import {CounterContext} from "../components/contex/adminProvider";
 import moment from 'moment';
+
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -58,21 +59,16 @@ export default function ScrollDialog(props) {
         if (logovalidate === undefined) {
             setShowlogo("images is required")
         } else {
-            const data = new FormData();
-            data.append("Companyname", Companyname);
-            data.append("Clientname", Clientname);
-            data.append("Email", Email);
-            data.append("Phonenumber", Phonenumber);
-            data.append("Username", Username);
-            data.append("Password", Password);
-            data.append("file", Logo);
-            data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
-            data.append("DomainName", DomainName);
-            data.append("Description", Description)
-            Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
+            Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, {
+                Companyname : Companyname,
+                Clientname : Clientname,
+                Email : Email,
+                Phonenumber : Phonenumber,
+                Password : Password,
+                Logo:"https://mindmadetech.in/public/images/profile-img.png",
+                CreatedOn : moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+                DomainName : DomainName,
+                Description : Description
             }).then((response) => {
                 
                 if (response.data.statusCode === 400) {

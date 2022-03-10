@@ -21,11 +21,14 @@ function Updateteam({ teamId }) {
             .catch((err)=>{ return err; })
     }, []);
 
-    const getvalue = ({ Username, Password, Team }) => {
+    const getvalue = ({ Email, Password, Team,Phonenumber }) => {
         axios.put(`https://mindmadetech.in/api/team/update/${teamId}`, {
-            Username: Username,
+            Email: Email,
             Password: Password,
             Team: Team,
+            Phonenumber:Phonenumber,
+            MondifiedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+            MondifiedBy: window.localStorage.getItem('ad_email')
         }).then((res) => {
             setShow("Updated Successfully");
          
@@ -59,17 +62,21 @@ function Updateteam({ teamId }) {
                             <div className="container dialog-body" key={data.teamId}>
                                 <Formik
                                     className="addform"
-                                    initialValues={{ Username: data.Username, Password: data.Password, Team: data.Team }}
+                                    initialValues={{ Email: data.Email, Password: data.Password, Team: data.Team }}
                                     onSubmit={value => getvalue(value)}
                                 >
                                     <Form >
                                         <div className="form-group">
-                                            <label className="label">Username</label>
-                                            <Field className="form-input" name="Username" />
+                                            <label className="label">Email</label>
+                                            <Field className="form-input" type="email" name="Email" />
                                         </div>
                                         <div className="form-group">
                                             <label className="col label">Password</label>
                                             <Field className="form-input" name="Password" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="col label">Phonenumber</label>
+                                            <Field className="form-input" name="Phonenumber" />
                                         </div>
                                         <div>
                                             <div className="form-group">

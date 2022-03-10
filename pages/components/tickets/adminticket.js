@@ -24,6 +24,9 @@ import { ListContext } from '../contex/ListProvider';
 import { TicketsContext } from '../contex/ticketsProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from 'moment';
+import { renderEmail } from 'react-html-email'
+import Email from '../utils/email';
+import TicketCompletedBody from '../utils/ticketCompletedBody';
 function Adminticket() {
     const { setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
@@ -99,16 +102,14 @@ function Adminticket() {
             Router.push("/");
         }
     }, []);
-    // emailjs
-
+    //get email details
     function updateemail(ticketsId, Username, Email) {
         setName(Username);
         setEmail(Email)
         setTicketid(ticketsId);
     };
-    const SERVICE_ID = "service_56f9av6";
-    const TEMPLATE_ID = "template_7g9sx6r";
-    const USER_ID = "user_uy8zZ1SqoqelDq1TAvxL4";
+    //final Status
+    const messageHtml = renderEmail(<TicketCompletedBody name={name} TicketNo={ticketid} />)
     function finalStatus(ticketsId, Status) {
         setloader(true)
         console.log(ticketsId, Status, currentDate, Createdby)
@@ -136,22 +137,19 @@ function Adminticket() {
             setloader(false)
 
         }
-        var data = {
-            to_email: email,
-            message: "status of Your Tickets no " + ticketid + "is " + selectedstatus,
-            to_name: name
-        };
         if (sendmail === "true") {
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, data, USER_ID).then(
-                function (response) {
-                    setdialogformopen(true)
-                    setShowmailstatus("Email sent successfully")
-                },
-                function (err) {
-                    setShowmailstatus(1 + "Sending Email Failed")
-                    setdialogformopen(true)
-                }
+            Email.send({
+                Host: "mindmadetech.in",
+                Username: "_mainaccount@mindmadetech.in",
+                Password: "1boQ[(6nYw6H.&_hQ&",
+                To: email,
+                From: "karthickraja@mindmade.in",
+                Subject: "MindMade Support",
+                Body: messageHtml
+            }).then(
+                message => console.log(message)
             );
+
         };
     }
     useEffect(() => {
@@ -167,7 +165,7 @@ function Adminticket() {
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
-    //emailjs
+    //Notification update
     const Notificationupdate = (ticketsId, Screenshots, TeamAssign) => {
         setdticketsId(ticketsId);
         setteamarray(TeamAssign)
@@ -192,7 +190,7 @@ function Adminticket() {
         setShowdetails(false);
     };
 
-
+    //ticket Team assign function
     function handleUpdate(ticketsId) {
         setloader(true)
         const teamId = designTeamList.map((o) => JSON.stringify(o));
@@ -281,7 +279,6 @@ function Adminticket() {
                                                 if (val.ticketsId.toString() === search.toString()) {
                                                     return val
                                                 }
-
                                             }
                                         } else if (filteredTitle === "Username") {
                                             if (search === " ") {
@@ -315,10 +312,6 @@ function Adminticket() {
                                             } else if (filteredStatus === "Completed") {
                                                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
                                             } else return val;
-
-
-
-
                                         } else if (filteredTitle === "Date") {
                                             if (search === "" || search === " ") {
                                                 return val
@@ -327,13 +320,10 @@ function Adminticket() {
                                             } else if (val.Adm_CreatedOn !== null) {
                                                 return val.Adm_CreatedOn.toString().includes(search.toString())
                                             }
-
                                         } else if (filteredTitle === "Username") {
                                             if (filteredStatus === "inprogress") {
-
                                                 //return val.Status.toLowerCase().includes("inprogress")
                                             } else if (filteredStatus === "completed") {
-
                                                 // return val.Status.toLowerCase().includes("completed")
                                             } else return val;
                                         }
@@ -373,13 +363,11 @@ function Adminticket() {
                                                                                 <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1" type="radio" value="Development" onChange={(e) => setselectTeam(e.target.value)} /><div>development</div></li>
 
                                                                                 <li className='flex'><input className="form-check-input me-1" name="flexRadioDefault" id="flexRadioDefault1" type="radio" value="Seo" onChange={(e) => setselectTeam(e.target.value)} /><div >seo</div></li>
-
                                                                             </ul>
                                                                         </div>
                                                                         <div className='TeamList-right'>
                                                                             <DesignTeamList selectedteam={selectTeam} designTeamList={callback} />
                                                                         </div>
-
                                                                     </div>
                                                                     <AssignedMenber />
                                                                 </div>
@@ -389,8 +377,6 @@ function Adminticket() {
                                                             {loader === false ? <><Button onClick={() => setdesignTeamList([]) & setdialogformopen("true")}>Cancel</Button>
                                                                 <button className="btn2 mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button></> : <> <CircularProgress className="float-end" size={25} /></>}
                                                         </div>
-
-
                                                     </div>
                                                 }
                                             />
@@ -415,8 +401,6 @@ function Adminticket() {
                                                             </div>
                                                         </div>
                                                         {loader === false ? <>  <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId, tickets.Status)}>Update</button></> : <> <CircularProgress className="float-end" size={25} /></>}
-
-
                                                     </div>
                                                 }
                                             />

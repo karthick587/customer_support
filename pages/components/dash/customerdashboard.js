@@ -81,12 +81,15 @@ const CustomerDashboard = () => {
   };
   // usertab
   useEffect(() => {
-    setActivetab(window.localStorage.getItem('activeTab'));
-  },[]);
+    if(activeTab===" "){
+      setActivetab(window.localStorage.getItem('activeTab'));
+    }
+    
+  },[activeTab,setActivetab]);
   useEffect(() => {
-    Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
-      .then((res) => setTickets(res.data))
-      .catch((err) => { return err; })
+    // Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
+    //   .then((res) => setTickets(res.data))
+    //   .catch((err) => { return err; })
   },[setTickets,user]);
   useEffect(() => {
     setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);

@@ -40,8 +40,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
             setValidate(false)
             if(Screenshots!=='x'){
                 const data = new FormData();
-                data.append("Username", customername);
-                data.append("Email", EmailR.current.value);
+                data.append("Email", customername);
                 data.append("Phonenumber", PhonenumberR.current.value);
                 data.append("DomainName", DomainnameR.current.value);
                 data.append("Description",  DescriptionR.current.value);
@@ -57,7 +56,6 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     setloader(false);
                     setTesting(true)
                     setshowvalue("Submitted Successfully");
-                    EmailR.current.value = " ";
                     PhonenumberR.current.value = " ";
                     DomainnameR.current.value = " ";
                     DescriptionR.current.value = " ";
@@ -70,8 +68,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     return err; })
             }else{
                 const data = new FormData();
-                data.append("Username", customername);
-                data.append("Email", EmailR.current.value);
+                data.append("Email", customername);
                 data.append("Phonenumber", PhonenumberR.current.value);
                 data.append("DomainName", DomainnameR.current.value);
                 data.append("Description",  DescriptionR.current.value);
@@ -99,8 +96,6 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
         }else{
             setValidate(true)
         }
-      
-        
     };
 
     return (
@@ -111,10 +106,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                 <label className="label width-25">User Name</label>
                 <h5 className="issue-form-input">{props.customername}</h5>
             </div>
-            <div className="form-group mb-2 flex">
-                <label className="label width-25">Email ID</label>
-                <input className="issue-form-input" name="email" type="text" ref={EmailR} />
-            </div>
+           
             <div className="form-group mb-2 flex">
                 <label className="label width-25">Phonenumber</label>
                 <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR}/>

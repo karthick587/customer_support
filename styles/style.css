@@ -2475,3 +2475,40 @@ input:focus-visible {
   font-weight: 600;
   padding: 6px 1px;
 }
+.display-non{
+  display: none;
+}
+.forget-status {
+  color: seagreen;
+  font-size: 15px;
+}
+.password-input {
+  border: none !important;
+  background-color: none !important;
+  width: 70px !important;
+  font-size: 12px;
+}
+.password-input-div{
+  width: 30px !important;
+}
+.password-input:focus{
+  box-shadow: none !important;
+
+}
+.password-input-div button {
+  min-width: 22px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.change-pass-body {
+  background-color: #e3eef8;
+  padding: 10px 0px 3px 22px;
+  border-radius: 3px;
+}
+.change-pass-body div div{
+  padding: 3px 0px;
+}
+.change-pass-body div div h6{
+  font-size: 10px;
+
+}

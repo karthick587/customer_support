@@ -12,13 +12,15 @@ import Sidebody from '../common/login&singupSidebody';
 import ScrollDialog from '../non_user';
 import FormDialog from '../common/dialogsform';
 import { Typography } from '@mui/material';
-import { send } from 'emailjs-com';
+import ForgetPasswordBody from '../utils/forgetPasswordBody';
+import { renderEmail } from 'react-html-email'
+import Email from '../utils/email';
 const schema = yup.object().shape({
-  username: yup.string().required(),
+  email: yup.string().required().email(),
   password: yup.string().required().min(6)
 });
 export default function Login1() {
-
+  var generator = require('generate-password');
   const { setTesting, setshowvalue, setdialogformopen } = useContext(CounterContext)
   const router = useRouter();
   const [userlogin, setUserlogin] = useState('');
@@ -27,40 +29,50 @@ export default function Login1() {
   });
   const { errors } = formState;
 
-  const adminLogin = ({ username, password }) => {
-    var TableValidate = username.slice(0, 3);
-    setUserlogin(username);
-    var validate, SlicedName;
-    switch (TableValidate) {
-      case 'ad_':
-        validate = "admin";
-        SlicedName = username.slice(3, 20);
-        break;
-      case 'tm_':
-        validate = "team";
-        SlicedName = username.slice(3, 20);
-        localStorage.setItem('tm_name', SlicedName);
-        break;
-      default:
-        validate = "customer";
-        SlicedName = username;
-        localStorage.setItem('clientname', SlicedName);
-    }
-    Axios.post(`https://mindmadetech.in/api/${validate}/validate`, {
-      username: SlicedName,
-      password: password,
+  const adminLogin = ({ email, password }) => {
+
+    setUserlogin(email);
+
+
+    Axios.post(`https://mindmadetech.in/api/login/validate`, {
+      Email: email,
+      Password: password,
     }).then((response) => {
       if (response.data.statusCode === 400) {
         setTesting(true)
-        setshowvalue(1 + "Invalid username or password");
+        setshowvalue(1 + response.data.message);
       } else {
-        localStorage.setItem('loggedin', true);
-        localStorage.setItem('activeTab', "Dashboard");
-        setTesting(true)
-        setshowvalue("Logged in successfully");
-        router.push({
-          pathname: `/components/dash/${validate}dashboard`,
-        });
+        if (response.data.type === "admin") {
+          localStorage.setItem('ad_email', email);
+          router.push({
+            pathname: `/components/dash/admindashboard`,
+          });
+          localStorage.setItem('loggedin', true);
+          localStorage.setItem('activeTab', "Dashboard");
+          setTesting(true)
+          setshowvalue("Logged in successfully");
+        } else if (response.data.type === "team") {
+          localStorage.setItem('tm_name', email);
+          router.push({
+            pathname: `/components/dash/teamdashboard`,
+          });
+          localStorage.setItem('loggedin', true);
+          localStorage.setItem('activeTab', "Dashboard");
+          setTesting(true)
+          setshowvalue("Logged in successfully");
+        } else if (response.data.type === "customer") {
+          localStorage.setItem('clientname', email);
+          router.push({
+            pathname: `/components/dash/customerdashboard`,
+          });
+          localStorage.setItem('loggedin', true);
+          localStorage.setItem('activeTab', "Dashboard");
+          setTesting(true)
+          setshowvalue("Logged in successfully");
+        }
+
+
+
       }
     }).catch((err) => { return err; })
   };
@@ -80,9 +92,55 @@ export default function Login1() {
   }, [userlogin]);
   const [forgetValidate, setforgetValidate] = useState(false)
   const [forgetValue, setforgetValue] = useState()
-  console.log(forgetValue)
+ 
+  //forgetpassort function
+ 
+  const [display, setdisplay] = useState(false)
   function forgetpassword() {
     console.log("1")
+    Axios.get(`https://mindmadetech.in/api/forgotpassword/verify_email/${forgetValue}`, {
+
+    }).then((response) => {
+      if (response.data.statusCode === 400) {
+        setforgetValidate(<p className='red'>{response.data.message}</p>)
+      } else {
+        var password = generator.generate({
+          length: 10,
+          numbers: true,
+          symbols: true
+        });
+
+        Axios.put(`https://mindmadetech.in/api/forgotpassword/reset_password`, {
+          Email: forgetValue,
+          Password: password,
+        }).then((response) => {
+          if (response.data.statusCode === 400) {
+    
+            setforgetValidate(<p className='red'>{response.data.message}</p>)
+          } else {
+            setdisplay(true)
+            setforgetValidate(<p className='forget-status'>*You will get new password through email associated with your account<br /> within two minutes</p>)
+            const messageHtml = renderEmail(<ForgetPasswordBody name="MindMade Customer" password={password} />)
+              Email.send({
+                Host: "mindmadetech.in",
+                Username: "_mainaccount@mindmadetech.in",
+                Password: "1boQ[(6nYw6H.&_hQ&",
+                To: forgetValue,
+                From: "karthickraja@mindmade.in",
+                Subject: "MindMade Support",
+                Body: messageHtml
+              }).then(
+                message => console.log(message)
+              );
+          }
+        }).catch((err) => { return err; })
+
+
+
+     
+      }
+    }).catch((err) => { return err; })
+
   }
   return (
     <div className="login-page">
@@ -96,9 +154,9 @@ export default function Login1() {
                 </div>
                 <form>
                   <div className="form-group mb-2">
-                    <label className="label">Username*</label>
-                    <input className="form-input" name="username" type="text"  {...register('username')} />
-                    <p className="me-2 text-danger">{errors.username?.message}</p>
+                    <label className="label">Email*</label>
+                    <input className="form-input" name="email" type="email"  {...register('email')} />
+                    <p className="me-2 text-danger">{errors.email?.message}</p>
                   </div>
                   <div className="form-group mb-3 log">
                     <label className="label">Password*</label>
@@ -112,6 +170,7 @@ export default function Login1() {
                   <FormDialog
                     dialogbody_className="forget-body"
                     className="forget-text"
+                    closebuttonsec="display-non"
                     dialogtitle="forget password"
                     dialogbody={
                       <div>
@@ -120,15 +179,17 @@ export default function Login1() {
                         </Typography>
                         <Typography variant="p" className='mt-2'>
                           Please enter and submit your Email id below. We will send <br />
-                          password reset instructions to the email address <br />
+                          New password  to the email address <br />
                           associated with your account.
                         </Typography>
                         <div className="form-group mt-3 mb-2 flex">
                           <label className="forget-label width-25">Email ID</label>
                           <input className="forget-input" name="email" type="text" onChange={(e) => setforgetValue(e.target.value)} />
                         </div>
-                        <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>
-                        <Button className='w-100' onClick={() => setdialogformopen("true")} >Cancel</Button>
+                        <div>{forgetValidate}</div>
+                        {display === true ? <></> : <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>}
+
+                        <Button className='w-100' onClick={() => setdialogformopen("true") & setforgetValidate("") & setdisplay(false)&setforgetValue('')} >{display === true ? "Ok" : "Cancel"}</Button>
                       </div>
                     }
                   />

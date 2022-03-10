@@ -34,7 +34,7 @@ export default function FormDialog(props) {
           </Button>
           <Dialog open={open} >
             <div className={props.dialogbody_className}>
-              <div className='row'>
+              <div className={props.closebuttonsec}>
                   <div className='col close-btn-div'><Button className='close-btn' onClick={handleClose}><CloseIcon /></Button></div>
               </div>
               <div className='col'>{props.headtitle}</div>

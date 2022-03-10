@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   const router = useRouter();
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
-  const [activeTab, setActivetab] = useState();
+  const [activeTab, setActivetab] = useState("x");
 
   // cannot access page without login
   useEffect(() => {
@@ -78,8 +78,11 @@ const AdminDashboard = () => {
   };
   // getactivetab
   useEffect(() => {
-    setActivetab(window.localStorage.getItem('activeTab'));
-  }, []);
+    if(activeTab==="x"){
+      setActivetab(window.localStorage.getItem('activeTab'));
+    }
+   
+  },[activeTab,setActivetab]);
 
   const[pendingCount,setpendingCount]=useState('')
   function callback(childData){
@@ -156,7 +159,7 @@ const AdminDashboard = () => {
             tabbody={
               <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <div className="tab-content" id="v-pills-tabContent">
-                  <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                  <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"}>
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
                       <div className='dash-head mt-1 mb-1'>
@@ -201,19 +204,19 @@ const AdminDashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <div className={activeTab === "user" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                  <div className={activeTab === "user" ? "tab-pane fade show active" : "tab-pane fade"} >
                     <Users />
                   </div>
-                  <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-tickets" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div className={activeTab === "ticket" ? "tab-pane fade show active" : "tab-pane fade"} >
                     <Adminticket />
                   </div>
-                  <div className={activeTab === "team" ? "tab-pane fade show acti`ve" : "tab-pane fade"} id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div className={activeTab === "team" ? "tab-pane fade show active" : "tab-pane fade"} >
                     <Team  />
                   </div>
-                  <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-NonUser" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div className={activeTab === "NonUser" ? "tab-pane fade show active" : "tab-pane fade"} >
                   <NonUserTickets callback={callback} />
                   </div>
-                  <div className={activeTab === "RaiseTicket" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-RaiseTicket" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div className={activeTab === "RaiseTicket" ? "tab-pane fade show active" : "tab-pane fade"} >
                    <Adminissues />
                   </div>
                   <div className="tab-pane fade" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab">

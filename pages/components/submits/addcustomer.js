@@ -14,7 +14,6 @@ const schema = yup.object().shape({
     Clientname: yup.string().required(),
     Email: yup.string().required().email(),
     Phonenumber: yup.string().required().max(10),
-    Username: yup.string().required(),
     Password: yup.string().required(),
 });
 
@@ -53,7 +52,7 @@ export default function Addcustomer() {
     };
     
    
-    const addUser = ({ Companyname, Clientname, Email, Phonenumber, Username, Password }) => {
+    const addUser = ({ Companyname, Clientname, Email, Phonenumber,Password }) => {
         setloader(true)
         if (logovalidate === undefined) {
             setShowlogo("images is required")
@@ -63,11 +62,10 @@ export default function Addcustomer() {
             data.append("Clientname", Clientname);
             data.append("Email", Email);
             data.append("Phonenumber", Phonenumber);
-            data.append("Username", Username);
             data.append("Password", Password);
             data.append("file", Logo);
-            data.append("Createdon", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
-            data.append("Createdby", Createdby)
+            data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
+            data.append("CreatedBy", Createdby)
             Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -132,11 +130,6 @@ export default function Addcustomer() {
                             <label className="col label">Phonenumber</label>
                             <input className="form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                             <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
-                        </div>
-                        <div className="form-group">
-                            <label className="label">Username</label>
-                            <input className="form-input" name="Username" type="text" {...register('Username')} />
-                            <p className="me-2 text-danger">{errors.Username?.message}</p>
                         </div>
                         <div className="form-group">
                             <label className="col label">Password</label>

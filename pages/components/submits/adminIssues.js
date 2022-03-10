@@ -9,7 +9,6 @@ export default function Adminissues(props) {
     const { setTesting, setshowvalue } = useContext(CounterContext)
     const [loader, setloader] = useState(false);
     const [show, setShow] = useState();
-    const UsernameR = useRef();
     const EmailR = useRef();
     const PhonenumberR = useRef();
     const DomainnameR = useRef();
@@ -30,7 +29,6 @@ export default function Adminissues(props) {
     function addIssues() {
         if (Logo!=="x") {
             const data = new FormData();
-            data.append("Username", UsernameR.current.value);
             data.append("Email", EmailR.current.value);
             data.append("Phonenumber", PhonenumberR.current.value);
             data.append("DomainName", DomainnameR.current.value);
@@ -49,7 +47,6 @@ export default function Adminissues(props) {
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
                 setloader(false);
-                UsernameR.current.value = " ";
                 EmailR.current.value = " ";
                 PhonenumberR.current.value = " ";
                 DomainnameR.current.value = " ";
@@ -62,7 +59,6 @@ export default function Adminissues(props) {
             })
         } else {
             const data = new FormData();
-            data.append("Username", UsernameR.current.value);
             data.append("Email", EmailR.current.value);
             data.append("Phonenumber", PhonenumberR.current.value);
             data.append("DomainName", DomainnameR.current.value);
@@ -79,7 +75,6 @@ export default function Adminissues(props) {
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
                 setloader(false);
-                UsernameR.current.value = " ";
                 EmailR.current.value = " ";
                 PhonenumberR.current.value = " ";
                 DomainnameR.current.value = " ";
@@ -100,10 +95,6 @@ export default function Adminissues(props) {
 <div><h1>RAISE THE TICKETS</h1></div>
             </div>
             <form className="form3" action="/" method="post">
-                <div className="form-group mt-2 mb-2 flex" >
-                    <label className="label width-25">User Name</label>
-                    <input className="issue-form-input" name="email" type="text" ref={UsernameR} />
-                </div>
                 <div className="form-group mb-2 flex">
                     <label className="label width-25">Email ID</label>
                     <input className="issue-form-input" name="email" type="text" ref={EmailR} />
@@ -139,10 +130,8 @@ export default function Adminissues(props) {
                 </div>
                 <div className="">
                     {loader === false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></> : <> <CircularProgress size={30} /></>}
-
                 </div>
             </form>
-
         </div>
     );
 }

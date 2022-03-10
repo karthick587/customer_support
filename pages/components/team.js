@@ -24,8 +24,8 @@ import { CounterContext } from './contex/adminProvider';
 import { ListContext } from './contex/ListProvider';
 
 export default function Team(props) {
-    const {setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
-    const {team}=useContext(ListContext)
+    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext)
+    const { team } = useContext(ListContext)
     var [search, setSearch] = useState('');
     // var [selectedValue, setSelectedValue] = useState('');
     const Router = useRouter();
@@ -33,8 +33,8 @@ export default function Team(props) {
     var [exportTeam, setExportTeam] = useState([]);
     var [selectedValue, setSelectedValue] = useState([]);
     const [login, setLogin] = useState();
-    
-   
+
+
 
     // useEffect(() => {
     //     Axios.get("https://mindmadetech.in/api/team/list")
@@ -52,7 +52,7 @@ export default function Team(props) {
     //     localStorage.setItem("passValue", false);
     // },[]);
 
-    const deleteUsers = (id)=> {
+    const deleteUsers = (id) => {
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then((res) => {
@@ -60,11 +60,12 @@ export default function Team(props) {
             setTesting(true)
             setdialogformopen("true")
             return res;
-        }).catch((err) => { 
+        }).catch((err) => {
             setshowvalue("Error")
             setTesting(true)
-            
-            return err; })
+
+            return err;
+        })
     };
 
     const TeamList = [
@@ -95,9 +96,9 @@ export default function Team(props) {
         } else if (login === null) {
             Router.push("/");
         }
-    },[]);
+    }, []);
 
-   
+
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
     //pagination
@@ -114,15 +115,10 @@ export default function Team(props) {
             <Head>
                 <title>Admin Dashboard</title>
             </Head>
-
             <div className="userbody2">
                 <div className='header-user'>
-
                     <div><h1>TEAM </h1></div>
                     <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-
-
-
                     <div className='header-right'>
                         <Button>
                             <CSVLink
@@ -148,24 +144,24 @@ export default function Team(props) {
                         <TableHead>
                             <TableRow>
                                 <TableCell className="teamtablecel" >TEAM ID</TableCell>
-                                <TableCell className="teamtablecel" align="left">USERNAME</TableCell>
+                                <TableCell className="teamtablecel" align="left">Email</TableCell>
                                 <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
                                 <TableCell className="teamtablecel" align="left">TEAM</TableCell>
                             </TableRow>
                         </TableHead>
                         {team.filter(val => {
-                          if (search === "") {
-                            return val;
-                        } else if (val.Username.toLowerCase().includes(search.toLowerCase())||
-                                    val.Team.toLowerCase().includes(search.toLowerCase())||
-                                    val.teamId.toString().includes(search.toString())) {
-                            return val;
-                        } else null;
+                            if (search === "") {
+                                return val;
+                            } else if (val.Email.toString().includes(search.toString()) ||
+                                val.Team.toLowerCase().includes(search.toLowerCase()) ||
+                                val.teamId.toString().includes(search.toString())) {
+                                return val;
+                            } else null;
                         }).reverse().slice((currentpage - 1) * datalimit, currentpage * datalimit).map((item) =>
                             <TableBody key={item.teamId}>
                                 <TableRow >
                                     <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
-                                    <TableCell className="teamtablecel" align="left">{item.Username}</TableCell>
+                                    <TableCell className="teamtablecel" align="left">{item.Email}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
                                     <div className='deteleandedit'>
@@ -176,8 +172,8 @@ export default function Team(props) {
                                             headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
                                             dialogactions={
                                                 <div>
-                                                    <Button onClick={() => deleteUsers(item.teamId, item.Username)}>YES</Button>
-                                                    <Button onClick={()=>setdialogformopen("true")} >NO</Button>
+                                                    <Button onClick={() => deleteUsers(item.teamId, item.Email)}>YES</Button>
+                                                    <Button onClick={() => setdialogformopen("true")} >NO</Button>
                                                 </div>
                                             }
                                         />
