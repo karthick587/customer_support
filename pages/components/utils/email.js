@@ -1,4 +1,4 @@
-const Email = {
+export const Email = {
     send: function (a) {
         return new Promise(function (n, e) {
             (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
