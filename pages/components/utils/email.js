@@ -1,4 +1,4 @@
-export const Email = {
+export default const Email = {
     send: function (a) {
         return new Promise(function (n, e) {
             (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
@@ -30,4 +30,4 @@ export const Email = {
         return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest()).open(e, n) : (t = null), t;
     },
 };
-export default Email;
+
