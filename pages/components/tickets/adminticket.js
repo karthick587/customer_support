@@ -30,7 +30,6 @@ import TicketCompletedBody from '../utils/ticketCompletedBody';
 function Adminticket() {
     const { setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
-
     const { currentDate } = useContext(CurrentDateContext);
     const { users, team } = useContext(ListContext);
     const { tickets } = useContext(TicketsContext);
@@ -58,19 +57,15 @@ function Adminticket() {
     const [currentpage, setCurrentpage] = useState(1);
     const [showdetails, setShowdetails] = useState(false);
     const [selectTeam, setselectTeam] = useState('x');
-
     useEffect(() => {
         localStorage.setItem("passValue", false);
     }, []);
-
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
     }, []);
-
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
     }, [Adminname]);
-
     //filter function
     useEffect(() => {
         if (filteredTitle === "all") {
@@ -84,7 +79,6 @@ function Adminticket() {
     useEffect(() => {
         if (filteredTitle === "Username") {
             setIsOpenstatusfilter(true);
-
         } else {
             setIsOpenstatusfilter(false);
         }
@@ -135,7 +129,6 @@ function Adminticket() {
             setTesting(true)
             setshowvalue(1 + "Ticket is not Done");
             setloader(false)
-
         }
         if (sendmail === "true") {
             Email.send({
@@ -159,9 +152,7 @@ function Adminticket() {
         return () => {
             clearTimeout(Timer);
         }
-    }, [])
-
-
+    },[])
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };

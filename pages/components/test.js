@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import FormDialog from './common/dialogsform';
 import { renderEmail } from 'react-html-email'
-import Email from './utils/email';
-import axios from 'axios';
+
+
 import ForgetPasswordBody from './utils/forgetPasswordBody';
 function Test() {
   
@@ -26,17 +26,17 @@ function Test() {
 
   const messageHtml =  renderEmail(<ForgetPasswordBody name="karthick" />)
       function Sendmail(){
-        Email.send({
-            Host : "mindmadetech.in",
-            Username : "_mainaccount@mindmadetech.in",
-            Password : "1boQ[(6nYw6H.&_hQ&",
-            To : 'karthickdurai587@gmail.com',
-            From : "karthickraja@mindmade.in",
-            Subject : "successs",
-            Body : messageHtml
-        }).then(
-          message => alert(message)&console.log(message)
-        );
+        // Email.send({
+        //     Host : "mindmadetech.in",
+        //     Username : "_mainaccount@mindmadetech.in",
+        //     Password : "1boQ[(6nYw6H.&_hQ&",
+        //     To : 'karthickdurai587@gmail.com',
+        //     From : "karthickraja@mindmade.in",
+        //     Subject : "successs",
+        //     Body : messageHtml
+        // }).then(
+        //   message => alert(message)&console.log(message)
+        // );
       }
 
 

@@ -14,14 +14,13 @@ import FormDialog from '../common/dialogsform';
 import { Typography } from '@mui/material';
 import ForgetPasswordBody from '../utils/forgetPasswordBody';
 import { renderEmail } from 'react-html-email'
-import Email from '../utils/email';
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required().min(6)
 });
 export default function Login1() {
   var generator = require('generate-password');
-  const { setTesting, setshowvalue, setdialogformopen } = useContext(CounterContext)
+  const { setTesting, setshowvalue, setdialogformopen,Email } = useContext(CounterContext)
   const router = useRouter();
   const [userlogin, setUserlogin] = useState('');
   const { register, handleSubmit, formState } = useForm({
