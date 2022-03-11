@@ -173,7 +173,7 @@ export default function Login1() {
                     dialogtitle="forget password"
                     dialogbody={
                       <div>
-                        <Typography variant="h5" className='text-center mb-2'>
+                        <Typography variant="h5" className='text-center mm-color mb-2'>
                           Reset Your Password
                         </Typography>
                         <Typography variant="p" className='mt-2'>

@@ -66,7 +66,7 @@ function Userticket(props) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>TICKETS ID</TableCell>
-                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">Email</TableCell>
                                     <TableCell align="left">DATE</TableCell>
                                     <TableCell align="left">TEAM</TableCell>
                                     <TableCell align="left">STATUS</TableCell>
@@ -76,7 +76,7 @@ function Userticket(props) {
                                 <TableBody key={tickets.ticketsId} >
                                     <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId, tickets.Screenshots)}>
                                         <TableCell>{tickets.ticketsId}</TableCell>
-                                        <TableCell >{tickets.Username}</TableCell>
+                                        <TableCell >{tickets.Email}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
                                         <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell> 
                                         <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}

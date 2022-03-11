@@ -25,7 +25,7 @@ function NonUserTickets(props) {
     const [PendingCount, setPendingCount] = useState("")
     useEffect(() => {
         Axios.get("https://mindmadetech.in/api/unregisteredcustomer/list")
-            .then((res) => setNonUser(res.data))
+            .then((res) => setNonUser(res.data.reverse()))
             .catch((err) => { return err; })
         setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket) => setPendingCount(ticket.Status.length)).length);
         props.callback(PendingCount)
@@ -61,7 +61,7 @@ function NonUserTickets(props) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="left">ID</TableCell>
-                                    <TableCell align="left">LOGO</TableCell>
+                                    <TableCell align="left">Email</TableCell>
                                     <TableCell align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">DATE</TableCell>
@@ -73,12 +73,7 @@ function NonUserTickets(props) {
                                 {nonUser.slice((currentpage - 1) * datalimit, currentpage * datalimit).map(value =>
                                     <TableRow key={value.registerId} onClick={() => ShowDetail(value.registerId)} className={value.Status === "Pending" ? "highlighted-row" : "tickets-bodyrow"}>
                                         <TableCell align="left">{value.registerId}</TableCell>
-                                        <TableCell align="left">
-                                            <Imageviewer
-                                                imgdialogbutton={<img src={value.Logo} alt='logo' className="rounded-circle mb-2" height={40} width={40} />}
-                                                imgdialogbody={<img className="Imageviewer-userimg" src={value.Logo} alt='logo' />}
-                                            />
-                                        </TableCell>
+                                        <TableCell align="left">  {value.Email}</TableCell>
                                         <TableCell align="left">{value.Companyname}</TableCell>
                                         <TableCell align="left">{value.Clientname}</TableCell>
                                         <TableCell align="left">{value.CreatedOn}</TableCell>

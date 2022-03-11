@@ -113,11 +113,25 @@ function Adminticket() {
                 FinalUpdate_CreatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
                 FinalUpdate_CreatedBy: Createdby
             }).then((response) => {
-                setShow("update started Successfully");
+                setShow("updated Successfully");
                 setdialogformopen("true");
                 setTesting(true)
                 setshowvalue("Submitted Successfully");
                 setloader(false)
+                if (sendmail === "true") {
+                    Email.send({
+                        Host: "mindmadetech.in",
+                        Username: "_mainaccount@mindmadetech.in",
+                        Password: "1boQ[(6nYw6H.&_hQ&",
+                        To: email,
+                        From: "karthickraja@mindmade.in",
+                        Subject: "MindMade Support",
+                        Body: messageHtml
+                    }).then(
+                        message => console.log(message)
+                    );
+        
+                };
             })
                 .catch((err) => {
                     setTesting(true)
@@ -130,20 +144,7 @@ function Adminticket() {
             setshowvalue(1 + "Ticket is not Done");
             setloader(false)
         }
-        if (sendmail === "true") {
-            Email.send({
-                Host: "mindmadetech.in",
-                Username: "_mainaccount@mindmadetech.in",
-                Password: "1boQ[(6nYw6H.&_hQ&",
-                To: email,
-                From: "karthickraja@mindmade.in",
-                Subject: "MindMade Support",
-                Body: messageHtml
-            }).then(
-                message => console.log(message)
-            );
-
-        };
+      
     }
     useEffect(() => {
         const Timer = setTimeout(() => {
@@ -250,7 +251,7 @@ function Adminticket() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell  >TICKETS ID</TableCell>
-                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">Email</TableCell>
                                     <TableCell align="left">DATE</TableCell>
                                     <TableCell align="left">TEAM</TableCell>
                                     <TableCell align="left">STATUS</TableCell>
@@ -324,7 +325,7 @@ function Adminticket() {
                                     <TableBody className='update-right' key={tickets.ticketsId}>
                                         <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots, tickets.TeamAssign)}>
                                             <TableCell >{tickets.ticketsId}</TableCell>
-                                            <TableCell >{tickets.Username}</TableCell>
+                                            <TableCell >{tickets.Email}</TableCell>
                                             <TableCell >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
                                             <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
@@ -381,7 +382,7 @@ function Adminticket() {
                                                             <div className="form-header">
                                                                 <h1>Status Final Update</h1>
                                                             </div>
-                                                            <select className="form-input" onChange={handlestatus}>
+                                                            <select className="form-input mt-3" onChange={handlestatus}>
                                                                 <option value="">--Select Status--</option>
                                                                 <option className='Completed' value="Completed">Completed</option>
                                                             </select>

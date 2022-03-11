@@ -35,7 +35,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const[validate,setValidate]=useState(false)
     const addIssues = () => {
         
-        if(EmailR.current.value!==""&&PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){
+        if(PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){
             setloader(true);
             setValidate(false)
             if(Screenshots!=='x'){
@@ -103,8 +103,8 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
         <form className="form5" action="/" method="post">
             <Typography >RAISE YOUR TICKETS</Typography>
             <div className="form-group mt-2 mb-2 flex" >
-                <label className="label width-25">User Name</label>
-                <h5 className="issue-form-input">{props.customername}</h5>
+                <label className="label width-25">Email</label>
+                <h5 className="issue-form-input">{customername}</h5>
             </div>
            
             <div className="form-group mb-2 flex">

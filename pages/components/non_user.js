@@ -13,11 +13,12 @@ import * as yup from 'yup';
 import { CurrentDateContext } from '../components/contex/currentdateProvider';
 import {CounterContext} from "../components/contex/adminProvider";
 import moment from 'moment';
-
+import { renderEmail } from 'react-html-email'
+import NonUserBody from './utils/nonUserBody';
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
-    Email: yup.string().required().email(),
+    email: yup.string().required().email(),
     Phonenumber: yup.string().required().max(10),
     Username : yup.string().required(),
     Password :  yup.string().required(),
@@ -25,7 +26,7 @@ const schema = yup.object().shape({
     Description: yup.string().required(),
 });
 export default function ScrollDialog(props) {
-    const { setTesting,setshowvalue} = useContext(CounterContext);
+    const { setTesting,setshowvalue,Email} = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
@@ -53,16 +54,16 @@ export default function ScrollDialog(props) {
         setLogo(e.target.files[0]);
         setUploadLogo(URL.createObjectURL(e.target.files[0]));
     };
-
-    const handleSubmitForm = ({ Companyname, Clientname, Email, Phonenumber, Username, Password, DomainName, Description }) => {
-
+   
+    const handleSubmitForm = ({ Companyname, Clientname, email, Phonenumber, Password, DomainName, Description }) => {
+        const messageHtml = renderEmail(<NonUserBody name={Clientname} body={Companyname} />)
         if (logovalidate === undefined) {
             setShowlogo("images is required")
         } else {
             Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, {
                 Companyname : Companyname,
                 Clientname : Clientname,
-                Email : Email,
+                Email : email,
                 Phonenumber : Phonenumber,
                 Password : Password,
                 Logo:"https://mindmadetech.in/public/images/profile-img.png",
@@ -80,6 +81,17 @@ export default function ScrollDialog(props) {
                     setshowvalue("Registered Successfully")
                     setOpen(false);               
                     setTesting(true)
+                    Email.send({
+                        Host: "mindmadetech.in",
+                        Username: "_mainaccount@mindmadetech.in",
+                        Password: "1boQ[(6nYw6H.&_hQ&",
+                        To: email,
+                        From: "karthickraja@mindmade.in",
+                        Subject: "MindMade Support",
+                        Body: messageHtml
+                    }).then(
+                        message => console.log(message)
+                    );
                 }
             }).catch((err) => { return err; })
         }
@@ -138,19 +150,15 @@ export default function ScrollDialog(props) {
                                 </div>
                                 <div className="form-group">
                                     <label className="col label">Email ID</label>
-                                    <input className="issue-form-input" name="Email" type="text" {...register('Email')} />
-                                    <p className="me-2 text-danger">{errors.Email?.message}</p>
+                                    <input className="issue-form-input" name="email" type="text" {...register('email')} />
+                                    <p className="me-2 text-danger">{errors.email?.message}</p>
                                 </div>
                                 <div className="form-group">
                                     <label className="col label">Phonenumber</label>
                                     <input className="issue-form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                                     <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                                 </div>
-                                <div className="form-group">
-                                    <label className="label">Username</label>
-                                    <input className="form-input" name="Username" type="text" {...register('Username')} />
-                                    <p className="me-2 text-danger">{errors.Username?.message}</p>
-                                </div>
+                                
                                 <div className="form-group">
                                     <label className="col label">Password</label>
                                     <input className="form-input" name="Password" type="password" {...register('Password')} />
@@ -168,7 +176,6 @@ export default function ScrollDialog(props) {
                                     <p className="me-2 text-danger">{errors.Description?.message}</p>
                                 </div>
                             </form>
-                            <h4 className="alert1 text-center">{show}</h4>
                            
                         </div>
                     </DialogContentText>

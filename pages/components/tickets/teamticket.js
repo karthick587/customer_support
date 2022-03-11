@@ -48,7 +48,7 @@ function Teamticket(props) {
     //status submit function
     function handleUpdatestatus(ticketsId,TeamAssign) {
        var teamId = team.filter(Id=>{
-           if(Id.Username.includes(loginTmName)){
+           if(Id.Email.includes(loginTmName)){
                return Id;
            }
         }).map(team=>{
@@ -159,7 +159,7 @@ function Teamticket(props) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell  >TICKETS ID</TableCell>
-                                    <TableCell align="left">USERNAME</TableCell>
+                                    <TableCell align="left">Email</TableCell>
                                     <TableCell align="left">DATE</TableCell>
                                     <TableCell align="left">TEAM</TableCell>
                                     <TableCell align="left">STATUS</TableCell>
@@ -169,7 +169,7 @@ function Teamticket(props) {
                                 <TableBody key={tickets.ticketsId} className='update-right' >
                                     <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                         <TableCell>{tickets.ticketsId}</TableCell>
-                                        <TableCell >{tickets.Username}</TableCell>
+                                        <TableCell >{tickets.Email}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
                                         <TableCell >
                                         <ViewTeam  teamArray={tickets.TeamAssign}  />
@@ -194,7 +194,7 @@ function Teamticket(props) {
                                                                 <label className="label">Status</label>
                                                                 <select className="form-input" onChange={handlestatus}>
                                                                     <option value="">--Select Status--</option>
-                                                                    <option className='started' value="started">started</option>
+                                                                   {tickets.Status==="started"||tickets.Status==="inprogress"||tickets.Status==="completed" ? <></>:<option className='started' value="started">started</option>}
                                                                     <option className='inprogress' value="inprogress">inprogress</option>
                                                                     <option className='completed' value="completed">completed</option>
                                                                 </select>

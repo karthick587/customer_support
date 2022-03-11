@@ -78,11 +78,13 @@ export default function CounterContextProvider(props){
         return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest()).open(e, n) : (t = null), t;
     },
 };
-
+const[onlogout,setonlogout]=useState(false)
 
 
     return(
         <CounterContext.Provider value={{
+            setonlogout,
+            onlogout,
             Email,
             showvalue,
             setshowvalue,

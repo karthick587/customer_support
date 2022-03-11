@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+import { CounterContext } from '../contex/adminProvider';
+
+
 export default function CustomerProfile(props) {
     const { customername } = props
     const [users, setUsers] = useState([]);
+    const { setTesting, setshowvalue } = useContext(CounterContext)
+    
 
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
@@ -17,10 +23,7 @@ export default function CustomerProfile(props) {
     const [show, setshow] = useState(false)
     const [show2, setshow2] = useState(false)
 
-    const [passUpdate, setPassUpdate] = useState(false)
-function Edit(){
-    setshow2(!show2)
-}
+    
     return (
         <div className="profile-body">
             {users.map((users) =>
@@ -36,15 +39,15 @@ function Edit(){
                                     <div className="row">
                                         <div className="col">
                                             <h6 className="mb-0 profile-label">
-                                                UserName
+                                                Email
                                             </h6>
                                         </div>
                                         :
                                         <div className="col text-secondary">
-                                            {users.Username}
+                                            {users.Email}
                                         </div>
                                     </div>
-                                    {!show2 ? <div className="row">
+                                <div className="row">
                                         <div className="col">
                                             <h6 className="mb-0 profile-label">
                                                 Password
@@ -52,43 +55,12 @@ function Edit(){
                                         </div>
                                         :
                                         <div className="col flex password-input-div">
-                                            
+
                                             <input className='password-input' value={users.Password} type={show === true ? "text" : "password"} />
                                             <Button onClick={() => setshow(!show)}>{!show ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
-                                            <Button onClick={() => setshow2(!show2)}><EditIcon fontSize="small" /></Button>
-                                        </div>
-                                    </div> :
-
-                                        <div className='change-pass-body'>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <h6 className="mb-0 profile-label">
-                                                        New Password
-                                                    </h6>
-                                                </div>
-                                                :
-                                                <div className="col ">
-                                                <input className='password-input' />
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <h6 className="mb-0 profile-label">
-                                                        Confirm Password
-                                                    </h6>
-                                                </div>
-                                                :
-                                                <div className="col ">
-                                                <input className='password-input' />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <Button size="small" onClick={Edit}>change</Button>
-                                            </div>
-                                            
                                            
                                         </div>
-                                    }
+                                    </div> 
 
                                     <h4 className="profile-label"></h4>
                                 </div>

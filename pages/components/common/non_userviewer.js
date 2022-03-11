@@ -13,15 +13,12 @@ function Non_userviewer(props) {
     const [nonUserDetails, setNonUserDetails] = useState([]);
     const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
-
     useEffect(() => {
         setAdminname(window.localStorage.getItem('user'));
     }, [setAdminname]);
-
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
     }, [setCreatedby, Adminname]);
-
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
@@ -57,7 +54,6 @@ function Non_userviewer(props) {
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
     function handleRejection(Id) {
-
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
             Adm_UpdatedOn: fulldate + " " + fullTime,
@@ -86,7 +82,6 @@ function Non_userviewer(props) {
                 setdialogformopen("true")
                 return null;
             } else {
-
                 setTesting(true)
                 setshowvalue("Registered Successfully");
                 setdialogformopen("true")
@@ -94,9 +89,7 @@ function Non_userviewer(props) {
         }).catch((err) => {
             setTesting(true)
             setshowvalue(1 + "Error");
-
         });
-
         const formData = new FormData();
         formData.append("Username", nonuser.Username);
         formData.append("Email", nonuser.Email);
@@ -112,15 +105,12 @@ function Non_userviewer(props) {
 
             return res;
         }).catch((err) => { return err });
-
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
             Status: "Approved",
             Adm_UpdatedOn: fulldate + " " + fullTime,
             Adm_UpdatedBy: Createdby
         });
-
     }
-
     return (
         <>
             {nonUserDetails.reverse().map((nonuser) =>

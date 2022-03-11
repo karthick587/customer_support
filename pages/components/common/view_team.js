@@ -21,7 +21,7 @@ export default function ViewTeam(props){
             }
         }).map((product) =>
             <div className=" " key={product.teamId}>
-                <div>{product.Username},</div>
+                <div>{product.Email},</div>
             </div>
         )}</div>:
             <div></div>

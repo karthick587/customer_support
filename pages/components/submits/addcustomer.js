@@ -31,20 +31,14 @@ export default function Addcustomer() {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-    const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
     var [showlogo, setShowlogo] = useState('');
     const [logovalidate, setLogovalidate] = useState();
     const [login, setLogin] = useState();
 
     useEffect(() => {
-        setAdminname(window.localStorage.getItem('user'));
-    },[]);
-
-    useEffect(() => {
-        setCreatedby(Adminname.slice(3, 20));
-    },[Adminname]);
-
+        setCreatedby(window.localStorage.getItem('user'));
+    },[setCreatedby]);
     function handleScreenshot(e) {
         setLogovalidate(e.target.files[0]);
         setLogo(e.target.files[0]);
@@ -56,6 +50,7 @@ export default function Addcustomer() {
         setloader(true)
         if (logovalidate === undefined) {
             setShowlogo("images is required")
+            setloader(false)
         } else {
             const data = new FormData();
             data.append("Companyname", Companyname);

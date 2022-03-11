@@ -28,7 +28,7 @@ export default function Resentticket(props) {
                         <TableRow className="resentticket-row">
                             <TableCell>DATE</TableCell>
                             <TableCell>TICKET ID</TableCell>
-                            <TableCell>USERNAME</TableCell>
+                            <TableCell>Email</TableCell>
                             <TableCell>DOMAIN NAME</TableCell>
                             <TableCell>STATUS</TableCell>
                         </TableRow>
@@ -40,7 +40,7 @@ export default function Resentticket(props) {
                             <TableRow className="resentticket-row" >
                             <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>
                                 <TableCell >{tickets.ticketsId}</TableCell>
-                                <TableCell >{tickets.Username}</TableCell>
+                                <TableCell >{tickets.Email}</TableCell>
                                 <TableCell > {tickets.DomainName}</TableCell>
                                 <TableCell >{tickets.Status}</TableCell>
                             </TableRow>

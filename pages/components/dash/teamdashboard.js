@@ -17,6 +17,7 @@ import Copyrights from "../common/copyRight";
 import FormAlert from "../common/alert";
 import TeamPiechart from "./teamPiechart";
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+import CustomerChangePass from "../profile/CustomerChangePass";
 const TeamDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -30,6 +31,7 @@ const TeamDashboard = () => {
   const [teamstartedcount, setstartedcount] = useState();
   const [teamcompletedcount, setcompletedcount] = useState();
   const [teamteamNotificationcount, setteamNotificationcount] = useState();
+  const[tmName,settmName]=useState()
   //access for team dashboard
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
@@ -82,7 +84,8 @@ const TeamDashboard = () => {
    // activetab
   useEffect(() => {
     setActivetab(window.localStorage.getItem('activeTab'));
-  }, []);
+    settmName(window.localStorage.getItem('tm_name'))
+  }, [setActivetab,settmName]);
   useEffect(() => {
       setloginTmName(loginTmName = window.localStorage.getItem('tm_name'));
         if (loginTmName !== "" || loginTmName !== undefined || loginTmName !== null) {
@@ -112,7 +115,8 @@ const TeamDashboard = () => {
             TicketTabActive={TicketTabActive}
             DashTabActive={DashTabActive}
             logout={onBackButtonEvent3}
-           
+            ChangePassword={<CustomerChangePass customername={tmName} />}
+            profileAlt={tmName}
             headertext="TEAM DASHBOARD"
             shownotification={ <IconButton className='z-index' color="inherit" >
             <Badge badgeContent={teamteamNotificationcount} color="secondary">

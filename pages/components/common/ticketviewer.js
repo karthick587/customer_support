@@ -22,7 +22,6 @@ function Ticketviewer(props) {
                         <div className='ticket-details-head-title dash-head'>
                             <h2>TICKETS DETAILS #{tickets.ticketsId}</h2>
                         </div>
-
                         <div className='ticket-details-head-btn'>
                             <button className='btn2 float-end' onClick={closeDetails}>Back</button>
                         </div>
@@ -36,8 +35,6 @@ function Ticketviewer(props) {
                                 </div>
                             </div>
                             <div className='ticket-details-middle-1-3'>
-
-
                                 <div className="ticket-status color-green">
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
                                     {tickets.Status === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
@@ -69,17 +66,15 @@ function Ticketviewer(props) {
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
                                     {tickets.Status === "completed" || tickets.Status === "Completed" ? <div className='details-caption'>{tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div>}
                                 </div>
-
-
                             </div>
                         </div>
                         <div className='ticket-details-middle-2 row'>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Username
+                                    Email
                                 </div>
                                 <div className='user-label-ticket-details'>
-                                    {tickets.Username}
+                                    {tickets.Email}
                                 </div>
                             </div>
                             <div className='col'>
@@ -120,12 +115,6 @@ function Ticketviewer(props) {
                         <div className='user-profile-ticket-details-2 col flex'>
                             <div>
                                 <div className='label-ticket-details'>
-                                    Email
-                                </div>
-                                <div className='ticket-input-details' >
-                                    {tickets.Email}
-                                </div>
-                                <div className='label-ticket-details'>
                                     Phonenumber
                                 </div>
                                 <div className='ticket-input-details' >
@@ -138,8 +127,6 @@ function Ticketviewer(props) {
                                     {tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}
                                 </div>
                             </div>
-
-
                         </div>
                         <div className='ticket-details-screenshot col'>
                             <div className='label-ticket-details'>
@@ -149,11 +136,8 @@ function Ticketviewer(props) {
                                 :
                                 <ViewScreenshots FileArray={tickets.Files} />
                             }
-
                         </div>
                     </div>
-
-
                 </div>
             )}
         </>

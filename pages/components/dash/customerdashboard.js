@@ -18,6 +18,9 @@ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import Copyrights from "../common/copyRight";
 import FormAlert from "../common/alert";
+import CustomerChangePass from "../profile/CustomerChangePass";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 const CustomerDashboard = () => {
   const [user, setUser] = useState();
   const [finishStatus, setfinishStatus] = useState(false);
@@ -38,7 +41,7 @@ const CustomerDashboard = () => {
   },[]);
   useEffect(() => {
     setUser(window.localStorage.getItem('clientname'));
-  },[setUser,user]);
+  }, [setUser, user]);
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
@@ -59,7 +62,7 @@ const CustomerDashboard = () => {
     return () => {
       window.removeEventListener('popstate', onBackButtonEvent);
     };
-  },[]);
+  }, []);
   const onBackButtonEvent3 = () => {
     router.push("/");
     localStorage.setItem('loggedin', false);
@@ -67,7 +70,7 @@ const CustomerDashboard = () => {
   };
   useEffect(() => {
     setUser(window.localStorage.getItem('user'));
-  },[setUser]);
+  }, [setUser]);
   // dashtab
   const DashTabActive = () => {
     localStorage.setItem('activeTab', "Dashboard");
@@ -81,21 +84,22 @@ const CustomerDashboard = () => {
   };
   // usertab
   useEffect(() => {
-    if(activeTab===" "){
+    if (activeTab === " ") {
       setActivetab(window.localStorage.getItem('activeTab'));
     }
-    
-  },[activeTab,setActivetab]);
+
+  }, [activeTab, setActivetab]);
   useEffect(() => {
-    // Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
-    //   .then((res) => setTickets(res.data))
-    //   .catch((err) => { return err; })
-  },[setTickets,user]);
+    Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
+      .then((res) => setTickets(res.data))
+      .catch((err) => { return err; })
+  }, [setTickets, user]);
   useEffect(() => {
     setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);
     setraisedinprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length);
     setraisedcompletedcount(tickets.filter(val => { return val.Status.includes("Completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length);
-  },[tickets]);
+  }, [tickets]);
+  
   return (
     <>
       {login === "false" ? <div className="access ">access denied</div> :
@@ -106,6 +110,8 @@ const CustomerDashboard = () => {
             TicketTabActive={TicketTabActive}
             DashTabActive={DashTabActive}
             logout={onBackButtonEvent3}
+            ChangePassword={<CustomerChangePass customername={user} />}
+            profileAlt={user}
             sidenavcontent={
               <button className={activeTab === "profile" ? "nav-link active" : "nav-link"} onClick={profileTabActive} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
                 <ListItemIcon>
@@ -157,10 +163,10 @@ const CustomerDashboard = () => {
                           </div>
                         </div>
                       </div>
-                      </div>
-                      <div className='copyright-com'>
-                        <Copyrights />
-                      </div>
+                    </div>
+                    <div className='copyright-com'>
+                      <Copyrights />
+                    </div>
                   </div>
                   <div className={activeTab === "profile" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <CustomerProfile customername={user} />
@@ -171,7 +177,8 @@ const CustomerDashboard = () => {
                 </div>
               </div>
             } />
-            <FormAlert />
+          <FormAlert />
+
         </div>
       }
     </>

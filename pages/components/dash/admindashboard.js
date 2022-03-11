@@ -31,6 +31,7 @@ import FormAlert from '../common/alert';
 import { ListContext } from '../contex/ListProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from 'moment';
+import CustomerChangePass from '../profile/CustomerChangePass';
 const AdminDashboard = () => {
 
   const { notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
@@ -39,7 +40,7 @@ const AdminDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
   const [activeTab, setActivetab] = useState("x");
-
+  const[adname,setadname]=useState()
   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
@@ -48,6 +49,7 @@ const AdminDashboard = () => {
     } else if (login === null) {
       router.push("/");
     }
+    setadname(window.localStorage.getItem('ad_email'))
   },[login,setLogin]);
   // alert to conform logout white click back
   const onBackButtonEvent = (e) => {
@@ -99,6 +101,8 @@ const AdminDashboard = () => {
             TicketTabActive={()=>setActivetab('ticket')&localStorage.setItem('activeTab', 'ticket')}
             DashTabActive={()=>setActivetab('Dashboard')&localStorage.setItem('activeTab', 'Dashboard')}
             logout={onBackButtonEvent2}
+            ChangePassword={<CustomerChangePass customername={adname} />}
+            profileAlt={adname}
             navcontent={
               <>
                 <Typography
@@ -115,7 +119,7 @@ const AdminDashboard = () => {
             shownotification={
               <AdminNotification 
               onclick={
-              <IconButton className='z-index' color="inherit" >
+              <IconButton className='z-index me-2' color="inherit"  >
               <Badge badgeContent={notificationcount} color="secondary">
                   <NotificationsIcon />
                 </Badge>
@@ -185,6 +189,12 @@ const AdminDashboard = () => {
                                 cardbody={teamcount}
                                 cardfooter="Active"
                                 cardIcon={<FontAwesomeIcon icon={faUsers} />}
+                              />
+                               <Dashcard
+                                cardHead="No of Inprogress"
+                                cardbody={adminprogresscount}
+                                cardfooter="Tickets"
+                                cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
                               />
                             </div>
                           </div>

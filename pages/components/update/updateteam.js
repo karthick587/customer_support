@@ -62,7 +62,7 @@ function Updateteam({ teamId }) {
                             <div className="container dialog-body" key={data.teamId}>
                                 <Formik
                                     className="addform"
-                                    initialValues={{ Email: data.Email, Password: data.Password, Team: data.Team }}
+                                    initialValues={{ Email: data.Email, Password: data.Password,Phonenumber:data.Phonenumber, Team: data.Team }}
                                     onSubmit={value => getvalue(value)}
                                 >
                                     <Form >

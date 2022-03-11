@@ -22,6 +22,7 @@ import { Typography } from '@mui/material';
 import { CounterContext } from './contex/adminProvider';
 // import { TeamListContext } from './contex/teamListProvider';
 import { ListContext } from './contex/ListProvider';
+import PasswordViewer from './common/password';
 
 export default function Team(props) {
     const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext)
@@ -146,6 +147,7 @@ export default function Team(props) {
                                 <TableCell className="teamtablecel" >TEAM ID</TableCell>
                                 <TableCell className="teamtablecel" align="left">Email</TableCell>
                                 <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
+                                <TableCell className="teamtablecel" align="left">PHONE NUMBER</TableCell>
                                 <TableCell className="teamtablecel" align="left">TEAM</TableCell>
                             </TableRow>
                         </TableHead>
@@ -162,7 +164,8 @@ export default function Team(props) {
                                 <TableRow >
                                     <TableCell className="teamtablecel" component="th" scope="row">{item.teamId}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Email}</TableCell>
-                                    <TableCell className="teamtablecel" align="left">{item.Password}</TableCell>
+                                    <TableCell className="teamtablecel" align="left"><PasswordViewer Password={item.Password} /></TableCell>
+                                    <TableCell className="teamtablecel" align="left">{item.Phonenumber}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Team}</TableCell>
                                     <div className='deteleandedit'>
                                         <Updateteam teamId={item.teamId} />

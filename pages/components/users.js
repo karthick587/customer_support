@@ -22,6 +22,7 @@ import { CounterContext } from './contex/adminProvider';
 import { ListContext } from './contex/ListProvider';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PasswordViewer from './common/password';
 export default function Users(props) {
 
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
@@ -55,18 +56,16 @@ export default function Users(props) {
             "Users Id",
             "Company Name",
             "Client Name",
-            "User Name",
-            "Password",
             "Email Id",
+            "Password",
             "Phonenumber"
         ],
         ...users.map(details => [
             details.usersId,
             details.Companyname,
             details.Clientname,
-            details.Username,
-            details.Password,
             details.Email,
+            details.Password,
             details.Phonenumber
         ])
     ]
@@ -141,6 +140,7 @@ export default function Users(props) {
                                 <TableCell className="teamtablecel" align="left">COMPANY NAME</TableCell>
                                 <TableCell className="teamtablecel">CLIENT NAME</TableCell>
                                 <TableCell className="teamtablecel">EMAIL</TableCell>
+                                <TableCell className="teamtablecel">PASSWORD</TableCell>                              
                                 <TableCell className="teamtablecel">PHONE NUMBER</TableCell>
                             </TableRow>
                         </TableHead>
@@ -166,6 +166,7 @@ export default function Users(props) {
                                     <TableCell className="teamtablecel" align="left">{item.Companyname}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Clientname}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Email}</TableCell>
+                                    <TableCell className="teamtablecel" align="left"><PasswordViewer Password={item.Password}  /></TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Phonenumber}</TableCell>
                                     <div className='deteleandedit'>
                                         <Updatecustomer usersId={item.usersId} />
