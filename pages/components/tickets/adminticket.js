@@ -25,10 +25,10 @@ import { TicketsContext } from '../contex/ticketsProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from 'moment';
 import { renderEmail } from 'react-html-email'
-import Email from '../utils/email';
+
 import TicketCompletedBody from '../utils/ticketCompletedBody';
 function Adminticket() {
-    const { setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
+    const { Email,setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
     const { currentDate } = useContext(CurrentDateContext);
     const { users, team } = useContext(ListContext);
