@@ -112,6 +112,7 @@ const CustomerDashboard = () => {
             logout={onBackButtonEvent3}
             ChangePassword={<CustomerChangePass customername={user} />}
             profileAlt={user}
+            email={user}
             sidenavcontent={
               <button className={activeTab === "profile" ? "nav-link active" : "nav-link"} onClick={profileTabActive} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> <ListItem button>
                 <ListItemIcon>

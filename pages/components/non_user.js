@@ -20,7 +20,6 @@ const schema = yup.object().shape({
     Clientname: yup.string().required(),
     email: yup.string().required().email(),
     Phonenumber: yup.string().required().max(10),
-    Username : yup.string().required(),
     Password :  yup.string().required(),
     DomainName: yup.string().required(),
     Description: yup.string().required(),
@@ -127,17 +126,7 @@ export default function ScrollDialog(props) {
                     >
                             <div className="addform">
                             <form>
-                                <div className="form-group upload">
-                                    <label htmlFor="contained-button-file">
-                                        <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
-                                        <p className="text-danger mt-3 ml-2">{showlogo}</p>
-                                        <Avatar
-                                            alt="uploadlogo"
-                                            src={uploadLogo}
-                                            sx={{ width: 65, height: 65 }}
-                                        />
-                                    </label>
-                                </div>
+                              
                                 <div className="form-group">
                                     <label className="label">Company Name</label>
                                     <input className="issue-form-input" name="Companyname" type="text" {...register('Companyname')} />

@@ -5,72 +5,41 @@ import FormDialog from '../common/dialogsform';
 import { Button, Typography } from '@mui/material';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
-
+import { renderEmail } from 'react-html-email'
+import NonUserCreatedBody from '../utils/nonUserCreatedBody';
+import moment from 'moment';
 function Non_userviewer(props) {
-    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
+    const { setdialogformopen, setTesting, setshowvalue,Email } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { registerId, closeDetails } = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
     const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
-    useEffect(() => {
-        setAdminname(window.localStorage.getItem('user'));
-    }, [setAdminname]);
-    useEffect(() => {
-        setCreatedby(Adminname.slice(3, 20));
-    }, [setCreatedby, Adminname]);
+    
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
     }, [setNonUserDetails, nonUserDetails, registerId]);
-    var date, TimeType, hour, minutes, seconds, fullTime, dateupadate, monthupadate, yearupadate, fulldate;
-    date = new Date();
-    hour = date.getHours();
-    if (hour <= 11) {
-        TimeType = 'AM';
-    }
-    else {
-        TimeType = 'PM';
-    }
-    if (hour > 12) {
-        hour = hour - 12;
-    }
-    if (hour == 0) {
-        hour = 12;
-    }
-    minutes = date.getMinutes();
-    if (minutes < 10) {
-        minutes = '0' + minutes.toString();
-    }
-    seconds = date.getSeconds();
-    if (seconds < 10) {
-        seconds = '0' + seconds.toString();
-    }
-    dateupadate = date.getDate();
-    monthupadate = (date.getMonth() + 1);
-    yearupadate = date.getFullYear();
-    // Adding all the variables in fullTime variable.
-    fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
-    fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
+   
     function handleRejection(Id) {
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
-            Adm_UpdatedOn: fulldate + " " + fullTime,
+            Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
             Adm_UpdatedBy: Createdby
         });
     }
     function handleApproval(nonuser) {
+        const messageHtml = renderEmail(<NonUserCreatedBody name={nonuser.Clientname} email={nonuser.Email} password={nonuser.Password} />)
         const data = new FormData();
         data.append("Companyname", nonuser.Companyname);
         data.append("Clientname", nonuser.Clientname);
         data.append("Email", nonuser.Email);
         data.append("Phonenumber", nonuser.Phonenumber);
-        data.append("Username", nonuser.Username);
         data.append("Password", nonuser.Password);
         data.append("Logo", nonuser.Logo);
-        data.append("Createdon", fulldate + " " + fullTime);
-        data.append("Createdby", Createdby)
+        data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
+        data.append("CreatedBy", window.localStorage.getItem('ad_email'))
         Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -78,20 +47,30 @@ function Non_userviewer(props) {
         }).then((response) => {
             if (response.data.statusCode === 400) {
                 setTesting(true)
-                setshowvalue(1 + "Registration failed");
+                setshowvalue(1 + "Registration failed")
                 setdialogformopen("true")
                 return null;
             } else {
                 setTesting(true)
-                setshowvalue("Registered Successfully");
+                setshowvalue("Registered Successfully")
                 setdialogformopen("true")
+                Email.send({
+                    Host: "mindmadetech.in",
+                    Username: "_mainaccount@mindmadetech.in",
+                    Password: "1boQ[(6nYw6H.&_hQ&",
+                    To: nonuser.Email,
+                    From: "karthickraja@mindmade.in",
+                    Subject: "MindMade Support",
+                    Body: messageHtml
+                }).then(
+                    message => console.log(message)
+                );
             }
         }).catch((err) => {
             setTesting(true)
             setshowvalue(1 + "Error");
         });
         const formData = new FormData();
-        formData.append("Username", nonuser.Username);
         formData.append("Email", nonuser.Email);
         formData.append("Phonenumber", nonuser.Phonenumber);
         formData.append("DomainName", nonuser.DomainName);
@@ -108,7 +87,7 @@ function Non_userviewer(props) {
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
             Status: "Approved",
             Adm_UpdatedOn: fulldate + " " + fullTime,
-            Adm_UpdatedBy: Createdby
+            Adm_UpdatedBy: window.localStorage.getItem('ad_email')
         });
     }
     return (

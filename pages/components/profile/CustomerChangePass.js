@@ -21,7 +21,6 @@ const schema = yup.object().shape({
 
 export default function CustomerChangePass(props) {
     const { customername } = props
-    console.log(customername)
     const { setdialogformopen, dialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
     const [open, setOpen] = useState(false);
     const { register, handleSubmit, formState } = useForm({

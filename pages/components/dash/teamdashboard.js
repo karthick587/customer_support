@@ -117,6 +117,7 @@ const TeamDashboard = () => {
             logout={onBackButtonEvent3}
             ChangePassword={<CustomerChangePass customername={tmName} />}
             profileAlt={tmName}
+            email={tmName}
             headertext="TEAM DASHBOARD"
             shownotification={ <IconButton className='z-index' color="inherit" >
             <Badge badgeContent={teamteamNotificationcount} color="secondary">

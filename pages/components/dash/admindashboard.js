@@ -103,6 +103,7 @@ const AdminDashboard = () => {
             logout={onBackButtonEvent2}
             ChangePassword={<CustomerChangePass customername={adname} />}
             profileAlt={adname}
+            email={adname}
             navcontent={
               <>
                 <Typography

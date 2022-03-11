@@ -27,6 +27,7 @@ import moment from 'moment';
 import { renderEmail } from 'react-html-email'
 
 import TicketCompletedBody from '../utils/ticketCompletedBody';
+import TicketAssignedBody from '../utils/ticketAssignedBody';
 function Adminticket() {
     const { Email,setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
@@ -61,8 +62,8 @@ function Adminticket() {
         localStorage.setItem("passValue", false);
     }, []);
     useEffect(() => {
-        setAdminname(window.localStorage.getItem('user'));
-    }, []);
+        setAdminname(window.localStorage.getItem('ad_email'));
+    }, [setAdminname]);
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
     }, [Adminname]);
@@ -103,7 +104,7 @@ function Adminticket() {
         setTicketid(ticketsId);
     };
     //final Status
-    const messageHtml = renderEmail(<TicketCompletedBody name={name} TicketNo={ticketid} />)
+    const messageHtml = renderEmail(<TicketCompletedBody name={Adminname} TicketNo={ticketid} />)
     function finalStatus(ticketsId, Status) {
         setloader(true)
         console.log(ticketsId, Status, currentDate, Createdby)
@@ -183,8 +184,10 @@ function Adminticket() {
     };
 
     //ticket Team assign function
+  
     function handleUpdate(ticketsId) {
         setloader(true)
+        const messageHtml2 = renderEmail(<TicketAssignedBody name={Adminname} TicketNo={ticketsId} />)
         const teamId = designTeamList.map((o) => JSON.stringify(o));
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
@@ -199,6 +202,27 @@ function Adminticket() {
             setshowvalue("Assigned Successfully");
             setdesignTeamList([])
             setloader(false)
+            {team.filter(val => {
+                for (let i = 0; i <= 20; i++) {
+                    if (val.teamId === designTeamList[i]) {
+                        return val;
+                    }
+                }
+            }).map((product) =>
+            Email.send({
+                Host: "mindmadetech.in",
+                Username: "_mainaccount@mindmadetech.in",
+                Password: "1boQ[(6nYw6H.&_hQ&",
+                To: product.Email,
+                From: "karthickraja@mindmade.in",
+                Subject: "MindMade Support",
+                Body: messageHtml2
+            }).then(
+                message => console.log(message)
+            )
+                    
+               
+            )}
         })
             .catch((err) => {
                 setTesting(true)

@@ -20,6 +20,8 @@ import { Menu } from '@mui/material';
 import { Avatar } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { Typography } from '@mui/material';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LogoutIcon from '@mui/icons-material/Logout';
 const drawerWidth = 190;
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -114,41 +116,49 @@ export default function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           {props.navcontent}
-         
+
           {props.shownotification}
-         
-         
-            <IconButton  onClick={handleOpenUserMenu} >
-              <Avatar sx={{ width: 32, height: 32 ,fontSize:15 ,color:"#1976d2",bgcolor: "white",fontWeight:"bold",textTransform:'uppercase' }}  alt={props.profileAlt} src="/static/images/avatar/2.jpg" />
-            </IconButton>
 
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center" onClick={props.logout}>Logout</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                {props.ChangePassword}
-              </MenuItem>
-            </Menu>
-       
-         
+
+          <IconButton onClick={handleOpenUserMenu} >
+            <Avatar sx={{ width: 32, height: 32, fontSize: 15, color: "#1976d2", bgcolor: "white", fontWeight: "bold", textTransform: 'uppercase' }} alt={props.profileAlt} src="/static/images/avatar/2.jpg" />
+          </IconButton>
+
+          <Menu
+            sx={{ mt: '45px' }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            <div className='profile-nav-body'>
+              <Avatar sx={{ width: 50,bgcolor:"#1976d2", height: 50, fontSize: 20, color: "white", fontWeight: "bold", textTransform: 'uppercase', margin: "auto" }} alt={props.profileAlt} src="/static/images/avatar/2.jpg" />
+              <div className='profile-nav-3'>
+                {props.email}
+              </div>
+              <div className='flex YP4xVe'>
+                <div>
+                  <ManageAccountsIcon />
+                </div>
+                <div>
+                  {props.ChangePassword}
+                </div>
+              </div>
+              <div>
+                <div className='logout-nav-btn' textAlign="center" onClick={props.logout}>Logout</div>
+              </div>
+            </div>
+          </Menu>
           {props.menuBar}
-
         </Toolbar>
       </AppBar>
       <div className="d-flex align-items-start">
