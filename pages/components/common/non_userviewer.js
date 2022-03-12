@@ -9,35 +9,39 @@ import { renderEmail } from 'react-html-email'
 import NonUserCreatedBody from '../utils/nonUserCreatedBody';
 import moment from 'moment';
 function Non_userviewer(props) {
-    const { setdialogformopen, setTesting, setshowvalue,Email } = useContext(CounterContext);
+    const { setdialogformopen, setTesting, setshowvalue, Email } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const { registerId, closeDetails } = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
     const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
-    
+
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
     }, [setNonUserDetails, nonUserDetails, registerId]);
-   
+
     function handleRejection(Id) {
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
             Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
-            Adm_UpdatedBy: Createdby
+            Adm_UpdatedBy: window.localStorage.getItem('ad_email')
         });
     }
+
+
+
     function handleApproval(nonuser) {
         const messageHtml = renderEmail(<NonUserCreatedBody name={nonuser.Clientname} email={nonuser.Email} password={nonuser.Password} />)
+
         const data = new FormData();
         data.append("Companyname", nonuser.Companyname);
         data.append("Clientname", nonuser.Clientname);
         data.append("Email", nonuser.Email);
         data.append("Phonenumber", nonuser.Phonenumber);
         data.append("Password", nonuser.Password);
-        data.append("Logo", nonuser.Logo);
+        data.append("file", nonuser.Logo);
         data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
         data.append("CreatedBy", window.localStorage.getItem('ad_email'))
         Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
@@ -47,7 +51,7 @@ function Non_userviewer(props) {
         }).then((response) => {
             if (response.data.statusCode === 400) {
                 setTesting(true)
-                setshowvalue(1 + "Registration failed")
+                setshowvalue(1 + response.data.message)
                 setdialogformopen("true")
                 return null;
             } else {
@@ -86,10 +90,12 @@ function Non_userviewer(props) {
         }).catch((err) => { return err });
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
             Status: "Approved",
-            Adm_UpdatedOn: fulldate + " " + fullTime,
+            Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
             Adm_UpdatedBy: window.localStorage.getItem('ad_email')
         });
-    }
+
+    };
+
     return (
         <>
             {nonUserDetails.reverse().map((nonuser) =>
@@ -175,7 +181,7 @@ function Non_userviewer(props) {
                                     {nonuser.DomainName}
                                 </div>
                             </div>
-                            <div className='label-ticket-details'>
+                            <div className='label-ticket-details' onClick={()=>console.log(nonuser.Logo)}>
                                 Description
                             </div>
                             <div className='ticket-input-details' >

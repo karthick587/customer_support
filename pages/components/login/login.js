@@ -61,6 +61,7 @@ export default function Login1() {
           setshowvalue("Logged in successfully");
         } else if (response.data.type === "customer") {
           localStorage.setItem('clientname', email);
+          localStorage.setItem('loggedWho', "customer");
           router.push({
             pathname: `/components/dash/customerdashboard`,
           });

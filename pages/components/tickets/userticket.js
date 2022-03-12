@@ -79,7 +79,7 @@ function Userticket(props) {
                                         <TableCell >{tickets.Email}</TableCell>
                                         <TableCell >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
                                         <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell> 
-                                        <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
+                                        <TableCell > {tickets.Status === "completed" ? <h5 className="inprogress">Inprogress</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
 
                                         </TableCell>
                                     </TableRow>

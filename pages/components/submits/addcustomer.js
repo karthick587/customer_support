@@ -45,7 +45,6 @@ export default function Addcustomer() {
         setUploadLogo(URL.createObjectURL(e.target.files[0]));
     };
     
-   
     const addUser = ({ Companyname, Clientname, Email, Phonenumber,Password }) => {
         setloader(true)
         if (logovalidate === undefined) {
@@ -67,8 +66,15 @@ export default function Addcustomer() {
                 }
             }).then((response) => {
                 if (response.data.statusCode === 400) {
-                    setTesting(true)
-                    setshowvalue(1+response.data.message);
+                    if(response.data.message === "Email already Exists!"){
+                        setShow(response.data.message);
+                        setloader(false);
+                    }else{
+                        setTesting(true)
+                        setshowvalue(1+response.data.message);
+                        setdialogformopen("true");
+                        setloader(false)
+                    }
                 } else {
                     setdialogformopen("true")
                     setTesting(true)
@@ -76,7 +82,11 @@ export default function Addcustomer() {
                     setloader(false)
                 }
             })
-                .catch((err) => { return err; })
+                .catch((err) => { 
+                    setTesting(true)
+                    setshowvalue(1+"error");
+                    setloader(false)
+                    return err; })
         }
     };
    

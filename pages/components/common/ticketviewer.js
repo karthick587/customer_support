@@ -13,7 +13,15 @@ function Ticketviewer(props) {
             .then((res) => setticket(res.data))
             .catch((err) => { return err; })
     }, [setticket]);
-
+    var customer ="completed"
+   var customer2="Completed"
+   
+        if(window.localStorage.getItem('loggedWho')==='customer'){
+            customer="Completed"
+            customer2="Completed"
+        }
+       
+        console.log(customer)
     return (
         <>
             {ticket.reverse().map((tickets) =>
@@ -30,8 +38,8 @@ function Ticketviewer(props) {
                         <div className='ticket-details-middle-1'>
                             <div className='ticket-details-middle-1-1'>
                                 Tickets Details
-                                <div className='ticket-details-middle-1-2'>
-                                    {tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}
+                                <div className='css-nem3m2'>
+                                    {tickets.Status === "completed" ? <>{customer === "completed" ? "Done":"Inprogress"}</> : <>{tickets.Status}</>}
                                 </div>
                             </div>
                             <div className='ticket-details-middle-1-3'>
@@ -55,16 +63,16 @@ function Ticketviewer(props) {
                                 </div>
                                 <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
-                                    {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className='details-caption-strike'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
+                                    {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className={ customer==="Completed"&&tickets.Status==="completed" ?"details-caption":"details-caption-strike"}>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
                                 </div>
-                                <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 display-1 color-green-line" : " ticket-status-line display-1 width-10 "}>
+                                <div className={tickets.Status === customer || tickets.Status === customer2 ? "ticket-status-line width-10 display-1 color-green-line" : " ticket-status-line display-1 width-10 "}>
                                 </div>
-                                <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status-line width-10 display-2 color-green-line" : " ticket-status-line width-10 display-2"}>
+                                <div className={tickets.Status === customer || tickets.Status === customer2 ? "ticket-status-line width-10 display-2 color-green-line" : " ticket-status-line width-10 display-2"}>
                                     |
                                 </div>
-                                <div className={tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status  color-green" : "ticket-status"}>
+                                <div className={tickets.Status === customer || tickets.Status === customer2 ? "ticket-status  color-green" : "ticket-status"}>
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
-                                    {tickets.Status === "completed" || tickets.Status === "Completed" ? <div className='details-caption'>{tickets.Status === "completed" ? <>Done</> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div>}
+                                    {tickets.Status === customer || tickets.Status === customer2 ? <div className='details-caption'>{tickets.Status === customer ? <> <>{customer === "completed" ? "Done":"Completed"}</></> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{customer==="Completed"&&tickets.Status==="completed" ? <></>: <>{tickets.Tm_Complete_UpdatedOn}</>}</div></div>}
                                 </div>
                             </div>
                         </div>

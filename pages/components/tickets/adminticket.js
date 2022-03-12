@@ -25,11 +25,10 @@ import { TicketsContext } from '../contex/ticketsProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from 'moment';
 import { renderEmail } from 'react-html-email'
-
 import TicketCompletedBody from '../utils/ticketCompletedBody';
 import TicketAssignedBody from '../utils/ticketAssignedBody';
 function Adminticket() {
-    const { Email,setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList } = useContext(CounterContext);
+    const { Email, setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList, addTeammember } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
     const { currentDate } = useContext(CurrentDateContext);
     const { users, team } = useContext(ListContext);
@@ -131,7 +130,6 @@ function Adminticket() {
                     }).then(
                         message => console.log(message)
                     );
-        
                 };
             })
                 .catch((err) => {
@@ -145,7 +143,6 @@ function Adminticket() {
             setshowvalue(1 + "Ticket is not Done");
             setloader(false)
         }
-      
     }
     useEffect(() => {
         const Timer = setTimeout(() => {
@@ -154,7 +151,7 @@ function Adminticket() {
         return () => {
             clearTimeout(Timer);
         }
-    },[])
+    }, [])
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
@@ -182,13 +179,11 @@ function Adminticket() {
     function closeDetails() {
         setShowdetails(false);
     };
-
     //ticket Team assign function
-  
+    const teamId = designTeamList.map((o) => JSON.stringify(o));
     function handleUpdate(ticketsId) {
         setloader(true)
         const messageHtml2 = renderEmail(<TicketAssignedBody name={Adminname} TicketNo={ticketsId} />)
-        const teamId = designTeamList.map((o) => JSON.stringify(o));
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
             ticketsId: ticketsId,
@@ -202,27 +197,27 @@ function Adminticket() {
             setshowvalue("Assigned Successfully");
             setdesignTeamList([])
             setloader(false)
-            {team.filter(val => {
-                for (let i = 0; i <= 20; i++) {
-                    if (val.teamId === designTeamList[i]) {
-                        return val;
+            {
+                team.filter(val => {
+                    for (let i = 0; i <= 20; i++) {
+                        if (val.teamId === designTeamList[i]) {
+                            return val;
+                        }
                     }
-                }
-            }).map((product) =>
-            Email.send({
-                Host: "mindmadetech.in",
-                Username: "_mainaccount@mindmadetech.in",
-                Password: "1boQ[(6nYw6H.&_hQ&",
-                To: product.Email,
-                From: "karthickraja@mindmade.in",
-                Subject: "MindMade Support",
-                Body: messageHtml2
-            }).then(
-                message => console.log(message)
-            )
-                    
-               
-            )}
+                }).map((product) =>
+                    Email.send({
+                        Host: "mindmadetech.in",
+                        Username: "_mainaccount@mindmadetech.in",
+                        Password: "1boQ[(6nYw6H.&_hQ&",
+                        To: product.Email,
+                        From: "karthickraja@mindmade.in",
+                        Subject: "MindMade Support",
+                        Body: messageHtml2
+                    }).then(
+                        message => console.log(message)
+                    )
+                )
+            }
         })
             .catch((err) => {
                 setTesting(true)
@@ -232,6 +227,87 @@ function Adminticket() {
     };
     function callback(childdata) {
         setdesignTeamList(childdata)
+    }
+    var idmailticket
+    function reassign(TeamAssign, ticketsId) {
+        idmailticket = ticketsId
+        var TeamList = [...designTeamList]
+
+        TeamAssign.map((product) => {
+            TeamList.push(product.teamId)
+        })
+        setdesignTeamList(TeamList)
+    }
+    const messageHtml2 = renderEmail(<TicketAssignedBody name={Adminname} TicketNo={idmailticket} />)
+    function ReassignTicket(ticketsId) {
+        setloader(true)
+        console.log(ticketsId)
+        Axios.put(`https://mindmadetech.in/api/tickets/team/reassign`, {
+            ticketsId: ticketsId,
+            Adm_ModifiedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+            Adm_ModifiedBy: Createdby,
+            Isdeleted: "y"
+        }).then((response) => {
+            if (response.data.statusCode === 200) {
+                console.log("deleted")
+                Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
+                    teamId: teamId,
+                    ticketsId: ticketsId,
+                    Adm_UpdatedBy: Createdby,
+                    Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+                }).then((_response) => {
+                    setdialogformopen("true")
+                    localStorage.setItem("passValue", true);
+                    setTesting(true)
+                    setshowvalue("Re Assigned Successfully");
+                    setdesignTeamList([])
+                    setloader(false)
+                    {
+                        team.filter(val => {
+                            for (let i = 0; i <= 20; i++) {
+                                if (val.teamId === designTeamList[i]) {
+                                    return val;
+                                }
+                            }
+                        }).map((product) =>
+                            Email.send({
+                                Host: "mindmadetech.in",
+                                Username: "_mainaccount@mindmadetech.in",
+                                Password: "1boQ[(6nYw6H.&_hQ&",
+                                To: product.Email,
+                                From: "karthickraja@mindmade.in",
+                                Subject: "MindMade Support",
+                                Body: messageHtml2
+                            }).then(
+                                message => console.log(message)
+                            )
+                        )
+                    }
+                })
+                    .catch((err) => {
+                        setTesting(true)
+                        setshowvalue(1 + "Re Assigned Failed");
+                        return err;
+                    })
+
+            } else {
+                console.log("not deleted")
+
+            }
+
+        })
+            .catch((err) => {
+                setTesting(true)
+                setshowvalue(1 + "Assigned Failed");
+                return err;
+            })
+
+
+
+
+
+
+
     }
 
     return (
@@ -349,16 +425,17 @@ function Adminticket() {
                                     <TableBody className='update-right' key={tickets.ticketsId}>
                                         <TableRow className={tickets.Notification === "unseen" ? "highlighted-row" : "tickets-bodyrow"} onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots, tickets.TeamAssign)}>
                                             <TableCell >{tickets.ticketsId}</TableCell>
-                                            <TableCell >{tickets.Email}</TableCell>
-                                            <TableCell >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
-                                            <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
+                                            <TableCell className='table_spacing' >{tickets.Email}</TableCell>
+                                            <TableCell className='table_spacing' >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
+                                            <TableCell className='table_spacing' >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
                                             <TableCell > {tickets.Status === "completed" ? <h5 className={tickets.Status}>Done</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
                                             </TableCell>
                                         </TableRow>
                                         <div className='updateadminpage flex'>
                                             <FormDialog
+                                                closebuttonsec="display-non"
                                                 dialog_className="Assign-team-dailog"
-                                                dialogtitle={<div onClick={() => setselectTeam("x")}>Assign</div>}
+                                                dialogtitle={<div onClick={() => reassign(tickets.TeamAssign, tickets.ticketsId)} ><div onClick={() => setselectTeam("x")}>{tickets.TeamAssign.length <= 0 ? <> Assign</> : <>Re Assign</>}</div> </div>}
                                                 className="btn3 ticket-update2"
                                                 dialogbody={
                                                     <div className="form dialog">
@@ -391,7 +468,8 @@ function Adminticket() {
                                                         </div>
                                                         <div className='flex float-end'>
                                                             {loader === false ? <><Button onClick={() => setdesignTeamList([]) & setdialogformopen("true")}>Cancel</Button>
-                                                                <button className="btn2 mt-3 mb-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</button></> : <> <CircularProgress className="float-end" size={25} /></>}
+                                                                {tickets.TeamAssign.length <= 0 ? <><Button className="me-3" onClick={() => handleUpdate(tickets.ticketsId)}>Assign</Button></> : <buttun className="btn2 mt-3 mb-3" onClick={() => ReassignTicket(tickets.ticketsId)}>Re Assign</buttun>}
+                                                            </> : <> <CircularProgress className="float-end" size={25} /></>}
                                                         </div>
                                                     </div>
                                                 }

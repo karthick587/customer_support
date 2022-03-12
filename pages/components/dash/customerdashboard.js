@@ -67,6 +67,7 @@ const CustomerDashboard = () => {
     router.push("/");
     localStorage.setItem('loggedin', false);
     localStorage.removeItem('activeTab');
+    localStorage.removeItem('loggedWho');
   };
   useEffect(() => {
     setUser(window.localStorage.getItem('user'));
@@ -96,7 +97,8 @@ const CustomerDashboard = () => {
   }, [setTickets, user]);
   useEffect(() => {
     setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);
-    setraisedinprogresscount(tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length);
+    var doneCount=tickets.filter(val => { return val.Status.includes("completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length;
+    setraisedinprogresscount(doneCount+tickets.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setraisedinprogresscount(ticket.Status.length)).length);
     setraisedcompletedcount(tickets.filter(val => { return val.Status.includes("Completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length);
   }, [tickets]);
   
