@@ -5,7 +5,7 @@ import ViewTeam from './view_team';
 import ViewScreenshots from './view_screenshots';
 
 function Ticketviewer(props) {
-const [whoLogedin,setwhoLogedin]=usestate()
+const [whoLogedin,setwhoLogedin]=useState()
     const { dticketsId, closeDetails } = props;
     const [ticket, setticket] = useState([]);
     useEffect(() => {
