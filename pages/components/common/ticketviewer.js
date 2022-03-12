@@ -5,18 +5,19 @@ import ViewTeam from './view_team';
 import ViewScreenshots from './view_screenshots';
 
 function Ticketviewer(props) {
-
+const [whoLogedin,setwhoLogedin]=usestate()
     const { dticketsId, closeDetails } = props;
     const [ticket, setticket] = useState([]);
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
             .then((res) => setticket(res.data))
             .catch((err) => { return err; })
-    }, [setticket]);
+setwhoLogedin(window.localStorage.getItem('loggedWho'))
+    }, [setticket,setwhoLogedin]);
     var customer ="completed"
    var customer2="Completed"
    
-        if(window.localStorage.getItem('loggedWho')==='customer'){
+        if(whoLogedin==='customer'){
             customer="Completed"
             customer2="Completed"
         }
