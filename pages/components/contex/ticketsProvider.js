@@ -13,7 +13,7 @@ export default function TicketsContextProvider(props) {
                 setTickets(res.data);
             })
             .catch((err) => { return err; })
-    },[tickets,setTickets]);
+    },[tickets]);
     return (
         <TicketsContext.Provider value={{ tickets }}>
             {props.children}

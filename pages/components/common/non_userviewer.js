@@ -85,14 +85,14 @@ function Non_userviewer(props) {
                 'Content-Type': 'multipart/form-data',
             }
         }).then((res) => {
-
+            setshowvalue("Ticket Raised  Successfully")
             return res;
         }).catch((err) => { return err });
-        Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
-            Status: "Approved",
-            Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
-            Adm_UpdatedBy: window.localStorage.getItem('ad_email')
-        });
+        // Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
+        //     Status: "Approved",
+        //     Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+        //     Adm_UpdatedBy: window.localStorage.getItem('ad_email')
+        // });
 
     };
 
