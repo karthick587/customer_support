@@ -104,7 +104,7 @@ export default function ScrollDialog(props) {
 
     return (
         <div className='z-index-99'>
-            <Button className='mt-1' onClick={handleClickOpen('paper')}>UNREGISTERED CLIENT</Button>
+            <a className='mt-3' onClick={handleClickOpen('paper')}>Click Here</a>
             <Dialog
                 open={open}
 

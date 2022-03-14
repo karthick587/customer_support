@@ -868,7 +868,6 @@ form.form2 {
 
 .z-index-99 {
   z-index: 9999 !important;
-  margin: -9px 0px 11px 5px;
 }
 
 .btn2 {
@@ -1012,12 +1011,6 @@ form.form2 {
   margin-top: 15px;
 }
 
-.form-group p {
-  position: absolute;
-  padding: 47px 24px !important;
-  font-size: 12px;
-  z-index: 1;
-}
 
 .deteleandedit div button svg {
   font-size: 20px;
@@ -2613,4 +2606,10 @@ input:focus-visible {
   max-width: 200px !important;
     min-width:200px !important;
 
+}
+.login-Unregistered {
+  font-size: 14px;
+  /* font-family: -webkit-pictograph; */
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
 }

@@ -166,7 +166,7 @@
 
   .updateadminpage {
     position: absolute;
-    right: -100px;
+    right: -130px;
     margin-top: 0px;
     top: 0;
   }
@@ -962,44 +962,61 @@
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width:900px) and (max-width:1000px) {
 
   .updateadminpage {
     position: absolute;
-    right: -88px;
+    right: -150px;
     margin-top: -6px;
     top: 0;
   }
 }
-
-
-@media (min-width: 1100px) {
-
+@media (min-width:1000px) and (max-width:1100px) {
+  .class {
+      display: none;
+  }
   .updateadminpage {
     position: absolute;
-    right: -100px;
-    margin-top: 0px;
-    top: -2px;
-  }
+    right: -83px;
+    margin-top: -6px;
+    top: 0;
+}
 }
 
+
+
+
+@media (min-width:1100px) and (max-width:1200px) {
+  .updateadminpage {
+    position: absolute;
+    right: -83px;
+    margin-top: -6px;
+    top: 0;
+}
+  
+}
+@media (min-width:1200px) and (max-width:1300px) {
+  .updateadminpage {
+    position: absolute;
+    right: -33px;
+    margin-top: -6px;
+    top: 0;
+}
+  
+}
 @media (min-width: 1200px) {
   .container, .container-lg, .container-md, .container-sm, .container-xl {
     max-width: 1340px !important;
   }
-
-  .updateadminpage {
-    position: absolute;
-    right: -67px;
-    margin-top: 0px;
-    top: -2px;
-  }
+ 
+ 
 }
 
-@media (max-width:1310px) {
+@media  only screen and (max-width:1310px) {
   .userbody {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 
   }
+
 
 }

@@ -64,11 +64,7 @@ function Updateteam({ teamId }) {
         } else if (Password === "" || Email === "" || Phonenumber === "" || Team === "") {
             setShow("all fields are required");
         }
-
-
     };
-
-
     return (
         <FormDialog
             className=""
@@ -78,8 +74,6 @@ function Updateteam({ teamId }) {
                     <div>
                         {getTeam.map((data) =>
                             <div className="container dialog-body" key={data.teamId}>
-
-
                                 <div className="form-group">
                                     <label className="col label">Email ID</label>
                                     <input className="form-input" name="Email" type="text" ref={EmailR} defaultValue={data.Email} />
@@ -102,7 +96,6 @@ function Updateteam({ teamId }) {
                                             <option value="server">server</option>
                                             <option value="seo">SEO</option>
                                         </select>
-
                                     </div>
                                 </div>
                                 <div className="row justify-content-center">

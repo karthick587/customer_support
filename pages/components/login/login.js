@@ -20,7 +20,7 @@ const schema = yup.object().shape({
 });
 export default function Login1() {
   var generator = require('generate-password');
-  const { setTesting, setshowvalue, setdialogformopen,Email } = useContext(CounterContext)
+  const { setTesting, setshowvalue, setdialogformopen, Email } = useContext(CounterContext)
   const router = useRouter();
   const [userlogin, setUserlogin] = useState('');
   const { register, handleSubmit, formState } = useForm({
@@ -92,9 +92,9 @@ export default function Login1() {
   }, [userlogin]);
   const [forgetValidate, setforgetValidate] = useState(false)
   const [forgetValue, setforgetValue] = useState()
- 
+
   //forgetpassort function
- 
+
   const [display, setdisplay] = useState(false)
   function forgetpassword() {
     console.log("1")
@@ -115,32 +115,27 @@ export default function Login1() {
           Password: password,
         }).then((response) => {
           if (response.data.statusCode === 400) {
-    
+
             setforgetValidate(<p className='red'>{response.data.message}</p>)
           } else {
             setdisplay(true)
             setforgetValidate(<p className='forget-status'>*You will get new password through email associated with your account<br /> within two minutes</p>)
             const messageHtml = renderEmail(<ForgetPasswordBody name="MindMade Customer" password={password} />)
-              Email.send({
-                Host: "mindmadetech.in",
-                Username: "_mainaccount@mindmadetech.in",
-                Password: "1boQ[(6nYw6H.&_hQ&",
-                To: forgetValue,
-                From: "karthickraja@mindmade.in",
-                Subject: "MindMade Support",
-                Body: messageHtml
-              }).then(
-                message => console.log(message)
-              );
+            Email.send({
+              Host: "mindmadetech.in",
+              Username: "_mainaccount@mindmadetech.in",
+              Password: "1boQ[(6nYw6H.&_hQ&",
+              To: forgetValue,
+              From: "karthickraja@mindmade.in",
+              Subject: "MindMade Support",
+              Body: messageHtml
+            }).then(
+              message => console.log(message)
+            );
           }
         }).catch((err) => { return err; })
-
-
-
-     
       }
     }).catch((err) => { return err; })
-
   }
   return (
     <div className="login-page">
@@ -153,12 +148,12 @@ export default function Login1() {
                   <h1>LOGIN</h1>
                 </div>
                 <form>
-                  <div className="form-group mb-2">
+                  <div className="form-group ">
                     <label className="label">Email*</label>
                     <input className="form-input" name="email" type="email"  {...register('email')} />
                     <p className="me-2 text-danger">{errors.email?.message}</p>
                   </div>
-                  <div className="form-group mb-3 log">
+                  <div className="form-group log">
                     <label className="label">Password*</label>
                     <input className="form-input" name="password" type="password"  {...register('password')} />
                     <p className="me-2 text-danger">{errors.password?.message}</p>
@@ -167,33 +162,39 @@ export default function Login1() {
                   <div className="form-group log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
-                  <FormDialog
-                    dialogbody_className="forget-body"
-                    className="forget-text"
-                    closebuttonsec="display-non"
-                    dialogtitle="forget password"
-                    dialogbody={
-                      <div>
-                        <Typography variant="h5" className='text-center mm-color mb-2'>
-                          Reset Your Password
-                        </Typography>
-                        <Typography variant="p" className='mt-2'>
-                          Please enter and submit your Email id below. We will send <br />
-                          New password  to the email address <br />
-                          associated with your account.
-                        </Typography>
-                        <div className="form-group mt-3 mb-2 flex">
-                          <label className="forget-label width-25">Email ID</label>
-                          <input className="forget-input" name="email" type="text" onChange={(e) => setforgetValue(e.target.value)} />
-                        </div>
-                        <div>{forgetValidate}</div>
-                        {display === true ? <></> : <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>}
+                  <div className='form-group '>
+                    <FormDialog
+                      dialogbody_className="forget-body"
+                      className="forget-text float-end"
+                      closebuttonsec="display-non"
+                      dialogtitle="Forgot Password"
+                      dialogbody={
+                        <div>
+                          <Typography variant="h5" className='text-center mm-color mb-2'>
+                            Reset Your Password
+                          </Typography>
+                          <Typography variant="p" className='mt-2'>
+                            Please enter and submit your Email id below. We will send <br />
+                            New password  to the email address <br />
+                            associated with your account.
+                          </Typography>
+                          <div className="form-group mt-3 mb-2 flex">
+                            <label className="forget-label width-25">Email ID</label>
+                            <input className="forget-input" name="email" type="text" onChange={(e) => setforgetValue(e.target.value)} />
+                          </div>
+                          <div>{forgetValidate}</div>
+                          {display === true ? <></> : <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>}
 
-                        <Button className='w-100' onClick={() => setdialogformopen("true") & setforgetValidate("") & setdisplay(false)&setforgetValue('')} >{display === true ? "Ok" : "Cancel"}</Button>
-                      </div>
-                    }
-                  />
-                  <ScrollDialog />
+                          <Button className='w-100' onClick={() => setdialogformopen("true") & setforgetValidate("") & setdisplay(false) & setforgetValue('')} >{display === true ? "Ok" : "Cancel"}</Button>
+                        </div>
+                      }
+                    />
+                  </div>
+                  <div className='form-group'>
+                    <div className='login-Unregistered'>
+                      <p className='flex'>Don&apos;t have an account ? <ScrollDialog /></p>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
