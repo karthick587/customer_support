@@ -159,7 +159,7 @@ export default function Login1() {
                     <p className="me-2 text-danger">{errors.password?.message}</p>
                   </div>
 
-                  <div className="form-group log">
+                  <div className="form-group mt-2 log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>
                   <div className='form-group '>
@@ -167,7 +167,7 @@ export default function Login1() {
                       dialogbody_className="forget-body"
                       className="forget-text float-end"
                       closebuttonsec="display-non"
-                      dialogtitle="Forgot Password"
+                      dialogtitle="Forgot Password?"
                       dialogbody={
                         <div>
                           <Typography variant="h5" className='text-center mm-color mb-2'>

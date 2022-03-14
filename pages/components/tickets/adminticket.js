@@ -390,19 +390,18 @@ function Adminticket() {
                                                 return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
                                             } else return val;
                                         } else if (filteredTitle === "Status") {
-
                                             if (filteredStatus === "all") {
                                                 return val;
                                             } else if (filteredStatus === "started") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
+                                                return val.Status.toLowerCase().includes('started')
                                             } else if (filteredStatus === "new") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
+                                                return val.Status.toLowerCase().includes('new')
                                             } else if (filteredStatus === "inprogress") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
+                                                return val.Status.toLowerCase().includes('inprogress')
                                             } else if (filteredStatus === "completed") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('completed')
+                                                return val.Status.includes('completed')
                                             } else if (filteredStatus === "Completed") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
+                                                return val.Status.includes('Completed')
                                             } else return val;
                                         } else if (filteredTitle === "Date") {
                                             if (search === "" || search === " ") {

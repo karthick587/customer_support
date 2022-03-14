@@ -5,14 +5,14 @@ export default function NonUserBody(props) {
     return (
         <Email title='link'>
             <h3>
-                Hello  {props.name}
+                Dear Sir/Madam,
             </h3>
             <br />
             <p>
-                {props.Body}
+                Greetings from MindMade Customer Support Team!!! <br />
+                Thank you for raising your queries with us.Our Admin verify your queries if Admin approved you will get your login credentials as soon as possible.
             </p>
-            <br />
-            <h4>Best wishes,</h4>
+            <h4>Thanks & Regards,</h4>
             <h5>MindMade Team</h5>
         </Email>
     )
