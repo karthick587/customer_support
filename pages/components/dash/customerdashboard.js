@@ -140,7 +140,7 @@ const CustomerDashboard = () => {
               <div className="tab-body" maxwidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <div className="tab-content" id="v-pills-tabContent">
                   <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <div className="m-4 mt-5">
+                    <div className="">
                       <div className="row">
                         <div className="col"> <Userissue customername={user} /></div>
                         <div className="col">
