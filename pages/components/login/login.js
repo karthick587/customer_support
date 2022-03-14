@@ -165,7 +165,7 @@ export default function Login1() {
                   <div className='form-group '>
                     <FormDialog
                       dialogbody_className="forget-body"
-                      className="forget-text float-end"
+                      className="forget-text float-end mt-1"
                       closebuttonsec="display-non"
                       dialogtitle="Forgot Password?"
                       dialogbody={
