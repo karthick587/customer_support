@@ -389,7 +389,7 @@
 
   .card-1 {
     display: flex;
-    background-color: #1976d21a;
+    background-color: #1976d214;
     padding: 24px 25px;
     margin: 10px 0px !important;
 }
@@ -411,12 +411,14 @@
     margin: 0px 0px !important;
     display: block;
   }
-  .Resentticket-page div {
-    background-color: #e8f1fa;
+  .resentticket-table {
+    background-color: transparent !important;
 }
-  .resentticket {
-    width: auto !important;
-    margin: 10px -10px !important;
+ 
+.resentticket {
+  width: auto !important;
+  background-color: #edf4fb;
+  margin: 10px -10px !important;
 }
 
   .css-s18byi {
@@ -427,6 +429,7 @@
 
   .css-bhp9pd-MuiPaper-root-MuiCard-root {
     width: auto !important;
+    background-color: #edf4fb;
     margin: 20px -10px;
   }
 
