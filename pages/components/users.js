@@ -165,7 +165,7 @@ export default function Users(props) {
                                     </TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Companyname}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Clientname}</TableCell>
-                                    <TableCell className="teamtablecel" align="left">{item.Email}</TableCell>
+                                    <TableCell className='table_spacing' align="left">{item.Email}</TableCell>
                                     <TableCell className="teamtablecel" align="left"><PasswordViewer Password={item.Password}  /></TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Phonenumber}</TableCell>
                                     <div className='deteleandedit'>

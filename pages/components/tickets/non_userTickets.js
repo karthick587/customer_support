@@ -73,10 +73,10 @@ function NonUserTickets(props) {
                                 {nonUser.slice((currentpage - 1) * datalimit, currentpage * datalimit).map(value =>
                                     <TableRow key={value.registerId} onClick={() => ShowDetail(value.registerId)} className={value.Status === "Pending" ? "highlighted-row" : "tickets-bodyrow"}>
                                         <TableCell align="left">{value.registerId}</TableCell>
-                                        <TableCell align="left">  {value.Email}</TableCell>
+                                        <TableCell align="left" className='table_spacing'>  {value.Email}</TableCell>
                                         <TableCell align="left">{value.Companyname}</TableCell>
                                         <TableCell align="left">{value.Clientname}</TableCell>
-                                        <TableCell align="left">{value.CreatedOn}</TableCell>
+                                        <TableCell align="left" className='table_spacing'>{value.CreatedOn}</TableCell>
                                         <TableCell align="left">{value.Status}</TableCell>
                                     </TableRow>
                                 )}

@@ -41,7 +41,7 @@ function Non_userviewer(props) {
         data.append("Email", nonuser.Email);
         data.append("Phonenumber", nonuser.Phonenumber);
         data.append("Password", nonuser.Password);
-        data.append("file", nonuser.Logo);
+        data.append("Logo", nonuser.Logo);
         data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
         data.append("CreatedBy", window.localStorage.getItem('ad_email'))
         Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
@@ -88,12 +88,11 @@ function Non_userviewer(props) {
             setshowvalue("Ticket Raised  Successfully")
             return res;
         }).catch((err) => { return err });
-        // Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
-        //     Status: "Approved",
-        //     Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
-        //     Adm_UpdatedBy: window.localStorage.getItem('ad_email')
-        // });
-
+        Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
+            Status: "Approved",
+            Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+            Adm_UpdatedBy: window.localStorage.getItem('ad_email')
+        });
     };
 
     return (

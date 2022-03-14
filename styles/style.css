@@ -2612,3 +2612,6 @@ input:focus-visible {
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 500;
 }
+.user-dash-page {
+  margin: 43px 20px;
+}

@@ -9,6 +9,8 @@ import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import { CircularProgress } from '@mui/material';
 import moment from 'moment';
+import CustomerCreatedBody from '../utils/CustomerCreatedBody';
+import { renderEmail } from 'react-html-email'
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -18,7 +20,7 @@ const schema = yup.object().shape({
 });
 
 export default function Addcustomer() {
-    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
+    const { setdialogformopen, setTesting, setshowvalue, Email } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     const [loader, setloader] = useState(false);
     var [addmember, setAddmember] = useState('');
@@ -44,8 +46,9 @@ export default function Addcustomer() {
         setLogo(e.target.files[0]);
         setUploadLogo(URL.createObjectURL(e.target.files[0]));
     };
-
+var email2=Email
     const addUser = ({ Companyname, Clientname, Email, Phonenumber, Password }) => {
+        const messageHtml2 = renderEmail(<CustomerCreatedBody name={Clientname} email={Email} password={Password} />)
         setloader(true)
         if (logovalidate === undefined) {
             setShowlogo("images is required")
@@ -80,14 +83,27 @@ export default function Addcustomer() {
                     setTesting(true)
                     setshowvalue("Registered Successfully");
                     setloader(false)
+                    email2.send({
+                        Host: "mindmadetech.in",
+                        Username: "_mainaccount@mindmadetech.in",
+                        Password: "1boQ[(6nYw6H.&_hQ&",
+                        To: Email,
+                        From: "karthickraja@mindmade.in",
+                        Subject: "MindMade Support",
+                        Body: messageHtml2
+                    }).then(
+                        message => console.log(message)
+                    )
+
+
                 }
             })
-                .catch((err) => {
+            .catch((err) => {
                     setTesting(true)
                     setshowvalue(1 + "error");
                     setloader(false)
                     return err;
-                })
+            })
         }
     };
 

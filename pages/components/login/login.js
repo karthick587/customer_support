@@ -190,9 +190,9 @@ export default function Login1() {
                       }
                     />
                   </div>
-                  <div className='form-group'>
+                  <div className='form-group'> 
                     <div className='login-Unregistered'>
-                      <p className='flex'>Don&apos;t have an account ? <ScrollDialog /></p>
+                      <p className='flex'>Don&apos;t have an account ?<ScrollDialog /></p>
                     </div>
                   </div>
                 </form>
