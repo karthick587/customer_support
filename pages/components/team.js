@@ -72,15 +72,17 @@ export default function Team(props) {
     const TeamList = [
         [
             "Team Id",
-            "User Name",
+            "Email Id",
             "Password",
-            "Team"
+            "Team",
+            "Phonenumber"
         ],
         ...team.map(details => [
             details.teamId,
-            details.Username,
+            details.Email,
             details.Password,
-            details.Team
+            details.Team,
+            details.Phonenumber
         ])
     ]
     TeamList.reduce((prev, curr) => [prev, curr]);

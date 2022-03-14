@@ -10,12 +10,13 @@ import moment from 'moment';
 const schema = yup.object().shape({
     Email: yup.string().required().email(),
     Password: yup.string().required(),
-    Phonenumber:yup.string().required().min(6)
+    Phonenumber: yup.string().required().min(6)
 });
 
 function Addteam() {
-const{setdialogformopen,setTesting,setshowvalue}=useContext(CounterContext)
-const [loader,setloader]=useState(false);
+    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext)
+    const [loader, setloader] = useState(false);
+    const [show, setshow] = useState('')
     var [addteam, setAddteam] = useState('');
     const Router = useRouter();
     const [login, setLogin] = useState();
@@ -24,32 +25,39 @@ const [loader,setloader]=useState(false);
     });
     const { errors } = formState;
 
-    const addTeam = ({ Email, Password,Phonenumber }) => {
+    const addTeam = ({ Email, Password, Phonenumber }) => {
         setloader(true)
         Axios.post(`https://mindmadetech.in/api/team/new`, {
             Email: Email,
             Password: Password,
             Team: addteam,
-            Phonenumber:Phonenumber,
+            Phonenumber: Phonenumber,
             CreatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
             CreatedBy: window.localStorage.getItem('ad_email')
         }).then((response) => {
             if (response.data.statusCode === 400) {
-                localStorage.setItem('updateclose', "close");
-                setTesting(true)
-                setshowvalue(1+response.data.message);
-                setdialogformopen("true")
+                if (response.data.message === "Email already Exists!") {
+                    setshow(response.data.message);
+                    setloader(false);
+                } else {
+                    localStorage.setItem('updateclose', "close");
+                    setTesting(true)
+                    setshowvalue(1 + response.data.message);
+                    setdialogformopen("true")
+                    setloader(false);
+                }
+
             } else {
-                localStorage.setItem('updateclose', "close"); 
+                localStorage.setItem('updateclose', "close");
                 setTesting(true)
                 setshowvalue("Registered Successfully");
                 setdialogformopen("true")
                 setloader(false)
             }
         })
-        .catch((err)=>{ return err; })
+            .catch((err) => { return err; })
     };
- 
+
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
         if (login === "false") {
@@ -57,7 +65,7 @@ const [loader,setloader]=useState(false);
         } else if (login === null) {
             Router.push("/")
         }
-    },[]);
+    }, []);
 
     return (
         <div>
@@ -103,8 +111,8 @@ const [loader,setloader]=useState(false);
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
-                               
-                                {loader===false ? <> <button type="submit" onClick={handleSubmit(addTeam)} className="btn2 float-end"> Add </button></>:<> <CircularProgress className="float-end" size={25} /></>} 
+                                <p className="me-2 text-danger">{show}</p>
+                                {loader === false ? <> <button type="submit" onClick={handleSubmit(addTeam)} className="btn2 float-end"> Add </button></> : <> <CircularProgress className="float-end" size={25} /></>}
                             </div>
                         </div>
                     </form>

@@ -29,7 +29,6 @@ export default function ScrollDialog(props) {
     const { currentDate } = useContext(CurrentDateContext);
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
-    const [show,setShow] = useState('');
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     var [showlogo, setShowlogo] = useState('');
@@ -71,11 +70,9 @@ export default function ScrollDialog(props) {
             }).then((response) => {
                 
                 if (response.data.statusCode === 400) {
-                    setShow(response.data.message)
                     setshowvalue(1+response.data.message)
                     setTesting(true)
                 } else {
-                    setShow("Registered Successfully");
                     setshowvalue("Registered Successfully")
                     setOpen(false);               
                     setTesting(true)

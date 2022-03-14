@@ -142,7 +142,7 @@ function Updatecustomer({ usersId }) {
                                     <div className="form-group">
                                         <label className="col label">Password</label>
                                         <input className="form-input" name="Password" type="text" ref={PasswordR} defaultValue={data.Password} />
-                                        <h5 className='text-danger'>{show}</h5>
+                                        <p className="me-2 text-danger">{show}</p>
                                     </div>
                                     <div className="row justify-content-center">
                                         <div className='bottom-area'>

@@ -18,9 +18,9 @@ const schema = yup.object().shape({
 });
 
 export default function Addcustomer() {
-    const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
+    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
-    const [loader,setloader]=useState(false);
+    const [loader, setloader] = useState(false);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
@@ -38,14 +38,14 @@ export default function Addcustomer() {
 
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('user'));
-    },[setCreatedby]);
+    }, [setCreatedby]);
     function handleScreenshot(e) {
         setLogovalidate(e.target.files[0]);
         setLogo(e.target.files[0]);
         setUploadLogo(URL.createObjectURL(e.target.files[0]));
     };
-    
-    const addUser = ({ Companyname, Clientname, Email, Phonenumber,Password }) => {
+
+    const addUser = ({ Companyname, Clientname, Email, Phonenumber, Password }) => {
         setloader(true)
         if (logovalidate === undefined) {
             setShowlogo("images is required")
@@ -66,12 +66,12 @@ export default function Addcustomer() {
                 }
             }).then((response) => {
                 if (response.data.statusCode === 400) {
-                    if(response.data.message === "Email already Exists!"){
+                    if (response.data.message === "Email already Exists!") {
                         setShow(response.data.message);
                         setloader(false);
-                    }else{
+                    } else {
                         setTesting(true)
-                        setshowvalue(1+response.data.message);
+                        setshowvalue(1 + response.data.message);
                         setdialogformopen("true");
                         setloader(false)
                     }
@@ -82,14 +82,15 @@ export default function Addcustomer() {
                     setloader(false)
                 }
             })
-                .catch((err) => { 
+                .catch((err) => {
                     setTesting(true)
-                    setshowvalue(1+"error");
+                    setshowvalue(1 + "error");
                     setloader(false)
-                    return err; })
+                    return err;
+                })
         }
     };
-   
+
     useEffect(() => {
         setShow();
         setLogin(window.localStorage.getItem('loggedin'));
@@ -98,7 +99,7 @@ export default function Addcustomer() {
         } else if (login === null) {
             Router.push("/");
         }
-    },[login]);
+    }, [login]);
 
     return (
         <div>
@@ -143,7 +144,8 @@ export default function Addcustomer() {
                         </div>
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
-                            {loader===false ? <><button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add {addmember}</button></>:<> <CircularProgress className="float-end" size={25} /></>} 
+                                <p className="me-2 text-danger">{show}</p>
+                                {loader === false ? <><button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add {addmember}</button></> : <> <CircularProgress className="float-end" size={25} /></>}
                             </div>
                         </div>
                     </form>
