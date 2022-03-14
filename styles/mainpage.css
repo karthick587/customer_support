@@ -569,9 +569,9 @@
 
   .updateadminpage {
     position: absolute;
-    right: -118px;
+    right: -136px;
     top: -1px;
-  }
+}
 
   .resentticket-table::-webkit-scrollbar {
     width: 4px;
