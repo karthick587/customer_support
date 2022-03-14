@@ -2369,7 +2369,7 @@ textarea:focus-visible {
 }
 
 input:focus-visible {
-  border: none !important;
+  border: none ;
   outline: none;
 }
 

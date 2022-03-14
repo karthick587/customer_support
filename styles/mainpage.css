@@ -389,10 +389,10 @@
 
   .card-1 {
     display: flex;
+    background-color: #1976d21a;
     padding: 24px 25px;
     margin: 10px 0px !important;
-
-  }
+}
 
   .css-1ty026z {
     flex: 1 1 auto;
@@ -411,12 +411,13 @@
     margin: 0px 0px !important;
     display: block;
   }
-
+  .Resentticket-page div {
+    background-color: #e8f1fa;
+}
   .resentticket {
     width: auto !important;
     margin: 10px -10px !important;
-
-  }
+}
 
   .css-s18byi {
     width: auto !important;
@@ -749,7 +750,7 @@
   .team-list div {
     padding: 0px 0px;
     margin-top: 8px;
-    margin-left: 18px;
+    margin-left: 13px;
     font-size: 11px;
   }
 
