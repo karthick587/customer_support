@@ -13,6 +13,7 @@ import CounterContextProvider from './components/contex/adminProvider';
 import CurrentDateContextProvider from './components/contex/currentdateProvider';
 import ListContextProvider from './components/contex/ListProvider';
 import TicketsContextProvider from './components/contex/ticketsProvider';
+import "react-datepicker/dist/react-datepicker.css";
 import FormAlert from './components/common/alert';
 
 function MyApp({ Component, pageProps }) {

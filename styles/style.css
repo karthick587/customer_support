@@ -1037,12 +1037,12 @@ form.form2 {
   padding-bottom: 8px;
 }
 
-.css-13xy2my {
-  overflow-y: hidden !important;
-}
+
 
 .css-ypiqx9-MuiDialogContent-root {
   padding: 20px 20px 0px 20px !important;
+  overflow: auto !important;
+  max-height: 89vh !important;
 }
 
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
@@ -1716,11 +1716,10 @@ h5.Completed {
 
 .updateadminpage {
   position: absolute;
-  right: 0;
+  right: -25px;
   margin-top: 0px;
-  top: 0;
+  top: -3px;
 }
-
 .tickets-bodyrow:hover {
   background-color: #1976d214;
   cursor: pointer;

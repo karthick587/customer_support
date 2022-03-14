@@ -27,6 +27,8 @@ import moment from 'moment';
 import { renderEmail } from 'react-html-email'
 import TicketCompletedBody from '../utils/ticketCompletedBody';
 import TicketAssignedBody from '../utils/ticketAssignedBody';
+import DatePicker from "react-datepicker";
+import { format } from 'date-fns';
 function Adminticket() {
     const { Email, setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList, addTeammember } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
@@ -57,6 +59,9 @@ function Adminticket() {
     const [currentpage, setCurrentpage] = useState(1);
     const [showdetails, setShowdetails] = useState(false);
     const [selectTeam, setselectTeam] = useState('x');
+    const [isOpenDatefilter, setIsOpenDatefilter] = useState(false);
+
+ const [startDate, setStartDate] = useState(new Date());
     useEffect(() => {
         localStorage.setItem("passValue", false);
     }, []);
@@ -71,6 +76,8 @@ function Adminticket() {
         if (filteredTitle === "all") {
             setIsOpenfilter(false);
             setSearch("");
+            setStartDate("");
+            setIsOpenDatefilter(false);
         } else {
             setIsOpenfilter(true);
         }
@@ -85,6 +92,10 @@ function Adminticket() {
         if (filteredTitle === "Status") {
             setIsOpenstatusfilter(true);
             setIsOpenfilter(false)
+        }
+        if(filteredTitle === "Date"){
+            setIsOpenDatefilter(true);
+            setIsOpenfilter(false);
         }
     }, [filteredTitle]);
     //page access
@@ -342,6 +353,15 @@ function Adminticket() {
                                     <option value="Completed">Completed</option>
                                 </select>
                             )}
+                            {isOpenDatefilter && (
+                                <DatePicker
+                                    dateFormat="dd-MM-yyyy"
+                                    selected={startDate}
+                                    onChange={(date) => setStartDate(date)}
+                                    isClearable
+                                    placeholderText="DD-MM-YYYY"
+                                />
+                            )} 
 
                         </div>
                     </div>
@@ -404,12 +424,14 @@ function Adminticket() {
                                                 return val.Status.includes('Completed')
                                             } else return val;
                                         } else if (filteredTitle === "Date") {
-                                            if (search === "" || search === " ") {
+                                            if (startDate === "" || startDate === Date.now() || startDate === undefined || startDate === null) {
                                                 return val
                                             } else if (val.Cus_CreatedOn !== null) {
-                                                return val.Cus_CreatedOn.toString().includes(search.toString())
+                                               if(val.Cus_CreatedOn.toString().includes(format((startDate),'dd-MM-yyyy'))){
+                                                   return val
+                                               }
                                             } else if (val.Adm_CreatedOn !== null) {
-                                                return val.Adm_CreatedOn.toString().includes(search.toString())
+                                                return val.Adm_CreatedOn.toString().includes(format((startDate),'dd-MM-yyyy'))
                                             }
                                         } else if (filteredTitle === "Email") {
                                             if (filteredStatus === "inprogress") {

@@ -14,14 +14,14 @@ export default function ListContextProvider(props){
         .then((res) => {
             setUsers(res.data);
         }).catch((err) => { return err; })
-}, [users,setUsers]);
+}, [users]);
 
 useEffect(() => {
     Axios.get("https://mindmadetech.in/api/team/list")
         .then((res) => {
             setTeam(res.data);
         }).catch((err) => { return err; })
-}, [team,setTeam]);
+}, [team]);
 
 useEffect(() => {
     setteamcount(team.filter(val => { return val.Isdeleted.toLowerCase().includes("n") }).map((teams)=> setteamcount(teams.Status)).length);

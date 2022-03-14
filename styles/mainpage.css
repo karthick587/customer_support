@@ -59,9 +59,7 @@
     /* display: block; */
   }
 
-  .addform {
-    width: 190px !important;
-  }
+
 
   .form.login {
 
@@ -166,9 +164,9 @@
 
   .updateadminpage {
     position: absolute;
-    right: -130px;
+    right: -150px;
     margin-top: 0px;
-    top: 0;
+    top: -4px;
   }
 
   .ticket-details-middle-1 {
@@ -238,12 +236,12 @@
 
   .TeamList-right {
     height: 24vh !important;
-    width: auto !important;
+
     overflow-y: auto;
     border: 1px solid #1976d23b !important;
     -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%) !important;
     box-shadow: 0px 5px 10px rgb(31 30 47 / 10%) !important;
-    margin: 10px 10px 0px 10px;
+    margin: 10px 0px 0px 0px;
     border-radius: 4px;
   }
 
@@ -264,7 +262,7 @@
 
   .form.dialog {
     padding-bottom: 40px;
-    width: 250px !important;
+    width: 400px !important;
   }
 
   .css-bhp9pd-MuiPaper-root-MuiCard-root {
@@ -279,9 +277,18 @@
     width: 100% !important;
   }
 
+  .form.dialog {
+    padding-bottom: 40px;
+    width: 275px !important;
+  }
+
+  .TeamList-right {
+    width: 160px !important;
+  }
+
   .dash-head.mt-1.mb-1 {
     margin: 0px 0px -10px -13px !important;
-}
+  }
 
   .Imageviewer-userimg2 {
     min-width: 300px;
@@ -576,7 +583,7 @@
 
   .updateadminpage {
     position: absolute;
-    right: -136px;
+    right: -150px;
     top: -1px;
   }
 
@@ -692,7 +699,7 @@
 
   .css-ypiqx9-MuiDialogContent-root {
     padding: 18px 18px 5px 15px;
-    width: 300px;
+    width: 313px;
   }
 
   .css-dsuxgy-MuiTableCell-root {
@@ -990,8 +997,8 @@
 
   .updateadminpage {
     position: absolute;
-    right: -83px;
-    margin-top: -6px;
+    right: -125px;
+    margin-top: -2px;
     top: 0;
   }
 }
@@ -1012,8 +1019,8 @@
 @media (min-width:1200px) and (max-width:1300px) {
   .updateadminpage {
     position: absolute;
-    right: -33px;
-    margin-top: -6px;
+    right: -60px;
+    margin-top: 0px;
     top: 0;
   }
 
