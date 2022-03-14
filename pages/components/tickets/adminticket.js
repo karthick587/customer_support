@@ -324,7 +324,7 @@ function Adminticket() {
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
                                 <option value="ticketsId">Tickets Id</option>
-                                <option value="Username">Username</option>
+                                <option value="Email">Email</option>
                                 <option value="Date">Date</option>
                                 {/* <option value="Team">Team</option> */}
                                 <option value="Status">Status</option>
@@ -372,22 +372,22 @@ function Adminticket() {
                                                     return val
                                                 }
                                             }
-                                        } else if (filteredTitle === "Username") {
+                                        } else if (filteredTitle === "Email") {
                                             if (search === " ") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes(`${filteredStatus}`)
+                                                return val.Email.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes(`${filteredStatus}`)
                                             }
                                             else if (filteredStatus === "all") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase())
+                                                return val.Email.toLowerCase().includes(search.toLowerCase())
                                             } else if (filteredStatus === "started") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
+                                                return val.Email.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('started')
                                             } else if (filteredStatus === "new") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
+                                                return val.Email.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('new')
                                             } else if (filteredStatus === "inprogress") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
+                                                return val.Email.toLowerCase().includes(search.toLowerCase()) && val.Status.toLowerCase().includes('inprogress')
                                             } else if (filteredStatus === "completed") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('completed')
+                                                return val.Email.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('completed')
                                             } else if (filteredStatus === "Completed") {
-                                                return val.Username.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
+                                                return val.Email.toLowerCase().includes(search.toLowerCase()) && val.Status.includes('Completed')
                                             } else return val;
                                         } else if (filteredTitle === "Status") {
                                             if (filteredStatus === "all") {
@@ -411,7 +411,7 @@ function Adminticket() {
                                             } else if (val.Adm_CreatedOn !== null) {
                                                 return val.Adm_CreatedOn.toString().includes(search.toString())
                                             }
-                                        } else if (filteredTitle === "Username") {
+                                        } else if (filteredTitle === "Email") {
                                             if (filteredStatus === "inprogress") {
                                                 //return val.Status.toLowerCase().includes("inprogress")
                                             } else if (filteredStatus === "completed") {

@@ -279,6 +279,10 @@
     width: 100% !important;
   }
 
+  .dash-head.mt-1.mb-1 {
+    margin: 0px 0px -10px -13px !important;
+}
+
   .Imageviewer-userimg2 {
     min-width: 300px;
     max-width: 300px;
@@ -392,7 +396,7 @@
     background-color: #1976d214;
     padding: 24px 25px;
     margin: 19px 0px !important;
-}
+  }
 
   .css-1ty026z {
     flex: 1 1 auto;
@@ -411,24 +415,27 @@
     margin: 0px 0px !important;
     display: block;
   }
+
   .resentticket-table {
     background-color: transparent !important;
-}
- 
-.resentticket {
-  width: auto !important;
-  background-color: #edf4fb;
-  margin: 10px -10px !important;
-}
+  }
+
+  .resentticket {
+    width: auto !important;
+    background-color: #edf4fb;
+    margin: 10px -10px !important;
+  }
 
   .css-s18byi {
     width: auto !important;
     margin: 20px -10px;
 
   }
-  .css-s18byi{
+
+  .css-s18byi {
     background-color: #edf4fb !important;
   }
+
   .css-bhp9pd-MuiPaper-root-MuiCard-root {
     width: auto !important;
     background-color: #edf4fb;
@@ -571,7 +578,7 @@
     position: absolute;
     right: -136px;
     top: -1px;
-}
+  }
 
   .resentticket-table::-webkit-scrollbar {
     width: 4px;
@@ -628,7 +635,7 @@
     padding: 0px !important;
   }
 
- 
+
 
   .css-fxbtpg {
     background-color: white !important;
@@ -975,16 +982,18 @@
     top: 0;
   }
 }
+
 @media (min-width:1000px) and (max-width:1100px) {
   .class {
-      display: none;
+    display: none;
   }
+
   .updateadminpage {
     position: absolute;
     right: -83px;
     margin-top: -6px;
     top: 0;
-}
+  }
 }
 
 
@@ -996,27 +1005,29 @@
     right: -83px;
     margin-top: -6px;
     top: 0;
+  }
+
 }
-  
-}
+
 @media (min-width:1200px) and (max-width:1300px) {
   .updateadminpage {
     position: absolute;
     right: -33px;
     margin-top: -6px;
     top: 0;
+  }
+
 }
-  
-}
+
 @media (min-width: 1200px) {
   .container, .container-lg, .container-md, .container-sm, .container-xl {
     max-width: 1340px !important;
   }
- 
- 
+
+
 }
 
-@media  only screen and (max-width:1310px) {
+@media only screen and (max-width:1310px) {
   .userbody {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 
