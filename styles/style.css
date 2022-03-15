@@ -2627,3 +2627,6 @@ input:focus-visible {
   font-size: 14px;
   font-weight: 500;
 }
+.profile-card-body div {
+  padding: 2px 10px;
+}

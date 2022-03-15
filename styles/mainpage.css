@@ -277,7 +277,9 @@
   .react-piechart div div {
     width: 100% !important;
   }
-
+  .profile-card-body div {
+    padding: 0px;
+}
   .login-Unregistered p {
     margin: -7px 5px !important;
     padding: 0px !important;
