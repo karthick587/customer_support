@@ -1275,8 +1275,8 @@ img.screeshot-img-viewer {
 }
 
 .send-email-dailog button a svg {
-  color: white;
-  background-color: #1976d2 !important;
+  color: #1976d2;
+  background-color: #e3eef8 !important;
 }
 
 .send-email-dailog {
@@ -1656,7 +1656,9 @@ h5.Completed {
 
 .profile-page-img {
   min-width: 150px;
+  border: 5px solid #1976d21c;
   max-width: 150px;
+  background-color: white;
   min-height: 150px;
   max-height: 150px;
   object-fit: contain;
@@ -2255,7 +2257,7 @@ div#v-pills-dash {
   font-family: inherit;
   font-weight: 500 !important;
   color: #1976d2 !important;
-  font-size: 1.3rem !important;
+  font-size: 1.25rem !important;
   letter-spacing: 0em;
   display: block;
 }
@@ -2620,4 +2622,8 @@ input:focus-visible {
 .label span{
   color: red !important;
   font-size: 15px;
+}
+.profile-input {
+  font-size: 14px;
+  font-weight: 500;
 }

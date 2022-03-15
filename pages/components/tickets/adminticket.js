@@ -29,6 +29,7 @@ import TicketCompletedBody from '../utils/ticketCompletedBody';
 import TicketAssignedBody from '../utils/ticketAssignedBody';
 import DatePicker from "react-datepicker";
 import { format } from 'date-fns';
+import EmailIcon from '@mui/icons-material/Email';
 function Adminticket() {
     const { Email, setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList, addTeammember } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
@@ -61,7 +62,7 @@ function Adminticket() {
     const [selectTeam, setselectTeam] = useState('x');
     const [isOpenDatefilter, setIsOpenDatefilter] = useState(false);
 
- const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
     useEffect(() => {
         localStorage.setItem("passValue", false);
     }, []);
@@ -93,7 +94,7 @@ function Adminticket() {
             setIsOpenstatusfilter(true);
             setIsOpenfilter(false)
         }
-        if(filteredTitle === "Date"){
+        if (filteredTitle === "Date") {
             setIsOpenDatefilter(true);
             setIsOpenfilter(false);
         }
@@ -201,7 +202,6 @@ function Adminticket() {
             Adm_UpdatedBy: Createdby,
             Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
         }).then((_response) => {
-
             setdialogformopen("true")
             localStorage.setItem("passValue", true);
             setTesting(true)
@@ -243,7 +243,6 @@ function Adminticket() {
     function reassign(TeamAssign, ticketsId) {
         idmailticket = ticketsId
         var TeamList = [...designTeamList]
-
         TeamAssign.map((product) => {
             TeamList.push(product.teamId)
         })
@@ -300,27 +299,16 @@ function Adminticket() {
                         setshowvalue(1 + "Re Assigned Failed");
                         return err;
                     })
-
             } else {
                 console.log("not deleted")
-
             }
-
         })
             .catch((err) => {
                 setTesting(true)
                 setshowvalue(1 + "Assigned Failed");
                 return err;
             })
-
-
-
-
-
-
-
     }
-
     return (
         <div>
             <Head>
@@ -361,7 +349,7 @@ function Adminticket() {
                                     isClearable
                                     placeholderText="DD-MM-YYYY"
                                 />
-                            )} 
+                            )}
 
                         </div>
                     </div>
@@ -427,11 +415,11 @@ function Adminticket() {
                                             if (startDate === "" || startDate === Date.now() || startDate === undefined || startDate === null) {
                                                 return val
                                             } else if (val.Cus_CreatedOn !== null) {
-                                               if(val.Cus_CreatedOn.toString().includes(format((startDate),'dd-MM-yyyy'))){
-                                                   return val
-                                               }
+                                                if (val.Cus_CreatedOn.toString().includes(format((startDate), 'dd-MM-yyyy'))) {
+                                                    return val
+                                                }
                                             } else if (val.Adm_CreatedOn !== null) {
-                                                return val.Adm_CreatedOn.toString().includes(format((startDate),'dd-MM-yyyy'))
+                                                return val.Adm_CreatedOn.toString().includes(format((startDate), 'dd-MM-yyyy'))
                                             }
                                         } else if (filteredTitle === "Email") {
                                             if (filteredStatus === "inprogress") {
@@ -497,8 +485,8 @@ function Adminticket() {
                                             />
                                             <FormDialog
                                                 dialog_className="send-email-dailog"
-                                                dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username, tickets.Email)}><UpgradeIcon /></a>}
-                                                className="btn3 ticket-update2"
+                                                dialogtitle={<a onClick={() => updateemail(tickets.ticketsId, tickets.Username, tickets.Email)}><EmailIcon /></a>}
+                                                className=""
                                                 dialogbody={
                                                     <div className="form dialog emaildialog">
                                                         <div className="form-group">

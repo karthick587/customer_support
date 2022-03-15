@@ -185,7 +185,7 @@ export default function Login1() {
                           <div>{forgetValidate}</div>
                           {display === true ? <></> : <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>}
 
-                          <Button className='w-100' onClick={() => setdialogformopen("true") & setforgetValidate("") & setdisplay(false) & setforgetValue('')} >{display === true ? "Ok" : "Cancel"}</Button>
+                          <Button className='w-100' onClick={() => setdialogformopen("true")&setforgetValidate("")&setdisplay(false)&setforgetValue('')} >{display === true ? "Ok" : "Cancel"}</Button>
                         </div>
                       }
                     />

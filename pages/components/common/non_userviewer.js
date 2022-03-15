@@ -69,6 +69,11 @@ function Non_userviewer(props) {
                 }).then(
                     message => console.log(message)
                 );
+                Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
+                    Status: "Approved",
+                    Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+                    Adm_UpdatedBy: window.localStorage.getItem('ad_email')
+                });
             }
         }).catch((err) => {
             setTesting(true)
@@ -88,11 +93,7 @@ function Non_userviewer(props) {
             setshowvalue("Ticket Raised  Successfully")
             return res;
         }).catch((err) => { return err });
-        Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${nonuser.registerId}`, {
-            Status: "Approved",
-            Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
-            Adm_UpdatedBy: window.localStorage.getItem('ad_email')
-        });
+
     };
 
     return (
@@ -180,7 +181,7 @@ function Non_userviewer(props) {
                                     {nonuser.DomainName}
                                 </div>
                             </div>
-                            <div className='label-ticket-details' onClick={()=>console.log(nonuser.Logo)}>
+                            <div className='label-ticket-details' onClick={() => console.log(nonuser.Logo)}>
                                 Description
                             </div>
                             <div className='ticket-input-details' >
