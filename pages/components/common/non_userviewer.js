@@ -142,45 +142,37 @@ function Non_userviewer(props) {
                                     {nonuser.Email}
                                 </div>
                             </div>
+                            <div className='col'>
+                                <div className='label-ticket-details'>
+                                    Phonenumber
+                                </div>
+                                <div className='user-label-ticket-details'>
+                                    {nonuser.Phonenumber}
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                     <div className='user-profile-ticket-details row'>
-                        <div className='ticket-details-screenshot col'>
-                            <div className='label-ticket-details'>
-                                Logo
-                            </div>
-                            <Imageviewer
-                                imgdialogbutton={<img src={nonuser.Logo} alt="screenshots" width={200} height={100} />}
-                                imgdialogbody={<img className=' Imageviewer-userimg' src={nonuser.Logo} alt="screenshots" />}
-                            />
-                        </div>
+
                         <div className='user-profile-ticket-details-2 col flex'>
                             <div>
-                                <div className='label-ticket-details'>
-                                    Phonenumber
-                                </div>
-                                <div className='ticket-input-details' >
-                                    {nonuser.Phonenumber}
-                                </div>
                                 <div className='label-ticket-details'>
                                     Date
                                 </div>
                                 <div className='ticket-input-details' >
                                     {nonuser.CreatedOn}
                                 </div>
+                                <div className='label-ticket-details'>
+                                    DomainName
+                                </div>
+                                <div className='ticket-input-details' >
+                                    {nonuser.DomainName}
+                                </div>
                             </div>
                         </div>
 
                         <div className='user-profile-ticket-details-1 col'>
-                            <div className='col'>
-                                <div className='label-ticket-details'>
-                                    DomainName
-                                </div>
-                                <div className='user-label-ticket-details'>
-                                    {nonuser.DomainName}
-                                </div>
-                            </div>
                             <div className='label-ticket-details' onClick={() => console.log(nonuser.Logo)}>
                                 Description
                             </div>

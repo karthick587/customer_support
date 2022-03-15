@@ -17,6 +17,7 @@ function NonUserTickets(props) {
     const [showdetails, setShowdetails] = useState(false);
     var [nonUser, setNonUser] = useState([]);
     const [registerId, setRegisterId] = useState(null);
+    var [filteredTitle, setFilteredTitle] = useState('all');
 
     function ShowDetail(registerId) {
         setRegisterId(registerId)
@@ -27,7 +28,7 @@ function NonUserTickets(props) {
         Axios.get("https://mindmadetech.in/api/unregisteredcustomer/list")
             .then((res) => setNonUser(res.data.reverse()))
             .catch((err) => { return err; })
-        setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket) => setPendingCount(ticket.Status.length)).length);
+        setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket)=> setPendingCount(ticket.Status.length)).length);
         props.callback(PendingCount)
     }, [setNonUser, nonUser]);
 
@@ -54,6 +55,14 @@ function NonUserTickets(props) {
                     <div className='header-user'>
 
                         <div><h1>UNREGISTERED CLIENTS </h1></div>
+                        <div className='filter-head flex'>
+                            <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
+                                <option value="all">All</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                            </div>
 
                     </div>
                     <TableContainer component={Paper}>
@@ -70,7 +79,23 @@ function NonUserTickets(props) {
                             </TableHead>
 
                             <TableBody   >
-                                {nonUser.slice((currentpage - 1) * datalimit, currentpage * datalimit).map(value =>
+                                {nonUser.filter(fil=>{
+                                    if(filteredTitle === 'all'){
+                                        return fil;
+                                    }else{
+                                        switch(filteredTitle){
+                                            case 'Pending':
+                                                return fil.Status.toLowerCase().includes('Pending'.toLowerCase());
+                                                break;
+                                            case 'Approved':
+                                                return fil.Status.toLowerCase().includes('Approved'.toLowerCase());
+                                                break;
+                                            case 'Rejected':
+                                                return fil.Status.toLowerCase().includes('Rejected'.toLowerCase());
+                                                break;
+                                        }
+                                    }
+                                }).slice((currentpage - 1)  *datalimit, currentpage  *datalimit).map(value =>
                                     <TableRow key={value.registerId} onClick={() => ShowDetail(value.registerId)} className={value.Status === "Pending" ? "highlighted-row" : "tickets-bodyrow"}>
                                         <TableCell align="left">{value.registerId}</TableCell>
                                         <TableCell align="left" className='table_spacing'>  {value.Email}</TableCell>

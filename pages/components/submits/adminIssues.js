@@ -8,7 +8,7 @@ export default function Adminissues(props) {
     const { currentDate } = useContext(CurrentDateContext);
     const { setTesting, setshowvalue } = useContext(CounterContext)
     const [loader, setloader] = useState(false);
-    const [show, setShow] = useState();
+    const [show, setShow] = useState('');
     const EmailR = useRef();
     const PhonenumberR = useRef();
     const DomainnameR = useRef();
@@ -27,65 +27,75 @@ export default function Adminissues(props) {
         setLogo(e.target.files);
     };
     function addIssues() {
-        if (Logo!=="x") {
-            const data = new FormData();
-            data.append("Email", EmailR.current.value);
-            data.append("Phonenumber", PhonenumberR.current.value);
-            data.append("DomainName", DomainnameR.current.value);
-            data.append("Description", DescriptionR.current.value);
-            data.append("Adm_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
-            data.append("Adm_CreatedBy", Createdby);
-            data.append("Cus_CreatedOn", "null")
-            for (let i = 0; i < Logo.length; i++) {
-                data.append("files", Logo[i]);
-            }
-            Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
+        const EmailValidate = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+        if(EmailR.current.value!=="" && PhonenumberR.current.value!=="" && DomainnameR.current.value!=="" && DescriptionR.current.value!==""){
+            if(!EmailValidate.test(String(EmailR.current.value).toLowerCase())){
+                setShow("Invalid Email")
+            }else{
+                if (Logo!=="x") {
+                    const data = new FormData();
+                    data.append("Email", EmailR.current.value);
+                    data.append("Phonenumber", PhonenumberR.current.value);
+                    data.append("DomainName", DomainnameR.current.value);
+                    data.append("Description", DescriptionR.current.value);
+                    data.append("Adm_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
+                    data.append("Adm_CreatedBy", Createdby);
+                    data.append("Cus_CreatedOn", "null")
+                    for (let i = 0; i < Logo.length; i++) {
+                        data.append("files", Logo[i]);
+                    }
+                    Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        }
+                    }).then((res) => {
+                        setTesting(true)
+                        setshowvalue("Submitted Successfully");
+                        setloader(false);
+                        EmailR.current.value = " ";
+                        PhonenumberR.current.value = " ";
+                        DomainnameR.current.value = " ";
+                        DescriptionR.current.value = " ";
+                        FileR.current.value = null;
+                    }).catch((err) => {
+                        setTesting(true)
+                        setshowvalue(1+"Submission failled1");
+                        return err;
+                    })
+                } else {
+                    const data = new FormData();
+                    data.append("Email", EmailR.current.value);
+                    data.append("Phonenumber", PhonenumberR.current.value);
+                    data.append("DomainName", DomainnameR.current.value);
+                    data.append("Description", DescriptionR.current.value);
+                    data.append("Adm_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
+                    data.append("Adm_CreatedBy", Createdby);
+                    data.append("Cus_CreatedOn", "null")
+        
+                    Axios.post("https://mindmadetech.in/api/tickets/new", data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        }
+                    }).then((res) => {
+                        setTesting(true)
+                        setshowvalue("Submitted Successfully");
+                        setloader(false);
+                        EmailR.current.value = " ";
+                        PhonenumberR.current.value = " ";
+                        DomainnameR.current.value = " ";
+                        DescriptionR.current.value = " ";
+                        FileR.current.value = null;
+                    }).catch((err) => {
+                        setTesting(true)
+                        setshowvalue(1+"Submission failled2");
+                        return err;
+                    })
                 }
-            }).then((res) => {
-                setTesting(true)
-                setshowvalue("Submitted Successfully");
-                setloader(false);
-                EmailR.current.value = " ";
-                PhonenumberR.current.value = " ";
-                DomainnameR.current.value = " ";
-                DescriptionR.current.value = " ";
-                FileR.current.value = null;
-            }).catch((err) => {
-                setTesting(true)
-                setshowvalue(1+"Submission failled1");
-                return err;
-            })
-        } else {
-            const data = new FormData();
-            data.append("Email", EmailR.current.value);
-            data.append("Phonenumber", PhonenumberR.current.value);
-            data.append("DomainName", DomainnameR.current.value);
-            data.append("Description", DescriptionR.current.value);
-            data.append("Adm_CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
-            data.append("Adm_CreatedBy", Createdby);
-            data.append("Cus_CreatedOn", "null")
-
-            Axios.post("https://mindmadetech.in/api/tickets/new", data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            }).then((res) => {
-                setTesting(true)
-                setshowvalue("Submitted Successfully");
-                setloader(false);
-                EmailR.current.value = " ";
-                PhonenumberR.current.value = " ";
-                DomainnameR.current.value = " ";
-                DescriptionR.current.value = " ";
-                FileR.current.value = null;
-            }).catch((err) => {
-                setTesting(true)
-                setshowvalue(1+"Submission failled2");
-                return err;
-            })
+            }  
+        }else{
+            setShow("*Mandatory fields are required")
         }
+        
     }
 
     return (
@@ -96,19 +106,19 @@ export default function Adminissues(props) {
             </div>
             <form className="form3" action="/" method="post">
                 <div className="form-group mb-2 flex">
-                    <label className="label width-25">Email ID</label>
+                    <label className="label width-25">Email ID<span>*</span></label>
                     <input className="issue-form-input" name="email" type="text" ref={EmailR} />
                 </div>
                 <div className="form-group mb-2 flex">
-                    <label className="label width-25">Phonenumber</label>
+                    <label className="label width-25">Phonenumber<span>*</span></label>
                     <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR} />
                 </div>
                 <div className="form-group mb-2 flex">
-                    <label className="label width-25">Domain Name</label>
+                    <label className="label width-25">Domain Name<span>*</span></label>
                     <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} />
                 </div>
                 <div className="form-group scrolable  mb-2">
-                    <label className="label">Description</label>
+                    <label className="label">Description<span>*</span></label>
                     <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" />
                 </div>
                 <div className="form-group  mb-2">
@@ -129,6 +139,7 @@ export default function Adminissues(props) {
                     </form>
                 </div>
                 <div className="">
+                    <p className='me-2 text-danger'>{show}</p>
                     {loader === false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></> : <> <CircularProgress size={30} /></>}
                 </div>
             </form>

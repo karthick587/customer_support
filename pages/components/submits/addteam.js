@@ -27,7 +27,8 @@ function Addteam() {
 
     const addTeam = ({ Email, Password, Phonenumber }) => {
         setloader(true)
-        Axios.post(`https://mindmadetech.in/api/team/new`, {
+        if(Email!=="" && Password!=="" && Phonenumber!=="" && addteam!==""){
+            Axios.post(`https://mindmadetech.in/api/team/new`, {
             Email: Email,
             Password: Password,
             Team: addteam,
@@ -56,6 +57,9 @@ function Addteam() {
             }
         })
             .catch((err) => { return err; })
+        }else{
+            setshow("Please select ")
+        } 
     };
 
     useEffect(() => {
@@ -95,17 +99,17 @@ function Addteam() {
                 <div className="addform">
                     <form>
                         <div className="form-group">
-                            <label className="label">Email</label>
+                            <label className="label">Email<span>*</span></label>
                             <input className="form-input" name="Email" type="email" {...register('Email')} />
                             <p className="me-2 text-danger">{errors.Email?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">Password</label>
+                            <label className="col label">Password<span>*</span></label>
                             <input className="form-input" name="Password" type="password" {...register('Password')} />
                             <p className="me-2 text-danger">{errors.Password?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">Phonenumber</label>
+                            <label className="col label">Phonenumber<span>*</span></label>
                             <input className="form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                             <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                         </div>

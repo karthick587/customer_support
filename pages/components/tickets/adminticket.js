@@ -85,7 +85,7 @@ function Adminticket() {
         setShow();
     }, [filteredTitle]);
     useEffect(() => {
-        if (filteredTitle === "Username") {
+        if (filteredTitle === "Email") {
             setIsOpenstatusfilter(true);
         } else {
             setIsOpenstatusfilter(false);
@@ -97,6 +97,8 @@ function Adminticket() {
         if (filteredTitle === "Date") {
             setIsOpenDatefilter(true);
             setIsOpenfilter(false);
+        }else{  
+            setIsOpenDatefilter(false);
         }
     }, [filteredTitle]);
     //page access

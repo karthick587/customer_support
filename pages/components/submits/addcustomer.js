@@ -12,11 +12,11 @@ import moment from 'moment';
 import CustomerCreatedBody from '../utils/CustomerCreatedBody';
 import { renderEmail } from 'react-html-email'
 const schema = yup.object().shape({
-    Companyname: yup.string().required(),
-    Clientname: yup.string().required(),
-    Email: yup.string().required().email(),
-    Phonenumber: yup.string().required().max(10),
-    Password: yup.string().required(),
+    Companyname: yup.string().required("*required"),
+    Clientname: yup.string().required("*required"),
+    Email: yup.string().required("*required").email(),
+    Phonenumber: yup.string().required("*required").max(10),
+    Password: yup.string().required("*required"),
 });
 
 export default function Addcustomer() {
@@ -51,7 +51,7 @@ var email2=Email
         const messageHtml2 = renderEmail(<CustomerCreatedBody name={Clientname} email={Email} password={Password} />)
         setloader(true)
         if (logovalidate === undefined) {
-            setShowlogo("images is required")
+            setShow("Logo is required")
             setloader(false)
         } else {
             const data = new FormData();
@@ -125,7 +125,7 @@ var email2=Email
                         <div className="form-group upload">
                             <label htmlFor="contained-button-file">
                                 <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
-                                <p className="text-danger mt-3 ml-2">{showlogo}</p>
+                                {/* {/ <p className="text-danger mt-3 ml-2">{showlogo}</p> /} */}
                                 <Avatar
                                     alt="uploadlogo"
                                     src={uploadLogo}
@@ -134,27 +134,27 @@ var email2=Email
                             </label>
                         </div>
                         <div className="form-group">
-                            <label className="label">Company Name</label>
+                            <label className="label">Company Name<span>*</span></label>
                             <input className="form-input" name="Companyname" type="text" {...register('Companyname')} />
                             <p className="me-2 text-danger">{errors.Companyname?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="label"> Client Name</label>
+                            <label className="label"> Client Name<span>*</span></label>
                             <input className="form-input" name="Clientname" type="text" {...register('Clientname')} />
                             <p className="me-2 text-danger">{errors.Clientname?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">Email ID</label>
+                            <label className="col label">Email ID<span>*</span></label>
                             <input className="form-input" name="Email" type="text" {...register('Email')} />
                             <p className="me-2 text-danger">{errors.Email?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">Phonenumber</label>
+                            <label className="col label">Phonenumber<span>*</span></label>
                             <input className="form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                             <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                         </div>
                         <div className="form-group">
-                            <label className="col label">Password</label>
+                            <label className="col label">Password<span>*</span></label>
                             <input className="form-input" name="Password" type="password" {...register('Password')} />
                             <p className="me-2 text-danger">{errors.Password?.message}</p>
                         </div>

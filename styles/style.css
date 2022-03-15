@@ -133,7 +133,7 @@ a {
   font-weight: 700 !important;
   background-color: #0c3b69 !important;
   margin: 10px 14px !important;
-  z-index: 99 !important;
+  z-index: 99999 !important;
 }
 
 .close-btn:hover {
