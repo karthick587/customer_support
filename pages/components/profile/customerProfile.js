@@ -57,7 +57,7 @@ export default function CustomerProfile(props) {
                                         <div className="col-sm-3">
                                             <h6 className="mb-0 profile-label mm-color">Password</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <div className="flex password-input-div">
                                                 <input className='password-input' value={users.Password} type={show === true ? "text" : "password"} />
                                                 <Button onClick={() => setshow(!show)}>{!show ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
