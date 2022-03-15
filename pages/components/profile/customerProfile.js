@@ -47,15 +47,15 @@ export default function CustomerProfile(props) {
                                             {users.Email}
                                         </div>
                                     </div> */}
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 profile-label mm-color">Email</h6>
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0 profile-label mm-color">Email</h6>
                                         </div>
-                                        <div class="col-sm-9  profile-input"> {users.Email}</div>
+                                        <div className="col-sm-9  profile-input"> {users.Email}</div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 profile-label mm-color">Password</h6>
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0 profile-label mm-color">Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <div className="flex password-input-div">
