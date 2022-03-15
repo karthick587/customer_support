@@ -13,7 +13,10 @@ import ScrollDialog from '../non_user';
 import FormDialog from '../common/dialogsform';
 import { Typography } from '@mui/material';
 import ForgetPasswordBody from '../utils/forgetPasswordBody';
-import { renderEmail } from 'react-html-email'
+import { renderEmail } from 'react-html-email';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required().min(6)
@@ -23,6 +26,7 @@ export default function Login1() {
   const { setTesting, setshowvalue, setdialogformopen, Email } = useContext(CounterContext)
   const router = useRouter();
   const [userlogin, setUserlogin] = useState('');
+  const [show5, setshow5] = useState(false);
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
@@ -155,10 +159,12 @@ export default function Login1() {
                   </div>
                   <div className="form-group log">
                     <label className="label">Password<span>*</span></label>
-                    <input className="form-input" name="password" type="password"  {...register('password')} />
+                    <div className='login-input-password'>
+                        <input className="form-input" type={show5 === true ? "text" : "password"} name='password' {...register('password')} />
+                        <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                    </div>
                     <p className="me-2 text-danger">{errors.password?.message}</p>
                   </div>
-
                   <div className="form-group mt-2 log">
                     <Button className="btn" type="submit" onClick={handleSubmit(adminLogin)}><a className="nav-link">Login</a></Button>
                   </div>

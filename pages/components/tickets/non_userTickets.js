@@ -55,7 +55,7 @@ function NonUserTickets(props) {
                     <div className='header-user'>
 
                         <div><h1>UNREGISTERED CLIENTS </h1></div>
-                        <div className='filter-head flex'>
+                        <div className='filter-head flex ms-2'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
                                 <option value="Pending">Pending</option>

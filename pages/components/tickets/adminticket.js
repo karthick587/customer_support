@@ -327,7 +327,6 @@ function Adminticket() {
                                 <option value="ticketsId">Tickets Id</option>
                                 <option value="Email">Email</option>
                                 <option value="Date">Date</option>
-                                {/* <option value="Team">Team</option> */}
                                 <option value="Status">Status</option>
                             </select>
                             {isOpenfilter && (

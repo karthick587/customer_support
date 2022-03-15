@@ -2634,3 +2634,10 @@ input:focus-visible {
 .inprogress-icon{
   font-size: 40px !important;
 }
+.login-input-password{
+  position: relative;
+}
+.login-password-i{
+  position: absolute;
+  right: 0;
+}
