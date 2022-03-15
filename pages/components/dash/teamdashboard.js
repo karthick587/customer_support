@@ -142,7 +142,7 @@ const TeamDashboard = () => {
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
                         <div className='dash-head'>
-                          <h2>DASHBOARD</h2>
+                          <h1>DASHBOARD</h1>
                         </div>
                         <div className='dash-body'>
                           <div className='dash-cards'>

@@ -31,6 +31,7 @@ function Teamticket(props) {
     const [dticketsId, setdticketsId] = useState("");
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
     const [showdetails, setShowdetails] = useState(false);
+    var [search, setSearch] = useState('');
 
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
@@ -151,15 +152,16 @@ function Teamticket(props) {
             </Head>
             {showdetails === false ?
                 <div className="teambody">
-                   <div className='dash-head mt-1 mb-1'>
+                   <div className='dash-head mt-2 mb-3 header-user'>
                         <h1>TICKETS</h1>
+                        <input placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
                     </div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell  >TICKETS ID</TableCell>
-                                    <TableCell align="left">Email</TableCell>
+                                    <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">DATE</TableCell>
                                     <TableCell align="left">TEAM</TableCell>
                                     <TableCell align="left">STATUS</TableCell>
