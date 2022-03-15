@@ -280,6 +280,14 @@
   .profile-card-body div {
     padding: 0px;
 }
+.change-pass-userbody {
+  padding: 11px 10px 20px 26px;
+}
+.change-pass-userbody input {
+  border: 1px solid #1976d22b;
+  border-radius: 5px;
+  width: 180px;
+}
   .login-Unregistered p {
     margin: -7px 5px !important;
     padding: 0px !important;

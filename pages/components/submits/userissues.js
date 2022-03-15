@@ -107,19 +107,19 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                 <h5 className="issue-form-input">{customername}</h5>
             </div>
            
-            <div className="form-group mb-2 flex">
+            <div className="form-group mb-3 flex">
                 <label className="label width-25">Phonenumber</label>
                 <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR}/>
             </div>
-            <div className="form-group mb-2 flex">
+            <div className="form-group mb-3 flex">
                 <label className="label width-25">Domain Name</label>
                 <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} />
             </div>
-            <div className="form-group scrolable  mb-2">
+            <div className="form-group scrolable  mb-3">
                 <label className="label">Description</label>
                 <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" />
             </div>
-            <div className="form-group  mb-2">
+            <div className="form-group  mb-3">
                 <form>
                     <label htmlFor="contained-button-file">
                         <input type="file"

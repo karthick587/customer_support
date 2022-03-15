@@ -69,7 +69,7 @@ export default function CustomerChangePass(props) {
                                 New Password
                             </h6>
                         </div>
-                        :
+                        
                         <div className="col ">
                             <div className='flex'>
                                 <input type={show5 === true ? "text" : "password"} name='password' {...register('password')} />
@@ -84,7 +84,7 @@ export default function CustomerChangePass(props) {
                                 Confirm Password
                             </h6>
                         </div>
-                        :
+                        
                         <div className="col ">
                         <div className='flex'>
                                 <input type={show5 === true ? "text" : "password"}  name='confirmPwd' {...register('confirmPwd')} />
