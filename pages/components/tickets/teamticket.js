@@ -192,7 +192,7 @@ function Teamticket(props) {
                                         dialog_className="update7"
                                         dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
                                         className="btn3 ticket-update2"
-                                        dialogbody={<div>{disabled === "disabled" ? <div className='ticket-update-alert'>Ticket has been completed</div> :
+                                        dialogbody={<div>{tickets.Status==="Completed" ? <div className='ticket-update-alert'>Ticket has been completed</div> :
                                             <div className="form dialog" >
                                                 <div className="form-toggle"></div>
                                                 <div className="form-panel update one">
