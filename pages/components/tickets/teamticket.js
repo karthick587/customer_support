@@ -167,7 +167,16 @@ function Teamticket(props) {
                                     <TableCell align="left">STATUS</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {mapteamticket.slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
+                            {mapteamticket.filter(val => {
+                                if (search === "") {
+                                    return val;
+                                } else if (val.Email.toLowerCase().includes(search.toLowerCase()) ||
+                                    val.Status.toLowerCase().includes(search.toLowerCase()) ||
+                                    val.ticketsId.toString().toLowerCase().includes(search.toLowerCase().toString())||
+                                    val.Cus_CreatedOn.toString().includes(search.toString())) {
+                                    return val;
+                                } else null;
+                            }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
                                 <TableBody key={tickets.ticketsId} className='update-right' >
                                     <TableRow className="tickets-bodyrow update6" onClick={() => Notificationupdate(tickets.ticketsId, tickets.Screenshots)}>
                                         <TableCell>{tickets.ticketsId}</TableCell>
