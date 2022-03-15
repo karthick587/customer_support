@@ -330,7 +330,7 @@
 
   .header-user h1 {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 15px;
     padding: 0px;
     margin: 4px 0px;
     font-family: Readex Pro, sans-serif;
@@ -904,7 +904,7 @@
     display: flex;
     position: relative;
     padding: 0;
-    margin: 0px;
+    margin: 11px 0px 0px 0px;
 }
 
   .keen-slider__slide.number-slide2 {
