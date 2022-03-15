@@ -298,8 +298,8 @@
 
  
   .dash-head.mt-1.mb-1 {
-    margin: 0px 0px -10px -13px !important;
-  }
+    margin: 6px 0 -6px 5px!important;
+}
 
   .Imageviewer-userimg2 {
     min-width: 300px;
@@ -892,9 +892,9 @@
   .header-user {
     display: flex;
     position: relative;
-    padding: 0px;
-    margin: 15px 0px 0px 0px;
-  }
+    padding: 0;
+    margin: 0px;
+}
 
   .keen-slider__slide.number-slide2 {
     background-color: transparent;
