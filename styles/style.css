@@ -2630,3 +2630,7 @@ input:focus-visible {
 .profile-card-body div {
   padding: 2px 10px;
 }
+
+.inprogress-icon{
+  font-size: 40px !important;
+}

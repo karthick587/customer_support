@@ -18,6 +18,7 @@ import FormAlert from "../common/alert";
 import TeamPiechart from "./teamPiechart";
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import CustomerChangePass from "../profile/CustomerChangePass";
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 const TeamDashboard = () => {
   const [finishStatus, setfinishStatus] = useState(false);
   const [login, setLogin] = useState();
@@ -141,7 +142,7 @@ const TeamDashboard = () => {
                   <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
-                        <div className='dash-head'>
+                        <div className='dash-head mb-1'>
                           <h1>DASHBOARD</h1>
                         </div>
                         <div className='dash-body'>
@@ -157,7 +158,7 @@ const TeamDashboard = () => {
                                 cardHead="Tickets in inprogress"
                                 cardbody={teaminprogresscount}
                                 
-                                cardIcon={<FontAwesomeIcon icon={faUsers} />}
+                                cardIcon={<HourglassTopIcon className='inprogress-icon' />}
                               />
                               <Dashcard
                                 cardHead="Tickets completed"

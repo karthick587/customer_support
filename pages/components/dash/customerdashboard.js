@@ -14,7 +14,7 @@ import CustomerProfile from "../profile/customerProfile";
 import Dashcard from "../common/dashCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
-import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import Copyrights from "../common/copyRight";
 import FormAlert from "../common/alert";
@@ -154,8 +154,8 @@ const CustomerDashboard = () => {
                             <Dashcard
                               cardHead="No of Tickets"
                               cardbody={raisedinprogresscount}
-                              cardfooter="InProgress"
-                              cardIcon={<div className="icon-rotation"><HourglassBottomIcon /></div>}
+                              cardfooter="Inprogress"
+                              cardIcon={<div className="icon-rotation"><HourglassTopIcon /></div>}
                             />
                             <Dashcard
                               cardHead="No of Tickets"

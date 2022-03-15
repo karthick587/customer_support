@@ -18,6 +18,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState('x');
     const[projectcode,setProjectcode] = useState('');
+    const[show,setShow] = useState('');
     const EmailR = useRef();
     const PhonenumberR = useRef();
     const DomainnameR = useRef();
@@ -37,7 +38,6 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
         
         if(PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){
             setloader(true);
-            setValidate(false)
             if(Screenshots!=='x'){
                 const data = new FormData();
                 data.append("Email", customername);
@@ -94,7 +94,7 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     return err; })
             }
         }else{
-            setValidate(true)
+            setShow("*Mandatory fields are required")
         }
     };
 
@@ -103,20 +103,20 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
         <form className="form5" action="/" method="post">
             <Typography >RAISE YOUR TICKETS</Typography>
             <div className="form-group mt-2 mb-2 flex" >
-                <label className="label width-25">Email</label>
+                <label className="label width-25">Email ID<span>*</span></label>
                 <h5 className="issue-form-input">{customername}</h5>
             </div>
            
             <div className="form-group mb-3 flex">
-                <label className="label width-25">Phonenumber</label>
+                <label className="label width-25">Phonenumber<span>*</span></label>
                 <input className="issue-form-input" name="phonenumber" type="text" ref={PhonenumberR}/>
             </div>
             <div className="form-group mb-3 flex">
-                <label className="label width-25">Domain Name</label>
+                <label className="label width-25">Domain Name<span>*</span></label>
                 <input className="issue-form-input" name="domainName" type="text" ref={DomainnameR} />
             </div>
             <div className="form-group scrolable  mb-3">
-                <label className="label">Description</label>
+                <label className="label">Description<span>*</span></label>
                 <textarea className="issue-form-input" name="description" ref={DescriptionR} rows="4" cols="50" maxLength="200" />
             </div>
             <div className="form-group  mb-3">
@@ -135,8 +135,8 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                     </label>
                 </form>
             </div>
-            {validate===true ? <div className="alert1">All Fields are required</div>:<></>}
             <div className="">
+            <p className="me-2 text-danger">{show}</p>
             {loader===false ? <><button className="btn2 mt-3" type="button" onClick={addIssues}>Submit</button></>:<> <CircularProgress size={25} /></>} 
            
             </div>
