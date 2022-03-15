@@ -25,15 +25,7 @@ function AdminNotification(props) {
         }
         setState({ ...state, [anchor]: open });
     };
-    function Notificationupdate(ticketsId) {
-        Axios.put(`https://mindmadetech.in/api/tickets/updateNotification/${ticketsId}`, {
-            Notification: "seen",
-            ticketsId: ticketsId,
-        }).then((_response) => {
-            return _response;
-        })
-            .catch((err) => { return err; })
-    };
+  
     return (
         <>
             <div>
@@ -51,7 +43,7 @@ function AdminNotification(props) {
                                 }).map((tickets) => <>
                                     <div className='' key={tickets.ticketsId}>
                                         <div>
-                                            <div className='notification-table-row flex' onClick={() => Notificationupdate(tickets.ticketsId, tickets.Notification)}>
+                                            <div className='notification-table-row flex' >
                                                 <div className='notification-table-left'>
                                                     <FontAwesomeIcon icon={faTicketAlt} />
                                                 </div>

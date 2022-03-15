@@ -149,12 +149,12 @@ export default function Login1() {
                 </div>
                 <form>
                   <div className="form-group ">
-                    <label className="label">Email*</label>
+                    <label className="label">Email<span>*</span></label>
                     <input className="form-input" name="email" type="email"  {...register('email')} />
                     <p className="me-2 text-danger">{errors.email?.message}</p>
                   </div>
                   <div className="form-group log">
-                    <label className="label">Password*</label>
+                    <label className="label">Password<span>*</span></label>
                     <input className="form-input" name="password" type="password"  {...register('password')} />
                     <p className="me-2 text-danger">{errors.password?.message}</p>
                   </div>

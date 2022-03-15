@@ -121,7 +121,7 @@ const AdminDashboard = () => {
               <AdminNotification 
               onclick={
               <IconButton className='z-index me-2' color="inherit"  >
-              <Badge badgeContent={notificationcount} color="secondary">
+              <Badge badgeContent={notificationcount} onClick={()=>setActivetab('ticket')&localStorage.setItem('activeTab', 'ticket')} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>

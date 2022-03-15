@@ -1174,7 +1174,7 @@ div#v-pills-tab {
   margin: 10px 10px;
   background-color: white;
   -webkit-box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
-  box-shadow: 0px 5px 10px rgb(31 30 47 / 10%);
+  box-shadow: 0px 5px 10px rgb(31 30 47 / 18%);
   border-radius: 7px;
 }
 
@@ -2614,4 +2614,8 @@ input:focus-visible {
 }
 .user-dash-page {
   margin: 43px 20px;
+}
+.label span{
+  color: red !important;
+  font-size: 15px;
 }
