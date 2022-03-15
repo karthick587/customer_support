@@ -32,6 +32,7 @@ import { ListContext } from '../contex/ListProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from 'moment';
 import CustomerChangePass from '../profile/CustomerChangePass';
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 const AdminDashboard = () => {
 
   const { notificationcount, ticketscount, adminNewcount, adminStartedcount, adminprogresscount, adminCompletedcount } = useContext(CounterContext);
@@ -195,7 +196,7 @@ const AdminDashboard = () => {
                                 cardHead="No of Inprogress"
                                 cardbody={adminprogresscount}
                                 cardfooter="Tickets"
-                                cardIcon={<FontAwesomeIcon icon={faTicketAlt} />}
+                                cardIcon={<HourglassTopIcon className='inprogress-icon' />}
                               />
                             </div>
                           </div>

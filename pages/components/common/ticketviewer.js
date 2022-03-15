@@ -96,7 +96,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Department
+                                    Assigned to
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {tickets.TeamAssign.length <= 0 ? <>Not assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}
@@ -104,7 +104,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    DomainName
+                                    Domain Name
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {tickets.DomainName}

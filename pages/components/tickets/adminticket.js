@@ -320,7 +320,7 @@ function Adminticket() {
                 <div className="userbody">
                     <div className='header-user'>
 
-                        <div><h1>Tickets </h1></div>
+                        <div><h1>TICKETS </h1></div>
                         <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
                                 <option value="all">All</option>
@@ -360,7 +360,7 @@ function Adminticket() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell  >TICKETS ID</TableCell>
-                                    <TableCell align="left">Email</TableCell>
+                                    <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">DATE</TableCell>
                                     <TableCell align="left">TEAM</TableCell>
                                     <TableCell align="left">STATUS</TableCell>

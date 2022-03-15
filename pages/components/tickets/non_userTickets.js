@@ -70,7 +70,7 @@ function NonUserTickets(props) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="left">ID</TableCell>
-                                    <TableCell align="left">Email</TableCell>
+                                    <TableCell align="left">EMAIL</TableCell>
                                     <TableCell align="left">COMPANY NAME</TableCell>
                                     <TableCell align="left">CLIENT NAME</TableCell>
                                     <TableCell align="left">DATE</TableCell>

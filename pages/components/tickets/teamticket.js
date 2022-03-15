@@ -36,15 +36,6 @@ function Teamticket(props) {
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
     };
-    
-    //tickets status update functions 
-    const updateemail = (Status) => {
-        if (Status === "Completed") {
-            setdisabled("disabled");
-        } else {
-            setdisabled("enable");
-        }
-    };
    
     //status submit function
     function handleUpdatestatus(ticketsId,TeamAssign) {

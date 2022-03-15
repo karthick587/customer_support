@@ -147,7 +147,7 @@ export default function Team(props) {
                         <TableHead>
                             <TableRow>
                                 <TableCell className="teamtablecel" >TEAM ID</TableCell>
-                                <TableCell className="teamtablecel" align="left">Email</TableCell>
+                                <TableCell className="teamtablecel" align="left">EMAIL</TableCell>
                                 <TableCell className="teamtablecel" align="left">PASSWORD</TableCell>
                                 <TableCell className="teamtablecel" align="left">PHONE NUMBER</TableCell>
                                 <TableCell className="teamtablecel" align="left">TEAM</TableCell>

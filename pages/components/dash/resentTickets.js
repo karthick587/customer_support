@@ -28,7 +28,7 @@ export default function Resentticket(props) {
                         <TableRow className="resentticket-row">
                             <TableCell>DATE</TableCell>
                             <TableCell>TICKET ID</TableCell>
-                            <TableCell>Email</TableCell>
+                            <TableCell>EMAIL</TableCell>
                             <TableCell>DOMAIN NAME</TableCell>
                             <TableCell>STATUS</TableCell>
                         </TableRow>

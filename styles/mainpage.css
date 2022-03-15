@@ -280,7 +280,10 @@
   .profile-card-body div {
     padding: 0px;
 }
-
+.dash-head.mt-2.mb-3.header-user {
+  margin: 3px 0px -10px 1px !important;
+  padding: 0px 0px 0px 0px !important;
+}
 .change-pass-userbody input {
   border: 1px solid #1976d22b;
   border-radius: 5px;

@@ -180,7 +180,7 @@ export default function Login1() {
                             Reset Your Password
                           </Typography>
                           <Typography variant="p" className='mt-2'>
-                            Please enter and submit your Email id below. We will send <br />
+                            Please enter your Email id below. We will send <br />
                             New password  to the email address <br />
                             associated with your account.
                           </Typography>
@@ -189,7 +189,7 @@ export default function Login1() {
                             <input className="forget-input" name="email" type="text" onChange={(e) => setforgetValue(e.target.value)} />
                           </div>
                           <div>{forgetValidate}</div>
-                          {display === true ? <></> : <button className='forget-button' onClick={forgetpassword}>Send Password Reset Email</button>}
+                          {display === true ? <></> : <button className='forget-button' onClick={forgetpassword}>SEND PASSWORD</button>}
 
                           <Button className='w-100' onClick={() => setdialogformopen("true")&setforgetValidate("")&setdisplay(false)&setforgetValue('')} >{display === true ? "Ok" : "Cancel"}</Button>
                         </div>
