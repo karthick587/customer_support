@@ -206,8 +206,8 @@ function Teamticket(props) {
                                                                 <select className="form-input" onChange={handlestatus}>
                                                                     <option value="">--Select Status--</option>
                                                                    {tickets.Status==="started"||tickets.Status==="inprogress"||tickets.Status==="completed" ? <></>:<option className='started' value="started">started</option>}
-                                                                   {tickets.Status==="inprogress"||tickets.Status==="completed" ? <></>:<option className='inprogress' value="inprogress">inprogress</option>}
-                                                                   {tickets.Status==="started"||tickets.Status==="completed" ? <></>:<option className='completed' value="completed">completed</option>}
+                                                                   {tickets.Status==="inprogress"||tickets.Status==="completed"|| tickets.Status==="new" ? <></>:<option className='inprogress' value="inprogress">inprogress</option>}
+                                                                   {tickets.Status==="started"||tickets.Status==="completed"|| tickets.Status==="new" ? <></>:<option className='completed' value="completed">completed</option>}
                                                                 </select>
                                                             </div>
                                                         </form>
