@@ -1716,10 +1716,12 @@ h5.Completed {
 
 .updateadminpage {
   position: absolute;
-  right: -25px;
-  margin-top: 0px;
+  right: -12px;
+  margin-top: 0;
   top: -3px;
 }
+
+
 .tickets-bodyrow:hover {
   background-color: #1976d214;
   cursor: pointer;
