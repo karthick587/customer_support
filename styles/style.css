@@ -2638,6 +2638,6 @@ input:focus-visible {
   position: relative;
 }
 .login-password-i{
-  position: absolute;
+  position: absolute !important;
   right: 0;
 }
