@@ -34,6 +34,7 @@ function Adminticket() {
     const { Email, setdialogformopen, designTeamList, setTesting, setshowvalue, setdesignTeamList, addTeammember } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
     const { currentDate } = useContext(CurrentDateContext);
+    var Email2=Email
     const { users, team } = useContext(ListContext);
     const { tickets } = useContext(TicketsContext);
     const Router = useRouter();
@@ -139,8 +140,9 @@ function Adminticket() {
         setTicketid(ticketsId);
     };
     //final Status
-    const messageHtml = renderEmail(<TicketCompletedBody name={Adminname} TicketNo={ticketid} />)
-    function finalStatus(ticketsId, Status) {
+   
+    function finalStatus(ticketsId, Status,Email) {
+        const messageHtml = renderEmail(<TicketCompletedBody name={Email} TicketNo={ticketsId} />)
         setloader(true)
         console.log(ticketsId, Status, currentDate, Createdby)
         if (Status === "completed") {
@@ -155,11 +157,11 @@ function Adminticket() {
                 setshowvalue("Submitted Successfully");
                 setloader(false)
                 if (sendmail === "true") {
-                    Email.send({
+                    Email2.send({
                         Host: "mindmadetech.in",
                         Username: "_mainaccount@mindmadetech.in",
                         Password: "1boQ[(6nYw6H.&_hQ&",
-                        To: email,
+                        To: Email,
                         From: "karthickraja@mindmade.in",
                         Subject: "MindMade Support",
                         Body: messageHtml
@@ -544,7 +546,7 @@ function Adminticket() {
                                                                 {showmailstatus}
                                                             </div>
                                                         </div>
-                                                        {loader === false ? <>  <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId, tickets.Status)}>Update</button></> : <> <CircularProgress className="float-end" size={25} /></>}
+                                                        {loader === false ? <>  <button className="btn2 float-end mt-3 mb-3" onClick={() => finalStatus(tickets.ticketsId, tickets.Status,tickets.Email)}>Update</button></> : <> <CircularProgress className="float-end" size={25} /></>}
                                                     </div>
                                                 }
                                             />
