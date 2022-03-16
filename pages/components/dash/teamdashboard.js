@@ -96,7 +96,7 @@ const TeamDashboard = () => {
             })
             .catch((err) => { return err; })
         }
-  }, [loginTmName,teamticket]);
+  },[teamticket,loginTmName]);
   // ticket count, ticket status count for team dashboard
   useEffect(() => {
     setassignedcount(teamticket.filter(val => { return val }).map((ticket) => setassignedcount(ticket.Status.length)).length);
@@ -104,7 +104,7 @@ const TeamDashboard = () => {
     setinprogresscount(teamticket.filter(val => { return val.Status.toLowerCase().includes("inprogress") }).map((ticket) => setinprogresscount(ticket.Status.length)).length);
     setcompletedcount(teamticket.filter(val => { return val.Status.toLowerCase().includes("completed") }).map((ticket) => setcompletedcount(ticket.Status.length)).length);
     setteamNotificationcount(teamticket.filter(val => { return val.Status.toLowerCase().includes("new") }).map((ticket) => setteamNotificationcount(ticket.Status.length)).length);
-  }, [teamticket]);
+  },[teamticket]);
 
   return (
     <>
