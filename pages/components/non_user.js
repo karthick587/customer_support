@@ -148,7 +148,7 @@ export default function ScrollDialog(props) {
                                 <div className="form-group">
                                     <label className="col label">Password<span>*</span></label>
                                     <div className='login-input-password'>
-                                <input className="form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
+                                <input className="issue-form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
                                 <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
                             </div>
                                     
