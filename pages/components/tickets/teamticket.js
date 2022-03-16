@@ -181,7 +181,7 @@ function Teamticket(props) {
                                     </TableRow>
                                     <FormDialog
                                         dialog_className="update7"
-                                        dialogtitle={<div>update</div>}
+                                        dialogtitle={<div className='me-2'>update</div>}
                                         className="btn3 ticket-update2"
                                         dialogbody={<div>{tickets.Status==="Completed" ? <div className='ticket-update-alert'>Ticket has been completed</div> :
                                             <div className="form dialog" >
