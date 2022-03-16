@@ -68,7 +68,7 @@ function Adminticket() {
     }, []);
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('ad_email'));
-    }, [setAdminname]);
+    }, [setCreatedby]);
     
     //filter function
     useEffect(() => {
