@@ -94,7 +94,7 @@ const CustomerDashboard = () => {
     Axios.get(`https://mindmadetech.in/api/tickets/customertickets/${user}`)
       .then((res) => setTickets(res.data))
       .catch((err) => { return err; })
-  }, [setTickets, user]);
+  }, [tickets,user]);
   useEffect(() => {
     setticketraisedcount(tickets.filter(val => { return val }).map((ticket) => setticketraisedcount(ticket.Status.length)).length);
     var doneCount=tickets.filter(val => { return val.Status.includes("completed") }).map((ticket) => setraisedcompletedcount(ticket.Status.length)).length;
