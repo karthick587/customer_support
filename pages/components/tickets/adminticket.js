@@ -44,7 +44,6 @@ function Adminticket() {
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
-    const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
     const [login, setLogin] = useState();
     const [ticketid, setTicketid] = useState();
@@ -68,12 +67,9 @@ function Adminticket() {
         localStorage.setItem("passValue", false);
     }, []);
     useEffect(() => {
-        setAdminname(window.localStorage.getItem('ad_email'));
+        setCreatedby(window.localStorage.getItem('ad_email'));
     }, [setAdminname]);
-    useEffect(() => {
-        setCreatedby(Adminname.slice(3, 20));
-
-    }, [Adminname]);
+    
     //filter function
     useEffect(() => {
         if (filteredTitle === 'all') {
@@ -139,7 +135,7 @@ function Adminticket() {
         setTicketid(ticketsId);
     };
     //final Status
-    const messageHtml = renderEmail(<TicketCompletedBody name={Adminname} TicketNo={ticketid} />)
+    const messageHtml = renderEmail(<TicketCompletedBody TicketNo={ticketid} />)
     function finalStatus(ticketsId, Status) {
         setloader(true)
         console.log(ticketsId, Status, currentDate, Createdby)
@@ -219,7 +215,7 @@ function Adminticket() {
     const teamId = designTeamList.map((o) => JSON.stringify(o));
     function handleUpdate(ticketsId) {
         setloader(true)
-        const messageHtml2 = renderEmail(<TicketAssignedBody name={Adminname} TicketNo={ticketsId} />)
+        const messageHtml2 = renderEmail(<TicketAssignedBody TicketNo={ticketsId} />)
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
             ticketsId: ticketsId,
@@ -272,7 +268,7 @@ function Adminticket() {
         })
         setdesignTeamList(TeamList)
     }
-    const messageHtml2 = renderEmail(<TicketAssignedBody name={Adminname} TicketNo={idmailticket} />)
+    const messageHtml2 = renderEmail(<TicketAssignedBody TicketNo={idmailticket} />)
     function ReassignTicket(ticketsId) {
         setloader(true)
         console.log(ticketsId)

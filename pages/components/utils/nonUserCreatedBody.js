@@ -5,14 +5,17 @@ export default function NonUserCreatedBody(props) {
     return (
         <Email title='link'>
             <h3>
-                Hello  {props.name}
+                Dear {props.name}
             </h3>
-            <p>ur Account as been created by admin and your issues Has been raised<br/> as a ticket</p>
+            <p>
+                Greetings from MindMade Customer Support Team!!! <br />
+                You have been registered as a Client on MindMade Customer Support.<br />
+                To log in, go to https://mm-customer-support-ten.vercel.app/ then enter the following credentials</p>
             <br />
             <p className='red'>Login credentials</p>
             <ul>
-                <li>{props.email}</li>
-                <li>{props.password}</li>
+                <li>Email : {props.email}</li>
+                <li>Password : {props.password}</li>
             </ul>
             <br />
             <h4>Best wishes,</h4>

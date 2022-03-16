@@ -124,7 +124,7 @@ export default function Login1() {
           } else {
             setdisplay(true)
             setforgetValidate(<p className='forget-status'>*You will get new password through email associated with your account<br /> within two minutes</p>)
-            const messageHtml = renderEmail(<ForgetPasswordBody name="MindMade Customer" password={password} />)
+            const messageHtml = renderEmail(<ForgetPasswordBody password={password} />)
             Email.send({
               Host: "mindmadetech.in",
               Username: "_mainaccount@mindmadetech.in",

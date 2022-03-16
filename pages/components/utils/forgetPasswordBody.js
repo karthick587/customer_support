@@ -5,11 +5,19 @@ export default function ForgetPasswordBody(props) {
   return (
     <Email title='link'>
       <h3>
-        Hello  {props.name}
+        Dear Sir/Madam,
       </h3>
       <br />
       <p>
-        {props.password}
+      Greetings from the MindMade Customer Support Team!!! <br />
+
+      We have received a request to reset the password for your account.<br />
+
+      Your System generated Password:{props.password} <br />
+
+      To log in, go to https://mm-customer-support-ten.vercel.app/ then enter the Appropriate Email and above Password.<br />
+
+      You can change your password once you logged in.
       </p>
       <br />
       <h4>Best wishes,</h4>

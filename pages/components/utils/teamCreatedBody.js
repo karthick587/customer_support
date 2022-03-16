@@ -1,15 +1,15 @@
 import React from 'react';
 import { Email, Item, A } from 'react-html-email';
 
-export default function CustomerCreatedBody(props) {
+export default function TeamCreatedBody(props) {
   return (
     <Email title='link'>
     <h3>
-                Dear {props.name}
+                Dear Sir/Madam,
             </h3>
             <p>
                 Greetings from MindMade Customer Support Team!!! <br />
-                You have been registered as a Client on MindMade Customer Support.<br />
+                You have been registered as a Team member on MindMade Customer Support.<br />
                 To log in, go to https://mm-customer-support-ten.vercel.app/ then enter the following credentials</p>
             <br />
             <p className='red'>Login credentials</p>

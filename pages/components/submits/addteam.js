@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Axios from "axios";
+import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
@@ -8,7 +9,8 @@ import { CounterContext } from '../contex/adminProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import Button from '@mui/material/Button';
+import { renderEmail } from 'react-html-email';
+import TeamCreatedBody from '../utils/teamCreatedBody';
 import moment from 'moment';
 const schema = yup.object().shape({
     Email: yup.string().required("*required").email(),
@@ -17,7 +19,7 @@ const schema = yup.object().shape({
 });
 
 function Addteam() {
-    const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext)
+    const { setdialogformopen, setTesting, setshowvalue,Email } = useContext(CounterContext)
     const [loader, setloader] = useState(false);
     const [show, setshow] = useState('')
     var [addteam, setAddteam] = useState('');
@@ -28,8 +30,9 @@ function Addteam() {
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
-
+    var email2=Email
     const addTeam = ({ Email, Password, Phonenumber }) => {
+        const messageHtml2 = renderEmail(<TeamCreatedBody email={Email} password={Password} />)
         setloader(true)
         if(Email!=="" && Password!=="" && Phonenumber!=="" && addteam!==""){
             Axios.post(`https://mindmadetech.in/api/team/new`, {
@@ -58,6 +61,17 @@ function Addteam() {
                 setshowvalue("Registered Successfully");
                 setdialogformopen("true")
                 setloader(false)
+                email2.send({
+                    Host: "mindmadetech.in",
+                    Username: "_mainaccount@mindmadetech.in",
+                    Password: "1boQ[(6nYw6H.&_hQ&",
+                    To: Email,
+                    From: "karthickraja@mindmade.in",
+                    Subject: "MindMade Support",
+                    Body: messageHtml2
+                }).then(
+                    message => console.log(message)
+                )
             }
         })
             .catch((err) => { return err; })

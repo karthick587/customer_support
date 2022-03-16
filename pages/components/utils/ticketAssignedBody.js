@@ -5,11 +5,13 @@ export default function TicketAssignedBody(props) {
   return (
     <Email title='link'>
       <h3 className='red'>
-        Hello  {props.name}
+        Dear Sir/Madam,
       </h3>
       <br />
       <p>
-        Your ticket No:{props.TicketNo} has been Assigned to you Please Checkout
+        Greetings from the MindMade Customer Support Team!!!<br /> 
+
+       Ticket({props.TicketNo}) has been assigned to you. kindly check the ticket details in MindMade Customer Support.
       </p>
       <br />
       <h4>Best wishes,</h4>
