@@ -11,7 +11,7 @@ export default function TicketCompletedBody(props) {
       <p>
         Greetings from MindMade Customer Support Team!!! <br />
 
-        We&apos;re reaching out to you in regards to the ticket (props.TicketNo) we completed for you. kindly check the ticket details in MindMade Customer Support.<br />
+        We&apos;re reaching out to you in regards to the ticket {props.TicketNo} we completed for you. kindly check the ticket details in MindMade Customer Support.<br />
 
         Dont hesitate to contact us if you have questions or concerns.
       </p>
