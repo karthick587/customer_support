@@ -65,7 +65,7 @@ function Teamticket(props) {
                 setdialogformopen("true");
                 localStorage.setItem("passValue", true);
                 setTesting(true)
-                setshowvalue("Registered Successfully");
+                setshowvalue("Updated Successfully");
             }).catch((err) => {
                 setTesting(true)
                 setshowvalue(1+"Registered failed");
@@ -181,7 +181,7 @@ function Teamticket(props) {
                                     </TableRow>
                                     <FormDialog
                                         dialog_className="update7"
-                                        dialogtitle={<div onClick={() => updateemail(tickets.Status)}>update</div>}
+                                        dialogtitle={<div>update</div>}
                                         className="btn3 ticket-update2"
                                         dialogbody={<div>{tickets.Status==="Completed" ? <div className='ticket-update-alert'>Ticket has been completed</div> :
                                             <div className="form dialog" >

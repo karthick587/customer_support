@@ -2034,7 +2034,7 @@ div#v-pills-dash {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
   height: 0.4vh;
 }
 
@@ -2640,4 +2640,8 @@ input:focus-visible {
 .login-password-i{
   position: absolute !important;
   right: 0;
+}
+select::-webkit-scrollbar {
+  width: 2px !important;
+  height: 0.4vh;
 }

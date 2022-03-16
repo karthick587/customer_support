@@ -38,7 +38,7 @@ function Adminticket() {
     const { tickets } = useContext(TicketsContext);
     const Router = useRouter();
     var [show, setShow] = useState('');
-    var [search, setSearch] = useState('');
+    var [search, setSearch] = useState('x');
     var [filteredTitle, setFilteredTitle] = useState('all');
     var [filteredStatus, setFilteredStatus] = useState('all');
     const [isOpenfilter, setIsOpenfilter] = useState(false);
@@ -61,8 +61,9 @@ function Adminticket() {
     const [showdetails, setShowdetails] = useState(false);
     const [selectTeam, setselectTeam] = useState('x');
     const [isOpenDatefilter, setIsOpenDatefilter] = useState(false);
-
+    const [teamselect, setteamselect] = useState(false)
     const [startDate, setStartDate] = useState(new Date());
+    const [teamfilterArray, setteamfilterArray] = useState([])
     useEffect(() => {
         localStorage.setItem("passValue", false);
     }, []);
@@ -71,36 +72,57 @@ function Adminticket() {
     }, [setAdminname]);
     useEffect(() => {
         setCreatedby(Adminname.slice(3, 20));
+
     }, [Adminname]);
     //filter function
     useEffect(() => {
-        if (filteredTitle === "all") {
+        if (filteredTitle === 'all') {
             setIsOpenfilter(false);
             setSearch("");
             setStartDate("");
+            setteamselect(false)
             setIsOpenDatefilter(false);
+            setteamfilterArray(tickets)
         } else {
             setIsOpenfilter(true);
         }
         setShow();
-    }, [filteredTitle]);
+    }, [filteredTitle, tickets]);
     useEffect(() => {
+        if (filteredTitle === "ticketsId") {
+            setteamfilterArray(tickets)
+            setteamselect(false)
+            setIsOpenDatefilter(false);
+        }
+
         if (filteredTitle === "Email") {
             setIsOpenstatusfilter(true);
+            setteamfilterArray(tickets)
+            setIsOpenDatefilter(false);
+            setteamselect(false)
         } else {
             setIsOpenstatusfilter(false);
         }
         if (filteredTitle === "Status") {
             setIsOpenstatusfilter(true);
+            setteamfilterArray(tickets)
+            setIsOpenDatefilter(false);
             setIsOpenfilter(false)
+            setteamselect(false)
         }
         if (filteredTitle === "Date") {
             setIsOpenDatefilter(true);
             setIsOpenfilter(false);
-        }else{  
-            setIsOpenDatefilter(false);
+            setteamselect(false)
+            setteamfilterArray(tickets)
         }
-    }, [filteredTitle]);
+
+        if (filteredTitle === "Team Member") {
+            setIsOpenDatefilter(false);
+            setIsOpenfilter(false);
+            setteamselect(true)
+        }
+    }, [filteredTitle, tickets]);
     //page access
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
@@ -311,6 +333,14 @@ function Adminticket() {
                 return err;
             })
     }
+    function SelectTeamMember(Email) {
+        Axios.get(`https://mindmadetech.in/api/tickets/teamtickets/${Email}`)
+            .then((res) =>
+                setteamfilterArray(res.data)
+                // console.log(res.data)
+            )
+            .catch((err) => { return err; })
+    }
     return (
         <div>
             <Head>
@@ -319,7 +349,6 @@ function Adminticket() {
             {showdetails === false ?
                 <div className="userbody">
                     <div className='header-user'>
-
                         <div><h1>TICKETS </h1></div>
                         <div className='filter-head flex'>
                             <select className='filter-select' onChange={(e) => setFilteredTitle(e.target.value)}>
@@ -328,6 +357,7 @@ function Adminticket() {
                                 <option value="Email">Email</option>
                                 <option value="Date">Date</option>
                                 <option value="Status">Status</option>
+                                <option value="Team Member">Team Member</option>
                             </select>
                             {isOpenfilter && (
                                 <input className='filter-select ms-1' placeholder='search' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -351,10 +381,16 @@ function Adminticket() {
                                     placeholderText="DD-MM-YYYY"
                                 />
                             )}
-
+                            {teamselect && (
+                                <select className='filter-select' onClick={(e) => SelectTeamMember(e.target.value)} >
+                                    {team.map((item) =>
+                                        <option value={item.Email}  >{item.Email}</option>
+                                    )}
+                                </select>
+                            )
+                            }
                         </div>
                     </div>
-
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <TableHead>
@@ -366,7 +402,7 @@ function Adminticket() {
                                     <TableCell align="left">STATUS</TableCell>
                                 </TableRow>
                             </TableHead>
-                            {tickets
+                            {teamfilterArray
                                 .filter(val => {
                                     if (search === " ") {
                                         return val;
@@ -428,6 +464,9 @@ function Adminticket() {
                                             } else if (filteredStatus === "completed") {
                                                 // return val.Status.toLowerCase().includes("completed")
                                             } else return val;
+                                        } else if (filteredTitle === "Team Member") {
+                                            return selectedValue
+
                                         }
                                     }
                                 })

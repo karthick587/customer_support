@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Axios from "axios";
+import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
-import { CurrentDateContext } from '../contex/currentdateProvider';
 import { CircularProgress } from '@mui/material';
 import moment from 'moment';
 import CustomerCreatedBody from '../utils/CustomerCreatedBody';
-import { renderEmail } from 'react-html-email'
+import { renderEmail } from 'react-html-email';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const schema = yup.object().shape({
     Companyname: yup.string().required("*required"),
     Clientname: yup.string().required("*required"),
@@ -21,12 +23,12 @@ const schema = yup.object().shape({
 
 export default function Addcustomer() {
     const { setdialogformopen, setTesting, setshowvalue, Email } = useContext(CounterContext);
-    const { currentDate } = useContext(CurrentDateContext);
     const [loader, setloader] = useState(false);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     var [showlogo, setShowlogo] = useState('');
     const [show, setShow] = useState(false);
+    const [show5, setshow5] = useState(false);
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     const { register, handleSubmit, formState } = useForm({
@@ -155,7 +157,10 @@ var email2=Email
                         </div>
                         <div className="form-group">
                             <label className="col label">Password<span>*</span></label>
-                            <input className="form-input" name="Password" type="password" {...register('Password')} />
+                            <div className='login-input-password'>
+                                <input className="form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
+                                <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                            </div>
                             <p className="me-2 text-danger">{errors.Password?.message}</p>
                         </div>
                         <div className="row justify-content-center">

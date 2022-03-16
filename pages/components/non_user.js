@@ -55,7 +55,6 @@ export default function ScrollDialog(props) {
    
     const handleSubmitForm = ({ Companyname, Clientname, email, Phonenumber, Password, DomainName, Description }) => {
         const messageHtml = renderEmail(<NonUserBody name={Clientname} body={Companyname} />)
-        console.log("ok")
      
             Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, {
                 Companyname : Companyname,

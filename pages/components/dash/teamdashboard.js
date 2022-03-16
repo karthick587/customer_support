@@ -142,7 +142,7 @@ const TeamDashboard = () => {
                   <div className={activeTab === "Dashboard" ? "tab-pane fade show active" : "tab-pane fade"} id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <div className='main-dash'>
                       <div className='main-dash-sub' >
-                        <div className='dash-head mb-1'>
+                        <div className='dash-head mb-3'>
                           <h1>DASHBOARD</h1>
                         </div>
                         <div className='dash-body'>

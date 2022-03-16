@@ -5,21 +5,15 @@ import { CounterContext } from "../contex/adminProvider";
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import { Typography } from "@mui/material";
 import moment from "moment";
-export default Userissue;
+import { renderEmail } from 'react-html-email';
+import CustomerTicketsBody from '../utils/customerTicketsBody';
 
-function Userissue(props) {
-    const { currentDate } = useContext(CurrentDateContext);
-const{setTesting,setshowvalue}=useContext(CounterContext)
+ export default function Userissue(props) {
+const{setTesting,setshowvalue,Email}=useContext(CounterContext)
     const [loader,setloader]=useState(false);
     const { customername } = props;
-    const [Email, setEmail] = useState('');
-    const [Phonenumber, setPhonenumber] = useState('');
-    const [DomainName, setDomainName] = useState('');
-    const [Description, setDescription] = useState('');
     const [Screenshots, setScreenshots] = useState('x');
-    const[projectcode,setProjectcode] = useState('');
     const[show,setShow] = useState('');
-    const EmailR = useRef();
     const PhonenumberR = useRef();
     const DomainnameR = useRef();
     const DescriptionR = useRef();
@@ -35,8 +29,8 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
     };
     const[validate,setValidate]=useState(false)
     const addIssues = () => {
-        
         if(PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){
+            const messageHtml = renderEmail(<CustomerTicketsBody />)
             setloader(true);
             if(Screenshots!=='x'){
                 const data = new FormData();
@@ -53,19 +47,36 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                         'Content-Type': 'multipart/form-data',
                     }
                 }).then((res) => {
-                    setloader(false);
-                    setTesting(true)
-                    setshowvalue("Submitted Successfully");
-                    PhonenumberR.current.value = " ";
-                    DomainnameR.current.value = " ";
-                    DescriptionR.current.value = " ";
-                    FileR.current.value = null;
+                    if(res.data.statusCode === 400){
+                        setloader(false);
+                        setTesting(true)
+                        setshowvalue(1+res.data.message);
+                    }else{
+                        setloader(false);
+                        setTesting(true)
+                        setshowvalue(res.data.message);
+                        Email.send({
+                            Host: "mindmadetech.in",
+                            Username: "_mainaccount@mindmadetech.in",
+                            Password: "1boQ[(6nYw6H.&_hQ&",
+                            To: customername,
+                            From: "karthickraja@mindmade.in",
+                            Subject: "MindMade Support",
+                            Body: messageHtml
+                        }).then(
+                            message => { return message; }
+                        );
+                        PhonenumberR.current.value = " ";
+                        DomainnameR.current.value = " ";
+                        DescriptionR.current.value = " ";
+                        FileR.current.value = null;
+                    }   
                 })
                 .catch((err)=>{ 
                     setTesting(true)
-                    setshowvalue("Submitted Failed");
+                    setshowvalue(1+"Submitted Failed");
                     setloader(false);
-                    return err; })
+                })
             }else{
                 const data = new FormData();
                 data.append("Email", customername);
@@ -78,26 +89,42 @@ const{setTesting,setshowvalue}=useContext(CounterContext)
                         'Content-Type': 'multipart/form-data',
                     }
                 }).then((res) => {
-                    setloader(false);
-                    setTesting(true)
-                    setshowvalue("Submitted Successfully");
-                    EmailR.current.value = " ";
-                    PhonenumberR.current.value = " ";
-                    DomainnameR.current.value = " ";
-                    DescriptionR.current.value = " ";
-                    FileR.current.value = null;
+                    if(res.data.statusCode === 400){
+                        setloader(false);
+                        setTesting(true)
+                        setshowvalue(1+res.data.message);  
+                    }else{
+                        setloader(false);
+                        setTesting(true)
+                        setshowvalue(res.data.message);
+                        Email.send({
+                            Host: "mindmadetech.in",
+                            Username: "_mainaccount@mindmadetech.in",
+                            Password: "1boQ[(6nYw6H.&_hQ&",
+                            To: customername,
+                            From: "karthickraja@mindmade.in",
+                            Subject: "MindMade Support",
+                            Body: messageHtml
+                        }).then(
+                            message => { return message; }
+                        );
+                        PhonenumberR.current.value = " ";
+                        DomainnameR.current.value = " ";
+                        DescriptionR.current.value = " ";
+                        FileR.current.value = null;
+                    } 
                 })
                 .catch((err)=>{
                     setTesting(true)
                     setloader(false);
                     setshowvalue(1+"Submitted Failed");
-                    return err; })
+                })
             }
         }else{
             setShow("*Mandatory fields are required")
         }
     };
-
+    
     return (
         <div>
         <form className="form5" action="/" method="post">

@@ -29,7 +29,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                 <div className='ticket-details' key={tickets.ticketsId}>
                     <div className='ticket-details-head'>
                         <div className='ticket-details-head-title dash-head'>
-                            <h2>TICKETS DETAILS #{tickets.ticketsId}</h2>
+                            <h2>TICKET&apos;S DETAILS #{tickets.ticketsId}</h2>
                         </div>
                         <div className='ticket-details-head-btn'>
                             <button className='btn2 float-end' onClick={closeDetails}>Back</button>
@@ -38,7 +38,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                     <div className='ticket-details-middle'>
                         <div className='ticket-details-middle-1'>
                             <div className='ticket-details-middle-1-1'>
-                                Tickets Details
+                                Ticket&apos;s Details
                                 <div className='css-nem3m2'>
                                     {tickets.Status === "completed" ? <>{customer === "completed" ? "Done":"Inprogress"}</> : <>{tickets.Status}</>}
                                 </div>
@@ -46,23 +46,23 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                             <div className='ticket-details-middle-1-3'>
                                 <div className="ticket-status color-green">
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
-                                    {tickets.Status === "New" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
+                                    {tickets.Status === "new" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
                                 </div>
-                                <div className={tickets.Status === "New" ? "ticket-status-line width-10 display-1" : "ticket-status-line width-10 display-1 color-green-line"}>
+                                <div className={tickets.Status === "new" ? "ticket-status-line width-10 display-1" : "ticket-status-line width-10 display-1 color-green-line"}>
                                 </div>
-                                <div className={tickets.Status === "New" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 display-2 color-green-line"}>
+                                <div className={tickets.Status === "new" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 display-2 color-green-line"}>
                                     |
                                 </div>
                                 <div className={tickets.Status === "started" || tickets.Status === "inprogress" || tickets.Status === "completed" || tickets.Status === "Completed" ? "ticket-status color-green" : "ticket-status"}>
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
                                     {tickets.Status === "started" ? <div className='details-caption'>Started<div className='details-caption-2'>Updated at<br /> {tickets.Tm_Start_UpdatedOn}</div></div> : <div className='details-caption-strike'>Started<div className='details-caption-2'>Updated at <br />{tickets.Tm_Start_UpdatedOn}</div></div>}
                                 </div>
-                                <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line display-1 width-10" : "ticket-status-line width-10 display-1 color-green-line"}>
+                                <div className={tickets.Status === "new" || tickets.Status === "started" ? "ticket-status-line display-1 width-10" : "ticket-status-line width-10 display-1 color-green-line"}>
                                 </div>
-                                <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 color-green-line display-2"}>
+                                <div className={tickets.Status === "new" || tickets.Status === "started" ? "ticket-status-line width-10 display-2" : "ticket-status-line width-10 color-green-line display-2"}>
                                     |
                                 </div>
-                                <div className={tickets.Status === "New" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
+                                <div className={tickets.Status === "new" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
                                     {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className={ customer==="Completed"&&tickets.Status==="completed" ?"details-caption":"details-caption-strike"}>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
                                 </div>
@@ -80,7 +80,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                         <div className='ticket-details-middle-2 row'>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Email
+                                    Email ID
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {tickets.Email}
