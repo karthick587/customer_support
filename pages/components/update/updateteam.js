@@ -75,22 +75,22 @@ function Updateteam({ teamId }) {
                         {getTeam.map((data) =>
                             <div className="container dialog-body" key={data.teamId}>
                                 <div className="form-group">
-                                    <label className="col label">Email ID</label>
+                                    <label className="col label">Email ID<span>*</span></label>
                                     <input className="form-input" name="Email" type="text" ref={EmailR} defaultValue={data.Email} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="col label">Password</label>
+                                    <label className="col label">Password<span>*</span></label>
                                     <input className="form-input" name="Password" type="text" ref={PasswordR} defaultValue={data.Password} />
                                 </div>
                                 <div className="form-group">
-                                    <label className="col label">Phonenumber</label>
+                                    <label className="col label">Phonenumber<span>*</span></label>
                                     <input className="form-input" name="Phonenumber" type="text" ref={PhonenumberR} defaultValue={data.Phonenumber} />
                                 </div>
                                 <div>
                                     <div className="form-group">
-                                        <label className="col label">Team</label>
+                                        <label className="col label">Team<span>*</span></label>
                                         <select className="form-input" defaultValue={data.Team} ref={TeamR} >
-                                            <option >--select Team--</option>
+                                            <option disabled="disabled">--select Team--</option>
                                             <option value="design">Design</option>
                                             <option value="development">Development</option>
                                             <option value="server">server</option>

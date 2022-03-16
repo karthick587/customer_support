@@ -7,11 +7,14 @@ import Button from '@mui/material/Button';
 import { CounterContext } from '../contex/adminProvider';
 import { CurrentDateContext } from '../contex/currentdateProvider';
 import moment from 'moment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 function Updatecustomer({ usersId }) {
 
     const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
     var [getCustomer, setGetCustomer] = useState([]);
+    const [show5, setshow5] = useState(false);
     const [editLogo, setEditLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     const [selected, setSelected] = useState(false);
@@ -124,24 +127,27 @@ function Updatecustomer({ usersId }) {
                                         </label>
                                     </div>
                                     <div className="form-group">
-                                        <label className="label"> Company Name</label>
+                                        <label className="label"> Company Name<span>*</span></label>
                                         <input className="form-input" name="Name" type="text" ref={CompanynameR} defaultValue={data.Companyname} />
                                     </div>
                                     <div className="form-group">
-                                        <label className="label"> Client Name</label>
+                                        <label className="label"> Client Name<span>*</span></label>
                                         <input className="form-input" name="Name" type="text" ref={ClientnameR} defaultValue={data.Clientname} />
                                     </div>
                                     <div className="form-group">
-                                        <label className="col label">Email ID</label>
+                                        <label className="col label">Email ID<span>*</span></label>
                                         <input className="form-input" name="Email" type="text" ref={EmailR} defaultValue={data.Email} />
                                     </div>
                                     <div className="form-group">
-                                        <label className="col label">Phonenumber</label>
+                                        <label className="col label">Phonenumber<span>*</span></label>
                                         <input className="form-input" name="Phonenumber" type="text" ref={PhonenumberR} defaultValue={data.Phonenumber} />
                                     </div>
                                     <div className="form-group">
-                                        <label className="col label">Password</label>
-                                        <input className="form-input" name="Password" type="text" ref={PasswordR} defaultValue={data.Password} />
+                                        <label className="col label">Password<span>*</span></label>
+                                        <div className='login-input-password'>
+                                            <input className="form-input" type={show5 === true ? "text" : "password"} name='Password' ref={PasswordR} defaultValue={data.Password} />
+                                            <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                                        </div>
                                         <p className="me-2 text-danger">{show}</p>
                                     </div>
                                     <div className="row justify-content-center">

@@ -384,7 +384,7 @@ function Adminticket() {
                             {teamselect && (
                                 <select className='filter-select' onClick={(e) => SelectTeamMember(e.target.value)} >
                                     {team.map((item) =>
-                                        <option value={item.Email}  >{item.Email}</option>
+                                        <option key={item.Email} value={item.Email}  >{item.Email}</option>
                                     )}
                                 </select>
                             )

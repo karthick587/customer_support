@@ -6,11 +6,14 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { CounterContext } from '../contex/adminProvider';
 import CircularProgress from '@mui/material/CircularProgress';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Button from '@mui/material/Button';
 import moment from 'moment';
 const schema = yup.object().shape({
-    Email: yup.string().required().email(),
-    Password: yup.string().required(),
-    Phonenumber: yup.string().required().min(6)
+    Email: yup.string().required("*required").email(),
+    Password: yup.string().required("*required"),
+    Phonenumber: yup.string().required("*required").min(6)
 });
 
 function Addteam() {
@@ -19,6 +22,7 @@ function Addteam() {
     const [show, setshow] = useState('')
     var [addteam, setAddteam] = useState('');
     const Router = useRouter();
+    const [show5, setshow5] = useState(false);
     const [login, setLogin] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
@@ -58,7 +62,8 @@ function Addteam() {
         })
             .catch((err) => { return err; })
         }else{
-            setshow("Please select ")
+            setshow("Please select team");
+            setloader(false);
         } 
     };
 
@@ -105,7 +110,10 @@ function Addteam() {
                         </div>
                         <div className="form-group">
                             <label className="col label">Password<span>*</span></label>
-                            <input className="form-input" name="Password" type="password" {...register('Password')} />
+                            <div className='login-input-password'>
+                                <input className="form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
+                                <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                            </div>
                             <p className="me-2 text-danger">{errors.Password?.message}</p>
                         </div>
                         <div className="form-group">
