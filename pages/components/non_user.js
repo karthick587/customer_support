@@ -15,6 +15,8 @@ import {CounterContext} from "../components/contex/adminProvider";
 import moment from 'moment';
 import { renderEmail } from 'react-html-email'
 import NonUserBody from './utils/nonUserBody';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
@@ -29,6 +31,7 @@ export default function ScrollDialog(props) {
     const { currentDate } = useContext(CurrentDateContext);
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
+    const [show5, setshow5] = useState(false);
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     var [showlogo, setShowlogo] = useState('');
@@ -122,39 +125,43 @@ export default function ScrollDialog(props) {
                             <form>
                               
                                 <div className="form-group">
-                                    <label className="label">Company Name</label>
+                                    <label className="label">Company Name<span>*</span></label>
                                     <input className="issue-form-input" name="Companyname" type="text" {...register('Companyname')} />
                                     <p className="me-2 text-danger">{errors.Companyname?.message}</p>
                                 </div>
                                 <div className="form-group">
-                                    <label className="label"> Client Name</label>
+                                    <label className="label"> Client Name<span>*</span></label>
                                     <input className="issue-form-input" name="Clientname" type="text" {...register('Clientname')} />
                                     <p className="me-2 text-danger">{errors.Clientname?.message}</p>
                                 </div>
                                 <div className="form-group">
-                                    <label className="col label">Email ID</label>
+                                    <label className="col label">Email ID<span>*</span></label>
                                     <input className="issue-form-input" name="email" type="text" {...register('email')} />
                                     <p className="me-2 text-danger">{errors.email?.message}</p>
                                 </div>
                                 <div className="form-group">
-                                    <label className="col label">Phonenumber</label>
+                                    <label className="col label">Phonenumber<span>*</span></label>
                                     <input className="issue-form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                                     <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                                 </div>
                                 
                                 <div className="form-group">
-                                    <label className="col label">Password</label>
-                                    <input className="form-input" name="Password" type="password" {...register('Password')} />
+                                    <label className="col label">Password<span>*</span></label>
+                                    <div className='login-input-password'>
+                                <input className="form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
+                                <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                            </div>
+                                    
                                     <p className="me-2 text-danger">{errors.Password?.message}</p>
                                 </div>
                                 <div className="form-group">
-                                    <label className="label">Domain Name</label>
+                                    <label className="label">Domain Name<span>*</span></label>
                                     <input className="issue-form-input" name="DomainName" rows="4" cols="50" maxLength="200" {...register('DomainName')} />
                                     <p className="me-2 text-danger">{errors.DomainName?.message}</p>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="label">Description</label>
+                                    <label className="label">Description<span>*</span></label>
                                     <textarea className="issue-form-input" name="Description" rows="4" cols="50" maxLength="200" {...register('Description')} />
                                     <p className="me-2 text-danger">{errors.Description?.message}</p>
                                 </div>

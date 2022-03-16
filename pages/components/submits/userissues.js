@@ -29,8 +29,8 @@ const{setTesting,setshowvalue,Email}=useContext(CounterContext)
     };
     const[validate,setValidate]=useState(false)
     const addIssues = () => {
-        if(PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){
-            const messageHtml = renderEmail(<CustomerTicketsBody />)
+        const messageHtml = renderEmail(<CustomerTicketsBody />)
+        if(PhonenumberR.current.value!==""&&DomainnameR.current.value!==""&&DescriptionR.current.value!==""){ 
             setloader(true);
             if(Screenshots!=='x'){
                 const data = new FormData();

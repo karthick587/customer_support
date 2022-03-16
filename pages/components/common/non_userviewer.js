@@ -101,7 +101,7 @@ function Non_userviewer(props) {
             {nonUserDetails.reverse().map((nonuser) =>
                 <div className='ticket-details' key={nonuser.registerId}>
                     <div className='ticket-details-head'>
-                        <div className='ticket-details-head-title'>Unregistered Clients Details</div>
+                        <div className='ticket-details-head-title dash-head'><h2>UNREGISTERED CLIENT&apos;S DETAILS</h2></div>
 
                         <div className='ticket-details-head-btn'>
                             <button className='btn2 float-end' onClick={closeDetails}>Back</button>
@@ -120,7 +120,7 @@ function Non_userviewer(props) {
 
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Companyname
+                                    Company Name
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {nonuser.Companyname}
@@ -128,7 +128,7 @@ function Non_userviewer(props) {
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Clientname
+                                    Client Name
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {nonuser.Clientname}
@@ -136,7 +136,7 @@ function Non_userviewer(props) {
                             </div>
                             <div className='col'>
                                 <div className='label-ticket-details'>
-                                    Email Id
+                                    Email ID
                                 </div>
                                 <div className='user-label-ticket-details'>
                                     {nonuser.Email}
@@ -164,7 +164,7 @@ function Non_userviewer(props) {
                                     {nonuser.CreatedOn}
                                 </div>
                                 <div className='label-ticket-details'>
-                                    DomainName
+                                    Domain Name
                                 </div>
                                 <div className='ticket-input-details' >
                                     {nonuser.DomainName}
