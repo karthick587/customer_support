@@ -180,7 +180,7 @@ function Teamticket(props) {
                                         </TableCell>
                                     </TableRow>
                                     <FormDialog
-                                        dialog_className="update7"
+                                        dialog_className="update7 me-2"
                                         dialogtitle={<div className='me-2'>update</div>}
                                         className="btn3 ticket-update2"
                                         dialogbody={<div>{tickets.Status==="Completed" ? <div className='ticket-update-alert'>Ticket has been completed</div> :
