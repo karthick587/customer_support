@@ -44,6 +44,7 @@ function Adminticket() {
     const [isOpenfilter, setIsOpenfilter] = useState(false);
     const [isOpenstatusfilter, setIsOpenstatusfilter] = useState(false);
     var [selectedValue, setSelectedValue] = useState([]);
+    const [Adminname, setAdminname] = useState([]);
     const [Createdby, setCreatedby] = useState();
     const [login, setLogin] = useState();
     const [ticketid, setTicketid] = useState();
@@ -67,9 +68,12 @@ function Adminticket() {
         localStorage.setItem("passValue", false);
     }, []);
     useEffect(() => {
-        setCreatedby(window.localStorage.getItem('ad_email'));
-    }, [setCreatedby]);
-    
+        setAdminname(window.localStorage.getItem('ad_email'));
+    }, [setAdminname]);
+    useEffect(() => {
+        setCreatedby(Adminname.slice(3, 20));
+
+    }, [Adminname]);
     //filter function
     useEffect(() => {
         if (filteredTitle === 'all') {
@@ -135,7 +139,7 @@ function Adminticket() {
         setTicketid(ticketsId);
     };
     //final Status
-    const messageHtml = renderEmail(<TicketCompletedBody TicketNo={ticketid} />)
+    const messageHtml = renderEmail(<TicketCompletedBody name={Adminname} TicketNo={ticketid} />)
     function finalStatus(ticketsId, Status) {
         setloader(true)
         console.log(ticketsId, Status, currentDate, Createdby)
@@ -214,8 +218,9 @@ function Adminticket() {
     //ticket Team assign function
     const teamId = designTeamList.map((o) => JSON.stringify(o));
     function handleUpdate(ticketsId) {
+        console.log(ticketsId)
         setloader(true)
-        const messageHtml2 = renderEmail(<TicketAssignedBody TicketNo={ticketsId} />)
+        const messageHtml2 = renderEmail(<TicketAssignedBody  TicketNo={ticketsId} />)
         Axios.post(`https://mindmadetech.in/api/tickets/team/update`, {
             teamId: teamId,
             ticketsId: ticketsId,
@@ -261,14 +266,14 @@ function Adminticket() {
     }
     var idmailticket
     function reassign(TeamAssign, ticketsId) {
-        idmailticket = ticketsId
+        var idmailticket = ticketsId
         var TeamList = [...designTeamList]
         TeamAssign.map((product) => {
             TeamList.push(product.teamId)
         })
         setdesignTeamList(TeamList)
     }
-    const messageHtml2 = renderEmail(<TicketAssignedBody TicketNo={idmailticket} />)
+    const messageHtml2 = renderEmail(<TicketAssignedBody  TicketNo={idmailticket} />)
     function ReassignTicket(ticketsId) {
         setloader(true)
         console.log(ticketsId)
