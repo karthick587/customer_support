@@ -96,7 +96,7 @@ const TeamDashboard = () => {
             })
             .catch((err) => { return err; })
         }
-  }, [setteamticket, loginTmName,teamticket]);
+  }, [loginTmName,teamticket]);
   // ticket count, ticket status count for team dashboard
   useEffect(() => {
     setassignedcount(teamticket.filter(val => { return val }).map((ticket) => setassignedcount(ticket.Status.length)).length);
