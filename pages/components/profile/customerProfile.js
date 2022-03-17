@@ -31,63 +31,12 @@ export default function CustomerProfile(props) {
                     <div className='header-user'>
                         <div><h1>PROFILE</h1></div>
                     </div>
-                    <div className="col-md-4 mb-3">
-                        <div className="profile-card">
-                            <div className="profile-card-body">
-                                <div className="d-flex flex-column">
-                                    <img src={users.Logo} alt="Admin" className="rounded-circle justify-content-center mb-4 profile-page-img" />
-                                    {/* <div className="row">
-                                        <div className="col">
-                                            <h6 className="mb-0 profile-label">
-                                                Email
-                                            </h6>
-                                        </div>
-                                        :
-                                        <div className="col text-secondary">
-                                            {users.Email}
-                                        </div>
-                                    </div> */}
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0 profile-label mm-color">Email</h6>
-                                        </div>
-                                        <div className="col-sm-9  profile-input"> {users.Email}</div>
-                                    </div>
-                                    <br />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0 profile-label mm-color">Password</h6>
-                                        </div>
-                                        <div className="col-sm-9 text-secondary">
-                                            <div className="flex password-input-div">
-                                                <input className='password-input' value={users.Password} type={show === true ? "text" : "password"} />
-                                                <Button onClick={() => setshow(!show)}>{!show ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <div className="row">
-                                        <div className="col">
-                                            <h6 className="mb-0 profile-label">
-                                                Password
-                                            </h6>
-                                        </div>
-                                        :
-                                        <div className="col flex password-input-div">
 
-                                            <input className='password-input' value={users.Password} type={show === true ? "text" : "password"} />
-                                            <Button onClick={() => setshow(!show)}>{!show ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
-
-                                        </div>
-                                    </div> */}
-
-                                    <h4 className="profile-label"></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-8">
+                    <div >
                         <div className="profile-card mb-3">
                             <div className="profile-card-body">
+
+
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0 profile-label mm-color">Company Name</h6>
@@ -108,10 +57,22 @@ export default function CustomerProfile(props) {
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <h6 className="mb-0 profile-label mm-color">Email ID</h6>
+                                        <h6 className="mb-0 profile-label mm-color">Email</h6>
                                     </div>
                                     <div className="col-sm-9 profile-input">
                                         {users.Email}
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row">
+                                    <div className="col-sm-3">
+                                        <h6 className="mb-0 profile-label mm-color">Password</h6>
+                                    </div>
+                                    <div className="col-sm-9 profile-input">
+                                        <div className="flex password-input-div">
+                                            <input className='password-input' value={users.Password} type={show === true ? "text" : "password"} />
+                                            <Button onClick={() => setshow(!show)}>{!show ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr />
