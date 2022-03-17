@@ -73,8 +73,8 @@ function Userticket(props) {
                                 </TableRow>
                             </TableHead>
                             {maptickets.slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
-                                <Tooltip title="View Details" followCursor>
-                                    <TableBody key={tickets.ticketsId} >
+                                <Tooltip key={tickets.ticketsId} title="View Details" followCursor>
+                                    <TableBody  >
                                         <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId, tickets.Screenshots)}>
                                             <TableCell>{tickets.ticketsId}</TableCell>
                                             <TableCell className='table_spacing' >{tickets.Email}</TableCell>
