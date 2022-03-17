@@ -1,4 +1,4 @@
-import React,{ useState,useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,31 +11,33 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { CurrentDateContext } from '../components/contex/currentdateProvider';
-import {CounterContext} from "../components/contex/adminProvider";
+import { CounterContext } from "../components/contex/adminProvider";
 import moment from 'moment';
 import { renderEmail } from 'react-html-email'
 import NonUserBody from './utils/nonUserBody';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import CircularProgress from '@mui/material/CircularProgress';
 const schema = yup.object().shape({
     Companyname: yup.string().required(),
     Clientname: yup.string().required(),
     email: yup.string().required().email(),
     Phonenumber: yup.string().required().max(10),
-    Password :  yup.string().required(),
+    Password: yup.string().required(),
     DomainName: yup.string().required(),
     Description: yup.string().required(),
 });
 export default function ScrollDialog(props) {
-    const { setTesting,setshowvalue,Email} = useContext(CounterContext);
+    const { setTesting, setshowvalue, Email } = useContext(CounterContext);
     const { currentDate } = useContext(CurrentDateContext);
+    const [loader, setloader] = useState(false)
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
     const [show5, setshow5] = useState(false);
     const [Logo, setLogo] = useState();
     const [uploadLogo, setUploadLogo] = useState();
     var [showlogo, setShowlogo] = useState('');
-    const [logovalidate, setLogovalidate] = useState(); 
+    const [logovalidate, setLogovalidate] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
@@ -55,44 +57,47 @@ export default function ScrollDialog(props) {
         setLogo(e.target.files[0]);
         setUploadLogo(URL.createObjectURL(e.target.files[0]));
     };
-   
+
     const handleSubmitForm = ({ Companyname, Clientname, email, Phonenumber, Password, DomainName, Description }) => {
+        setloader(true)
         const messageHtml = renderEmail(<NonUserBody name={Clientname} body={Companyname} />)
-     
-            Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, {
-                Companyname : Companyname,
-                Clientname : Clientname,
-                Email : email,
-                Phonenumber : Phonenumber,
-                Password : Password,
-                Logo:"https://mindmadetech.in/public/images/profile-img.png",
-                CreatedOn : moment(new Date()).format('DD-MM-YYYY hh:mm A'),
-                DomainName : DomainName,
-                Description : Description
-            }).then((response) => {
-                
-                if (response.data.statusCode === 400) {
-                    setshowvalue(1+response.data.message)
-                    setTesting(true)
-                } else {
-                    setshowvalue("Registered Successfully")
-                    setOpen(false);               
-                    setTesting(true)
-                    Email.send({
-                        Host: "mindmadetech.in",
-                        Username: "_mainaccount@mindmadetech.in",
-                        Password: "1boQ[(6nYw6H.&_hQ&",
-                        To: email,
-                        From: "karthickraja@mindmade.in",
-                        Subject: "MindMade Support",
-                        Body: messageHtml
-                    }).then(
-                        message => console.log(message)
-                    );
-                }
-            }).catch((err) => { return err; })
+
+        Axios.post(`https://mindmadetech.in/api/unregisteredcustomer/new`, {
+            Companyname: Companyname,
+            Clientname: Clientname,
+            Email: email,
+            Phonenumber: Phonenumber,
+            Password: Password,
+            Logo: "https://mindmadetech.in/public/images/profile-img.png",
+            CreatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
+            DomainName: DomainName,
+            Description: Description
+        }).then((response) => {
+
+            if (response.data.statusCode === 400) {
+                setshowvalue(1 + response.data.message)
+                setloader(false)
+                setTesting(true)
+            } else {
+                setshowvalue("Registered Successfully")
+                setloader(false)
+                setOpen(false);
+                setTesting(true)
+                Email.send({
+                    Host: "mindmadetech.in",
+                    Username: "_mainaccount@mindmadetech.in",
+                    Password: "1boQ[(6nYw6H.&_hQ&",
+                    To: email,
+                    From: "karthickraja@mindmade.in",
+                    Subject: "MindMade Support",
+                    Body: messageHtml
+                }).then(
+                    message => console.log(message)
+                );
+            }
+        }).catch((err) => { return err; })
     }
-    
+
     const descriptionElementRef = React.useRef(null);
     React.useEffect(() => {
         setTesting(false)
@@ -121,9 +126,9 @@ export default function ScrollDialog(props) {
                         ref={descriptionElementRef}
                         tabIndex={-1}
                     >
-                            <div className="addform">
+                        <div className="addform">
                             <form>
-                              
+
                                 <div className="form-group">
                                     <label className="label">Company Name<span>*</span></label>
                                     <input className="issue-form-input" name="Companyname" type="text" {...register('Companyname')} />
@@ -144,14 +149,14 @@ export default function ScrollDialog(props) {
                                     <input className="issue-form-input" name="Phonenumber" type="text" {...register('Phonenumber')} />
                                     <p className="me-2 text-danger">{errors.Phonenumber?.message}</p>
                                 </div>
-                                
+
                                 <div className="form-group">
                                     <label className="col label">Password<span>*</span></label>
                                     <div className='login-input-password'>
-                                <input className="issue-form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
-                                <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
-                            </div>
-                                    
+                                        <input className="issue-form-input" type={show5 === true ? "text" : "password"} name='Password' {...register('Password')} />
+                                        <Button className='login-password-i' onClick={() => setshow5(!show5)}>{!show5 ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}</Button>
+                                    </div>
+
                                     <p className="me-2 text-danger">{errors.Password?.message}</p>
                                 </div>
                                 <div className="form-group">
@@ -166,13 +171,16 @@ export default function ScrollDialog(props) {
                                     <p className="me-2 text-danger">{errors.Description?.message}</p>
                                 </div>
                             </form>
-                           
+
                         </div>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit(handleSubmitForm)}>Submit</Button>
+                    {loader === false ? <>
+                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button onClick={handleSubmit(handleSubmitForm)}>Submit</Button>
+                    </> : <> <CircularProgress size={30} /></>}
+
                 </DialogActions>
             </Dialog>
         </div>

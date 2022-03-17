@@ -35,7 +35,7 @@ export default function Resentticket(props) {
                     </TableHead>
                     {team.filter(val => {
                         return val.Status.toLowerCase().includes("New".toLowerCase())
-                    }).map((tickets) =>
+                    }).reverse().map((tickets) =>
                         <TableBody key={tickets.ticketsId}>
                             <TableRow className="resentticket-row" >
                             <TableCell >{tickets.Cus_CreatedOn===null ? <>{tickets.Adm_CreatedOn}</>:<>{tickets.Cus_CreatedOn}</> }</TableCell>

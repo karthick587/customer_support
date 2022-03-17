@@ -26,43 +26,28 @@ export default function Addcustomer() {
     const [loader, setloader] = useState(false);
     var [addmember, setAddmember] = useState('');
     const Router = useRouter();
-    var [showlogo, setShowlogo] = useState('');
     const [show, setShow] = useState(false);
     const [show5, setshow5] = useState(false);
-    const [Logo, setLogo] = useState();
-    const [uploadLogo, setUploadLogo] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
     const { errors } = formState;
     const [Createdby, setCreatedby] = useState();
-    var [showlogo, setShowlogo] = useState('');
-    const [logovalidate, setLogovalidate] = useState();
     const [login, setLogin] = useState();
 
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('user'));
     }, [setCreatedby]);
-    function handleScreenshot(e) {
-        setLogovalidate(e.target.files[0]);
-        setLogo(e.target.files[0]);
-        setUploadLogo(URL.createObjectURL(e.target.files[0]));
-    };
 var email2=Email
     const addUser = ({ Companyname, Clientname, Email, Phonenumber, Password }) => {
         const messageHtml2 = renderEmail(<CustomerCreatedBody name={Clientname} email={Email} password={Password} />)
         setloader(true)
-        if (logovalidate === undefined) {
-            setShow("Logo is required")
-            setloader(false)
-        } else {
             const data = new FormData();
             data.append("Companyname", Companyname);
             data.append("Clientname", Clientname);
             data.append("Email", Email);
             data.append("Phonenumber", Phonenumber);
             data.append("Password", Password);
-            data.append("file", Logo);
             data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
             data.append("CreatedBy", Createdby)
             Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
@@ -106,7 +91,7 @@ var email2=Email
                     setloader(false)
                     return err;
             })
-        }
+       
     };
 
     useEffect(() => {
@@ -124,17 +109,6 @@ var email2=Email
             <div className="container mainbody">
                 <div className="addform">
                     <form>
-                        <div className="form-group upload">
-                            <label htmlFor="contained-button-file">
-                                <input accept="image/*" id="contained-button-file" className="upload-input-button" multiple type="file" onChange={(e) => handleScreenshot(e)} />
-                                {/* {/ <p className="text-danger mt-3 ml-2">{showlogo}</p> /} */}
-                                <Avatar
-                                    alt="uploadlogo"
-                                    src={uploadLogo}
-                                    sx={{ width: 65, height: 65 }}
-                                />
-                            </label>
-                        </div>
                         <div className="form-group">
                             <label className="label">Company Name<span>*</span></label>
                             <input className="form-input" name="Companyname" type="text" {...register('Companyname')} />
