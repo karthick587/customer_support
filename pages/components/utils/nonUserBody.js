@@ -5,7 +5,7 @@ export default function NonUserBody(props) {
     return (
         <Email title='link'>
             <h3>
-                Dear Sir/Madam,
+                Dear {props.name},
             </h3>
             <br />
             <p>

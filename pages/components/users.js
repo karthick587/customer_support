@@ -23,6 +23,7 @@ import { ListContext } from './contex/ListProvider';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PasswordViewer from './common/password';
+import { CircularProgress } from '@mui/material';
 export default function Users(props) {
 
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
@@ -33,21 +34,25 @@ export default function Users(props) {
     const [login, setLogin] = useState();
     const [datalimit, setdatalimit] = useState(10);
     const [currentpage, setCurrentpage] = useState(1);
+    const [loader, setloader] = useState(false);
 
     useEffect(() => {
         localStorage.setItem("passValue", false);
     },[]);
 
     const deleteUsers = (id)=> {
+        setloader(true);
         Axios.put(`https://mindmadetech.in/api/customer/delete/${id}`, {
             Isdeleted: 'y'
         }).then(() => {
             setdialogformopen("true")
             setshowvalue("Deleted Successfully")
-            setTesting(true)
+            setTesting(true);
+            setloader(false);
         }).catch((err) => { 
             setshowvalue("Error")
             setTesting(true)
+            setloader(false);
             return err; })
     };
 
@@ -136,7 +141,6 @@ export default function Users(props) {
                         <TableHead>
                             <TableRow className='usertable'>
                                 <TableCell className="teamtablecel" >CLIENT ID</TableCell>
-                                <TableCell className="teamtablecel" align="left">LOGO</TableCell>
                                 <TableCell className="teamtablecel" align="left">COMPANY NAME</TableCell>
                                 <TableCell className="teamtablecel">CLIENT NAME</TableCell>
                                 <TableCell className="teamtablecel">EMAIL</TableCell>
@@ -157,12 +161,6 @@ export default function Users(props) {
                             <TableBody key={item.usersId}>
                                 <TableRow >
                                     <TableCell className="teamtablecel" component="th" scope="row">{item.usersId}</TableCell>
-                                    <TableCell className="teamtablecel" align="left" >
-                                        <Imageviewer
-                                            imgdialogbutton={<img src={item.Logo} alt='logo' className="rounded-circle mb-2 user-profile-img" />}
-                                            imgdialogbody={<img className="Imageviewer-userimg" src={item.Logo} alt='logo' />}
-                                        />
-                                    </TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Companyname}</TableCell>
                                     <TableCell className="teamtablecel" align="left">{item.Clientname}</TableCell>
                                     <TableCell className='table_spacing' align="left">{item.Email}</TableCell>
@@ -176,8 +174,9 @@ export default function Users(props) {
                                             headtitle={<div className='head-dialog'>Are you sure want to delete this Client?</div>}
                                             dialogactions={
                                                 <div>
-                                                    <Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES</Button>
-                                                    <Button onClick={()=>setdialogformopen("true")}>NO</Button>
+                                                     {loader === false ? <><Button onClick={() => deleteUsers(item.usersId, item.Username)}>YES </Button>
+                                                    <Button onClick={()=>setdialogformopen("true")}>NO</Button></> 
+                                                    : <> <CircularProgress className="float-end" size={25} /></>}
                                                 </div>
                                             }
                                         />

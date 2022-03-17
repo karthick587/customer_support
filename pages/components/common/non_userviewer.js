@@ -63,7 +63,7 @@ function Non_userviewer(props) {
                     Username: "_mainaccount@mindmadetech.in",
                     Password: "1boQ[(6nYw6H.&_hQ&",
                     To: nonuser.Email,
-                    From: "karthickraja@mindmade.in",
+                    From: "support@mindmade.in",
                     Subject: "MindMade Support",
                     Body: messageHtml
                 }).then(

@@ -18,10 +18,10 @@ import { ListContext } from '../contex/ListProvider';
 import ReactPaginate from 'react-paginate';
 import { Typography } from '@mui/material';
 import moment from 'moment';
+import { CircularProgress } from '@mui/material';
 function Teamticket(props) {
     const { team } = useContext(ListContext);
     const { setdialogformopen,setTesting,setshowvalue } = useContext(CounterContext);
-    const { currentDate } = useContext(CurrentDateContext);
     const { teamticket,loginTmName } = props;
     const [mapteamticket, setmapteamticket] = useState([]);
     const Router = useRouter();
@@ -32,6 +32,7 @@ function Teamticket(props) {
     const [dticketsscreenshots, setdticketsscreenshots] = useState("");
     const [showdetails, setShowdetails] = useState(false);
     var [search, setSearch] = useState('');
+    const [loader, setloader] = useState(false);
 
     function handlestatus(e) {
         setSelectedstatus(e.target.value);
@@ -39,8 +40,9 @@ function Teamticket(props) {
    
     //status submit function
     function handleUpdatestatus(ticketsId,TeamAssign) {
+        setloader(true);
        var teamId = team.filter(Id=>{
-           if(Id.Email.includes(loginTmName)){
+           if(Id.Email===loginTmName){
                return Id;
            }
         }).map(team=>{
@@ -66,9 +68,11 @@ function Teamticket(props) {
                 localStorage.setItem("passValue", true);
                 setTesting(true)
                 setshowvalue("Updated Successfully");
+                setloader(false);
             }).catch((err) => {
                 setTesting(true)
                 setshowvalue(1+"Registered failed");
+                setloader(false);
                 return err; })
         } else if (selectedstatus === 'inprogress') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
@@ -82,9 +86,11 @@ function Teamticket(props) {
                 localStorage.setItem("passValue", true);
                 setTesting(true)
                 setshowvalue("Updated Successfully");
+                setloader(false);
             }).catch((err) => { 
                 setTesting(true)
                 setshowvalue(1+"Registered failed");
+                setloader(false);
                 return err; })
         } else if (selectedstatus === 'completed') {
             Axios.put(`https://mindmadetech.in/api/tickets/status/update`, {
@@ -98,9 +104,11 @@ function Teamticket(props) {
                 localStorage.setItem("passValue", true);
                 setTesting(true)
                 setshowvalue("Updated Successfully");
+                setloader(false);
             }).catch((err) => { 
                 setTesting(true)
                 setshowvalue(1+"Registered failed");
+                setloader(false);
                 return err; })
         } else return null
     };
@@ -204,7 +212,7 @@ function Teamticket(props) {
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <button className="btn2 float-end mt-3 mb-3" onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.TeamAssign)}>update</button>                                  
+                                                {loader === false ? <><button type="button"  onClick={() => handleUpdatestatus(tickets.ticketsId,tickets.TeamAssign)} className="btn2 float-end mt-3 mb-3"> Update </button></> : <> <CircularProgress className="float-end" size={25} /></>}
                                             </div>
                                         }
                                         </div>

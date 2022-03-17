@@ -6,11 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Avatar from '@mui/material/Avatar';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-import { CurrentDateContext } from '../components/contex/currentdateProvider';
 import { CounterContext } from "../components/contex/adminProvider";
 import moment from 'moment';
 import { renderEmail } from 'react-html-email'
@@ -19,25 +17,20 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
 const schema = yup.object().shape({
-    Companyname: yup.string().required(),
-    Clientname: yup.string().required(),
-    email: yup.string().required().email(),
-    Phonenumber: yup.string().required().max(10),
-    Password: yup.string().required(),
-    DomainName: yup.string().required(),
-    Description: yup.string().required(),
+    Companyname: yup.string().required("*required"),
+    Clientname: yup.string().required("*required"),
+    email: yup.string().required("*required").email(),
+    Phonenumber: yup.string().required("*required").max(10),
+    Password: yup.string().required("*required"),
+    DomainName: yup.string().required("*required"),
+    Description: yup.string().required("*required"),
 });
 export default function ScrollDialog(props) {
     const { setTesting, setshowvalue, Email } = useContext(CounterContext);
-    const { currentDate } = useContext(CurrentDateContext);
     const [loader, setloader] = useState(false)
     const [open, setOpen] = useState(false);
     const [scroll, setScroll] = useState('paper');
     const [show5, setshow5] = useState(false);
-    const [Logo, setLogo] = useState();
-    const [uploadLogo, setUploadLogo] = useState();
-    var [showlogo, setShowlogo] = useState('');
-    const [logovalidate, setLogovalidate] = useState();
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
@@ -52,12 +45,6 @@ export default function ScrollDialog(props) {
         setOpen(false);
     };
 
-    function handleScreenshot(e) {
-        setLogovalidate(e.target.files[0]);
-        setLogo(e.target.files[0]);
-        setUploadLogo(URL.createObjectURL(e.target.files[0]));
-    };
-
     const handleSubmitForm = ({ Companyname, Clientname, email, Phonenumber, Password, DomainName, Description }) => {
         setloader(true)
         const messageHtml = renderEmail(<NonUserBody name={Clientname} body={Companyname} />)
@@ -68,12 +55,10 @@ export default function ScrollDialog(props) {
             Email: email,
             Phonenumber: Phonenumber,
             Password: Password,
-            Logo: "https://mindmadetech.in/public/images/profile-img.png",
             CreatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
             DomainName: DomainName,
             Description: Description
         }).then((response) => {
-
             if (response.data.statusCode === 400) {
                 setshowvalue(1 + response.data.message)
                 setloader(false)
@@ -88,7 +73,7 @@ export default function ScrollDialog(props) {
                     Username: "_mainaccount@mindmadetech.in",
                     Password: "1boQ[(6nYw6H.&_hQ&",
                     To: email,
-                    From: "karthickraja@mindmade.in",
+                    From: "support@mindmade.in",
                     Subject: "MindMade Support",
                     Body: messageHtml
                 }).then(

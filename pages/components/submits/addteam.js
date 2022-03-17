@@ -66,7 +66,7 @@ function Addteam() {
                     Username: "_mainaccount@mindmadetech.in",
                     Password: "1boQ[(6nYw6H.&_hQ&",
                     To: Email,
-                    From: "karthickraja@mindmade.in",
+                    From: "support@mindmade.in",
                     Subject: "MindMade Support",
                     Body: messageHtml2
                 }).then(

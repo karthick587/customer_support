@@ -248,7 +248,7 @@ function Adminticket() {
                         Username: "_mainaccount@mindmadetech.in",
                         Password: "1boQ[(6nYw6H.&_hQ&",
                         To: product.Email,
-                        From: "karthickraja@mindmade.in",
+                        From: "support@mindmade.in",
                         Subject: "MindMade Support",
                         Body: messageHtml2
                     }).then(
@@ -275,8 +275,9 @@ function Adminticket() {
         })
         setdesignTeamList(TeamList)
     }
-    const messageHtml2 = renderEmail(<TicketAssignedBody  TicketNo={idmailticket} />)
+   
     function ReassignTicket(ticketsId) {
+        const messageHtml1 = renderEmail(<TicketAssignedBody  TicketNo={ticketsId} />)
         setloader(true)
         console.log(ticketsId)
         Axios.put(`https://mindmadetech.in/api/tickets/team/reassign`, {
@@ -312,9 +313,9 @@ function Adminticket() {
                                 Username: "_mainaccount@mindmadetech.in",
                                 Password: "1boQ[(6nYw6H.&_hQ&",
                                 To: product.Email,
-                                From: "karthickraja@mindmade.in",
+                                From: "support@mindmade.in",
                                 Subject: "MindMade Support",
-                                Body: messageHtml2
+                                Body: messageHtml1
                             }).then(
                                 message => console.log(message)
                             )

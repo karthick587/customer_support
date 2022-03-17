@@ -24,7 +24,6 @@ const schema = yup.object().shape({
 export default function Addcustomer() {
     const { setdialogformopen, setTesting, setshowvalue, Email } = useContext(CounterContext);
     const [loader, setloader] = useState(false);
-    var [addmember, setAddmember] = useState('');
     const Router = useRouter();
     const [show, setShow] = useState(false);
     const [show5, setshow5] = useState(false);
@@ -75,7 +74,7 @@ var email2=Email
                         Username: "_mainaccount@mindmadetech.in",
                         Password: "1boQ[(6nYw6H.&_hQ&",
                         To: Email,
-                        From: "karthickraja@mindmade.in",
+                        From: "support@mindmade.in",
                         Subject: "MindMade Support",
                         Body: messageHtml2
                     }).then(
@@ -140,7 +139,7 @@ var email2=Email
                         <div className="row justify-content-center">
                             <div className='bottom-area'>
                                 <p className="me-2 text-danger">{show}</p>
-                                {loader === false ? <><button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add {addmember}</button></> : <> <CircularProgress className="float-end" size={25} /></>}
+                                {loader === false ? <><button type="submit" onClick={handleSubmit(addUser)} className="btn2 float-end"> Add</button></> : <> <CircularProgress className="float-end" size={25} /></>}
                             </div>
                         </div>
                     </form>

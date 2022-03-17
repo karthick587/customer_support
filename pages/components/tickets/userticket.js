@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import Axios from 'axios';
 import ViewTeam from '../common/view_team';
 import ReactPaginate from 'react-paginate';
-import { Typography } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 function Userticket(props) {
     const { tickets } = props;
     const [maptickets, setmaptickets] = useState([]);
@@ -58,7 +58,7 @@ function Userticket(props) {
             {showdetails === false ?
 
                 <div className="teambody">
-                     <div className='dash-head mt-1 mb-1'>
+                    <div className='dash-head mt-1 mb-1'>
                         <h1>TICKETS</h1>
                     </div>
                     <TableContainer component={Paper}>
@@ -73,43 +73,45 @@ function Userticket(props) {
                                 </TableRow>
                             </TableHead>
                             {maptickets.slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
-                                <TableBody key={tickets.ticketsId} >
-                                    <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId, tickets.Screenshots)}>
-                                        <TableCell>{tickets.ticketsId}</TableCell>
-                                        <TableCell className='table_spacing' >{tickets.Email}</TableCell>
-                                        <TableCell className='table_spacing' >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
-                                        <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell> 
-                                        <TableCell > {tickets.Status === "completed" ? <h5 className="inprogress">Inprogress</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
+                                <Tooltip title="View Details" followCursor>
+                                    <TableBody key={tickets.ticketsId} >
+                                        <TableRow className="tickets-bodyrow" onClick={() => Openticket(tickets.ticketsId, tickets.Screenshots)}>
+                                            <TableCell>{tickets.ticketsId}</TableCell>
+                                            <TableCell className='table_spacing' >{tickets.Email}</TableCell>
+                                            <TableCell className='table_spacing' >{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</TableCell>
+                                            <TableCell >{tickets.TeamAssign.length <= 0 ? <>Not Assigned</> : <ViewTeam teamArray={tickets.TeamAssign} />}</TableCell>
+                                            <TableCell > {tickets.Status === "completed" ? <h5 className="inprogress">Inprogress</h5> : <h5 className={tickets.Status}>{tickets.Status}</h5>}
 
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Tooltip>
                             )}
                         </Table>
                     </TableContainer>
-                    {maptickets.length<10 ? <></>:
-                     <div className='page-bottom'>
-                     < ReactPaginate
-                         previousLabel={""}
-                         nextLabel={""}
-                         pageCount={Math.ceil(maptickets.length / datalimit)}
-                         onPageChange={(e) => handlePageChange(e.selected)}
-                         containerClassName={"pagination mt-3"}
-                         pageClassName={"page-item"}
-                         pageLinkClassName={"page-link"}
-                         activeClassName={"active"}
-                     />
-                     <div className='pagedata-limit flex'>
-                         <Typography>Clients per page</Typography>
+                    {maptickets.length < 10 ? <></> :
+                        <div className='page-bottom'>
+                            < ReactPaginate
+                                previousLabel={""}
+                                nextLabel={""}
+                                pageCount={Math.ceil(maptickets.length / datalimit)}
+                                onPageChange={(e) => handlePageChange(e.selected)}
+                                containerClassName={"pagination mt-3"}
+                                pageClassName={"page-item"}
+                                pageLinkClassName={"page-link"}
+                                activeClassName={"active"}
+                            />
+                            <div className='pagedata-limit flex'>
+                                <Typography>Clients per page</Typography>
 
-                         <select className='pagedatalimit-select' onChange={pagedatalimit}>
-                             <option value={10}>10</option>
-                             <option value={25}>25</option>
-                             <option value={50}>50</option>
-                             <option value={100}>100</option>
-                         </select>
-                     </div>
-                 </div>
+                                <select className='pagedatalimit-select' onChange={pagedatalimit}>
+                                    <option value={10}>10</option>
+                                    <option value={25}>25</option>
+                                    <option value={50}>50</option>
+                                    <option value={100}>100</option>
+                                </select>
+                            </div>
+                        </div>
                     }
                 </div> :
                 <>

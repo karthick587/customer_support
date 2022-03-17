@@ -9,6 +9,7 @@ import { Typography } from '@mui/material';
 import * as yup from 'yup';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { CircularProgress } from '@mui/material';
 const schema = yup.object().shape({
     password: yup.string()
         .required('Password is mendatory')
@@ -22,6 +23,8 @@ export default function CustomerChangePass(props) {
     const { customername } = props
     const { setdialogformopen, dialogformopen, setTesting, setshowvalue } = useContext(CounterContext);
     const [open, setOpen] = useState(false);
+    const[show,setShow] = useState('');
+    const [loader, setloader] = useState(false);
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
@@ -34,18 +37,26 @@ export default function CustomerChangePass(props) {
         setOpen(false);
     };
     function Edit(data) {
-
+        setloader(true);
         Axios.put(`https://mindmadetech.in/api/forgotpassword/reset_password`, {
             Email: customername,
             Password: data.password,
         }).then((response) => {
             if (response.data.statusCode === 400) {
-                setTesting(true)
-                setshowvalue(1 + response.data.message);
+                if(response.data.message === "Please enter a New password"){
+                    setShow(response.data.message)
+                    setloader(false);
+                }else{
+                    setTesting(true);
+                    setshowvalue(1 + response.data.message);
+                    setloader(false);
+                }
             } else {
                 setTesting(true)
                 setshowvalue(response.data.message);
                 setOpen(false);
+                setShow('');
+                setloader(false);
             }
         }).catch((err) => {
             return err;
@@ -91,10 +102,12 @@ export default function CustomerChangePass(props) {
                             </div>
                            
                             <p className="me-2 text-danger h6">{errors.confirmPwd?.message}</p>
+                            
                         </div>
                     </div>
                     <div>
-                        <Button className='float-end' size="small" onClick={handleSubmit(Edit)}>change</Button>
+                    <p className="me-2 text-danger">{show}</p>
+                    {loader === false ? <><Button size="small" onClick={handleSubmit(Edit)} className="float-end"> change </Button></> : <> <CircularProgress className="float-end" size={25} /></>}
                         <Button className='float-end' size="small" onClick={() => setOpen(false) & setshowvalue("")}>Cancel</Button>
                     </div>
                 </div>

@@ -23,6 +23,7 @@ import { CounterContext } from './contex/adminProvider';
 // import { TeamListContext } from './contex/teamListProvider';
 import { ListContext } from './contex/ListProvider';
 import PasswordViewer from './common/password';
+import { CircularProgress } from '@mui/material';
 
 export default function Team(props) {
     const { setdialogformopen, setTesting, setshowvalue } = useContext(CounterContext)
@@ -34,37 +35,22 @@ export default function Team(props) {
     var [exportTeam, setExportTeam] = useState([]);
     var [selectedValue, setSelectedValue] = useState([]);
     const [login, setLogin] = useState();
-
-
-
-    // useEffect(() => {
-    //     Axios.get("https://mindmadetech.in/api/team/list")
-    //         .then((res) => {
-    //             setTeam(res.data);
-    //             if (localStorage.getItem("passValue") === true) {
-    //                 setSelectedValue(team);
-    //             } else {
-    //                 setSelectedValue();
-    //             }
-    //         }).catch((err) => { return err; })
-    // }, [setSelectedValue]);
-
-    // useEffect(() => {
-    //     localStorage.setItem("passValue", false);
-    // },[]);
+    const [loader, setloader] = useState(false);
 
     const deleteUsers = (id) => {
+        setloader(true);
         Axios.put(`https://mindmadetech.in/api/team/delete/${id}`, {
             Isdeleted: 'y'
         }).then((res) => {
             setshowvalue("Deleted Successfully")
             setTesting(true)
             setdialogformopen("true")
+            setloader(false);
             return res;
         }).catch((err) => {
             setshowvalue("Error")
             setTesting(true)
-
+            setloader(false);
             return err;
         })
     };
@@ -177,8 +163,9 @@ export default function Team(props) {
                                             headtitle={<div className='head-dialog'>Are you sure you want to delete the team?</div>}
                                             dialogactions={
                                                 <div>
-                                                    <Button onClick={() => deleteUsers(item.teamId, item.Email)}>YES</Button>
-                                                    <Button onClick={() => setdialogformopen("true")} >NO</Button>
+                                                     {loader === false ? <><Button onClick={() => deleteUsers(item.teamId, item.Email)}>YES </Button>
+                                                    <Button onClick={()=>setdialogformopen("true")}>NO</Button></> 
+                                                    : <> <CircularProgress className="float-end" size={25} /></>}
                                                 </div>
                                             }
                                         />

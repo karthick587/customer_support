@@ -25,7 +25,7 @@ const TeamDashboard = () => {
   // activetab
   var [activeTab, setActivetab] = useState(" ");
   var [loginTmName, setloginTmName] = useState();
-  const [teamticket, setteamticket] = useState([]);
+  var [teamticket, setteamticket] = useState([]);
   // ticket count, ticket status count for team dashboard
   const [teamassignedcount, setassignedcount] = useState();
   const [teaminprogresscount, setinprogresscount] = useState();
@@ -41,7 +41,7 @@ const TeamDashboard = () => {
     } else if (login === null) {
       router.push("/");
     }
-  },[]);
+  },[login]);
   //alert to conform logout
   const onBackButtonEvent = (e) => {
     e.preventDefault();

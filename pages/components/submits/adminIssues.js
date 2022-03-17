@@ -58,7 +58,7 @@ export default function Adminissues(props) {
                                 Username: "_mainaccount@mindmadetech.in",
                                 Password: "1boQ[(6nYw6H.&_hQ&",
                                 To: EmailR.current.value,
-                                From: "karthickraja@mindmade.in",
+                                From: "support@mindmade.in",
                                 Subject: "MindMade Support",
                                 Body: messageHtml
                             }).then(
@@ -108,7 +108,7 @@ export default function Adminissues(props) {
                                 Username: "_mainaccount@mindmadetech.in",
                                 Password: "1boQ[(6nYw6H.&_hQ&",
                                 To: EmailR.current.value,
-                                From: "karthickraja@mindmade.in",
+                                From: "support@mindmade.in",
                                 Subject: "MindMade Support",
                                 Body: messageHtml
                             }).then(
