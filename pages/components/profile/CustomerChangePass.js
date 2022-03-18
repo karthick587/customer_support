@@ -107,8 +107,8 @@ export default function CustomerChangePass(props) {
                     </div>
                     <div>
                     <p className="me-2 text-danger">{show}</p>
-                    {loader === false ? <><Button size="small" onClick={handleSubmit(Edit)} className="float-end"> change </Button></> : <> <CircularProgress className="float-end" size={25} /></>}
-                        <Button className='float-end' size="small" onClick={() => setOpen(false) & setshowvalue("")}>Cancel</Button>
+                    {loader === false ? <><Button size="small" onClick={handleSubmit(Edit)} className="float-end"> change </Button>
+                        <Button className='float-end' size="small" onClick={() => setOpen(false) & setshowvalue("")}>Cancel</Button></> : <> <CircularProgress className="float-end" size={25} /></>}
                     </div>
                 </div>
             </Dialog>
