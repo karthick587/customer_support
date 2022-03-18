@@ -18,7 +18,7 @@ const schema = yup.object().shape({
     Clientname: yup.string().required("*required"),
     Email: yup.string().required("*required").email(),
     Phonenumber: yup.string().required("*required").max(10),
-    Password: yup.string().required("*required"),
+    Password: yup.string().required("*required").min(6),
 });
 
 export default function Addcustomer() {
