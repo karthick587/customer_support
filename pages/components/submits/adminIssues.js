@@ -54,6 +54,7 @@ export default function Adminissues(props) {
                             setTesting(true)
                             setshowvalue(res.data.message);
                             setloader(false);
+                            setShow("")
                             Email.send({
                                 Host: "mindmadetech.in",
                                 Username: "_mainaccount@mindmadetech.in",
@@ -104,6 +105,7 @@ export default function Adminissues(props) {
                             setTesting(true)
                             setshowvalue("Submitted Successfully");
                             setloader(false);
+                            setShow("");
                             Email.send({
                                 Host: "mindmadetech.in",
                                 Username: "_mainaccount@mindmadetech.in",
