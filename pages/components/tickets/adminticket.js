@@ -69,12 +69,9 @@ function Adminticket() {
         localStorage.setItem("passValue", false);
     }, []);
     useEffect(() => {
-        setAdminname(window.localStorage.getItem('ad_email'));
-    }, [setAdminname]);
-    useEffect(() => {
-        setCreatedby(Adminname.slice(3, 20));
-
-    }, [Adminname]);
+        setCreatedby(window.localStorage.getItem('ad_email'));
+    }, [setCreatedby]);
+   
     //filter function
     useEffect(() => {
         if (filteredTitle === 'all') {
