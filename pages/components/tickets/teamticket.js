@@ -171,8 +171,7 @@ function Teamticket(props) {
                                     return val;
                                 } else if (val.Email.toLowerCase().includes(search.toLowerCase()) ||
                                     val.Status.toLowerCase().includes(search.toLowerCase()) ||
-                                    val.ticketsId.toString().toLowerCase().includes(search.toLowerCase().toString())||
-                                    val.Cus_CreatedOn.toString().includes(search.toString())) {
+                                    val.ticketsId.toString().toLowerCase().includes(search.toLowerCase().toString())) {
                                     return val;
                                 } else null;
                             }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map((tickets) =>
