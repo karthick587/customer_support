@@ -4,17 +4,15 @@ import Axios from "axios";
 import FormDialog from '../common/dialogsform';
 import { Button, Typography } from '@mui/material';
 import { CounterContext } from '../contex/adminProvider';
-import { CurrentDateContext } from '../contex/currentdateProvider';
+import { CircularProgress } from '@mui/material';
 import { renderEmail } from 'react-html-email'
 import NonUserCreatedBody from '../utils/nonUserCreatedBody';
 import moment from 'moment';
 function Non_userviewer(props) {
     const { setdialogformopen, setTesting, setshowvalue, Email } = useContext(CounterContext);
-    const { currentDate } = useContext(CurrentDateContext);
     const { registerId, closeDetails } = props;
     const [nonUserDetails, setNonUserDetails] = useState([]);
-    const [Adminname, setAdminname] = useState([]);
-    const [Createdby, setCreatedby] = useState();
+    const [loader, setloader] = useState(false);
 
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
@@ -23,16 +21,25 @@ function Non_userviewer(props) {
     }, [setNonUserDetails, nonUserDetails, registerId]);
 
     function handleRejection(Id) {
+        setloader(true);
         Axios.put(`https://mindmadetech.in/api/unregisteredcustomer/statusupdate/${Id}`, {
             Status: "Rejected",
             Adm_UpdatedOn: moment(new Date()).format('DD-MM-YYYY hh:mm A'),
             Adm_UpdatedBy: window.localStorage.getItem('ad_email')
-        });
+        }).then((response) => {
+            setTesting(true)
+            setshowvalue(response.data.message)
+            setdialogformopen("true");
+            setloader(false);
+            }).catch((err)=>{
+                return err;
+            })
     }
 
 
 
     function handleApproval(nonuser) {
+        setloader(true);
         const messageHtml = renderEmail(<NonUserCreatedBody name={nonuser.Clientname} email={nonuser.Email} password={nonuser.Password} />)
 
         const data = new FormData();
@@ -53,11 +60,13 @@ function Non_userviewer(props) {
                 setTesting(true)
                 setshowvalue(1 + response.data.message)
                 setdialogformopen("true")
+                setloader(false);
                 return null;
             } else {
                 setTesting(true)
                 setshowvalue("Registered Successfully")
                 setdialogformopen("true")
+                setloader(false);
                 Email.send({
                     Host: "mindmadetech.in",
                     Username: "_mainaccount@mindmadetech.in",
@@ -78,6 +87,7 @@ function Non_userviewer(props) {
         }).catch((err) => {
             setTesting(true)
             setshowvalue(1 + "Error");
+            setloader(false);
         });
         const formData = new FormData();
         formData.append("Email", nonuser.Email);
@@ -91,6 +101,7 @@ function Non_userviewer(props) {
             }
         }).then((res) => {
             setshowvalue("Ticket Raised  Successfully")
+            setloader(false);
             return res;
         }).catch((err) => { return err });
 
@@ -187,8 +198,9 @@ function Non_userviewer(props) {
                                         headtitle={<div className='head-dialog'>Are you sure want to reject this ticket?</div>}
                                         dialogactions={
                                             <div>
-                                                <Button onClick={() => handleRejection(nonuser.registerId)}>YES</Button>
-                                                <Button onClick={() => setdialogformopen("true")}>NO</Button>
+                                                {loader === false ? <><Button onClick={() => handleRejection(nonuser.registerId)}>YES </Button>
+                                                    <Button onClick={() => setdialogformopen("true")}>NO</Button></> 
+                                                    : <> <CircularProgress className="float-end" size={25} /></>}
                                             </div>
                                         }
                                     />
@@ -198,8 +210,9 @@ function Non_userviewer(props) {
                                         headtitle={<div className='head-dialog'>Are you sure want to Approve this ticket?</div>}
                                         dialogactions={
                                             <div>
-                                                <Button onClick={() => handleApproval(nonuser)}>YES</Button>
-                                                <Button onClick={() => setdialogformopen("true")}>NO</Button>
+                                                 {loader === false ? <><Button onClick={() => handleApproval(nonuser)}>YES </Button>
+                                                    <Button onClick={() => setdialogformopen("true")}>NO</Button></> 
+                                                    : <> <CircularProgress className="float-end" size={25} /></>}
                                             </div>
                                         }
                                     />
