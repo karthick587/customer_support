@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     Clientname: yup.string().required("*required"),
     email: yup.string().required("*required").email(),
     Phonenumber: yup.string().required("*required").max(10),
-    Password: yup.string().required("*required"),
+    Password: yup.string().required("*required").min(6),
     DomainName: yup.string().required("*required"),
     Description: yup.string().required("*required"),
 });
