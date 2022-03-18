@@ -46,7 +46,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                             <div className='ticket-details-middle-1-3'>
                                 <div className="ticket-status color-green">
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
-                                    {tickets.Status === "new" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn}</div></div>}
+                                    {tickets.Status === "new" ? <><div className='details-caption'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</div></div></> : <div className='details-caption-strike'>New<div className='details-caption-2'>Updated at <br />{tickets.Cus_CreatedOn === null ? <>{tickets.Adm_CreatedOn}</> : <>{tickets.Cus_CreatedOn}</>}</div></div>}
                                 </div>
                                 <div className={tickets.Status === "new" ? "ticket-status-line width-10 display-1" : "ticket-status-line width-10 display-1 color-green-line"}>
                                 </div>
