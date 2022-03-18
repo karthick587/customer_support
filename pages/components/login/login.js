@@ -101,7 +101,6 @@ export default function Login1() {
 
   const [display, setdisplay] = useState(false)
   function forgetpassword() {
-    console.log("1")
     Axios.get(`https://mindmadetech.in/api/forgotpassword/verify_email/${forgetValue}`, {
 
     }).then((response) => {
@@ -130,7 +129,7 @@ export default function Login1() {
               Username: "_mainaccount@mindmadetech.in",
               Password: "1boQ[(6nYw6H.&_hQ&",
               To: forgetValue,
-              From: "karthickraja@mindmade.in",
+              From: "support@mindmade.in",
               Subject: "MindMade Support",
               Body: messageHtml
             }).then(
