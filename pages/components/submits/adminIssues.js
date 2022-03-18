@@ -75,12 +75,14 @@ export default function Adminissues(props) {
                             setloader(false);
                             setTesting(true)
                             setshowvalue(1+res.data.message); 
+                            setShow("");
                             }
                         
                     }).catch((err) => {
                         setTesting(true)
                         setshowvalue(1+"Submission failled");
                         setloader(false);
+                        setShow("");
                     })
                 } else {
                     const data = new FormData();
@@ -101,6 +103,7 @@ export default function Adminissues(props) {
                             setloader(false);
                             setTesting(true)
                             setshowvalue(1+res.data.message); 
+                            setShow("");
                         }else{
                             setTesting(true)
                             setshowvalue("Submitted Successfully");
@@ -126,6 +129,7 @@ export default function Adminissues(props) {
                         setTesting(true)
                         setshowvalue(1+"Submission failled");
                         setloader(false);
+                        setShow("");
                     })
                 }
             }  

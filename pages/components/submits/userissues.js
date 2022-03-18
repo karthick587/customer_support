@@ -51,10 +51,12 @@ const{setTesting,setshowvalue,Email}=useContext(CounterContext)
                         setloader(false);
                         setTesting(true)
                         setshowvalue(1+res.data.message);
+                        setShow("");
                     }else{
                         setloader(false);
                         setTesting(true)
                         setshowvalue(res.data.message);
+                        setShow("");
                         Email.send({
                             Host: "mindmadetech.in",
                             Username: "_mainaccount@mindmadetech.in",
@@ -76,6 +78,7 @@ const{setTesting,setshowvalue,Email}=useContext(CounterContext)
                     setTesting(true)
                     setshowvalue(1+"Submitted Failed");
                     setloader(false);
+                    setShow("");
                 })
             }else{
                 const data = new FormData();
@@ -92,11 +95,13 @@ const{setTesting,setshowvalue,Email}=useContext(CounterContext)
                     if(res.data.statusCode === 400){
                         setloader(false);
                         setTesting(true)
-                        setshowvalue(1+res.data.message);  
+                        setshowvalue(1+res.data.message);
+                        setShow("");  
                     }else{
                         setloader(false);
                         setTesting(true)
                         setshowvalue(res.data.message);
+                        setShow("");
                         Email.send({
                             Host: "mindmadetech.in",
                             Username: "_mainaccount@mindmadetech.in",
@@ -118,10 +123,12 @@ const{setTesting,setshowvalue,Email}=useContext(CounterContext)
                     setTesting(true)
                     setloader(false);
                     setshowvalue(1+"Submitted Failed");
+                    setShow("");
                 })
             }
         }else{
-            setShow("*Mandatory fields are required")
+            setShow("*Mandatory fields are required");
+            setloader(false);
         }
     };
     
