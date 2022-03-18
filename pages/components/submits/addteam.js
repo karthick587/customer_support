@@ -14,8 +14,8 @@ import TeamCreatedBody from '../utils/teamCreatedBody';
 import moment from 'moment';
 const schema = yup.object().shape({
     Email: yup.string().required("*required").email(),
-    Password: yup.string().required("*required"),
-    Phonenumber: yup.string().required("*required").min(6)
+    Password: yup.string().required("*required").min(6),
+    Phonenumber: yup.string().required("*required").max(10)
 });
 
 function Addteam() {
