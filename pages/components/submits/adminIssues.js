@@ -30,7 +30,8 @@ export default function Adminissues(props) {
         if(EmailR.current.value!=="" && PhonenumberR.current.value!=="" && DomainnameR.current.value!=="" && DescriptionR.current.value!==""){
             const messageHtml = renderEmail(<AdminTicketsBody />)
             if(!EmailValidate.test(String(EmailR.current.value).toLowerCase())){
-                setShow("Invalid Email")
+                setShow("Invalid Email");
+                setloader(false);
             }else{
                 if (Logo!=="x") {
                     const data = new FormData();
@@ -127,7 +128,8 @@ export default function Adminissues(props) {
                 }
             }  
         }else{
-            setShow("*Mandatory fields are required")
+            setShow("*Mandatory fields are required");
+            setloader(false);
         }
         
     }
