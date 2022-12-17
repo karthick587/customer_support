@@ -10,7 +10,7 @@ export default function ListContextProvider(props){
     const[selectedValue,setSelectedValue]=useState([]);
     
     useEffect(()=>{
-        Axios.get("https://mindmadetech.in:3001/api/customer/list")
+        Axios.get("https://mindmadetech.in/api/customer/list")
         .then((res) => {
             setUsers(res.data);
         }).catch((err) => { return err; })
