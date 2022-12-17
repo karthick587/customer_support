@@ -24,7 +24,7 @@ export default function FormDialog(props) {
         setOpen(false);
       }
       setdialogformopen(false)
-  },[dialogformopen,setdialogformopen]);
+  },[dialogformopen]);
 
 
   return (

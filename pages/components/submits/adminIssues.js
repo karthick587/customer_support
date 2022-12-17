@@ -19,7 +19,7 @@ export default function Adminissues(props) {
     const [Logo, setLogo] = useState('x');
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('user'));
-    }, [setCreatedby]);
+    }, []);
     
     function handleScreenshot(e) {
         setLogo(e.target.files);

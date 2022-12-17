@@ -33,7 +33,7 @@ export default function CurentDateContextProvider(props){
     fullTime = hour.toString() + ':' + minutes.toString() + ' ' + TimeType.toString();
     fulldate = dateupadate.toString() + '-' + monthupadate.toString() + '-' + yearupadate.toString();
     setCurrentDate(currentDate = fulldate + ' ' + fullTime)
-    },[setCurrentDate,currentDate])
+    },[])
     return(
         <CurrentDateContext.Provider value={{
             currentDate

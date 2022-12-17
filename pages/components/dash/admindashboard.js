@@ -19,7 +19,7 @@ import AdminNotification from '../notification/adminNotifiction';
 import Resentticket from './resentTickets';
 import Copyrights from '../common/copyRight';
 import { CounterContext } from '../contex/adminProvider';
-import Piechart from './piechart';
+// import Piechart from './piechart';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
@@ -45,13 +45,16 @@ const AdminDashboard = () => {
   // cannot access page without login
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
+    
+    setadname(window.localStorage.getItem('ad_email'))
+  },[]);
+  useEffect(()=>{
     if (login === "false") {
       router.push("/");
     } else if (login === null) {
       router.push("/");
     }
-    setadname(window.localStorage.getItem('ad_email'))
-  },[login,setLogin]);
+  },[login])
   // alert to conform logout white click back
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -81,11 +84,11 @@ const AdminDashboard = () => {
   };
   // getactivetab
   useEffect(() => {
-    if(activeTab==="x"){
+    // if(activeTab==="x"){
       setActivetab(window.localStorage.getItem('activeTab'));
-    }
+    // }
    
-  },[activeTab,setActivetab]);
+  },[]);
 
   const[pendingCount,setpendingCount]=useState('')
   function callback(childData){
@@ -202,12 +205,12 @@ const AdminDashboard = () => {
                           </div>
                           <div className='Resentticket-page'>
                             <Resentticket />
-                            <Piechart
+                            {/* <Piechart
                               newcount={adminNewcount}
                               started={adminStartedcount}
                               inprogress={adminprogresscount}
                               completed={adminCompletedcount}
-                            />
+                            /> */}
                           </div>
                         </div>
                       </div>

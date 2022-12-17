@@ -36,73 +36,75 @@ export default function Addcustomer() {
 
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('user'));
-    }, [setCreatedby]);
-var email2=Email
+    }, []);
+    var email2 = Email
     const addUser = ({ Companyname, Clientname, Email, Phonenumber, Password }) => {
         const messageHtml2 = renderEmail(<CustomerCreatedBody name={Clientname} email={Email} password={Password} />)
         setloader(true)
-            const data = new FormData();
-            data.append("Companyname", Companyname);
-            data.append("Clientname", Clientname);
-            data.append("Email", Email);
-            data.append("Phonenumber", Phonenumber);
-            data.append("Password", Password);
-            data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
-            data.append("CreatedBy", Createdby)
-            Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            }).then((response) => {
-                if (response.data.statusCode === 400) {
-                    if (response.data.message === "Email already Exists!") {
-                        setShow(response.data.message);
-                        setloader(false);
-                    } else {
-                        setTesting(true)
-                        setshowvalue(1 + response.data.message);
-                        setdialogformopen("true");
-                        setloader(false)
-                    }
+        const data = new FormData();
+        data.append("Companyname", Companyname);
+        data.append("Clientname", Clientname);
+        data.append("Email", Email);
+        data.append("Phonenumber", Phonenumber);
+        data.append("Password", Password);
+        data.append("CreatedOn", moment(new Date()).format('DD-MM-YYYY hh:mm A'));
+        data.append("CreatedBy", Createdby)
+        Axios.post(`https://mindmadetech.in/api/customer/new`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }).then((response) => {
+            if (response.data.statusCode === 400) {
+                if (response.data.message === "Email already Exists!") {
+                    setShow(response.data.message);
+                    setloader(false);
                 } else {
-                    setdialogformopen("true")
                     setTesting(true)
-                    setshowvalue("Registered Successfully");
+                    setshowvalue(1 + response.data.message);
+                    setdialogformopen("true");
                     setloader(false)
-                    email2.send({
-                        Host: "mindmadetech.in",
-                        Username: "_mainaccount@mindmadetech.in",
-                        Password: "1boQ[(6nYw6H.&_hQ&",
-                        To: Email,
-                        From: "support@mindmade.in",
-                        Subject: "MindMade Support",
-                        Body: messageHtml2
-                    }).then(
-                        message => console.log(message)
-                    )
-
-
                 }
-            })
+            } else {
+                setdialogformopen("true")
+                setTesting(true)
+                setshowvalue("Registered Successfully");
+                setloader(false)
+                email2.send({
+                    Host: "mindmadetech.in",
+                    Username: "_mainaccount@mindmadetech.in",
+                    Password: "1boQ[(6nYw6H.&_hQ&",
+                    To: Email,
+                    From: "support@mindmade.in",
+                    Subject: "MindMade Support",
+                    Body: messageHtml2
+                }).then(
+                    message => console.log(message)
+                )
+
+
+            }
+        })
             .catch((err) => {
-                    setTesting(true)
-                    setshowvalue(1 + "error");
-                    setloader(false)
-                    return err;
+                setTesting(true)
+                setshowvalue(1 + "error");
+                setloader(false)
+                return err;
             })
-       
+
     };
 
     useEffect(() => {
         setShow();
         setLogin(window.localStorage.getItem('loggedin'));
+
+    }, [login]);
+    useEffect(() => {
         if (login === "false") {
             Router.push("/");
         } else if (login === null) {
             Router.push("/");
         }
-    }, [login]);
-
+    }, [login])
     return (
         <div>
             <div className="container mainbody">

@@ -28,10 +28,12 @@ function NonUserTickets(props) {
         Axios.get("https://mindmadetech.in/api/unregisteredcustomer/list")
             .then((res) => setNonUser(res.data.reverse()))
             .catch((err) => { return err; })
-        setPendingCount(nonUser.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket)=> setPendingCount(ticket.Status.length)).length);
-        props.callback(PendingCount)
-    }, [setNonUser, nonUser]);
 
+    }, []);
+    useEffect(() => {
+        setPendingCount(nonUser?.filter(val => { return val.Status.toLowerCase().includes("Pending".toLowerCase()) }).map((ticket) => setPendingCount(ticket.Status.length)).length);
+        props.callback(PendingCount)
+    }, [nonUser])
     function closeDetails() {
         setShowdetails(false);
     };
@@ -62,7 +64,7 @@ function NonUserTickets(props) {
                                 <option value="Approved">Approved</option>
                                 <option value="Rejected">Rejected</option>
                             </select>
-                            </div>
+                        </div>
 
                     </div>
                     <TableContainer component={Paper}>
@@ -79,11 +81,11 @@ function NonUserTickets(props) {
                             </TableHead>
 
                             <TableBody   >
-                                {nonUser.filter(fil=>{
-                                    if(filteredTitle === 'all'){
+                                {nonUser.filter(fil => {
+                                    if (filteredTitle === 'all') {
                                         return fil;
-                                    }else{
-                                        switch(filteredTitle){
+                                    } else {
+                                        switch (filteredTitle) {
                                             case 'Pending':
                                                 return fil.Status.toLowerCase().includes('Pending'.toLowerCase());
                                                 break;
@@ -95,7 +97,7 @@ function NonUserTickets(props) {
                                                 break;
                                         }
                                     }
-                                }).slice((currentpage - 1)  *datalimit, currentpage  *datalimit).map(value =>
+                                }).slice((currentpage - 1) * datalimit, currentpage * datalimit).map(value =>
                                     <TableRow key={value.registerId} onClick={() => ShowDetail(value.registerId)} className={value.Status === "Pending" ? "highlighted-row" : "tickets-bodyrow"}>
                                         <TableCell align="left">{value.registerId}</TableCell>
                                         <TableCell align="left" className='table_spacing'>  {value.Email}</TableCell>

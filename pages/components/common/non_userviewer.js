@@ -18,7 +18,7 @@ function Non_userviewer(props) {
         Axios.get(`https://mindmadetech.in/api/unregisteredcustomer/list/${registerId}`)
             .then((res) => setNonUserDetails(res.data))
             .catch((err) => { return err; })
-    }, [setNonUserDetails, nonUserDetails, registerId]);
+    }, [ registerId]);
 
     function handleRejection(Id) {
         setloader(true);

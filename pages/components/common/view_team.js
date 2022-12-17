@@ -12,7 +12,7 @@ export default function ViewTeam(props){
         })
         setnewarray(TeamList)
        }  
-    },[setnewarray,teamArray])
+    },[newarray])
     return(
         <div className="">
         { newarray !== undefined&&team !== undefined ?<div> {team.filter(val => { 

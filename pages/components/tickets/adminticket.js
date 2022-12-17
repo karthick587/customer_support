@@ -70,7 +70,7 @@ function Adminticket() {
     }, []);
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('ad_email'));
-    }, [setCreatedby]);
+    }, []);
    
     //filter function
     useEffect(() => {

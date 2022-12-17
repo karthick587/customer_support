@@ -5,24 +5,24 @@ import ViewTeam from './view_team';
 import ViewScreenshots from './view_screenshots';
 
 function Ticketviewer(props) {
-const [whoLogedin,setwhoLogedin]=useState()
+    const [whoLogedin, setwhoLogedin] = useState()
     const { dticketsId, closeDetails } = props;
     const [ticket, setticket] = useState([]);
     useEffect(() => {
         Axios.get(`https://mindmadetech.in/api/tickets/list/${dticketsId}`)
             .then((res) => setticket(res.data))
             .catch((err) => { return err; })
-setwhoLogedin(window.localStorage.getItem('loggedWho'))
-    }, [setticket,setwhoLogedin]);
-    var customer ="completed"
-   var customer2="Completed"
-   
-        if(whoLogedin==='customer'){
-            customer="Completed"
-            customer2="Completed"
-        }
-       
-        console.log(customer)
+        setwhoLogedin(window.localStorage.getItem('loggedWho'))
+    }, [dticketsId]);
+    var customer = "completed"
+    var customer2 = "Completed"
+
+    if (whoLogedin === 'customer') {
+        customer = "Completed"
+        customer2 = "Completed"
+    }
+
+    console.log(customer)
     return (
         <>
             {ticket.reverse().map((tickets) =>
@@ -40,7 +40,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                             <div className='ticket-details-middle-1-1'>
                                 Ticket&apos;s Details
                                 <div className='css-nem3m2'>
-                                    {tickets.Status === "completed" ? <>{customer === "completed" ? "Done":"Inprogress"}</> : <>{tickets.Status}</>}
+                                    {tickets.Status === "completed" ? <>{customer === "completed" ? "Done" : "Inprogress"}</> : <>{tickets.Status}</>}
                                 </div>
                             </div>
                             <div className='ticket-details-middle-1-3'>
@@ -64,7 +64,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                                 </div>
                                 <div className={tickets.Status === "new" || tickets.Status === "started" ? "ticket-status" : "ticket-status color-green"}>
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
-                                    {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className={ customer==="Completed"&&tickets.Status==="completed" ?"details-caption":"details-caption-strike"}>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
+                                    {tickets.Status === "inprogress" ? <div className='details-caption'>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div> : <div className={customer === "Completed" && tickets.Status === "completed" ? "details-caption" : "details-caption-strike"}>Inprogress<div className='details-caption-2'>Updated at <br />{tickets.Tm_Process_UpdatedOn}</div></div>}
                                 </div>
                                 <div className={tickets.Status === customer || tickets.Status === customer2 ? "ticket-status-line width-10 display-1 color-green-line" : " ticket-status-line display-1 width-10 "}>
                                 </div>
@@ -73,7 +73,7 @@ setwhoLogedin(window.localStorage.getItem('loggedWho'))
                                 </div>
                                 <div className={tickets.Status === customer || tickets.Status === customer2 ? "ticket-status  color-green" : "ticket-status"}>
                                     <div className='ticket-icon'><CheckCircleIcon /></div>
-                                    {tickets.Status === customer || tickets.Status === customer2 ? <div className='details-caption'>{tickets.Status === customer ? <> <>{customer === "completed" ? "Done":"Completed"}</></> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{customer==="Completed"&&tickets.Status==="completed" ? <></>: <>{tickets.Tm_Complete_UpdatedOn}</>}</div></div>}
+                                    {tickets.Status === customer || tickets.Status === customer2 ? <div className='details-caption'>{tickets.Status === customer ? <> <>{customer === "completed" ? "Done" : "Completed"}</></> : <>{tickets.Status}</>}<div className='details-caption-2'>Updated at <br />{tickets.Tm_Complete_UpdatedOn}</div></div> : <div className='details-caption-strike'>Completed<div className='details-caption-2'>Updated at <br />{customer === "Completed" && tickets.Status === "completed" ? <></> : <>{tickets.Tm_Complete_UpdatedOn}</>}</div></div>}
                                 </div>
                             </div>
                         </div>

@@ -83,13 +83,16 @@ export default function Users(props) {
 
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
+      
+        localStorage.setItem('updateclose', "open");
+    },[])
+    useEffect(()=>{
         if (login === "false") {
             router.push("/");
         } else if (login === null) {
             router.push("/");
         }
-        localStorage.setItem('updateclose', "open");
-    },[login,setLogin])
+    },[login])
 
     //pagination
     function handlePageChange(pageNumber) {

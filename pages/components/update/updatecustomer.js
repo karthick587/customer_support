@@ -24,13 +24,13 @@ function Updatecustomer({ usersId }) {
 
     useEffect(() => {
         setCreatedby(window.localStorage.getItem('user'));
-    }, [Createdby]);
+    }, []);
 
     useEffect(() => {
         axios.get(`https://mindmadetech.in/api/customer/list/${usersId}`)
             .then(res => setGetCustomer(res.data))
             .catch((err) => { return err; })
-    }, [setGetCustomer]);
+    }, []);
 
 
     const handleUpdate = () => {

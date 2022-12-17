@@ -20,7 +20,7 @@ export default function FormAlert() {
                 clearTimeout(Timer);
             }
         }
-    },[testing]);
+    },[]);
     return (
         <>
             {showvalue.slice(0, 1) === "1" ?

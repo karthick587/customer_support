@@ -19,12 +19,12 @@ export default function CounterContextProvider(props){
         Axios.get("https://mindmadetech.in/api/tickets/list")
             .then((res) => setTickets(res.data))
             .catch((err)=>{ return err; })
-    },[tickets]);
+    },[]);
     
     //team tickets filter function
     useEffect(() => {
         setSearch1(window.localStorage.getItem('tm_name'))
-    },[setSearch1]);
+    },[]);
 
    function addTeammember(teamId){
        

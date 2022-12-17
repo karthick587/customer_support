@@ -18,7 +18,7 @@ export default function CustomerProfile(props) {
         Axios.get(`https://mindmadetech.in/api/customers/list/${customername}`)
             .then((res) => setUsers(res.data))
             .catch((err) => { return err; })
-    }, [users]);
+    }, [customername]);
 
     const [show, setshow] = useState(false)
     const [show2, setshow2] = useState(false)

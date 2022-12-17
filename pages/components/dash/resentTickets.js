@@ -16,7 +16,7 @@ export default function Resentticket(props) {
         } else {
             seteam(teamticket);
         }
-    }, [teamticket, tickets, seteam]);
+    }, [teamticket, tickets]);
     return (
         <div className='resentticket'>
             <Typography component="h2" variant="h6" color="primary" gutterBottom>

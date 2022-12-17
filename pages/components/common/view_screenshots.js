@@ -32,7 +32,7 @@ export default function ViewScreenshots(props) {
                 setMimetype(files.Filepath.slice(files.Filepath.length - 4));
             })
         }
-    }, [setnewarray, FileArray])
+    }, [newarray])
     return (
         <div className=''>
             <div className="flex">
