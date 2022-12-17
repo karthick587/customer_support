@@ -39,12 +39,12 @@ const TeamDashboard = () => {
 
   }, []);
   useEffect(() => {
-    if (login === "false") {
+    if (window.localStorage.getItem('loggedin') === "false") {
       router.push("/");
-    } else if (login === null) {
+    } else if (window.localStorage.getItem('loggedin') === null) {
       router.push("/");
     }
-  }, [login])
+  }, [])
   //alert to conform logout
   const onBackButtonEvent = (e) => {
     e.preventDefault();

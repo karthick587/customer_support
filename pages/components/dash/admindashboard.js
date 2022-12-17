@@ -49,12 +49,12 @@ const AdminDashboard = () => {
     setadname(window.localStorage.getItem('ad_email'))
   },[]);
   useEffect(()=>{
-    if (login === "false") {
+    if (window.localStorage.getItem('loggedin') === "false") {
       router.push("/");
-    } else if (login === null) {
+    } else if (window.localStorage.getItem('loggedin') === null) {
       router.push("/");
     }
-  },[login])
+  },[])
   // alert to conform logout white click back
   const onBackButtonEvent = (e) => {
     e.preventDefault();

@@ -97,14 +97,14 @@ export default function Addcustomer() {
         setShow();
         setLogin(window.localStorage.getItem('loggedin'));
 
-    }, [login]);
+    }, []);
     useEffect(() => {
-        if (login === "false") {
+        if (window.localStorage.getItem('loggedin') === "false") {
             Router.push("/");
-        } else if (login === null) {
+        } else if (window.localStorage.getItem('loggedin') === null) {
             Router.push("/");
         }
-    }, [login])
+    }, [])
     return (
         <div>
             <div className="container mainbody">

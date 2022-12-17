@@ -83,9 +83,9 @@ function Addteam() {
 
     useEffect(() => {
         setLogin(window.localStorage.getItem('loggedin'));
-        if (login === "false") {
+        if (window.localStorage.getItem('loggedin') === "false") {
             Router.push("/")
-        } else if (login === null) {
+        } else if (window.localStorage.getItem('loggedin') === null) {
             Router.push("/")
         }
     }, []);

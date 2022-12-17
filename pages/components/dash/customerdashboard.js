@@ -33,9 +33,9 @@ const CustomerDashboard = () => {
   const [raisedcompletedcount, setraisedcompletedcount] = useState();
   useEffect(() => {
     setLogin(window.localStorage.getItem('loggedin'));
-    if (login === "false") {
+    if (window.localStorage.getItem('loggedin') === "false") {
       router.push("/");
-    } else if (login === null) {
+    } else if (window.localStorage.getItem('loggedin') === null) {
       router.push("/");
     }
   },[]);

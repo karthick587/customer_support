@@ -25,9 +25,9 @@ function Userticket(props) {
     useEffect(() => {
         setmaptickets(tickets.reverse());
         setLogin(window.localStorage.getItem('loggedin'));
-        if (login === "false") {
+        if (window.localStorage.getItem('loggedin') === "false") {
             Router.push("/");
-        } else if (login === null) {
+        } else if (window.localStorage.getItem('loggedin') === null) {
             Router.push("/");
         };
         localStorage.setItem('updateclose', "open");
